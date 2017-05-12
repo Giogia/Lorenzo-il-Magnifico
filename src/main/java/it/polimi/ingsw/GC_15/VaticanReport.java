@@ -23,6 +23,6 @@ public class VaticanReport {
 	
 	private boolean checkFaithPoints(Player player, int period){
 		int minimumFaithPoints=0;//TODO: ricavare tali faith points in base al period!
-		return minimumFaithPoints < //punti fede del player
+		return minimumFaithPoints < 0; //<-punti fede del player
 	}
 }

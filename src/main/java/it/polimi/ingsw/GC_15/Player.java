@@ -46,16 +46,31 @@ public class Player {
 	}
 	
 	public void activateLeaderCard(LeaderCard leaderCard){
-		//TODO
+		personalBoard.putLeaderCard(leaderCard);
+		//delete leader card from the hand
+		for (int i=0; i < leaderCardInHand.length; i++){
+			if (leaderCardInHand[i].equals(leaderCard)) leaderCardInHand[i]=null;
+		}
 	}
 	
 	public void activateLeaderEffect(LeaderCard leaderCard){
-		//TODO
+		personalBoard.activateLeaderEffect(leaderCard);
 	}
 	
 	public void choosePrivilegeCouncil(ResourceBonus resourceBonus){
 		//TODO: aumenta il valore di uno delle monete nella personal board
-		resourceBonus.immediateBonus();
+		//resourceBonus.immediateBonus();
 	}
 	
+	/*public DevelopmentCard getCardsToActivate(DevelopmentCardType developmentCardType) {
+		//TODO
+	}
+	
+	public void chooseCard(DevelopmentCard) {
+		//TODO
+	}*/
+	
+	public void chooseCardToCopy(){
+		//TODO
+	}
 }
