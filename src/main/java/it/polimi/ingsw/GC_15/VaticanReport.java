@@ -3,7 +3,7 @@ package it.polimi.ingsw.GC_15;
 public class VaticanReport {
 	private ExcommunicationTile excommunicationTiles[];
 	
-	public VaticanReport(ExcommunicationTile excommunicationTiles[]) {//TODO: gestire l'eccezione nel caso di array di lunghezza diversa
+	public VaticanReport(ExcommunicationTile excommunicationTiles[]) {//TODO: gestire l'eccezione nel caso di array di lunghezza diversa?
 		this.excommunicationTiles=excommunicationTiles;
 	}
 	
@@ -23,6 +23,6 @@ public class VaticanReport {
 	
 	private boolean checkFaithPoints(Player player, int period){
 		int minimumFaithPoints=0;//TODO: ricavare tali faith points in base al period!
-		return minimumFaithPoints < player.getFaithPoints();
+		return minimumFaithPoints < //punti fede del player
 	}
 }

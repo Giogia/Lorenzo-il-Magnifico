@@ -40,4 +40,22 @@ public class Player {
 		//TODO: serve il controller
 	}
 	
+	public void useServants(int value, FamilyMember familyMember){
+		//TODO: diminuisci il valore dei serventi nella personal board
+		familyMember.addValue(value);
+	}
+	
+	public void activateLeaderCard(LeaderCard leaderCard){
+		//TODO
+	}
+	
+	public void activateLeaderEffect(LeaderCard leaderCard){
+		//TODO
+	}
+	
+	public void choosePrivilegeCouncil(ResourceBonus resourceBonus){
+		//TODO: aumenta il valore di uno delle monete nella personal board
+		resourceBonus.immediateBonus();
+	}
+	
 }
