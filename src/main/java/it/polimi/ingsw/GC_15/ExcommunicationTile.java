@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.BONUS.Bonus;
+
 public class ExcommunicationTile {
 	public final int period;
 	private Bonus malus[];

@@ -1,5 +1,11 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Zone;
+import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.LeaderCard;
+
 public class Player {
 	private String name;
 	private Color color;

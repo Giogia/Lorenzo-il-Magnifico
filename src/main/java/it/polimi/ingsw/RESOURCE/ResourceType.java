@@ -1,0 +1,5 @@
+package it.polimi.ingsw.RESOURCE;
+
+public enum ResourceType {
+	FAITHPOINTS,COINS,MILITARYPOINTS,SERVANTS,VICTORYPOINTS,WOOD,STONES
+}

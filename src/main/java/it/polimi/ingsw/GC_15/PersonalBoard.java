@@ -4,6 +4,24 @@ import java.util.ArrayList;
 
 import javax.management.InstanceAlreadyExistsException;
 
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.CARD.ContainerBuildingCard;
+import it.polimi.ingsw.CARD.ContainerCard;
+import it.polimi.ingsw.CARD.ContainerCharacterCard;
+import it.polimi.ingsw.CARD.ContainerTerritoryCard;
+import it.polimi.ingsw.CARD.ContainerVentureCard;
+import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.RESOURCE.Coins;
+import it.polimi.ingsw.RESOURCE.FaithPoints;
+import it.polimi.ingsw.RESOURCE.MilitaryPoints;
+import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.Servants;
+import it.polimi.ingsw.RESOURCE.Stones;
+import it.polimi.ingsw.RESOURCE.VictoryPoints;
+import it.polimi.ingsw.RESOURCE.Wood;
+
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
 	private boolean excommunicationCubes[];
