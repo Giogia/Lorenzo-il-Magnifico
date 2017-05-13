@@ -59,10 +59,10 @@ public class Player {
 	
 	public void choosePrivilegeCouncil(ResourceBonus resourceBonus){
 		//TODO: aumenta il valore di uno delle monete nella personal board
-		//resourceBonus.immediateBonus();
+		//resourceBonus.immediateBonus(); 
 	}
 	
-	/*public DevelopmentCard getCardsToActivate(DevelopmentCardType developmentCardType) {
+	/*public DevelopmentCard[] getCardsToActivate(DevelopmentCardType developmentCardType) {
 		//TODO
 	}
 	
