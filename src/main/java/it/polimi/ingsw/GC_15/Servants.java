@@ -1,5 +1,5 @@
 package it.polimi.ingsw.GC_15;
 
-public class Servants {
+public class Servants extends Resource{
 
 }
