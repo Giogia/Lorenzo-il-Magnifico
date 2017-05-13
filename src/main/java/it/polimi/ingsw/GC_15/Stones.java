@@ -1,5 +1,5 @@
 package it.polimi.ingsw.GC_15;
 
-public class Stones {
+public class Stones extends Resource{
 
 }
