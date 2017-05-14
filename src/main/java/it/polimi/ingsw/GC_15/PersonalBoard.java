@@ -13,6 +13,8 @@ import it.polimi.ingsw.CARD.ContainerVentureCard;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
+import it.polimi.ingsw.CARD.PermanentLeaderCard;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -70,22 +72,27 @@ public class PersonalBoard {
 	public void activateLeaderEffect(LeaderCard leaderCard){
 		if(leaderCard.checkActivationCondition()){
 			if (leaderCard instanceof OncePerRoundLeaderCard){
-				leaderCard.activateOncePerRoundBonus();
+				((OncePerRoundLeaderCard) leaderCard).activateOncePerRoundBonus();
 			}
 			if(leaderCard instanceof PermanentLeaderCard){
-				leaderCard.activatePermanentBonus();
+				((PermanentLeaderCard) leaderCard).activatePermanentBonus();
 			}
 		}
 	}
 	
+	//TODO: gestire il caso in cui la carta non sia uno dei tipi prestabiliti
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
 		for(int i=0; i < developmentCards.size(); i++){
-			if(developmentCards.get(i).developmentCardType==developmentCard.
+			if(developmentCards.get(i).getType() == developmentCard.type){
+				developmentCards.get(i).add(developmentCard);
+			}
 		}
 	}
 	
 	public void activateDevelopmentCard(DevelopmentCard developmentCard){
-		//TODO
+		for(int i = 0; i < developmentCard.secondaryEffect.size(); i++){
+			//TODO
+		}
 	}
 	
 	public void activateBonusTiles(DevelopmentCardType developmentCardType){
@@ -93,6 +100,6 @@ public class PersonalBoard {
 	}
 	
 	public void addPermanentBonus(Bonus bonus){
-		//TODO
+		permanentBonus.add(bonus);
 	}
 }

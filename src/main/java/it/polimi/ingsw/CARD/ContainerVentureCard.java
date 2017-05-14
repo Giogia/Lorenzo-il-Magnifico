@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class ContainerVentureCard implements ContainerCard {
 	private ArrayList<DevelopmentCard> ventures;
-	public final DevelopmentCardType developmentCardType= DevelopmentCardType.VENTURE;
+	private DevelopmentCardType type= DevelopmentCardType.VENTURE;
+	
+	public DevelopmentCardType getType() {
+		return type;
+	}
 	
 	public void add(DevelopmentCard venture){
 		ventures.add(venture);

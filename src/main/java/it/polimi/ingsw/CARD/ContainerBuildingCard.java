@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class ContainerBuildingCard implements ContainerCard {
 	private ArrayList<DevelopmentCard> buildings;
-	public final DevelopmentCardType developmentCardType= DevelopmentCardType.BUILDING;
+	private DevelopmentCardType type= DevelopmentCardType.BUILDING;
+	
+	public DevelopmentCardType getType() {
+		return type;
+	}
 	
 	public void add(DevelopmentCard building){
 		buildings.add(building);
