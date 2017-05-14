@@ -1,5 +1,6 @@
 package it.polimi.ingsw.BOARD;
 
+import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
 
@@ -81,6 +82,29 @@ public class Board {
 		this.productionArea = productionArea;
 	}
 	
+	public void setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position){
+		zone.setFamilyMemberPosition(familyMember, position);
+	}
+	
+	public boolean setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position, int index){
+		if(zone.setFamilyMemberPosition(familyMember, position, index)) {
+			return true;
+		}
+		return false;
+	}
+	
+	//toglie tutti i  family member in ogni zona della board
+	public void resetPositions() {
+		for(Tower tower : this.tower){
+		tower.deleteAllFamilyMember();
+		}
+		this.market.deleteAllFamilyMember();
+		this.councilPalace.deleteAllFamilyMember();
+		this.harvestArea.deleteAllFamilyMember();
+		this.productionArea.deleteAllFamilyMember();
+	}
 }
+
+
 
 
