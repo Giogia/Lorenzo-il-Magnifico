@@ -2,8 +2,6 @@ package it.polimi.ingsw.GC_15;
 
 import java.util.ArrayList;
 
-import javax.management.InstanceAlreadyExistsException;
-
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.CARD.ContainerBuildingCard;
 import it.polimi.ingsw.CARD.ContainerCard;
@@ -14,7 +12,6 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
-import it.polimi.ingsw.CARD.PermanentLeaderCard;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -34,7 +31,6 @@ public class PersonalBoard {
 	private ArrayList<Bonus> permanentBonus;
 	
 	public PersonalBoard() {
-		personalBonusTile= new PersonalBonusTile();
 		activatedLeaderCards= new ArrayList<>();
 		oncePerRoundBonusLeaderCard= new ArrayList<>();
 		permanentBonus= new ArrayList<>();
@@ -55,32 +51,16 @@ public class PersonalBoard {
 	}
 	
 	public void putLeaderCard(LeaderCard leaderCard) {
-		//find first free poition
-		if (activatedLeaderCards.isEmpty()){
-			activatedLeaderCards.add(leaderCard);
-			return;
-		}
-		for (int i=0; i < activatedLeaderCards.size(); i++) {
-			if(activatedLeaderCards.get(i)==null) {
-				activatedLeaderCards.set(i, leaderCard);
-				return; 
-			}
-		}
+		activatedLeaderCards.add(leaderCard);
 	}
 	
-	//TODO: da gestire il caso in cui la leader card non è nè l'una nè l'altra
+	//attivo l'effetto onePerRound della carta leader
 	public void activateLeaderEffect(LeaderCard leaderCard){
 		if(leaderCard.checkActivationCondition()){
-			if (leaderCard instanceof OncePerRoundLeaderCard){
-				((OncePerRoundLeaderCard) leaderCard).activateOncePerRoundBonus();
-			}
-			if(leaderCard instanceof PermanentLeaderCard){
-				((PermanentLeaderCard) leaderCard).activatePermanentBonus();
-			}
+			((OncePerRoundLeaderCard) leaderCard).activateOncePerRoundBonus();
 		}
 	}
 	
-	//TODO: gestire il caso in cui la carta non sia uno dei tipi prestabiliti
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
 		for(int i=0; i < developmentCards.size(); i++){
 			if(developmentCards.get(i).getType() == developmentCard.type){
@@ -96,10 +76,29 @@ public class PersonalBoard {
 	}
 	
 	public void activateBonusTiles(DevelopmentCardType developmentCardType){
-		//TODO
+		//TODO: chiamare il controller che verifica i requisiti e se son soddifatti chiama (dipende dal developmentCardType)
+		// o il activateProductionBonus della personalbonustile
+		// o il activateHarvestBonus della personalBonusTile
 	}
 	
+	//ADD methods -> similar to setters
 	public void addPermanentBonus(Bonus bonus){
 		permanentBonus.add(bonus);
+	}
+	
+	public void addOncePerRoundBonusLeaderCard(LeaderCard leaderCard){
+		oncePerRoundBonusLeaderCard.add(leaderCard);
+	}
+	
+	public void addActivatedLeaderCards(LeaderCard leaderCard){
+		activatedLeaderCards.add(leaderCard);
+	}
+	
+	public void setEcxommunicationCube(int period){
+		excommunicationCubes[period]=true;
+	}
+
+	public void setPersonalBonusTile(PersonalBonusTile personalBonusTile) {
+		this.personalBonusTile = personalBonusTile;
 	}
 }

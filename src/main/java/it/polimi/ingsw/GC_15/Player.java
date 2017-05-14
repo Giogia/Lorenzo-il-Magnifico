@@ -4,6 +4,8 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 
 public class Player {
@@ -63,18 +65,22 @@ public class Player {
 		personalBoard.activateLeaderEffect(leaderCard);
 	}
 	
+	public PersonalBoard getPersonalBoard() {
+		return personalBoard;
+	}
+	
 	public void choosePrivilegeCouncil(ResourceBonus resourceBonus){
 		//TODO: aumenta il valore di uno delle monete nella personal board
 		//resourceBonus.immediateBonus(); 
 	}
 	
-	/*public DevelopmentCard[] getCardsToActivate(DevelopmentCardType developmentCardType) {
+	public DevelopmentCard[] getCardsToActivate(DevelopmentCardType developmentCardType) {
 		//TODO
 	}
 	
-	public void chooseCard(DevelopmentCard) {
+	public void chooseCard(DevelopmentCard developmentCard) {
 		//TODO
-	}*/
+	}
 	
 	public void chooseCardToCopy(){
 		//TODO

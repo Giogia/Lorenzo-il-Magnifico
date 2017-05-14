@@ -14,4 +14,20 @@ public class PersonalBonusTile {
 		this.harvestActivationCondition = harvestActivationCondition;
 		this.productionActivationCondition = productionActivationCondition;
 	}
+	
+	public void activateHarvestBonus(){
+		harvestBonus.getBonus();
 	}
+	
+	public void activateProductionBonus(){
+		productionBonus.getBonus();
+	}
+	
+	public int getHarvestActivationCondition() {
+		return harvestActivationCondition;
+	}
+	
+	public int getProductionActivationCondition() {
+		return productionActivationCondition;
+	}
+}
