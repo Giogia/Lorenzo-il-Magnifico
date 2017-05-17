@@ -1,12 +1,14 @@
 package it.polimi.ingsw.GC_15;
 
-import it.polimi.ingsw.BOARD.Board;
-import it.polimi.ingsw.BOARD.Position;
-import it.polimi.ingsw.BOARD.Zone;
-import it.polimi.ingsw.BONUS.ResourceBonus;
-import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
-import it.polimi.ingsw.CARD.LeaderCard;
+import java.util.ArrayList;
+
+import org.omg.PortableServer.Servant;
+
+import it.polimi.ingsw.BOARD.*;
+import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
+import it.polimi.ingsw.CARD.*;
+import it.polimi.ingsw.RESOURCE.Coins;
+import it.polimi.ingsw.RESOURCE.Servants;
 
 public class Player {
 	private String name;
@@ -14,8 +16,8 @@ public class Player {
 	public enum Color {RED, BLUE, YELLOW, GREEN};
 	private Board board;
 	private PersonalBoard personalBoard=new PersonalBoard();
-	private LeaderCard leaderCardInHand[];
-	private FamilyMember familyMember[];
+	private ArrayList<LeaderCard> leaderCardInHand;
+	private ArrayList<FamilyMember> familyMembers;
 	
 	public Player(String name, Color color, Board board) {
 		this.name=name;
@@ -23,41 +25,46 @@ public class Player {
 		this.board=board;
 	}
 	
-	public void setFamilyMember(FamilyMember[] familyMember) {
-		this.familyMember = familyMember;
+	public void setFamilyMember(ArrayList<FamilyMember> familyMembers) {
+		this.familyMembers = familyMembers;
 	}
 	
-	public void setLeaderCardInHand(LeaderCard leaderCard[]){
+	public void setLeaderCardInHand(ArrayList<LeaderCard> leaderCard){
 		leaderCardInHand=leaderCard;
 	}
 	
 	private void discardLeaderCard(LeaderCard leaderCard){
-		for(int i=0; i < leaderCardInHand.length; i++){
-			if (leaderCardInHand[i].equals(leaderCard)){
-				leaderCardInHand[i]=null;
+		//trovo la posizione dove si trova la leaderCard
+		for(int i=0; i < leaderCardInHand.size(); i++){
+			if (leaderCardInHand.get(i).equals(leaderCard)){
+				//rimuovo la leaderCard dall'ArrayList
+				leaderCardInHand.remove(i);
 			}
 		}
 	}
 	
 	public boolean wantsToRestartFaithPoints(){
-		boolean decision=true;//TODO: Da vedere come fare per tale assegnamento
+		boolean decision=true;//TODO
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position) {
-		//TODO: serve il controller
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) {
+		position.addFamilyMember(familyMember);
 	}
 	
 	public void useServants(int value, FamilyMember familyMember){
-		//TODO: diminuisci il valore dei serventi nella personal board
+		//trovo l'indice nell'arrayList dove vi sono i serventi
+		int index= personalBoard.getResources().lastIndexOf(new Servants());
+		//decremento il valore dei serventi di - value
+		personalBoard.getResources().get(index).addvalue(-value);
 		familyMember.addValue(value);
 	}
 	
 	public void activateLeaderCard(LeaderCard leaderCard){
 		personalBoard.putLeaderCard(leaderCard);
 		//delete leader card from the hand
-		for (int i=0; i < leaderCardInHand.length; i++){
-			if (leaderCardInHand[i].equals(leaderCard)) leaderCardInHand[i]=null;
+		for (int i=0; i < leaderCardInHand.size(); i++){
+			if (leaderCardInHand.get(i).equals(leaderCard)) leaderCardInHand.remove(i);
 		}
 	}
 	
@@ -69,9 +76,13 @@ public class Player {
 		return personalBoard;
 	}
 	
-	public void choosePrivilegeCouncil(ResourceBonus resourceBonus){
-		//TODO: aumenta il valore di uno delle monete nella personal board
-		//resourceBonus.immediateBonus(); 
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus){
+		//trovo l'indice nell'arrayList dove vi sono le monete
+		int index= personalBoard.getResources().lastIndexOf(new Coins());
+		//do al player una moneta
+		personalBoard.getResources().get(index).addvalue(1);
+		//TODO: do il councilPrivilegeBonus
+		councilPrivilegeBonus.getImmediateBonus(this);
 	}
 	
 	public DevelopmentCard[] getCardsToActivate(DevelopmentCardType developmentCardType) {

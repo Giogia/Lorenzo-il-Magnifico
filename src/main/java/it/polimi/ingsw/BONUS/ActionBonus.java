@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 public class ActionBonus implements ImmediateBonus {
 	private HashMap<ActionZone, Integer> action;
 	
-	public ActionBonus(HashMap actionMap){
+	public ActionBonus(HashMap<ActionZone, Integer> actionMap){
 		action = new HashMap<>();
 		action.putAll(actionMap);
 	}

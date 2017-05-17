@@ -101,4 +101,8 @@ public class PersonalBoard {
 	public void setPersonalBonusTile(PersonalBonusTile personalBonusTile) {
 		this.personalBonusTile = personalBonusTile;
 	}
+	
+	public ArrayList<Resource> getResources() {
+		return resources;
+	}
 }
