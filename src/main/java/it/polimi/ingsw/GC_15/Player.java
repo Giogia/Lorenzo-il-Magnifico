@@ -44,8 +44,15 @@ public class Player {
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position) {
-		//TODO: serve il controller
+	public void setFamilyMemberPosition(FamilyMember familyMember,Position position) {
+		position.addFamilyMember(familyMember);
+	}
+	
+	public boolean setFamilyMemberPosition(FamilyMember familyMember,Position position, int index){
+		if(position.addFamilyMember(familyMember, index)) {
+			return true;
+		}
+		return false;
 	}
 	
 	public void useServants(int value, FamilyMember familyMember){

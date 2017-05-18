@@ -20,7 +20,4 @@ public class TowerFloor extends Position {
 	public void setDevelopmentCard(DevelopmentCard developmentCard) {
 		this.developmentCard = developmentCard;
 	}
-	
-	
-
 }

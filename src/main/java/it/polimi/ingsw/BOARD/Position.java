@@ -47,8 +47,4 @@ public class Position {
 		bonus.getPermanentBonus(player);
 	}
 	
-	// this method is used to delete all the family members occuping this postion at the end of a turn
-	public void resetPosition(){
-			this.familyMember.clear();
-		}
 }
