@@ -36,5 +36,4 @@ public class Tower extends ActionZone{
 	public void setDevelopmentCardType(DevelopmentCardType developmentCardType){
 		this.developmentCardType = developmentCardType;
 	}
-	
 }

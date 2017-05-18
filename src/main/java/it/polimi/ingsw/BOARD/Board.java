@@ -1,13 +1,12 @@
 package it.polimi.ingsw.BOARD;
 
-import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.GC_15.VaticanReport;
+import it.polimi.ingsw.GC_15.*;
+
 
 public class Board {
 
 	private Player[] players;
-	private VaticanReport vaticanReport;
+	private ExcommunicationTile[] excommunicationTile;
 	private Tower[] tower;
 	private Market market;
 	private CouncilPalace councilPalace;
@@ -15,10 +14,10 @@ public class Board {
 	private ProductionArea productionArea;
 	
 	
-	public Board(Player[] player, VaticanReport vaticanReport, Tower[] tower, Market market,
+	public Board(Player[] player, ExcommunicationTile[] excommunicationTile, Tower[] tower, Market market,
 				 CouncilPalace councilPalace, HarvestArea harvestArea, ProductionArea productionArea) {
 		this.players = player; 
-		this.vaticanReport = vaticanReport;
+		this.excommunicationTile = excommunicationTile;
 		this.tower = tower;
 		this.market = market;
 		this.councilPalace = councilPalace;
@@ -30,12 +29,12 @@ public class Board {
 		return this.players[player];
 	}
 	
-	public VaticanReport getVaticanReport(){
-		return this.vaticanReport;
+	public ExcommunicationTile getExcommunicationTile(int excommunicationTileNumber){
+		return this.excommunicationTile[excommunicationTileNumber];
 	}
 	
-	public Tower getTower(int tower){
-		return this.tower[tower];
+	public Tower getTower(int towerNumber){
+		return this.tower[towerNumber];
 	}
 	
 	public Market getMarket(){
@@ -58,8 +57,8 @@ public class Board {
 		this.players[playerNumber] = player;
 	}
 	
-	public void setVaticanReport(VaticanReport vaticanReport){
-		this.vaticanReport = vaticanReport;
+	public void setExcommunicationTile(ExcommunicationTile[] excommunicationTile) {
+		this.excommunicationTile = excommunicationTile;
 	}
 	
 	public void setTower(Tower tower, int towerNumber){
@@ -82,17 +81,6 @@ public class Board {
 		this.productionArea = productionArea;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position){
-		zone.setFamilyMemberPosition(familyMember, position);
-	}
-	
-	public boolean setFamilyMemberPosition(FamilyMember familyMember,Zone zone,Position position, int index){
-		if(zone.setFamilyMemberPosition(familyMember, position, index)) {
-			return true;
-		}
-		return false;
-	}
-	
 	//toglie tutti i  family member in ogni zona della board
 	public void resetPositions() {
 		for(Tower tower : this.tower){
@@ -103,6 +91,7 @@ public class Board {
 		this.harvestArea.deleteAllFamilyMember();
 		this.productionArea.deleteAllFamilyMember();
 	}
+	
 }
 
 

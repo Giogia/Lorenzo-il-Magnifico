@@ -2,11 +2,13 @@ package it.polimi.ingsw.BOARD;
 import java.util.*;
 
 import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.BONUS.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
 public class Position {
-	protected ArrayList<FamilyMember> familyMember;
+	protected ArrayList<FamilyMember> familyMembers;
 	protected Bonus[] boardBonus;
 	protected int diceRequirement;
 
@@ -16,7 +18,7 @@ public class Position {
 	}
 	
 	public FamilyMember getFamilyMember(int familyMember) { 
-		return this.familyMember.get(familyMember);
+		return this.familyMembers.get(familyMember);
 		}
 	public Bonus getBoardBonus( int boardBonus) {
 		return this.boardBonus[boardBonus];
@@ -27,21 +29,23 @@ public class Position {
 	}
 	
 	public void addFamilyMember(FamilyMember newfamilyMember){
+<<<<<<< HEAD
+		familyMembers.add(newfamilyMember);
+=======
 		familyMember.add(newfamilyMember);
+>>>>>>> branch 'master' of https://github.com/Giogia/Lorenzo-il-Magnifico
 	}
 	
 	public void deleteAllFamilyMember(){
-		familyMember.clear();
+		familyMembers.clear();
 	}
 	
 	//TODO sistemare collegamento metodo
-	public void giveBonus(Player player, Bonus bonus){
+	protected void giveImmediateBonus(Player player, Bonus bonus){
 		bonus.getImmediateBonus(player);
+	}
+	protected void givePermanentBonus(Player player, Bonus bonus){
 		bonus.getPermanentBonus(player);
 	}
 	
-	// this method is used to delete all the family members occuping this postion at the end of a turn
-	public void resetPosition(){
-			this.familyMember.clear();
-		}
 }

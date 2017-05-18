@@ -5,6 +5,19 @@ public class FamilyMember {
 	private Player player;
 	private int value;
 	
+	
+	public Dice getDice() {
+		return this.dice;
+	}
+	
+	public Player getPlayer() {
+		return this.player;
+	}
+	
+	public int getValue() {
+		return this.value;
+	}
+	
 	public FamilyMember(Dice dice, Player player) {
 		this.dice=dice;
 		this.player=player;
@@ -16,14 +29,6 @@ public class FamilyMember {
 	
 	public void multValue(int value) {
 		this.value= this.value * value;
-	}
-	
-	public int getValue() {
-		return value;
-	}
-	
-	public Player getPlayer() {
-		return player;
 	}
 	
 	public Dice getDice() {

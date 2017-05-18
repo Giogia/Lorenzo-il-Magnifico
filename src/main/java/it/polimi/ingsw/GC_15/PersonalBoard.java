@@ -63,7 +63,7 @@ public class PersonalBoard {
 	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
 		for(int i=0; i < developmentCards.size(); i++){
-			if(developmentCards.get(i).getType() == developmentCard.type){
+			if(developmentCards.get(i).getType() == developmentCard.developmentCardType){
 				developmentCards.get(i).add(developmentCard);
 			}
 		}
@@ -109,4 +109,4 @@ public class PersonalBoard {
 	public ArrayList<Resource> getResources() {
 		return resources;
 	}
-}
+}//TODO metodo per dare il permanent bonus della carta che riceve
