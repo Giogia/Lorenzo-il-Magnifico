@@ -30,14 +30,6 @@ public class Position {
 		familyMember.add(newfamilyMember);
 	}
 	
-	public boolean addFamilyMember(FamilyMember newfamilyMember, int index){
-		if(familyMember.get(index)!=null){
-			return false;
-		}
-		familyMember.add(index, newfamilyMember);
-		return true;
-	}
-	
 	public void deleteAllFamilyMember(){
 		familyMember.clear();
 	}

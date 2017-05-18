@@ -12,13 +12,15 @@ public class Building extends DevelopmentCard{
 	public final ArrayList<Resource> cost;
 	public final DevelopmentCardType type= DevelopmentCardType.BUILDING;
 	
-	public Building(int activationCondition, ArrayList<Resource> cost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect, DevelopmentCardType type) {
-		super(period, immediateEffect, secondaryEffect, type);
+	public Building(int activationCondition, ArrayList<Resource> cost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+		super(period, immediateEffect, secondaryEffect);
 		this.activationCondition=activationCondition;
 		this.cost=cost;
 	}
 	
 	public void getProductionBonus(FamilyMember familyMember){
-		//TODO
+		for(int i=0; i < secondaryEffect.size(); i++){
+			secondaryEffect.get(i)
+		}
 	}
 }

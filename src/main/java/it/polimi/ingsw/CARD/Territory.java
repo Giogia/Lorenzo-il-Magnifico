@@ -10,8 +10,8 @@ public class Territory extends DevelopmentCard {
 	public final int activationCondition;
 	public final DevelopmentCardType type= DevelopmentCardType.TERRITORY;
 	
-	public Territory(int activationCondition, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect, DevelopmentCardType type) {
-		super(period, immediateEffect, secondaryEffect, type);
+	public Territory(int activationCondition, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+		super(period, immediateEffect, secondaryEffect);
 		this.activationCondition=activationCondition;
 	}
 	

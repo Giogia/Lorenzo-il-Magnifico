@@ -3,17 +3,16 @@ package it.polimi.ingsw.BONUS;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.Player;
 
-public class FamilyMemberValueBonus extends FamilyMemberBonus{
+public class MultiplyFamilyMemberBonus extends FamilyMemberBonus {
 
-	public FamilyMemberValueBonus(ArrayList<FamilyMember> familyMembers) {
+	public MultiplyFamilyMemberBonus(ArrayList<FamilyMember> familyMembers) {
 		super(familyMembers);
 	}
 
 	@Override
 	protected void modifyValue(FamilyMember familyMember1, FamilyMember familyMember2) {
-		familyMember1.setValue(familyMember2.getValue());
+		familyMember1.multValue(familyMember2.getValue());
 	}
-	
+
 }
