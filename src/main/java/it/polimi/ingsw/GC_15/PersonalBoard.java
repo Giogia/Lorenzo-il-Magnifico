@@ -105,4 +105,4 @@ public class PersonalBoard {
 	public ArrayList<Resource> getResources() {
 		return resources;
 	}
-}
+}//TODO metodo per dare il permanent bonus della carta che riceve

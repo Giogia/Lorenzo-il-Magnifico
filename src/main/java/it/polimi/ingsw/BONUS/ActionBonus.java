@@ -14,7 +14,7 @@ public class ActionBonus implements ImmediateBonus {
 	}
 	
 	public void getImmediateBonus(Player player){
-		//TODO Bisogna decidere se usare un controller o un familymember fasullo
+		//TODO  utilizzare un familymember fasullo e crere un dado fasullo e poi cancellarlo a fine azione
 	}
 
 }

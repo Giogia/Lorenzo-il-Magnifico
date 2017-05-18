@@ -20,4 +20,4 @@ public class TowerFloor extends Position {
 	public void setDevelopmentCard(DevelopmentCard developmentCard) {
 		this.developmentCard = developmentCard;
 	}
-}
+}//TODO metodo per dopo il  family dare la carta alla personal board , la personal board da il permanent bonus , da l'immediate bonus della carta, cancella la carta dall floor
