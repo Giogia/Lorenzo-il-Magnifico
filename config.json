@@ -1,4 +1,7 @@
-{"activationCondition":2,
-	"period":"1",
-	"immediateEffect":[],
-	"secondaryEffect": []}
+{
+    "period":7,
+    "immediateEffect":[],
+    "secondaryEffect":[],
+    "activationCondition":2,
+    "type":"TERRITORY"
+}
