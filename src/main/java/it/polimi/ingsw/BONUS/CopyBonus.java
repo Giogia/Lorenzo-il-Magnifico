@@ -4,21 +4,18 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.GC_15.Player;
 
-//NB dato che questo bonus è particolare e richiede di sapere la leaderCard da copiare, ho dovuto eliminare l'implements ImmediateBonus
-//poichè altrimenti dovevo scrivere il metodo di immediateBonus che prendeva come ingresso solo il player.
 
-//-> se vi piace, lasciamo così, a me non sono venute altre idee
-public class CopyBonus implements Bonus{
+public class CopyBonus implements ImmediateBonus{
 	
-	
-	//da' al player la carta leader da lui scelta 
-	public void getImmediateBonus(Player player, LeaderCard leaderCard){
-		if (leaderCard instanceof OncePerRoundLeaderCard){
-			player.getPersonalBoard().addOncePerRoundBonusLeaderCard(leaderCard);
-		}else{
-			player.getPersonalBoard().getPermanentBonus().addAll(leaderCard.bonus);
-		}
+	/* TODO Bisogna creare un handler apposito per gestire questo bonus
+	 * Il bonus dovrebbe dire al giocatore umano attraverso l'handler cosa può copiare
+	 * Il giocatore umano sceglie la carta da copiare
+	 * L'handler crea una carta uguale a quella copiata e la dà al player
+	 */
+	public void getImmediateBonus(Player player){
+		
 	}
+		
 
 	
 }
