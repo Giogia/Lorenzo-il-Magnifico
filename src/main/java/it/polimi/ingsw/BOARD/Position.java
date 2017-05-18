@@ -36,10 +36,10 @@ public class Position {
 		familyMembers.clear();
 	}
 	//TODO sistemare collegamento metodo
-	private void giveImmediateBonus(Player player, ImmediateBonus bonus){
+	protected void giveImmediateBonus(Player player, Bonus bonus){
 		bonus.getImmediateBonus(player);
 	}
-	private void givePermanentBonus(Player player, PermanentBonus bonus){
+	protected void givePermanentBonus(Player player, Bonus bonus){
 		bonus.getPermanentBonus(player);
 	}
 	
