@@ -3,10 +3,11 @@ package it.polimi.ingsw.BONUS;
 import java.util.HashMap;
 
 import it.polimi.ingsw.BOARD.Zone;
-import it.polimi.ingsw.GC_15.Player;
 
-public class CanFamilyMemberBonus extends PermanentBonus implements ImmediateBonus{
+public class CanFamilyMemberBonus extends PermanentBonus{
+	//di default false: se è occupato il familyMember non può andarci
 	private boolean occupiedYet;
+	//particolare scomunica: di default true
 	private HashMap<Zone, Boolean> canGoTo;
 	
 	public CanFamilyMemberBonus(boolean occupiedYet, HashMap<Zone, Boolean> canGoTo) {
@@ -15,10 +16,6 @@ public class CanFamilyMemberBonus extends PermanentBonus implements ImmediateBon
 		this.canGoTo.putAll(canGoTo);
 	}
 	
-	@Override
-	public void getImmediateBonus(Player player) {
-		//TODO BISOGNA AGGIUNGERE UN CONTROLLORE O QUALCOSA DEL GENERE
-	}
 
 	public HashMap<Zone, Boolean> getCanGoTo() {
 		return canGoTo;

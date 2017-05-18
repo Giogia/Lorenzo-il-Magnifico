@@ -25,4 +25,12 @@ public class FamilyMember {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	public Dice getDice() {
+		return dice;
+	}
+	
+	public void setValue(int value) {
+		this.value = value;
+	}
 }

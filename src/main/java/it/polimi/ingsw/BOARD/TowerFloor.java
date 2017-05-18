@@ -21,6 +21,4 @@ public class TowerFloor extends Position {
 		this.developmentCard = developmentCard;
 	}
 	
-	
-
 }

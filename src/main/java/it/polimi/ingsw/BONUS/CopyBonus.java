@@ -1,20 +1,25 @@
 package it.polimi.ingsw.BONUS;
 
-import java.util.ArrayList;
-
-import it.polimi.ingsw.CARD.CardType;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.GC_15.Player;
 
-public class CopyBonus implements ImmediateBonus{
-	private ArrayList<CardType> cards;
+//NB dato che questo bonus è particolare e richiede di sapere la leaderCard da copiare, ho dovuto eliminare l'implements ImmediateBonus
+//poichè altrimenti dovevo scrivere il metodo di immediateBonus che prendeva come ingresso solo il player.
+
+//-> se vi piace, lasciamo così, a me non sono venute altre idee
+public class CopyBonus implements Bonus{
 	
-	public CopyBonus(ArrayList<CardType> cards ){
-		this.cards = cards;
-	}
 	
-	public void getImmediateBonus(Player player){
-		player.chooseCardToCopy(cards); //TODO bisogna modificare chooseCardToCopy
+	//da' al player la carta leader da lui scelta 
+	public void getImmediateBonus(Player player, LeaderCard leaderCard){
+		if (leaderCard instanceof OncePerRoundLeaderCard){
+			player.getPersonalBoard().addOncePerRoundBonusLeaderCard(leaderCard);
+		}else{
+			player.getPersonalBoard().getPermanentBonus().addAll(leaderCard.bonus);
+		}
 	}
 
+	
 }
 

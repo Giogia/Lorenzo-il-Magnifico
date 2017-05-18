@@ -26,7 +26,6 @@ public abstract class FamilyMemberBonus extends PermanentBonus implements Immedi
 		}
 	}
 	
-	
 	protected boolean compareDice(FamilyMember familyMember1, FamilyMember familyMember2) {
 		return familyMember1.getDice().equals(familyMember2.getDice());
 	}

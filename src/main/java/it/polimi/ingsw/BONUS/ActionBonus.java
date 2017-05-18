@@ -3,6 +3,7 @@ package it.polimi.ingsw.BONUS;
 import java.util.HashMap;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
 public class ActionBonus implements ImmediateBonus {
@@ -15,6 +16,11 @@ public class ActionBonus implements ImmediateBonus {
 	
 	public void getImmediateBonus(Player player){
 		//TODO Bisogna decidere se usare un controller o un familymember fasullo
+		
+		/*MICHELE: secondo me bisogna usarli entrambi, poichè questo metodo (getImmediateBonus) deve chiamare questo ipotetico 
+		 controller (o handler, insomma qualcosa) il quale avrà il metodo che permetterà di chiedere all'utente se vuole usare 
+		 i serventi per aumentare il valore del dado fasullo e per chiedere la posizione della carta da prendere. 
+		 Inoltre sarà questa classe a chiamare set family member position del family member (fasullo)  */
 	}
 
 }

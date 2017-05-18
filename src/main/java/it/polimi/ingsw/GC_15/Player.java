@@ -96,4 +96,9 @@ public class Player {
 	public void chooseCardToCopy(){
 		//TODO
 	}
+	
+	public ArrayList<FamilyMember> getFamilyMembers() {
+		return familyMembers;
+	}
+
 }

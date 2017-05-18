@@ -9,7 +9,7 @@ public class ConfigurationFileHandler {
 	public static void main(String[] args){
 		try {
 			//file contiene il riferimento al file che contiene la prova
-			File file= new File("prova.json");
+			File file= new File("config.json");
 			ObjectMapper map= new ObjectMapper();
 			//viene creata la carta territorio leggendo il file in json 
 			Territory territorio = map.readValue(file, Territory.class);
