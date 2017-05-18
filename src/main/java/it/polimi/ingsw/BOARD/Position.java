@@ -29,12 +29,17 @@ public class Position {
 	}
 	
 	public void addFamilyMember(FamilyMember newfamilyMember){
+<<<<<<< HEAD
 		familyMembers.add(newfamilyMember);
+=======
+		familyMember.add(newfamilyMember);
+>>>>>>> branch 'master' of https://github.com/Giogia/Lorenzo-il-Magnifico
 	}
 	
 	public void deleteAllFamilyMember(){
 		familyMembers.clear();
 	}
+	
 	//TODO sistemare collegamento metodo
 	protected void giveImmediateBonus(Player player, Bonus bonus){
 		bonus.getImmediateBonus(player);

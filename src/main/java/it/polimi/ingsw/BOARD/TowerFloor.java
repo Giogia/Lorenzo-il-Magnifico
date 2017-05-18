@@ -26,6 +26,7 @@ public class TowerFloor extends Position {
 		this.developmentCard = developmentCard;
 	}
 	
+<<<<<<< HEAD
 	@Override
 	public void addFamilyMember(FamilyMember newFamilyMember){
 		
@@ -48,3 +49,6 @@ public class TowerFloor extends Position {
 		this.developmentCard = null; //cancella carta sul piano della torre
 	}
 }
+=======
+}
+>>>>>>> branch 'master' of https://github.com/Giogia/Lorenzo-il-Magnifico

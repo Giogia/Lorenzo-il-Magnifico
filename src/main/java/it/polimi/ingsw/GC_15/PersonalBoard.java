@@ -81,6 +81,10 @@ public class PersonalBoard {
 		// o il activateHarvestBonus della personalBonusTile
 	}
 	
+	public ArrayList<Bonus> getPermanentBonus() {
+		return permanentBonus;
+	}
+	
 	//ADD methods -> similar to setters
 	public void addPermanentBonus(Bonus bonus){
 		permanentBonus.add(bonus);

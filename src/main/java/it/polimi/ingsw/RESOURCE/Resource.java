@@ -1,21 +1,17 @@
 package it.polimi.ingsw.RESOURCE;
 
 abstract public class Resource {
-	
+	//value è il valore dell'unità. value=3 -> 3 risorse per averne 1
+	//amount indica la quantità della risorsa
 	private int amount;
 	private int value;
 	
-	public Resource() {
-		this.amount=0;
-		this.value=1;
-	}
-	
     public int getAmount() {
-    	return this.amount;
+    	return amount;
     }
 	
     public int getValue() {
-    	return this.value;
+    	return value;
     }
     
     public void setAmount(int amount) {
@@ -34,5 +30,12 @@ abstract public class Resource {
     	this.value = this.value * value;
     }
     
+    public void addAmount(int value){
+    	this.value= this.value + value;
+    }
+  
+    public void multAmount(int value){
+    	this.value= this.value * value;
+    }
 }
 
