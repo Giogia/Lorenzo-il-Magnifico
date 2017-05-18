@@ -25,7 +25,6 @@ public class ConfigurationFileHandler {
 			Type list= new TypeToken<ArrayList<Territory>>(){}.getType();
 			ArrayList<Territory> territori = gson.fromJson(inJson, list);
 			System.out.println(territori.get(0).period);
-			System.out.println(territori.get(1).period);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
