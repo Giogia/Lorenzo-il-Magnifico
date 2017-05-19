@@ -18,6 +18,10 @@ public class FamilyMember {
 		return this.value;
 	}
 	
+	public void setValue(int value) {
+		this.value = value;
+	}
+	
 	public FamilyMember(Dice dice, Player player) {
 		this.dice=dice;
 		this.player=player;
