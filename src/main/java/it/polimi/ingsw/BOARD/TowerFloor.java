@@ -47,6 +47,6 @@ public class TowerFloor extends Position {
 		}
 		
 		this.developmentCard = null; //cancella carta sul piano della torre
-	}//commento 
+	}//commento commento
 }
 
