@@ -30,12 +30,4 @@ public class FamilyMember {
 	public void multValue(int value) {
 		this.value= this.value * value;
 	}
-	
-	public Dice getDice() {
-		return dice;
-	}
-	
-	public void setValue(int value) {
-		this.value = value;
-	}
 }

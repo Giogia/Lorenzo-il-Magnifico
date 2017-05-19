@@ -1,6 +1,7 @@
 package it.polimi.ingsw.BOARD;
 
 import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -26,7 +27,6 @@ public class TowerFloor extends Position {
 		this.developmentCard = developmentCard;
 	}
 	
-<<<<<<< HEAD
 	@Override
 	public void addFamilyMember(FamilyMember newFamilyMember){
 		
@@ -37,18 +37,16 @@ public class TowerFloor extends Position {
 			
 		//TODO dare permanent bonus
 		
-		for(Bonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
+		for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
 			giveImmediateBonus(cardPlayer,immediateBonus);
 		}
 		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){ //se non sono carte character Sattiva il metodo immediate bonus per ogni secondary effect
-			for(Bonus immediateBonus : this.developmentCard.secondaryEffect){
-				giveImmediateBonus(cardPlayer, immediateBonus);
+			for(ImmediateBonus immediateBonus : this.developmentCard.secondaryEffect){
+				giveImmediateBonus(cardPlayer, immediateBonus); 
 			}
 		}
 		
 		this.developmentCard = null; //cancella carta sul piano della torre
-	}
+	}//commento 
 }
-=======
-}
->>>>>>> branch 'master' of https://github.com/Giogia/Lorenzo-il-Magnifico
+
