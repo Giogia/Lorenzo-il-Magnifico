@@ -44,4 +44,7 @@ public class Position {
 		permanentBonus.getPermanentBonus(player);
 	}
 	
+	public ArrayList<FamilyMember> getFamilyMembers() {
+		return familyMembers;
+	}
 }

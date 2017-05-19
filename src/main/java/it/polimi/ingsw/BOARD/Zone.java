@@ -1,20 +1,24 @@
 package it.polimi.ingsw.BOARD;
 
 public abstract class Zone{
-	private Position[] position;
+	private Position[] positions;
 	
 	
 	public Position getPosition(int position) {
-		return this.position[position];
+		return this.positions[position];
 	}
 	
 	public void setPosition(Position[] position) {
-		this.position = position;
+		this.positions = position;
 	}
 	
 	public void deleteAllFamilyMember(){
-		for(Position position: this.position) {
+		for(Position position: this.positions) {
 			position.deleteAllFamilyMember();
 		}
+	}
+	
+	public Position[] getPositions(){
+		return positions;
 	}
 }
