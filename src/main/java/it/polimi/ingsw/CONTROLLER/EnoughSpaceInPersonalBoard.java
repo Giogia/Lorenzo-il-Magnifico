@@ -11,12 +11,15 @@ public class EnoughSpaceInPersonalBoard implements Controller{
 	
 	public static boolean check(FamilyMember familyMember, DevelopmentCard developmentCard){
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
-		ArrayList<ContainerCard> containers = familyMember.getPlayer().getPersonalBoard().getContainerCard();
+		ArrayList<ContainerCard> containers = familyMember.getPlayer().getPersonalBoard().getContainerCards();
 		for (ContainerCard containerCard : containers) {
-			if (containerCard.getType().equals(developmentCardType)){
-				return (containerCard.getDevelopmentCards().length < 6);
+			if (containerCard.getType().equals(developmentCardType)) {
+				if(containerCard.getDevelopmentCards().size() >= 6) {
+					return false;
+				}
 			}
 		}
+		return true;
 	}
 
 }

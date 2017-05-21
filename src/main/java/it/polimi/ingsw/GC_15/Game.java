@@ -7,8 +7,8 @@ import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CARD.Venture;
 
 public class Game {
-	public final ArrayList<Territory> Territories;
-	public final ArrayList<Building> Buildings;
-	public final ArrayList<Venture> Ventures;
-	public final ArrayList<Character> Characters;
+	public static ArrayList<Territory> territories;
+	public static ArrayList<Building> buildings;
+	public static ArrayList<Venture> ventures;
+	public static ArrayList<Character> characters;
 }

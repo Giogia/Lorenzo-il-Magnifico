@@ -1,16 +1,10 @@
 package it.polimi.ingsw.CARD;
 
-import java.util.ArrayList;
 
-public class ContainerTerritoryCard implements ContainerCard{
-	private ArrayList<DevelopmentCard> territories;
-	private DevelopmentCardType type= DevelopmentCardType.TERRITORY;
+public class ContainerTerritoryCard extends ContainerCard{
 	
-	public DevelopmentCardType getType(){
-		return type;
-	}
-	
-	public void add(DevelopmentCard territory){
-		territories.add(territory);
+	public ContainerTerritoryCard() {
+		super();
+		this.type = DevelopmentCardType.TERRITORY;
 	}
 }

@@ -24,7 +24,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
 	private boolean excommunicationCubes[];
-	private ArrayList<ContainerCard> developmentCards;
+	private ArrayList<ContainerCard> containerCards;
 	private ArrayList<Resource> resources;
 	private ArrayList<LeaderCard> activatedLeaderCards;
 	private ArrayList<LeaderCard> oncePerRoundBonusLeaderCard;
@@ -36,10 +36,10 @@ public class PersonalBoard {
 		permanentBonus= new ArrayList<>();
 		excommunicationCubes= new boolean[3];
 		
-		developmentCards.add(new ContainerTerritoryCard());
-		developmentCards.add(new ContainerBuildingCard());
-		developmentCards.add(new ContainerVentureCard());
-		developmentCards.add(new ContainerCharacterCard());
+		containerCards.add(new ContainerTerritoryCard());
+		containerCards.add(new ContainerBuildingCard());
+		containerCards.add(new ContainerVentureCard());
+		containerCards.add(new ContainerCharacterCard());
 		
 		resources.add(new Coins());
 		resources.add(new Wood());
@@ -48,6 +48,31 @@ public class PersonalBoard {
 		resources.add(new FaithPoints());
 		resources.add(new MilitaryPoints());
 		resources.add(new VictoryPoints());
+	}
+	
+
+	public PersonalBonusTile getPersonalBonusTile() {
+		return personalBonusTile;
+	}
+	
+	public ArrayList<ContainerCard> getContainerCards() {
+		return containerCards;
+	}
+	
+	public ArrayList<LeaderCard> getActivatedLeaderCards() {
+		return activatedLeaderCards;
+	}
+
+	public ArrayList<Resource> getResources() {
+		return resources;
+	}
+	
+	public ArrayList<LeaderCard> getOncePerRoundBonusLeaderCard() {
+		return oncePerRoundBonusLeaderCard;
+	}
+	
+	public boolean[] getExcommunicationCubes() {
+		return excommunicationCubes;
 	}
 	
 	public void putLeaderCard(LeaderCard leaderCard) {
@@ -62,9 +87,9 @@ public class PersonalBoard {
 	}
 	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
-		for(int i=0; i < developmentCards.size(); i++){
-			if(developmentCards.get(i).getType() == developmentCard.developmentCardType){
-				developmentCards.get(i).add(developmentCard);
+		for(int i=0; i < containerCards.size(); i++){
+			if(containerCards.get(i).getType() == developmentCard.developmentCardType){
+				containerCards.get(i).add(developmentCard);
 			}
 		}
 	}
@@ -106,7 +131,5 @@ public class PersonalBoard {
 		this.personalBonusTile = personalBonusTile;
 	}
 	
-	public ArrayList<Resource> getResources() {
-		return resources;
-	}
+	
 }//TODO metodo per dare il permanent bonus della carta che riceve
