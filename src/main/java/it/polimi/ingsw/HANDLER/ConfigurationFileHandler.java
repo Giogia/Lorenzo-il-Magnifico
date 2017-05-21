@@ -1,31 +1,14 @@
 package it.polimi.ingsw.HANDLER;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.PrintStream;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.io.File;
 import java.util.Scanner;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
-
-import it.polimi.ingsw.CARD.Character;
-import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.Territory;
-import it.polimi.ingsw.RESOURCE.Coins;
 
 public class ConfigurationFileHandler {
 	public static void main(String[] args){
 		try {
 			Gson gson = new Gson();
-			Scanner scanner= new Scanner(System.in);
-			final ArrayList<Territory> territories = new ArrayList<>();
-			final ArrayList<Character> characters= new ArrayList<>();
-			
-			
 			
 			/*
 			//PER CREARE I TERRITORI
@@ -44,36 +27,23 @@ public class ConfigurationFileHandler {
 				int periodo= scanner.nextInt();
 				Character character = new Character(new Coins(), periodo, new ArrayList<>(), new ArrayList<>());
 				characters.add(character);
+			}*/
+			File file = new File("config.json");
+			Scanner scanner= new Scanner(file);
+			String inJson="";
+			try{
+				while (scanner.hasNextLine()){
+					inJson = inJson + scanner.nextLine();
+				}
 			}
-			
-			//--------------------------------------------------------------------
-			String territoriInJson = gson.toJson(territories);
-			System.out.println(territoriInJson);
-			
-			String personaggiInJson= gson.toJson(characters);
-			System.out.println(personaggiInJson);*/
-			//--------------------------------------------------------------------
-			/*FileOutputStream prova = new FileOutputStream("config.json");
-	        PrintStream scrivi = new PrintStream(prova);
-	        scrivi.print(territoriInJson);
-	        scrivi.print(personaggiInJson);*/
-			//--------------------------------------------------------------------
-			FileReader prova1 = new FileReader("config.json");
-			BufferedReader b= new BufferedReader(prova1);
-			String territoriInJson;
-			while(true){
-				territoriInJson=b.readLine();
-				if(territoriInJson==null) break;
-				System.out.println(territoriInJson);
+			finally{
+				scanner.close();
 			}
-			Type list= new TypeToken<ArrayList<Territory>>(){}.getType();
-			ArrayList<Territory> territori = gson.fromJson(territoriInJson, list);
+			DataFromFile data = gson.fromJson(inJson, DataFromFile.class);
 			
-			/*Type list2= new TypeToken<ArrayList<Character>>(){}.getType();
-			ArrayList<Character> personaggi = gson.fromJson(personaggiInJson, list2);*/
-			for (int i=0; i<territori.size(); i++){
-				System.out.println(territori.get(i).activationCondition);
-			}
+			System.out.println("il numero di territori:"+data.getTerritories().size());
+			System.out.println("il periodo della prima carta territorio: "+data.getTerritories().get(0).period);
+			System.out.println("il periodo della prima character card: "+data.getCharacters().get(0).period);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
