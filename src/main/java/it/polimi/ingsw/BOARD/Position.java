@@ -20,6 +20,11 @@ public class Position {
 	public FamilyMember getFamilyMember(int familyMember) { 
 		return this.familyMembers.get(familyMember);
 		}
+	
+	public Bonus[] getBoardBonus(){
+		return this.boardBonus;
+		
+	}
 	public Bonus getBoardBonus( int boardBonus) {
 		return this.boardBonus[boardBonus];
 	}

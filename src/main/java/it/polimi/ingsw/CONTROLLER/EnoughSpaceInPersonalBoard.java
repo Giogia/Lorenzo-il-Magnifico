@@ -14,12 +14,12 @@ public class EnoughSpaceInPersonalBoard implements Controller{
 		ArrayList<ContainerCard> containers = familyMember.getPlayer().getPersonalBoard().getContainerCards();
 		for (ContainerCard containerCard : containers) {
 			if (containerCard.getType().equals(developmentCardType)) {
-				if(containerCard.getDevelopmentCards().size() >= 6) {
-					return false;
+				if(containerCard.getDevelopmentCards().size() < 6) {
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 }
