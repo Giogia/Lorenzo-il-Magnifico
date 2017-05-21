@@ -8,13 +8,14 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.BONUS.PermanentBonus;
+import java.util.ArrayList;
 
 public class TowerFloor extends Position {
 	
 	
 	private DevelopmentCard developmentCard;
 	
-	public TowerFloor(Bonus[] boardBonus, int diceRequirement, DevelopmentCard developmentCard) {
+	public TowerFloor(ArrayList<Bonus> boardBonus, int diceRequirement, DevelopmentCard developmentCard) {
 		super(boardBonus, diceRequirement);
 		this.developmentCard = developmentCard;
 	}
@@ -47,6 +48,6 @@ public class TowerFloor extends Position {
 		}
 		
 		this.developmentCard = null; //cancella carta sul piano della torre
-	}//commento commento
+	}
 }
 

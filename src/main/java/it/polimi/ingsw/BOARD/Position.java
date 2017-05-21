@@ -9,10 +9,10 @@ import it.polimi.ingsw.GC_15.Player;
 
 public class Position {
 	protected ArrayList<FamilyMember> familyMembers;
-	protected Bonus[] boardBonus;
+	protected ArrayList<Bonus> boardBonus;
 	protected int diceRequirement;
 
-	public Position(Bonus[] boardBonus, int diceRequirement) {
+	public Position(ArrayList<Bonus> boardBonus, int diceRequirement) {
 		this.boardBonus = boardBonus;
 		this.diceRequirement = diceRequirement;
 	}
@@ -21,12 +21,12 @@ public class Position {
 		return this.familyMembers.get(familyMember);
 		}
 	
-	public Bonus[] getBoardBonus(){
+	public ArrayList<Bonus> getBoardBonus(){
 		return this.boardBonus;
 		
 	}
 	public Bonus getBoardBonus( int boardBonus) {
-		return this.boardBonus[boardBonus];
+		return this.boardBonus.get(boardBonus);
 	}
 	
 	public int getDiceRequirement() {
