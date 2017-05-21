@@ -33,7 +33,7 @@ public class Player {
 		leaderCardInHand=leaderCard;
 	}
 	
-	private void discardLeaderCard(LeaderCard leaderCard){
+	public void discardLeaderCard(LeaderCard leaderCard){
 		//trovo la posizione dove si trova la leaderCard
 		for(int i=0; i < leaderCardInHand.size(); i++){
 			if (leaderCardInHand.get(i).equals(leaderCard)){

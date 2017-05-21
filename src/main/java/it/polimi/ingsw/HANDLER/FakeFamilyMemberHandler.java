@@ -1,5 +1,5 @@
 package it.polimi.ingsw.HANDLER;
 
-public class ActionHandler {
+public class FakeFamilyMemberHandler {
 
 }
