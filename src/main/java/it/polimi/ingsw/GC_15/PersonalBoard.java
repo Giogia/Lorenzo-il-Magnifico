@@ -3,11 +3,11 @@ package it.polimi.ingsw.GC_15;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.Bonus;
-import it.polimi.ingsw.CARD.ContainerBuildingCard;
-import it.polimi.ingsw.CARD.ContainerCard;
-import it.polimi.ingsw.CARD.ContainerCharacterCard;
-import it.polimi.ingsw.CARD.ContainerTerritoryCard;
-import it.polimi.ingsw.CARD.ContainerVentureCard;
+import it.polimi.ingsw.CARD.BuildingCardContainer;
+import it.polimi.ingsw.CARD.CardContainer;
+import it.polimi.ingsw.CARD.CharacterCardContainer;
+import it.polimi.ingsw.CARD.TerritoryCardContainer;
+import it.polimi.ingsw.CARD.VentureCardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
@@ -24,7 +24,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
 	private boolean excommunicationCubes[];
-	private ArrayList<ContainerCard> containerCards;
+	private ArrayList<CardContainer> containerCards;
 	private ArrayList<Resource> resources;
 	private ArrayList<LeaderCard> activatedLeaderCards;
 	private ArrayList<LeaderCard> oncePerRoundBonusLeaderCard;
@@ -36,10 +36,10 @@ public class PersonalBoard {
 		permanentBonus= new ArrayList<>();
 		excommunicationCubes= new boolean[3];
 		
-		containerCards.add(new ContainerTerritoryCard());
-		containerCards.add(new ContainerBuildingCard());
-		containerCards.add(new ContainerVentureCard());
-		containerCards.add(new ContainerCharacterCard());
+		containerCards.add(new TerritoryCardContainer());
+		containerCards.add(new BuildingCardContainer());
+		containerCards.add(new VentureCardContainer());
+		containerCards.add(new CharacterCardContainer());
 		
 		resources.add(new Coins());
 		resources.add(new Wood());
@@ -55,7 +55,7 @@ public class PersonalBoard {
 		return personalBonusTile;
 	}
 	
-	public ArrayList<ContainerCard> getContainerCards() {
+	public ArrayList<CardContainer> getContainerCards() {
 		return containerCards;
 	}
 	

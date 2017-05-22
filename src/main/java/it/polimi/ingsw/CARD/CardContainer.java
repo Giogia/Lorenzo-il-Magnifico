@@ -2,7 +2,7 @@ package it.polimi.ingsw.CARD;
 
 import java.util.ArrayList;
 
-public abstract class ContainerCard {
+public abstract class CardContainer {
 	public DevelopmentCardType type;
 	private ArrayList<DevelopmentCard> developmentCards;
 	

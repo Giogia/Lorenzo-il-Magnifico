@@ -1,9 +1,9 @@
 package it.polimi.ingsw.CARD;
 
 
-public class ContainerBuildingCard extends ContainerCard{
+public class BuildingCardContainer extends CardContainer{
 	
-	public ContainerBuildingCard() {
+	public BuildingCardContainer() {
 		super();
 		this.type = DevelopmentCardType.BUILDING;
 	}

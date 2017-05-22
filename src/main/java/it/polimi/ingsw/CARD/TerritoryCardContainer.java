@@ -1,9 +1,9 @@
 package it.polimi.ingsw.CARD;
 
 
-public class ContainerTerritoryCard extends ContainerCard{
+public class TerritoryCardContainer extends CardContainer{
 	
-	public ContainerTerritoryCard() {
+	public TerritoryCardContainer() {
 		super();
 		this.type = DevelopmentCardType.TERRITORY;
 	}
