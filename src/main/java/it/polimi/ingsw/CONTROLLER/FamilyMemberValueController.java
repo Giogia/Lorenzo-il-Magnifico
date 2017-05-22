@@ -5,10 +5,7 @@ import it.polimi.ingsw.BOARD.Position;
 
 public class FamilyMemberValueController implements Controller{
 	
-	public static boolean check(FamilyMember familyMember, Position position ){
-		if(position.getDiceRequirement() == familyMember.getValue()){
-			return true;
-		}
-		return false;
-	}//TODO bisogna sommare il permanent bonus o dire che non bisogna guardare il valore del dado ma uno fisso
+	public boolean check(FamilyMember familyMember, Position position ){
+		return (position.getDiceRequirement() <= familyMember.getValue());
+	}
 }

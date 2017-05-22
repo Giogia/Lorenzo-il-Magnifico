@@ -6,16 +6,26 @@ import it.polimi.ingsw.RESOURCE.*;
 
 public class ResourceController {
 	
-	public static boolean check(Player player, ResourceType resourceType, int value){
-		ArrayList<Resource> resources = player.getPersonalBoard().getResources();
-		
-		for(Resource resource : resources){
-			if(resource.getResourceType() == resourceType){ // controlla che sia la risorsa giusta
-				if(resource.getAmount()*resource.getValue() >= value){ //controlla se la quantita' posseduta al netto del valore e' maggiore di quella richiesta 
-					return true;
+	
+	//TODO per Michele se non ti piace come sta scritto dividiamo quei metodi lunghi in metodi privati
+	
+	/* Fa un ciclo delle risorse del player per ogni risorsa del costo. 
+	 * ogni volta che le risorse sono dello stesso tipo controlla
+	 * Se le risorse del player al netto del valore dell'unità sono minori dell'amount del cost
+	 * ritorna false
+	 * Dopo che controlla tutte le risorse, ritorna true
+	 */
+	public boolean check(Player player, ArrayList<Resource> cost){
+		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
+		for(Resource playerResource : playerResources){
+			for (Resource costResource : cost) {
+				if(playerResource.getResourceType().equals(costResource.getResourceType())){ 
+					if(playerResource.getAmount()/playerResource.getValue() < costResource.getAmount()){  
+						return false;
+					}
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 }

@@ -6,13 +6,10 @@ import java.util.*;
 
 public class IsThereBonusController {
 
+	
+	// Prende TowerFloor, perchè nelle altre posizioni non ha senso controllare. Serviva solo per usare il bonus per prendere la carta
 	public boolean check(TowerFloor towerFloor){
 		ArrayList<Bonus> allBonus = towerFloor.getBoardBonus();
-		for(Bonus bonus: allBonus){
-				if(bonus != null){
-					return true;
-				}
-		}
-		return false;
+		return allBonus.isEmpty();
 	}
 }

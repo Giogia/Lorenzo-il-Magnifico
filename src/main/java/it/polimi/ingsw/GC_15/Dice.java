@@ -2,12 +2,15 @@ package it.polimi.ingsw.GC_15;
 
 public class Dice {
 	private int value;
-	private Color color;
-	public enum Color {NEUTRAL, WHITE, BLACK, ORANGE};
+	private DiceColour diceColour;
 
-	public Dice(int value, Color color) {
+	public Dice(int value, DiceColour diceColour) {
 		this.value= value;
-		this.color = color;
+		this.diceColour = diceColour;
+	}
+	
+	public DiceColour getDiceColour() {
+		return diceColour;
 	}
 	
 	public int getValue() {

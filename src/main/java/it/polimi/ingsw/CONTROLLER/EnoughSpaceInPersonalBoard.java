@@ -9,14 +9,12 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 
 public class EnoughSpaceInPersonalBoard implements Controller{
 	
-	public static boolean check(FamilyMember familyMember, DevelopmentCard developmentCard){
+	public boolean check(FamilyMember familyMember, DevelopmentCard developmentCard){
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		ArrayList<CardContainer> containers = familyMember.getPlayer().getPersonalBoard().getContainerCards();
 		for (CardContainer containerCard : containers) {
 			if (containerCard.getType().equals(developmentCardType)) {
-				if(containerCard.getDevelopmentCards().size() < 6) {
-					return true;
-				}
+				return (containerCard.getDevelopmentCards().size() < 6);
 			}
 		}
 		return false;
