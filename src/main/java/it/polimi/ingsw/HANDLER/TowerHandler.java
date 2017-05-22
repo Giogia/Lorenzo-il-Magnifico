@@ -9,7 +9,16 @@ import it.polimi.ingsw.CONTROLLER.*;
 
 public class TowerHandler {
 
-	public static void check(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) {
+	public static void handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) {
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		if( PositionAlreadyOccupiedController(towerFloor) &&
 			ZoneOccupiedBySameColorController(zone, towerFloor) &&
 			EnoughSpaceInPersonalBoard(familyMember.getPlayer(), towerFloor.getDevelopmentCard()) &&
