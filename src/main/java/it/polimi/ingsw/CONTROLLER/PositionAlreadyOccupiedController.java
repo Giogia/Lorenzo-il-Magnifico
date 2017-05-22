@@ -4,7 +4,7 @@ import it.polimi.ingsw.BOARD.Position;
 
 public class PositionAlreadyOccupiedController implements Controller{
 
-	public boolean check(Position position){
+	public static boolean check(Position position){
 		return (position.getFamilyMembers().isEmpty());
 	}
 }

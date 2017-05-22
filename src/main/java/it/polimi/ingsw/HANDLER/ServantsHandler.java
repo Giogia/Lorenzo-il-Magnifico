@@ -6,11 +6,16 @@ import it.polimi.ingsw.CONTROLLER.ResourceController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.RESOURCE.Servants;
 
 public class ServantsHandler {
 
 	public static boolean handle(FamilyMember familyMember,int servantsNumber){
-		if (ResourceController.check(familyMember.getPlayer(), ResourceType.SERVANTS, servantsNumber)){
+		Servants servants = new Servants();
+		servants.setAmount(servantsNumber);
+		ArrayList<Resource> servantsArrayList = new ArrayList<>();
+		servantsArrayList.add(servants);
+		if (ResourceController.check(familyMember.getPlayer(), servantsArrayList)){
 			
 			familyMember.addValue(servantsNumber); 
 			

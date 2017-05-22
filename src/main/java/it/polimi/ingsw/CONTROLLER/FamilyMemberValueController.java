@@ -5,7 +5,7 @@ import it.polimi.ingsw.BOARD.Position;
 
 public class FamilyMemberValueController implements Controller{
 	
-	public boolean check(FamilyMember familyMember, Position position ){
+	public static boolean check(FamilyMember familyMember, Position position ){
 		return (position.getDiceRequirement() <= familyMember.getValue());
 	}
 }

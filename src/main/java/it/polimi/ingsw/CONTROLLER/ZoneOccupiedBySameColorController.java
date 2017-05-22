@@ -17,7 +17,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 	 * Se non è neutro ritorna falso
 	 * Dopo tutto il ciclo, siamo sicuri che non ci siano familiari dello stesso colore, ritorna vero
 	 */
-	public boolean check(Zone zone, FamilyMember familyMember){
+	public static boolean check(Zone zone, FamilyMember familyMember){
 		if (isNeutral(familyMember)){
 			return true;
 		}
@@ -36,11 +36,11 @@ public class ZoneOccupiedBySameColorController implements Controller{
 		}
 	}
 	
-	private boolean samePlayer(FamilyMember familyMember1, FamilyMember familyMember2){
+	private static boolean samePlayer(FamilyMember familyMember1, FamilyMember familyMember2){
 		return familyMember1.getPlayer().equals(familyMember2.getPlayer());
 	}
 	
-	private boolean isNeutral(FamilyMember familyMember){
+	private static boolean isNeutral(FamilyMember familyMember){
 		return (familyMember.getDice().getDiceColour().equals(DiceColour.Neutral));
 	}
 

@@ -85,8 +85,14 @@ public class Player {
 		councilPrivilegeBonus.getImmediateBonus(this);
 	}
 	
-	public DevelopmentCard[] getCardsToActivate(DevelopmentCardType developmentCardType) {
-		//TODO
+	public ArrayList<DevelopmentCard> getCardsToActivate(DevelopmentCardType developmentCardType) {
+		ArrayList<CardContainer> cardContainers = personalBoard.getContainerCards();
+		for (CardContainer cardContainer : cardContainers) {
+			if (cardContainer.type.equals(developmentCardType)){
+				return cardContainer.getDevelopmentCards();
+			}
+		}
+		return null;
 	}
 	
 	public void chooseCard(DevelopmentCard developmentCard) {

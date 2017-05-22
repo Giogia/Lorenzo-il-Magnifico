@@ -15,7 +15,7 @@ public class ResourceController {
 	 * ritorna false
 	 * Dopo che controlla tutte le risorse, ritorna true
 	 */
-	public boolean check(Player player, ArrayList<Resource> cost){
+	public static boolean check(Player player, ArrayList<Resource> cost){
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for(Resource playerResource : playerResources){
 			for (Resource costResource : cost) {
