@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER;
+package it.polimi.ingsw.HANDLER.GAME;
 
 import java.util.ArrayList;
 

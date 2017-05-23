@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER;
+package it.polimi.ingsw.HANDLER.ADVANCED;
 
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Player;

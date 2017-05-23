@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER;
+package it.polimi.ingsw.CONTROLLER;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 

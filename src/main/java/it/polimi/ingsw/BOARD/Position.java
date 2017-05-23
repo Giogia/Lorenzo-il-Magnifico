@@ -3,7 +3,7 @@ import java.util.*;
 
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
-import it.polimi.ingsw.BONUS.PermanentBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 

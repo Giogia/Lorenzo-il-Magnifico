@@ -1,4 +1,4 @@
-package it.polimi.ingsw.BONUS;
+package it.polimi.ingsw.BONUS.ADVANCED;
 
 public class OccupiedTowerCostBonus extends PermanentBonus {
 	private int addOccupiedCost;

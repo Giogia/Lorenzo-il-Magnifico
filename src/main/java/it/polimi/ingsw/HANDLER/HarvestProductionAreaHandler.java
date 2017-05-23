@@ -18,6 +18,7 @@ public abstract class HarvestProductionAreaHandler {
 				if(checkBonusTile(familyMember, zone)){
 					familyMember.getPlayer().setFamilyMemberPosition(familyMember, position);
 					//TODO scegliere carta e mettere familiare
+					return true;
 				}
 			}
 		}

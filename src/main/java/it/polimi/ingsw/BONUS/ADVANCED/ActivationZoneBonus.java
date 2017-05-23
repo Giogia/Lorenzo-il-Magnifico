@@ -1,4 +1,4 @@
-package it.polimi.ingsw.BONUS;
+package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.HashMap;
 

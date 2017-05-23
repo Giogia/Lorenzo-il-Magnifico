@@ -28,5 +28,5 @@ public class ServantsHandler {
 			return true;
 		}
 		return false;
-    }// TODO forse sarebbe meglio usare un familyMemberValue e un Resource Bonus in modo da avere tutto piu' controllato
+    }
 }

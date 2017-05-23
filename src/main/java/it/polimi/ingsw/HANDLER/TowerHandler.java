@@ -2,9 +2,9 @@ package it.polimi.ingsw.HANDLER;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.BONUS.OccupiedTowerCostBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.BOARD.*;
+import it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus;
 import it.polimi.ingsw.CONTROLLER.*;
 
 public class TowerHandler {

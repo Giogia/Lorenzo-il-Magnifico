@@ -1,4 +1,4 @@
-package it.polimi.ingsw.BONUS;
+package it.polimi.ingsw.BONUS.ADVANCED;
 
 public class OrderBonus extends PermanentBonus{
 	private boolean[] skipAction = new boolean[4];
