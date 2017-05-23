@@ -15,15 +15,16 @@ public abstract class HarvestProductionAreaHandler {
 		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			if(FamilyMemberValueController.check(familyMember, position)){
-				if(checkBonusTile(familyMember)){
-					return true;
+				if(checkBonusTile(familyMember, zone)){
+					familyMember.getPlayer().setFamilyMemberPosition(familyMember, position);
+					//TODO scegliere carta e mettere familiare
 				}
 			}
 		}
 		return false;
 	}
-	protected static boolean checkBonusTile(FamilyMember familyMember){
+	protected static boolean checkBonusTile(FamilyMember familyMember, Zone zone){
 		PersonalBonusTile personalBonusTile = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile();
-		return(familyMember.getValue()>= personalBonusTile.);//TODO da sistemare il fatto che chiami o harvest o production bonustile
-	}
+		return(familyMember.getValue()>= personalBonusTile.getCondition(zone));
+		}
 }
