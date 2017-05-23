@@ -52,6 +52,6 @@ abstract public class Resource {
     	this.value= this.value * value;
     }
     
-    //Prova5
+    //Prova 5
 }
 
