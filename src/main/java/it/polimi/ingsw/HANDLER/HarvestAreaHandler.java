@@ -1,5 +1,8 @@
 package it.polimi.ingsw.HANDLER;
 
-public class HarvestAreaHandler {
+import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 
+public class HarvestAreaHandler extends HarvestProductionAreaHandler{
+	
 }
