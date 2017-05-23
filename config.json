@@ -1,40 +1,153 @@
 {
     "territories":[
         {
-            "activationCondition":5,
-            "period":7,
+            "period":1,
             "developmentCardType":"TERRITORY",
             "immediateEffect":[],
             "secondaryEffect":[]
         },
         {
-            "activationCondition":88,
-            "period":99,
+            "period":1,
             "developmentCardType":"TERRITORY",
             "immediateEffect":[],
             "secondaryEffect":[]
         },
         {
-            "activationCondition":66,
-            "period":333,
+            "period":1,
             "developmentCardType":"TERRITORY",
             "immediateEffect":[],
             "secondaryEffect":[]
         },
         {
-            "activationCondition":11,
-            "period":44,
+            "period":1,
             "developmentCardType":"TERRITORY",
             "immediateEffect":[],
             "secondaryEffect":[]
         },
         {
-            "activationCondition":7,
-            "period":0,
+            "period":1,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":1,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":1,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":1,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":2,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
+            "developmentCardType":"TERRITORY",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "period":3,
             "developmentCardType":"TERRITORY",
             "immediateEffect":[],
             "secondaryEffect":[]
         }],
+    
+    
+    
+    
     "characters":[
         {
             "cost":
@@ -42,17 +155,7 @@
                 "amount":0,
                 "value":0
             },
-            "period":5,
-            "developmentCardType":"CHARACTER",
-            "immediateEffect":[],
-            "secondaryEffect":[]
-        },
-        {
-            "cost":
-            {"amount":0,
-             "value":0
-            },
-            "period":2,
+            "period":1,
             "developmentCardType":"CHARACTER",
             "immediateEffect":[],
             "secondaryEffect":[]
@@ -63,7 +166,18 @@
                 "amount":0,
                 "value":0
             },
-            "period":6,
+            "period":1,
+            "developmentCardType":"CHARACTER",
+            "immediateEffect":[],
+            "secondaryEffect":[]
+        },
+        {
+            "cost":
+            {
+                "amount":0,
+                "value":0
+            },
+            "period":1,
             "developmentCardType":"CHARACTER",
             "immediateEffect":[],
             "secondaryEffect":[]
