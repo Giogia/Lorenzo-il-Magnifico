@@ -3,11 +3,8 @@ package it.polimi.ingsw.BOARD;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.BONUS.PermanentBonus;
 import java.util.ArrayList;
 
 public class TowerFloor extends Position {
@@ -41,12 +38,12 @@ public class TowerFloor extends Position {
 		for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
 			giveImmediateBonus(cardPlayer,immediateBonus);
 		}
-		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){ //se non sono carte character Sattiva il metodo immediate bonus per ogni secondary effect
-			for(ImmediateBonus immediateBonus : this.developmentCard.secondaryEffect){
+		/*commentato perche' serve solo con permanent bonus
+		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
+			for(Bonus immediateBonus : this.developmentCard.secondaryEffect){
 				giveImmediateBonus(cardPlayer, immediateBonus); 
-			}
-		}
-		
+			}//da testare assolutamente 
+		} */
 		this.developmentCard = null; //cancella carta sul piano della torre
 	}
 }

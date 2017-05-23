@@ -41,7 +41,6 @@ public class Position {
 		familyMembers.clear();
 	}
 	
-	//TODO sistemare collegamento metodo
 	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus){
 		immediateBonus.getImmediateBonus(player);
 	}
