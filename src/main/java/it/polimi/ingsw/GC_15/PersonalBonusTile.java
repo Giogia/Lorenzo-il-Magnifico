@@ -1,5 +1,8 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.BOARD.HarvestArea;
+import it.polimi.ingsw.BOARD.ProductionArea;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
 public class PersonalBonusTile {
@@ -16,11 +19,22 @@ public class PersonalBonusTile {
 	}
 	
 	
-	public int getHarvestActivationCondition() {
+	private int getHarvestActivationCondition() {
 		return harvestActivationCondition;
 	}
 	
-	public int getProductionActivationCondition() {
+	private int getProductionActivationCondition() {
 		return productionActivationCondition;
+	}
+	
+	public int getCondition(Zone zone){
+		if(zone instanceof HarvestArea){
+			return getHarvestActivationCondition();
+		}
+		if(zone instanceof ProductionArea){
+			return getProductionActivationCondition();
+		}
+		else
+			return -1;//TODO dobbiamo gestire l'eccezione ;
 	}
 }
