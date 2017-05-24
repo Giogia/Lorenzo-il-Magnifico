@@ -1,5 +1,45 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.util.ArrayList;
+
+import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.RoundOrder;
+
 public class EndRoundHandler {
+	private static EndRoundHandler instance;
+	
+	private EndRoundHandler(){
+	}
+	
+	public static synchronized EndRoundHandler getEndRoundHandler() {
+		if (instance == null){
+			instance = new EndRoundHandler();
+		}
+		return instance;
+	}
+	
+	public static void handle(Board board, RoundOrder roundOrder, int turn){
+		handleOrder(roundOrder, board);
+		board.resetPositions();
+		if (turn % 2 == 0){
+			VaticanReport.check();
+		}
+	}
+	
+	private static void handleOrder(RoundOrder roundOrder, Board board){
+		ArrayList<FamilyMember> councilPalaceFamilyMembers = board.getCouncilPalace().getPosition(0).getFamilyMembers();
+		ArrayList<Player> councilPalacePlayers = new ArrayList<>();
+		ArrayList<Player> oldRoundOrder = roundOrder.getPlayers();
+		for (int i = 0; i < councilPalaceFamilyMembers.size(); i++){
+			Player player = councilPalaceFamilyMembers.get(i).getPlayer();
+			if (!councilPalacePlayers.contains(player)){
+				councilPalacePlayers.add(player);
+				oldRoundOrder.remove(player);
+			}
+		}
+		councilPalacePlayers.addAll(oldRoundOrder);
+	}
 
 }
