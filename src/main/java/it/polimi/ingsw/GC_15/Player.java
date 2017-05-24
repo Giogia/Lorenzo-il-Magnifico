@@ -86,7 +86,7 @@ public class Player {
 	}
 	
 	public ArrayList<DevelopmentCard> getCardsToActivate(DevelopmentCardType developmentCardType) {
-		ArrayList<CardContainer> cardContainers = personalBoard.getContainerCards();
+		ArrayList<CardContainer> cardContainers = personalBoard.getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
 			if (cardContainer.type.equals(developmentCardType)){
 				return cardContainer.getDevelopmentCards();
