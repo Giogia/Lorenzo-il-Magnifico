@@ -1,23 +1,25 @@
 package it.polimi.ingsw.GC_15;
 
+import java.util.ArrayList;
+
 public class RoundOrder {
 
-	private Player[] players;
+	private ArrayList<Player> players;
 	
-	public Player[] getPlayers() {
+	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 	
 	public Player getPlayer(int i) {
-		return players[i];
+		return players.get(i);
 	}
 	
-	public void setPlayers(Player[] players) {
+	public void setPlayers(ArrayList<Player> players) {
 		this.players = players;
 	}
 	
 	public void setplayer(Player player, int i){
-		players[i] = player;
+		players.set(i, player);
 	}
 	
 }
