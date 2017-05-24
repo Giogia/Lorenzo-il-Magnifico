@@ -7,7 +7,8 @@ public class Tower extends ActionZone{
 	private boolean occupiedYet;
 	private DevelopmentCardType developmentCardType;
 	
-	public Tower(int occupiedCost, boolean occupiedYet, DevelopmentCardType developmentCardType) {
+	public Tower(int occupiedCost, boolean occupiedYet, DevelopmentCardType developmentCardType) { 
+		//TODO MANCA IL COSTRUTTORE DI ACTION ZONE
 		this.occupiedCost = occupiedCost;
 		this.occupiedYet = occupiedYet;
 		this.developmentCardType = developmentCardType;
@@ -35,5 +36,11 @@ public class Tower extends ActionZone{
 	
 	public void setDevelopmentCardType(DevelopmentCardType developmentCardType){
 		this.developmentCardType = developmentCardType;
+	}
+	
+	@Override
+	public TowerFloor[] getPositions() {
+		// TODO Auto-generated method stub
+		return (TowerFloor[]) super.getPositions();
 	}
 }

@@ -4,8 +4,8 @@ public class Dice {
 	private int value;
 	private DiceColour diceColour;
 
-	public Dice(int value, DiceColour diceColour) {
-		this.value= value;
+	public Dice(DiceColour diceColour) {
+		this.value= 0;
 		this.diceColour = diceColour;
 	}
 	
@@ -18,6 +18,6 @@ public class Dice {
 	}
 	
 	public void setValue() {
-		value= (int) (6 * Math.random());
+		value= (int) (6 * Math.random() + 1);
 	}
 }

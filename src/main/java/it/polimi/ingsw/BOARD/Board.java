@@ -92,6 +92,10 @@ public class Board {
 		this.harvestArea.deleteAllFamilyMember();
 		this.productionArea.deleteAllFamilyMember();
 	}
+
+	public Tower[] getTowers() {
+		return towers;
+	}
 	
 }
 
