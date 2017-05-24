@@ -16,6 +16,7 @@ import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
 import it.polimi.ingsw.RESOURCE.Stones;
 import it.polimi.ingsw.RESOURCE.VictoryPoints;
@@ -55,7 +56,7 @@ public class PersonalBoard {
 		return personalBonusTile;
 	}
 	
-	public ArrayList<CardContainer> getContainerCards() {
+	public ArrayList<CardContainer> getCardContainers() {
 		return cardContainers;
 	}
 	
@@ -65,6 +66,15 @@ public class PersonalBoard {
 
 	public ArrayList<Resource> getResources() {
 		return resources;
+	}
+	
+	public Resource getResource(ResourceType resourceType) {
+		for(Resource resource : resources){
+			if(resource.getResourceType().equals(resourceType)){
+				return resource;
+			}
+		}
+		return null;
 	}
 	
 	public ArrayList<LeaderCard> getOncePerRoundBonusLeaderCard() {

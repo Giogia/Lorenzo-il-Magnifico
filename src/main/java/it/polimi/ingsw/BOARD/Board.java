@@ -12,6 +12,7 @@ public class Board {
 	private CouncilPalace councilPalace;
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
+	private RoundOrder roundOrder;
 	
 	
 	public Board(Player[] player, ExcommunicationTile[] excommunicationTile, Tower[] tower, Market market,
@@ -23,6 +24,10 @@ public class Board {
 		this.councilPalace = councilPalace;
 		this.harvestArea = harvestArea;
 		this.productionArea = productionArea;
+	}
+	
+	public Player[] getPlayers() {
+		return players;
 	}
 
 	public Player getPlayer(int player){
@@ -54,6 +59,10 @@ public class Board {
 		return this.productionArea;
 	}
 	
+	public RoundOrder getRoundOrder() {
+		return roundOrder;
+	}
+	
 	public void setPlayer(Player players, int playerNumber){
 		this.players[playerNumber] = players;
 	}
@@ -80,6 +89,10 @@ public class Board {
 	
 	public void setProductionArea(ProductionArea productionArea){
 		this.productionArea = productionArea;
+	}
+	
+	public void setRoundOrder(RoundOrder roundOrder) {
+		this.roundOrder = roundOrder;
 	}
 	
 	//toglie tutti i  family member in ogni zona della board

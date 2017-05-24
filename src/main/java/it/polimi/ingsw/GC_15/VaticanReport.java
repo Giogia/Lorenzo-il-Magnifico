@@ -7,6 +7,10 @@ public class VaticanReport {
 		this.excommunicationTiles=excommunicationTiles;
 	}
 	
+	public void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {
+		this.excommunicationTiles = excommunicationTiles;
+	}
+	
 	public void checkPlayersFaith(Player players[], int period) {
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
