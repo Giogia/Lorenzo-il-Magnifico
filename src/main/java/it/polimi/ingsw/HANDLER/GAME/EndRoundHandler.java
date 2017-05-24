@@ -28,6 +28,9 @@ public class EndRoundHandler {
 		}
 	}
 	
+	/*This Handler see if there are some FamilyMembers in CouncilPalace.
+	 * If it is, put those players in the edge of RoundOrder ArrayList
+	 */
 	private static void handleOrder(RoundOrder roundOrder, Board board){
 		ArrayList<FamilyMember> councilPalaceFamilyMembers = board.getCouncilPalace().getPosition(0).getFamilyMembers();
 		ArrayList<Player> councilPalacePlayers = new ArrayList<>();

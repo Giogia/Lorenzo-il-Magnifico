@@ -43,7 +43,7 @@ public class StartRoundHandler {
 	
 	
 	
-	
+	//Create new dices
 	private static ArrayList<Dice> rollDices(){
 		ArrayList<DiceColour> colours = new ArrayList<>();
 		colours.add(DiceColour.Black);
@@ -61,6 +61,8 @@ public class StartRoundHandler {
 		return dices;
 	}
 	
+	
+	//Create new FamilyMembers
 	private static void setFamilyMembersValue(ArrayList<Dice> dices, Player player){
 		ArrayList<FamilyMember> familyMembers = new ArrayList<>();
 		for (Dice dice : dices) {
@@ -71,6 +73,7 @@ public class StartRoundHandler {
 	}
 	
 	
+	//Get the cards from DataFromFile
 	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
 		if (developmentCardType.equals(DevelopmentCardType.BUILDING)){
 			return DataFromFile.getBuildings(period);
@@ -84,6 +87,8 @@ public class StartRoundHandler {
 		
 	}
 	
+	
+	//For each tower set the randomly a card. At the end of this operation return to DataFromFile the unused cards. 
 	private static void setCards(Board board, int period){
 		Tower[] towers = board.getTowers();
 		for (Tower tower : towers) {
