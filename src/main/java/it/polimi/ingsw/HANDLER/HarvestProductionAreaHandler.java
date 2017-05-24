@@ -1,8 +1,13 @@
 package it.polimi.ingsw.HANDLER;
+
+import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.*;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.CARD.CardContainer;
+import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CONTROLLER.*;
 import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.PersonalBonusTile;
 
 
 public abstract class HarvestProductionAreaHandler {
@@ -15,17 +20,43 @@ public abstract class HarvestProductionAreaHandler {
 		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			if(FamilyMemberValueController.check(familyMember, position)){
-				if(checkBonusTile(familyMember, zone)){
+				if(CheckBonusTileRequirementController.check(familyMember, zone)){
 					familyMember.getPlayer().setFamilyMemberPosition(familyMember, position);
-					//TODO scegliere carta e mettere familiare
+					getPersonalBonusTileBonus(familyMember, zone);
 					return true;
 				}
 			}
 		}
 		return false;
+		/*ArrayList<DevelopmentCard> cardsToActivate = MvcController.chooseCards(getCards(familyMember, zone)); //chiede le carte al giocatore
+		while(ActivateCardsController(cardsToActivate, familyMember.getPlayer())== false){ //le richiede finche non puo' attivarle
+			cardsToActivate = MvcController.chooseCards(getCards(familyMember, zone));
+		} */
 	}
-	protected static boolean checkBonusTile(FamilyMember familyMember, Zone zone){
-		PersonalBonusTile personalBonusTile = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile();
-		return(familyMember.getValue()>= personalBonusTile.getCondition(zone));
+	
+	protected static ArrayList<DevelopmentCard> getCards(FamilyMember familyMember, Zone zone){
+	ArrayList<CardContainer> cardContainers= familyMember.getPlayer().getPersonalBoard().getContainerCards();
+		for(CardContainer cardcontainer : cardContainers){
+			if(zone instanceof HarvestArea){
+				if(cardcontainer.type.equals(DevelopmentCardType.TERRITORY)){
+					return cardcontainer.getDevelopmentCards();
+				}
+			}
+			if(zone instanceof ProductionArea){
+				if(cardcontainer.type.equals(DevelopmentCardType.BUILDING)){
+					return cardcontainer.getDevelopmentCards();
+				}
+			}
 		}
+		return null;
+	}
+	
+	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone){
+		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
+		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
+	}
+	
+	
+	
+	
 }

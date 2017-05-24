@@ -37,4 +37,15 @@ public class PersonalBonusTile {
 		else
 			return -1;//TODO dobbiamo gestire l'eccezione ;
 	}
+	
+	public ImmediateBonus getImmediateBonus(Zone zone){
+		if(zone instanceof HarvestArea){
+			return harvestBonus;
+		}
+		if(zone instanceof ProductionArea){
+			return productionBonus;
+		}
+		else
+			return null;
+	}
 }

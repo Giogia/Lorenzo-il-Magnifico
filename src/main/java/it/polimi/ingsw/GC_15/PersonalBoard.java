@@ -24,7 +24,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
 	private boolean excommunicationCubes[];
-	private ArrayList<CardContainer> containerCards;
+	private ArrayList<CardContainer> cardContainers;
 	private ArrayList<Resource> resources;
 	private ArrayList<LeaderCard> activatedLeaderCards;
 	private ArrayList<LeaderCard> oncePerRoundBonusLeaderCard;
@@ -36,10 +36,10 @@ public class PersonalBoard {
 		permanentBonus= new ArrayList<>();
 		excommunicationCubes= new boolean[3];
 		
-		containerCards.add(new TerritoryCardContainer());
-		containerCards.add(new BuildingCardContainer());
-		containerCards.add(new VentureCardContainer());
-		containerCards.add(new CharacterCardContainer());
+		cardContainers.add(new TerritoryCardContainer());
+		cardContainers.add(new BuildingCardContainer());
+		cardContainers.add(new VentureCardContainer());
+		cardContainers.add(new CharacterCardContainer());
 		
 		resources.add(new Coins());
 		resources.add(new Wood());
@@ -56,7 +56,7 @@ public class PersonalBoard {
 	}
 	
 	public ArrayList<CardContainer> getContainerCards() {
-		return containerCards;
+		return cardContainers;
 	}
 	
 	public ArrayList<LeaderCard> getActivatedLeaderCards() {
@@ -87,9 +87,9 @@ public class PersonalBoard {
 	}
 	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
-		for(int i=0; i < containerCards.size(); i++){
-			if(containerCards.get(i).getType() == developmentCard.developmentCardType){
-				containerCards.get(i).add(developmentCard);
+		for(int i=0; i < cardContainers.size(); i++){
+			if(cardContainers.get(i).getType() == developmentCard.developmentCardType){
+				cardContainers.get(i).add(developmentCard);
 			}
 		}
 	}
@@ -100,11 +100,6 @@ public class PersonalBoard {
 		}
 	}
 	
-	public void activateBonusTiles(DevelopmentCardType developmentCardType){
-		//TODO: chiamare il controller che verifica i requisiti e se son soddifatti chiama (dipende dal developmentCardType)
-		// o il activateProductionBonus della personalbonustile
-		// o il activateHarvestBonus della personalBonusTile
-	}
 	
 	public ArrayList<Bonus> getPermanentBonus() {
 		return permanentBonus;
