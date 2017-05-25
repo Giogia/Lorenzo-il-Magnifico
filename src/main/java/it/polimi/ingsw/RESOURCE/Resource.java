@@ -7,9 +7,9 @@ abstract public class Resource {
 	protected int value;
 	protected ResourceType resourceType;
 	
-	public Resource() {
-		this.amount = 0;
-		this.value = 1;
+	public Resource(int amount, int value) {
+		this.amount = amount;
+		this.value = value;
 	}
 	
     public int getAmount() {

@@ -12,26 +12,24 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 //classe contenitrice di tutti i dati che vengono caricati ad inizio gioco da file
 public class DataFromFile {
 	private ArrayList<Territory> territories;
-	private ArrayList<Character> characters;
+	//private ArrayList<Character> characters;
 	//private ArrayList<Venture> ventures;
 	//private ArrayList<Building> buildings;
+	//private ArrayList<LeaderCard> leaderCards;
 	//private ArrayList<ExcommunicationTile> excommunicationTiles;
 	//private ArrayList<PersonalBonusTile> personalBonusTiles;
+	//private ArrayList<ResourceBonus> councilPrivileges; TODO: da fare?
 	//posti azione
 	//tracciato punti fede
+	//punti vittoria in base al numero di carte di un certo tipo
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
 	//timeout per la mossa di un giocatore
 	
-	public DataFromFile(ArrayList<Territory> territories, ArrayList<Character> characters) {
+	public DataFromFile(ArrayList<Territory> territories) {
 		this.territories = territories;
-		this.characters = characters;
 	}
 	
 	public ArrayList<Territory> getTerritories() {
 		return territories;
-	}
-	
-	public ArrayList<Character> getCharacters() {
-		return characters;
-	}
+	}	
 }

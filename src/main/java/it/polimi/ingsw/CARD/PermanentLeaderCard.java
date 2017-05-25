@@ -7,8 +7,8 @@ import it.polimi.ingsw.RESOURCE.Resource;
 
 public class PermanentLeaderCard extends LeaderCard{
 	
-	public PermanentLeaderCard(ArrayList<Bonus> permanentBonus, ArrayList<Resource> resourceActivationCondition, ArrayList<DevelopmentCard> cardActivationCondition) {
-		super(resourceActivationCondition, cardActivationCondition, permanentBonus);
+	public PermanentLeaderCard(String name, ArrayList<Bonus> permanentBonus, ArrayList<Resource> resourceActivationCondition, ArrayList<DevelopmentCard> cardActivationCondition) {
+		super(name, resourceActivationCondition, cardActivationCondition, permanentBonus);
 	}
 	
 	public void activatePermanentBonus(){

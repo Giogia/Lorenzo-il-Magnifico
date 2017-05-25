@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
-public class ResourceValueBonus implements ImmediateBonus{
+public class ResourceValueBonus extends ImmediateBonus{
 	private ArrayList<Resource> resources;
+
+	public ResourceValueBonus() {
+	}
 
 	@Override
 	public void getImmediateBonus(Player player) {

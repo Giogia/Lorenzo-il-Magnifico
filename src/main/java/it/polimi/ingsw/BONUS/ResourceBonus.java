@@ -6,15 +6,20 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
-public abstract class ResourceBonus extends PermanentBonus implements ImmediateBonus {
-	protected ArrayList<Resource> resources;
+public abstract class ResourceBonus extends ImmediateBonus {
+	protected ArrayList<Resource> resources;	
+	private String subtype;
 	
-	
-	public ResourceBonus(ArrayList<Resource> resources){
+	public ResourceBonus(String type, ArrayList<Resource> resources){
+		super("resourceBonus");
+		subtype= type;
 		this.resources = new ArrayList<>();
 		this.resources.addAll(resources);
 	}
 	
+	public String getSubtype() {
+		return subtype;
+	}
 	
 	public void getImmediateBonus(Player player){ 
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();

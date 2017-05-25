@@ -6,10 +6,11 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
-public abstract class FamilyMemberBonus extends PermanentBonus implements ImmediateBonus{
+public abstract class FamilyMemberBonus extends ImmediateBonus{
 	protected ArrayList<FamilyMember> familyMembers;
 	
-	public FamilyMemberBonus(ArrayList<FamilyMember> familyMembers){
+	public FamilyMemberBonus(String type, ArrayList<FamilyMember> familyMembers){
+		super(type);
 		this.familyMembers = new ArrayList<>();
 		this.familyMembers.addAll(familyMembers);
 	}

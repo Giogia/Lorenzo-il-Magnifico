@@ -8,7 +8,7 @@ public class MultiplyResourceBonus extends ResourceBonus {
 		
 		
 		public MultiplyResourceBonus(ArrayList<Resource> resources) {
-		super(resources);
+		super("multiplyResourceBonus", resources);
 	}
 
 		//moltiplica il valore

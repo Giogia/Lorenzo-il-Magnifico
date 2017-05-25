@@ -2,8 +2,8 @@ package it.polimi.ingsw.RESOURCE;
 
 public class Coins extends Resource {
 	
-	public Coins() {
-		super();
+	public Coins(int amount, int value) {
+		super(amount, value);
 		this.resourceType = ResourceType.COINS;
 	}
 }

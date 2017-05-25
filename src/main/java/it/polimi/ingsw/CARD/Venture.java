@@ -10,8 +10,8 @@ public class Venture extends DevelopmentCard{
 	public final ArrayList<Resource> cost;
 	public final ArrayList<Resource> alternativeCost;
 	
-	public Venture(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect, DevelopmentCardType type) {
-		super(period, DevelopmentCardType.VENTURE, immediateEffect, secondaryEffect);
+	public Venture(String name, ArrayList<Resource> cost, ArrayList<Resource> alternativeCost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+		super(name, period, DevelopmentCardType.VENTURE, immediateEffect, secondaryEffect);
 		this.cost=cost;
 		this.alternativeCost=alternativeCost;
 	}

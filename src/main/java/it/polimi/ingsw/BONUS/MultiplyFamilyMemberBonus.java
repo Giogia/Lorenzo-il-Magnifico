@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 public class MultiplyFamilyMemberBonus extends FamilyMemberBonus {
 
 	public MultiplyFamilyMemberBonus(ArrayList<FamilyMember> familyMembers) {
-		super(familyMembers);
+		super("multiplyFamilyMemberBonus", familyMembers);
 	}
 
 	@Override

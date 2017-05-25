@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.RESOURCE.Resource;
 
-public abstract class LeaderCard {
+public abstract class LeaderCard extends Card {
 	private ArrayList<Resource> resourceActivationCondition;
 	private ArrayList<DevelopmentCard> cardActivationCondition;
 	public final ArrayList<Bonus> bonus;
 	
-	public LeaderCard(ArrayList<Resource> resourceActivationCondition, ArrayList<DevelopmentCard> cardActivationCondition, ArrayList<Bonus> bonus) {
+	public LeaderCard(String name, ArrayList<Resource> resourceActivationCondition, ArrayList<DevelopmentCard> cardActivationCondition, ArrayList<Bonus> bonus) {
+		super(name);
 		this.resourceActivationCondition=resourceActivationCondition;
 		this.cardActivationCondition=cardActivationCondition;
 		this.bonus=bonus;

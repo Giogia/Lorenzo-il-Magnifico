@@ -4,7 +4,7 @@ import it.polimi.ingsw.BONUS.Bonus;
 
 public class ExcommunicationTile {
 	public final int period;
-	private Bonus malus[];
+	public final Bonus malus[];
 	
 	public ExcommunicationTile(int period, Bonus malus[]) {
 		this.period=period;

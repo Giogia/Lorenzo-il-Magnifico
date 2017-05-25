@@ -9,8 +9,8 @@ import it.polimi.ingsw.RESOURCE.Coins;
 public class Character extends DevelopmentCard{
 	public final Coins cost;
 	
-	public Character(Coins cost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
-		super(period, DevelopmentCardType.CHARACTER, immediateEffect, secondaryEffect);
+	public Character(String name, Coins cost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+		super(name, period, DevelopmentCardType.CHARACTER, immediateEffect, secondaryEffect);
 		this.cost=cost;
 	}
 }
