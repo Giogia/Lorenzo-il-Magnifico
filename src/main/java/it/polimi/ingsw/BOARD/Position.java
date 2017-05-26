@@ -33,8 +33,12 @@ public class Position {
 		return this.diceRequirement;
 	}
 	
-	public void addFamilyMember(FamilyMember newfamilyMember){
-		familyMembers.add(newfamilyMember);
+	public void addFamilyMember(FamilyMember newFamilyMember){
+		familyMembers.add(newFamilyMember);
+	}
+	
+	public void removeFamilyMember(FamilyMember familyMember){
+		familyMembers.remove(familyMember);
 	}
 	
 	public void deleteAllFamilyMember(){
