@@ -10,13 +10,29 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
+import it.polimi.ingsw.BONUS.ActionBonus;
+import it.polimi.ingsw.BONUS.AddFamilyMemberBonus;
 import it.polimi.ingsw.BONUS.AddResourceBonus;
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
+import it.polimi.ingsw.BONUS.FamilyMemberBonus;
+import it.polimi.ingsw.BONUS.FamilyMemberValueBonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.BONUS.MultiplyFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
+import it.polimi.ingsw.BONUS.ResourceValueBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.CARD.Card;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.RESOURCE.Coins;
+import it.polimi.ingsw.RESOURCE.FaithPoints;
+import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.Servants;
+import it.polimi.ingsw.RESOURCE.Stones;
+import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
@@ -36,7 +52,10 @@ public class ConfigurationFileHandler {
 		}*/
 				
 		Card ciao = Create.createCard();
-		System.out.println(toSerialize(ciao));
+		String inJson= toSerialize(ciao);
+		System.out.println(inJson);
+		
+		System.out.println(toDeserialize(inJson).toString());
 		
 	}
 	
@@ -50,29 +69,53 @@ public class ConfigurationFileHandler {
 		}
 	}
 	
-	private Object toDeserialize(String inJson){
+	private static Object toDeserialize(String inJson){
 		try{
-			Type requestListTypeToken = new TypeToken<List<Territory>>() {}.getType();
+			//Type requestListTypeToken = new TypeToken<List<Territory>>() {}.getType();
 			
-			final RuntimeTypeAdapterFactory<ResourceBonus> typeFactory = RuntimeTypeAdapterFactory
+			final RuntimeTypeAdapterFactory<ResourceBonus> t1 = RuntimeTypeAdapterFactory
 					.of(ResourceBonus.class, "subtype")
-			        .registerSubtype(AddResourceBonus.class, "addResourceBonus");
+			        .registerSubtype(AddResourceBonus.class, "addResourceBonus")
+			        .registerSubtype(MultiplyResourceBonus.class, "multiplyResourceBonus")
+			        .registerSubtype(ResourcePerDevelopmentCardBonus.class, "ATTENTION")//TODO
+			        .registerSubtype(ResourceValueBonus.class, "resourceValueBonus");
 			
-			final RuntimeTypeAdapterFactory<Resource> typeFactory1 = RuntimeTypeAdapterFactory
+			final RuntimeTypeAdapterFactory<Resource> t2 = RuntimeTypeAdapterFactory
 					.of(Resource.class, "resourceType")
-			        .registerSubtype(Coins.class, "COINS")
-			        .registerSubtype(Wood.class, "WOOD");
+			        .registerSubtype(Coins.class, "coins")
+			        .registerSubtype(Wood.class, "wood")
+			        .registerSubtype(FaithPoints.class, "faithPoints")
+			        .registerSubtype(MilitaryPoints.class, "militaryPoints")
+			        .registerSubtype(Servants.class, "servants")
+			        .registerSubtype(Stones.class, "stones")
+			        .registerSubtype(VictoryPoints.class, "victoryPoints");
+			        
+			final RuntimeTypeAdapterFactory<ImmediateBonus> t3 = RuntimeTypeAdapterFactory
+					.of(ImmediateBonus.class, "type")
+			        .registerSubtype(ResourceBonus.class, "resourceBonus")
+			        .registerSubtype(ActionBonus.class, "actionBonus")
+			        .registerSubtype(CouncilPrivilegeBonus.class, "councilPrivilegeBonus")
+			        .registerSubtype(FamilyMemberBonus.class, "familyMemberBonus");
 			
-			final RuntimeTypeAdapterFactory<ImmediateBonus> typeFactory2 = RuntimeTypeAdapterFactory
-					.of(ImmediateBonus.class, "subtype1")
-			        .registerSubtype(ResourceBonus.class, "resourceBonus");
+			final RuntimeTypeAdapterFactory<FamilyMemberBonus> t4 = RuntimeTypeAdapterFactory
+					.of(FamilyMemberBonus.class, "subtype")
+			        .registerSubtype(AddFamilyMemberBonus.class, "addFamilyMemberBonus")
+			        .registerSubtype(MultiplyFamilyMemberBonus.class, "multiplyFamilyMemberBonus")
+			        .registerSubtype(FamilyMemberValueBonus.class, "familyMemberValueBonus");
 			
-			Gson gsonToDeserialize = new GsonBuilder().registerTypeAdapterFactory(typeFactory)
-					.registerTypeAdapterFactory(typeFactory1)
-					.registerTypeAdapterFactory(typeFactory2)
+			final RuntimeTypeAdapterFactory<Bonus> t5 = RuntimeTypeAdapterFactory
+					.of(Bonus.class, "type1")
+			        .registerSubtype(ImmediateBonus.class, "immediateBonus");
+			
+			Gson gsonToDeserialize = new GsonBuilder().registerTypeAdapterFactory(t1)
+					.registerTypeAdapterFactory(t2)
+					.registerTypeAdapterFactory(t3)
+					.registerTypeAdapterFactory(t4)
+					.registerTypeAdapterFactory(t5)
 					.create();
 			
-			return gsonToDeserialize.fromJson(inJson, requestListTypeToken);
+			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
+			
 		} catch (Exception e){
 			e.printStackTrace();
 			return new Object();//TODO da vedere cosa ritornare

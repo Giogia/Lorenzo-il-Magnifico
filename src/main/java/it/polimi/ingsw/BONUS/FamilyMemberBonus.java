@@ -8,13 +8,18 @@ import it.polimi.ingsw.GC_15.Player;
 
 public abstract class FamilyMemberBonus extends ImmediateBonus{
 	protected ArrayList<FamilyMember> familyMembers;
+	private String subtype;
 	
 	public FamilyMemberBonus(String type, ArrayList<FamilyMember> familyMembers){
-		super(type);
+		super("familyMemberBonus");
+		subtype=type;
 		this.familyMembers = new ArrayList<>();
 		this.familyMembers.addAll(familyMembers);
 	}
 
+	public String getSubtype() {
+		return subtype;
+	}
 	
 	@Override
 	public void getImmediateBonus(Player player) {

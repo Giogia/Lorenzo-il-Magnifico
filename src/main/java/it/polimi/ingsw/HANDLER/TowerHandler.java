@@ -59,15 +59,6 @@ public class TowerHandler {
 				}
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-	
-				
 	}
 	
 

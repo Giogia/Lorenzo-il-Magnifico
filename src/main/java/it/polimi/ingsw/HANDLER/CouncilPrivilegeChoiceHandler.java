@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 
 public class CouncilPrivilegeChoiceHandler {
 	//councilPrivileges is the arraylist of bonus to send to the human. He choose one oh this and this is immediately activated

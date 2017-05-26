@@ -15,14 +15,13 @@ public class Create {
 	private static Scanner in = new Scanner(System.in);
 	private static Scanner in2 = new Scanner(System.in);
 	
-	public static Card createCard(){
-		Card card = null;
+	public static DevelopmentCard createCard(){
+		DevelopmentCard card = null;
 		System.out.println("Che carta vuoi creare?");
 		System.out.println("1) Territory");
 		System.out.println("2) Building");
 		System.out.println("3) Character");
 		System.out.println("4) Venture");
-		System.out.println("5) Leader");
 		
 		int answer = in.nextInt();
 		switch (answer) {
@@ -40,10 +39,6 @@ public class Create {
 			
 		case 4:
 			card = createVenture();
-			break;
-		
-		case 5:
-			card = createLeader();
 			break;
 		}
 		return card;
@@ -95,7 +90,7 @@ public class Create {
 		return new Venture(nome, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
 	}
 	
-	private static LeaderCard createLeader(){
+	public static LeaderCard createLeader(){
 		return null; //TODO
 	}
 	
