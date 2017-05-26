@@ -12,7 +12,7 @@ public class TowerFloor extends Position {
 	
 	private DevelopmentCard developmentCard;
 	
-	public TowerFloor(ArrayList<Bonus> boardBonus, int diceRequirement, DevelopmentCard developmentCard) {
+	public TowerFloor(ArrayList<ImmediateBonus> boardBonus, int diceRequirement, DevelopmentCard developmentCard) {
 		super(boardBonus, diceRequirement);
 		this.developmentCard = developmentCard;
 	}

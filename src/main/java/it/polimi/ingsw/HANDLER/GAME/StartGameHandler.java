@@ -7,28 +7,39 @@ import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
-import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
-public class StartGameHandler {
+public final class StartGameHandler {
 	
-	public void handle(Board board,VaticanReport vaticanReport){
-	 //setRandomExcommunicationTiles(DataFromFile.getExcommunicationTiles(),vaticanReport);
-		SetPlayeraResources(board);
+	private static StartGameHandler istanza = null;
+	
+	private StartGameHandler() {};
+	
+	public static StartGameHandler getStartGameHandler() {
+		if (istanza == null) {
+            istanza = new StartGameHandler();
+        }
+        return istanza;
+	}
+	
+	public static void handle(Board board,VaticanReport vaticanReport){
+		setRandomExcommunicationTiles(DataFromFile.getExcommunicationTiles());
+		SetPlayersResources(board);
 		ChooseOrder(board);
 	}
 	
 	
-	public void setRandomExcommunicationTiles(ArrayList<ExcommunicationTile> list, VaticanReport vaticanReport){
+	private static void setRandomExcommunicationTiles(ArrayList<ExcommunicationTile> list){
 		ExcommunicationTile[] excommunicationTiles = new ExcommunicationTile[3];
 		for(int i=0;i<3;i++){
 			int index = (int) (Math.random() * list.size());
-			excommunicationTiles[i]= list.get(index);
+			ExcommunicationTile chosenExcommunicationTile = list.get(index); //tile preso con indice a caso
+			excommunicationTiles[chosenExcommunicationTile.period-1]= chosenExcommunicationTile; //guarda il periodo di quello scelto e lo mette in quella posizione dell'array
 		}
-		vaticanReport.setExcommunicationTiles(excommunicationTiles);
+		VaticanReport.setExcommunicationTiles(excommunicationTiles);
 	}
 	
-	private void SetPlayeraResources(Board board){
+	private static void SetPlayersResources(Board board){
 		for(Player player: board.getPlayers()){
 			int i=0;
 			PersonalBoard personalBoard = player.getPersonalBoard();
@@ -41,7 +52,7 @@ public class StartGameHandler {
 	}
 	
 		
-	private void ChooseOrder(Board board) {
+	private static void ChooseOrder(Board board) {
 		for(Player player: board.getPlayers()){
 			int i = (int) (Math.random()*board.getPlayers().length); //estrae un numero a caso da 1 a 4
 			while(!board.getRoundOrder().getPlayer(i).equals(null)){ //se la posizione e' gia occupata passa a quella dopo

@@ -9,18 +9,9 @@ import it.polimi.ingsw.CARD.CharacterCardContainer;
 import it.polimi.ingsw.CARD.TerritoryCardContainer;
 import it.polimi.ingsw.CARD.VentureCardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
-import it.polimi.ingsw.RESOURCE.Coins;
-import it.polimi.ingsw.RESOURCE.FaithPoints;
-import it.polimi.ingsw.RESOURCE.MilitaryPoints;
-import it.polimi.ingsw.RESOURCE.Resource;
-import it.polimi.ingsw.RESOURCE.ResourceType;
-import it.polimi.ingsw.RESOURCE.Servants;
-import it.polimi.ingsw.RESOURCE.Stones;
-import it.polimi.ingsw.RESOURCE.VictoryPoints;
-import it.polimi.ingsw.RESOURCE.Wood;
+import it.polimi.ingsw.RESOURCE.*;
 
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
@@ -42,13 +33,13 @@ public class PersonalBoard {
 		cardContainers.add(new VentureCardContainer());
 		cardContainers.add(new CharacterCardContainer());
 		
-		resources.add(new Coins());
-		resources.add(new Wood());
-		resources.add(new Stones());
-		resources.add(new Servants());
-		resources.add(new FaithPoints());
-		resources.add(new MilitaryPoints());
-		resources.add(new VictoryPoints());
+		resources.add(new Coins(0,1));
+		resources.add(new Wood(0,1));
+		resources.add(new Stones(0,1));
+		resources.add(new Servants(0,1));
+		resources.add(new FaithPoints(0,1));
+		resources.add(new MilitaryPoints(0,1));
+		resources.add(new VictoryPoints(0,1));
 	}
 	
 

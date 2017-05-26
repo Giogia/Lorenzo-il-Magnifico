@@ -23,6 +23,10 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	
 	public void getImmediateBonus(Player player){ 
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
+		modifyResources(playerResources);
+	}
+
+	protected void modifyResources(ArrayList<Resource> playerResources){
 		for (Resource resource : resources) {
 			for (Resource playerResource : playerResources) {
 				if (compareClass(playerResource, resource)){
@@ -32,7 +36,6 @@ public abstract class ResourceBonus extends ImmediateBonus {
 			
 		}
 	}
-
 	// confronta la classe
 	protected boolean compareClass(Resource resource1, Resource resource2){
 		return(resource1.getClass().equals(resource2.getClass()));

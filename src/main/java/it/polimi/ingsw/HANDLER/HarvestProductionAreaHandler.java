@@ -13,7 +13,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 public abstract class HarvestProductionAreaHandler {
 
 	
-	public static boolean handle(FamilyMember familyMember, Zone zone, Position position){
+	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position){
 		if(!PositionAlreadyOccupiedController.check(position) &&
 			!OccupiedYetBonusController.check(familyMember)){
 			return false;

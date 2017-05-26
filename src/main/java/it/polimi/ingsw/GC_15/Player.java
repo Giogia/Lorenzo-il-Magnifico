@@ -54,7 +54,7 @@ public class Player {
 	
 	public void useServants(int value, FamilyMember familyMember){
 		//trovo l'indice nell'arrayList dove vi sono i serventi
-		int index= personalBoard.getResources().lastIndexOf(new Servants());
+		int index= personalBoard.getResources().lastIndexOf(new Servants(0,1));
 		//decremento il valore dei serventi di - value
 		personalBoard.getResources().get(index).addvalue(-value);
 		familyMember.addValue(value);
@@ -78,7 +78,7 @@ public class Player {
 	
 	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus){
 		//trovo l'indice nell'arrayList dove vi sono le monete
-		int index= personalBoard.getResources().lastIndexOf(new Coins());
+		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
 		//do al player una moneta
 		personalBoard.getResources().get(index).addvalue(1);
 		//TODO: do il councilPrivilegeBonus

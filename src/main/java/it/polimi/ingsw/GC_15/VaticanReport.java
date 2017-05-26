@@ -1,17 +1,29 @@
 package it.polimi.ingsw.GC_15;
 
-public class VaticanReport {
-	private ExcommunicationTile excommunicationTiles[];
+public final class VaticanReport {
+	private static VaticanReport instance;
+	private static ExcommunicationTile excommunicationTiles[];
 	
-	public VaticanReport(ExcommunicationTile excommunicationTiles[]) {//TODO: gestire l'eccezione nel caso di array di lunghezza diversa?
-		this.excommunicationTiles=excommunicationTiles;
+	
+	private VaticanReport(ExcommunicationTile excommunicationTiles[]) {//TODO: gestire l'eccezione nel caso di array di lunghezza diversa?
+		VaticanReport.excommunicationTiles=excommunicationTiles;
 	}
 	
-	public void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {
-		this.excommunicationTiles = excommunicationTiles;
+	
+	public static VaticanReport getVaticanReport(ExcommunicationTile excommunicationTiles[]){
+		if (instance == null){
+			instance = new VaticanReport(excommunicationTiles);
+		}
+		return instance;
 	}
 	
-	public void checkPlayersFaith(Player players[], int period) {
+	
+	
+	public static void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {
+		VaticanReport.excommunicationTiles = excommunicationTiles;
+	}
+	
+	public static void checkPlayersFaith(Player players[], int period) {
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
 				if ( players[i].wantsToRestartFaithPoints() ){
@@ -25,7 +37,7 @@ public class VaticanReport {
 		}
 	}
 	
-	private boolean checkFaithPoints(Player player, int period){
+	private static boolean checkFaithPoints(Player player, int period){
 		int minimumFaithPoints=0;//TODO: ricavare tali faith points in base al period!
 		return minimumFaithPoints < 0; //<-punti fede del player
 	}
