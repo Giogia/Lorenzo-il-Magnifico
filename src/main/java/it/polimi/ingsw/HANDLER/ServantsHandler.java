@@ -11,7 +11,7 @@ import it.polimi.ingsw.RESOURCE.Servants;
 public class ServantsHandler {
 
 	public static boolean handle(FamilyMember familyMember,int servantsNumber){
-		Servants servants = new Servants();
+		Servants servants = new Servants(0,1);
 		servants.setAmount(servantsNumber);
 		ArrayList<Resource> servantsArrayList = new ArrayList<>();
 		servantsArrayList.add(servants);
