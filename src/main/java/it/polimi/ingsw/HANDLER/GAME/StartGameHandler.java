@@ -7,13 +7,13 @@ import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
-import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class StartGameHandler {
 	
 	public void handle(Board board,VaticanReport vaticanReport){
 	 //setRandomExcommunicationTiles(DataFromFile.getExcommunicationTiles(),vaticanReport);
+	//TODO dividere i tiles per periodi e poi sistemare questo metodo
 		SetPlayeraResources(board);
 		ChooseOrder(board);
 	}
