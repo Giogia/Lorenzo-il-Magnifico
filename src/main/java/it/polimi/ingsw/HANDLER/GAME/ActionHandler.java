@@ -4,7 +4,7 @@ import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.HANDLER.*;
 
-public class ActionHandler {
+public final class ActionHandler {
 	private static ActionHandler istanza = null;
 
     private ActionHandler() {}
