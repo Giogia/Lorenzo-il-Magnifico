@@ -8,21 +8,33 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
-
+import it.polimi.ingsw.GC_15.RoundOrder;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class EndGameHandler {
+	
+private static EndGameHandler istanza = null;
+	
+	private EndGameHandler() {};
+	
+	public static EndGameHandler getEndGameHandler() {
+		if (istanza == null) {
+            istanza = new EndGameHandler();
+        }
+        return istanza;
+	}
 
-	public ArrayList<Player> handle(Board board){
+	public static Player handle(Board board){
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
-		//dai i punti vittoria carte territorio e personaggio
+		transformCardIntoPoints(board, DevelopmentCardType.TERRITORY);
+		transformCardIntoPoints(board, DevelopmentCardType.CHARACTER);
 		//dai i punti vittoria fede
 		return getWinner(board);
 	}
 
-	private void transformResourcesIntoPoints(Board board) {
+	private static void transformResourcesIntoPoints(Board board) {
 		for(Player player : board.getPlayers()){
 			int amount = 0;
 			PersonalBoard personalBoard = player.getPersonalBoard();
@@ -35,25 +47,31 @@ public class EndGameHandler {
 			
 	}
 	
-	private ArrayList<Player> getWinner(Board board ){
-		ArrayList<Player> winners = new ArrayList<Player>();
+	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
+		for(Player player : board.getRoundOrder().getPlayers()){
+			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
+				if(cardcontainer.getType().equals(developmentCardType)){
+					int amount= DataFromFile.getQUALCOSA(developmentCardType); //TODO prendere l'array giusto con la codifica
+					player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).addAmount(amount);
+				}
+			}
+		}
+	}
+	
+	private static Player getWinner(Board board){
 		int maxVictoryPoints =0;
+		Player winner = null;
 		for(Player player: board.getPlayers()){
 			int victoryPoints = player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).getAmount();
 			if(victoryPoints >= maxVictoryPoints){
-				maxVictoryPoints = victoryPoints; //calculat the max amount of victorypoints
+			winner = player;
 			}
 		};
-		for(Player player: board.getPlayers()){
-			if(player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).getAmount()==maxVictoryPoints){
-				winners.add(player); //add the player to the arraylist if they have the max amount of victoryPoints
-			}
-		};
-		return winners; //return all the players with the max amount of victory points
+		return winner; //return the player with the max amount of victory points
 	}
 	
 	
-	private void transformMilitaryPoints(Board board){
+	private static void transformMilitaryPoints(Board board){
 		ArrayList<Player> firstPos = new ArrayList<Player>();
 		ArrayList<Player> secondPos = new ArrayList<Player>();
 		int maxMilitaryPoints =0;
@@ -83,7 +101,7 @@ public class EndGameHandler {
 		}
 	}
 	
-	private void transformVenturePoints(Board board){
+	private static void transformVenturePoints(Board board){
 		for(Player player : board.getPlayers()){ //per ogni giocatore
 			for(CardContainer cardContainer :player.getPersonalBoard().getCardContainers()){// find ventures in cardcontainer
 				if(cardContainer.getType().equals(DevelopmentCardType.VENTURE)){
