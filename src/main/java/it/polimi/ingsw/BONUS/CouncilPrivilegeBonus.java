@@ -9,6 +9,7 @@ public class CouncilPrivilegeBonus extends ImmediateBonus{
 	private ArrayList<ResourceBonus> resourceBonus;
 	
 	public CouncilPrivilegeBonus(int number, ArrayList<ResourceBonus> resource){
+		super("councilPrivilegeBonus");
 		differentCouncilPrivilege = number;
 		resourceBonus.equals(resource);
 	}

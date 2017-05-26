@@ -20,4 +20,8 @@ public class Dice {
 	public void setValue() {
 		value= (int) (6 * Math.random() + 1);
 	}
+	
+	public void setValue(int value){
+		this.value = value;
+	}
 }

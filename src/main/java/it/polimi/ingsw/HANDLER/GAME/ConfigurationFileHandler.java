@@ -35,19 +35,7 @@ public class ConfigurationFileHandler {
 			scanner.close();
 		}*/
 				
-
-		//To create a card
-		ArrayList<Resource> resources = new ArrayList<>();
-		Coins coins = new Coins(5, 5);
-		Wood wood= new Wood(3, 2);
-		resources.add(coins);
-		resources.add(wood);
-		ArrayList<ImmediateBonus> immediateBonus = new ArrayList<>();
-		AddResourceBonus singleBonus = new AddResourceBonus(resources);
-		immediateBonus.add(singleBonus);
-		Territory territory = new Territory("marco", 1, immediateBonus, null);
-		ArrayList<Territory> territoryCards = new ArrayList<>();
-		territoryCards.add(territory);
+		Create.createCard();
 	}
 	
 	private String toSerialize(Object object){
