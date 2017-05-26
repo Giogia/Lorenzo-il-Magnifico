@@ -1,67 +1,57 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.HarvestArea;
-import it.polimi.ingsw.BOARD.ProductionArea;
-import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.*;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
-import it.polimi.ingsw.GC_15.Dice;
-import it.polimi.ingsw.GC_15.DiceColour;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
-import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.RESOURCE.Coins;
-import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.GC_15.*;
+import it.polimi.ingsw.RESOURCE.*;
 
 public class Create {
 	private static Scanner in = new Scanner(System.in);
+	private static Scanner in2 = new Scanner(System.in);
 	
-	public static void createCard(){
+	public static Card createCard(){
+		Card card = null;
 		System.out.println("Che carta vuoi creare?");
 		System.out.println("1) Territory");
 		System.out.println("2) Building");
 		System.out.println("3) Character");
 		System.out.println("4) Venture");
 		System.out.println("5) Leader");
-		System.out.println("6) Excommunication Tile");
 		
 		int answer = in.nextInt();
 		switch (answer) {
 		case 1:	
-			createTerritory();
+			card = createTerritory();
 			break;
 
 		case 2:
-			createBuilding();
+			card = createBuilding();
 			break;
 		
 		case 3:
-			createCharacter();
+			card = createCharacter();
 			break;
 			
 		case 4:
-			createVenture();
+			card = createVenture();
 			break;
 		
 		case 5:
-			createLeader();
-			break;
-			
-		case 6:
-			createExcommunicationTile();
+			card = createLeader();
 			break;
 		}
+		return card;
 	}
 		
 	private static Territory createTerritory(){
 		System.out.println("Inserisci il nome: ");
-		String nome = in.nextLine();
+		String nome = in2.nextLine();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
 		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
@@ -71,64 +61,75 @@ public class Create {
 	
 	private static Building createBuilding(){
 		System.out.println("Inserisci il nome: ");
-		String nome = in.nextLine();
+		String nome = in2.nextLine();
 		System.out.println("Inserisci la condizione di attivazione: ");
 		int condizioneDiAttivazione = in.nextInt();
-		ArrayList<Resource> costs = createCosts();
+		ArrayList<Resource> costs = createArrayResource();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		ArrayList<ImmediateBonus> immediateEffects = createImmediateBonus();
+		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
 		return new Building(nome, condizioneDiAttivazione, costs, periodo, immediateEffects, secondaryEffects);
 	}
 		
 	private static Character createCharacter(){
 		System.out.println("Inserisci il nome: ");
-		String nome = in.nextLine();
-		Coins cost = createCost();
+		String nome = in2.nextLine();
+		Coins cost = createCoins();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		ArrayList<ImmediateBonus> immediateEffects = createImmediateBonus();
+		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
 		return new Character(nome, cost, periodo, immediateEffects, secondaryEffects);
 	}
 	
 	private static Venture createVenture(){
 		System.out.println("Inserisci il nome: ");
-		String nome = in.nextLine();
-		ArrayList<Resource> costs = createCosts();
-		ArrayList<Resource> alternativeCosts = createCosts();
+		String nome = in2.nextLine();
+		ArrayList<Resource> costs = createArrayResource();
+		ArrayList<Resource> alternativeCosts = createArrayResource();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		ArrayList<ImmediateBonus> immediateEffects = createImmediateBonus();
+		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
 		return new Venture(nome, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
 	}
 	
-	private static void createLeader(){
-		//TODO
+	private static LeaderCard createLeader(){
+		return null; //TODO
 	}
 	
-	private static ExcommunicationTile createExcommunicationTile(){
+	public static ExcommunicationTile createExcommunicationTile(){
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		Bonus[] malus = createArrayBonus();
+		Bonus[] malus = createArrayMalus();
 		return new ExcommunicationTile(periodo, malus);
 	}
 	
 	private static ArrayList<ImmediateBonus> createArrayImmediateBonus(){
 		boolean vuoleUnAltroBonus=true;
+		String risposta;
 		ArrayList<ImmediateBonus> bonusScelti=new ArrayList<>();
 		while (vuoleUnAltroBonus){
 			ImmediateBonus bonus= createImmediateBonus();
 			bonusScelti.add(bonus);
 			System.out.println("vuoi aggiungere un altro bonus?(si/no)");
-			if (!(in.nextLine()=="si")) vuoleUnAltroBonus=false;
+			risposta = in2.nextLine();
+			if (!(risposta.equals("si"))) vuoleUnAltroBonus=false;
 		}
 		return bonusScelti;
 	}
 	
+	private static Bonus[] createArrayMalus(){
+		return null; //TODO!!!
+	}
+	
+	private static ArrayList<Bonus> createArrayBonus(){
+		return null; //TODO!!!
+	}
+	
 	private static ImmediateBonus createImmediateBonus(){
+		ImmediateBonus bonus = null;
 		System.out.println("Che tipo di bonus deve essere?");
 		System.out.println("1) ActionBonus");
 		System.out.println("2) AddFamilyMemberBonus");
@@ -143,41 +144,42 @@ public class Create {
 		int answer = in.nextInt();
 		switch (answer) {
 		case 1:	
-			createActionBonus();
+			bonus = createActionBonus();
 			break;
 
 		case 2:
-			createAddFamilyMemberBonus();
+			bonus = createAddFamilyMemberBonus();
 			break;
 		
 		case 3:
-			createMultiplyFamilyMemberBonus();
+			bonus = createMultiplyFamilyMemberBonus();
 			break;
 			
 		case 4:
-			createFamilyMemberValueBonus();
+			bonus = createFamilyMemberValueBonus();
 			break;
 		
 		case 5:
-			createResourcPerDevelopmentCardBonus();
+			bonus = createResourcePerDevelopmentCardBonus();
 			break;
 			
 		case 6:
-			createResourceValueBonus();
+			bonus = createResourceValueBonus();
 			break;
 		
 		case 7:
-			createAddResourceBonus();
+			bonus = createAddResourceBonus();
 			break;
 			
 		case 8:
-			createMultiplyResourceBonus();
+			bonus = createMultiplyResourceBonus();
 			break;
 			
 		case 9:
-			createCouncilPrivilegeBonus();
+			bonus = createCouncilPrivilegeBonus();
 			break;
 		}
+		return bonus;
 	}
 	
 	private static CouncilPrivilegeBonus createCouncilPrivilegeBonus(){
@@ -189,12 +191,14 @@ public class Create {
 	
 	private static ArrayList<ResourceBonus> createArrayResourceBonus(){
 		ArrayList<ResourceBonus> arrayResourceBonus = new ArrayList<>();
+		String risposta;
 		boolean vuoleUnAltroBonus = true;
 		
 		while (vuoleUnAltroBonus){
 			arrayResourceBonus.add(createResourceBonus());
 			System.out.println("vuoi aggiungere un altro bonus?(si/no)");
-			if (!(in.nextLine()=="si")) vuoleUnAltroBonus=false;
+			risposta = in2.nextLine();
+			if (!(risposta.equals("si"))) vuoleUnAltroBonus=false;
 		}
 		return arrayResourceBonus;
 	}
@@ -211,34 +215,174 @@ public class Create {
 		int answer= in.nextInt();
 		switch (answer) {
 		case 1:
-			return createAddResourceBonus();
+			resourceBonus = createAddResourceBonus();
 			break;
 
 		case 2:
-			return createMultiplyResourceBonus();
+			resourceBonus = createMultiplyResourceBonus();
 			break;
 		
 		case 3:
-			return createResourceValueBonus();
+			resourceBonus = createResourceValueBonus();
 			break;
 			
 		case 4: 
-			return createResourcePerDevelopmentCardBonus();
+			resourceBonus = createResourcePerDevelopmentCardBonus();
 			break;
 		}
+		return resourceBonus;
 	}
 	
 	private static AddResourceBonus createAddResourceBonus(){
 		return new AddResourceBonus(createArrayResource());
 	}
 	
+	private static MultiplyResourceBonus createMultiplyResourceBonus(){
+		return new MultiplyResourceBonus(createArrayResource());
+	}
+	
+	private static ResourceValueBonus createResourceValueBonus(){
+		return new ResourceValueBonus(createArrayResource());
+	}
+	
+	private static ResourcePerDevelopmentCardBonus createResourcePerDevelopmentCardBonus(){
+		ArrayList<Resource> resources = createArrayResource();
+		DevelopmentCardType tipo = null;
+		
+		System.out.println("Scegli il tipo della carta: ");
+		System.out.println("1) verde");
+		System.out.println("2) giallo");
+		System.out.println("3) blu");
+		System.out.println("4) viola");
+		
+		int answer = in.nextInt();
+		switch (answer) {
+		case 1:
+			tipo= DevelopmentCardType.TERRITORY;
+			break;
+
+		case 2:
+			tipo= DevelopmentCardType.BUILDING;
+			break;
+			
+		case 3:
+			tipo= DevelopmentCardType.CHARACTER;
+			break;
+		
+		case 4:
+			tipo= DevelopmentCardType.VENTURE;
+			break;
+		}
+		return new ResourcePerDevelopmentCardBonus(resources, tipo);
+	}
+	
 	private static ArrayList<Resource> createArrayResource(){
-		//prova
+		boolean vuoleCreareUnAltraRisorsa = true;
+		String risposta;
+		ArrayList<Resource> resources = new ArrayList<>();
+		
+		while(vuoleCreareUnAltraRisorsa){
+			resources.add(createResource());
+			System.out.println("vuoi aggiungere un'altra risorsa?(si/no)");
+			risposta = in2.nextLine();
+			if (!(risposta.equals("si"))) vuoleCreareUnAltraRisorsa=false;
+		}
+		return resources;
+	}
+	
+	private static Resource createResource(){
+		Resource risorsa = null;
+		System.out.println("Quale risorsa vuoi creare? ");
+		System.out.println("1) Soldi");
+		System.out.println("2) Punti fede");
+		System.out.println("3) Punti militari");
+		System.out.println("4) Serventi");
+		System.out.println("5) Pietre");
+		System.out.println("6) Punti Vittoria");
+		System.out.println("7) Legno");
+		
+		int answer = in.nextInt();
+		switch (answer) {
+		case 1:
+			risorsa = createCoins();
+			break;
+		
+		case 2:
+			risorsa = createFaithPoints();
+			break;
+			
+		case 3:
+			risorsa = createMilitaryPoints();
+			break; 
+			
+		case 4:
+			risorsa = createServants();
+			break;
+			
+		case 5:
+			risorsa = createStones();
+			break;
+			
+		case 6:
+			risorsa = createVictoryPoints();
+			break;
+			
+		case 7:
+			risorsa = createWood();
+			break;
+		}
+		return risorsa;
+	}
+	
+	private static int[] createResourceValues(){
+		int[] values = new int[2];
+		
+		System.out.println("Quale è l'amount?");
+		values[0] = in.nextInt();
+		System.out.println("Quale è il value?");
+		values[1]=in.nextInt();
+		return values;
+	}
+	
+	private static Coins createCoins(){
+		int[] values= createResourceValues();
+		return new Coins(values[0], values[1]);
+	}
+	
+	private static FaithPoints createFaithPoints(){
+		int[] values= createResourceValues();
+		return new FaithPoints(values[0], values[1]);
+	}
+	
+	private static MilitaryPoints createMilitaryPoints(){
+		int[] values= createResourceValues();
+		return new MilitaryPoints(values[0], values[1]);
+	}
+	
+	private static Servants createServants(){
+		int[] values= createResourceValues();
+		return new Servants(values[0], values[1]);
+	}
+	
+	private static Stones createStones(){
+		int[] values= createResourceValues();
+		return new Stones(values[0], values[1]);
+	}
+	
+	private static VictoryPoints createVictoryPoints(){
+		int[] values= createResourceValues();
+		return new VictoryPoints(values[0], values[1]);
+	}
+	
+	private static Wood createWood(){
+		int[] values= createResourceValues();
+		return new Wood(values[0], values[1]);
 	}
 	
 	private static ActionBonus createActionBonus(){
 		HashMap<ActionZone, Integer> action = new HashMap<>();
 		boolean vuoleAltraZona = true;
+		String risposta;
 		int answer;
 		ActionZone zone = null;
 		while(vuoleAltraZona){
@@ -282,7 +426,8 @@ public class Create {
 			
 			action.put(zone, answer);
 			System.out.println("vuoi aggiungere un'altra zona?(si/no)");
-			if (!(in.nextLine()=="si")) vuoleAltraZona=false;
+			 risposta = in2.nextLine();
+			if (!(risposta.equals("si"))) vuoleAltraZona=false;
 		}
 		return new ActionBonus(action);
 	}
@@ -304,11 +449,13 @@ public class Create {
 	
 	private static ArrayList<FamilyMember> createFamilyMembers(){
 		boolean vuoleCreareAltroFamilyMember = true;
+		String risposta;
 		ArrayList<FamilyMember> familyMembers = new ArrayList<>();
 		while (vuoleCreareAltroFamilyMember){
 			familyMembers.add(createFamilyMember());
 			System.out.println("vuoi aggiungere un altro family member?(si/no)");
-			if (!(in.nextLine()=="si")) vuoleCreareAltroFamilyMember=false;
+			risposta = in2.nextLine();
+			if (!(risposta.equals("si"))) vuoleCreareAltroFamilyMember=false;
 		}
 		return familyMembers;
 	}

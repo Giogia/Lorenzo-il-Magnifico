@@ -35,10 +35,11 @@ public class ConfigurationFileHandler {
 			scanner.close();
 		}*/
 				
-		Create.createCard();
+		Card ciao = Create.createCard();
+		System.out.println(toSerialize(ciao));
 	}
 	
-	private String toSerialize(Object object){
+	private static String toSerialize(Object object){
 		try{
 			Gson gsonToSerialize = new Gson();
 			return gsonToSerialize.toJson(object);
