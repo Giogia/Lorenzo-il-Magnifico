@@ -233,7 +233,7 @@ public class Create {
 	}
 	
 	private static ArrayList<Resource> createArrayResource(){
-		
+		//prova
 	}
 	
 	private static ActionBonus createActionBonus(){
