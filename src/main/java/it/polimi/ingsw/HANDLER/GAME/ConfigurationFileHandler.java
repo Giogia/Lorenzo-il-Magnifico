@@ -37,6 +37,7 @@ public class ConfigurationFileHandler {
 				
 		Card ciao = Create.createCard();
 		System.out.println(toSerialize(ciao));
+		
 	}
 	
 	private static String toSerialize(Object object){
