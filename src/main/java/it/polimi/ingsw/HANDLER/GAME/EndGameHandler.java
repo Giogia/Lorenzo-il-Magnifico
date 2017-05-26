@@ -59,26 +59,26 @@ private static EndGameHandler istanza = null;
 	}
 	
 	private static Player getWinner(Board board){
-		int maxVictoryPoints =0;
+		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = null;
 		for(Player player: board.getPlayers()){
 			int victoryPoints = player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).getAmount();
-			if(victoryPoints >= maxVictoryPoints){
+			if(victoryPoints > maxVictoryPoints){// fa un ciclo in ordine dell'ultimo turno e ogni volta che uno supera vince
 			winner = player;
 			}
 		};
-		return winner; //return the player with the max amount of victory points
+		return winner; 
 	}
 	
 	
 	private static void transformMilitaryPoints(Board board){
 		ArrayList<Player> firstPos = new ArrayList<Player>();
 		ArrayList<Player> secondPos = new ArrayList<Player>();
-		int maxMilitaryPoints =0;
+		int maxMilitaryPoints =0; 
 		int soCloseMilitaryPoints =0;
 		for(Player player: board.getPlayers()){
 			int militaryPoints = player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).getAmount();
-			if(militaryPoints > maxMilitaryPoints){
+			if(militaryPoints > maxMilitaryPoints){ // only major otherwise a tie will put soclose equal to max
 				soCloseMilitaryPoints = maxMilitaryPoints; //calculate the second higher amount of military points
 				maxMilitaryPoints = militaryPoints; //calculate the max amount of victorypoints
 			}
