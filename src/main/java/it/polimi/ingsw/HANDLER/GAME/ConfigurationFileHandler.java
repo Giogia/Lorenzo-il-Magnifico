@@ -132,7 +132,7 @@ public class ConfigurationFileHandler {
 			System.out.println("valore dei punti vittoria per tot carte militari:");
 			victoryPointsForMilitaryCard = Create.genericArray();
 		}
-		DataFromFile.setVictoryPointsForMilitaryCard(victoryPointsForMilitaryCard);
+		DataFromFile.setVictoryPointsForCharacterCard(victoryPointsForMilitaryCard);
 		
 		for(int i=0; i < militaryRequirement.length; i++){
 			System.out.println("quanti punti militari per carta territorio:");

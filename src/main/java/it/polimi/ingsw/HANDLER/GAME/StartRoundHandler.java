@@ -76,14 +76,14 @@ public class StartRoundHandler {
 	//Get the cards from DataFromFile
 	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
 		if (developmentCardType.equals(DevelopmentCardType.BUILDING)){
-			return DataFromFile.getBuildings(period);
-		} if (developmentCardType.equals(DevelopmentCardType.CHARACTER)){
-			return DataFromFile.getCharacters(period);
-		} if (developmentCardType.equals(DevelopmentCardType.TERRITORY)){
-			return DataFromFile.getTerritories(period);
-		} if (developmentCardType.equals(DevelopmentCardType.VENTURE)){
-			return DataFromFile.getVentures(period);
-		}
+			return DataFromFile.getBuildingsForPeriod(period);
+		} else if (developmentCardType.equals(DevelopmentCardType.CHARACTER)){
+			return DataFromFile.getCharactersForPeriod(period);
+		} else if (developmentCardType.equals(DevelopmentCardType.TERRITORY)){
+			return DataFromFile.getTerritoriesForPeriod(period);
+		} else// (developmentCardType.equals(DevelopmentCardType.VENTURE)){
+			return DataFromFile.getVenturesForPeriod(period);
+		//}
 		
 	}
 	

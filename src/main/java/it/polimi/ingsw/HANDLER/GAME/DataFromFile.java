@@ -83,11 +83,11 @@ public class DataFromFile {
 	public static void setVictoryPointsForTerritoryCard(int[] victoryPointsForTerritoryCard) {
 		DataFromFile.victoryPointsForTerritoryCard = victoryPointsForTerritoryCard;
 	}
-	public static int[] getVictoryPointsForMilitaryCard() {
-		return victoryPointsForMilitaryCard;
+	public static int[] getVictoryPointsForCharacterCard() {
+		return victoryPointsForCharacterCard;
 	}
-	public static void setVictoryPointsForMilitaryCard(int[] victoryPointsForMilitaryCard) {
-		DataFromFile.victoryPointsForMilitaryCard = victoryPointsForMilitaryCard;
+	public static void setVictoryPointsForCharacterCard(int[] victoryPointsForMilitaryCard) {
+		DataFromFile.victoryPointsForCharacterCard = victoryPointsForMilitaryCard;
 	}
 	public static int[] getMilitaryRequirement() {
 		return militaryRequirement;
@@ -108,7 +108,7 @@ public class DataFromFile {
 	private static int[] fromMilitaryPointsToVictoryPoints;  
 	//punti vittoria in base al numero di carte di un certo tipo
 	private static int[] victoryPointsForTerritoryCard;
-	private static int[] victoryPointsForMilitaryCard;
+	private static int[] victoryPointsForCharacterCard;
 	//military points requirement for territory card
 	private static int[] militaryRequirement;
 	//posti azione
@@ -118,6 +118,43 @@ public class DataFromFile {
 	//private static ArrayList<ImmediateBonus>[] towerVenturePositionBonus;
 	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
 	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
+
+	
+
+	public static void lastCards(DevelopmentCardType developmentCardType, int period,
+			ArrayList<DevelopmentCard> developmentCards) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static ArrayList<DevelopmentCard> getBuildingsForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static ArrayList<DevelopmentCard> getCharactersForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static ArrayList<DevelopmentCard> getTerritoriesForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static ArrayList<DevelopmentCard> getVenturesForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public static int[] getVictoryPointsPerCard(DevelopmentCardType developmentCardType) {
+		if (developmentCardType.equals(DevelopmentCardType.CHARACTER)){
+			return getVictoryPointsForCharacterCard();
+		} else if (developmentCardType.equals(DevelopmentCardType.TERRITORY)){
+			return getVictoryPointsForTerritoryCard();
+		}
+		else return null;
+	}
 	
 	//TODO
 	//private static ArrayList<LeaderCard> leaderCards; think to them later

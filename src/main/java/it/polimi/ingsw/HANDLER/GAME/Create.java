@@ -191,7 +191,7 @@ public class Create {
 		System.out.println("Quanti privilegi del consiglio diversi deve avere il bonus? ");
 		int value = in.nextInt();
 		
-		return new CouncilPrivilegeBonus(value, createArrayResourceBonus());
+		return new CouncilPrivilegeBonus(value);
 	}
 	
 	private static ArrayList<ResourceBonus> createArrayResourceBonus(){

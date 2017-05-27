@@ -51,8 +51,9 @@ private static EndGameHandler istanza = null;
 		for(Player player : board.getRoundOrder().getPlayers()){
 			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
 				if(cardcontainer.getType().equals(developmentCardType)){
-					int amount= DataFromFile.getQUALCOSA(developmentCardType); //TODO prendere l'array giusto con la codifica
-					player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).addAmount(amount);
+					int numberOfCards = cardcontainer.getDevelopmentCards().size();
+					int[] victoryPointsPerCard= DataFromFile.getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
+					player.getPersonalBoard().getResource(ResourceType.VICTORYPOINTS).addAmount(victoryPointsPerCard[numberOfCards]);
 				}
 			}
 		}

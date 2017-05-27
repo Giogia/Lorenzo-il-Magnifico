@@ -22,7 +22,7 @@ public final class StartGameHandler {
         return istanza;
 	}
 	
-	public static void handle(Board board,VaticanReport vaticanReport){
+	public static void handle(Board board){
 		setRandomExcommunicationTiles(DataFromFile.getExcommunicationTiles());
 		SetPlayersResources(board);
 		ChooseOrder(board);
