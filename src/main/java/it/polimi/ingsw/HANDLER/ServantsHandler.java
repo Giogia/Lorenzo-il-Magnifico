@@ -13,6 +13,9 @@ public class ServantsHandler {
 
 	public static boolean handle(FamilyMember familyMember){
 		int servantsNumber = Manager.askForServants(familyMember.getPlayer());
+		if (servantsNumber == 0){
+			return true;
+		}
 		Servants servants = new Servants(servantsNumber,1);
 		ArrayList<Resource> servantsArrayList = new ArrayList<>();
 		servantsArrayList.add(servants);
