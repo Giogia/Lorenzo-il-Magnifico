@@ -1,6 +1,9 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +27,13 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
 import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
+import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.Card;
+import it.polimi.ingsw.CARD.Character;
 import it.polimi.ingsw.CARD.Territory;
+import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -50,12 +58,99 @@ public class ConfigurationFileHandler {
 		finally{
 			scanner.close();
 		}*/
-				
-		Card ciao = Create.createCard();
-		String inJson= toSerialize(ciao);
-		System.out.println(inJson);
+		ArrayList<Territory> territories = new ArrayList<>();
+		ArrayList<Character> characters = new ArrayList<>();
+		ArrayList<Venture> ventures = new ArrayList<>();
+		ArrayList<Building> buildings = new ArrayList<>();
+		ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
+		ArrayList<PersonalBonusTile> personalBonusTiles = new ArrayList<>();
+		ArrayList<ResourceBonus> councilPrivileges = new ArrayList<>();
+		int[] fromFaithPointsToVictoryPoints = new int[15]; //tracciato punti fede
+		//in first position: tot victoryPoints to first player, second position tot to second player and so on
+		int[] fromMilitaryPointsToVictoryPoints= new int[2];  
+		//punti vittoria in base al numero di carte di un certo tipo
+		int[] victoryPointsForTerritoryCard= new int[6];
+		int[] victoryPointsForMilitaryCard = new int[6];
+		//military points requirement for territory card
+		int[] militaryRequirement = new int[6];	
+		for(int i= 0; i < 32; i++){
+			System.out.println("creare la prossima carta territorio: ");
+			territories.add(Create.createTerritory());
+		}
+		DataFromFile.setTerritories(territories);
+		for(int i= 0; i < 32; i++){
+			System.out.println("creare la prossima carta edificio: ");
+			buildings.add(Create.createBuilding());
+		}
+		DataFromFile.setBuildings(buildings);
+		for(int i= 0; i < 32; i++){
+			System.out.println("creare la prossima carta azione: ");
+			ventures.add(Create.createVenture());
+		}
+		DataFromFile.setVentures(ventures);
+		for(int i= 0; i < 32; i++){
+			System.out.println("creare la prossima carta personaggio: ");
+			characters.add(Create.createCharacter());
+		}
+		DataFromFile.setCharacters(characters);
+		for(int i= 0; i < 21; i++){
+			System.out.println("inserire una carta scomunica: ");
+			excommunicationTiles.add(Create.createExcommunicationTile());
+		}
+		DataFromFile.setExcommunicationTiles(excommunicationTiles);
+		for(int i=0; i < 5; i++){
+			System.out.println("inserire le personal bonus tile (NB: ti verrà chiesto 5 volte)");
+			personalBonusTiles.add(Create.createPersonalBonusTile());
+		}
+		DataFromFile.setPersonalBonusTiles(personalBonusTiles);
 		
-		System.out.println(toDeserialize(inJson).toString());
+		for(int i=0; i<5; i++){
+			System.out.println("inserisci il bonus che ricevi dal privilegio del consiglio: ");
+			councilPrivileges.add(Create.createResourceBonus());
+		}
+		DataFromFile.setCouncilPrivileges(councilPrivileges);
+		
+		for(int i=0; i < fromFaithPointsToVictoryPoints.length; i++){
+			System.out.println("valore dei punti vittoria per tot punti fede:");
+			fromFaithPointsToVictoryPoints = Create.genericArray();
+		}
+		DataFromFile.setFromFaithPointsToVictoryPoints(fromFaithPointsToVictoryPoints);
+		
+		for(int i=0; i < fromMilitaryPointsToVictoryPoints.length; i++){
+			System.out.println("valore dei punti vittoria per tot punti militari:");
+			fromMilitaryPointsToVictoryPoints = Create.genericArray();
+		}
+		DataFromFile.setFromMilitaryPointsToVictoryPoints(fromMilitaryPointsToVictoryPoints);
+		
+		for(int i=0; i < victoryPointsForTerritoryCard.length; i++){
+			System.out.println("punti vittoria per tot carte territorio:");
+			victoryPointsForTerritoryCard = Create.genericArray();
+		}
+		DataFromFile.setVictoryPointsForTerritoryCard(victoryPointsForTerritoryCard);
+		
+		for(int i=0; i < victoryPointsForMilitaryCard.length; i++){
+			System.out.println("valore dei punti vittoria per tot carte militari:");
+			victoryPointsForMilitaryCard = Create.genericArray();
+		}
+		DataFromFile.setVictoryPointsForMilitaryCard(victoryPointsForMilitaryCard);
+		
+		for(int i=0; i < militaryRequirement.length; i++){
+			System.out.println("quanti punti militari per carta territorio:");
+			militaryRequirement = Create.genericArray();
+		}
+		DataFromFile.setMilitaryRequirement(militaryRequirement);
+		
+		
+		//scrivi su file!!!
+		FileOutputStream prova;
+		try {
+			prova = new FileOutputStream("config.json");
+			PrintStream scrivi = new PrintStream(prova);
+			scrivi.print(toSerialize(DataFromFile.getDataFromFile()));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	
