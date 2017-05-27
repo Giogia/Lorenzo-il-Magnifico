@@ -73,7 +73,7 @@ public class ConfigurationFileHandler {
 		int[] victoryPointsForMilitaryCard = new int[6];
 		//military points requirement for territory card
 		int[] militaryRequirement = new int[6];	
-		/*for(int i= 0; i < 32; i++){
+		for(int i= 0; i < 32; i++){
 			System.out.println("creare la prossima carta territorio: ");
 			territories.add(Create.createTerritory());
 		}
@@ -87,7 +87,7 @@ public class ConfigurationFileHandler {
 			System.out.println("creare la prossima carta azione: ");
 			ventures.add(Create.createVenture());
 		}
-		DataFromFile.setVentures(ventures);*/
+		DataFromFile.setVentures(ventures);
 		for(int i= 0; i < 32; i++){
 			System.out.println("creare la prossima carta personaggio: ");
 			characters.add(Create.createCharacter());
@@ -98,6 +98,7 @@ public class ConfigurationFileHandler {
 			excommunicationTiles.add(Create.createExcommunicationTile());
 		}
 		DataFromFile.setExcommunicationTiles(excommunicationTiles);
+		
 		for(int i=0; i < 5; i++){
 			System.out.println("inserire le personal bonus tile (NB: ti verrà chiesto 5 volte)");
 			personalBonusTiles.add(Create.createPersonalBonusTile());
