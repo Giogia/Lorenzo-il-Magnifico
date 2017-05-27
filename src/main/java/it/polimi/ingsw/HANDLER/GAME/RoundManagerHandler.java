@@ -33,7 +33,7 @@ public class RoundManagerHandler {
 	private static void handleOrder(RoundOrder roundOrder){
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){	
-				MvcController.turn(roundOrder.getPlayers().get(i));
+				Manager.turn(roundOrder.getPlayers().get(i));
 			}
 		}
 	}

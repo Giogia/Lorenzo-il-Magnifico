@@ -41,4 +41,10 @@ public final class VaticanReport {
 		int minimumFaithPoints=0;//TODO: ricavare tali faith points in base al period!
 		return minimumFaithPoints < 0; //<-punti fede del player
 	}
+
+
+	public static void check() {
+		// TODO Auto-generated method stub
+		
+	}
 }

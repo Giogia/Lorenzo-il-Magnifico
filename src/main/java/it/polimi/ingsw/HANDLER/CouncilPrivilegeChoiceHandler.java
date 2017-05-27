@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
+import it.polimi.ingsw.HANDLER.GAME.Manager;
 
 public class CouncilPrivilegeChoiceHandler {
 	//councilPrivileges is the arraylist of bonus to send to the human. He choose one oh this and this is immediately activated
@@ -14,7 +15,7 @@ public class CouncilPrivilegeChoiceHandler {
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges){
 		councilPrivileges = DataFromFile.getCouncilPrivileges();
 		for(int i=0; i < numberOfDifferentCouncilPrivileges; i++){
-			ResourceBonus singleBonus = mvcController.getCouncilPrivilege(councilPrivileges); //the single bonus choosen from the human
+			ResourceBonus singleBonus = Manager.getCouncilPrivilege(councilPrivileges); //the single bonus choosen from the human
 			singleBonus.getImmediateBonus(player);
 			councilPrivileges.remove(singleBonus);//remove the single bonus from the bonus that can choose next time the human
 		}

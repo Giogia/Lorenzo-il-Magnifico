@@ -3,12 +3,16 @@ package it.polimi.ingsw.HANDLER;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
+import it.polimi.ingsw.HANDLER.GAME.Manager;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CARD.Character;
 
 import java.util.ArrayList;
 
@@ -35,23 +39,11 @@ public class TowerHandler {
 							}
 							add(playerResources, bonusResources);
 						}
-						if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.TERRITORY)){
-							ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
-							for (CardContainer cardContainer : cardContainers) {
-								if (cardContainer.type.equals(DevelopmentCardType.TERRITORY)){
-									int numberOfCards = cardContainer.getDevelopmentCards().size();
-									int[] militaryRequirement = DataFromFile.getMilitaryRequirement();
-									MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.MILITARYPOINTS);
-									int requirementAmount = militaryRequirement[numberOfCards];
-									playerMilitaryPoints.addAmount(requirementAmount);
-									if (playerMilitaryPoints.getAmount() < 0){
-										return false;
-									}
-								}
-							}
-							if (!ZoneAlreadyOccupiedController.check(zone)){
-								addOccupiedCost(playerResources);
-							}
+						if (!ZoneAlreadyOccupiedController.check(zone)){
+							addOccupiedCost(playerResources);
+						}
+						if (checkZone(familyMember, playerResources, towerFloor)){
+							copyResource(familyMember.getPlayer(), playerResources);
 							familyMember.getPlayer().setFamilyMemberPosition(familyMember, towerFloor);
 							return true;
 						}
@@ -59,8 +51,115 @@ public class TowerHandler {
 				}
 			}
 		}
+		return false;
 	}
 	
+	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor){
+		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.TERRITORY)){
+			if (!checkTerritories(familyMember)){
+				return false;
+			}
+		}
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.VENTURE)) {
+			if (!checkVentures(familyMember, playerResources, towerFloor)){
+				return false;
+			}
+		}
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.CHARACTER)) {
+			if (!checkCharacters(familyMember, playerResources, towerFloor)){
+				return false;
+			}
+		}
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.BUILDING)) {
+			if (!checkBuildings(familyMember, playerResources, towerFloor)){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
+			TowerFloor towerFloor) {
+		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
+		ArrayList<Resource> cost = buildingCard.costs;
+		add(playerResources, neg(cost));
+		if (checkResources(playerResources)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+
+	private static boolean checkCharacters(FamilyMember familyMember, ArrayList<Resource> playerResources,
+			TowerFloor towerFloor) {
+		Character characterCard = (Character) towerFloor.getDevelopmentCard();
+		ArrayList<Resource> cost = new ArrayList<>();
+		cost.add(characterCard.cost);
+		add(playerResources, neg(cost));
+		if (checkResources(playerResources)){
+			return true;
+		}
+		return false;
+	}
+
+
+	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) {
+		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
+		ArrayList<Resource> cost = ventureCard.cost;
+		ArrayList<Resource> alternativeCost = ventureCard.alternativeCost;
+		ArrayList<Resource> playerResources1 = playerResources;
+		ArrayList<Resource> playerResources2 = playerResources;
+		add(playerResources1, neg(cost));
+		add(playerResources2, neg(alternativeCost));
+		if (checkResources(playerResources1)){
+			if (checkResources(playerResources2)){
+				ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(cost, alternativeCost);
+				add(playerResources, neg(chooseCost));
+				return true;
+			}
+			else{
+				add(playerResources, neg(cost));
+			}
+		}
+		else if(checkResources(playerResources2)){
+			add(playerResources, neg(alternativeCost));
+			return true;
+		}
+		return false;
+	}
+
+
+	private static boolean checkTerritories(FamilyMember familyMember){
+		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
+		for (CardContainer cardContainer : cardContainers) {
+			if (cardContainer.type.equals(DevelopmentCardType.TERRITORY)){
+				int numberOfCards = cardContainer.getDevelopmentCards().size();
+				int[] militaryRequirement = DataFromFile.getMilitaryRequirement();
+				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.MILITARYPOINTS);
+				int requirementAmount = militaryRequirement[numberOfCards];
+				playerMilitaryPoints.addAmount(requirementAmount);
+				if (playerMilitaryPoints.getAmount() < 0){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	
+	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
+		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
+		for (Resource playerResource : playerResources) {
+			for (Resource copiedResource : copiedResources) {
+				if (copiedResource.getResourceType().equals(playerResource.getResourceType())){
+					playerResource.setAmount(copiedResource.getAmount());
+				}
+			}
+		}
+	}
+
 
 	private static void addOccupiedCost(ArrayList<Resource> playerResources) {
 		Coins occupiedCost = new Coins(3, 1);
@@ -78,5 +177,22 @@ public class TowerHandler {
 				}
 			}
 		}
+	}
+	
+	private static ArrayList<Resource> neg(ArrayList<Resource> resources){
+		for (Resource resource : resources) {
+			int amount = -resource.getAmount();
+			resource.setAmount(amount);
+		}
+		return resources;
+	}
+	
+	
+	
+	private static boolean checkResources(ArrayList<Resource> resources){
+		for (Resource resource : resources) {
+			if (resource.getAmount() < 0) return false;
+		}
+		return true;
 	}
 }
