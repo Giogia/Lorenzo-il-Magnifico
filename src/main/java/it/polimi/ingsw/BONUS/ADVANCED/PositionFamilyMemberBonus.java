@@ -8,6 +8,7 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 	private HashMap<ActionZone, Integer> positionBonus;
 	
 	public PositionFamilyMemberBonus(HashMap<ActionZone, Integer> positionBonus){
+		super("PositionFamilyMemberBonus");
 		this.positionBonus = new HashMap<>();
 		this.positionBonus.putAll(positionBonus);
 	}

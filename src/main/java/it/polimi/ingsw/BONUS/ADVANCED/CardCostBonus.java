@@ -10,6 +10,7 @@ public abstract class CardCostBonus extends PermanentBonus {
 	protected ArrayList<Resource> resources;
 	
 	public CardCostBonus(CardType cardType, ArrayList<Resource> resources){
+		super("CardCostBonus");
 		this.cardType = cardType;
 		this.resources = new ArrayList<>();
 		this.resources.addAll(resources);

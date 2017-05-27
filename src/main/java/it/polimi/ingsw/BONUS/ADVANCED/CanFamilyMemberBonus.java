@@ -11,6 +11,7 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 	private HashMap<Zone, Boolean> canGoTo;
 	
 	public CanFamilyMemberBonus(boolean occupiedYet, HashMap<Zone, Boolean> canGoTo) {
+		super("CanFamilyMemberBonus");
 		this.occupiedYet = occupiedYet;
 		this.canGoTo = new HashMap<>();
 		this.canGoTo.putAll(canGoTo);

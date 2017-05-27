@@ -8,6 +8,7 @@ public class EndGameCardBonus extends PermanentBonus {
 	private HashMap<DevelopmentCardType, Boolean> developmentCardType;
 	
 	public EndGameCardBonus(HashMap<DevelopmentCardType, Boolean> developmentcardType){
+		super("EndGameCardBonus");
 		this.developmentCardType = new HashMap<>();
 		this.developmentCardType.putAll(developmentcardType);
 	}

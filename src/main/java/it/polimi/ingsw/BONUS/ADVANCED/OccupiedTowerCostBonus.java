@@ -5,6 +5,7 @@ public class OccupiedTowerCostBonus extends PermanentBonus {
 	private int multOccupiedCost;
 	
 	public OccupiedTowerCostBonus(int addOccupiedCost, int multOccupiedCost){
+		super("OccupiedTowerCostBonus");
 		this.addOccupiedCost = addOccupiedCost;
 		this.multOccupiedCost = multOccupiedCost;
 	}

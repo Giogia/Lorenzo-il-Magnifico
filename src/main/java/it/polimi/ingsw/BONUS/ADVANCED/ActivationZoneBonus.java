@@ -9,6 +9,7 @@ public class ActivationZoneBonus extends PermanentBonus {
 	private boolean councilPalace;
 	
 	public ActivationZoneBonus(HashMap<Tower, Boolean> towers, boolean councilPalace) {
+		super("ActivationZoneBonus");
 		this.towers = new HashMap<>();
 		this.towers.putAll(towers);
 		this.councilPalace = councilPalace;
