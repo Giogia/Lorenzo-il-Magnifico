@@ -40,9 +40,9 @@ public class TowerHandler {
 							for (CardContainer cardContainer : cardContainers) {
 								if (cardContainer.type.equals(DevelopmentCardType.TERRITORY)){
 									int numberOfCards = cardContainer.getDevelopmentCards().size();
-									MilitaryPoints[] requirement = DataFromFile.getMilitaryRequirement();
+									int[] militaryRequirement = DataFromFile.getMilitaryRequirement();
 									MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.MILITARYPOINTS);
-									int requirementAmount = requirement[numberOfCards].getAmount()*(-1);
+									int requirementAmount = militaryRequirement[numberOfCards];
 									playerMilitaryPoints.addAmount(requirementAmount);
 									if (playerMilitaryPoints.getAmount() < 0){
 										return false;
