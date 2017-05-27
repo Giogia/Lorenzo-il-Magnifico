@@ -24,4 +24,9 @@ public class Manager {
 		return null;
 	}
 
+	public static int askForServants(Player player) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
