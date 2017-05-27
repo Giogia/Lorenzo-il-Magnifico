@@ -7,9 +7,11 @@ import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 
 public class Territory extends DevelopmentCard {
+	int activationConditionHarvest;
 	
-	public Territory(String name, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+	public Territory(String name, int period, int activationCondition, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
 		super(name, period, DevelopmentCardType.TERRITORY, immediateEffect, secondaryEffect);
+		activationConditionHarvest=activationCondition;
 	}
 	
 	public void getHarvestBonus(FamilyMember familyMember){

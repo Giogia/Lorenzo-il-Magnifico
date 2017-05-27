@@ -54,19 +54,22 @@ public class Create {
 		String nome = in2.nextLine();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
+		System.out.println("Inserisci la condizione di attivazione del raccolto: ");
+		int condizioneAttivazione= in.nextInt();
 		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
-		return new Territory(nome, periodo, immediateEffects, secondaryEffects);
+		return new Territory(nome, condizioneAttivazione, periodo, immediateEffects, secondaryEffects);
 	}
 	
 	public static Building createBuilding(){
 		System.out.println("Inserisci il nome: ");
 		String nome = in2.nextLine();
-		System.out.println("Inserisci la condizione di attivazione: ");
-		int condizioneDiAttivazione = in.nextInt();
-		ArrayList<Resource> costs = createArrayResource();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
+		System.out.println("Inserisci la condizione di attivazione della produzione: ");
+		int condizioneDiAttivazione = in.nextInt();
+		System.out.println("la prossima cosa da inserire sono i costi della carta");
+		ArrayList<Resource> costs = createArrayResource();
 		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
 		return new Building(nome, condizioneDiAttivazione, costs, periodo, immediateEffects, secondaryEffects);
@@ -86,18 +89,21 @@ public class Create {
 	public static Venture createVenture(){
 		System.out.println("Inserisci il nome: ");
 		String nome = in2.nextLine();
-		ArrayList<Resource> costs = createArrayResource();
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
 		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
+		System.out.println("Inserire il requisito di punti militari (se non lo tiene, inserire 0)");
+		int requirement = in.nextInt();
+		System.out.println("La prossima cosa da inserire sono i costi della carta");
+		ArrayList<Resource> costs = createArrayResource();
 		System.out.println("La carta ha un costo alternativo?");
 		String risposta = in2.nextLine();
 		if (risposta.equals("si")){
 			ArrayList<Resource> alternativeCosts = createArrayResource();
-			return new Venture(nome, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
+			return new Venture(nome, requirement, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
 		}
-		return new Venture(nome, costs, null, periodo, immediateEffects, secondaryEffects);
+		return new Venture(nome, requirement, costs, null, periodo, immediateEffects, secondaryEffects);
 	}
 	
 	public static LeaderCard createLeader(){
@@ -115,6 +121,11 @@ public class Create {
 		boolean vuoleUnAltroBonus=true;
 		String risposta;
 		ArrayList<ImmediateBonus> bonusScelti=new ArrayList<>();
+		System.out.println("La carta ha un bonus immediato? ");
+		String risp = in2.nextLine();
+		if (risp.equals("no")){//se la carta non ha un bonus immediato ritorno un null
+			return null;
+		}
 		while (vuoleUnAltroBonus){
 			ImmediateBonus bonus= createImmediateBonus();
 			bonusScelti.add(bonus);
@@ -339,49 +350,40 @@ public class Create {
 		return risorsa;
 	}
 	
-	private static int[] createResourceValues(){
-		int[] values = new int[2];
+	private static int createResourceValues(){
+		int values;
 		
 		System.out.println("Quale è l'amount?");
-		values[0] = in.nextInt();
-		System.out.println("Quale è il value?");
-		values[1]=in.nextInt();
+		values = in.nextInt();
 		return values;
 	}
 	
 	private static Coins createCoins(){
-		int[] values= createResourceValues();
-		return new Coins(values[0], values[1]);
+		return new Coins(createResourceValues(), 1);
 	}
 	
 	private static FaithPoints createFaithPoints(){
-		int[] values= createResourceValues();
-		return new FaithPoints(values[0], values[1]);
+		return new FaithPoints(createResourceValues(), 1);
 	}
 	
 	private static MilitaryPoints createMilitaryPoints(){
-		int[] values= createResourceValues();
-		return new MilitaryPoints(values[0], values[1]);
+		return new MilitaryPoints(createResourceValues(), 1);
 	}
 	
 	private static Servants createServants(){
-		int[] values= createResourceValues();
-		return new Servants(values[0], values[1]);
+		return new Servants(createResourceValues(), 1);
 	}
 	
 	private static Stones createStones(){
-		int[] values= createResourceValues();
-		return new Stones(values[0], values[1]);
+		return new Stones(createResourceValues(), 1);
 	}
 	
 	private static VictoryPoints createVictoryPoints(){
-		int[] values= createResourceValues();
-		return new VictoryPoints(values[0], values[1]);
+		return new VictoryPoints(createResourceValues(), 1);
 	}
 	
 	private static Wood createWood(){
-		int[] values= createResourceValues();
-		return new Wood(values[0], values[1]);
+		return new Wood(createResourceValues(), 1);
 	}
 	
 	private static ActionBonus createActionBonus(){
