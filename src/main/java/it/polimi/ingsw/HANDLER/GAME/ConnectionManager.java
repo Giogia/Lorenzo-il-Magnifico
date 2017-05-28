@@ -1,8 +1,14 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
+import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.RESOURCE.Resource;
 
 public class ConnectionManager {
 	private static ConnectionManager instance;
@@ -34,20 +40,55 @@ public class ConnectionManager {
 		return playersView.get(player);
 	}
 
-	public static void sendToView(Player player, String message) {
-		//TODO
-		playersView.get(player).print(message);
+	public static void startTurn(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public static int sendToViewForInt(Player player, String message){
-		//TODO
-		int choice = playersView.get(player).printForInt(message);
-		return choice;
+
+	public static int turnChoice(Player player) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
-	public static String sendToViewForString(Player player, String message){
-		//TODO
-		String choice = playersView.get(player).printForString(message);
-		return choice;
+
+	public static void moveAlreadyDone(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	public static int chooseZone(Player player, Board board) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int choosePosition(Player player, Position[] positions) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int askForAlternativeCost(Player player, ArrayList<Resource> cost,
+			ArrayList<Resource> alternativeCost) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int askForServants(Player player, int numberOfServants) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public static int askForAction(Player player, Position[] zonePositions) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
