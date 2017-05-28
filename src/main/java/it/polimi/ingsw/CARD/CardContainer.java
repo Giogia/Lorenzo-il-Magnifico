@@ -3,7 +3,7 @@ package it.polimi.ingsw.CARD;
 import java.util.ArrayList;
 
 public abstract class CardContainer {
-	public DevelopmentCardType type;
+	protected DevelopmentCardType type;
 	private ArrayList<DevelopmentCard> developmentCards;
 	
 	
@@ -16,5 +16,14 @@ public abstract class CardContainer {
 	
 	public void add(DevelopmentCard developmentCard){
 		developmentCards.add(developmentCard);
+	}
+	
+	public DevelopmentCard getDevelopmentCard(String name){
+		for(DevelopmentCard developmentCard: developmentCards){
+			if(developmentCard.getName().equals(name)){
+				return developmentCard;
+			}
+		}
+		return null;
 	}
 }

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
+import java.util.Random;
+
 public class Dice {
 	private int value;
 	private DiceColour diceColour;
@@ -18,7 +20,8 @@ public class Dice {
 	}
 	
 	public void setValue() {
-		value= (int) (6 * Math.random() + 1);
+		Random r = new Random();
+		value= (int) (r.nextInt(6) + 1);
 	}
 	
 	public void setValue(int value){

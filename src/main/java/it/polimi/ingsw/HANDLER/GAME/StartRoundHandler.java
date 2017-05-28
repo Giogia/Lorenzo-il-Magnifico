@@ -1,6 +1,7 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
@@ -96,7 +97,8 @@ public class StartRoundHandler {
 			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
 			TowerFloor[] towerFloors = tower.getPositions();
 			for (TowerFloor towerFloor : towerFloors) {
-				int randomCard = (int) Math.random()*developmentCards.size();
+				Random r = new Random();
+				int randomCard = r.nextInt(developmentCards.size());
 				DevelopmentCard developmentCard = developmentCards.get(randomCard);
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);

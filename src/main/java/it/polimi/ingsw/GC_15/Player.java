@@ -13,7 +13,7 @@ import it.polimi.ingsw.RESOURCE.Servants;
 public class Player {
 	private String name;
 	private Color color;
-	public enum Color {RED, BLUE, YELLOW, GREEN};
+	public enum Color {RED, BLUE, YELLOW, GREEN}
 	private Board board;
 	private PersonalBoard personalBoard=new PersonalBoard();
 	private ArrayList<LeaderCard> leaderCardInHand;
@@ -88,7 +88,7 @@ public class Player {
 	public ArrayList<DevelopmentCard> getCardsToActivate(DevelopmentCardType developmentCardType) {
 		ArrayList<CardContainer> cardContainers = personalBoard.getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
-			if (cardContainer.type.equals(developmentCardType)){
+			if (cardContainer.getType().equals(developmentCardType)){
 				return cardContainer.getDevelopmentCards();
 			}
 		}

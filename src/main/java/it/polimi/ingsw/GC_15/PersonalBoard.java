@@ -9,6 +9,7 @@ import it.polimi.ingsw.CARD.CharacterCardContainer;
 import it.polimi.ingsw.CARD.TerritoryCardContainer;
 import it.polimi.ingsw.CARD.VentureCardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.RESOURCE.*;
@@ -23,10 +24,12 @@ public class PersonalBoard {
 	private ArrayList<Bonus> permanentBonus;
 	
 	public PersonalBoard() {
+		excommunicationCubes= new boolean[3];
+		cardContainers = new ArrayList<>();
+		resources= new ArrayList<>();
 		activatedLeaderCards= new ArrayList<>();
 		oncePerRoundBonusLeaderCard= new ArrayList<>();
 		permanentBonus= new ArrayList<>();
-		excommunicationCubes= new boolean[3];
 		
 		cardContainers.add(new TerritoryCardContainer());
 		cardContainers.add(new BuildingCardContainer());
@@ -127,5 +130,13 @@ public class PersonalBoard {
 		this.personalBonusTile = personalBonusTile;
 	}
 	
+	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){
+		for(CardContainer cardContainer: cardContainers){
+			if(cardContainer.getType().equals(developmentCardType)){
+				return cardContainer;
+			}
+		}
+		return null;
+	}
 	
 }//TODO metodo per dare il permanent bonus della carta che riceve

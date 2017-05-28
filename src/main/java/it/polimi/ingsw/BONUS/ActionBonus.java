@@ -3,7 +3,6 @@ package it.polimi.ingsw.BONUS;
 import java.util.HashMap;
 
 import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
 public class ActionBonus extends ImmediateBonus {
