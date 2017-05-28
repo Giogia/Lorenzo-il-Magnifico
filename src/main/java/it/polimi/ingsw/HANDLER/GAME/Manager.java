@@ -4,11 +4,19 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.PassTurnHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
@@ -35,7 +43,7 @@ public class Manager {
 			switch (choice) {
 		
 			case 1:
-				familyMemberManager(player);
+				actionManager(player);
 				break;
 			
 			case 2:
@@ -50,6 +58,9 @@ public class Manager {
 				activationLeaderCardEffectManager(player);
 				break;
 		
+			case 5:
+				PassTurnHandler.handle(player);
+				return;
 			}
 		}
 			
@@ -70,9 +81,100 @@ public class Manager {
 		
 	}
 
-	private static void familyMemberManager(Player player) {
-		// TODO Auto-generated method stub
+	private static void actionManager(Player player) {
+		if (PassTurnController.getLastMove().equals(player)){
+			ConnectionManager.sendToView(player, "Azione già effettuata");
+			return;
+		}
+		Board board = Game.getBoard();
+		while(true){
+			String message = "1) Torre Territori \n 2) Torre Personaggi \n 3) Torre Edifici \n 4) Torre Imprese \n" + 
+					"5) Palazzo del Consiglio \n 6) Zona Raccolto \n 7) Zona Produzione \n 8) Mercato \n 9) Torna indietro";
+			int choice = ConnectionManager.sendToViewForInt(player, message);
+			switch (choice) {
+			case 1:
+				if (zoneManager(player, board.getTower(DevelopmentCardType.TERRITORY))){
+					return;
+				}
+				break;
+			case 2:
+				if (zoneManager(player, board.getTower(DevelopmentCardType.CHARACTER))){
+					return;
+				}
+				break;
+			case 3:
+				if (zoneManager(player, board.getTower(DevelopmentCardType.BUILDING))){
+					return;
+				}
+				break;
+			case 4:
+				if (zoneManager(player, board.getTower(DevelopmentCardType.VENTURE))){
+					return;
+				}
+				break;
+			case 5:
+				if (zoneManager(player, board.getCouncilPalace())){
+					return;
+				}
+				break;
+			case 6:
+				if (zoneManager(player, board.getHarvestArea())){
+					return;
+				}
+				break;
+			case 7:
+				if (zoneManager(player, board.getProductioArea())){
+					return;
+				}
+				break;
+			case 8:
+				if (zoneManager(player, board.getMarket())){
+					return;
+				}
+				break;
+			case 9:
+				return;
+			}
+
 		
+		}
+		
+	}
+
+	private static boolean zoneManager(Player player, Zone zone) {
+		Position[] positions = zone.getPositions();
+		int positionCounter;
+		for (positionCounter = 1; positionCounter <= positions.length; positionCounter++){
+			String message = positionCounter + ") " + positions[positionCounter-1].getDescription();
+			ConnectionManager.sendToView(player, message);
+		}
+		String secondMessage = positionCounter + ") Torna indietro";
+		int choice = ConnectionManager.sendToViewForInt(player, secondMessage);
+		if (choice == positions.length + 1){
+			return false;
+		}
+		else {
+			return familyMemberManager(player, zone, positions[positionCounter - 1]);
+		}
+	}
+
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) {
+		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
+		String message = "Scegli il familiare";
+		ConnectionManager.sendToView(player, message);
+		int i;
+		for (i = 1; i <= familyMembers.size(); i++) {
+			String secondMessage = i + ") " + familyMembers.get(i-1).getDescription();
+			ConnectionManager.sendToView(player, secondMessage);
+		}
+		String thirdMessage = i + ") Torna indietro";
+		int choice = ConnectionManager.sendToViewForInt(player, thirdMessage);
+		if (choice == familyMembers.size() + 1){
+			return false;
+		}
+		else {
+			return ActionHandler.handle(familyMembers.get(i-1), zone, position);
+		}
 	}
 
 	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> cost,
@@ -110,8 +212,31 @@ public class Manager {
 		return choice;
 	}
 
+	public static Position askForAction(FamilyMember familyMember, ActionZone zone) {
+		Player player = familyMember.getPlayer();
+		String firstMessage = "Hai un'azione del valore di " + familyMember.getValue();
+		ConnectionManager.sendToView(player, firstMessage);
+		Position[] zonePositions = zone.getPositions();
+		for(int i = 1; i <= zonePositions.length; i++){
+			String message = i + ") " + zonePositions[i-1].getDescription();
+			ConnectionManager.sendToView(player, message);
+		}
+		int choice = ConnectionManager.sendToViewForInt(player, "Fai la tua scelta");
+		return zonePositions[choice];
+	}
+
+	public static boolean askForExcommunication(Player player){
+		//TODO 
+		return false;
+	}
 	
-
-
+	public static LeaderCard choiceLeaderCardToCopy() {
+		//TODO
+		return null;
+	}
+	
+	public static void getHarvestProductionBonus() {
+		//TODO
+	}
 
 }

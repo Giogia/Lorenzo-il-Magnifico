@@ -55,4 +55,9 @@ public class Position {
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
+
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.BOARD;
 
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.*;
 
 
@@ -38,9 +39,6 @@ public class Board {
 		return this.excommunicationTiles[excommunicationTileNumber];
 	}
 	
-	public Tower getTower(int towerNumber){
-		return this.towers[towerNumber];
-	}
 	
 	public Market getMarket(){
 		return this.market;
@@ -110,6 +108,13 @@ public class Board {
 		return towers;
 	}
 	
+	public Tower getTower(DevelopmentCardType developmentCardType){
+		for (Tower tower : towers) {
+			if (tower.getDevelopmentCardType().equals(developmentCardType))
+				return tower;
+		} 
+		return null;
+	}
 }
 
 
