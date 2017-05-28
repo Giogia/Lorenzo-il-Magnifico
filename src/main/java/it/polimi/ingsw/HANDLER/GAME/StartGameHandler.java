@@ -57,7 +57,7 @@ public final class StartGameHandler {
 	private static void ChooseOrder(Board board) {
 		for(Player player: board.getPlayers()){
 			Random r = new Random();
-			int i =(r.nextInt(board.getPlayers().length)); //estrae un numero a caso da 1 a 4
+			int i =r.nextInt(board.getPlayers().length); //estrae un numero a caso da 1 a 4
 			while(board.getRoundOrder().getPlayer(i)!=null){ //se la posizione e' gia occupata passa a quella dopo
 				i++;
 			}

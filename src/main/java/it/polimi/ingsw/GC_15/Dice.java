@@ -21,7 +21,7 @@ public class Dice {
 	
 	public void setValue() {
 		Random r = new Random();
-		value= (int) (r.nextInt(6) + 1);
+		value= r.nextInt(6) + 1;
 	}
 	
 	public void setValue(int value){

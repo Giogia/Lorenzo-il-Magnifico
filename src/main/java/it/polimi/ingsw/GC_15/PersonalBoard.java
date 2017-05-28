@@ -16,7 +16,7 @@ import it.polimi.ingsw.RESOURCE.*;
 
 public class PersonalBoard {
 	private PersonalBonusTile personalBonusTile;
-	private boolean excommunicationCubes[];
+	private boolean[] excommunicationCubes;
 	private ArrayList<CardContainer> cardContainers;
 	private ArrayList<Resource> resources;
 	private ArrayList<LeaderCard> activatedLeaderCards;
