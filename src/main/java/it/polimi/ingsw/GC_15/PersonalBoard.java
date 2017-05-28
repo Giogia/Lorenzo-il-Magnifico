@@ -91,9 +91,9 @@ public class PersonalBoard {
 	}
 	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
-		for(int i=0; i < cardContainers.size(); i++){
-			if(cardContainers.get(i).getType() == developmentCard.developmentCardType){
-				cardContainers.get(i).add(developmentCard);
+		for(CardContainer cardContainer: cardContainers){
+			if(cardContainer.getType().equals(developmentCard.developmentCardType)){
+				cardContainer.add(developmentCard);
 			}
 		}
 	}

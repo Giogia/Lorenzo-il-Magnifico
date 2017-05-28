@@ -24,7 +24,11 @@ public class Dice {
 		value= r.nextInt(6) + 1;
 	}
 	
-	public void setValue(int value){
-		this.value = value;
+	public boolean setValue(int value){
+		if(value>=0 && value<=7){
+			this.value = value;
+			return true;
+		}
+		return false;
 	}
 }

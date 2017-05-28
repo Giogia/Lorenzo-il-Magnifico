@@ -6,6 +6,10 @@ public abstract class CardContainer {
 	protected DevelopmentCardType type;
 	private ArrayList<DevelopmentCard> developmentCards;
 	
+	public CardContainer() {
+		type = null;
+		developmentCards = new ArrayList<>();
+	}
 	
 	public ArrayList<DevelopmentCard> getDevelopmentCards() {
 		return developmentCards;

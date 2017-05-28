@@ -2,8 +2,6 @@ package it.polimi.ingsw.GC_15;
 
 import java.util.ArrayList;
 
-import org.omg.PortableServer.Servant;
-
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.CARD.*;

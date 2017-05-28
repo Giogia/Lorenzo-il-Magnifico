@@ -35,19 +35,20 @@ public class PersonalBoardTest {
 		assertEquals(wood.getAmount(),personalBoard.getResource(ResourceType.wood).getAmount());
 	}
 	
+	@Test
 	public void setDevelopmentCardTest() {
 		PersonalBoard personalBoard = new PersonalBoard();
 		
-		String name = new String("gigi");
-		ArrayList<Bonus> bonus = new ArrayList<>();
-		ArrayList<ImmediateBonus> immediateBonus = new ArrayList<>();
+		String name = "gigi";
+		ArrayList<ImmediateBonus> bonus1 = new ArrayList<>();
+		ArrayList<Bonus> bonus2 = new ArrayList<>();
 		ArrayList<Resource> resources = new ArrayList<>();
 		
-		Building developmentCard = new Building(name, 1, resources, 2, immediateBonus, bonus);
+		Building developmentCard = new Building(name,1,resources,2,bonus1,bonus2);
 		
 		personalBoard.putDevelopmentCard(developmentCard);
 		
-		assertEquals(developmentCard, personalBoard.getCardContainer(DevelopmentCardType.building).getDevelopmentCard(name));
+		assertEquals(developmentCard, personalBoard.getCardContainer(DevelopmentCardType.building).getDevelopmentCard("gigi"));
 	}
 
 }

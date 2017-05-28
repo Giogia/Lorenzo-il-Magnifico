@@ -17,7 +17,9 @@ public final class VaticanReport {
 		return instance;
 	}
 	
-	
+	public static ExcommunicationTile[] getExcommunicationTiles() {
+		return excommunicationTiles;
+	}
 	
 	public static void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {
 		VaticanReport.excommunicationTiles = excommunicationTiles;
