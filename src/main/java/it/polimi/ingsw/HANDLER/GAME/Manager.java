@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class Manager {
+	// prova commit nel branch
 
 	public static void turn(Player player) {
 		// TODO Auto-generated method stub
