@@ -1,9 +1,11 @@
 package it.polimi.ingsw.BONUS;
 
 import java.util.HashMap;
+import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.FakeFamilyMemberHandler;
 
 public class ActionBonus extends ImmediateBonus {
 	private HashMap<ActionZone, Integer> action;
@@ -15,6 +17,11 @@ public class ActionBonus extends ImmediateBonus {
 	}
 	
 	public void getImmediateBonus(Player player){
+		Set<ActionZone> actionZones = action.keySet();
+		for (ActionZone zone : actionZones) {
+			int value = action.get(zone);
+			FakeFamilyMemberHandler.handle(player, zone, value);
+		}
 
 		//TODO  utilizzare un familymember fasullo e crere un dado fasullo e poi cancellarlo a fine azione
 

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.HANDLER;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.Manager;
@@ -56,22 +57,22 @@ public class TowerHandler {
 	}
 	
 	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor){
-		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.TERRITORY)){
+		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)){
 			if (!checkTerritories(familyMember)){
 				return false;
 			}
 		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.VENTURE)) {
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.venture)) {
 			if (!checkVentures(familyMember, playerResources, towerFloor)){
 				return false;
 			}
 		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.CHARACTER)) {
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.character)) {
 			if (!checkCharacters(familyMember, playerResources, towerFloor)){
 				return false;
 			}
 		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.BUILDING)) {
+		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.building)) {
 			if (!checkBuildings(familyMember, playerResources, towerFloor)){
 				return false;
 			}
@@ -135,10 +136,10 @@ public class TowerHandler {
 	private static boolean checkTerritories(FamilyMember familyMember){
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
-			if (cardContainer.getType().equals(DevelopmentCardType.TERRITORY)){
+			if (cardContainer.getType().equals(DevelopmentCardType.territory)){
 				int numberOfCards = cardContainer.getDevelopmentCards().size();
-				int[] militaryRequirement = DataFromFile.getMilitaryRequirement();
-				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.MILITARYPOINTS);
+				int[] militaryRequirement = Game.getData().getMilitaryRequirement();
+				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
 				int requirementAmount = militaryRequirement[numberOfCards];
 				playerMilitaryPoints.addAmount(requirementAmount);
 				if (playerMilitaryPoints.getAmount() < 0){

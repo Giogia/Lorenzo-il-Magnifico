@@ -76,14 +76,14 @@ public class StartRoundHandler {
 	
 	//Get the cards from DataFromFile
 	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
-		if (developmentCardType.equals(DevelopmentCardType.BUILDING)){
-			return DataFromFile.getBuildingsForPeriod(period);
-		} else if (developmentCardType.equals(DevelopmentCardType.CHARACTER)){
-			return DataFromFile.getCharactersForPeriod(period);
-		} else if (developmentCardType.equals(DevelopmentCardType.TERRITORY)){
-			return DataFromFile.getTerritoriesForPeriod(period);
+		if (developmentCardType.equals(DevelopmentCardType.building)){
+			return Game.getData().getBuildingsForPeriod(period);
+		} else if (developmentCardType.equals(DevelopmentCardType.character)){
+			return Game.getData().getCharactersForPeriod(period);
+		} else if (developmentCardType.equals(DevelopmentCardType.territory)){
+			return Game.getData().getTerritoriesForPeriod(period);
 		} else// (developmentCardType.equals(DevelopmentCardType.VENTURE)){
-			return DataFromFile.getVenturesForPeriod(period);
+			return Game.getData().getVenturesForPeriod(period);
 		//}
 		
 	}
@@ -103,7 +103,7 @@ public class StartRoundHandler {
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}
-			DataFromFile.lastCards(developmentCardType, period, developmentCards);
+			Game.getData().lastCards(developmentCardType, period, developmentCards);
 		}
 	}
 	

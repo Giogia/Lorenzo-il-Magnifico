@@ -10,7 +10,7 @@ public class Territory extends DevelopmentCard {
 	int activationConditionHarvest;
 	
 	public Territory(String name, int period, int activationCondition, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
-		super(name, period, DevelopmentCardType.TERRITORY, immediateEffect, secondaryEffect);
+		super(name, period, DevelopmentCardType.territory, immediateEffect, secondaryEffect);
 		activationConditionHarvest=activationCondition;
 	}
 	

@@ -20,10 +20,10 @@ public class ServantsHandler {
 		ArrayList<Resource> servantsArrayList = new ArrayList<>();
 		servantsArrayList.add(servants);
 		if (ResourceController.check(familyMember.getPlayer(), servantsArrayList)){
-			int servantValue = familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.SERVANTS).getValue();
+			int servantValue = familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.servants).getValue();
 			int valueFamilyMember = servantsNumber/servantValue;
 			familyMember.addValue(valueFamilyMember); 
-			familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.SERVANTS).addAmount(-servantsNumber);
+			familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.servants).addAmount(-servantsNumber);
 			return true;
 		}
 		return false;

@@ -5,6 +5,6 @@ public class VentureCardContainer extends CardContainer{
 	
 	public VentureCardContainer() {
 		super();
-		this.type = DevelopmentCardType.VENTURE;
+		this.type = DevelopmentCardType.venture;
 	}
 }

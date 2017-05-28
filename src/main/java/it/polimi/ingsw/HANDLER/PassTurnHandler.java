@@ -16,7 +16,7 @@ public class PassTurnHandler {
 		}
 		else{
 			ArrayList<FamilyMember> playerFamilyMembers = player.getFamilyMembers();
-			Servants playerServants = (Servants) player.getPersonalBoard().getResource(ResourceType.SERVANTS);
+			Servants playerServants = (Servants) player.getPersonalBoard().getResource(ResourceType.servants);
 			for (FamilyMember familyMember : playerFamilyMembers) {
 				if (familyMember.getValue() > 0){
 					return false;

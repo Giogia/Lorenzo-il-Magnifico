@@ -5,6 +5,7 @@ import java.util.Random;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
@@ -24,7 +25,7 @@ public final class StartGameHandler {
 	}
 	
 	public static void handle(Board board){
-		setRandomExcommunicationTiles(DataFromFile.getExcommunicationTiles());
+		setRandomExcommunicationTiles(Game.getData().getExcommunicationTiles());
 		SetPlayersResources(board);
 		ChooseOrder(board);
 	}
@@ -45,10 +46,10 @@ public final class StartGameHandler {
 		int i=0;
 		for(Player player: board.getPlayers()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
-			personalBoard.getResource(ResourceType.STONES).addAmount(2);
-			personalBoard.getResource(ResourceType.WOOD).addAmount(2);
-			personalBoard.getResource(ResourceType.SERVANTS).addAmount(3);
-			personalBoard.getResource(ResourceType.STONES).addAmount(5+i);
+			personalBoard.getResource(ResourceType.stones).addAmount(2);
+			personalBoard.getResource(ResourceType.wood).addAmount(2);
+			personalBoard.getResource(ResourceType.servants).addAmount(3);
+			personalBoard.getResource(ResourceType.coins).addAmount(5+i);
 			i++;	
 		}
 	}

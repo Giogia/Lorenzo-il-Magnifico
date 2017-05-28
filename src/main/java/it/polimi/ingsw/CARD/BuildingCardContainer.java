@@ -5,6 +5,6 @@ public class BuildingCardContainer extends CardContainer{
 	
 	public BuildingCardContainer() {
 		super();
-		this.type = DevelopmentCardType.BUILDING;
+		this.type = DevelopmentCardType.building;
 	}
 }

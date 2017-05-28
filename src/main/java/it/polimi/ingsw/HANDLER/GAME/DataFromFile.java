@@ -11,106 +11,21 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 
 //classe contenitrice di tutti i dati che vengono caricati ad inizio gioco da file
 public class DataFromFile {
-	private static DataFromFile instance;
-	
-	private DataFromFile(){
-	}
-	
-	public static DataFromFile getDataFromFile(){
-		if (instance == null){
-			instance= new DataFromFile();
-		}
-		return instance;
-	}
-	
-	public static ArrayList<Territory> getTerritories() {
-		return territories;
-	}
-	public static void setTerritories(ArrayList<Territory> territories) {
-		DataFromFile.territories = territories;
-	}
-	public static ArrayList<Character> getCharacters() {
-		return characters;
-	}
-	public static void setCharacters(ArrayList<Character> characters) {
-		DataFromFile.characters = characters;
-	}
-	public static ArrayList<Venture> getVentures() {
-		return ventures;
-	}
-	public static void setVentures(ArrayList<Venture> ventures) {
-		DataFromFile.ventures = ventures;
-	}
-	public static ArrayList<Building> getBuildings() {
-		return buildings;
-	}
-	public static void setBuildings(ArrayList<Building> buildings) {
-		DataFromFile.buildings = buildings;
-	}
-	public static ArrayList<ExcommunicationTile> getExcommunicationTiles() {
-		return excommunicationTiles;
-	}
-	public static void setExcommunicationTiles(ArrayList<ExcommunicationTile> excommunicationTiles) {
-		DataFromFile.excommunicationTiles = excommunicationTiles;
-	}
-	public static ArrayList<PersonalBonusTile> getPersonalBonusTiles() {
-		return personalBonusTiles;
-	}
-	public static void setPersonalBonusTiles(ArrayList<PersonalBonusTile> personalBonusTiles) {
-		DataFromFile.personalBonusTiles = personalBonusTiles;
-	}
-	public static ArrayList<ResourceBonus> getCouncilPrivileges() {
-		return councilPrivileges;
-	}
-	public static void setCouncilPrivileges(ArrayList<ResourceBonus> councilPrivileges) {
-		DataFromFile.councilPrivileges = councilPrivileges;
-	}
-	public static int[] getFromFaithPointsToVictoryPoints() {
-		return fromFaithPointsToVictoryPoints;
-	}
-	public static void setFromFaithPointsToVictoryPoints(int[] fromFaithPointsToVictoryPoints) {
-		DataFromFile.fromFaithPointsToVictoryPoints = fromFaithPointsToVictoryPoints;
-	}
-	public static int[] getFromMilitaryPointsToVictoryPoints() {
-		return fromMilitaryPointsToVictoryPoints;
-	}
-	public static void setFromMilitaryPointsToVictoryPoints(int[] fromMilitaryPointsToVictoryPoints) {
-		DataFromFile.fromMilitaryPointsToVictoryPoints = fromMilitaryPointsToVictoryPoints;
-	}
-	public static int[] getVictoryPointsForTerritoryCard() {
-		return victoryPointsForTerritoryCard;
-	}
-	public static void setVictoryPointsForTerritoryCard(int[] victoryPointsForTerritoryCard) {
-		DataFromFile.victoryPointsForTerritoryCard = victoryPointsForTerritoryCard;
-	}
-	public static int[] getVictoryPointsForCharacterCard() {
-		return victoryPointsForCharacterCard;
-	}
-	public static void setVictoryPointsForCharacterCard(int[] victoryPointsForMilitaryCard) {
-		DataFromFile.victoryPointsForCharacterCard = victoryPointsForMilitaryCard;
-	}
-	public static int[] getMilitaryRequirement() {
-		return militaryRequirement;
-	}
-	public static void setMilitaryRequirement(int[] militaryRequirement) {
-		DataFromFile.militaryRequirement = militaryRequirement;
-	}
-	
-	private static ArrayList<Territory> territories;
-	private static ArrayList<Character> characters;
-	private static ArrayList<Venture> ventures;
-	private static ArrayList<Building> buildings;
-	private static ArrayList<ExcommunicationTile> excommunicationTiles;
-	private static ArrayList<PersonalBonusTile> personalBonusTiles;
-	private static ArrayList<ResourceBonus> councilPrivileges;
-	private static int[] fromFaithPointsToVictoryPoints; //tracciato punti fede
+	private ArrayList<Territory> territories;
+	private ArrayList<Character> characters;
+	private ArrayList<Venture> ventures;
+	private ArrayList<Building> buildings;
+	private ArrayList<ExcommunicationTile> excommunicationTiles;
+	private ArrayList<PersonalBonusTile> personalBonusTiles;
+	private ArrayList<ResourceBonus> councilPrivileges;
+	private int[] fromFaithPointsToVictoryPoints; //tracciato punti fede
 	//in first position: tot victoryPoints to first player, second position tot to second player and so on
-	private static int[] fromMilitaryPointsToVictoryPoints;  
+	private  int[] fromMilitaryPointsToVictoryPoints;  
 	//punti vittoria in base al numero di carte di un certo tipo
-	private static int[] victoryPointsForTerritoryCard;
-	private static int[] victoryPointsForCharacterCard;
+	private  int[] victoryPointsForTerritoryCard;
+	private  int[] victoryPointsForCharacterCard;
 	//military points requirement for territory card
-	private static int[] militaryRequirement;
+	private  int[] militaryRequirement;
 	//posti azione
 	//private static ArrayList<ImmediateBonus>[] towerTerritoryPositionBonus;//to 0 position there is bonus of floor 0 
 	//private static ArrayList<ImmediateBonus>[] towerCharacterPositionBonus;
@@ -118,47 +33,99 @@ public class DataFromFile {
 	//private static ArrayList<ImmediateBonus>[] towerVenturePositionBonus;
 	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
 	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
-
-	
-
-	public static void lastCards(DevelopmentCardType developmentCardType, int period,
-			ArrayList<DevelopmentCard> developmentCards) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public static ArrayList<DevelopmentCard> getBuildingsForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static ArrayList<DevelopmentCard> getCharactersForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static ArrayList<DevelopmentCard> getTerritoriesForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static ArrayList<DevelopmentCard> getVenturesForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public static int[] getVictoryPointsPerCard(DevelopmentCardType developmentCardType) {
-		if (developmentCardType.equals(DevelopmentCardType.CHARACTER)){
-			return getVictoryPointsForCharacterCard();
-		} else if (developmentCardType.equals(DevelopmentCardType.TERRITORY)){
-			return getVictoryPointsForTerritoryCard();
-		}
-		else return null;
-	}
-	
 	//TODO
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
 	//timeout per la mossa di un giocatore
+	public DataFromFile(ArrayList<Territory> territories, ArrayList<Character> characters, ArrayList<Venture> ventures,
+			ArrayList<Building> buildings, ArrayList<ExcommunicationTile> excommunicationTiles,
+			ArrayList<PersonalBonusTile> personalBonusTiles, ArrayList<ResourceBonus> councilPrivileges,
+			int[] fromFaithPointsToVictoryPoints, int[] fromMilitaryPointsToVictoryPoints,
+			int[] victoryPointsForTerritoryCard, int[] victoryPointsForCharacterCard, int[] militaryRequirement) {
+		super();
+		this.territories = territories;
+		this.characters = characters;
+		this.ventures = ventures;
+		this.buildings = buildings;
+		this.excommunicationTiles = excommunicationTiles;
+		this.personalBonusTiles = personalBonusTiles;
+		this.councilPrivileges = councilPrivileges;
+		this.fromFaithPointsToVictoryPoints = fromFaithPointsToVictoryPoints;
+		this.fromMilitaryPointsToVictoryPoints = fromMilitaryPointsToVictoryPoints;
+		this.victoryPointsForTerritoryCard = victoryPointsForTerritoryCard;
+		this.victoryPointsForCharacterCard = victoryPointsForCharacterCard;
+		this.militaryRequirement = militaryRequirement;
+	}
+	public ArrayList<Territory> getTerritories() {
+		return territories;
+	}
+	public ArrayList<Character> getCharacters() {
+		return characters;
+	}
+	public ArrayList<Venture> getVentures() {
+		return ventures;
+	}
+	public ArrayList<Building> getBuildings() {
+		return buildings;
+	}
+	public ArrayList<ExcommunicationTile> getExcommunicationTiles() {
+		return excommunicationTiles;
+	}
+	public ArrayList<PersonalBonusTile> getPersonalBonusTiles() {
+		return personalBonusTiles;
+	}
+	public ArrayList<ResourceBonus> getCouncilPrivileges() {
+		return councilPrivileges;
+	}
+	public int[] getFromFaithPointsToVictoryPoints() {
+		return fromFaithPointsToVictoryPoints;
+	}
+	public int[] getFromMilitaryPointsToVictoryPoints() {
+		return fromMilitaryPointsToVictoryPoints;
+	}
+	public int[] getVictoryPointsForTerritoryCard() {
+		return victoryPointsForTerritoryCard;
+	}
+	public int[] getVictoryPointsForCharacterCard() {
+		return victoryPointsForCharacterCard;
+	}
+	public int[] getMilitaryRequirement() {
+		return militaryRequirement;
+	}
+
+	public void lastCards(DevelopmentCardType developmentCardType, int period,
+			ArrayList<DevelopmentCard> developmentCards) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<DevelopmentCard> getBuildingsForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<DevelopmentCard> getCharactersForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<DevelopmentCard> getTerritoriesForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<DevelopmentCard> getVenturesForPeriod(int period) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int[] getVictoryPointsPerCard(DevelopmentCardType developmentCardType) {
+		if (developmentCardType.equals(DevelopmentCardType.character)){
+			return getVictoryPointsForCharacterCard();
+		} else if (developmentCardType.equals(DevelopmentCardType.territory)){
+			return getVictoryPointsForTerritoryCard();
+		}
+		else return null;
+	}
 }

@@ -12,7 +12,7 @@ public class Venture extends DevelopmentCard{
 	public final ArrayList<Resource> alternativeCost;
 	
 	public Venture(String name,int requirement, ArrayList<Resource> cost, ArrayList<Resource> alternativeCost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
-		super(name, period, DevelopmentCardType.VENTURE, immediateEffect, secondaryEffect);
+		super(name, period, DevelopmentCardType.venture, immediateEffect, secondaryEffect);
 		militaryPointRequirement=requirement;
 		this.cost=cost;
 		this.alternativeCost=alternativeCost;

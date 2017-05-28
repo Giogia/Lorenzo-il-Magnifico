@@ -2,7 +2,9 @@ package it.polimi.ingsw.BONUS;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
@@ -13,11 +15,14 @@ public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 		this.developmentCardType = developmentCardType;
 	}
 	
-	
-	//TODO forse estende le classi addresourcebonus e multiplyresourcebonus
-	
-	/*Bombs: Penso che debba estendere addresourcebonus, perchè questo bonus serve ad aggiungere
-	 * alle risorse che già hai un tot di risorse per ogni carta di un certo tipo
-	 */
+	@Override
+	public void getImmediateBonus(Player player) {
+		CardContainer cardContainer = player.getPersonalBoard().getCardContainer(developmentCardType);
+		int size = cardContainer.getDevelopmentCards().size();
+		for (Resource resource : resources) {
+			resource.multAmount(size);
+		}
+		super.getImmediateBonus(player);
+	}
 	
 }
