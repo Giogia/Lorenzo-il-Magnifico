@@ -25,14 +25,14 @@ public class PersonalBoardTest {
 		Wood wood = new Wood(0,1);
 		
 		
-		assertEquals(coins.getValue(),personalBoard.getResource(ResourceType.COINS).getValue());
-		assertEquals(coins.getAmount(),personalBoard.getResource(ResourceType.COINS).getAmount());
+		assertEquals(coins.getValue(),personalBoard.getResource(ResourceType.coins).getValue());
+		assertEquals(coins.getAmount(),personalBoard.getResource(ResourceType.coins).getAmount());
 		
-		assertEquals(faithPoints.getValue(),personalBoard.getResource(ResourceType.FAITHPOINTS).getValue());
-		assertEquals(faithPoints.getAmount(),personalBoard.getResource(ResourceType.FAITHPOINTS).getAmount());
+		assertEquals(faithPoints.getValue(),personalBoard.getResource(ResourceType.faithPoints).getValue());
+		assertEquals(faithPoints.getAmount(),personalBoard.getResource(ResourceType.faithPoints).getAmount());
 		
-		assertEquals(wood.getValue(),personalBoard.getResource(ResourceType.WOOD).getValue());
-		assertEquals(wood.getAmount(),personalBoard.getResource(ResourceType.WOOD).getAmount());
+		assertEquals(wood.getValue(),personalBoard.getResource(ResourceType.wood).getValue());
+		assertEquals(wood.getAmount(),personalBoard.getResource(ResourceType.wood).getAmount());
 	}
 	
 	public void setDevelopmentCardTest() {
@@ -47,7 +47,7 @@ public class PersonalBoardTest {
 		
 		personalBoard.putDevelopmentCard(developmentCard);
 		
-		assertEquals(developmentCard, personalBoard.getCardContainer(DevelopmentCardType.BUILDING).getDevelopmentCard(name));
+		assertEquals(developmentCard, personalBoard.getCardContainer(DevelopmentCardType.building).getDevelopmentCard(name));
 	}
 
 }
