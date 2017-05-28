@@ -47,5 +47,13 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	public ArrayList<Resource> getResources() {
 		return resources;
 	}
+
+	public String getDescription() {
+		String message = subtype + "\n";
+		for (Resource resource : resources) {
+			message = message + resource.getDescription() + "\n";
+		}
+		return message;
+	}
 	
 }

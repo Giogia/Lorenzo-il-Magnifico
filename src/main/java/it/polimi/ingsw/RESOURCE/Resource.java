@@ -51,6 +51,10 @@ abstract public class Resource {
     public void multAmount(int value){
     	this.value= this.value * value;
     }
+
+	public String getDescription() {
+		return amount +" " + resourceType;
+	}
     
 }
 

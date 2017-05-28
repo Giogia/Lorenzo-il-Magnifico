@@ -116,7 +116,7 @@ public class TowerHandler {
 		add(playerResources2, neg(alternativeCost));
 		if (checkResources(playerResources1)){
 			if (checkResources(playerResources2)){
-				ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(cost, alternativeCost);
+				ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(familyMember.getPlayer(), cost, alternativeCost);
 				add(playerResources, neg(chooseCost));
 				return true;
 			}
