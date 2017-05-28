@@ -44,7 +44,9 @@ public class Create {
 		int harvestActivationCondition = in.nextInt();
 		System.out.println("Inserisci la condizione di attivazione della produzione: ");
 		int productionActivationCondition = in.nextInt();
+		System.out.println("Inserisci il bonus per il raccolto: ");
 		ImmediateBonus harvestBonus = createImmediateBonus();
+		System.out.println("Inserisci il bonus per la produzione: ");
 		ImmediateBonus productionBonus = createImmediateBonus();
 		return new PersonalBonusTile(harvestBonus, productionBonus, harvestActivationCondition, productionActivationCondition);
 	}
@@ -113,7 +115,8 @@ public class Create {
 	public static ExcommunicationTile createExcommunicationTile(){
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		Bonus[] malus = createArrayMalus();
+		//Bonus[] malus = createArrayMalus();TODO
+		Bonus[] malus = null;
 		return new ExcommunicationTile(periodo, malus);
 	}
 	
@@ -121,7 +124,7 @@ public class Create {
 		boolean vuoleUnAltroBonus=true;
 		String risposta;
 		ArrayList<ImmediateBonus> bonusScelti=new ArrayList<>();
-		System.out.println("La carta ha un bonus immediato? ");
+		System.out.println("La carta ha un bonus immediato?(si/no) ");
 		String risp = in2.nextLine();
 		if (risp.equals("no")){//se la carta non ha un bonus immediato ritorno un null
 			return null;
@@ -151,7 +154,7 @@ public class Create {
 		System.out.println("2) AddFamilyMemberBonus");
 		System.out.println("3) MultiplyFamilyMemberBonus");
 		System.out.println("4) FamilyMemberValueBonus");
-		System.out.println("5) ResourcPerDevelopmentCardeBonus");
+		System.out.println("5) ResourcePerDevelopmentCardBonus");
 		System.out.println("6) ResourceValueBonus");
 		System.out.println("7) AddResourceBonus");
 		System.out.println("8) MultiplyResourceBonus");
@@ -274,19 +277,19 @@ public class Create {
 		int answer = in.nextInt();
 		switch (answer) {
 		case 1:
-			tipo= DevelopmentCardType.TERRITORY;
+			tipo= DevelopmentCardType.territory;
 			break;
 
 		case 2:
-			tipo= DevelopmentCardType.BUILDING;
+			tipo= DevelopmentCardType.building;
 			break;
 			
 		case 3:
-			tipo= DevelopmentCardType.CHARACTER;
+			tipo= DevelopmentCardType.character;
 			break;
 		
 		case 4:
-			tipo= DevelopmentCardType.VENTURE;
+			tipo= DevelopmentCardType.venture;
 			break;
 		}
 		return new ResourcePerDevelopmentCardBonus(resources, tipo);
@@ -404,19 +407,19 @@ public class Create {
 			answer = in.nextInt();
 			switch (answer){
 			case 1:	
-				zone = new Tower(0, false, DevelopmentCardType.TERRITORY);//first 2 parameters are random
+				zone = new Tower(0, false, DevelopmentCardType.territory);//first 2 parameters are random
 				break;
 	
 			case 2:
-				zone = new Tower(0, false, DevelopmentCardType.BUILDING);//first 2 parameters are random
+				zone = new Tower(0, false, DevelopmentCardType.building);//first 2 parameters are random
 				break;
 			
 			case 3:
-				zone = new Tower(0, false, DevelopmentCardType.CHARACTER);
+				zone = new Tower(0, false, DevelopmentCardType.character);
 				break;
 				
 			case 4:
-				zone = new Tower(0, false, DevelopmentCardType.VENTURE);
+				zone = new Tower(0, false, DevelopmentCardType.venture);
 				break;
 			
 			case 5:

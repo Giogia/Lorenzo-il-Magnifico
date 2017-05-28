@@ -10,7 +10,7 @@ public class Character extends DevelopmentCard{
 	public final Coins cost;
 	
 	public Character(String name, Coins cost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
-		super(name, period, DevelopmentCardType.CHARACTER, immediateEffect, secondaryEffect);
+		super(name, period, DevelopmentCardType.character, immediateEffect, secondaryEffect);
 		this.cost=cost;
 	}
 }

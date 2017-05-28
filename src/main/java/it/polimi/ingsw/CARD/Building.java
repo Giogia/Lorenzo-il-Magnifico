@@ -12,7 +12,7 @@ public class Building extends DevelopmentCard{
 	public final ArrayList<Resource> costs;
 	
 	public Building(String name, int activationCondition, ArrayList<Resource> costs, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
-		super(name, period, DevelopmentCardType.BUILDING, immediateEffect, secondaryEffect);
+		super(name, period, DevelopmentCardType.building, immediateEffect, secondaryEffect);
 		activationConditionProduction=activationCondition;
 		this.costs=costs;
 	}

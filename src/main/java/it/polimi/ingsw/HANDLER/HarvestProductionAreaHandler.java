@@ -39,12 +39,12 @@ public abstract class HarvestProductionAreaHandler {
 	ArrayList<CardContainer> cardContainers= familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for(CardContainer cardcontainer : cardContainers){
 			if(zone instanceof HarvestArea){
-				if(cardcontainer.type.equals(DevelopmentCardType.TERRITORY)){
+				if(cardcontainer.type.equals(DevelopmentCardType.territory)){
 					return cardcontainer.getDevelopmentCards();
 				}
 			}
 			if(zone instanceof ProductionArea){
-				if(cardcontainer.type.equals(DevelopmentCardType.BUILDING)){
+				if(cardcontainer.type.equals(DevelopmentCardType.building)){
 					return cardcontainer.getDevelopmentCards();
 				}
 			}

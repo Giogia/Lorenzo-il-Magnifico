@@ -3,8 +3,8 @@ package it.polimi.ingsw.HANDLER;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.Manager;
 
 public class CouncilPrivilegeChoiceHandler {
@@ -13,7 +13,7 @@ public class CouncilPrivilegeChoiceHandler {
 	private static ArrayList<ResourceBonus> councilPrivileges; //TODO è giusto che sia static?
 	
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges){
-		councilPrivileges = DataFromFile.getCouncilPrivileges();
+		councilPrivileges = Game.getData().getCouncilPrivileges();
 		for(int i=0; i < numberOfDifferentCouncilPrivileges; i++){
 			ResourceBonus singleBonus = Manager.getCouncilPrivilege(councilPrivileges); //the single bonus choosen from the human
 			singleBonus.getImmediateBonus(player);

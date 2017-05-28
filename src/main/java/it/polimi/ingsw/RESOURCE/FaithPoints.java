@@ -4,6 +4,6 @@ public class FaithPoints extends Resource{
 
 	public FaithPoints(int amount, int value) {
 		super(amount, value);
-		this.resourceType = ResourceType.FAITHPOINTS;
+		this.resourceType = ResourceType.faithPoints;
 	}
 }

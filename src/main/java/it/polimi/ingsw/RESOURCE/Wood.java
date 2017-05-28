@@ -4,7 +4,7 @@ public class Wood extends Resource{
 	
 	public Wood(int amount, int value) {
 		super(amount, value);
-		this.resourceType = ResourceType.WOOD;
+		this.resourceType = ResourceType.wood;
 	}
 }
 

@@ -4,6 +4,6 @@ public class Coins extends Resource {
 	
 	public Coins(int amount, int value) {
 		super(amount, value);
-		this.resourceType = ResourceType.COINS;
+		this.resourceType = ResourceType.coins;
 	}
 }
