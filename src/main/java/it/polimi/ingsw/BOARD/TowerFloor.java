@@ -1,6 +1,5 @@
 package it.polimi.ingsw.BOARD;
 
-import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.GC_15.FamilyMember;

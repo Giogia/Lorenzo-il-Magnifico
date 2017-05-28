@@ -135,7 +135,7 @@ public class TowerHandler {
 	private static boolean checkTerritories(FamilyMember familyMember){
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
-			if (cardContainer.type.equals(DevelopmentCardType.TERRITORY)){
+			if (cardContainer.getType().equals(DevelopmentCardType.TERRITORY)){
 				int numberOfCards = cardContainer.getDevelopmentCards().size();
 				int[] militaryRequirement = DataFromFile.getMilitaryRequirement();
 				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.MILITARYPOINTS);

@@ -11,7 +11,7 @@ public class Building extends DevelopmentCard{
 	public final int activationConditionProduction;
 	public final ArrayList<Resource> costs;
 	
-	public Building(String name, int activationCondition, ArrayList<Resource> costs, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
+	public Building(String name, int period, int activationCondition, ArrayList<Resource> costs, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
 		super(name, period, DevelopmentCardType.BUILDING, immediateEffect, secondaryEffect);
 		activationConditionProduction=activationCondition;
 		this.costs=costs;

@@ -72,7 +72,7 @@ public class Create {
 		ArrayList<Resource> costs = createArrayResource();
 		ArrayList<ImmediateBonus> immediateEffects = createArrayImmediateBonus();
 		ArrayList<Bonus> secondaryEffects = createArrayBonus();
-		return new Building(nome, condizioneDiAttivazione, costs, periodo, immediateEffects, secondaryEffects);
+		return new Building(nome, periodo, condizioneDiAttivazione, costs, immediateEffects, secondaryEffects);
 	}
 		
 	public static Character createCharacter(){
