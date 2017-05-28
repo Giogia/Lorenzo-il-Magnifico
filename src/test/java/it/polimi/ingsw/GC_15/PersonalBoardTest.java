@@ -43,7 +43,7 @@ public class PersonalBoardTest {
 		ArrayList<ImmediateBonus> immediateBonus = new ArrayList<>();
 		ArrayList<Resource> resources = new ArrayList<>();
 		
-		Building developmentCard = new Building(name, 1, 4, resources, immediateBonus, bonus);
+		Building developmentCard = new Building(name, 1, resources, 2, immediateBonus, bonus);
 		
 		personalBoard.putDevelopmentCard(developmentCard);
 		
