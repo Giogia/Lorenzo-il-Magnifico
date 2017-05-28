@@ -106,5 +106,9 @@ public class Player {
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
 }

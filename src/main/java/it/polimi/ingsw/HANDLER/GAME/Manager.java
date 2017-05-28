@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
@@ -24,6 +26,51 @@ public class Manager {
 	}
 
 	public static void turn(Player player) {
+		String firstMessage = player.getName() + ", è il tuo turno.";
+		ConnectionManager.sendToView(player, firstMessage);
+		while(true){
+			String secondMessage = "1) Posiziona familiare \n 2) Attiva carta leader \n 3) Scarta carta leader \n 4) Attiva "
+					+ "l'effetto di una carta leader \n 5) Passa il turno";
+			int choice = ConnectionManager.sendToViewForInt(player, secondMessage);
+			switch (choice) {
+		
+			case 1:
+				familyMemberManager(player);
+				break;
+			
+			case 2:
+				activationLeaderCardManager(player);
+				break;
+		
+			case 3:
+				discardLeaderCardManager(player);
+				break;
+		
+			case 4:
+				activationLeaderCardEffectManager(player);
+				break;
+		
+			}
+		}
+			
+	}
+
+	private static void activationLeaderCardEffectManager(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void discardLeaderCardManager(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void activationLeaderCardManager(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void familyMemberManager(Player player) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -12,10 +12,15 @@ public class Game {
 	private static RoundOrder roundOrder;
 	private static Board board;
 	
+	
+	
 	public static void start(){
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
 		EndGameHandler.handle(board);
 	}
 
+	public static Board getBoard() {
+		return board;
+	}
 }
