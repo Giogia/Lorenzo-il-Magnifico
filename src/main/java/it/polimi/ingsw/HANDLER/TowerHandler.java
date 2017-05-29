@@ -135,6 +135,7 @@ public class TowerHandler {
 			}
 			else{
 				add(playerResources, neg(cost));
+				return true;
 			}
 		}
 		else if(checkResources(playerResources2)){
