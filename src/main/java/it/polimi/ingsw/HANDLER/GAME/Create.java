@@ -102,7 +102,7 @@ public class Create {
 		System.out.println("La carta ha un costo alternativo?");
 		String risposta = in2.nextLine();
 		if (risposta.equals("si")){
-			ArrayList<Resource> alternativeCosts = createArrayResource();
+			MilitaryPoints alternativeCosts = createMilitaryPoints();
 			return new Venture(nome, requirement, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
 		}
 		return new Venture(nome, requirement, costs, null, periodo, immediateEffects, secondaryEffects);
