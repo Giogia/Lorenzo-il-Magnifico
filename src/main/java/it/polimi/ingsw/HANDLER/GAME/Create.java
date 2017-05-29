@@ -389,7 +389,7 @@ public class Create {
 		return new Wood(createResourceValues(), 1);
 	}
 	
-	private static ActionBonus createActionBonus(){
+	public static ActionBonus createActionBonus(){
 		HashMap<ActionZone, Integer> action = new HashMap<>();
 		boolean vuoleAltraZona = true;
 		String risposta;
@@ -436,7 +436,7 @@ public class Create {
 			
 			action.put(zone, answer);
 			System.out.println("vuoi aggiungere un'altra zona?(si/no)");
-			 risposta = in2.nextLine();
+			risposta = in2.nextLine();
 			if (!(risposta.equals("si"))) vuoleAltraZona=false;
 		}
 		return new ActionBonus(action);
@@ -472,7 +472,7 @@ public class Create {
 	
 	private static FamilyMember createFamilyMember(){
 		int answer;
-		Dice dice = null;;
+		Dice dice = null;
 		
 		System.out.println("Quale family member vuoi creare ?");
 		System.out.println("1) Arancione");

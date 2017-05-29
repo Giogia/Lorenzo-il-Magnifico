@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +14,10 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
+import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.HarvestArea;
+import it.polimi.ingsw.BOARD.ProductionArea;
+import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BONUS.ActionBonus;
 import it.polimi.ingsw.BONUS.AddFamilyMemberBonus;
 import it.polimi.ingsw.BONUS.AddResourceBonus;
@@ -46,7 +51,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
 		/*TO READ FROM FILE
-		File file = new File("config.json");
+		File file = new File("prova.txt");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
 		//In this way I can use spaces between characters
@@ -58,86 +63,14 @@ public class ConfigurationFileHandler {
 		finally{
 			scanner.close();
 		}
-		DataFromFile data = toDeserialize(inJson);*/
+		Character data = toDeserialize(inJson);*/
 		
-		ArrayList<Territory> territories = new ArrayList<>();
-		ArrayList<Character> characters = new ArrayList<>();
-		ArrayList<Venture> ventures = new ArrayList<>();
-		ArrayList<Building> buildings = new ArrayList<>();
-		ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
-		ArrayList<PersonalBonusTile> personalBonusTiles = new ArrayList<>();
-		ArrayList<ResourceBonus> councilPrivileges = new ArrayList<>();
-		int[] fromFaithPointsToVictoryPoints = new int[15]; //tracciato punti fede
-		//in first position: tot victoryPoints to first player, second position tot to second player and so on
-		int[] fromMilitaryPointsToVictoryPoints= new int[2];  
-		//punti vittoria in base al numero di carte di un certo tipo
-		int[] victoryPointsForTerritoryCard= new int[6];
-		int[] victoryPointsForMilitaryCard = new int[6];
-		//military points requirement for territory card
-		int[] militaryRequirement = new int[6];	
-		
-		for(int i= 0; i < 2/*21*/; i++){
-			System.out.println("inserire una carta scomunica: ");
-			excommunicationTiles.add(Create.createExcommunicationTile());
-		}
-		
-		for(int i=0; i < 2/*5*/; i++){
-			System.out.println(
-					"inserire le personal bonus tile (NB: ti verrà chiesto 5 volte (chiedi a michele))");
-			personalBonusTiles.add(Create.createPersonalBonusTile());
-		}
-		
-		for(int i=0; i<5; i++){
-			System.out.println("inserisci il bonus che ricevi dal privilegio del consiglio: ");
-			councilPrivileges.add(Create.createResourceBonus());
-		}
-		
-		System.out.println("valore dei punti vittoria per tot punti fede:");
-		fromFaithPointsToVictoryPoints = Create.genericArray();
-		
-		System.out.println("valore dei punti vittoria per tot punti militari:");
-		fromMilitaryPointsToVictoryPoints = Create.genericArray();
-		
-		System.out.println("punti vittoria per tot carte territorio:");
-		victoryPointsForTerritoryCard = Create.genericArray();
-		
-		System.out.println("valore dei punti vittoria per tot carte militari:");
-		victoryPointsForMilitaryCard = Create.genericArray();
-		
-		System.out.println("quanti punti militari per carta territorio:");
-		militaryRequirement = Create.genericArray();
-		
-		for(int i= 0; i < 2/*24*/; i++){
-			System.out.println("creare la prossima carta territorio: ");
-			territories.add(Create.createTerritory());
-		}
-		for(int i= 0; i < 2/*24*/; i++){
-			System.out.println("creare la prossima carta edificio: ");
-			buildings.add(Create.createBuilding());
-		}
-		for(int i= 0; i < 2/*24*/; i++){
-			System.out.println("creare la prossima carta azione: ");
-			ventures.add(Create.createVenture());
-		}
-		for(int i= 0; i < 2/*24*/; i++){
-			System.out.println("creare la prossima carta personaggio: ");
-			characters.add(Create.createCharacter());
-		}
-		
-		DataFromFile data = new DataFromFile(territories, characters, ventures, buildings, excommunicationTiles, personalBonusTiles, councilPrivileges, fromFaithPointsToVictoryPoints, fromMilitaryPointsToVictoryPoints, victoryPointsForTerritoryCard, victoryPointsForMilitaryCard, militaryRequirement);
-		System.out.println(toSerialize(data));
-		
-		//scrivi su file!!!
-		FileOutputStream prova;
-		try {
-			prova = new FileOutputStream("config.json");
-			PrintStream scrivi = new PrintStream(prova);
-			scrivi.print(toSerialize(data));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		HashMap<Integer, Character> prova = new HashMap<>();
+		Character ch1 = new Character("marco", null, 3, null, null);
+		prova.put(3, ch1);
+		System.out.println(toSerialize(prova));
 	}
+	
 	
 	private static String toSerialize(Object object){
 		try{
@@ -149,9 +82,15 @@ public class ConfigurationFileHandler {
 		}
 	}
 	
-	private static DataFromFile toDeserialize(String inJson){
+	private static ActionBonus toDeserialize(String inJson){
 		try{
 			//Type requestListTypeToken = new TypeToken<List<Territory>>() {}.getType();
+			final RuntimeTypeAdapterFactory<ActionZone> t6 = RuntimeTypeAdapterFactory
+					.of(ActionZone.class, "type")
+			        .registerSubtype(Tower.class, "tower")
+			        .registerSubtype(ProductionArea.class, "productionArea")
+			        .registerSubtype(HarvestArea.class, "harvestArea");
+			
 			
 			final RuntimeTypeAdapterFactory<ResourceBonus> t1 = RuntimeTypeAdapterFactory
 					.of(ResourceBonus.class, "subtype")
@@ -192,13 +131,15 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t3)
 					.registerTypeAdapterFactory(t4)
 					.registerTypeAdapterFactory(t5)
+					.registerTypeAdapterFactory(t6)
 					.create();
 			
-			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
+			return gsonToDeserialize.fromJson(inJson, ActionBonus.class);
 			
 		} catch (Exception e){
 			e.printStackTrace();
-			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null);
+			//return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null);
+			return new ActionBonus(null);
 		}
 	}
 }
