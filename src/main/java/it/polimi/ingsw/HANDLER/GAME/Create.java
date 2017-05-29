@@ -34,7 +34,7 @@ public class Create {
 			councilPrivileges.add(createResourceBonus());
 			System.out.println("vuoi aggiungere un altro bonus?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleUnAltroBonus=false;
+			if (!("si".equals(risposta))) vuoleUnAltroBonus=false;
 		}
 		return councilPrivileges;
 	}
@@ -101,7 +101,7 @@ public class Create {
 		ArrayList<Resource> costs = createArrayResource();
 		System.out.println("La carta ha un costo alternativo?");
 		String risposta = in2.nextLine();
-		if (risposta.equals("si")){
+		if ("si".equals(risposta)){
 			MilitaryPoints alternativeCosts = createMilitaryPoints();
 			return new Venture(nome, requirement, costs, alternativeCosts, periodo, immediateEffects, secondaryEffects);
 		}
@@ -126,7 +126,7 @@ public class Create {
 		ArrayList<ImmediateBonus> bonusScelti=new ArrayList<>();
 		System.out.println("La carta ha un bonus immediato?(si/no) ");
 		String risp = in2.nextLine();
-		if (risp.equals("no")){//se la carta non ha un bonus immediato ritorno un null
+		if ("no".equals(risp)){//se la carta non ha un bonus immediato ritorno un null
 			return null;
 		}
 		while (vuoleUnAltroBonus){
@@ -134,7 +134,7 @@ public class Create {
 			bonusScelti.add(bonus);
 			System.out.println("vuoi aggiungere un altro bonus?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleUnAltroBonus=false;
+			if (!("si".equals(risposta))) vuoleUnAltroBonus=false;
 		}
 		return bonusScelti;
 	}
@@ -217,7 +217,7 @@ public class Create {
 			arrayResourceBonus.add(createResourceBonus());
 			System.out.println("vuoi aggiungere un altro bonus?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleUnAltroBonus=false;
+			if (!("si".equals(risposta))) vuoleUnAltroBonus=false;
 		}
 		return arrayResourceBonus;
 	}
@@ -304,7 +304,7 @@ public class Create {
 			resources.add(createResource());
 			System.out.println("vuoi aggiungere un'altra risorsa?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleCreareUnAltraRisorsa=false;
+			if (!("si".equals(risposta))) vuoleCreareUnAltraRisorsa=false;
 		}
 		return resources;
 	}
@@ -438,13 +438,13 @@ public class Create {
 			action.put(zone, answer);
 			System.out.println("vuoi aggiungere un'altra zona?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleAltraZona=false;
+			if (!("si".equals(risposta))) vuoleAltraZona=false;
 		}
 		
 		System.out.println("Vi è un bonus di risorse associato all'action bonus?");
 		String risp = in2.nextLine();
 		
-		if(risp.equals("si")){
+		if("si".equals(risp)){
 			resources= createArrayResource();
 		}else{
 			resources = null;
@@ -476,7 +476,7 @@ public class Create {
 			familyMembers.add(createFamilyMember());
 			System.out.println("vuoi aggiungere un altro family member?(si/no)");
 			risposta = in2.nextLine();
-			if (!(risposta.equals("si"))) vuoleCreareAltroFamilyMember=false;
+			if (!("si".equals(risposta))) vuoleCreareAltroFamilyMember=false;
 		}
 		return familyMembers;
 	}
