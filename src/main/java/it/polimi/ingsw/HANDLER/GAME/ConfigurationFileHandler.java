@@ -50,7 +50,8 @@ import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
-		//TO READ FROM FILE
+		
+		//TO READ FROM config.json
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
