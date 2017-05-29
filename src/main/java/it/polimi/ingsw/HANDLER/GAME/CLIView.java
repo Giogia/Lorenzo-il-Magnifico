@@ -22,23 +22,6 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 public class CLIView implements View{
 	Scanner scanner;
 
-	@Override
-	public void print(String message) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int printForInt(String message) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public String printForString(String message) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void startTurn(Player player) {

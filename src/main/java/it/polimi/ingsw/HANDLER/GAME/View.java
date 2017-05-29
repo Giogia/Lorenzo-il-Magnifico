@@ -14,13 +14,6 @@ public interface View {
 	public static ConnectionManager connectionManager = ConnectionManager.getConnectionManager();
 	//Le view conterranno anche le connessioni
 
-
-	void print(String message);
-
-	int printForInt(String message);
-
-	String printForString(String message);
-
 	void startTurn(Player player);
 
 	int turnChoice();
