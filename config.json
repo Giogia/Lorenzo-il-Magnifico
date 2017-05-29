@@ -466,40 +466,72 @@
       }
    ],
    "characters":[  
-      {  
-         "cost":{  
-            "amount":3,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":1,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@61bbe9ba":4,
-                  "it.polimi.ingsw.BOARD.Tower@610455d6":4,
-                  "it.polimi.ingsw.BOARD.Tower@6e0be858":4,
-                  "it.polimi.ingsw.BOARD.Tower@5cad8086":4
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+        {
+          "cost": {
+            "amount": 3,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 1,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "building",
+                    "type": "tower"
+                  },
+                  4
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "character",
+                    "type": "tower"
+                  },
+                  4
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "venture",
+                    "type": "tower"
+                  },
+                  4
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "territory",
+                    "type": "tower"
+                  },
+                  4
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "resources":[  
-                  {  
-                     "amount":1,
-                     "value":1,
-                     "resourceType":"faithPoints"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
+            {
+              "resources": [
+                {
+                  "amount": 1,
+                  "value": 1,
+                  "resourceType": "faithPoints"
+                }
+              ],
+              "subtype": "addResourceBonus",
+              "type": "resourceBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"badessa"
-      },
+          ],
+          "name": "badessa"
+        },
       {  
          "cost":{  
             "amount":2,
@@ -639,85 +671,45 @@
          "developmentCardType":"character",
          "name":"fattore"
       },
-      {  
-         "cost":{  
-            "amount":5,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":2,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "differentCouncilPrivilege":3,
-               "type":"councilPrivilegeBonus",
-               "type1":"immediateBonus"
-            }
-         ],
-         "name":"messo reale"
-      },
-      {  
-         "cost":{  
-            "amount":3,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":2,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@511d50c0":6
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+        {
+          "cost": {
+            "amount": 4,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 2,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "territory",
+                    "type": "tower"
+                  },
+                  6
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "resources":[  
-                  {  
-                     "amount":2,
-                     "value":1,
-                     "resourceType":"coins"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
+            {
+              "resources": [
+                {
+                  "amount": 2,
+                  "value": 1,
+                  "resourceType": "militaryPoints"
+                }
+              ],
+              "subtype": "addResourceBonus",
+              "type": "resourceBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"mecenate"
-      },
-      {  
-         "cost":{  
-            "amount":4,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":2,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@60e53b93":6
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
-            },
-            {  
-               "resources":[  
-                  {  
-                     "amount":2,
-                     "value":1,
-                     "resourceType":"militaryPoints"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
-            }
-         ],
-         "name":"capitano"
-      },
+          ],
+          "name": "capitano"
+        },
       {  
          "cost":{  
             "amount":4,
@@ -728,97 +720,113 @@
          "developmentCardType":"character",
          "name":"studioso"
       },
-      {  
-         "cost":{  
-            "amount":4,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":2,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "differentCouncilPrivilege":1,
-               "type":"councilPrivilegeBonus",
-               "type1":"immediateBonus"
-            },
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@5e2de80c":6
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
-            }
-         ],
-         "name":"eroe"
-      },
-      {  
-         "cost":{  
-            "amount":4,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":2,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@1d44bcfa":6
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
-            },
-            {  
-               "resources":[  
-                  {  
-                     "amount":1,
-                     "value":1,
-                     "resourceType":"wood"
+        {
+          "cost": {
+            "amount": 4,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 2,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "venture",
+                    "type": "tower"
                   },
-                  {  
-                     "amount":1,
-                     "value":1,
-                     "resourceType":"stones"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
-            }
-         ],
-         "name":"architetto"
-      },
-      {  
-         "cost":{  
-            "amount":4,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":3,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.HarvestArea@266474c2":4
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+                  6
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "resources":[  
-                  {  
-                     "amount":2,
-                     "value":1,
-                     "resourceType":"faithPoints"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
+            {
+              "differentCouncilPrivilege": 1,
+              "type": "councilPrivilegeBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"cardinale"
-      },
+          ],
+          "name": "eroe"
+        },
+        {
+          "cost": {
+            "amount": 4,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 2,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "building",
+                    "type": "tower"
+                  },
+                  6
+                ]
+              ],
+              "resources": [
+                {
+                  "amount": 1,
+                  "value": 1,
+                  "resourceType": "wood"
+                },
+                {
+                  "amount": 1,
+                  "value": 1,
+                  "resourceType": "stones"
+                }
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
+            }
+          ],
+          "name": "architetto"
+        },
+        {
+          "cost": {
+            "amount": 4,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 3,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "type": "harvestArea"
+                  },
+                  4
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
+            },
+            {
+              "resources": [
+                {
+                  "amount": 2,
+                  "value": 1,
+                  "resourceType": "faithPoints"
+                }
+              ],
+              "subtype": "addResourceBonus",
+              "type": "resourceBonus",
+              "type1": "immediateBonus"
+            }
+          ],
+          "name": "cardinale"
+        },
       {  
          "cost":{  
             "amount":6,
@@ -844,64 +852,101 @@
          ],
          "name":"araldo"
       },
-      {  
-         "cost":{  
-            "amount":5,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":3,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.ProductionArea@6f94fa3e":4
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+        {
+          "cost": {
+            "amount": 5,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 3,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "type": "productionArea"
+                  },
+                  4
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "resources":[  
-                  {  
-                     "amount":1,
-                     "value":1,
-                     "resourceType":"faithPoints"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
+            {
+              "resources": [
+                {
+                  "amount": 1,
+                  "value": 1,
+                  "resourceType": "faithPoints"
+                }
+              ],
+              "subtype": "addResourceBonus",
+              "type": "resourceBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"vescovo"
-      },
-      {  
-         "cost":{  
-            "amount":6,
-            "value":1,
-            "resourceType":"coins"
-         },
-         "period":3,
-         "developmentCardType":"character",
-         "immediateEffect":[  
-            {  
-               "differentCouncilPrivilege":1,
-               "type":"councilPrivilegeBonus",
-               "type1":"immediateBonus"
+          ],
+          "name": "vescovo"
+        },
+        {
+          "cost": {
+            "amount": 6,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          "period": 3,
+          "developmentCardType": "character",
+          "immediateEffect": [
+            {
+              "differentCouncilPrivilege": 1,
+              "type": "councilPrivilegeBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@5e481248":7,
-                  "it.polimi.ingsw.BOARD.Tower@66d3c617":7,
-                  "it.polimi.ingsw.BOARD.Tower@2b193f2d":7,
-                  "it.polimi.ingsw.BOARD.Tower@63947c6b":7
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "building",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "character",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "venture",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "territory",
+                    "type": "tower"
+                  },
+                  7
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"ambasciatore"
-      },
+          ],
+          "name": "ambasciatore"
+        },
       {  
          "cost":{  
             "amount":7,
@@ -1262,33 +1307,38 @@
          ],
          "name":"ingaggiare soldati"
       },
-      {  
-         "militaryPointRequirement":0,
-         "cost":[  
-            {  
-               "amount":3,
-               "value":1,
-               "resourceType":"coins"
+        {
+          "militaryPointRequirement": 0,
+          "cost": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "servants"
             },
-            {  
-               "amount":2,
-               "value":1,
-               "resourceType":"servants"
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
             }
-         ],
-         "period":2,
-         "developmentCardType":"venture",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.HarvestArea@330bedb4":4
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+          ],
+          "period": 2,
+          "developmentCardType": "venture",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "type": "harvestArea"
+                  },
+                  4
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"scavare canalizzazioni"
-      },
+          ],
+          "name": "scavare canalizzazioni"
+        },
       {  
          "militaryPointRequirement":0,
          "cost":[  
@@ -1493,53 +1543,85 @@
          ],
          "name":"accogliere gli stranieri"
       },
-      {  
-         "militaryPointRequirement":0,
-         "cost":[  
-            {  
-               "amount":3,
-               "value":1,
-               "resourceType":"coins"
+        {
+          "militaryPointRequirement": 0,
+          "cost": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
             },
-            {  
-               "amount":3,
-               "value":1,
-               "resourceType":"wood"
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "wood"
             },
-            {  
-               "amount":3,
-               "value":1,
-               "resourceType":"stones"
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "stones"
             }
-         ],
-         "period":3,
-         "developmentCardType":"venture",
-         "immediateEffect":[  
-            {  
-               "resources":[  
-                  {  
-                     "amount":1,
-                     "value":1,
-                     "resourceType":"faithPoints"
-                  }
-               ],
-               "subtype":"addResourceBonus",
-               "type":"resourceBonus",
-               "type1":"immediateBonus"
+          ],
+          "period": 3,
+          "developmentCardType": "venture",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "building",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "character",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "venture",
+                    "type": "tower"
+                  },
+                  7
+                ],
+                [
+                  {
+                    "occupiedCost": 0,
+                    "occupiedYet": false,
+                    "developmentCardType": "territory",
+                    "type": "tower"
+                  },
+                  7
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             },
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.Tower@2503dbd3":7,
-                  "it.polimi.ingsw.BOARD.Tower@4b67cf4d":7,
-                  "it.polimi.ingsw.BOARD.Tower@12a3a380":7,
-                  "it.polimi.ingsw.BOARD.Tower@7ea987ac":7
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+            {
+              "resources": [
+                {
+                  "amount": 1,
+                  "value": 1,
+                  "resourceType": "faithPoints"
+                }
+              ],
+              "subtype": "addResourceBonus",
+              "type": "resourceBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"riparare la cattedrale"
-      },
+          ],
+          "name": "riparare la cattedrale"
+        },
       {  
          "militaryPointRequirement":0,
          "cost":[  
@@ -1626,33 +1708,38 @@
          ],
          "name":"ingaggiare mercenari"
       },
-      {  
-         "militaryPointRequirement":0,
-         "cost":[  
-            {  
-               "amount":4,
-               "value":1,
-               "resourceType":"coins"
+        {
+          "militaryPointRequirement": 0,
+          "cost": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "servants"
             },
-            {  
-               "amount":3,
-               "value":1,
-               "resourceType":"servants"
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "coins"
             }
-         ],
-         "period":3,
-         "developmentCardType":"venture",
-         "immediateEffect":[  
-            {  
-               "action":{  
-                  "it.polimi.ingsw.BOARD.ProductionArea@29453f44":3
-               },
-               "type":"actionBonus",
-               "type1":"immediateBonus"
+          ],
+          "period": 3,
+          "developmentCardType": "venture",
+          "immediateEffect": [
+            {
+              "action": [
+                [
+                  {
+                    "type": "productionArea"
+                  },
+                  3
+                ]
+              ],
+              "type": "actionBonus",
+              "type1": "immediateBonus"
             }
-         ],
-         "name":"migliorare le strade"
-      },
+          ],
+          "name": "migliorare le strade"
+        },
       {  
          "militaryPointRequirement":12,
          "cost":[  

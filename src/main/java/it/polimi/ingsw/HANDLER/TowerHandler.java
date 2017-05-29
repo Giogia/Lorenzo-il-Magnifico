@@ -84,6 +84,9 @@ public class TowerHandler {
 			TowerFloor towerFloor) {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = buildingCard.costs;
+		if (FakeFamilyMemberHandler.getBoolean()){
+			subOrZero(cost, FakeFamilyMemberHandler.getCost());
+		}
 		add(playerResources, neg(cost));
 		if (checkResources(playerResources)){
 			return true;
@@ -99,6 +102,9 @@ public class TowerHandler {
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		cost.add(characterCard.cost);
+		if (FakeFamilyMemberHandler.getBoolean()){
+			subOrZero(cost, FakeFamilyMemberHandler.getCost());
+		}
 		add(playerResources, neg(cost));
 		if (checkResources(playerResources)){
 			return true;
@@ -107,12 +113,18 @@ public class TowerHandler {
 	}
 
 
+	
+
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = ventureCard.cost;
 		ArrayList<Resource> alternativeCost = ventureCard.alternativeCost;
 		ArrayList<Resource> playerResources1 = playerResources;
 		ArrayList<Resource> playerResources2 = playerResources;
+		if (FakeFamilyMemberHandler.getBoolean()){
+			subOrZero(cost, FakeFamilyMemberHandler.getCost());
+			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
+		}
 		add(playerResources1, neg(cost));
 		add(playerResources2, neg(alternativeCost));
 		if (checkResources(playerResources1)){
@@ -123,6 +135,7 @@ public class TowerHandler {
 			}
 			else{
 				add(playerResources, neg(cost));
+				return true;
 			}
 		}
 		else if(checkResources(playerResources2)){
@@ -196,5 +209,14 @@ public class TowerHandler {
 			if (resource.getAmount() < 0) return false;
 		}
 		return true;
+	}
+	
+	private static void subOrZero(ArrayList<Resource> cost, ArrayList<Resource> cost2) {
+		add(cost, neg(cost2));
+		for (Resource resource : cost) {
+			if (resource.getAmount() < 0){
+				resource.setAmount(0);
+			}
+		}
 	}
 }

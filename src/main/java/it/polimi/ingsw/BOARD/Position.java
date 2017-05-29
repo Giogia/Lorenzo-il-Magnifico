@@ -55,4 +55,5 @@ public class Position {
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
+	
 }
