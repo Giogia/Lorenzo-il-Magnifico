@@ -118,8 +118,12 @@ public class TowerHandler {
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = ventureCard.cost;
-		ArrayList<Resource> alternativeCost = ventureCard.alternativeCost;
+		MilitaryPoints militaryPoints = ventureCard.alternativeCost;
+		ArrayList<Resource> alternativeCost = new ArrayList<>();
+		alternativeCost.add(militaryPoints);
+		int requirement = ventureCard.militaryPointRequirement;
 		ArrayList<Resource> playerResources1 = playerResources;
+		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
 		ArrayList<Resource> playerResources2 = playerResources;
 		if (FakeFamilyMemberHandler.getBoolean()){
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
@@ -128,19 +132,20 @@ public class TowerHandler {
 		add(playerResources1, neg(cost));
 		add(playerResources2, neg(alternativeCost));
 		if (checkResources(playerResources1)){
-			if (checkResources(playerResources2)){
-				ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(cost, alternativeCost);
-				add(playerResources, neg(chooseCost));
-				return true;
+			if (playerMilitaryPoints.getAmount() >= requirement){
+				if (checkResources(playerResources2)){
+					ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(cost, alternativeCost);
+					add(playerResources, neg(chooseCost));
+					return true;
+				}
 			}
-			else{
-				add(playerResources, neg(cost));
-				return true;
-			}
-		}
-		else if(checkResources(playerResources2)){
-			add(playerResources, neg(alternativeCost));
+			add(playerResources, neg(cost));
 			return true;
+		}
+		else if(playerMilitaryPoints.getAmount() >= requirement){
+			if (checkResources(playerResources2))
+				add(playerResources, neg(alternativeCost));
+				return true;
 		}
 		return false;
 	}
