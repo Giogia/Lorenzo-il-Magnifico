@@ -45,11 +45,11 @@ abstract public class Resource {
     }
     
     public void addAmount(int value){
-    	this.value= this.value + value;
+    	this.amount = this.amount + value;
     }
   
     public void multAmount(int value){
-    	this.value= this.value * value;
+    	this.amount= this.amount * value;
     }
     
 }

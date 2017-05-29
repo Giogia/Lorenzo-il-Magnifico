@@ -6,6 +6,7 @@ import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.RESOURCE.Coins;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
 
 public class Player {
@@ -21,6 +22,22 @@ public class Player {
 		this.name=name;
 		this.color=color;
 		personalBoard = new PersonalBoard();
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public Board getBoard() {
+		return board;
+	}
+	
+	public ArrayList<LeaderCard> getLeaderCardInHand() {
+		return leaderCardInHand;
 	}
 	
 	public void setFamilyMember(ArrayList<FamilyMember> familyMembers) {
@@ -50,12 +67,11 @@ public class Player {
 		position.addFamilyMember(familyMember);
 	}
 	
-	public void useServants(int value, FamilyMember familyMember){
-		//trovo l'indice nell'arrayList dove vi sono i serventi
-		int index= personalBoard.getResources().lastIndexOf(new Servants(0,1));
+	public void useServants(int servantsNumber, FamilyMember familyMember){
 		//decremento il valore dei serventi di - value
-		personalBoard.getResources().get(index).addvalue(-value);
-		familyMember.addValue(value);
+		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);;
+		//aumento il valore dei servernti di value
+		familyMember.addValue(servantsNumber);
 	}
 	
 	public void activateLeaderCard(LeaderCard leaderCard){

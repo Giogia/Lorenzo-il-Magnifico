@@ -13,8 +13,9 @@ public class Position {
 	protected int diceRequirement;
 
 	public Position(ArrayList<ImmediateBonus> boardBonus, int diceRequirement) {
-		this.boardBonus = boardBonus;
-		this.diceRequirement = diceRequirement;
+		boardBonus = boardBonus;
+		diceRequirement = diceRequirement;
+		familyMembers = new ArrayList<>();
 	}
 	
 	public FamilyMember getFamilyMember(int familyMember) { 

@@ -95,7 +95,7 @@ private static EndGameHandler istanza = null;
 		}
 		for(Player player: firstPos){//add 5 vicotry points to the winners
 			player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(5);	
-		};
+		}
 		if(firstPos.size()==1){// add 2 victory points to the second ones if there hasn't been a tie of winners
 			for(Player player: secondPos){
 				player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(2);
