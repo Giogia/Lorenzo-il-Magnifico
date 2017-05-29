@@ -41,7 +41,7 @@ public class ConnectionManager {
 
 	public static void startTurn(Player player) {
 		View view = getView(player);
-		view.startTurn();
+		view.startTurn(player);
 	}
 
 	public static int turnChoice(Player player) {

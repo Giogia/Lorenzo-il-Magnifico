@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public interface View {
+	public static ConnectionManager connectionManager = ConnectionManager.getConnectionManager();
 	//Le view conterranno anche le connessioni
 
 
@@ -20,7 +21,7 @@ public interface View {
 
 	String printForString(String message);
 
-	void startTurn();
+	void startTurn(Player player);
 
 	int turnChoice();
 
