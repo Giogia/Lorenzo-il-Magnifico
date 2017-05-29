@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -25,8 +26,6 @@ public class ConnectionManager {
 	
 	private ConnectionManager() {
 	}
-	
-	//TODO al posto di tutti i TODO vanno messi i metodi per gestire le connessioni
 
 	public static HashMap<Player, View> getPlayersView() {
 		return playersView;
@@ -41,54 +40,67 @@ public class ConnectionManager {
 	}
 
 	public static void startTurn(Player player) {
-		// TODO Auto-generated method stub
-		
+		View view = getView(player);
+		view.startTurn();
 	}
 
 	public static int turnChoice(Player player) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.turnChoice();
+		return choice;
 	}
 
 	public static void moveAlreadyDone(Player player) {
-		// TODO Auto-generated method stub
-		
+		View view = getView(player);
+		view.moveAlreadyDone();
 	}
 
 	public static int chooseZone(Player player, Board board) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.chooseZone(board);
+		return choice;
 	}
 
 	public static int choosePosition(Player player, Position[] positions) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.choosePosition(positions);
+		return choice;
 	}
 
 	public static int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.chooseFamilyMember(familyMembers);
+		return choice;
 	}
 
 	public static int askForAlternativeCost(Player player, ArrayList<Resource> cost,
 			ArrayList<Resource> alternativeCost) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.askForAlternativeCost(cost, alternativeCost);
+		return choice;
 	}
 
 	public static int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.askForCouncilPrivilege(councilPrivileges);
+		return choice;
 	}
 
 	public static int askForServants(Player player, int numberOfServants) {
-		// TODO Auto-generated method stub
-		return 0;
+		View view = getView(player);
+		int choice = view.askForServants(numberOfServants);
+		return choice;
 	}
 
-	public static int askForAction(Player player, Position[] zonePositions) {
-		// TODO Auto-generated method stub
-		return 0;
+	public static int askForInformation(Player player, Player[] players) {
+		View view  = getView(player);
+		int choice = view.askForInformation(players);
+		return choice;
+	}
+
+	public static void showPersonalBoard(Player player, PersonalBoard personalBoard) {
+		View view = getView(player);
+		view.showPersonalBoard(personalBoard);
 	}
 
 }

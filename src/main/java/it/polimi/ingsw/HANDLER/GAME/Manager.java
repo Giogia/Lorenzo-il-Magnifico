@@ -15,6 +15,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -53,8 +54,12 @@ public class Manager {
 			case 4:
 				activationLeaderCardEffectManager(player);
 				break;
-		
+				
 			case 5:
+				askForInformation(player);
+				break;
+		
+			case 6:
 				if (PassTurnHandler.handle(player)){
 					return;
 				}
@@ -62,6 +67,16 @@ public class Manager {
 			}
 		}
 			
+	}
+
+	private static void askForInformation(Player player) {
+		Player[] players = Game.getBoard().getPlayers();
+		int choice = ConnectionManager.askForInformation(player, players);
+		if (choice == players.length + 1){
+			return;
+		}
+		PersonalBoard personalBoard = players[choice - 1].getPersonalBoard();
+		ConnectionManager.showPersonalBoard(player, personalBoard);
 	}
 
 	private static void activationLeaderCardEffectManager(Player player) {
@@ -187,7 +202,7 @@ public class Manager {
 	public static Position askForAction(FamilyMember familyMember, ActionZone zone) {
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		int choice = ConnectionManager.askForAction(player, zonePositions);
+		int choice = ConnectionManager.choosePosition(player, zonePositions);
 		return zonePositions[choice - 1];
 	}
 
