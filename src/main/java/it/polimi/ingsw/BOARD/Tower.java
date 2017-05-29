@@ -7,10 +7,10 @@ public class Tower extends ActionZone{
 	private boolean occupiedYet;
 	private DevelopmentCardType developmentCardType;
 	
-	public Tower(int occupiedCost, boolean occupiedYet, DevelopmentCardType developmentCardType) { 
-		super("tower");
-		this.occupiedCost = occupiedCost;
-		this.occupiedYet = occupiedYet;
+	public Tower(DevelopmentCardType developmentCardType) { 
+		positions = new TowerFloor[4];
+		occupiedCost = 0;
+		occupiedYet = false;
 		this.developmentCardType = developmentCardType;
 	}
 	

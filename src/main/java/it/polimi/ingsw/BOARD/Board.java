@@ -1,12 +1,14 @@
 package it.polimi.ingsw.BOARD;
 
+import java.util.ArrayList;
+
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.*;
 
 
 public class Board {
 
 	private Player[] players;
-	private ExcommunicationTile[] excommunicationTiles;
 	private Tower[] towers;
 	private Market market;
 	private CouncilPalace councilPalace;
@@ -15,15 +17,20 @@ public class Board {
 	private RoundOrder roundOrder;
 	
 	
-	public Board(Player[] player, ExcommunicationTile[] excommunicationTile, Tower[] tower, Market market,
-				 CouncilPalace councilPalace, HarvestArea harvestArea, ProductionArea productionArea) {
-		this.players = player; 
-		this.excommunicationTiles = excommunicationTile;
-		this.towers = tower;
-		this.market = market;
-		this.councilPalace = councilPalace;
-		this.harvestArea = harvestArea;
-		this.productionArea = productionArea;
+	public Board(ArrayList<Player> players) {
+		int numberOfPlayers = players.size();
+		
+		this.players = new Player[numberOfPlayers]; 
+		market = new Market(numberOfPlayers);
+		councilPalace = new CouncilPalace();
+		harvestArea = new HarvestArea(numberOfPlayers);
+		productionArea = new ProductionArea(numberOfPlayers);
+		
+		towers[0] = new Tower(DevelopmentCardType.territory);
+		towers[1] = new Tower(DevelopmentCardType.character);
+		towers[2] = new Tower(DevelopmentCardType.building);
+		towers[3] = new Tower(DevelopmentCardType.venture);
+		
 	}
 	
 	public Player[] getPlayers() {
@@ -32,10 +39,6 @@ public class Board {
 
 	public Player getPlayer(int player){
 		return this.players[player];
-	}
-	
-	public ExcommunicationTile getExcommunicationTile(int excommunicationTileNumber){
-		return this.excommunicationTiles[excommunicationTileNumber];
 	}
 	
 	public Tower getTower(int towerNumber){
@@ -65,10 +68,6 @@ public class Board {
 	
 	public void setPlayer(Player players, int playerNumber){
 		this.players[playerNumber] = players;
-	}
-	
-	public void setExcommunicationTile(ExcommunicationTile[] excommunicationTile) {
-		this.excommunicationTiles = excommunicationTile;
 	}
 	
 	public void setTower(Tower tower, int towerNumber){

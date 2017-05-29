@@ -13,14 +13,14 @@ public class Player {
 	private Color color;
 	public enum Color {RED, BLUE, YELLOW, GREEN}
 	private Board board;
-	private PersonalBoard personalBoard=new PersonalBoard();
+	private PersonalBoard personalBoard;
 	private ArrayList<LeaderCard> leaderCardInHand;
 	private ArrayList<FamilyMember> familyMembers;
 	
-	public Player(String name, Color color, Board board) {
+	public Player(String name, Color color) {
 		this.name=name;
 		this.color=color;
-		this.board=board;
+		personalBoard = new PersonalBoard();
 	}
 	
 	public void setFamilyMember(ArrayList<FamilyMember> familyMembers) {

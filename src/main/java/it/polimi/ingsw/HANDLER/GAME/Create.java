@@ -407,19 +407,19 @@ public class Create {
 			answer = in.nextInt();
 			switch (answer){
 			case 1:	
-				zone = new Tower(0, false, DevelopmentCardType.territory);//first 2 parameters are random
+				zone = new Tower(DevelopmentCardType.territory);//first 2 parameters are random
 				break;
 	
 			case 2:
-				zone = new Tower(0, false, DevelopmentCardType.building);//first 2 parameters are random
+				zone = new Tower(DevelopmentCardType.building);//first 2 parameters are random
 				break;
 			
 			case 3:
-				zone = new Tower(0, false, DevelopmentCardType.character);
+				zone = new Tower(DevelopmentCardType.character);
 				break;
 				
 			case 4:
-				zone = new Tower(0, false, DevelopmentCardType.venture);
+				zone = new Tower(DevelopmentCardType.venture);
 				break;
 			
 			case 5:

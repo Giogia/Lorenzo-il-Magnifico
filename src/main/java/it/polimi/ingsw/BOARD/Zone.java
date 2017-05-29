@@ -1,9 +1,16 @@
 package it.polimi.ingsw.BOARD;
 
 public abstract class Zone{
-	private Position[] positions;
+	protected Position[] positions;
 	
 	
+	public Zone(){
+	}
+	
+	public Zone(int numberOfPositions) {
+		positions = new Position[numberOfPositions];
+	}
+
 	public Position getPosition(int position) {
 		return this.positions[position];
 	}
