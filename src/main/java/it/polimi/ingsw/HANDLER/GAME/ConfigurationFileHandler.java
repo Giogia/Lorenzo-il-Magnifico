@@ -50,8 +50,8 @@ import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
-		/*TO READ FROM FILE
-		File file = new File("prova.txt");
+		//TO READ FROM FILE
+		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
 		//In this way I can use spaces between characters
@@ -63,18 +63,14 @@ public class ConfigurationFileHandler {
 		finally{
 			scanner.close();
 		}
-		Character data = toDeserialize(inJson);*/
-		
-		HashMap<Integer, Character> prova = new HashMap<>();
-		Character ch1 = new Character("marco", null, 3, null, null);
-		prova.put(3, ch1);
-		System.out.println(toSerialize(prova));
+		DataFromFile data = toDeserialize(inJson);
+		System.out.println(data.getBuildings().toString());
 	}
 	
 	
 	private static String toSerialize(Object object){
 		try{
-			Gson gsonToSerialize = new Gson();
+			Gson gsonToSerialize = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
 			return gsonToSerialize.toJson(object);
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -82,15 +78,9 @@ public class ConfigurationFileHandler {
 		}
 	}
 	
-	private static ActionBonus toDeserialize(String inJson){
+	private static DataFromFile toDeserialize(String inJson){
 		try{
 			//Type requestListTypeToken = new TypeToken<List<Territory>>() {}.getType();
-			final RuntimeTypeAdapterFactory<ActionZone> t6 = RuntimeTypeAdapterFactory
-					.of(ActionZone.class, "type")
-			        .registerSubtype(Tower.class, "tower")
-			        .registerSubtype(ProductionArea.class, "productionArea")
-			        .registerSubtype(HarvestArea.class, "harvestArea");
-			
 			
 			final RuntimeTypeAdapterFactory<ResourceBonus> t1 = RuntimeTypeAdapterFactory
 					.of(ResourceBonus.class, "subtype")
@@ -126,6 +116,12 @@ public class ConfigurationFileHandler {
 					.of(Bonus.class, "type1")
 			        .registerSubtype(ImmediateBonus.class, "immediateBonus");
 			
+			final RuntimeTypeAdapterFactory<ActionZone> t6 = RuntimeTypeAdapterFactory
+					.of(ActionZone.class, "type")
+			        .registerSubtype(HarvestArea.class, "harvestArea")
+			        .registerSubtype(ProductionArea.class, "productionArea")
+			        .registerSubtype(Tower.class, "tower");
+			
 			Gson gsonToDeserialize = new GsonBuilder().registerTypeAdapterFactory(t1)
 					.registerTypeAdapterFactory(t2)
 					.registerTypeAdapterFactory(t3)
@@ -134,12 +130,11 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t6)
 					.create();
 			
-			return gsonToDeserialize.fromJson(inJson, ActionBonus.class);
+			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			
 		} catch (Exception e){
 			e.printStackTrace();
-			//return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null);
-			return new ActionBonus(null);
+			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null);
 		}
 	}
 }

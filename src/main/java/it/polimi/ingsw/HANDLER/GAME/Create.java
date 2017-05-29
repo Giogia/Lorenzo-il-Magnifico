@@ -391,6 +391,7 @@ public class Create {
 	
 	public static ActionBonus createActionBonus(){
 		HashMap<ActionZone, Integer> action = new HashMap<>();
+		ArrayList<Resource> resources = new ArrayList<>();
 		boolean vuoleAltraZona = true;
 		String risposta;
 		int answer;
@@ -439,7 +440,17 @@ public class Create {
 			risposta = in2.nextLine();
 			if (!(risposta.equals("si"))) vuoleAltraZona=false;
 		}
-		return new ActionBonus(action);
+		
+		System.out.println("Vi è un bonus di risorse associato all'action bonus?");
+		String risp = in2.nextLine();
+		
+		if(risp.equals("si")){
+			resources= createArrayResource();
+		}else{
+			resources = null;
+		}
+		
+		return new ActionBonus(action, resources);
 	}
 	
 	private static AddFamilyMemberBonus createAddFamilyMemberBonus(){

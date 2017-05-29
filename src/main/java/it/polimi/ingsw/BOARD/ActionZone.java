@@ -4,6 +4,7 @@ public abstract class ActionZone extends Zone{
 	String type;
 	
 	public ActionZone(String type) {
+		this.type= type;
 	}
 
 }
