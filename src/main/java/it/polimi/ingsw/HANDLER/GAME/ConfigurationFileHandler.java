@@ -2,6 +2,9 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.google.gson.*;
@@ -24,6 +27,12 @@ import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.Territory;
+import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CARD.Character;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -36,7 +45,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
 		
-		//TO READ FROM config.json
+		/*TO READ FROM config.json
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
@@ -50,7 +59,85 @@ public class ConfigurationFileHandler {
 			scanner.close();
 		}
 		DataFromFile data = toDeserialize(inJson);
-		System.out.println(data.getBuildings().toString());
+		System.out.println(data.getBuildings().toString());*/
+		
+		ArrayList<Territory> territories = new ArrayList<>();
+		ArrayList<Character> characters = new ArrayList<>();
+		ArrayList<Venture> ventures = new ArrayList<>();
+		ArrayList<Building> buildings = new ArrayList<>();
+		ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
+		ArrayList<PersonalBonusTile> personalBonusTiles = new ArrayList<>();
+		ArrayList<ResourceBonus> councilPrivileges = new ArrayList<>();
+		int[] fromFaithPointsToVictoryPoints = new int[15]; //tracciato punti fede
+		//in first position: tot victoryPoints to first player, second position tot to second player and so on
+		int[] fromMilitaryPointsToVictoryPoints= new int[2];  
+		//punti vittoria in base al numero di carte di un certo tipo
+		int[] victoryPointsForTerritoryCard= new int[6];
+		int[] victoryPointsForCharacterCard = new int[6];
+		//military points requirement for territory card
+		int[] militaryRequirement = new int[6];	
+		
+		for(int i= 0; i < 21; i++){
+			System.out.println("inserire una carta scomunica: ");
+			excommunicationTiles.add(Create.createExcommunicationTile());
+		}
+		
+		for(int i=0; i < 5; i++){
+			System.out.println(
+					"inserire le personal bonus tile (NB: ti verrà chiesto 5 volte (chiedi a michele))");
+			personalBonusTiles.add(Create.createPersonalBonusTile());
+		}
+		
+		for(int i=0; i<5; i++){
+			System.out.println("inserisci il bonus che ricevi dal privilegio del consiglio: ");
+			councilPrivileges.add(Create.createResourceBonus());
+		}
+		
+		System.out.println("valore dei punti vittoria per tot punti fede:");
+		fromFaithPointsToVictoryPoints = Create.genericArray();
+		
+		System.out.println("valore dei punti vittoria per tot punti militari:");
+		fromMilitaryPointsToVictoryPoints = Create.genericArray();
+		
+		System.out.println("punti vittoria per tot carte territorio:");
+		victoryPointsForTerritoryCard = Create.genericArray();
+		
+		System.out.println("valore dei punti vittoria per tot carte personaggio:");
+		victoryPointsForCharacterCard = Create.genericArray();
+		
+		System.out.println("quanti punti militari per carta territorio:");
+		militaryRequirement = Create.genericArray();
+		
+		for(int i= 0; i < 24; i++){
+			System.out.println("creare la prossima carta territorio: ");
+			territories.add(Create.createTerritory());
+		}
+		for(int i= 0; i < 24; i++){
+			System.out.println("creare la prossima carta edificio: ");
+			buildings.add(Create.createBuilding());
+		}
+		for(int i= 0; i < 24; i++){
+			System.out.println("creare la prossima carta azione: ");
+			ventures.add(Create.createVenture());
+		}
+		for(int i= 0; i < 24; i++){
+			System.out.println("creare la prossima carta personaggio: ");
+			characters.add(Create.createCharacter());
+		}
+		
+		DataFromFile data = new DataFromFile(territories, characters, ventures, buildings, excommunicationTiles, personalBonusTiles, councilPrivileges, fromFaithPointsToVictoryPoints, fromMilitaryPointsToVictoryPoints, victoryPointsForTerritoryCard, victoryPointsForCharacterCard, militaryRequirement);
+		System.out.println(toSerialize(data));
+		
+		//scrivi su file!!!
+		FileOutputStream prova;
+		try {
+			prova = new FileOutputStream("config.json");
+			PrintStream scrivi = new PrintStream(prova);
+			scrivi.print(toSerialize(data));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	
