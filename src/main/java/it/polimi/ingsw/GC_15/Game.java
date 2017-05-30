@@ -8,13 +8,17 @@ import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
 
 public class Game {
-	private static ArrayList<Player> players;
+	private static Player[] players;
 	private static RoundOrder roundOrder;
 	private static Board board;
 	
+	public Game(int numberOfPlayers) {
+		players = new Player[numberOfPlayers];
+		roundOrder = new RoundOrder();
+		board = new Board();
+	}
 	
-	
-	public static void start(){
+	public static void handle(){
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
 		EndGameHandler.handle(board);
@@ -22,5 +26,9 @@ public class Game {
 
 	public static Board getBoard() {
 		return board;
+	}
+	
+	public static Player[] getPlayers() {
+		return players;
 	}
 }

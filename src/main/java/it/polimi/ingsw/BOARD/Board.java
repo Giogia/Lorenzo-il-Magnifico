@@ -5,9 +5,6 @@ import it.polimi.ingsw.GC_15.*;
 
 
 public class Board {
-
-	private Player[] players;
-	private ExcommunicationTile[] excommunicationTiles;
 	private Tower[] towers;
 	private Market market;
 	private CouncilPalace councilPalace;
@@ -16,30 +13,27 @@ public class Board {
 	private RoundOrder roundOrder;
 	
 	
-	public Board(Player[] player, ExcommunicationTile[] excommunicationTile, Tower[] tower, Market market,
-				 CouncilPalace councilPalace, HarvestArea harvestArea, ProductionArea productionArea) {
-		this.players = player; 
-		this.excommunicationTiles = excommunicationTile;
-		this.towers = tower;
-		this.market = market;
-		this.councilPalace = councilPalace;
-		this.harvestArea = harvestArea;
-		this.productionArea = productionArea;
+	public Board() {
+		towers = new Tower[4];
+		towers[0] = new Tower(DevelopmentCardType.TERRITORY);
+		towers[1] = new Tower(DevelopmentCardType.CHARACTER);
+		towers[2] = new Tower(DevelopmentCardType.BUILDING);
+		towers[3] = new Tower(DevelopmentCardType.VENTURE);
+		market = new Market();
+		councilPalace = new CouncilPalace();
+		harvestArea = new HarvestArea();
+		productionArea = new ProductionArea();
 	}
 	
 	public Player[] getPlayers() {
-		return players;
+		return Game.getPlayers();
 	}
 
-	public Player getPlayer(int player){
-		return this.players[player];
+	public Player getPlayer(int position){
+		Player[] players = getPlayers();
+		return players[position];
 	}
-	
-	public ExcommunicationTile getExcommunicationTile(int excommunicationTileNumber){
-		return this.excommunicationTiles[excommunicationTileNumber];
-	}
-	
-	
+		
 	public Market getMarket(){
 		return this.market;
 	}
@@ -59,14 +53,6 @@ public class Board {
 	
 	public RoundOrder getRoundOrder() {
 		return roundOrder;
-	}
-	
-	public void setPlayer(Player players, int playerNumber){
-		this.players[playerNumber] = players;
-	}
-	
-	public void setExcommunicationTile(ExcommunicationTile[] excommunicationTile) {
-		this.excommunicationTiles = excommunicationTile;
 	}
 	
 	public void setTower(Tower tower, int towerNumber){

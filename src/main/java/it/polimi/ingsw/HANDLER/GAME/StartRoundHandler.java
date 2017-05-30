@@ -32,7 +32,7 @@ public class StartRoundHandler {
 		return instance;
 	}
 	
-	public static void handle(int period, ArrayList<Player> players, Board board){
+	public static void handle(int period, Player[] players, Board board){
 		ArrayList<Dice> dices = rollDices();
 		for (Player player : players) {
 			setFamilyMembersValue(dices, player);
