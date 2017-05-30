@@ -18,7 +18,7 @@ public class Game {
 		board = new Board();
 	}
 	
-	public static void handle(){
+	public static void start(){
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
 		EndGameHandler.handle(board);

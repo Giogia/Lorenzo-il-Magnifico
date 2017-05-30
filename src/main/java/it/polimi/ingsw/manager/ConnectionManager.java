@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.view.View;
 
 public class ConnectionManager {
 	private static ConnectionManager instance;
+	private ArrayList<View> temporaryView = new ArrayList<>();
 	private static HashMap<Player, View> playersView;
 	//TODO forse hashmap per le connessioni
 	
@@ -28,6 +30,14 @@ public class ConnectionManager {
 	private ConnectionManager() {
 	}
 
+	public void acceptUser(View view){
+		temporaryView.add(view);
+		System.out.println("nuovo utente nella partita");
+		if(temporaryView.size()==2){
+			Game.start();
+		}
+	}
+	
 	public static HashMap<Player, View> getPlayersView() {
 		return playersView;
 	}
