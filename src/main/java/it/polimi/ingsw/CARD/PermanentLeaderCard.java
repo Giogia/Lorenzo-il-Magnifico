@@ -12,6 +12,6 @@ public class PermanentLeaderCard extends LeaderCard{
 	}
 	
 	public void activatePermanentBonus(){
-		//TODO
+		//TODO PERMANENT
 	}
 }

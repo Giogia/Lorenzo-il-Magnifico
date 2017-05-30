@@ -15,6 +15,6 @@ public class Territory extends DevelopmentCard {
 	}
 	
 	public void getHarvestBonus(FamilyMember familyMember){
-		//TODO
+		//TODO PERMANENT
 	}
 }

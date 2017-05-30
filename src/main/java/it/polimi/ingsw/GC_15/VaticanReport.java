@@ -46,7 +46,7 @@ public final class VaticanReport {
 
 
 	public static void check() {
-		// TODO Auto-generated method stub
+		// TODO PERMANENT
 		
 	}
 }

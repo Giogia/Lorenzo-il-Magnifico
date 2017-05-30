@@ -109,13 +109,13 @@ public class Create {
 	}
 	
 	public static LeaderCard createLeader(){
-		return null; //TODO
+		return null; //TODO REGOLE AVANZATE
 	}
 	
 	public static ExcommunicationTile createExcommunicationTile(){
 		System.out.println("Inserisci il periodo: ");
 		int periodo = in.nextInt();
-		//Bonus[] malus = createArrayMalus();TODO
+		//Bonus[] malus = createArrayMalus();TODO REGOLE AVANZATE
 		Bonus[] malus = null;
 		return new ExcommunicationTile(periodo, malus);
 	}

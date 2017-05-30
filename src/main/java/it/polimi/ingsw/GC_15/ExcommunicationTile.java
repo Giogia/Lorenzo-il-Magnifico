@@ -12,6 +12,6 @@ public class ExcommunicationTile {
 	}
 	
 	public void giveMalus(Player player){
-		//TODO
+		//TODO PERMANENT
 	}
 }

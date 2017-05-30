@@ -19,7 +19,7 @@ public class Building extends DevelopmentCard{
 	
 	public void getProductionBonus(FamilyMember familyMember){
 		for(int i=0; i < secondaryEffect.size(); i++){
-			//TODO
+			//TODO PERMANENT
 		}
 	}
 }
