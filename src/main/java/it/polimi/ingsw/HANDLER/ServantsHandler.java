@@ -4,10 +4,10 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.CONTROLLER.ResourceController;
 import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.HANDLER.GAME.Manager;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
+import it.polimi.ingsw.manager.Manager;
 
 public class ServantsHandler {
 

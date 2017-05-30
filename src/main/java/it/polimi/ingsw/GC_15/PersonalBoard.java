@@ -130,6 +130,12 @@ public class PersonalBoard {
 	public void setPersonalBonusTile(PersonalBonusTile personalBonusTile) {
 		this.personalBonusTile = personalBonusTile;
 	}
+
+
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){
 		for(CardContainer cardContainer: cardContainers){

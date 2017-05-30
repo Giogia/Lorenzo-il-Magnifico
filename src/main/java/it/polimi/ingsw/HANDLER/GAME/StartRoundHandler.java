@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import it.polimi.ingsw.BOARD.Board;
-import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.TowerFloor;
-import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
-import it.polimi.ingsw.CARD.Territory;
-import it.polimi.ingsw.CARD.Venture;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -33,7 +29,7 @@ public class StartRoundHandler {
 		return instance;
 	}
 	
-	public static void handle(int period, ArrayList<Player> players, Board board){
+	public static void handle(int period, Player[] players, Board board){
 		ArrayList<Dice> dices = rollDices();
 		for (Player player : players) {
 			setFamilyMembersValue(dices, player);

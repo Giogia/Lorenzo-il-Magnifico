@@ -2,7 +2,6 @@ package it.polimi.ingsw.BONUS;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 

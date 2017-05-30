@@ -1,7 +1,6 @@
 package it.polimi.ingsw.CONTROLLER;
 
 import it.polimi.ingsw.BOARD.*;
-import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
 import java.util.*;

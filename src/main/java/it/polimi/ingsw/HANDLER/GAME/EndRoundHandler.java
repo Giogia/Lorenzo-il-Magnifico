@@ -3,6 +3,7 @@ package it.polimi.ingsw.HANDLER.GAME;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
@@ -27,6 +28,7 @@ public class EndRoundHandler {
 		if (turn % 2 == 0){
 			VaticanReport.check();
 		}
+		PassTurnController.lastMove(null);
 	}
 	
 	/*This Handler see if there are some FamilyMembers in CouncilPalace.

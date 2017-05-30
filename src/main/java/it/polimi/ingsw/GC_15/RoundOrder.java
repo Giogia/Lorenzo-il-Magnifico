@@ -3,8 +3,11 @@ package it.polimi.ingsw.GC_15;
 import java.util.ArrayList;
 
 public class RoundOrder {
-
 	private ArrayList<Player> players;
+	
+	public RoundOrder() {
+		players = new ArrayList<>();
+	}
 	
 	public ArrayList<Player> getPlayers() {
 		return players;

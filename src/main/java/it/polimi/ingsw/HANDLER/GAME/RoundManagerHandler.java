@@ -1,10 +1,9 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
+import it.polimi.ingsw.manager.Manager;
 
 public class RoundManagerHandler {
 	private static RoundManagerHandler instance;
@@ -19,7 +18,7 @@ public class RoundManagerHandler {
 		return instance;
 	}
 	
-	public static void handle(RoundOrder roundOrder, Board board, ArrayList<Player> players){
+	public static void handle(RoundOrder roundOrder, Board board, Player[] players){
 		for (int turn = 1; turn <= 6; turn++){
 			int period = turn/2 +1;
 			StartRoundHandler.handle(period, players, board);

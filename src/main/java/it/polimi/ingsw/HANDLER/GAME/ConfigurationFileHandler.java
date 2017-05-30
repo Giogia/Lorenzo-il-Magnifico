@@ -2,16 +2,9 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.PrintStream;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 import com.google.gson.*;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import it.polimi.ingsw.BOARD.ActionZone;
@@ -31,14 +24,6 @@ import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
-import it.polimi.ingsw.CARD.Building;
-import it.polimi.ingsw.CARD.Card;
-import it.polimi.ingsw.CARD.Character;
-import it.polimi.ingsw.CARD.Territory;
-import it.polimi.ingsw.CARD.Venture;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
-import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;

@@ -13,8 +13,8 @@ public class Position {
 	protected int diceRequirement;
 
 	public Position(ArrayList<ImmediateBonus> boardBonus, int diceRequirement) {
-		boardBonus = boardBonus;
-		diceRequirement = diceRequirement;
+		this.boardBonus = boardBonus;
+		this.diceRequirement = diceRequirement;
 		familyMembers = new ArrayList<>();
 	}
 	
@@ -56,5 +56,9 @@ public class Position {
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
-	
+
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

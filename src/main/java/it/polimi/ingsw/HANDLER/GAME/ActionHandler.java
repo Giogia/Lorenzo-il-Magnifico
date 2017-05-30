@@ -18,7 +18,7 @@ public final class ActionHandler {
     
     
     public static boolean handle(FamilyMember familyMember, Zone zone,Position position){
-    	Manager.handleServants(familyMember);
+    	ServantsHandler.handle(familyMember);
     	if(zone instanceof Market){
     		return MarketHandler.handle(familyMember,position);
     	}

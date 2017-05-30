@@ -34,4 +34,9 @@ public class FamilyMember {
 	public void multValue(int value) {
 		this.value= this.value * value;
 	}
+
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -2,7 +2,6 @@ package it.polimi.ingsw.BONUS;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -46,6 +45,14 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	
 	public ArrayList<Resource> getResources() {
 		return resources;
+	}
+
+	public String getDescription() {
+		String message = subtype + "\n";
+		for (Resource resource : resources) {
+			message = message + resource.getDescription() + "\n";
+		}
+		return message;
 	}
 	
 }

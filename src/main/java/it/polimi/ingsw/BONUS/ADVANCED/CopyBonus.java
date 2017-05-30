@@ -1,9 +1,5 @@
 package it.polimi.ingsw.BONUS.ADVANCED;
 
-import it.polimi.ingsw.BONUS.ImmediateBonus;
-import it.polimi.ingsw.CARD.LeaderCard;
-import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
-import it.polimi.ingsw.GC_15.Player;
 
 
 /*public class CopyBonus extends ImmediateBonus{

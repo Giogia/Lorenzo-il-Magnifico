@@ -4,15 +4,13 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
-import it.polimi.ingsw.BOARD.TowerFloor;
-import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
-import it.polimi.ingsw.HANDLER.GAME.Manager;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.Manager;
 
 public class FakeFamilyMemberHandler {
 	private static boolean isThereCostBonus = false;

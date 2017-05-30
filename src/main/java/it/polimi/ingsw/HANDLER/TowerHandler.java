@@ -3,13 +3,11 @@ package it.polimi.ingsw.HANDLER;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
-import it.polimi.ingsw.HANDLER.GAME.Manager;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
-import it.polimi.ingsw.controller.*;
+import it.polimi.ingsw.manager.Manager;
 import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -28,7 +26,6 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus;
 
 public class TowerHandler {
 
@@ -141,19 +138,20 @@ public class TowerHandler {
 		if (checkResources(playerResources1)){
 			if (playerMilitaryPoints.getAmount() >= requirement){
 				if (checkResources(playerResources2)){
-					ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(cost, alternativeCost);
+					ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(familyMember.getPlayer(), cost, alternativeCost);
 					add(playerResources, neg(chooseCost));
 					return true;
 				}
-			}
 			add(playerResources, neg(cost));
 			return true;
+			}
 		}
 		else if(playerMilitaryPoints.getAmount() >= requirement){
 			if (checkResources(playerResources2))
 				add(playerResources, neg(alternativeCost));
 				return true;
 		}
+		
 		return false;
 	}
 

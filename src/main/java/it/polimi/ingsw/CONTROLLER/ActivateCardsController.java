@@ -1,11 +1,5 @@
 package it.polimi.ingsw.CONTROLLER;
 
-import java.util.ArrayList;
-
-import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.RESOURCE.Resource;
-
 public class ActivateCardsController implements Controller {
 
   /*public static boolean check(ArrayList<DevelopmentCard> cardsToActivate, Player player){

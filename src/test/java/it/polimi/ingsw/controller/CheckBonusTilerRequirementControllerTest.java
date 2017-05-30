@@ -6,9 +6,7 @@ import org.junit.Test;
 
 import it.polimi.ingsw.BOARD.HarvestArea;
 import it.polimi.ingsw.BOARD.ProductionArea;
-import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.Zone;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CONTROLLER.CheckBonusTileRequirementController;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;

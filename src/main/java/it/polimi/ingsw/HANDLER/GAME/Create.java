@@ -408,7 +408,7 @@ public class Create {
 			answer = in.nextInt();
 			switch (answer){
 			case 1:	
-				zone = new Tower(DevelopmentCardType.territory);//first 2 parameters are random
+				zone = new Tower(DevelopmentCardType.territory);
 				break;
 	
 			case 2:

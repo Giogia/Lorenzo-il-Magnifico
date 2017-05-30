@@ -1,14 +1,11 @@
 package it.polimi.ingsw.BOARD;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.*;
 
 
 public class Board {
 
-	private Player[] players;
 	private Tower[] towers;
 	private Market market;
 	private CouncilPalace councilPalace;
@@ -16,11 +13,8 @@ public class Board {
 	private ProductionArea productionArea;
 	private RoundOrder roundOrder;
 	
-	
-	public Board(ArrayList<Player> players) {
-		int numberOfPlayers = players.size();
-		
-		this.players = new Player[numberOfPlayers]; 
+	public Board() {
+		int numberOfPlayers = Game.getPlayers().length;
 		market = new Market(numberOfPlayers);
 		councilPalace = new CouncilPalace();
 		harvestArea = new HarvestArea(numberOfPlayers);
@@ -34,13 +28,9 @@ public class Board {
 	}
 	
 	public Player[] getPlayers() {
-		return players;
+		return Game.getPlayers();
 	}
 
-	public Player getPlayer(int player){
-		return this.players[player];
-	}
-	
 	public Tower getTower(int towerNumber){
 		return this.towers[towerNumber];
 	}
@@ -64,10 +54,6 @@ public class Board {
 	
 	public RoundOrder getRoundOrder() {
 		return roundOrder;
-	}
-	
-	public void setPlayer(Player players, int playerNumber){
-		this.players[playerNumber] = players;
 	}
 	
 	public void setTower(Tower tower, int towerNumber){
@@ -109,6 +95,13 @@ public class Board {
 		return towers;
 	}
 	
+	public Tower getTower(DevelopmentCardType developmentCardType){
+		for (Tower tower : towers) {
+			if (tower.getDevelopmentCardType().equals(developmentCardType))
+				return tower;
+		} 
+		return null;
+	}
 }
 
 

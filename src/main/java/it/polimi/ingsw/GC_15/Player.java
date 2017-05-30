@@ -7,7 +7,6 @@ import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.ResourceType;
-import it.polimi.ingsw.RESOURCE.Servants;
 
 public class Player {
 	private String name;
@@ -27,11 +26,7 @@ public class Player {
 	public Color getColor() {
 		return color;
 	}
-	
-	public String getName() {
-		return name;
-	}
-	
+
 	public Board getBoard() {
 		return board;
 	}
@@ -119,6 +114,10 @@ public class Player {
 	
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 }

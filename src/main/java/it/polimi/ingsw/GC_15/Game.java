@@ -1,19 +1,22 @@
 package it.polimi.ingsw.GC_15;
 
-import java.util.ArrayList;
-
 import it.polimi.ingsw.BOARD.Board;
-import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.EndGameHandler;
 import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
 
 public class Game {
-	private static ArrayList<Player> players;
+	private static Player[] players;
 	private static RoundOrder roundOrder;
 	private static Board board;
 	private static DataFromFile data;
+	
+	public Game(int numberOfPlayers) {
+		players = new Player[numberOfPlayers];
+		roundOrder = new RoundOrder();
+		board = new Board();
+	}
 	
 	public static void start(){
 		//TODO data = ConfigurationFileHandler.set();
@@ -24,5 +27,13 @@ public class Game {
 	
 	public static DataFromFile getData() {
 		return data;
+	}
+
+	public static Board getBoard() {
+		return board;
+	}
+	
+	public static Player[] getPlayers() {
+		return players;
 	}
 }
