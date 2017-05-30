@@ -17,4 +17,11 @@ public class Territory extends DevelopmentCard {
 	public void getHarvestBonus(FamilyMember familyMember){
 		//TODO
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = super.getDescription();
+		description = description + "Condizione per attivazione Raccolto: " + activationConditionHarvest + "\n";
+		return description;
+	}
 }

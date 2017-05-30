@@ -8,4 +8,10 @@ public class Market extends Zone{
 		}
 		positions = new Position[2];
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Mercato";
+		return description;
+	}
 }

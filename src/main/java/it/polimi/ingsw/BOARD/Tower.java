@@ -22,4 +22,10 @@ public class Tower extends ActionZone{
 	public TowerFloor[] getPositions() {
 		return (TowerFloor[]) super.getPositions();
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Torre " + developmentCardType.name();
+		return description;
+	}
 }

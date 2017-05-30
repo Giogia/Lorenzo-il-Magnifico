@@ -11,4 +11,10 @@ public class ProductionArea extends ActionZone{
 		}
 		positions = new Position[2];
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Area Produzione";
+		return description;
+	}
 }

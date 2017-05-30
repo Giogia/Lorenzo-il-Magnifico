@@ -12,4 +12,10 @@ public class HarvestArea extends ActionZone {
 		}
 		positions = new Position[2];
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Area Raccolto";
+		return description;
+	}
 }

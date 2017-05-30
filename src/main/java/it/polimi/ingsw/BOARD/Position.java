@@ -58,7 +58,10 @@ public class Position {
 	}
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		String description = "Valore minimo del familiare: " + diceRequirement + "\n";
+		for (ImmediateBonus immediateBonus : boardBonus) {
+			description = description + immediateBonus.getDescription() + "\n";
+		}
+		return description;
 	}
 }

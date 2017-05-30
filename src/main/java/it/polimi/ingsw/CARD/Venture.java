@@ -18,4 +18,26 @@ public class Venture extends DevelopmentCard{
 		this.cost=cost;
 		this.alternativeCost=alternativeCost;
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "";
+		if (cost != null){
+			description = description + "Costo: \n";
+			for (Resource resource : cost) {
+				description = description + resource.getDescription() + "\n";
+			}
+			if (alternativeCost != null){
+				description = description + "Costo alternativo: \n Hai bisogno di " + militaryPointRequirement + " Punti militari \n"
+						+ "Costo: " + alternativeCost.getDescription() + "\n";
+			}
+			
+		}
+		else {
+			description = description + "Costo: \n Hai bisogno di " + militaryPointRequirement + " Punti militari \n"
+						+ "Costo: " + alternativeCost.getDescription() + "\n";
+		}
+		description = description + super.getDescription();
+		return description;
+	}
 }
