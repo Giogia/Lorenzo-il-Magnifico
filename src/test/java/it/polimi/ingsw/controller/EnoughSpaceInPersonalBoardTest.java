@@ -8,7 +8,6 @@ public class EnoughSpaceInPersonalBoardTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
 	}
 
 }
