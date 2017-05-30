@@ -5,7 +5,7 @@ public final class VaticanReport {
 	private static ExcommunicationTile excommunicationTiles[];
 	
 	
-	private VaticanReport(ExcommunicationTile excommunicationTiles[]) {//TODO: gestire l'eccezione nel caso di array di lunghezza diversa?
+	private VaticanReport(ExcommunicationTile excommunicationTiles[]) {
 		VaticanReport.excommunicationTiles=excommunicationTiles;
 	}
 	

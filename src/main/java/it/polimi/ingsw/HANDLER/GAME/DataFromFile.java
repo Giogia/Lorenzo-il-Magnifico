@@ -111,7 +111,7 @@ public class DataFromFile {
 	private static int[] victoryPointsForCharacterCard;
 	//military points requirement for territory card
 	private static int[] militaryRequirement;
-	//posti azione
+	//TODO: posti azione
 	//private static ArrayList<ImmediateBonus>[] towerTerritoryPositionBonus;//to 0 position there is bonus of floor 0 
 	//private static ArrayList<ImmediateBonus>[] towerCharacterPositionBonus;
 	//private static ArrayList<ImmediateBonus>[] towerBuildingPositionBonus;
@@ -119,6 +119,11 @@ public class DataFromFile {
 	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
 	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
 
+	//TODO
+	//private static ArrayList<LeaderCard> leaderCards; think to them later
+	//condizioni di attivazione di tutte le zone
+	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
+	//timeout per la mossa di un giocatore
 	
 
 	public static void lastCards(DevelopmentCardType developmentCardType, int period,
@@ -155,10 +160,4 @@ public class DataFromFile {
 		}
 		else return null;
 	}
-	
-	//TODO
-	//private static ArrayList<LeaderCard> leaderCards; think to them later
-	//condizioni di attivazione di tutte le zone
-	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
-	//timeout per la mossa di un giocatore
 }
