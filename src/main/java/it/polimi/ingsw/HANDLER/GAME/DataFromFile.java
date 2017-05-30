@@ -33,7 +33,7 @@ public class DataFromFile {
 	//private static ArrayList<ImmediateBonus>[] towerVenturePositionBonus;
 	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
 	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
-	//TODO
+	//TODO PERMANENT
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
@@ -93,7 +93,7 @@ public class DataFromFile {
 	public int[] getMilitaryRequirement() {
 		return militaryRequirement;
 	}
-	//TODO
+	//TODO PERMANENT
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
