@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
 import it.polimi.ingsw.RESOURCE.ResourceType;
@@ -26,8 +27,9 @@ public final class StartGameHandler {
 	
 	public static void handle(Board board){
 		setRandomExcommunicationTiles(Game.getData().getExcommunicationTiles());
-		SetPlayersResources(board);
-		ChooseOrder(board);
+		setPlayersResources(board);
+		chooseOrder(board);
+		setPersonalBonusTiles(board, Game.getData().getPersonalBonusTiles());
 	}
 	
 	
@@ -42,7 +44,7 @@ public final class StartGameHandler {
 		VaticanReport.setExcommunicationTiles(excommunicationTiles);
 	}
 	
-	private static void SetPlayersResources(Board board){
+	private static void setPlayersResources(Board board){
 		int i=0;
 		for(Player player: board.getPlayers()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
@@ -55,7 +57,7 @@ public final class StartGameHandler {
 	}
 	
 		
-	private static void ChooseOrder(Board board) {
+	private static void chooseOrder(Board board) {
 		for(Player player: board.getPlayers()){
 			Random r = new Random();
 			int i =r.nextInt(board.getPlayers().length); //estrae un numero a caso da 1 a 4
@@ -66,6 +68,12 @@ public final class StartGameHandler {
 		}	
 	}
 
+	
+	public static void setPersonalBonusTiles(Board board,ArrayList<PersonalBonusTile> personalBonusTile){
+		for(Player player: board.getPlayers()){
+			player.getPersonalBoard().setPersonalBonusTile(personalBonusTile.get(0));
+		}
+	}
 	
 }
 
