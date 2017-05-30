@@ -20,7 +20,6 @@ public class Tower extends ActionZone{
 	
 	@Override
 	public TowerFloor[] getPositions() {
-		// TODO Auto-generated method stub
 		return (TowerFloor[]) super.getPositions();
 	}
 }
