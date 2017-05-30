@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER.GAME;
+package it.polimi.ingsw.view;
 
 import java.util.ArrayList;
 import java.util.Scanner;

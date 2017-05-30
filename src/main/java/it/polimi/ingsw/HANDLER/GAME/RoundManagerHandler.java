@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
+import it.polimi.ingsw.manager.Manager;
 
 public class RoundManagerHandler {
 	private static RoundManagerHandler instance;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER.GAME;
+package it.polimi.ingsw.manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.view.View;
 
 public class ConnectionManager {
 	private static ConnectionManager instance;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER.GAME;
+package it.polimi.ingsw.manager;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -18,6 +18,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
+import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
