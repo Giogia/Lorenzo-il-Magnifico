@@ -12,6 +12,6 @@ public class OncePerRoundLeaderCard extends LeaderCard{
 	}
 	
 	public void activateOncePerRoundBonus(){
-		//TODO
+		//TODO PERMANENT
 	}
 }

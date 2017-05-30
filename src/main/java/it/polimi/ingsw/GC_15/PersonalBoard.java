@@ -101,7 +101,7 @@ public class PersonalBoard {
 	
 	public void activateDevelopmentCard(DevelopmentCard developmentCard){
 		for(int i = 0; i < developmentCard.secondaryEffect.size(); i++){
-			//TODO
+			//TODO PERMANENT
 		}
 	}
 	

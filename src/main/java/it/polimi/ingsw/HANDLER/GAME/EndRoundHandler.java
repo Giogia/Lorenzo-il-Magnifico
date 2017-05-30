@@ -25,9 +25,9 @@ public class EndRoundHandler {
 	public static void handle(Board board, RoundOrder roundOrder, int turn){
 		handleOrder(roundOrder, board);
 		board.resetPositions();
-		if (turn % 2 == 0){
-			VaticanReport.check();
-		}
+		//if (turn % 2 == 0){ TODO REGOLE AVANZATE
+			//VaticanReport.check();
+		//}
 		PassTurnController.lastMove(null);
 	}
 	

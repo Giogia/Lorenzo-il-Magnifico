@@ -78,17 +78,17 @@ public class Manager {
 	}
 
 	private static void activationLeaderCardEffectManager(Player player) {
-		// TODO Auto-generated method stub
+		// TODO PERMANENT
 		
 	}
 
 	private static void discardLeaderCardManager(Player player) {
-		// TODO Auto-generated method stub
+		// TODO PERMANENT
 		
 	}
 
 	private static void activationLeaderCardManager(Player player) {
-		// TODO Auto-generated method stub
+		// TODO PERMANENT
 		
 	}
 
@@ -205,17 +205,17 @@ public class Manager {
 	}
 
 	public static boolean askForExcommunication(Player player){
-		//TODO 
+		//TODO PERMANENT 
 		return false;
 	}
 	
 	public static LeaderCard choiceLeaderCardToCopy() {
-		//TODO
+		//TODO PERMANENT
 		return null;
 	}
 	
 	public static void getHarvestProductionBonus() {
-		//TODO
+		//TODO PERMANENT
 	}
 
 }
