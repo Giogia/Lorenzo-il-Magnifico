@@ -21,6 +21,7 @@ public class CLIView implements View{
 	private void hereIAm(){
 		connectionManager.acceptUser(this);
 	}
+	
 
 	@Override
 	public void startTurn(Player player) {

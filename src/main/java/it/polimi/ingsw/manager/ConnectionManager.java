@@ -32,7 +32,7 @@ public class ConnectionManager {
 
 	public void acceptUser(View view){
 		temporaryView.add(view);
-		System.out.println("nuovo utente nella partita");
+		System.out.println("Nuovo utente nella partita");
 		if(temporaryView.size()==2){
 			Game.start();
 		}

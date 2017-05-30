@@ -46,7 +46,7 @@ public final class StartGameHandler {
 	
 	private static void setPlayersResources(Board board){
 		int i=0;
-		for(Player player: board.getPlayers()){
+		for(Player player: board.getRoundOrder().getPlayers()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
 			personalBoard.getResource(ResourceType.stones).addAmount(2);
 			personalBoard.getResource(ResourceType.wood).addAmount(2);
@@ -58,14 +58,15 @@ public final class StartGameHandler {
 	
 		
 	private static void chooseOrder(Board board) {
-		for(Player player: board.getPlayers()){
+		ArrayList<Player> players = new ArrayList<>();
+		Player[] gamePlayers = Game.getPlayers();
+		while (players.size() != gamePlayers.length){
 			Random r = new Random();
-			int i =r.nextInt(board.getPlayers().length); //estrae un numero a caso da 1 a 4
-			while(board.getRoundOrder().getPlayer(i)!=null){ //se la posizione e' gia occupata passa a quella dopo
-				i++;
+			int order = r.nextInt(gamePlayers.length);
+			if (!players.contains(gamePlayers[order])){
+				players.add(gamePlayers[order]);
 			}
-			board.getRoundOrder().setplayer(player, i);
-		}	
+		}
 	}
 
 	
