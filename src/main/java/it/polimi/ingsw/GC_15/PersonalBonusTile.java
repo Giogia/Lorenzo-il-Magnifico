@@ -6,16 +6,23 @@ import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
 public class PersonalBonusTile {
-	public final ImmediateBonus harvestBonus;
-	public final ImmediateBonus productionBonus;
-	public final int harvestActivationCondition;
-	public final int productionActivationCondition;
+	private final ImmediateBonus harvestBonus;
+	private final ImmediateBonus productionBonus;
+	private final int harvestActivationCondition;
+	private final int productionActivationCondition;
 	
-	public PersonalBonusTile(ImmediateBonus harvestBonus, ImmediateBonus productionBonus, int harvestActivationCondition,int productionActivationCondition) {
-		this.harvestBonus = harvestBonus;
-		this.productionBonus = productionBonus;
-		this.harvestActivationCondition = harvestActivationCondition;
-		this.productionActivationCondition = productionActivationCondition;
+	public PersonalBonusTile() {
+		harvestBonus = null;
+		productionBonus = null;
+		harvestActivationCondition = 0;
+		productionActivationCondition = 0;
+	}
+	
+	public PersonalBonusTile(ImmediateBonus harvestBonus, ImmediateBonus productionBonus, int harvestActivationCondition, int productionActivationCondition){
+		this.harvestBonus= harvestBonus;
+		this.productionBonus= productionBonus;
+		this.harvestActivationCondition= harvestActivationCondition;
+		this.productionActivationCondition=productionActivationCondition;
 	}
 	
 	
@@ -47,5 +54,6 @@ public class PersonalBonusTile {
 		}
 		else
 			return null;
-	}
+	};
+	
 }

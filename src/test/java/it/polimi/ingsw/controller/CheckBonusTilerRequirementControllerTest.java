@@ -1,12 +1,15 @@
-package it.polimi.ingsw.CONTROLLER;
+package it.polimi.ingsw.controller;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.BOARD.HarvestArea;
+import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CONTROLLER.CheckBonusTileRequirementController;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -21,9 +24,14 @@ public class CheckBonusTilerRequirementControllerTest {
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);
 		FamilyMember familyMember = new FamilyMember(dice, player);
-		Zone zone = new Tower(DevelopmentCardType.building);
+		Zone zone1 = new HarvestArea();
 		
+		assertEquals(true, CheckBonusTileRequirementController.check(familyMember, zone1));
 		
+		familyMember.setValue(-2);
+		Zone zone2 = new ProductionArea();
+		
+		assertEquals(false, CheckBonusTileRequirementController.check(familyMember, zone2));
 	}
 
 }

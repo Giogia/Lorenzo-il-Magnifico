@@ -24,6 +24,7 @@ public class PersonalBoard {
 	private ArrayList<Bonus> permanentBonus;
 	
 	public PersonalBoard() {
+		personalBonusTile = new PersonalBonusTile();
 		excommunicationCubes= new boolean[3];
 		cardContainers = new ArrayList<>();
 		resources= new ArrayList<>();

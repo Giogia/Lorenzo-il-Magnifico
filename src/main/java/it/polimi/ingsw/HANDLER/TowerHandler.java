@@ -9,10 +9,18 @@ import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.controller.*;
 import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CONTROLLER.EnoughSpaceInPersonalBoard;
+import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
+import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
+import it.polimi.ingsw.CONTROLLER.PassTurnController;
+import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
+import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
+import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
 
 import java.util.ArrayList;
@@ -21,7 +29,6 @@ import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus;
-import it.polimi.ingsw.CONTROLLER.*;
 
 public class TowerHandler {
 
