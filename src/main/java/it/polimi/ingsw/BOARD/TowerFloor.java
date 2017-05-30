@@ -45,5 +45,12 @@ public class TowerFloor extends Position {
 		} */
 		this.developmentCard = null; //cancella carta sul piano della torre
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = super.getDescription();
+		description = description + developmentCard.getDescription();
+		return description;
+	}
 }
 

@@ -19,7 +19,18 @@ public class Building extends DevelopmentCard{
 	
 	public void getProductionBonus(FamilyMember familyMember){
 		for(int i=0; i < secondaryEffect.size(); i++){
-			//TODO
+			//TODO PERMANENT
 		}
+	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Costo: \n";
+		for (Resource resource : costs) {
+			description = description + resource.getDescription() + "\n";
+		}
+		description = description + super.getDescription();
+		description = description + "Condizione per attivazione Produzione: " + activationConditionProduction + "\n";
+		return description;
 	}
 }

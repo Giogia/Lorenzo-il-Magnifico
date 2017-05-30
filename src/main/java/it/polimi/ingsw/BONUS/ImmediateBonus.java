@@ -17,4 +17,6 @@ public abstract class ImmediateBonus extends Bonus {
 	public void getImmediateBonus(Player player){ 
 		
 	}
+
+	public abstract String getDescription();
 }

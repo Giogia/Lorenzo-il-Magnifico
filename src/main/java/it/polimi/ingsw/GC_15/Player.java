@@ -54,7 +54,7 @@ public class Player {
 	}
 	
 	public boolean wantsToRestartFaithPoints(){
-		boolean decision=true;//TODO
+		boolean decision=true;//TODO PERMANENT
 		return decision;
 	}
 	
@@ -105,11 +105,11 @@ public class Player {
 	}
 	
 	public void chooseCard(DevelopmentCard developmentCard) {
-		//TODO
+		//TODO PERMANENT
 	}
 	
 	public void chooseCardToCopy(){
-		//TODO
+		//TODO PERMANENT
 	}
 	
 	public ArrayList<FamilyMember> getFamilyMembers() {

@@ -101,7 +101,7 @@ public class PersonalBoard {
 	
 	public void activateDevelopmentCard(DevelopmentCard developmentCard){
 		for(int i = 0; i < developmentCard.secondaryEffect.size(); i++){
-			//TODO
+			//TODO PERMANENT
 		}
 	}
 	
@@ -133,8 +133,11 @@ public class PersonalBoard {
 
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		String description = "";
+		for (Resource resource : resources) {
+			description = description + resource.getDescription() + "\n";
+		}
+		return description;
 	}
 	
 	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){

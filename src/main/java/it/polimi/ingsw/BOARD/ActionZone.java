@@ -9,4 +9,6 @@ public abstract class ActionZone extends Zone{
 	public ActionZone(int numberOfPositions) {
 		super(numberOfPositions);
 	}
+
+	
 }

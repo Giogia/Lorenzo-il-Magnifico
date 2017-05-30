@@ -26,7 +26,7 @@ public abstract class LeaderCard extends Card {
 	}
 	
 	public boolean checkActivationCondition(){
-		//TODO
+		//TODO PERMANENT
 		return true;
 	}
 }

@@ -36,7 +36,7 @@ public class FamilyMember {
 	}
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return null;
+		String description = "Colore: " + dice.getDiceColour().name() + "\n Valore: " + value;
+		return description;
 	}
 }

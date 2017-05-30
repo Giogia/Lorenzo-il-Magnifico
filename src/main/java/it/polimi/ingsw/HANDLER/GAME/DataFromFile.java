@@ -33,7 +33,7 @@ public class DataFromFile {
 	//private static ArrayList<ImmediateBonus>[] towerVenturePositionBonus;
 	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
 	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
-	//TODO
+	//TODO PERMANENT
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
@@ -93,7 +93,7 @@ public class DataFromFile {
 	public int[] getMilitaryRequirement() {
 		return militaryRequirement;
 	}
-	//TODO
+	//TODO PERMANENT
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
@@ -102,28 +102,66 @@ public class DataFromFile {
 
 	public void lastCards(DevelopmentCardType developmentCardType, int period,
 			ArrayList<DevelopmentCard> developmentCards) {
-		// TODO Auto-generated method stub
-		
+		if (developmentCardType.equals(DevelopmentCardType.building)){
+			for (DevelopmentCard developmentCard : developmentCards) {
+				buildings.add((Building) developmentCard);
+			}
+		}
+		else if (developmentCardType.equals(DevelopmentCardType.character)){
+			for (DevelopmentCard developmentCard : developmentCards) {
+				characters.add((Character) developmentCard);
+			}
+		}
+		else if (developmentCardType.equals(DevelopmentCardType.venture)){
+			for (DevelopmentCard developmentCard : developmentCards) {
+				ventures.add((Venture) developmentCard);
+			}
+		}
+		else{
+			for (DevelopmentCard developmentCard : developmentCards) {
+				territories.add((Territory) developmentCard);
+			}
+		}
 	}
 
 	public ArrayList<DevelopmentCard> getBuildingsForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DevelopmentCard> periodBuildings =  new ArrayList<>();
+		for (Building building : buildings) {
+			if (building.period == period){
+				periodBuildings.add(building);
+			}
+		}
+		return periodBuildings;
 	}
 
 	public ArrayList<DevelopmentCard> getCharactersForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DevelopmentCard> periodCharacters = new ArrayList<>();
+		for (Character character : characters) {
+			if (character.period == period){
+				periodCharacters.add(character);
+			}
+		}
+		return periodCharacters;
 	}
 
 	public ArrayList<DevelopmentCard> getTerritoriesForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DevelopmentCard> periodTerritories = new ArrayList<>();
+		for (Territory territory : territories) {
+			if (territory.period == period){
+				periodTerritories.add(territory);
+			}
+		}
+		return periodTerritories;
 	}
 
 	public ArrayList<DevelopmentCard> getVenturesForPeriod(int period) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<DevelopmentCard> periodVentures = new ArrayList<>();
+		for (Venture venture : ventures) {
+			if (venture.period == period){
+				periodVentures.add(venture);
+			}
+		}
+		return periodVentures;
 	}
 
 	public int[] getVictoryPointsPerCard(DevelopmentCardType developmentCardType) {

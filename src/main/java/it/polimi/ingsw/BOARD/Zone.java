@@ -28,4 +28,6 @@ public abstract class Zone{
 	public Position[] getPositions(){
 		return positions;
 	}
+	
+	public abstract String getDescription();
 }

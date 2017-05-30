@@ -13,4 +13,11 @@ public class Character extends DevelopmentCard{
 		super(name, period, DevelopmentCardType.character, immediateEffect, secondaryEffect);
 		this.cost=cost;
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Costo: " + cost.getDescription() + "\n"; 
+		description = description + super.getDescription();
+		return description;
+	}
 }
