@@ -21,6 +21,9 @@ public class ZoneOccupiedBySameColorController implements Controller{
 		if (isNeutral(familyMember)){
 			return true;
 		}
+		if (isFake(familyMember)){
+			return true;
+		}
 		else{
 			Position[] positions = zone.getPositions();
 			for (int i = 0; i < positions.length; i++){
@@ -28,7 +31,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 				for (FamilyMember positionFamilyMember : positionFamilyMembers) {
 					if (samePlayer(familyMember, positionFamilyMember)){
 						if (!isNeutral(positionFamilyMember))
-							return false;
+							return false;	
 					}
 				}
 			}
@@ -44,4 +47,8 @@ public class ZoneOccupiedBySameColorController implements Controller{
 		return (familyMember.getDice().getDiceColour().equals(DiceColour.Neutral));
 	}
 
+	private static boolean isFake(FamilyMember familyMember){
+		return (familyMember.getDice().getDiceColour().equals(DiceColour.Fake));
+	}
+	
 }
