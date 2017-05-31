@@ -48,7 +48,7 @@ private static EndGameHandler istanza = null;
 	}
 	
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
-		for(Player player : board.getRoundOrder().getPlayers()){
+		for(Player player : Game.getRoundOrder()){
 			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
 				if(cardcontainer.getType().equals(developmentCardType)){
 					int numberOfCards = cardcontainer.getDevelopmentCards().size();

@@ -96,6 +96,8 @@ public class StartRoundHandler {
 				Random r = new Random();
 				int randomCard = r.nextInt(developmentCards.size());
 				DevelopmentCard developmentCard = developmentCards.get(randomCard);
+				System.out.println(developmentCard.toString());
+				System.out.println(developmentCard.getDescription());
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}

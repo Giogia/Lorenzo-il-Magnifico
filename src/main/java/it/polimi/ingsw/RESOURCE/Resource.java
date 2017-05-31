@@ -53,7 +53,7 @@ abstract public class Resource {
     }
 
 	public String getDescription() {
-		return amount +" " + resourceType;
+		return amount +" "+ resourceType;
 	}
     
 }

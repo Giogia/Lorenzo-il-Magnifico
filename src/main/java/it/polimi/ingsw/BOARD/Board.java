@@ -11,7 +11,6 @@ public class Board {
 	private CouncilPalace councilPalace;
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
-	private RoundOrder roundOrder;
 	
 	public Board() {
 		int numberOfPlayers = Game.getPlayers().length;
@@ -19,7 +18,7 @@ public class Board {
 		councilPalace = new CouncilPalace();
 		harvestArea = new HarvestArea(numberOfPlayers);
 		productionArea = new ProductionArea(numberOfPlayers);
-		
+		towers = new Tower[4];
 		towers[0] = new Tower(DevelopmentCardType.territory);
 		towers[1] = new Tower(DevelopmentCardType.character);
 		towers[2] = new Tower(DevelopmentCardType.building);
@@ -52,9 +51,6 @@ public class Board {
 		return this.productionArea;
 	}
 	
-	public RoundOrder getRoundOrder() {
-		return roundOrder;
-	}
 	
 	public void setTower(Tower tower, int towerNumber){
 		this.towers[towerNumber] = tower;
@@ -76,9 +72,6 @@ public class Board {
 		this.productionArea = productionArea;
 	}
 	
-	public void setRoundOrder(RoundOrder roundOrder) {
-		this.roundOrder = roundOrder;
-	}
 	
 	//toglie tutti i  family member in ogni zona della board
 	public void resetPositions() {
