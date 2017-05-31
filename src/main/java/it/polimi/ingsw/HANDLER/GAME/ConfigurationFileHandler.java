@@ -2,6 +2,9 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.google.gson.*;
@@ -24,6 +27,12 @@ import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.Territory;
+import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CARD.Character;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -36,7 +45,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
 		
-		//TO READ FROM config.json
+		/*TO READ FROM config.json
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
@@ -50,7 +59,9 @@ public class ConfigurationFileHandler {
 			scanner.close();
 		}
 		DataFromFile data = toDeserialize(inJson);
-		System.out.println(data.getBuildings().toString());
+		System.out.println(data.getBuildings().toString());*/
+		
+		System.out.println(toSerialize(Create.createVenture()));
 	}
 	
 	
