@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class Venture extends DevelopmentCard{
 	public final int militaryPointRequirement; //if = 0 this requirement doesn't exists 
@@ -14,10 +15,18 @@ public class Venture extends DevelopmentCard{
 	
 	public Venture(String name,int requirement, ArrayList<Resource> cost, MilitaryPoints alternativeCost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
 		super(name, period, DevelopmentCardType.venture, immediateEffect, secondaryEffect);
-		militaryPointRequirement=requirement;
-		this.cost=cost;
-		this.alternativeCost=alternativeCost;
+		if (cost.size() == 1 && cost.get(0).getResourceType().equals(ResourceType.militaryPoints)){
+			this.alternativeCost = (MilitaryPoints) cost.get(0);
+			this.cost = null;
+			this.militaryPointRequirement = requirement;
+		}
+		else {
+			militaryPointRequirement=requirement;
+			this.cost=cost;
+			this.alternativeCost=alternativeCost;
+		}
 	}
+		
 	
 	@Override
 	public String getDescription() {
