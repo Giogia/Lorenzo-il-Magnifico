@@ -6,9 +6,6 @@ public class ProductionArea extends ActionZone{
 	}	
 	
 	public ProductionArea(int numberOfPlayers) {
-		if(numberOfPlayers>=3){
-			positions = new Position[4];
-		}
-		positions = new Position[2];
+		super(numberOfPlayers>=3? 2 : 1);
 	}
 }

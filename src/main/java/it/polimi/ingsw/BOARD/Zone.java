@@ -1,5 +1,9 @@
 package it.polimi.ingsw.BOARD;
 
+import java.util.ArrayList;
+
+import it.polimi.ingsw.BONUS.ImmediateBonus;
+
 public abstract class Zone{
 	protected Position[] positions;
 	
@@ -9,6 +13,10 @@ public abstract class Zone{
 	
 	public Zone(int numberOfPositions) {
 		positions = new Position[numberOfPositions];
+		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
+		for(int i=0;i<numberOfPositions;i++){
+			positions[i]= new Position(boardBonus, 0);
+		}	
 	}
 
 	public Position getPosition(int position) {

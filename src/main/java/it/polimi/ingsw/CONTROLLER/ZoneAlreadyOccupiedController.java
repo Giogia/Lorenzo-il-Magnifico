@@ -6,11 +6,10 @@ import it.polimi.ingsw.BOARD.Zone;
 public class ZoneAlreadyOccupiedController implements Controller{
 	
 	public static boolean check(Zone zone){
-		Position[] positions = zone.getPositions();
-		for (int i = 0; i < positions.length; i++){
-			if (!positions[i].getFamilyMembers().isEmpty()){
+		for(Position position: zone.getPositions()){
+			if(!position.getFamilyMembers().isEmpty()){
 				return false;
-			}
+			}	
 		}
 		return true;
 	}

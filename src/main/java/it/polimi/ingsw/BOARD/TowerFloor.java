@@ -16,6 +16,11 @@ public class TowerFloor extends Position {
 		this.developmentCard = developmentCard;
 	}
 	
+	public TowerFloor(ArrayList<ImmediateBonus> boardBonus, int diceRequirement) {
+		super(boardBonus, diceRequirement);
+		this.developmentCard = null;
+	}
+	
 	public DevelopmentCard getDevelopmentCard() {
 		return this.developmentCard;
 	}
