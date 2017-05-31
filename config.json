@@ -479,49 +479,57 @@
           "action": [
             [
               {
-                "developmentCardType": "character",
+                "developmentCardType": "building",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
+              },
+              4
+            ],
+            [
+              {
+                "developmentCardType": "character",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
               },
               4
             ],
             [
               {
                 "developmentCardType": "venture",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
-              },
-              4
-            ],
-            [
-              {
-                "developmentCardType": "building",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
+                ],
+                "type": "actionZone"
               },
               4
             ],
             [
               {
                 "developmentCardType": "territory",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
               },
               4
             ]
@@ -714,12 +722,14 @@
             [
               {
                 "developmentCardType": "character",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
               },
               6
             ]
@@ -747,6 +757,26 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
+          "action": [
+            [
+              {
+                "developmentCardType": "territory",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              6
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        },
+        {
           "resources": [
             {
               "amount": 2,
@@ -756,24 +786,6 @@
           ],
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "territory",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              6
-            ]
-          ],
-          "type": "actionBonus",
           "type1": "immediateBonus"
         }
       ],
@@ -803,12 +815,14 @@
             [
               {
                 "developmentCardType": "building",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
               },
               6
             ]
@@ -817,7 +831,7 @@
             {
               "amount": 1,
               "value": 1,
-              "resourceType": "wood"
+              "resourceType": "stones"
             },
             {
               "amount": 1,
@@ -841,26 +855,28 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        },
+        {
           "action": [
             [
               {
                 "developmentCardType": "venture",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
               },
               6
             ]
           ],
           "type": "actionBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
           "type1": "immediateBonus"
         }
       ],
@@ -876,16 +892,6 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
-          "action": [
-            [
-              {},
-              4
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        },
-        {
           "resources": [
             {
               "amount": 2,
@@ -895,6 +901,19 @@
           ],
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "action": [
+            [
+              {
+                "subType": "harvestArea",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
           "type1": "immediateBonus"
         }
       ],
@@ -935,16 +954,6 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
-          "action": [
-            [
-              {},
-              4
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        },
-        {
           "resources": [
             {
               "amount": 1,
@@ -954,6 +963,19 @@
           ],
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "action": [
+            [
+              {
+                "subType": "productionArea",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
           "type1": "immediateBonus"
         }
       ],
@@ -977,49 +999,57 @@
           "action": [
             [
               {
-                "developmentCardType": "territory",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              7
-            ],
-            [
-              {
                 "developmentCardType": "building",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "venture",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
+                ],
+                "type": "actionZone"
               },
               7
             ],
             [
               {
                 "developmentCardType": "character",
+                "subType": "Tower",
                 "positions": [
                   null,
                   null,
                   null,
                   null
-                ]
+                ],
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "developmentCardType": "venture",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "developmentCardType": "territory",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
               },
               7
             ]
@@ -1427,7 +1457,9 @@
         {
           "action": [
             [
-              {},
+              {
+                "subType": "harvestArea"
+              },
               4
             ]
           ],
@@ -1662,60 +1694,6 @@
       "developmentCardType": "venture",
       "immediateEffect": [
         {
-          "action": [
-            [
-              {
-                "developmentCardType": "territory",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "building",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "venture",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "character",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ]
-              },
-              7
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        },
-        {
           "resources": [
             {
               "amount": 1,
@@ -1725,6 +1703,68 @@
           ],
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "action": [
+            [
+              {
+                "developmentCardType": "building",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "developmentCardType": "character",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "developmentCardType": "venture",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "developmentCardType": "territory",
+                "subType": "Tower",
+                "positions": [
+                  null,
+                  null,
+                  null,
+                  null
+                ],
+                "type": "actionZone"
+              },
+              7
+            ]
+          ],
+          "type": "actionBonus",
           "type1": "immediateBonus"
         }
       ],
@@ -1836,7 +1876,10 @@
         {
           "action": [
             [
-              {},
+              {
+                "subType": "productionArea",
+                "type": "actionZone"
+              },
               3
             ]
           ],

@@ -2,9 +2,15 @@ package it.polimi.ingsw.BOARD;
 
 public abstract class Zone{
 	protected Position[] positions;
+	private String type;
 	
 	
-	public Zone(){
+	public Zone(String type){
+		this.type = type;
+	}
+	
+	public String getType() {
+		return type;
 	}
 	
 	public Zone(int numberOfPositions) {

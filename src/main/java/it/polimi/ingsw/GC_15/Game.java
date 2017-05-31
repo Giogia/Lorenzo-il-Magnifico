@@ -1,6 +1,9 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.FileNotFoundException;
+
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.EndGameHandler;
 import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
@@ -12,14 +15,19 @@ public class Game {
 	private static Board board;
 	private static DataFromFile data;
 	
-	public Game(int numberOfPlayers) {
-		players = new Player[numberOfPlayers];
-		roundOrder = new RoundOrder();
-		board = new Board();
-	}
-	
 	public static void start(){
-		//TODO data = ConfigurationFileHandler.set();
+		//setta i vari attributi di game
+		try {
+			data = ConfigurationFileHandler.getData();
+			board = new Board();
+			roundOrder = new RoundOrder();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
 		EndGameHandler.handle(board);

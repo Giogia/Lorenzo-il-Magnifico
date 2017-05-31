@@ -11,7 +11,7 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	
 	public ResourceBonus(String type, ArrayList<Resource> resources){
 		super("resourceBonus");
-		subtype= type;
+		subtype = type;
 		this.resources = new ArrayList<>();
 		this.resources.addAll(resources);
 	}

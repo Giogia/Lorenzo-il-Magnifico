@@ -5,7 +5,8 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 public class Tower extends ActionZone{
 	private DevelopmentCardType developmentCardType;
 	
-	public Tower(DevelopmentCardType developmentCardType) { 
+	public Tower(DevelopmentCardType developmentCardType) {
+		super("Tower");
 		positions = new TowerFloor[4];
 		this.developmentCardType = developmentCardType;
 	}

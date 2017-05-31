@@ -4,9 +4,11 @@ public class HarvestArea extends ActionZone {
 	
 	
 	public HarvestArea(){
+		super("harvestArea");
 	}
 
 	public HarvestArea(int numberOfPlayers) {
+		super("harvestArea");
 		if(numberOfPlayers>=3){
 			positions = new Position[4];
 		}

@@ -43,9 +43,8 @@ import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
-	public static void main(String[] args) throws FileNotFoundException{
-		
-		/*TO READ FROM config.json
+	
+	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
@@ -58,12 +57,8 @@ public class ConfigurationFileHandler {
 		finally{
 			scanner.close();
 		}
-		DataFromFile data = toDeserialize(inJson);
-		System.out.println(data.getBuildings().toString());*/
-		
-		System.out.println(toSerialize(Create.createVenture()));
+		return toDeserialize(inJson);
 	}
-	
 	
 	private static String toSerialize(Object object){
 		try{
@@ -114,12 +109,13 @@ public class ConfigurationFileHandler {
 			        .registerSubtype(ImmediateBonus.class, "immediateBonus");
 			
 			final RuntimeTypeAdapterFactory<ActionZone> t6 = RuntimeTypeAdapterFactory
-					.of(ActionZone.class, "type")
+					.of(ActionZone.class, "subType")
 			        .registerSubtype(HarvestArea.class, "harvestArea")
 			        .registerSubtype(ProductionArea.class, "productionArea")
-			        .registerSubtype(Tower.class, "tower");
+			        .registerSubtype(Tower.class, "Tower");
 			
-			Gson gsonToDeserialize = new GsonBuilder().registerTypeAdapterFactory(t1)
+			Gson gsonToDeserialize = new GsonBuilder()
+					.registerTypeAdapterFactory(t1)
 					.registerTypeAdapterFactory(t2)
 					.registerTypeAdapterFactory(t3)
 					.registerTypeAdapterFactory(t4)
@@ -127,6 +123,7 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t6)
 					.create();
 			
+			//return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			
 		} catch (Exception e){
