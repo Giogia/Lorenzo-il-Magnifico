@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
@@ -27,6 +28,10 @@ public class Game {
 			players[1] = new Player("Giovanni" , Color.RED);
 			ConnectionManager.addPlayers();
 			data = ConfigurationFileHandler.getData();
+			for (int i=0; i< data.getBuildings().size(); i++){
+				Building prova = data.getBuildings().get(i);
+				System.out.println(prova.costs.get(0).getResourceType());
+			}
 			board = new Board();
 			roundOrder = new RoundOrder();
 			
