@@ -30,8 +30,9 @@ public class CLIView implements View{
 
 	@Override
 	public int turnChoice() {
-		System.out.println("1) Posiziona familiare \n 2) Attiva carta leader \n 3) Scarta carta leader \n 4) Attiva "
-				+ "l'effetto di una carta leader \n 5) Statistiche \n 6) Passa il turno");
+		System.out.println("Che azione vuoi effettuare? \n\n");
+		System.out.println("1) Posiziona familiare \n2) Attiva carta leader \n3) Scarta carta leader \n4) Attiva "
+				+ "l'effetto di una carta leader \n5) Statistiche \n6) Passa il turno");
 		return checkInputError(1, 6);
 	}
 
@@ -124,7 +125,7 @@ public class CLIView implements View{
 			scanner = new Scanner(System.in);
 			int choice = scanner.nextInt();
 			if ( choice < min || choice > max){
-				System.out.println("Input errato. Scegliere nuovamente");
+				System.out.println("Input errato. Scegli di nuovo: ");
 			}else{
 				return choice;
 			}

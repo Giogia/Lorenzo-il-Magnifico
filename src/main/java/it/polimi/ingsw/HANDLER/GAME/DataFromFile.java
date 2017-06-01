@@ -38,6 +38,7 @@ public class DataFromFile {
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
 	//timeout per la mossa di un giocatore
+	
 	public DataFromFile(ArrayList<Territory> territories, ArrayList<Character> characters, ArrayList<Venture> ventures,
 			ArrayList<Building> buildings, ArrayList<ExcommunicationTile> excommunicationTiles,
 			ArrayList<PersonalBonusTile> personalBonusTiles, ArrayList<ResourceBonus> councilPrivileges,
@@ -92,13 +93,7 @@ public class DataFromFile {
 	}
 	public int[] getMilitaryRequirement() {
 		return militaryRequirement;
-	}
-	//TODO PERMANENT
-	//private static ArrayList<LeaderCard> leaderCards; think to them later
-	//condizioni di attivazione di tutte le zone
-	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
-	//timeout per la mossa di un giocatore
-	
+	}	
 
 	public void lastCards(DevelopmentCardType developmentCardType, int period,
 			ArrayList<DevelopmentCard> developmentCards) {

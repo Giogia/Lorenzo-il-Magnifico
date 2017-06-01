@@ -57,7 +57,7 @@ public final class StartGameHandler {
 		}
 	}
 	
-		
+	//choose the order randomly
 	private static void chooseOrder(Board board) {
 		ArrayList<Player> players = new ArrayList<>();
 		Player[] gamePlayers = Game.getPlayers();

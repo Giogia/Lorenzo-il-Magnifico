@@ -32,6 +32,7 @@ public class Manager {
 		return instance;
 	}
 
+	//begins the turn of the player 
 	public static void turn(Player player) {
 		ConnectionManager.startTurn(player);
 		while(true){

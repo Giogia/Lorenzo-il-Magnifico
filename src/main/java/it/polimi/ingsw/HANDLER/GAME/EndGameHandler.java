@@ -59,6 +59,7 @@ private static EndGameHandler istanza = null;
 		}
 	}
 	
+	//TODO: check!
 	private static Player getWinner(Board board){
 		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = null;

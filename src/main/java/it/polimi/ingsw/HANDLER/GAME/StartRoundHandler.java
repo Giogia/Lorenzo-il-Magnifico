@@ -87,20 +87,18 @@ public class StartRoundHandler {
 	}
 	
 	
-	//For each tower set the randomly a card. At the end of this operation return to DataFromFile the unused cards. 
+	//For each tower set the randomly a card.
+	// At the end of this operation return to DataFromFile the unused cards using the method lastCards
 	private static void setCards(Board board, int period){
 		Tower[] towers = board.getTowers();
 		for (Tower tower : towers) {
 			DevelopmentCardType developmentCardType = tower.getDevelopmentCardType();
 			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
 			TowerFloor[] towerFloors = tower.getPositions();
-			System.out.println("numero di towerfloors " + towerFloors.length);
 			for (TowerFloor towerFloor : towerFloors) {
 				Random r = new Random();
 				int randomCard = r.nextInt(developmentCards.size());
 				DevelopmentCard developmentCard = developmentCards.get(randomCard);
-				//System.out.println(developmentCard.toString());
-				//System.out.println(developmentCard.getDescription());
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}

@@ -27,11 +27,8 @@ public class Game {
 			players[0] = new Player("Michele" , Color.BLUE);
 			players[1] = new Player("Giovanni" , Color.RED);
 			ConnectionManager.addPlayers();
+			
 			data = ConfigurationFileHandler.getData();
-/*			for (int i=0; i< data.getBuildings().size(); i++){
-				Building prova = data.getBuildings().get(i);
-				System.out.println(prova.costs.get(0).getResourceType());
-			} */
 			board = new Board();
 			roundOrder = new RoundOrder();
 			
