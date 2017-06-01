@@ -15,4 +15,10 @@ public class FamilyMemberValueBonus extends FamilyMemberBonus{
 		familyMember1.setValue(familyMember2.getValue());
 	}
 	
+	@Override
+	public String getDescription() {
+		String description = "Modifica il valore dei tuoi familiari: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

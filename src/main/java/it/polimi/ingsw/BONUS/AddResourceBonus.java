@@ -15,4 +15,10 @@ public class AddResourceBonus extends ResourceBonus {
 		resource1.addAmount(resource2.getAmount());
 	}
 	
+	@Override
+	public String getDescription() {
+		String description = "Aggiungi alle tue risorse: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

@@ -17,5 +17,10 @@ public class CouncilPrivilegeBonus extends ImmediateBonus{
 		CouncilPrivilegeChoiceHandler.handle(player, differentCouncilPrivilege);
 	}
 	
+	@Override
+	public String getDescription() {
+		String description = differentCouncilPrivilege + " diversi Privilegi del Consiglio";
+		return description;
+	}
 
 }

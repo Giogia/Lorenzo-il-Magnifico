@@ -8,8 +8,12 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 public class Tower extends ActionZone{
 	private DevelopmentCardType developmentCardType;
 	
-	public Tower(DevelopmentCardType developmentCardType) { 
+	public Tower(DevelopmentCardType developmentCardType) {
+		super("Tower");
 		positions = new TowerFloor[4];
+		for (int i = 0; i < positions.length; i++ ){
+			positions[i] = new TowerFloor(null, 2*i + 1);
+		}
 		this.developmentCardType = developmentCardType;
 		
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>(); 
@@ -29,5 +33,11 @@ public class Tower extends ActionZone{
 	@Override
 	public TowerFloor[] getPositions() {
 		return (TowerFloor[]) super.getPositions();
+	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Torre " + developmentCardType.name();
+		return description;
 	}
 }

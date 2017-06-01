@@ -8,6 +8,7 @@ import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -70,7 +71,7 @@ public class StartRoundHandler {
 	}
 	
 	
-	//Get the cards from DataFromFile
+	//Get the cards from DataFromFileì
 	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
 		if (developmentCardType.equals(DevelopmentCardType.building)){
 			return Game.getData().getBuildingsForPeriod(period);
@@ -92,10 +93,13 @@ public class StartRoundHandler {
 			DevelopmentCardType developmentCardType = tower.getDevelopmentCardType();
 			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
 			TowerFloor[] towerFloors = tower.getPositions();
+			System.out.println("numero di towerfloors " + towerFloors.length);
 			for (TowerFloor towerFloor : towerFloors) {
 				Random r = new Random();
 				int randomCard = r.nextInt(developmentCards.size());
 				DevelopmentCard developmentCard = developmentCards.get(randomCard);
+				//System.out.println(developmentCard.toString());
+				//System.out.println(developmentCard.getDescription());
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}

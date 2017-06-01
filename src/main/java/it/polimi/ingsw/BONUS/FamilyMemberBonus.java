@@ -44,4 +44,12 @@ public abstract class FamilyMemberBonus extends ImmediateBonus{
 		return familyMembers;
 	}
 	
+	@Override
+	public String getDescription() {
+		String description = "";
+		for (FamilyMember familyMember : familyMembers) {
+			description = description + familyMember.getDescription() + "\n";
+		}
+		return description;
+	}
 }

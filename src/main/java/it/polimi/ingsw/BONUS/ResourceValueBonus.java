@@ -14,4 +14,13 @@ public class ResourceValueBonus extends ResourceBonus{
 	protected void modify(Resource resource1, Resource resource2) {
 		resource1.setValue(resource2.getValue());
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "";
+		for (Resource resource : resources) {
+			description = description + "Per ogni " + resource.getClass().getName() + " devi pagare " + resource.getAmount() + "\n";
+		}
+		return description;
+	}
 }

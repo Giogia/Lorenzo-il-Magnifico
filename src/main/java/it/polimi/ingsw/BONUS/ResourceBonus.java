@@ -11,7 +11,7 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	
 	public ResourceBonus(String type, ArrayList<Resource> resources){
 		super("resourceBonus");
-		subtype= type;
+		subtype = type;
 		this.resources = new ArrayList<>();
 		this.resources.addAll(resources);
 	}
@@ -48,11 +48,11 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	}
 
 	public String getDescription() {
-		String message = subtype + "\n";
+		String description = "";
 		for (Resource resource : resources) {
-			message = message + resource.getDescription() + "\n";
+			description = description + resource.getDescription() + "\n";
 		}
-		return message;
+		return description;
 	}
 	
 }

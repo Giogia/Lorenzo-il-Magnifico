@@ -1,10 +1,17 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.EndGameHandler;
 import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
+import it.polimi.ingsw.manager.ConnectionManager;
 
 public class Game {
 	private static Player[] players;
@@ -12,14 +19,28 @@ public class Game {
 	private static Board board;
 	private static DataFromFile data;
 	
-	public Game(int numberOfPlayers) {
-		players = new Player[numberOfPlayers];
-		roundOrder = new RoundOrder();
-		board = new Board();
-	}
-	
-	public static void start(){
-		//TODO data = ConfigurationFileHandler.set();
+	public static void start(int numberOfPlayers){
+		//setta i vari attributi di game
+		try {
+			players = new Player[numberOfPlayers];
+			//TODO
+			players[0] = new Player("Michele" , Color.BLUE);
+			players[1] = new Player("Giovanni" , Color.RED);
+			ConnectionManager.addPlayers();
+			data = ConfigurationFileHandler.getData();
+/*			for (int i=0; i< data.getBuildings().size(); i++){
+				Building prova = data.getBuildings().get(i);
+				System.out.println(prova.costs.get(0).getResourceType());
+			} */
+			board = new Board();
+			roundOrder = new RoundOrder();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
 		EndGameHandler.handle(board);
@@ -36,4 +57,14 @@ public class Game {
 	public static Player[] getPlayers() {
 		return players;
 	}
+
+	public static void setOrder(ArrayList<Player> players2) {
+		roundOrder.setPlayers(players2);
+	}
+
+	public static ArrayList<Player> getRoundOrder() {
+		return roundOrder.getPlayers();
+	}
+	
+
 }

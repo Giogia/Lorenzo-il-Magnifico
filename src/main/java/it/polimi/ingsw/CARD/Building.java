@@ -22,4 +22,15 @@ public class Building extends DevelopmentCard{
 			//TODO PERMANENT
 		}
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Costo: \n";
+		for (Resource resource : costs) {
+			description = description + resource.getDescription() + "\n";
+		}
+		description = description + super.getDescription();
+		description = description + "Condizione per attivazione Produzione: " + activationConditionProduction + "\n";
+		return description;
+	}
 }

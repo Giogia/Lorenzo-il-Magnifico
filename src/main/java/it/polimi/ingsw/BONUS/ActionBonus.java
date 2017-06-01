@@ -28,4 +28,18 @@ public class ActionBonus extends ImmediateBonus {
 		}
 	}
 
+	@Override
+	public String getDescription() {
+		String description = "Puoi fare un'azione in: \n";
+		Set<ActionZone> actionZones = action.keySet();
+		for (ActionZone actionZone : actionZones) {
+			description = description + actionZone.getDescription() + "del valore di " + action.get(actionZone) + "\n";
+		}
+		description = description + "Hai un bonus di: \n";
+		for (Resource resource : resources) {
+			description = description + resource.getDescription();
+		}
+		return description;
+	}
+
 }

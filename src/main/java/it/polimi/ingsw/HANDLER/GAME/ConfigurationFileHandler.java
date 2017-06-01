@@ -2,6 +2,9 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.google.gson.*;
@@ -24,6 +27,12 @@ import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.Territory;
+import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CARD.Character;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -34,9 +43,8 @@ import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
-	public static void main(String[] args) throws FileNotFoundException{
-		
-		//TO READ FROM config.json
+	
+	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
 		String inJson="";
@@ -49,10 +57,8 @@ public class ConfigurationFileHandler {
 		finally{
 			scanner.close();
 		}
-		DataFromFile data = toDeserialize(inJson);
-		System.out.println(data.getBuildings().toString());
+		return toDeserialize(inJson);
 	}
-	
 	
 	private static String toSerialize(Object object){
 		try{
@@ -103,12 +109,13 @@ public class ConfigurationFileHandler {
 			        .registerSubtype(ImmediateBonus.class, "immediateBonus");
 			
 			final RuntimeTypeAdapterFactory<ActionZone> t6 = RuntimeTypeAdapterFactory
-					.of(ActionZone.class, "type")
+					.of(ActionZone.class, "subType")
 			        .registerSubtype(HarvestArea.class, "harvestArea")
 			        .registerSubtype(ProductionArea.class, "productionArea")
-			        .registerSubtype(Tower.class, "tower");
+			        .registerSubtype(Tower.class, "Tower");
 			
-			Gson gsonToDeserialize = new GsonBuilder().registerTypeAdapterFactory(t1)
+			Gson gsonToDeserialize = new GsonBuilder()
+					.registerTypeAdapterFactory(t1)
 					.registerTypeAdapterFactory(t2)
 					.registerTypeAdapterFactory(t3)
 					.registerTypeAdapterFactory(t4)
@@ -116,6 +123,7 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t6)
 					.create();
 			
+			//return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			
 		} catch (Exception e){

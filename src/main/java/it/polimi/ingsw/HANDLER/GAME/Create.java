@@ -159,6 +159,7 @@ public class Create {
 		System.out.println("7) AddResourceBonus");
 		System.out.println("8) MultiplyResourceBonus");
 		System.out.println("9) CouncilPrivilegeBonus");
+		System.out.println("10) ResourcePerResource");
 		
 		int answer = in.nextInt();
 		switch (answer) {
@@ -197,8 +198,20 @@ public class Create {
 		case 9:
 			bonus = createCouncilPrivilegeBonus();
 			break;
+		
+		case 10:
+			bonus = createResourcePerResourceBonus();
 		}
 		return bonus;
+		
+	}
+	
+	private static ResourcePerResourceBonus createResourcePerResourceBonus(){
+		System.out.println("Inserire le risorse che il bonus ti dà: ");
+		ArrayList<Resource> resources = createArrayResource();
+		System.out.println("Inserire quale risorsa ha come requisito il bonus: ");
+		Resource requirement = createResource();
+		return new ResourcePerResourceBonus(resources, requirement);
 	}
 	
 	private static CouncilPrivilegeBonus createCouncilPrivilegeBonus(){

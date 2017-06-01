@@ -3,21 +3,21 @@ package it.polimi.ingsw.BOARD;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.GC_15.Game;
 
 public abstract class Zone{
 	protected Position[] positions;
+	private String type;
 	
 	
-	public Zone(){
+	public Zone(String type){
+		this.type = type;	
 	}
 	
-	public Zone(int numberOfPositions) {
-		positions = new Position[numberOfPositions];
-		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
-		for(int i=0;i<numberOfPositions;i++){
-			positions[i]= new Position(boardBonus, 0);
-		}	
+	public String getType() {
+		return type;
 	}
+	
 
 	public Position getPosition(int position) {
 		return this.positions[position];
@@ -36,4 +36,6 @@ public abstract class Zone{
 	public Position[] getPositions(){
 		return positions;
 	}
+	
+	public abstract String getDescription();
 }

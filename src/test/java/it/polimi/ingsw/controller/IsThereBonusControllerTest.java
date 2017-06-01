@@ -19,7 +19,7 @@ public class IsThereBonusControllerTest {
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
 		ImmediateBonus bonus = new CouncilPrivilegeBonus(2);
 		DevelopmentCard developmentCard = null;
-		TowerFloor towerFloor = new TowerFloor(boardBonus, 4, developmentCard);
+		TowerFloor towerFloor = new TowerFloor(boardBonus, 4);
 		
 		assertEquals(false, IsThereBonusController.check(towerFloor));
 

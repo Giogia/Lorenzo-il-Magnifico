@@ -24,10 +24,10 @@ public class PositionWithoutDevelopmentCardControllerTest {
 		ArrayList<Bonus> cardBonus2 = new ArrayList<>();
 		
 		DevelopmentCard developmentCard1 = null;
-		TowerFloor towerFloor1 = new TowerFloor(boardBonus, 4, developmentCard1);
+		TowerFloor towerFloor1 = new TowerFloor(boardBonus, 4);
 		
 		DevelopmentCard developmentCard2 = new Character("lorenzo", coins, 1, cardBonus1, cardBonus2);
-		TowerFloor towerFloor2 = new TowerFloor(boardBonus, 4, developmentCard2);
+		TowerFloor towerFloor2 = new TowerFloor(boardBonus, 4);
 		
 		assertEquals(false, PositionWithoutDevelopmentCardController.check(towerFloor1));
 		

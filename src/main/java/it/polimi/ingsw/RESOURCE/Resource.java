@@ -52,9 +52,7 @@ abstract public class Resource {
     	this.amount= this.amount * value;
     }
 
-	public String getDescription() {
-		return amount +" " + resourceType;
-	}
+	public abstract String getDescription();
     
 }
 

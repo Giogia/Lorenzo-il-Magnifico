@@ -15,8 +15,8 @@ import it.polimi.ingsw.view.View;
 
 public class ConnectionManager {
 	private static ConnectionManager instance;
-	private ArrayList<View> temporaryView = new ArrayList<>();
-	private static HashMap<Player, View> playersView;
+	private static ArrayList<View> temporaryView = new ArrayList<>();
+	private static HashMap<Player, View> playersView = new HashMap<>();
 	//TODO forse hashmap per le connessioni
 	
 	
@@ -34,7 +34,7 @@ public class ConnectionManager {
 		temporaryView.add(view);
 		System.out.println("Nuovo utente nella partita");
 		if(temporaryView.size()==2){
-			Game.start();
+			Game.start(temporaryView.size());
 		}
 	}
 	
@@ -112,6 +112,15 @@ public class ConnectionManager {
 	public static void showPersonalBoard(Player player, PersonalBoard personalBoard) {
 		View view = getView(player);
 		view.showPersonalBoard(personalBoard);
+	}
+
+	public static void addPlayers(){
+		Player[] players = Game.getPlayers();
+		int i = 0;
+		for (View view : temporaryView) {
+			playersView.put(players[i], view);
+			i++;
+		}
 	}
 
 }

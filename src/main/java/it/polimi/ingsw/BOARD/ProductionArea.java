@@ -1,11 +1,27 @@
 package it.polimi.ingsw.BOARD;
 
+import java.util.ArrayList;
+
+import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.GC_15.Game;
+
 public class ProductionArea extends ActionZone{
 	
-	public ProductionArea(){
-	}	
+	public ProductionArea() {
+		super("market");
+		int numberOfPlayers = Game.getPlayers().length;
+		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
+		positions = new Position[numberOfPositions];
+		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
+		for(int i=0;i<numberOfPositions;i++){
+			positions[i]= new Position(boardBonus, 0);
+		}
+
+	}
 	
-	public ProductionArea(int numberOfPlayers) {
-		super(numberOfPlayers>=3? 2 : 1);
+	@Override
+	public String getDescription() {
+		String description = "Area Produzione";
+		return description;
 	}
 }

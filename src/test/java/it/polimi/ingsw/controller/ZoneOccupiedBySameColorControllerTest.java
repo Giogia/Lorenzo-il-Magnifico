@@ -25,7 +25,7 @@ public class ZoneOccupiedBySameColorControllerTest {
 		FamilyMember familyMember2 = new FamilyMember(dice2, player);
 		Dice dice3 = new Dice(DiceColour.Neutral);
 		FamilyMember familyMember3 = new FamilyMember(dice3, player);
-		HarvestArea harvestArea =new HarvestArea(4);
+		HarvestArea harvestArea =new HarvestArea();
 		harvestArea.getPosition(0).addFamilyMember(familyMember3);
 
 		assertEquals(true, ZoneOccupiedBySameColorController.check(harvestArea, familyMember1));

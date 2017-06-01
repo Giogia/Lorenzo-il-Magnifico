@@ -18,4 +18,15 @@ public abstract class DevelopmentCard extends Card{
 		this.immediateEffect=immediateEffect;
 		this.secondaryEffect=secondaryEffect;
 	}
+
+	public String getDescription(){
+		String description = "";
+		if (immediateEffect != null){
+			description = description + "Bonus immediati: \n";
+			for (ImmediateBonus immediateBonus : immediateEffect) {
+				description = description + immediateBonus.getDescription() + "\n";
+			}
+		}
+		return description;
+	}
 }

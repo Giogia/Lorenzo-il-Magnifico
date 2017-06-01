@@ -19,7 +19,7 @@ public class ZoneAlreadyOccupiedControllerTest {
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);
 		FamilyMember familyMember = new FamilyMember(dice, player);
-		Market market =new Market(4);
+		Market market =new Market();
 		
 		assertEquals(true, ZoneAlreadyOccupiedController.check(market));
 		market.getPosition(0).addFamilyMember(familyMember);

@@ -15,4 +15,10 @@ public class MultiplyFamilyMemberBonus extends FamilyMemberBonus {
 		familyMember1.multValue(familyMember2.getValue());
 	}
 
+	@Override
+	public String getDescription() {
+		String description = "Moltiplica il valore a: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

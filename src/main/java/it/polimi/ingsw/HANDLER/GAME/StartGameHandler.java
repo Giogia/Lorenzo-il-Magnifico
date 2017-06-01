@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.RoundOrder;
 import it.polimi.ingsw.GC_15.VaticanReport;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
@@ -27,8 +28,8 @@ public final class StartGameHandler {
 	
 	public static void handle(Board board){
 		setRandomExcommunicationTiles(Game.getData().getExcommunicationTiles());
-		setPlayersResources(board);
 		chooseOrder(board);
+		setPlayersResources(board);
 		setPersonalBonusTiles(board, Game.getData().getPersonalBonusTiles());
 	}
 	
@@ -46,7 +47,7 @@ public final class StartGameHandler {
 	
 	private static void setPlayersResources(Board board){
 		int i=0;
-		for(Player player: board.getRoundOrder().getPlayers()){
+		for(Player player: Game.getRoundOrder()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
 			personalBoard.getResource(ResourceType.stones).addAmount(2);
 			personalBoard.getResource(ResourceType.wood).addAmount(2);
@@ -67,6 +68,7 @@ public final class StartGameHandler {
 				players.add(gamePlayers[order]);
 			}
 		}
+		Game.setOrder(players);
 	}
 
 	

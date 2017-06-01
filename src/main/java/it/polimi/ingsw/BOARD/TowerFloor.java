@@ -11,11 +11,6 @@ public class TowerFloor extends Position {
 	
 	private DevelopmentCard developmentCard;
 	
-	public TowerFloor(ArrayList<ImmediateBonus> boardBonus, int diceRequirement, DevelopmentCard developmentCard) {
-		super(boardBonus, diceRequirement);
-		this.developmentCard = developmentCard;
-	}
-	
 	public TowerFloor(ArrayList<ImmediateBonus> boardBonus, int diceRequirement) {
 		super(boardBonus, diceRequirement);
 		this.developmentCard = null;
@@ -49,6 +44,13 @@ public class TowerFloor extends Position {
 			}//da testare assolutamente 
 		} */
 		this.developmentCard = null; //cancella carta sul piano della torre
+	}
+	
+	@Override
+	public String getDescription() {
+		String description = super.getDescription();
+		description = description + developmentCard.getDescription();
+		return description;
 	}
 }
 

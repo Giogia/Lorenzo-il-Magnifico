@@ -16,5 +16,12 @@ public class MultiplyResourceBonus extends ResourceBonus {
 		protected void modify(Resource resource1, Resource resource2) {
 			resource1.multAmount(resource2.getAmount());	
 		}
+		
+		@Override
+		public String getDescription() {
+			String description = "Moltiplica le tue risorse per: \n";
+			description = description + super.getDescription();
+			return description;
+		}
 
 	}
