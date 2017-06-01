@@ -53,6 +53,7 @@ public class StartRoundHandler {
 			Dice dice = new Dice(diceColour);
 			if (!diceColour.equals(DiceColour.Neutral)){
 				dice.setValue();
+				System.out.println(dice.getDescription());
 			}
 			dices.add(dice);
 		}

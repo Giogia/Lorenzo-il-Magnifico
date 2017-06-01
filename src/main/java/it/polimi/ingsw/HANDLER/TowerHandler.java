@@ -17,6 +17,7 @@ import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
+import it.polimi.ingsw.CONTROLLER.PositionWithoutDevelopmentCardController;
 import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
@@ -30,7 +31,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 public class TowerHandler {
 
 	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) {
-		if (PositionAlreadyOccupiedController.check(towerFloor)){
+		if (PositionWithoutDevelopmentCardController.check(towerFloor)){
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)){
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())){
 					if (FamilyMemberValueController.check(familyMember, towerFloor)){

@@ -25,6 +25,7 @@ public class FamilyMember {
 	public FamilyMember(Dice dice, Player player) {
 		this.dice=dice;
 		this.player=player;
+		this.value = dice.getValue();
 	}
 	
 	public void addValue(int value) {

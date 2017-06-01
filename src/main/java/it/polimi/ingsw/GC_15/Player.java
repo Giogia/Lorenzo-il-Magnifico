@@ -60,6 +60,7 @@ public class Player {
 	
 	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) {
 		position.addFamilyMember(familyMember);
+		familyMembers.remove(familyMember);
 	}
 	
 	public void useServants(int servantsNumber, FamilyMember familyMember){

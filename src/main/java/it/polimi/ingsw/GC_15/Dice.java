@@ -31,4 +31,9 @@ public class Dice {
 		}
 		return false;
 	}
+
+	public String getDescription() {
+		String description = "Dado " + diceColour.name() + " valore: " + value + "\n";
+		return description;
+	}
 }

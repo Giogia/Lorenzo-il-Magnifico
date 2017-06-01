@@ -18,8 +18,10 @@ public class FakeFamilyMemberHandler {
 
 	
 	public static boolean handle(Player player, ActionZone zone, int value, ArrayList<Resource> costBonus){
-		if (!costBonus.isEmpty()){
-			turnOnBoolean(costBonus);
+		if (costBonus != null){
+			if (!costBonus.isEmpty()){
+				turnOnBoolean(costBonus);
+			}
 		}
 		Dice fakeDice = new Dice(DiceColour.Fake); 
 		fakeDice.setValue(value); 	

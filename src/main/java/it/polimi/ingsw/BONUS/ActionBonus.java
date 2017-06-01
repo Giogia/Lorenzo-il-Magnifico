@@ -35,9 +35,11 @@ public class ActionBonus extends ImmediateBonus {
 		for (ActionZone actionZone : actionZones) {
 			description = description + actionZone.getDescription() + "del valore di " + action.get(actionZone) + "\n";
 		}
-		description = description + "Hai un bonus di: \n";
-		for (Resource resource : resources) {
-			description = description + resource.getDescription();
+		if (resources != null){
+			description = description + "Hai un bonus di: \n";
+			for (Resource resource : resources) {
+				description = description + resource.getDescription();
+			}
 		}
 		return description;
 	}
