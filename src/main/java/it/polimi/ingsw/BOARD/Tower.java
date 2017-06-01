@@ -8,6 +8,9 @@ public class Tower extends ActionZone{
 	public Tower(DevelopmentCardType developmentCardType) {
 		super("Tower");
 		positions = new TowerFloor[4];
+		for (int i = 0; i < positions.length; i++ ){
+			positions[i] = new TowerFloor(null, 2*i + 1);
+		}
 		this.developmentCardType = developmentCardType;
 	}
 	

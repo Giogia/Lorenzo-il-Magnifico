@@ -93,9 +93,11 @@ public class Manager {
 	}
 
 	private static void actionManager(Player player) {
-		if (PassTurnController.getLastMove().equals(player)){
-			ConnectionManager.moveAlreadyDone(player);
-			return;
+		if (PassTurnController.getLastMove() != null){
+			if (PassTurnController.getLastMove().equals(player)){
+				ConnectionManager.moveAlreadyDone(player);
+				return;
+			}
 		}
 		Board board = Game.getBoard();
 		while(true){
