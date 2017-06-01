@@ -6,5 +6,10 @@ public class VictoryPoints extends Resource{
 		super(amount, value);
 		this.resourceType = ResourceType.victoryPoints;
 	}
+	
+	@Override
+	public String getDescription() {
+		return amount +" Victory Points";
+	}
 }
 

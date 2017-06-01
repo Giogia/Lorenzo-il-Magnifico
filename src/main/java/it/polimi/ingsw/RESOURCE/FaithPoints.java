@@ -6,4 +6,11 @@ public class FaithPoints extends Resource{
 		super(amount, value);
 		this.resourceType = ResourceType.faithPoints;
 	}
+
+	@Override
+	public String getDescription() {
+		return amount +" Faith Points";
+	}
+	
+	
 }

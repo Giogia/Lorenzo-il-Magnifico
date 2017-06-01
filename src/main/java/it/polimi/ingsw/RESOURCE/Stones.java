@@ -6,4 +6,9 @@ public class Stones extends Resource{
 		super(amount, value);
 		this.resourceType = ResourceType.stones;
 	}
+	
+	@Override
+	public String getDescription() {
+		return amount +" Stones";
+	}
 }

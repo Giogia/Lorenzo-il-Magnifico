@@ -6,4 +6,10 @@ public class MilitaryPoints extends Resource {
 		super(amount, value);
 		this.resourceType = ResourceType.militaryPoints;
 	}
+	
+
+	@Override
+	public String getDescription() {
+		return amount +" Military Points";
+	}
 }

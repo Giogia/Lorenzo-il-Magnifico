@@ -11,6 +11,9 @@ import it.polimi.ingsw.RESOURCE.Servants;
 public class PassTurnHandler {
 	
 	public static boolean handle(Player player){
+		if (PassTurnController.getLastMove() == null){
+			return false;
+		}
 		if (PassTurnController.getLastMove().equals(player)){
 			return true;
 		}

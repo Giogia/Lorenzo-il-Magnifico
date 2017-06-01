@@ -46,7 +46,7 @@ public abstract class FamilyMemberBonus extends ImmediateBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = subtype + "\n";
+		String description = "";
 		for (FamilyMember familyMember : familyMembers) {
 			description = description + familyMember.getDescription() + "\n";
 		}

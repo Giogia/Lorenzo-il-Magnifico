@@ -22,4 +22,11 @@ public class ResourcePerResourceBonus extends AddResourceBonus{
 		}
 		super.getImmediateBonus(player);
 	}
+	
+	@Override
+	public String getDescription() {
+		String description = "Per ogni " + requirement.getDescription() + " ottieni: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

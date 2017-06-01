@@ -6,5 +6,10 @@ public class Wood extends Resource{
 		super(amount, value);
 		this.resourceType = ResourceType.wood;
 	}
+	
+	@Override
+	public String getDescription() {
+		return amount +" Wood";
+	}
 }
 

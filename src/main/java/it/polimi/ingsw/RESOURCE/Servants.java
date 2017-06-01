@@ -6,4 +6,9 @@ public class Servants extends Resource{
 		super(amount, value);
 		this.resourceType = ResourceType.servants;
 	}
+	
+	@Override
+	public String getDescription() {
+		return amount +" Servants";
+	}
 }

@@ -25,4 +25,10 @@ public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 		super.getImmediateBonus(player);
 	}
 	
+	@Override
+	public String getDescription() {
+		String description = "Per ogni carta " + developmentCardType.name() + " ricevi: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }
