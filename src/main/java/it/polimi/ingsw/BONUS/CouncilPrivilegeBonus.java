@@ -19,7 +19,7 @@ public class CouncilPrivilegeBonus extends ImmediateBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = differentCouncilPrivilege + " diversi Privilegi del Consiglio";
+		String description = differentCouncilPrivilege + " diversi Privilegi del Consiglio \n";
 		return description;
 	}
 
