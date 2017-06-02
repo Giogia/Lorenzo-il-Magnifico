@@ -17,7 +17,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 	 * Se non è neutro ritorna falso
 	 * Dopo tutto il ciclo, siamo sicuri che non ci siano familiari dello stesso colore, ritorna vero
 	 */
-	public static boolean check(Zone zone, FamilyMember familyMember){
+	public static boolean check(Zone zone, FamilyMember familyMember) throws Exception{
 		if (isNeutral(familyMember)){
 			return true;
 		}
@@ -31,7 +31,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 				for (FamilyMember positionFamilyMember : positionFamilyMembers) {
 					if (samePlayer(familyMember, positionFamilyMember)){
 						if (!isNeutral(positionFamilyMember))
-							return false;	
+							throw new Exception("This Zone is already occupied by this family member color!");	
 					}
 				}
 			}

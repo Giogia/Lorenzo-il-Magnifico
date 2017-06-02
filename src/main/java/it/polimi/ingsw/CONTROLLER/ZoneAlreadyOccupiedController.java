@@ -5,10 +5,10 @@ import it.polimi.ingsw.BOARD.Zone;
 
 public class ZoneAlreadyOccupiedController implements Controller{
 	
-	public static boolean check(Zone zone){
+	public static boolean check(Zone zone) throws Exception{
 		for(Position position: zone.getPositions()){
 			if(!position.getFamilyMembers().isEmpty()){
-				return false;
+				throw new Exception("This zone is already occupied");
 			}	
 		}
 		return true;
