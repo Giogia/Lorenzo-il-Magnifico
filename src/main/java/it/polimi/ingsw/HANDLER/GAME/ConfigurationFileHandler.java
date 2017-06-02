@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -43,6 +44,23 @@ import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
+	public static void main(String[] args){
+		ArrayList<ArrayList<ImmediateBonus>> harvestAreaPositionBonus = new ArrayList<ArrayList<ImmediateBonus>>();
+		ArrayList<ArrayList<ImmediateBonus>> productionAreaPositionBonus = new ArrayList<ArrayList<ImmediateBonus>>();
+		
+		System.out.println("Inserire i bonus della production");
+		for(int i=0; i< 2; i++){
+			harvestAreaPositionBonus.add(Create.createArrayImmediateBonus());
+		}
+		
+		System.out.println("Inserire i bonus dell'harvest");
+		for(int i=0; i< 2; i++){
+			productionAreaPositionBonus.add(Create.createArrayImmediateBonus());
+		}
+		
+		System.out.println(toSerialize(harvestAreaPositionBonus));
+		System.out.println(toSerialize(productionAreaPositionBonus));
+	}
 	
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
@@ -128,7 +146,7 @@ public class ConfigurationFileHandler {
 			
 		} catch (Exception e){
 			e.printStackTrace();
-			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null);
+			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 		}
 	}
 }

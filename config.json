@@ -3161,5 +3161,216 @@
     7,
     12,
     18
+  ],
+  "towerTerritoryPositionBonus": [
+  null,
+  null,
+  [
+    {
+      "resources": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ]
+  ],
+  "towerCharacterPositionBonus": [
+  null,
+  null,
+  [
+    {
+      "resources": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ]
+],
+  "towerBuildingPositionBonus": [
+  null,
+  null,
+  [
+    {
+      "resources": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "militaryPoints"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "militaryPoints"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ]
+],
+  "towerVenturePositionBonus": [
+  null,
+  null,
+  [
+    {
+      "resources": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ]
+],
+  "marketPositionBonus": [
+  [
+    {
+      "resources": [
+        {
+          "amount": 5,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 5,
+          "value": 1,
+          "resourceType": "servants"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "resources": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "militaryPoints"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
+  [
+    {
+      "differentCouncilPrivilege": 2,
+      "type": "councilPrivilegeBonus",
+      "type1": "immediateBonus"
+    }
+  ]
+],
+  "councilPalaceBonus": [
+  {
+    "resources": [
+      {
+        "amount": 1,
+        "value": 1,
+        "resourceType": "coins"
+      }
+    ],
+    "subtype": "addResourceBonus",
+    "type": "resourceBonus",
+    "type1": "immediateBonus"
+  },
+  {
+    "differentCouncilPrivilege": 1,
+    "type": "councilPrivilegeBonus",
+    "type1": "immediateBonus"
+  }
+],
+  "harvestAreaPositionBonus": [
+  0,
+  -3
+  ],
+  "productionAreaPositionBonus": [
+  0,
+  -3
   ]
 }

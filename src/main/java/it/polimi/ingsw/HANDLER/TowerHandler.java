@@ -211,20 +211,15 @@ public class TowerHandler {
 	}
 	
 	private static ArrayList<Resource> neg(ArrayList<Resource> resources){
+		ArrayList<Resource> negResources = new ArrayList<>();
 		for (Resource resource : resources) {
-			resource.getClass().getName();
+			negResources.add(resource.clone());
 		}
-		ArrayList<Resource> negation = new ArrayList<>();
-		for (Resource resource : resources) {
-			negation.add(resource);
-			System.out.println(resource.getDescription());
-		}
-		for (Resource negResource : negation) {
-			System.out.println(negResource.getAmount());
+		for (Resource negResource : negResources) {
 			int amount = -negResource.getAmount();
 			negResource.setAmount(amount);
 		}
-		return negation;
+		return negResources;
 	}
 	
 	

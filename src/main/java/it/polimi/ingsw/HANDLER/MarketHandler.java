@@ -3,6 +3,7 @@ package it.polimi.ingsw.HANDLER;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.OccupiedYetBonusController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
@@ -29,6 +30,9 @@ public class MarketHandler {
 			testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
 			PassTurnController.lastMove(testFamilyMember.getPlayer());
 			copyResource(testFamilyMember.getPlayer(), playerResources);
+			for (ImmediateBonus immediateBonus : position.getBoardBonus()) {
+				immediateBonus.getImmediateBonus(testFamilyMember.getPlayer());
+			}
 			return true;
 		}
 		return false;
