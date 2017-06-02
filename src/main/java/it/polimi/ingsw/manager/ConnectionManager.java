@@ -122,5 +122,10 @@ public class ConnectionManager {
 			i++;
 		}
 	}
+	
+	public static void cantPassTurn(Player player){
+		View view= getView(player);
+		view.cantPassTurn();
+	}
 
 }

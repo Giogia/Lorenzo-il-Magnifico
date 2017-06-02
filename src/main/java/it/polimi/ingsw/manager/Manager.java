@@ -62,6 +62,8 @@ public class Manager {
 				if (PassTurnHandler.handle(player)){
 					return;
 				}
+				//tell to player he can't pass turn
+				ConnectionManager.cantPassTurn(player);
 				break;
 			}
 		}

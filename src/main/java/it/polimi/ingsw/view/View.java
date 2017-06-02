@@ -35,4 +35,6 @@ public interface View {
 	int askForInformation(Player[] players);
 
 	void showPersonalBoard(PersonalBoard personalBoard);
+	
+	void cantPassTurn();
 }

@@ -20,11 +20,15 @@ public abstract class DevelopmentCard extends Card{
 	}
 
 	public String getDescription(){
-		String description = "";
+		String description = "Nome della carta: " + super.getName() + "\n";
 		if (immediateEffect != null){
-			description = description + "Bonus immediati: \n";
-			for (ImmediateBonus immediateBonus : immediateEffect) {
-				description = description + immediateBonus.getDescription() + "\n";
+			description = description + "Bonus derivanti dall'effetto immediato della carta: \n";
+			
+			for (int i=0; i < immediateEffect.size(); i++){
+				if (i == immediateEffect.size()-1){
+					return description + immediateEffect.get(i).getDescription();
+				}
+				description = description + immediateEffect.get(i).getDescription() + "\n";
 			}
 		}
 		return description;

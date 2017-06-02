@@ -37,7 +37,7 @@ public class TowerFloor extends Position {
 		for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
 			giveImmediateBonus(cardPlayer,immediateBonus);
 		}
-		/*commentato perche' serve solo con permanent bonus
+		/*TODO: permanent bonus
 		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
 			for(Bonus immediateBonus : this.developmentCard.secondaryEffect){
 				giveImmediateBonus(cardPlayer, immediateBonus); 

@@ -38,12 +38,12 @@ public class CLIView implements View{
 
 	@Override
 	public void moveAlreadyDone() {
-		System.out.println("Azione già effettuata");
+		System.out.println("Hai già posizionato in questo turno un familiare. Scegli un'altra opzione: ");
 	}
 
 	@Override
 	public int chooseZone(Board board) {
-		System.out.println("Scegli la zona in cui vuoi posizionare il familiare: ");
+		System.out.println("Scegli la zona in cui vuoi posizionare il familiare:\n");
 		System.out.println("1) Torre Territori \n2) Torre Personaggi \n3) Torre Edifici \n4) Torre Imprese \n" + 
 			"5) Palazzo del Consiglio \n6) Zona Raccolto \n7) Zona Produzione \n8) Mercato \n9) Torna indietro");
 		return checkInputError(1, 9);
@@ -92,11 +92,11 @@ public class CLIView implements View{
 
 	@Override
 	public int askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges) {
+		System.out.println("Scegli il bonus che vuoi avere dal Privilegio del Consiglio: ");
 		for (int counter = 1; counter <= councilPrivileges.size(); counter++){
 			String message = counter + ") " + councilPrivileges.get(counter - 1).getDescription();
 			System.out.println(message);
 		}
-		System.out.println("Scegli il tuo Privilegio");
 		return checkInputError(1, councilPrivileges.size());
 	}
 
@@ -122,6 +122,12 @@ public class CLIView implements View{
 	@Override
 	public void showPersonalBoard(PersonalBoard personalBoard) {
 		System.out.println(personalBoard.getDescription());
+	}
+	
+	@Override
+	public void cantPassTurn() {
+		System.out.println("Non puoi passare il turno poichè devi posizionare almeno un familiare.\n");
+		
 	}
 
 	private int checkInputError(int min, int max){

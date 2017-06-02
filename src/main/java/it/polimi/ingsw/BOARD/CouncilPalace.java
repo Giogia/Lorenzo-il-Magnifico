@@ -11,8 +11,10 @@ public class CouncilPalace extends Zone {
 	public CouncilPalace() {
 		super("market");
 		positions = new Position[1];
-		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
-		positions[0]= new Position(boardBonus, 1);
+		
+		
+		//ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
+		positions[0]= new Position(null, 1);
 	}
 	
 	@Override

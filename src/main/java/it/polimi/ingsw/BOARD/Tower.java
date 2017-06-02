@@ -12,14 +12,10 @@ public class Tower extends ActionZone{
 		super("Tower");
 		positions = new TowerFloor[4];
 		for (int i = 0; i < positions.length; i++ ){
+			//TODO: dare il giusto bonus alla posizione
 			positions[i] = new TowerFloor(null, 2*i + 1);
 		}
 		this.developmentCardType = developmentCardType;
-		
-		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>(); 
-		for(int i=0;i<4;i++){
-			positions[i]= new TowerFloor(boardBonus, 0);
-		}
 	}
 	
 	public DevelopmentCardType getDevelopmentCardType(){
