@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
@@ -27,16 +29,13 @@ public class Game {
 			players[0] = new Player("Michele" , Color.BLUE);
 			players[1] = new Player("Giovanni" , Color.RED);
 			ConnectionManager.addPlayers();
-			
 			data = ConfigurationFileHandler.getData();
 			board = new Board();
 			roundOrder = new RoundOrder();
-			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(roundOrder, board, players);
@@ -62,6 +61,4 @@ public class Game {
 	public static ArrayList<Player> getRoundOrder() {
 		return roundOrder.getPlayers();
 	}
-	
-
 }

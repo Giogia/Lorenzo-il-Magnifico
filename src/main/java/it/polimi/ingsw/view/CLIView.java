@@ -142,4 +142,8 @@ public class CLIView implements View{
 		}
 	}
 	
+	public void giveInitialInformations(String toSend){
+		System.out.println(toSend);
+	}
+	
 }

@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.view.CLIView;
 import it.polimi.ingsw.view.View;
 
 public class ConnectionManager {
@@ -126,6 +127,14 @@ public class ConnectionManager {
 	public static void cantPassTurn(Player player){
 		View view= getView(player);
 		view.cantPassTurn();
+	}
+	
+	public static void giveInitialInformations(String toSend){
+		//it must be done in this way
+		for (Player player : playersView.keySet()){
+			CLIView view = (CLIView) getView(player);
+			view.giveInitialInformations(toSend);
+		}
 	}
 
 }
