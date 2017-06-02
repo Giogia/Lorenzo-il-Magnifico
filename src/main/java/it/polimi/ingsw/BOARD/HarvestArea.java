@@ -14,13 +14,12 @@ public class HarvestArea extends ActionZone {
 		positions = new Position[numberOfPositions];
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
 		for(int i=0;i<numberOfPositions;i++){
-			positions[i]= new Position(boardBonus, 0);
+			positions[i]= new Position(boardBonus, 1);
 		}
 	}
 	
 	@Override
 	public String getDescription() {
-		String description = "Area Raccolto";
-		return description;
+		return "Area Raccolto";
 	}
 }

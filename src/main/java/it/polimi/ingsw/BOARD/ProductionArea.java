@@ -13,15 +13,14 @@ public class ProductionArea extends ActionZone{
 		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
 		positions = new Position[numberOfPositions];
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
-		for(int i=0;i<numberOfPositions;i++){
-			positions[i]= new Position(boardBonus, 0);
+		for(int i = 0; i < numberOfPositions; i++){
+			positions[i]= new Position(boardBonus, 1);
 		}
 
 	}
 	
 	@Override
 	public String getDescription() {
-		String description = "Area Produzione";
-		return description;
+		return "Area Produzione";
 	}
 }

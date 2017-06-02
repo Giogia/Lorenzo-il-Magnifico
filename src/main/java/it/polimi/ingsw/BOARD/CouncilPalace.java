@@ -12,12 +12,11 @@ public class CouncilPalace extends Zone {
 		super("market");
 		positions = new Position[1];
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
-		positions[0]= new Position(boardBonus, 0);
+		positions[0]= new Position(boardBonus, 1);
 	}
 	
 	@Override
 	public String getDescription() {
-		String description = "Palazzo del Consiglio";
-		return description;
+		return "Palazzo del Consiglio";
 	}
 }

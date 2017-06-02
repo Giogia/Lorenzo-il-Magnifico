@@ -30,9 +30,9 @@ public class CLIView implements View{
 
 	@Override
 	public int turnChoice() {
-		System.out.println("Che azione vuoi effettuare? \n\n");
+		System.out.println("Che azione vuoi effettuare?\n");
 		System.out.println("1) Posiziona familiare \n2) Attiva carta leader \n3) Scarta carta leader \n4) Attiva "
-				+ "l'effetto di una carta leader \n5) Statistiche \n6) Passa il turno");
+				+ "l'effetto di una carta leader \n5) Statistiche \n6) Passa il turno\n");
 		return checkInputError(1, 6);
 	}
 
@@ -43,13 +43,15 @@ public class CLIView implements View{
 
 	@Override
 	public int chooseZone(Board board) {
-		System.out.println("1) Torre Territori \n 2) Torre Personaggi \n 3) Torre Edifici \n 4) Torre Imprese \n" + 
-			"5) Palazzo del Consiglio \n 6) Zona Raccolto \n 7) Zona Produzione \n 8) Mercato \n 9) Torna indietro");
+		System.out.println("Scegli la zona in cui vuoi posizionare il familiare: ");
+		System.out.println("1) Torre Territori \n2) Torre Personaggi \n3) Torre Edifici \n4) Torre Imprese \n" + 
+			"5) Palazzo del Consiglio \n6) Zona Raccolto \n7) Zona Produzione \n8) Mercato \n9) Torna indietro");
 		return checkInputError(1, 9);
 	}
 
 	@Override
 	public int choosePosition(Position[] positions) {
+		System.out.println("Scegli la posizione in cui vuoi posizionare il familiare: ");
 		for (int counter = 1; counter <= positions.length; counter ++) {
 			String message = counter + ") " + positions[counter - 1].getDescription();
 			System.out.println(message);
@@ -62,6 +64,7 @@ public class CLIView implements View{
 
 	@Override
 	public int chooseFamilyMember(ArrayList<FamilyMember> familyMembers) {
+		System.out.println("Scegli il familiare che vuoi utilizzare per effettare l'azione: ");
 		for (int counter = 1; counter <= familyMembers.size(); counter++){
 			String message = counter + ") " + familyMembers.get(counter - 1).getDescription();
 			System.out.println(message);
@@ -74,6 +77,7 @@ public class CLIView implements View{
 
 	@Override
 	public int askForAlternativeCost(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost) {
+		System.out.println("La carta che hai scelto ha 2 costi. Scegli uno dei due: ");
 		System.out.println("1) Primo costo");
 		for (Resource resource : cost) {
 			System.out.println(resource.getDescription());
