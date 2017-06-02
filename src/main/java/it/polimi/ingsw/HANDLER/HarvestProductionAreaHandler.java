@@ -13,6 +13,7 @@ import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -32,6 +33,7 @@ public abstract class HarvestProductionAreaHandler {
 			}
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 			ServantsHandler.handle(testFamilyMember, playerResources);
+			checkPositionMalus(testFamilyMember, zone, position);
 			if(FamilyMemberValueController.check(testFamilyMember, position)){
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
@@ -49,6 +51,25 @@ public abstract class HarvestProductionAreaHandler {
 		} */
 	}
 	
+
+	private static void checkPositionMalus(FamilyMember familyMember, Zone zone, Position position) {
+		Position[] zonePosition = zone.getPositions();
+		int[] positionMalus;
+		if (zone instanceof HarvestArea){
+			positionMalus = Game.getData().getHarvestAreaPositionBonus();
+		}
+		else {
+			positionMalus = Game.getData().getProductionAreaPositionBonus();
+		}
+		if (position.equals(zonePosition[0])){
+			familyMember.addValue(positionMalus[0]);
+		}
+		else{
+			familyMember.addValue(positionMalus[1]);
+		}
+	}
+	
+
 	protected static ArrayList<DevelopmentCard> getCards(FamilyMember familyMember, Zone zone){ //serve per le regole avanzate
 	ArrayList<CardContainer> cardContainers= familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for(CardContainer cardcontainer : cardContainers){
