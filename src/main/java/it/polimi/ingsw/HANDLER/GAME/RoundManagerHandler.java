@@ -1,5 +1,7 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.util.ArrayList;
+
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -22,9 +24,14 @@ public class RoundManagerHandler {
 		return instance;
 	}
 	
-	public static void handle(RoundOrder roundOrder, Board board, Player[] players){
+	public static void handle( Board board, Player[] players){
 		for (int turn = 1; turn <= 6; turn++){
 			int period = turn/2 +1;
+			RoundOrder roundOrder = Game.getOrder();
+			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
+			for (Player player : orderPlayers) {
+				System.out.println("Giocatore in roundOrder: " + player.getName());
+			}
 			StartRoundHandler.handle(period, players, board);
 			giveInitialInformations();
 			handleOrder(roundOrder);

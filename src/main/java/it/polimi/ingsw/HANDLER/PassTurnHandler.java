@@ -28,6 +28,7 @@ public class PassTurnHandler {
 			if (playerServants.getAmount() >= playerServants.getValue()){
 				return false;
 			}
+			PassTurnController.lastMove(player);
 			return true;
 		}
 	}

@@ -46,6 +46,7 @@ public class EndRoundHandler {
 			}
 		}
 		councilPalacePlayers.addAll(oldRoundOrder);
+		roundOrder.setPlayers(councilPalacePlayers);
 	}
 
 }

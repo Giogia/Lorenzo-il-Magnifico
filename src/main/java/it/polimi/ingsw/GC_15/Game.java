@@ -38,7 +38,7 @@ public class Game {
 		}
 		
 		StartGameHandler.handle(board);
-		RoundManagerHandler.handle(roundOrder, board, players);
+		RoundManagerHandler.handle(board, players);
 		EndGameHandler.handle(board);
 	}
 	
@@ -60,5 +60,9 @@ public class Game {
 
 	public static ArrayList<Player> getRoundOrder() {
 		return roundOrder.getPlayers();
+	}
+	
+	public static RoundOrder getOrder(){
+		return roundOrder;
 	}
 }
