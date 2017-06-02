@@ -6,9 +6,9 @@ import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.GC_15.FamilyMember;
 
 
-public class HarvestAreaHandler extends HarvestProductionAreaHandler{
+public class HarvestAreaHandler extends HarvestProductionAreaHandler {
 	
-	public static boolean handle(FamilyMember familyMember, HarvestArea harvestArea, Position position){
+	public static boolean handle(FamilyMember familyMember, HarvestArea harvestArea, Position position) throws Exception{
 		return(abstractHandle(familyMember, harvestArea, position));
 	}	
 	

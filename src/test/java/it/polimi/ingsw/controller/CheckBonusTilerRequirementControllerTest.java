@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_15.Player.Color;
 public class CheckBonusTilerRequirementControllerTest {
 
 	@Test
-	public void checkTest() {
+	public void checkTest() throws Exception{
 		
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);

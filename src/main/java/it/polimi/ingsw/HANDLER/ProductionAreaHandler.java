@@ -7,7 +7,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 public class ProductionAreaHandler extends HarvestProductionAreaHandler{
 	
 		
-	public static boolean handle(FamilyMember familyMember, ProductionArea productionArea, Position position){
+	public static boolean handle(FamilyMember familyMember, ProductionArea productionArea, Position position) throws Exception{
 		return(abstractHandle(familyMember, productionArea, position));
 	}
 

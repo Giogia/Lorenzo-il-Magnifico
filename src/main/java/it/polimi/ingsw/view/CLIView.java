@@ -14,11 +14,11 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public class CLIView implements View{
 	Scanner scanner;
 	
-	public CLIView() {
+	public CLIView() throws Exception {
 		hereIAm();
 	}
 	
-	private void hereIAm(){
+	private void hereIAm() throws Exception{
 		connectionManager.acceptUser(this);
 	}
 	

@@ -21,7 +21,7 @@ public class Game {
 	private static Board board;
 	private static DataFromFile data;
 	
-	public static void start(int numberOfPlayers){
+	public static void start(int numberOfPlayers) throws Exception{
 		//setta i vari attributi di game
 		try {
 			players = new Player[numberOfPlayers];

@@ -34,7 +34,7 @@ public class Position {
 		return this.diceRequirement;
 	}
 	
-	public void addFamilyMember(FamilyMember newFamilyMember){
+	public void addFamilyMember(FamilyMember newFamilyMember) throws Exception{
 		familyMembers.add(newFamilyMember);
 	}
 	
@@ -46,7 +46,7 @@ public class Position {
 		familyMembers.clear();
 	}
 	
-	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus){
+	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws Exception{
 		immediateBonus.getImmediateBonus(player);
 	}
 	protected void givePermanentBonus(Player player, PermanentBonus permanentBonus){

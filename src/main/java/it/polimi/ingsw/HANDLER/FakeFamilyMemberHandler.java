@@ -17,7 +17,7 @@ public class FakeFamilyMemberHandler {
 	private static ArrayList<Resource> cost = new ArrayList<>();
 
 	
-	public static boolean handle(Player player, ActionZone zone, int value, ArrayList<Resource> costBonus){
+	public static boolean handle(Player player, ActionZone zone, int value, ArrayList<Resource> costBonus) throws Exception{
 		if (costBonus != null){
 			if (!costBonus.isEmpty()){
 				turnOnBoolean(costBonus);

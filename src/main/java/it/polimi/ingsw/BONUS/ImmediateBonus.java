@@ -14,7 +14,7 @@ public abstract class ImmediateBonus extends Bonus {
 		return type;
 	}
 	
-	public void getImmediateBonus(Player player){ 
+	public void getImmediateBonus(Player player) throws Exception{ 
 		
 	}
 

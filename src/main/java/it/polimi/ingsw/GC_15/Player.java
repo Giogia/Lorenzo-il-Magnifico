@@ -1,59 +1,134 @@
 package it.polimi.ingsw.GC_15;
 
-import it.polimi.ingsw.BOARD.HarvestArea;
-import it.polimi.ingsw.BOARD.ProductionArea;
-import it.polimi.ingsw.BOARD.Zone;
-import it.polimi.ingsw.BONUS.ImmediateBonus;
+import java.util.ArrayList;
 
-public class PersonalBonusTile {
-	private final ImmediateBonus harvestBonus;
-	private final ImmediateBonus productionBonus;
-	private final int harvestActivationCondition;
-	private final int productionActivationCondition;
+import it.polimi.ingsw.BOARD.*;
+import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
+import it.polimi.ingsw.CARD.*;
+import it.polimi.ingsw.RESOURCE.Coins;
+import it.polimi.ingsw.RESOURCE.ResourceType;
+
+public class Player {
+	private String name;
+	private Color color;
+	public enum Color {RED, BLUE, YELLOW, GREEN}
+	private Board board;
+	private PersonalBoard personalBoard;
+	private ArrayList<LeaderCard> leaderCardInHand;
+	private ArrayList<FamilyMember> familyMembers;
 	
-	public PersonalBonusTile() {
-		harvestBonus = null;
-		productionBonus = null;
-		harvestActivationCondition = 0;
-		productionActivationCondition = 0;
+	public Player(String name, Color color) {
+		this.name=name;
+		this.color=color;
+		personalBoard = new PersonalBoard();
 	}
 	
-	public PersonalBonusTile(ImmediateBonus harvestBonus, ImmediateBonus productionBonus, int harvestActivationCondition, int productionActivationCondition){
-		this.harvestBonus= harvestBonus;
-		this.productionBonus= productionBonus;
-		this.harvestActivationCondition= harvestActivationCondition;
-		this.productionActivationCondition=productionActivationCondition;
+	public Color getColor() {
+		return color;
+	}
+
+	public Board getBoard() {
+		return board;
 	}
 	
-	
-	private int getHarvestActivationCondition() {
-		return harvestActivationCondition;
+	public ArrayList<LeaderCard> getLeaderCardInHand() {
+		return leaderCardInHand;
 	}
 	
-	private int getProductionActivationCondition() {
-		return productionActivationCondition;
+	public void setFamilyMember(ArrayList<FamilyMember> familyMembers) {
+		this.familyMembers = familyMembers;
 	}
 	
-	public int getCondition(Zone zone){
-		if(zone instanceof HarvestArea){
-			return getHarvestActivationCondition();
+	public void setLeaderCardInHand(ArrayList<LeaderCard> leaderCard){
+		leaderCardInHand=leaderCard;
+	}
+	
+	public void discardLeaderCard(LeaderCard leaderCard){
+		//trovo la posizione dove si trova la leaderCard
+		for(int i=0; i < leaderCardInHand.size(); i++){
+			if (leaderCardInHand.get(i).equals(leaderCard)){
+				//rimuovo la leaderCard dall'ArrayList
+				leaderCardInHand.remove(i);
+			}
 		}
-		if(zone instanceof ProductionArea){
-			return getProductionActivationCondition();
-		}
-		else
-			return -1;//TODO dobbiamo gestire l'eccezione ;
 	}
 	
-	public ImmediateBonus getImmediateBonus(Zone zone){
-		if(zone instanceof HarvestArea){
-			return harvestBonus;
-		}
-		if(zone instanceof ProductionArea){
-			return productionBonus;
-		}
-		else
-			return null;
-	};
+	public boolean wantsToRestartFaithPoints(){
+		boolean decision=true;//TODO PERMANENT
+		return decision;
+	}
 	
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws Exception{
+		position.addFamilyMember(familyMember);
+		if (familyMembers != null){
+			int i = 0;
+			while (i < familyMembers.size()) {
+				if (familyMember.getDice().equals(familyMembers.get(i).getDice())){
+					familyMembers.remove(familyMembers.get(i));
+				}
+				else {
+					i++;
+				}
+			}
+		}
+	}
+	
+	public void useServants(int servantsNumber, FamilyMember familyMember){
+		//decremento il valore dei serventi di - value
+		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);;
+		//aumento il valore dei servernti di value
+		familyMember.addValue(servantsNumber);
+	}
+	
+	public void activateLeaderCard(LeaderCard leaderCard){
+		personalBoard.putLeaderCard(leaderCard);
+		//delete leader card from the hand
+		for (int i=0; i < leaderCardInHand.size(); i++){
+			if (leaderCardInHand.get(i).equals(leaderCard)) leaderCardInHand.remove(i);
+		}
+	}
+	
+	public void activateLeaderEffect(LeaderCard leaderCard){
+		personalBoard.activateLeaderEffect(leaderCard);
+	}
+	
+	public PersonalBoard getPersonalBoard() {
+		return personalBoard;
+	}
+	
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus){
+		//trovo l'indice nell'arrayList dove vi sono le monete
+		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
+		//do al player una moneta
+		personalBoard.getResources().get(index).addvalue(1);
+		//TODO: do il councilPrivilegeBonus
+		councilPrivilegeBonus.getImmediateBonus(this);
+	}
+	
+	public ArrayList<DevelopmentCard> getCardsToActivate(DevelopmentCardType developmentCardType) {
+		ArrayList<CardContainer> cardContainers = personalBoard.getCardContainers();
+		for (CardContainer cardContainer : cardContainers) {
+			if (cardContainer.getType().equals(developmentCardType)){
+				return cardContainer.getDevelopmentCards();
+			}
+		}
+		return null;
+	}
+	
+	public void chooseCard(DevelopmentCard developmentCard) {
+		//TODO PERMANENT
+	}
+	
+	public void chooseCardToCopy(){
+		//TODO PERMANENT
+	}
+	
+	public ArrayList<FamilyMember> getFamilyMembers() {
+		return familyMembers;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
 }

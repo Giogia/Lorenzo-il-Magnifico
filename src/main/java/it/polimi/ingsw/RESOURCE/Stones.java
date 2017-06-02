@@ -11,4 +11,10 @@ public class Stones extends Resource{
 	public String getDescription() {
 		return amount +" Stones";
 	}
+	
+	@Override
+	public Resource clone() {
+		Stones stones = new Stones(this.amount, this.value);
+		return stones;
+	}
 }

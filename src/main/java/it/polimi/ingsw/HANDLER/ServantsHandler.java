@@ -11,19 +11,28 @@ import it.polimi.ingsw.manager.Manager;
 
 public class ServantsHandler {
 
-	public static boolean handle(FamilyMember familyMember){
+	public static boolean handle(FamilyMember familyMember, ArrayList<Resource> playerResources){
 		int servantsNumber = Manager.askForServants(familyMember.getPlayer());
 		if (servantsNumber == 0){
 			return true;
 		}
 		Servants servants = new Servants(servantsNumber,1);
-		ArrayList<Resource> servantsArrayList = new ArrayList<>();
-		servantsArrayList.add(servants);
-		if (ResourceController.check(familyMember.getPlayer(), servantsArrayList)){
-			int servantValue = familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.servants).getValue();
+		Servants playerServants = new Servants(0, 1);
+		for (Resource resource : playerResources) {
+			if (resource.getResourceType().equals(ResourceType.servants)){
+				playerServants = (Servants) resource;
+			}
+		}
+		if (servants.getAmount() <= playerServants.getAmount()){
+			int servantValue = playerServants.getValue();
 			int valueFamilyMember = servantsNumber/servantValue;
 			familyMember.addValue(valueFamilyMember); 
-			familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.servants).addAmount(-servantsNumber);
+			playerServants.addAmount(-servantsNumber);
+			for (Resource resource : playerResources) {
+				if (resource.getResourceType().equals(ResourceType.servants)){
+					resource = playerServants;
+				}
+			}
 			return true;
 		}
 		return false;

@@ -25,7 +25,7 @@ public class TowerFloor extends Position {
 	}
 	
 	@Override
-	public void addFamilyMember(FamilyMember newFamilyMember){
+	public void addFamilyMember(FamilyMember newFamilyMember) throws Exception{
 		
 		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
 		

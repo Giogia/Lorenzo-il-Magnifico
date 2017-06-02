@@ -33,7 +33,7 @@ public class Manager {
 	}
 
 	//begins the turn of the player 
-	public static void turn(Player player) {
+	public static void turn(Player player) throws Exception {
 		ConnectionManager.startTurn(player);
 		while(true){
 			int choice = ConnectionManager.turnChoice(player);
@@ -95,7 +95,7 @@ public class Manager {
 		
 	}
 
-	private static void actionManager(Player player) {
+	private static void actionManager(Player player) throws Exception{
 		if (PassTurnController.getLastMove() != null){
 			if (PassTurnController.getLastMove().equals(player)){
 				ConnectionManager.moveAlreadyDone(player);
@@ -159,7 +159,7 @@ public class Manager {
 	/* Le posizioni vanno da 1 alla posizione massima
 	 * Se ritorna posizione massima + 1, significa che devi tornare indietro
 	 */
-	private static boolean zoneManager(Player player, Zone zone) {
+	private static boolean zoneManager(Player player, Zone zone) throws Exception {
 		Position[] positions = zone.getPositions();
 		int choice = ConnectionManager.choosePosition(player, positions);
 		if (choice == positions.length + 1){
@@ -171,7 +171,7 @@ public class Manager {
 	}
 	
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
-	private static boolean familyMemberManager(Player player, Zone zone, Position position) {
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws Exception{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
 		int choice = ConnectionManager.chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){

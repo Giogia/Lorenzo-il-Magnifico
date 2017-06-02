@@ -30,12 +30,17 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
-	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) {
+	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws Exception{
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)){
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)){
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())){
-					if (FamilyMemberValueController.check(familyMember, towerFloor)){
-						ArrayList<Resource> playerResources = familyMember.getPlayer().getPersonalBoard().getResources();
+					ArrayList<Resource> playerResources = new ArrayList<>();
+					for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
+						playerResources.add(resource.clone());
+					}
+					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
+					ServantsHandler.handle(testFamilyMember, playerResources);
+					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)){
 						if (IsThereBonusController.check(towerFloor)){
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
 							ArrayList<Resource> bonusResources = new ArrayList<>();
@@ -48,10 +53,10 @@ public class TowerHandler {
 						if (!ZoneAlreadyOccupiedController.check(zone)){
 							addOccupiedCost(playerResources);
 						}
-						if (checkZone(familyMember, playerResources, towerFloor)){
-							copyResource(familyMember.getPlayer(), playerResources);
-							familyMember.getPlayer().setFamilyMemberPosition(familyMember, towerFloor);
-							PassTurnController.lastMove(familyMember.getPlayer());
+						if (checkZone(testFamilyMember, playerResources, towerFloor)){
+							copyResource(testFamilyMember.getPlayer(), playerResources);
+							testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
+							PassTurnController.lastMove(testFamilyMember.getPlayer());
 							return true;
 						}
 					}

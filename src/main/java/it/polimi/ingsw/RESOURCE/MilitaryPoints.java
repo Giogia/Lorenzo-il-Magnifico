@@ -12,4 +12,10 @@ public class MilitaryPoints extends Resource {
 	public String getDescription() {
 		return amount +" Military Points";
 	}
+	
+	@Override
+	public Resource clone() {
+		MilitaryPoints militaryPoints = new MilitaryPoints(this.amount, this.value);
+		return militaryPoints;
+	}
 }
