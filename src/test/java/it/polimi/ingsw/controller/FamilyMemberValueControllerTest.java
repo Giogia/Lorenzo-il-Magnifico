@@ -30,8 +30,12 @@ public class FamilyMemberValueControllerTest {
 		assertEquals(5,familyMember.getValue());
 		assertEquals(7,position2.getDiceRequirement());
 		
-		Exception exc = new Exception();
-		assertSame(exc , FamilyMemberValueController.check(familyMember, position2));
+		try{
+			FamilyMemberValueController.check(familyMember, position2);
+		}
+		catch(Exception exc){
+			assertEquals(exc.getMessage(),"The Family Member Value is not enough!");
+		}
 	}
 
 }

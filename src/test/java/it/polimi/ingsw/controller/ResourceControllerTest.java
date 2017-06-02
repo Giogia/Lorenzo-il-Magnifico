@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.CONTROLLER.PositionWithoutDevelopmentCardController;
 import it.polimi.ingsw.CONTROLLER.ResourceController;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -22,7 +23,7 @@ import it.polimi.ingsw.RESOURCE.Wood;
 public class ResourceControllerTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		Player player = new Player("player", Color.BLUE);
 		player.getPersonalBoard().getResource(ResourceType.coins).addAmount(2);
 		player.getPersonalBoard().getResource(ResourceType.wood).addAmount(2);
@@ -52,8 +53,13 @@ public class ResourceControllerTest {
 		player.getPersonalBoard().getResource(ResourceType.militaryPoints).addAmount(-2);
 		player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(-2);
 		
-		assertEquals(false,ResourceController.check(player, resources));
 		
+		try{
+			ResourceController.check(player, resources);
+		}
+		catch(Exception exc){
+			assertEquals(exc.getMessage(),"The resources are not enough");
+		}
 	}
 
 }

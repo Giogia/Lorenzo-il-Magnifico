@@ -15,14 +15,19 @@ import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
 public class IsThereBonusControllerTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
 		ImmediateBonus bonus = new CouncilPrivilegeBonus(2);
 		DevelopmentCard developmentCard = null;
 		TowerFloor towerFloor = new TowerFloor(boardBonus, 4);
 		
-		assertEquals(false, IsThereBonusController.check(towerFloor));
-
+		try{
+		IsThereBonusController.check(towerFloor);
+		}
+		catch(Exception exc){
+			assertEquals(exc.getMessage(),"there is no bonus in this position");
+		}
+		
 		boardBonus.add(bonus);
 		assertEquals(true, IsThereBonusController.check(towerFloor));
 	}

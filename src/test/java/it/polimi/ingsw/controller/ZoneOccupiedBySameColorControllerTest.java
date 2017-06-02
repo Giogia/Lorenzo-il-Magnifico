@@ -17,7 +17,7 @@ import it.polimi.ingsw.GC_15.Player.Color;
 public class ZoneOccupiedBySameColorControllerTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception{
 		Player player = new Player("player", Color.BLUE);
 		Dice dice1 = new Dice(DiceColour.Orange);
 		FamilyMember familyMember1 = new FamilyMember(dice1, player);
@@ -34,8 +34,14 @@ public class ZoneOccupiedBySameColorControllerTest {
 		FamilyMember familyMember4= new FamilyMember(dice4, player);
 		harvestArea.getPosition(1).addFamilyMember(familyMember4);
 		
-		assertEquals(false, ZoneOccupiedBySameColorController.check(harvestArea, familyMember1));
+		try{
+			ZoneOccupiedBySameColorController.check(harvestArea, familyMember1);
+		}
+		catch(Exception exc){
+			assertEquals(exc.getMessage(),"This Zone is already occupied by this family member color!");
+		}
+		
 		assertEquals(true, ZoneOccupiedBySameColorController.check(harvestArea, familyMember2));
 	}
 
-}
+}//TODO sistemare NullPointerException

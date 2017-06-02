@@ -34,7 +34,7 @@ public class PlayerTest {
 	
 	
 	@Test
-	public void setFamilyMemberPositionTest() {
+	public void setFamilyMemberPositionTest() throws Exception {
 		
 		Player gigi = new Player("gigi", Color.GREEN);
 		ArrayList<FamilyMember> familyMembers = new ArrayList<>();

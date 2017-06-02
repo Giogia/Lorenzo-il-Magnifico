@@ -26,7 +26,7 @@ public class TowerHandlerTest {
 	ArrayList<Bonus> secondaryEffect = null;
 
 	@Test
-	public void test() {
+	public void test() throws Exception{
 		Player player = new Player("name", Color.GREEN);
 		Dice dice = new Dice(DiceColour.White);
 		FamilyMember familyMember = new FamilyMember(dice, player);
@@ -35,9 +35,10 @@ public class TowerHandlerTest {
 		ArrayList<ImmediateBonus> immediateEffect =null;
 		ArrayList<Bonus> secondaryEffect = null;
 		Territory territory = new Territory("name", 1, 2, immediateEffect, secondaryEffect);
+		towerFloor.setDevelopmentCard(territory);
 		
 		assertEquals(true, TowerHandler.handle(familyMember, tower, towerFloor));
 		
 	}
 
-}
+}//TODO capire come testare gli handler visto che richiedono scelte del umano

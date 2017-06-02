@@ -11,28 +11,31 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.Character;
 import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
 import it.polimi.ingsw.CONTROLLER.PositionWithoutDevelopmentCardController;
 import it.polimi.ingsw.RESOURCE.Coins;
 
-public class PositionWithoutDevelopmentCardControllerTest {
+public class PositionWithoutDevelopmentCardControllerTest{
 
 	@Test
-	public void test() {
+	public void test() throws Exception{
 		Coins coins= new Coins(0, 1);
 		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
 		ArrayList<ImmediateBonus> cardBonus1 = new ArrayList<>();
 		ArrayList<Bonus> cardBonus2 = new ArrayList<>();
+		TowerFloor towerFloor = new TowerFloor(boardBonus, 4);
+		DevelopmentCard developmentCard = new Character("lorenzo", coins, 1, cardBonus1, cardBonus2);
+	
 		
-		DevelopmentCard developmentCard1 = null;
-		TowerFloor towerFloor1 = new TowerFloor(boardBonus, 4);
+		try{
+			PositionWithoutDevelopmentCardController.check(towerFloor);
+		}
+		catch(Exception exc){
+			assertEquals(exc.getMessage(),"Position without card!");
+		}
 		
-		DevelopmentCard developmentCard2 = new Character("lorenzo", coins, 1, cardBonus1, cardBonus2);
-		TowerFloor towerFloor2 = new TowerFloor(boardBonus, 4);
-		
-		assertEquals(false, PositionWithoutDevelopmentCardController.check(towerFloor1));
-		
-		
-		assertEquals(true, PositionWithoutDevelopmentCardController.check(towerFloor2));
+		towerFloor.setDevelopmentCard(developmentCard);
+		assertEquals(true, PositionWithoutDevelopmentCardController.check(towerFloor));
 	}
 
 }
