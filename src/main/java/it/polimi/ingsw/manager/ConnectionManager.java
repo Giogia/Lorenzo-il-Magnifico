@@ -31,7 +31,7 @@ public class ConnectionManager {
 	private ConnectionManager() {
 	}
 
-	public void acceptUser(View view) throws Exception{
+	public void acceptUser(View view){
 		temporaryView.add(view);
 		System.out.println("Nuovo utente nella partita");
 		if(temporaryView.size()==2){

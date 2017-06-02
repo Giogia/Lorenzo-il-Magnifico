@@ -33,7 +33,7 @@ public class Manager {
 	}
 
 	//begins the turn of the player 
-	public static void turn(Player player) throws Exception {
+	public static void turn(Player player){
 		ConnectionManager.startTurn(player);
 		while(true){
 			int choice = ConnectionManager.turnChoice(player);
@@ -95,7 +95,7 @@ public class Manager {
 		
 	}
 
-	private static void actionManager(Player player) throws Exception{
+	private static void actionManager(Player player) {
 		if (PassTurnController.getLastMove() != null){
 			if (PassTurnController.getLastMove().equals(player)){
 				ConnectionManager.moveAlreadyDone(player);
@@ -105,52 +105,57 @@ public class Manager {
 		Board board = Game.getBoard();
 		while(true){
 			int choice = ConnectionManager.chooseZone(player, board);
-			switch (choice) {
-			case 1:
-				if (zoneManager(player, board.getTower(DevelopmentCardType.territory))){
+			try{
+				switch (choice) {
+				case 1:
+					if (zoneManager(player, board.getTower(DevelopmentCardType.territory))){
+						return;
+					}
+					break;
+				case 2:
+					if (zoneManager(player, board.getTower(DevelopmentCardType.character))){
+						return;
+					}
+					break;
+				case 3:
+					if (zoneManager(player, board.getTower(DevelopmentCardType.building))){
+						return;
+					}
+					break;
+				case 4:
+					if (zoneManager(player, board.getTower(DevelopmentCardType.venture))){
+						return;
+					}
+					break;
+				case 5:
+					if (zoneManager(player, board.getCouncilPalace())){
+						return;
+					}
+					break;
+				case 6:
+					if (zoneManager(player, board.getHarvestArea())){
+						return;
+					}
+					break;
+				case 7:
+					if (zoneManager(player, board.getProductioArea())){
+						return;
+					}
+					break;
+				case 8:
+					if (zoneManager(player, board.getMarket())){
+						return;
+					}
+					break;
+				case 9:
 					return;
-				}
-				break;
-			case 2:
-				if (zoneManager(player, board.getTower(DevelopmentCardType.character))){
-					return;
-				}
-				break;
-			case 3:
-				if (zoneManager(player, board.getTower(DevelopmentCardType.building))){
-					return;
-				}
-				break;
-			case 4:
-				if (zoneManager(player, board.getTower(DevelopmentCardType.venture))){
-					return;
-				}
-				break;
-			case 5:
-				if (zoneManager(player, board.getCouncilPalace())){
-					return;
-				}
-				break;
-			case 6:
-				if (zoneManager(player, board.getHarvestArea())){
-					return;
-				}
-				break;
-			case 7:
-				if (zoneManager(player, board.getProductioArea())){
-					return;
-				}
-				break;
-			case 8:
-				if (zoneManager(player, board.getMarket())){
-					return;
-				}
-				break;
-			case 9:
-				return;
+				}	
 			}
-
-		
+			catch(Exception exc){				
+					System.out.println(" ");
+					System.out.println(exc);
+					System.out.println(" ");
+			}
 		}
 		
 	}

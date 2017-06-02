@@ -15,7 +15,7 @@ import it.polimi.ingsw.GC_15.Player.Color;
 public class FamilyMemberValueControllerTest {
 
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);
 		FamilyMember familyMember = new FamilyMember(dice, player);
@@ -30,7 +30,8 @@ public class FamilyMemberValueControllerTest {
 		assertEquals(5,familyMember.getValue());
 		assertEquals(7,position2.getDiceRequirement());
 		
-		assertEquals(false, FamilyMemberValueController.check(familyMember, position2));
+		Exception exc = new Exception();
+		assertSame(exc , FamilyMemberValueController.check(familyMember, position2));
 	}
 
 }
