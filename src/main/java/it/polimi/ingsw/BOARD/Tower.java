@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Game;
 
 public class Tower extends ActionZone{
 	private DevelopmentCardType developmentCardType;
@@ -13,7 +14,8 @@ public class Tower extends ActionZone{
 		positions = new TowerFloor[4];
 		for (int i = 0; i < positions.length; i++ ){
 			//TODO: dare il giusto bonus alla posizione
-			positions[i] = new TowerFloor(null, 2*i + 1);
+			ArrayList<ArrayList<ImmediateBonus>> boardBonus=Game.getData().getTowerPositionBonus(developmentCardType);
+			positions[i] = new TowerFloor(boardBonus.get(i), 2*i + 1);
 		}
 		this.developmentCardType = developmentCardType;
 	}

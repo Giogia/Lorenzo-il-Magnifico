@@ -120,7 +120,7 @@ public class Create {
 		return new ExcommunicationTile(periodo, malus);
 	}
 	
-	private static ArrayList<ImmediateBonus> createArrayImmediateBonus(){
+	public static ArrayList<ImmediateBonus> createArrayImmediateBonus(){
 		boolean vuoleUnAltroBonus=true;
 		String risposta;
 		ArrayList<ImmediateBonus> bonusScelti=new ArrayList<>();
@@ -147,7 +147,7 @@ public class Create {
 		return null; //TODO!!!
 	}
 	
-	private static ImmediateBonus createImmediateBonus(){
+	public static ImmediateBonus createImmediateBonus(){
 		ImmediateBonus bonus = null;
 		System.out.println("Che tipo di bonus deve essere?");
 		System.out.println("1) ActionBonus");

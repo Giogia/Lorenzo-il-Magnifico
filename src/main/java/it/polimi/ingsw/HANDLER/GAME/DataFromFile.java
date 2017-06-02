@@ -2,6 +2,7 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
@@ -26,13 +27,15 @@ public class DataFromFile {
 	//military points requirement for territory card
 	private  int[] militaryRequirement;
 	//posti azione
-	//TODO: posti azione
-	//private static ArrayList<ImmediateBonus>[] towerTerritoryPositionBonus;//to 0 position there is bonus of floor 0 
-	//private static ArrayList<ImmediateBonus>[] towerCharacterPositionBonus;
-	//private static ArrayList<ImmediateBonus>[] towerBuildingPositionBonus;
-	//private static ArrayList<ImmediateBonus>[] towerVenturePositionBonus;
-	//private static ArrayList<ImmediateBonus>[] marketPositionBonus;
-	//private static ArrayList<ImmediateBonus> councilPalacePositionBonus;
+	private ArrayList<ArrayList<ImmediateBonus>> towerTerritoryPositionBonus;//to 0 position there is bonus of floor 0 
+	private ArrayList<ArrayList<ImmediateBonus>> towerCharacterPositionBonus;
+	private ArrayList<ArrayList<ImmediateBonus>> towerBuildingPositionBonus;
+	private ArrayList<ArrayList<ImmediateBonus>> towerVenturePositionBonus;
+	private ArrayList<ArrayList<ImmediateBonus>> marketPositionBonus;
+	private ArrayList<ImmediateBonus> councilPalaceBonus;
+	private int[] harvestAreaPositionBonus;
+	private int[] productionAreaPositionBonus;
+	
 	//TODO PERMANENT
 	//private static ArrayList<LeaderCard> leaderCards; think to them later
 	//condizioni di attivazione di tutte le zone
@@ -43,7 +46,12 @@ public class DataFromFile {
 			ArrayList<Building> buildings, ArrayList<ExcommunicationTile> excommunicationTiles,
 			ArrayList<PersonalBonusTile> personalBonusTiles, ArrayList<ResourceBonus> councilPrivileges,
 			int[] fromFaithPointsToVictoryPoints, int[] fromMilitaryPointsToVictoryPoints,
-			int[] victoryPointsForTerritoryCard, int[] victoryPointsForCharacterCard, int[] militaryRequirement) {
+			int[] victoryPointsForTerritoryCard, int[] victoryPointsForCharacterCard, int[] militaryRequirement,
+			ArrayList<ArrayList<ImmediateBonus>> towerTerritoryPositionBonus, ArrayList<ArrayList<ImmediateBonus>> towerCharacterPositionBonus,
+			ArrayList<ArrayList<ImmediateBonus>> towerBuildingPositionBonus,
+			ArrayList<ArrayList<ImmediateBonus>> towerVenturePositionBonus, ArrayList<ArrayList<ImmediateBonus>> marketPositionBonus,
+			ArrayList<ImmediateBonus> councilPalaceBonus, int[] harvestAreaPositionBonus,
+			int[] productionAreaPositionBonus) {
 		super();
 		this.territories = territories;
 		this.characters = characters;
@@ -57,6 +65,14 @@ public class DataFromFile {
 		this.victoryPointsForTerritoryCard = victoryPointsForTerritoryCard;
 		this.victoryPointsForCharacterCard = victoryPointsForCharacterCard;
 		this.militaryRequirement = militaryRequirement;
+		this.towerTerritoryPositionBonus = towerTerritoryPositionBonus;
+		this.towerCharacterPositionBonus = towerCharacterPositionBonus;
+		this.towerBuildingPositionBonus = towerBuildingPositionBonus;
+		this.towerVenturePositionBonus = towerVenturePositionBonus;
+		this.marketPositionBonus = marketPositionBonus;
+		this.councilPalaceBonus = councilPalaceBonus;
+		this.harvestAreaPositionBonus = harvestAreaPositionBonus;
+		this.productionAreaPositionBonus = productionAreaPositionBonus;
 	}
 	public ArrayList<Territory> getTerritories() {
 		return territories;
@@ -93,8 +109,40 @@ public class DataFromFile {
 	}
 	public int[] getMilitaryRequirement() {
 		return militaryRequirement;
-	}	
+	}
+	
+	public ArrayList<ArrayList<ImmediateBonus>> getTowerTerritoryPositionBonus() {
+		return towerTerritoryPositionBonus;
+	}
+	
+	public ArrayList<ArrayList<ImmediateBonus>> getTowerCharacterPositionBonus() {
+		return towerCharacterPositionBonus;
+	}
+	
+	public ArrayList<ArrayList<ImmediateBonus>> getTowerBuildingPositionBonus() {
+		return towerBuildingPositionBonus;
+	}
+	
+	public ArrayList<ArrayList<ImmediateBonus>> getTowerVenturePositionBonus() {
+		return towerVenturePositionBonus;
+	}
+	
+	public ArrayList<ArrayList<ImmediateBonus>> getMarketPositionBonus() {
+		return marketPositionBonus;
+	}
+	
+	public ArrayList<ImmediateBonus> getCouncilPalaceBonus() {
+		return councilPalaceBonus;
+	}
+	
+	public int[] getHarvestAreaPositionBonus() {
+		return harvestAreaPositionBonus;
+	}
 
+	public int[] getProductionAreaPositionBonus() {
+		return productionAreaPositionBonus;
+	}
+	
 	public void lastCards(DevelopmentCardType developmentCardType, int period,
 			ArrayList<DevelopmentCard> developmentCards) {
 		if (developmentCardType.equals(DevelopmentCardType.building)){
@@ -167,4 +215,18 @@ public class DataFromFile {
 		}
 		else return null;
 	}
+	public ArrayList<ArrayList<ImmediateBonus>> getTowerPositionBonus(DevelopmentCardType developmentCardType) {
+		switch (developmentCardType) {
+		case territory:
+			return getTowerTerritoryPositionBonus();
+		
+		case character:
+			return getTowerCharacterPositionBonus();
+			
+		case venture:
+			return getTowerVenturePositionBonus();
+		default: //case building:
+			return getTowerBuildingPositionBonus();
+		}
+	} 
 }

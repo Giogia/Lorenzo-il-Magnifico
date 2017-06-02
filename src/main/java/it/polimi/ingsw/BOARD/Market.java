@@ -13,9 +13,9 @@ public class Market extends Zone{
 			int numberOfPositions = (numberOfPlayers>=4? 4 : 2);
 			positions = new Position[numberOfPositions];
 			
-			//ArrayList<ImmediateBonus> boardBonus = new ArrayList<>(); 
+			ArrayList<ArrayList<ImmediateBonus>> boardBonus = Game.getData().getMarketPositionBonus(); 
 			for(int i=0;i<numberOfPositions;i++){
-				positions[i]= new Position(null, 1);
+				positions[i]= new Position(boardBonus.get(i), 1);
 			}		
 	
 	}

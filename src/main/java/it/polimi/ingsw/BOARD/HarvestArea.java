@@ -10,7 +10,7 @@ import it.polimi.ingsw.GC_15.Game;
 public class HarvestArea extends ActionZone {
 	
 	public HarvestArea() {
-		super("market");
+		super("harvestArea");
 		int numberOfPlayers = Game.getPlayers().length;
 		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
 		positions = new Position[numberOfPositions];

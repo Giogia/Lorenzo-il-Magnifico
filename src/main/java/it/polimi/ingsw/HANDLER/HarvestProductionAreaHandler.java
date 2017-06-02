@@ -38,8 +38,8 @@ public abstract class HarvestProductionAreaHandler {
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
 					PassTurnController.lastMove(testFamilyMember.getPlayer());
-					getPersonalBonusTileBonus(testFamilyMember, zone);
 					copyResource(testFamilyMember.getPlayer(), playerResources);
+					getPersonalBonusTileBonus(testFamilyMember, zone);
 					return true;
 				}
 			}
