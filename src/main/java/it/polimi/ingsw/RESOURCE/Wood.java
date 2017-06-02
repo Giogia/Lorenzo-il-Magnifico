@@ -11,5 +11,11 @@ public class Wood extends Resource{
 	public String getDescription() {
 		return amount +" Wood";
 	}
+	
+	@Override
+	public Resource clone() {
+		Wood wood = new Wood(this.amount, this.value);
+		return wood;
+	}
 }
 

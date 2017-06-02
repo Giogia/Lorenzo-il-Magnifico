@@ -11,4 +11,9 @@ public class Coins extends Resource {
 	public String getDescription() {
 		return amount +" Coins";
 	}
+	
+	public Resource clone(){
+		Coins coins = new Coins(this.amount, this.value);
+		return coins;
+	}
 }

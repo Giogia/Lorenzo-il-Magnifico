@@ -13,6 +13,8 @@ import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.RESOURCE.Resource;
 
 
 public abstract class HarvestProductionAreaHandler {
@@ -24,11 +26,18 @@ public abstract class HarvestProductionAreaHandler {
 			return false;
 		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
-			if(FamilyMemberValueController.check(familyMember, position)){
-				if(CheckBonusTileRequirementController.check(familyMember, zone)){
-					familyMember.getPlayer().setFamilyMemberPosition(familyMember, position);
-					PassTurnController.lastMove(familyMember.getPlayer());
-					getPersonalBonusTileBonus(familyMember, zone);
+			ArrayList<Resource> playerResources = new ArrayList<>();
+			for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
+				playerResources.add(resource.clone());
+			}
+			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
+			ServantsHandler.handle(testFamilyMember, playerResources);
+			if(FamilyMemberValueController.check(testFamilyMember, position)){
+				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
+					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
+					PassTurnController.lastMove(testFamilyMember.getPlayer());
+					getPersonalBonusTileBonus(testFamilyMember, zone);
+					copyResource(testFamilyMember.getPlayer(), playerResources);
 					return true;
 				}
 			}
@@ -62,7 +71,16 @@ public abstract class HarvestProductionAreaHandler {
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}
 	
-	
+	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
+		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
+		for (Resource playerResource : playerResources) {
+			for (Resource copiedResource : copiedResources) {
+				if (copiedResource.getResourceType().equals(playerResource.getResourceType())){
+					playerResource.setAmount(copiedResource.getAmount());
+				}
+			}
+		}
+	}
 	
 	
 }

@@ -11,5 +11,11 @@ public class VictoryPoints extends Resource{
 	public String getDescription() {
 		return amount +" Victory Points";
 	}
+	
+	@Override
+	public Resource clone() {
+		VictoryPoints victoryPoints = new VictoryPoints(this.amount, this.value);
+		return victoryPoints;
+	}
 }
 
