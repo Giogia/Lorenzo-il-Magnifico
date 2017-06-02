@@ -198,7 +198,7 @@ public class TowerHandler {
 	private static void add(ArrayList<Resource> playerResources, ArrayList<Resource> bonusResources) {
 		for (Resource resource : bonusResources) {
 			for (Resource playerResource : playerResources) {
-				if (resource.getResourceType().equals(playerResource.getResourceType())){
+				if (resource.getClass().equals(playerResource.getClass())){
 					playerResource.addAmount(resource.getAmount());
 				}
 			}
@@ -207,10 +207,19 @@ public class TowerHandler {
 	
 	private static ArrayList<Resource> neg(ArrayList<Resource> resources){
 		for (Resource resource : resources) {
-			int amount = -resource.getAmount();
-			resource.setAmount(amount);
+			resource.getClass().getName();
 		}
-		return resources;
+		ArrayList<Resource> negation = new ArrayList<>();
+		for (Resource resource : resources) {
+			negation.add(resource);
+			System.out.println(resource.getDescription());
+		}
+		for (Resource negResource : negation) {
+			System.out.println(negResource.getAmount());
+			int amount = -negResource.getAmount();
+			negResource.setAmount(amount);
+		}
+		return negation;
 	}
 	
 	
