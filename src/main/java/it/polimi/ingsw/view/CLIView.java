@@ -24,6 +24,15 @@ public class CLIView implements View{
 		connectionManager.acceptUser(this);
 	}
 	
+	public String askName(){
+		System.out.println("Inserisci il tuo nome: ");
+		return scanner.nextLine();
+	}
+	
+	public int askColor(){
+		System.out.println("What color do you want for your family members?\n1)Red\n2)Blue\n3)Yellow\n4)Green\n");
+		return checkInputError(1, 4);
+	}
 
 	@Override
 	public void startTurn(Player player) {

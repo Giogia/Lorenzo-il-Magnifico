@@ -17,6 +17,10 @@ public interface View {
 	//Le view conterranno anche le connessioni
 
 	void startTurn(Player player);
+	
+	String askName();
+	
+	int askColor();
 
 	int turnChoice();
 
