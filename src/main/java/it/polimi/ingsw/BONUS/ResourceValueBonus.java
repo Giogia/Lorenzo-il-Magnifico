@@ -23,4 +23,10 @@ public class ResourceValueBonus extends ResourceBonus{
 		}
 		return description;
 	}
+	
+	@Override
+	public ResourceBonus clone() {
+		ResourceValueBonus newBonus = new ResourceValueBonus(this.resources);
+		return newBonus;
+	}
 }

@@ -31,4 +31,10 @@ public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 		description = description + super.getDescription();
 		return description;
 	}
+	
+	@Override
+	public ResourceBonus clone() {
+		ResourcePerDevelopmentCardBonus newBonus = new ResourcePerDevelopmentCardBonus(this.resources, this.developmentCardType);
+		return newBonus;
+	}
 }

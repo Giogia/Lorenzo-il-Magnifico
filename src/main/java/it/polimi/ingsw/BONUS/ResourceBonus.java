@@ -55,4 +55,5 @@ public abstract class ResourceBonus extends ImmediateBonus {
 		return description;
 	}
 	
+	public abstract ResourceBonus clone();
 }

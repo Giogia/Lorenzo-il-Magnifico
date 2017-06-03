@@ -21,4 +21,10 @@ public class AddResourceBonus extends ResourceBonus {
 		description = description + super.getDescription();
 		return description;
 	}
+	
+	@Override
+	public ResourceBonus clone() {
+		AddResourceBonus newBonus = new AddResourceBonus(this.resources);
+		return newBonus;
+	}
 }

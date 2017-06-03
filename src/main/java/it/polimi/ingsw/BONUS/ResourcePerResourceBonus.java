@@ -29,4 +29,10 @@ public class ResourcePerResourceBonus extends AddResourceBonus{
 		description = description + super.getDescription();
 		return description;
 	}
+	
+	@Override
+	public ResourceBonus clone() {
+		ResourcePerResourceBonus newBonus = new ResourcePerResourceBonus(this.resources, this.requirement);
+		return newBonus;
+	}
 }

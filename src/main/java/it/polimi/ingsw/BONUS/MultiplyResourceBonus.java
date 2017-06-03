@@ -23,5 +23,11 @@ public class MultiplyResourceBonus extends ResourceBonus {
 			description = description + super.getDescription();
 			return description;
 		}
+		
+		@Override
+		public ResourceBonus clone() {
+		MultiplyResourceBonus newBonus = new MultiplyResourceBonus(this.resources);
+		return newBonus;
+		}
 
 	}
