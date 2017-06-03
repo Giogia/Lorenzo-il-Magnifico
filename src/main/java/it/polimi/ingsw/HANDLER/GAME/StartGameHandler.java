@@ -9,7 +9,6 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.GC_15.RoundOrder;
 import it.polimi.ingsw.GC_15.VaticanReport;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 

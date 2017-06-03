@@ -2,7 +2,6 @@ package it.polimi.ingsw.HANDLER;
 
 import java.util.ArrayList;
 
-import it.polimi.ingsw.CONTROLLER.ResourceController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;

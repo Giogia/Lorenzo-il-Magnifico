@@ -4,9 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
-import it.polimi.ingsw.BOARD.TowerFloor;
-import it.polimi.ingsw.CARD.Building;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;

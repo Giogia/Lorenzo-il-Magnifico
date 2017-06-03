@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.manager.ConnectionManager;
 
 public class EndGameHandler {
 	
@@ -24,14 +25,14 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static Player handle(Board board){
+	public static void handle(Board board){
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		//dai i punti vittoria fede
-		return getWinner(board);
+		ConnectionManager.hasWon(getWinner(board));
 	}
 
 	private static void transformResourcesIntoPoints(Board board) {

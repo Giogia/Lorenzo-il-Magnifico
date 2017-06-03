@@ -16,7 +16,6 @@ import it.polimi.ingsw.CONTROLLER.EnoughSpaceInPersonalBoard;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
-import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.PositionWithoutDevelopmentCardController;
 import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;

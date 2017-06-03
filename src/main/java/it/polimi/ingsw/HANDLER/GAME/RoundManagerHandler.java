@@ -56,7 +56,8 @@ public class RoundManagerHandler {
 	//For each action and for each turn give to Manger the player that have the right to do an action
 	private static void handleOrder(RoundOrder roundOrder){
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
-			for (int i = 0; i < roundOrder.getPlayers().size(); i++){	
+			ConnectionManager.roundBegins();
+			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Manager.turn(roundOrder.getPlayers().get(i));
 			}
 		}

@@ -139,10 +139,6 @@ public class Create {
 		return bonusScelti;
 	}
 	
-	private static Bonus[] createArrayMalus(){
-		return null; //TODO!!!
-	}
-	
 	private static ArrayList<Bonus> createArrayBonus(){
 		return null; //TODO!!!
 	}
@@ -221,7 +217,7 @@ public class Create {
 		return new CouncilPrivilegeBonus(value);
 	}
 	
-	private static ArrayList<ResourceBonus> createArrayResourceBonus(){
+	public static ArrayList<ResourceBonus> createArrayResourceBonus(){
 		ArrayList<ResourceBonus> arrayResourceBonus = new ArrayList<>();
 		String risposta;
 		boolean vuoleUnAltroBonus = true;

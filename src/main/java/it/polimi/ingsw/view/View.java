@@ -37,4 +37,8 @@ public interface View {
 	void showPersonalBoard(PersonalBoard personalBoard);
 	
 	void cantPassTurn();
+	
+	void roundBegins();
+	
+	void hasWon(Player winner);
 }

@@ -130,10 +130,23 @@ public class ConnectionManager {
 	}
 	
 	public static void giveInitialInformations(String toSend){
-		//it must be done in this way
 		for (Player player : playersView.keySet()){
 			CLIView view = (CLIView) getView(player);
 			view.giveInitialInformations(toSend);
+		}
+	}
+	
+	public static void roundBegins(){
+		for (Player player : playersView.keySet()){
+			View view = getView(player);
+			view.roundBegins();
+		}
+	}
+	
+	public static void hasWon(Player winner){
+		for (Player player : playersView.keySet()){
+			View view = getView(player);
+			view.hasWon(winner);
 		}
 	}
 

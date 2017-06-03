@@ -1,10 +1,5 @@
 package it.polimi.ingsw.BOARD;
 
-import java.util.ArrayList;
-
-import it.polimi.ingsw.BONUS.ImmediateBonus;
-import it.polimi.ingsw.GC_15.Game;
-
 public abstract class Zone{
 	protected Position[] positions;
 	private String type;

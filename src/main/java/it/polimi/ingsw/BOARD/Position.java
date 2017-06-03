@@ -60,7 +60,7 @@ public class Position {
 	public String getDescription() {
 		String description = "Valore minimo del familiare: " + diceRequirement + "\n";
 		if (boardBonus != null){
-			description = description + "Bonus associati: \n";
+			description = description + "Bonus associati alla posizione: \n";
 			for (ImmediateBonus immediateBonus : boardBonus) {
 				description = description + immediateBonus.getDescription() + "\n";
 			}

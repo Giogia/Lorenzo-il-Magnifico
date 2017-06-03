@@ -1,10 +1,5 @@
 package it.polimi.ingsw.BOARD;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import it.polimi.ingsw.BONUS.ActionBonus;
-import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.GC_15.Game;
 
 public class HarvestArea extends ActionZone {

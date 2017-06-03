@@ -1,6 +1,7 @@
 package it.polimi.ingsw.view;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -133,17 +134,29 @@ public class CLIView implements View{
 	private int checkInputError(int min, int max){
 		while (true){
 			scanner = new Scanner(System.in);
-			int choice = scanner.nextInt();
-			if ( choice < min || choice > max){
-				System.out.println("Input errato. Scegli di nuovo: ");
-			}else{
-				return choice;
+			try{
+				int choice = scanner.nextInt();
+				if ( choice < min || choice > max){
+					System.out.println("Input errato. Scegli di nuovo: ");
+				}else{
+					return choice;
+				}
+			}catch(InputMismatchException e){
+				System.out.println("Inserisci un numero intero: ");
 			}
 		}
 	}
 	
 	public void giveInitialInformations(String toSend){
 		System.out.println(toSend);
+	}
+	
+	public void roundBegins(){
+		System.out.println("New round!");
+	}
+	
+	public void hasWon(Player winner){
+		System.out.println("Congrats to "+winner.getName()+"! He has won.");
 	}
 	
 }
