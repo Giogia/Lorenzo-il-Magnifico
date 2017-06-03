@@ -49,7 +49,11 @@ public class TowerFloor extends Position {
 	@Override
 	public String getDescription() {
 		String description = super.getDescription();
-		description = description + developmentCard.getDescription();
+		try{
+			description = description + developmentCard.getDescription();
+		} catch (Exception e){
+			description = description + "Nessuna carta presente \n";
+		}
 		return description;
 	}
 }
