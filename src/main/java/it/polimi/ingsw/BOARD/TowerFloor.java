@@ -33,9 +33,12 @@ public class TowerFloor extends Position {
 		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //aggiunge la carta alla personal board del player
 			
 		//TODO dare permanent bonus
-		
-		for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
-			giveImmediateBonus(cardPlayer,immediateBonus);
+		try{
+			for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
+				giveImmediateBonus(cardPlayer,immediateBonus);
+			}
+		}catch(Exception e){
+			
 		}
 		/*TODO: permanent bonus
 		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
