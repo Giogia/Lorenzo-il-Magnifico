@@ -1,6 +1,7 @@
 package it.polimi.ingsw.HANDLER;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
@@ -17,14 +18,15 @@ public class FakeFamilyMemberHandler {
 	private static ArrayList<Resource> cost = new ArrayList<>();
 
 	
-	public static boolean handle(Player player, ActionZone zone, int value, ArrayList<Resource> costBonus) throws Exception{
+	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws Exception{
 		if (costBonus != null){
 			if (!costBonus.isEmpty()){
 				turnOnBoolean(costBonus);
 			}
 		}
-		Dice fakeDice = new Dice(DiceColour.Fake); 
-		fakeDice.setValue(value); 	
+		Dice fakeDice = new Dice(DiceColour.Fake);
+		ActionZone zone = Manager.askForZone(action.keySet(), player);
+		fakeDice.setValue(action.get(zone)); 
 		FamilyMember fakeFamilyMember = new FamilyMember(fakeDice, player);
 		Position position = Manager.askForAction(fakeFamilyMember, zone);
 		if(ActionHandler.handle(fakeFamilyMember,zone,position)){ //if it's set correctly then remove the fake family member

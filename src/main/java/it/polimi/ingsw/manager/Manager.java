@@ -1,10 +1,14 @@
 package it.polimi.ingsw.manager;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.HarvestArea;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.ProductionArea;
+import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -205,10 +209,25 @@ public class Manager {
 	}
 
 	public static Position askForAction(FamilyMember familyMember, ActionZone zone) {
+		zone = getBoardZone(zone);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		int choice = ConnectionManager.choosePosition(player, zonePositions);
+		int choice = ConnectionManager.chooseActionPosition(player, zonePositions);
 		return zonePositions[choice - 1];
+	}
+
+	private static ActionZone getBoardZone(ActionZone zone) {
+		if (zone instanceof Tower){
+			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
+			zone = Game.getBoard().getTower(developmentCardType);
+		}
+		else if (zone instanceof ProductionArea){
+			zone = Game.getBoard().getProductioArea();
+		}
+		else{
+			zone = Game.getBoard().getHarvestArea();
+		}
+		return zone;
 	}
 
 	public static boolean askForExcommunication(Player player){
@@ -223,6 +242,15 @@ public class Manager {
 	
 	public static void getHarvestProductionBonus() {
 		//TODO PERMANENT
+	}
+
+	public static ActionZone askForZone(Set<ActionZone> actionZones, Player player) {
+		ArrayList<ActionZone> zones = new ArrayList<>();
+		for (ActionZone actionZone : actionZones) {
+			zones.add(actionZone);
+		}
+		int choice = ConnectionManager.askForZone(zones, player);
+		return zones.get(choice - 1);
 	}
 
 }

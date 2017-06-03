@@ -2,6 +2,7 @@ package it.polimi.ingsw.view;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
@@ -43,4 +44,8 @@ public interface View {
 	void roundBegins();
 	
 	void hasWon(Player winner);
+
+	int askForAction(ArrayList<ActionZone> zones);
+
+	int askForActionPosition(Position[] zonePositions);
 }

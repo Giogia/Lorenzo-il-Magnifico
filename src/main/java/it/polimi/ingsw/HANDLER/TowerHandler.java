@@ -39,6 +39,7 @@ public class TowerHandler {
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					ServantsHandler.handle(testFamilyMember, playerResources);
+					System.out.println(testFamilyMember.getPlayer().getName());
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)){
 						if (IsThereBonusController.check(towerFloor)){
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
@@ -169,8 +170,7 @@ public class TowerHandler {
 				int[] militaryRequirement = Game.getData().getMilitaryRequirement();
 				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
 				int requirementAmount = militaryRequirement[numberOfCards];
-				playerMilitaryPoints.addAmount(requirementAmount);
-				if (playerMilitaryPoints.getAmount() < 0){
+				if (playerMilitaryPoints.getAmount() - requirementAmount < 0){
 					return false;
 				}
 			}

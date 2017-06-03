@@ -31,10 +31,11 @@ public class TowerFloor extends Position {
 		
 		Player cardPlayer = newFamilyMember.getPlayer(); //variabile temp del giocatore associato al familymember
 		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //aggiunge la carta alla personal board del player
-			
+		ArrayList<ImmediateBonus> cardImmediateBonus = developmentCard.immediateEffect;
+		this.developmentCard = null;
 		//TODO dare permanent bonus
 		try{
-			for(ImmediateBonus immediateBonus : this.developmentCard.immediateEffect){ //attiva il metodo immediate bonus per ogni primary effect 
+			for(ImmediateBonus immediateBonus : cardImmediateBonus){ //attiva il metodo immediate bonus per ogni primary effect 
 				giveImmediateBonus(cardPlayer,immediateBonus);
 			}
 		}catch(Exception e){
@@ -46,7 +47,7 @@ public class TowerFloor extends Position {
 				giveImmediateBonus(cardPlayer, immediateBonus); 
 			}//da testare assolutamente 
 		} */
-		this.developmentCard = null; //cancella carta sul piano della torre
+		 //cancella carta sul piano della torre
 	}
 	
 	@Override

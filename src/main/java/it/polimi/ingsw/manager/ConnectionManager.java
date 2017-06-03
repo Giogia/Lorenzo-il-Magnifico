@@ -3,6 +3,7 @@ package it.polimi.ingsw.manager;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
@@ -148,6 +149,18 @@ public class ConnectionManager {
 			View view = getView(player);
 			view.hasWon(winner);
 		}
+	}
+
+	public static int askForZone(ArrayList<ActionZone> zones, Player player) {
+		View view = getView(player);
+		int choice = view.askForAction(zones);
+		return choice;
+	}
+
+	public static int chooseActionPosition(Player player, Position[] zonePositions) {
+		View view = getView(player);
+		int choice = view.askForActionPosition(zonePositions);
+		return choice;
 	}
 
 }

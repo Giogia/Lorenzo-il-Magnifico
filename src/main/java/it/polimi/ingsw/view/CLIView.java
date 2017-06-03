@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
@@ -157,6 +158,25 @@ public class CLIView implements View{
 	
 	public void hasWon(Player winner){
 		System.out.println("Congrats to "+winner.getName()+"! He has won.");
+	}
+
+	@Override
+	public int askForAction(ArrayList<ActionZone> zones) {
+		System.out.println("Scegli dove effettuare l'azione bonus");
+		for (int i = 1; i <= zones.size(); i++) {
+			System.out.println(i + ") " + zones.get(i-1).getDescription());
+		}
+		return checkInputError(1, zones.size());
+	}
+
+	@Override
+	public int askForActionPosition(Position[] zonePositions) {
+		System.out.println("Scegli la posizione in cui vuoi posizionare il familiare: ");
+		for (int counter = 1; counter <= zonePositions.length; counter ++) {
+			String message = counter + ") " + zonePositions[counter - 1].getDescription();
+			System.out.println(message);
+		}
+		return checkInputError(1, zonePositions.length);
 	}
 	
 }

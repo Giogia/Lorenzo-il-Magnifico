@@ -8,7 +8,7 @@ public class ZoneAlreadyOccupiedController implements Controller{
 	public static boolean check(Zone zone) throws Exception{
 		for(Position position: zone.getPositions()){
 			if(!position.getFamilyMembers().isEmpty()){
-				throw new Exception("This zone is already occupied");
+				return false;
 			}	
 		}
 		return true;

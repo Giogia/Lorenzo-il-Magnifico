@@ -21,11 +21,7 @@ public class ActionBonus extends ImmediateBonus {
 	}
 	
 	public void getImmediateBonus(Player player) throws Exception{
-		Set<ActionZone> actionZones = action.keySet();
-		for (ActionZone zone : actionZones) {
-			int value = action.get(zone);
-			FakeFamilyMemberHandler.handle(player, zone, value, resources);
-		}
+		FakeFamilyMemberHandler.handle(player, action, resources);
 	}
 
 	@Override

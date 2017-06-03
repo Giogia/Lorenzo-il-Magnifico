@@ -60,14 +60,16 @@ public class Player {
 	
 	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws Exception{
 		position.addFamilyMember(familyMember);
-		if (familyMembers != null){
-			int i = 0;
-			while (i < familyMembers.size()) {
-				if (familyMember.getDice().equals(familyMembers.get(i).getDice())){
-					familyMembers.remove(familyMembers.get(i));
-				}
-				else {
-					i++;
+		if (!familyMember.getDice().getDiceColour().equals(DiceColour.Fake)){
+			if (familyMembers != null){
+				int i = 0;
+				while (i < familyMembers.size()) {
+					if (familyMember.getDice().equals(familyMembers.get(i).getDice())){
+						familyMembers.remove(familyMembers.get(i));
+					}
+					else {
+						i++;
+					}
 				}
 			}
 		}
