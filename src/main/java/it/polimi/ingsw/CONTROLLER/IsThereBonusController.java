@@ -9,10 +9,10 @@ public class IsThereBonusController {
 
 	
 	// Prende TowerFloor, perchè nelle altre posizioni non ha senso controllare. Serviva solo per usare il bonus per prendere la carta
-	public static boolean check(TowerFloor towerFloor) throws Exception{
+	public static boolean check(TowerFloor towerFloor){
 		ArrayList<ImmediateBonus> allBonus = towerFloor.getBoardBonus();
 		if(allBonus == null){
-			throw new Exception("There is no bonus in this position\n");
+			return false;
 		}
 		return true;
 	}
