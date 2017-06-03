@@ -19,6 +19,8 @@ public class FakeFamilyMemberHandler {
 
 	
 	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws Exception{
+		//check if there is a CostBonus associated to ActionBonus
+		//if there is, turn on the boolean and apply costBonus
 		if (costBonus != null){
 			if (!costBonus.isEmpty()){
 				turnOnBoolean(costBonus);
@@ -29,7 +31,8 @@ public class FakeFamilyMemberHandler {
 		fakeDice.setValue(action.get(zone)); 
 		FamilyMember fakeFamilyMember = new FamilyMember(fakeDice, player);
 		Position position = Manager.askForAction(fakeFamilyMember, zone);
-		if(ActionHandler.handle(fakeFamilyMember,zone,position)){ //if it's set correctly then remove the fake family member
+		//if it's set correctly then remove the fake family member
+		if(ActionHandler.handle(fakeFamilyMember,zone,position)){ 
 			position.removeFamilyMember(fakeFamilyMember);
 			turnOffBoolean();
 			return true;

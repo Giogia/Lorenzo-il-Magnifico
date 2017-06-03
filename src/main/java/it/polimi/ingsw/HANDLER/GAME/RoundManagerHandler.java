@@ -33,13 +33,13 @@ public class RoundManagerHandler {
 				System.out.println("Giocatore in roundOrder: " + player.getName());
 			}
 			StartRoundHandler.handle(period, players, board);
-			giveInitialInformations();
+			//giveInitialInformations();
 			handleOrder(roundOrder);
 			EndRoundHandler.handle(board, roundOrder, turn);	
 		}
 	}
 	
-	public static void giveInitialInformations(){
+	/*public static void giveInitialInformations(){
 		String toSend="";
 		for(DevelopmentCardType type : DevelopmentCardType.values()){
 			TowerFloor[] towerFloor = Game.getBoard().getTower(type).getPositions();
@@ -51,7 +51,7 @@ public class RoundManagerHandler {
 			toSend += "\n";
 		}
 		ConnectionManager.giveInitialInformations(toSend);
-	}
+	}*/
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
 	private static void handleOrder(RoundOrder roundOrder){

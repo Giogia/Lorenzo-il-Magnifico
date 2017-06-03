@@ -128,6 +128,7 @@ public class TowerHandler {
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = ventureCard.cost;
+		//initialize the alternative cost to prevent null pointer exception
 		MilitaryPoints militaryPoints = ventureCard.alternativeCost;
 		ArrayList<Resource> alternativeCost = new ArrayList<>();
 		alternativeCost.add(militaryPoints);
@@ -141,6 +142,7 @@ public class TowerHandler {
 		}
 		add(playerResources1, neg(cost));
 		add(playerResources2, neg(alternativeCost));
+		//this if else is in this way because if the cost of the ventureCard is military point, this cost is in requirement
 		if (checkResources(playerResources1)){
 			if (playerMilitaryPoints.getAmount() >= requirement){
 				if (checkResources(playerResources2)){
@@ -157,7 +159,6 @@ public class TowerHandler {
 				add(playerResources, neg(alternativeCost));
 				return true;
 		}
-		
 		return false;
 	}
 

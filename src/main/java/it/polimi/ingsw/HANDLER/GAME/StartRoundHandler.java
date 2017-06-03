@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCard;
@@ -86,14 +87,14 @@ public class StartRoundHandler {
 	}
 	
 	
-	//For each tower set the randomly a card.
+	//For each tower set randomly a card.
 	// At the end of this operation return to DataFromFile the unused cards using the method lastCards
 	private static void setCards(Board board, int period){
 		Tower[] towers = board.getTowers();
 		for (Tower tower : towers) {
 			DevelopmentCardType developmentCardType = tower.getDevelopmentCardType();
 			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
-			TowerFloor[] towerFloors = tower.getPositions();
+			TowerFloor[] towerFloors = (TowerFloor[]) tower.getPositions();
 			for (TowerFloor towerFloor : towerFloors) {
 				Random r = new Random();
 				int randomCard = r.nextInt(developmentCards.size());
