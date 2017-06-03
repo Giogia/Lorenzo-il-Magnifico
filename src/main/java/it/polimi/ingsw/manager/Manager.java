@@ -151,10 +151,8 @@ public class Manager {
 					return;
 				}	
 			}
-			catch(Exception exc){				
-					System.out.println(" ");
-					System.out.println(exc);
-					System.out.println(" ");
+			catch(Exception exc){			
+				exc.printStackTrace();
 			}
 		}
 		
@@ -169,8 +167,7 @@ public class Manager {
 		int choice = ConnectionManager.choosePosition(player, positions);
 		if (choice == positions.length + 1){
 			return false;
-		}
-		else {
+		} else {
 			return familyMemberManager(player, zone, positions[choice - 1]);
 		}
 	}

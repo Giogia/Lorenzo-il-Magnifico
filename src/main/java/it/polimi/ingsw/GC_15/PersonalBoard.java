@@ -133,9 +133,20 @@ public class PersonalBoard {
 
 
 	public String getDescription() {
-		String description = "";
+		String description = "--Resources:\n";
 		for (Resource resource : resources) {
 			description = description + resource.getDescription() + "\n";
+		}
+		description+= "\n--Cards:\n";
+		for (CardContainer container : cardContainers) {
+			description += container.getType().toString().toUpperCase() + ":\n";
+			if (container.getDevelopmentCards().isEmpty()){
+				description += "This player hasn't development card of this type\n";
+			}else{
+				for (DevelopmentCard card : container.getDevelopmentCards()) {
+					description += card.getDescription();
+				}
+			}
 		}
 		return description;
 	}
@@ -148,5 +159,4 @@ public class PersonalBoard {
 		}
 		return null;
 	}
-	
-}//TODO metodo per dare il permanent bonus della carta che riceve
+}

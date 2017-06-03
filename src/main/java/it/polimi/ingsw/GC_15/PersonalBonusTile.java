@@ -37,12 +37,9 @@ public class PersonalBonusTile {
 	public int getCondition(Zone zone){
 		if(zone instanceof HarvestArea){
 			return getHarvestActivationCondition();
-		}
-		if(zone instanceof ProductionArea){
+		} else { //zone instanceof ProductionArea
 			return getProductionActivationCondition();
 		}
-		else
-			return -1;//TODO dobbiamo gestire l'eccezione ;
 	}
 	
 	public ImmediateBonus getImmediateBonus(Zone zone){

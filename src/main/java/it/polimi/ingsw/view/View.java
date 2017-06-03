@@ -23,7 +23,9 @@ public interface View {
 
 	//methods to put a family member
 	int chooseZone(Board board);
+	
 	int choosePosition(Position[] positions);
+	
 	int chooseFamilyMember(ArrayList<FamilyMember> familyMembers);
 
 	int askForAlternativeCost(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost);
