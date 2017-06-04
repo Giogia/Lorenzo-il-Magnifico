@@ -41,7 +41,7 @@ public class DataFromFile {
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
 	//timeout per la mossa di un giocatore
-	
+
 	public DataFromFile(ArrayList<Territory> territories, ArrayList<Character> characters, ArrayList<Venture> ventures,
 			ArrayList<Building> buildings, ArrayList<ExcommunicationTile> excommunicationTiles,
 			ArrayList<PersonalBonusTile> personalBonusTiles, ArrayList<ResourceBonus> councilPrivileges,
@@ -74,6 +74,27 @@ public class DataFromFile {
 		this.harvestAreaPositionBonus = harvestAreaPositionBonus;
 		this.productionAreaPositionBonus = productionAreaPositionBonus;
 	}
+	
+	
+	public void setTerritories(ArrayList<Territory> territories) {
+		this.territories = territories;
+	}
+
+
+	public void setCharacters(ArrayList<Character> characters) {
+		this.characters = characters;
+	}
+
+
+	public void setVentures(ArrayList<Venture> ventures) {
+		this.ventures = ventures;
+	}
+
+
+	public void setBuildings(ArrayList<Building> buildings) {
+		this.buildings = buildings;
+	}
+	
 	public ArrayList<Territory> getTerritories() {
 		return territories;
 	}

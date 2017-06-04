@@ -10,7 +10,6 @@ public class ProductionArea extends ActionZone{
 		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
 		positions = new Position[numberOfPositions];
 		
-	//	ArrayList<ArrayList<ImmediateBonus>> boardBonus = Game.getData()
 		for(int i = 0; i < numberOfPositions; i++){
 			positions[i]= new Position(null, 1);
 		}
