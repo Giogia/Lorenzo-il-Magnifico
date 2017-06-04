@@ -17,7 +17,7 @@ public class AddFamilyMemberBonus extends FamilyMemberBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = "Aggiungi a: \n";
+		String description = "Add to: \n";
 		description = description + super.getDescription();
 		return description;
 	}

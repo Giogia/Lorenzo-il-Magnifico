@@ -17,7 +17,7 @@ public class MultiplyFamilyMemberBonus extends FamilyMemberBonus {
 
 	@Override
 	public String getDescription() {
-		String description = "Moltiplica il valore a: \n";
+		String description = "Moltiply the value to: \n";
 		description = description + super.getDescription();
 		return description;
 	}

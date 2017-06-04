@@ -16,7 +16,7 @@ public class Character extends DevelopmentCard{
 	
 	@Override
 	public String getDescription() {
-		String description = "Costo: " + cost.getDescription() + "\n"; 
+		String description = "Cost: " + cost.getDescription() + "\n"; 
 		description = description + super.getDescription();
 		return description;
 	}

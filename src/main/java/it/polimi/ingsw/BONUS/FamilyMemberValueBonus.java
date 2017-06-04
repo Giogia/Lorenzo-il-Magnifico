@@ -17,7 +17,7 @@ public class FamilyMemberValueBonus extends FamilyMemberBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = "Modifica il valore dei tuoi familiari: \n";
+		String description = "Modify the value of your family members: \n";
 		description = description + super.getDescription();
 		return description;
 	}

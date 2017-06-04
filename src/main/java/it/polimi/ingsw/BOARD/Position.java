@@ -67,10 +67,15 @@ public class Position {
 		} catch (NullPointerException e){
 		}
 		try {
-			description = description + "Position occupied by: \n";
-			for (FamilyMember familyMember : familyMembers) {
-				description = description + familyMember.getPlayer().getName() + "\n " + familyMember.getDescription() + "\n";
+			if(familyMembers.isEmpty()){
+				description = "Position not occupied \n";
 			}
+			else{
+				description = description + "Position occupied by: \n";
+				for (FamilyMember familyMember : familyMembers) {
+					description = description + familyMember.getPlayer().getName() + "\n " + familyMember.getDescription() + "\n";
+				}
+			}	
 		} catch (NullPointerException e){
 		}
 		return description;

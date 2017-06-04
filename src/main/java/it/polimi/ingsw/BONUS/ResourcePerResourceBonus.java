@@ -25,7 +25,7 @@ public class ResourcePerResourceBonus extends AddResourceBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = "Per ogni " + requirement.getDescription() + " ottieni: \n";
+		String description = "For each " + requirement.getDescription() + " you get: \n";
 		description = description + super.getDescription();
 		return description;
 	}

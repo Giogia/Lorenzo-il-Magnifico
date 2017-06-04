@@ -21,7 +21,7 @@ public class Territory extends DevelopmentCard {
 	@Override
 	public String getDescription() {
 		String description = super.getDescription();
-		description = description + "Condizione per attivazione Raccolto: " + activationConditionHarvest + "\n";
+		description = description + "Harvest activation condition: " + activationConditionHarvest + "\n";
 		return description;
 	}
 }

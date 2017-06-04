@@ -20,9 +20,9 @@ public abstract class DevelopmentCard extends Card{
 	}
 
 	public String getDescription(){
-		String description = "Nome della carta: " + super.getName() + "\n";
+		String description = "Name of the card: " + super.getName() + "\n";
 		if (immediateEffect != null){
-			description = description + "Bonus derivanti dall'effetto immediato della carta: \n";
+			description = description + "Bonus from the immediate effect of the card: \n";
 			
 			for (int i=0; i < immediateEffect.size(); i++){
 				if (i == immediateEffect.size()-1){

@@ -19,7 +19,7 @@ public class ResourceValueBonus extends ResourceBonus{
 	public String getDescription() {
 		String description = "";
 		for (Resource resource : resources) {
-			description = description + "Per ogni " + resource.getClass().getName() + " devi pagare " + resource.getAmount() + "\n";
+			description = description + "For each " + resource.getClass().getName() + " you have to pay " + resource.getAmount() + "\n";
 		}
 		return description;
 	}

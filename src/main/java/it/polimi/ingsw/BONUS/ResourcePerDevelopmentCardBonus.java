@@ -27,7 +27,7 @@ public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 	
 	@Override
 	public String getDescription() {
-		String description = "Per ogni carta " + developmentCardType.name() + " ricevi: \n";
+		String description = "for Each " + developmentCardType.name() + " card you receive: \n";
 		description = description + super.getDescription();
 		return description;
 	}

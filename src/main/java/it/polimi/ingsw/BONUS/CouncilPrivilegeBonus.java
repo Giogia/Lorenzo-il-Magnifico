@@ -19,8 +19,14 @@ public class CouncilPrivilegeBonus extends ImmediateBonus{
 	
 	@Override
 	public String getDescription() {
-		String description = differentCouncilPrivilege + " diversi Privilegi del Consiglio \n";
-		return description;
+		if(differentCouncilPrivilege==1){
+			return "1 council privilege \n";
+		}
+		else{
+			String description = differentCouncilPrivilege + " different council privileges \n";
+			return description;
+		}
+		
 	}
 
 }

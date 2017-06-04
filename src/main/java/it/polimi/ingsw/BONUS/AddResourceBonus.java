@@ -17,7 +17,7 @@ public class AddResourceBonus extends ResourceBonus {
 	
 	@Override
 	public String getDescription() {
-		String description = "Aggiungi alle tue risorse: \n";
+		String description = "Add to your resources: \n";
 		description = description + super.getDescription();
 		return description;
 	}

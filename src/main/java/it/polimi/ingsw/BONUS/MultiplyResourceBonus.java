@@ -19,7 +19,7 @@ public class MultiplyResourceBonus extends ResourceBonus {
 		
 		@Override
 		public String getDescription() {
-			String description = "Moltiplica le tue risorse per: \n";
+			String description = "Moltiply your resources for a factor of: \n";
 			description = description + super.getDescription();
 			return description;
 		}
