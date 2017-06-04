@@ -65,7 +65,7 @@ public class TowerHandler {
 		return false;
 	}
 	
-	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor){
+	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) throws Exception{
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)){
 			if (!checkTerritories(familyMember)){
 				return false;
@@ -90,7 +90,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) {
+			TowerFloor towerFloor) throws Exception {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = buildingCard.costs;
 		if (FakeFamilyMemberHandler.getBoolean()){
@@ -101,13 +101,13 @@ public class TowerHandler {
 			return true;
 		}
 		else{
-			return false;
+			throw new Exception("You don't have enough resources!");
 		}
 	}
 
 
 	private static boolean checkCharacters(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) {
+			TowerFloor towerFloor) throws Exception{
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		cost.add(characterCard.cost);
@@ -118,13 +118,13 @@ public class TowerHandler {
 		if (checkResources(playerResources)){
 			return true;
 		}
-		return false;
+		throw new Exception("You don't have enough resources!");
 	}
 
 
 	
 
-	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) {
+	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) throws Exception{
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = ventureCard.cost;
 		//initialize the alternative cost to prevent null pointer exception
@@ -167,11 +167,11 @@ public class TowerHandler {
 				add(playerResources, neg(alternativeCost));
 				return true;
 		}
-		return false;
+		throw new Exception("You don't have enough resources!");
 	}
 
 
-	private static boolean checkTerritories(FamilyMember familyMember){
+	private static boolean checkTerritories(FamilyMember familyMember) throws Exception{
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
 			if (cardContainer.getType().equals(DevelopmentCardType.territory)){
@@ -180,7 +180,7 @@ public class TowerHandler {
 				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
 				int requirementAmount = militaryRequirement[numberOfCards];
 				if (playerMilitaryPoints.getAmount() - requirementAmount < 0){
-					return false;
+					throw new Exception("You don't have enough military points!");
 				}
 			}
 		}
