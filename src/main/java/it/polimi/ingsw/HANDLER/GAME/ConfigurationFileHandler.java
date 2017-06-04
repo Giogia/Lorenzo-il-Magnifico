@@ -39,12 +39,12 @@ public class ConfigurationFileHandler {
 		ArrayList<ArrayList<ImmediateBonus>> harvestAreaPositionBonus = new ArrayList<ArrayList<ImmediateBonus>>();
 		ArrayList<ArrayList<ImmediateBonus>> productionAreaPositionBonus = new ArrayList<ArrayList<ImmediateBonus>>();
 		
-		System.out.println("Inserire i bonus della production");
+		System.out.println("Insert production bonus");
 		for(int i=0; i< 2; i++){
 			harvestAreaPositionBonus.add(Create.createArrayImmediateBonus());
 		}
 		
-		System.out.println("Inserire i bonus dell'harvest");
+		System.out.println("Inserire harvest bonus");
 		for(int i=0; i< 2; i++){
 			productionAreaPositionBonus.add(Create.createArrayImmediateBonus());
 		}

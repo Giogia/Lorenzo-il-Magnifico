@@ -33,7 +33,7 @@ public class Dice {
 	}
 
 	public String getDescription() {
-		String description = "Dado " + diceColour.name() + " valore: " + value + "\n";
+		String description = diceColour.name() + " dice value: " + value + "\n";
 		return description;
 	}
 }

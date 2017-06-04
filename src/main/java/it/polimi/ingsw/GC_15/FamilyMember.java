@@ -37,7 +37,7 @@ public class FamilyMember {
 	}
 
 	public String getDescription() {
-		String description = "Colore: " + dice.getDiceColour().name() + "\n Valore: " + value;
+		String description = "Color: " + dice.getDiceColour().name() + "\n Value: " + value;
 		return description;
 	}
 }

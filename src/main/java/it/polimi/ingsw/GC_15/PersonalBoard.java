@@ -141,7 +141,7 @@ public class PersonalBoard {
 		for (CardContainer container : cardContainers) {
 			description += container.getType().toString().toUpperCase() + ":\n";
 			if (container.getDevelopmentCards().isEmpty()){
-				description += "This player hasn't development card of this type\n";
+				description += "This player doesn't own development card of this type\n";
 			}else{
 				for (DevelopmentCard card : container.getDevelopmentCards()) {
 					description += card.getDescription();

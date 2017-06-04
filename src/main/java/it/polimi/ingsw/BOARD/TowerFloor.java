@@ -54,7 +54,7 @@ public class TowerFloor extends Position {
 		try{
 			description = description + developmentCard.getDescription();
 		} catch (Exception e){
-			description = description + "Nessuna carta presente \n";
+			description = description + "No Cards in this position \n";
 		}
 		return description;
 	}

@@ -19,6 +19,6 @@ public class ProductionArea extends ActionZone{
 	
 	@Override
 	public String getDescription() {
-		return "Area Produzione";
+		return "Production Area";
 	}
 }

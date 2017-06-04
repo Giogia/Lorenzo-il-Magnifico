@@ -35,7 +35,7 @@ public class Tower extends ActionZone{
 	
 	@Override
 	public String getDescription() {
-		String description = "Torre " + developmentCardType.name();
+		String description = "Tower " + developmentCardType.name();
 		return description;
 	}
 }

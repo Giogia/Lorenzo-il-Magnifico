@@ -24,6 +24,6 @@ public class HarvestArea extends ActionZone {
 	
 	@Override
 	public String getDescription() {
-		return "Area Raccolto";
+		return "Harvest Area";
 	}
 }

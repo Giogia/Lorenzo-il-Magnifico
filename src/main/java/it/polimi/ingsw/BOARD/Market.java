@@ -22,6 +22,6 @@ public class Market extends Zone{
 	
 	@Override
 	public String getDescription() {
-		return "Mercato";
+		return "Market";
 	}
 }

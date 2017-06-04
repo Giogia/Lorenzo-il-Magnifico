@@ -36,7 +36,7 @@ public class CLIView implements View{
 
 	@Override
 	public void startTurn(Player player) {
-		System.out.println(player.getName() + " is your round!");
+		System.out.println(player.getName() + ", it's your turn!");
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class CLIView implements View{
 
 	@Override
 	public int chooseZone(Board board) {
-		System.out.println("Choose the area you want to place the family member:\n");
+		System.out.println("Choose the area you want to place the family member in:\n");
 		System.out.println("1) Territories Tower \n2) Characters Tower \n3) Buildings Tower \n4) Ventures Tower \n" + 
 			"5) Council Palace \n6) Harvest Area \n7) Production Area \n8) Market \n9) Go back");
 		return checkInputError(1, 9);
@@ -62,7 +62,7 @@ public class CLIView implements View{
 
 	@Override
 	public int choosePosition(Position[] positions) {
-		System.out.println("Choose the position where to put the family member: ");
+		System.out.println("Choose the position you want to put the family member in: ");
 		for (int counter = 1; counter <= positions.length; counter ++) {
 			String message = counter + ") " + positions[counter - 1].getDescription();
 			System.out.println(message);
@@ -112,13 +112,13 @@ public class CLIView implements View{
 
 	@Override
 	public int askForServants(int numberOfServants) {
-		System.out.println("You have " + numberOfServants + " servants. How much do you want to use?");
+		System.out.println("You have " + numberOfServants + " servants. How many of them do you want to use?");
 		return checkInputError(0, numberOfServants);	
 	}
 
 	@Override
 	public int askForInformation(Player[] players) {
-		System.out.println("Choose the player whose statistics you want to see?");
+		System.out.println("Whose player's statistics do you want to see?");
 		for (int counter = 1; counter <= players.length; counter++){
 			String message = counter + ") " + players[counter - 1].getName();
 			System.out.println(message);
@@ -136,7 +136,7 @@ public class CLIView implements View{
 	
 	@Override
 	public void cantPassTurn() {
-		System.out.println("You can't pass the turn because you have to place at least one family member.\n");
+		System.out.println("You can't pass the turn, you have to place at least one family member.\n");
 		
 	}
 
@@ -165,12 +165,12 @@ public class CLIView implements View{
 	}
 	
 	public void hasWon(Player winner){
-		System.out.println("Congrats to "+winner.getName()+"! He has won.");
+		System.out.println("Congrats to "+winner.getName()+". He's the winner!");
 	}
 
 	@Override
 	public int askForAction(ArrayList<ActionZone> zones) {
-		System.out.println("Choose where to make the action bonus: ");
+		System.out.println("Choose the zone you want to activate the action bonus in: ");
 		for (int i = 1; i <= zones.size(); i++) {
 			System.out.println(i + ") " + zones.get(i-1).getDescription());
 		}
@@ -179,7 +179,7 @@ public class CLIView implements View{
 
 	@Override
 	public int askForActionPosition(Position[] zonePositions) {
-		System.out.println("Choose where you want place your family member: ");
+		System.out.println("Choose where you want to place your family member: ");
 		for (int counter = 1; counter <= zonePositions.length; counter ++) {
 			String message = counter + ") " + zonePositions[counter - 1].getDescription();
 			System.out.println(message);

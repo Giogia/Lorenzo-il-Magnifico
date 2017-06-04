@@ -18,6 +18,6 @@ public class CouncilPalace extends Zone {
 	
 	@Override
 	public String getDescription() {
-		return "Palazzo del Consiglio";
+		return "Council Palace";
 	}
 }
