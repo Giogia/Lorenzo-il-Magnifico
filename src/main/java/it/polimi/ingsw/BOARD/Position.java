@@ -59,11 +59,19 @@ public class Position {
 
 	public String getDescription() {
 		String description = "Valore minimo del familiare: " + diceRequirement + "\n";
-		if (boardBonus != null){
+		try{
 			description = description + "Bonus associati alla posizione: \n";
 			for (ImmediateBonus immediateBonus : boardBonus) {
 				description = description + immediateBonus.getDescription() + "\n";
 			}
+		} catch (NullPointerException e){
+		}
+		try {
+			description = description + "Posizione occupata da: \n";
+			for (FamilyMember familyMember : familyMembers) {
+				description = description + familyMember.getPlayer().getName() + "\n " + familyMember.getDescription() + "\n";
+			}
+		} catch (NullPointerException e){
 		}
 		return description;
 	}

@@ -38,7 +38,6 @@ public class TowerFloor extends Position {
 				giveImmediateBonus(cardPlayer,immediateBonus);
 			}
 		}catch(Exception e){
-			e.printStackTrace();
 		}
 		/*TODO: permanent bonus
 		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
