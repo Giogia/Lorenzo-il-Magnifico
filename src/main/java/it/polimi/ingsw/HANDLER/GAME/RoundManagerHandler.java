@@ -26,7 +26,8 @@ public class RoundManagerHandler {
 	
 	public static void handle( Board board, Player[] players){
 		for (int turn = 1; turn <= 6; turn++){
-			int period = turn/2 +1;
+			int period = (turn+1)/2;
+			System.out.println("Periodo " + period + "\n");
 			ConnectionManager.roundBegins();
 			RoundOrder roundOrder = Game.getOrder();
 			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
