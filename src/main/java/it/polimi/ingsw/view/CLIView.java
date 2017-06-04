@@ -187,5 +187,10 @@ public class CLIView implements View{
 		}
 		return checkInputError(1, zonePositions.length);
 	}
+
+	@Override
+	public void catchException(String message) {
+		System.out.println(message + "\n");
+	}
 	
 }

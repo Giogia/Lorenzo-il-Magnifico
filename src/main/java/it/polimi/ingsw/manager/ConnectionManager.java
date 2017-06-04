@@ -163,4 +163,9 @@ public class ConnectionManager {
 		return choice;
 	}
 
+	public static void catchException(String message, Player player) {
+		View view = getView(player);
+		view.catchException(message);
+	}
+
 }

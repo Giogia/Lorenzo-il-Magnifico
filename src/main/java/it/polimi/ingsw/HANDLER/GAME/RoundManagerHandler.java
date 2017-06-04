@@ -29,9 +29,6 @@ public class RoundManagerHandler {
 			int period = turn/2 +1;
 			RoundOrder roundOrder = Game.getOrder();
 			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
-			for (Player player : orderPlayers) {
-				System.out.println("Giocatore in roundOrder: " + player.getName());
-			}
 			StartRoundHandler.handle(period, players, board);
 			//giveInitialInformations();
 			handleOrder(roundOrder);

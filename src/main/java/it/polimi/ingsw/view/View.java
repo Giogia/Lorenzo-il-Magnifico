@@ -52,4 +52,6 @@ public interface View {
 	int askForAction(ArrayList<ActionZone> zones);
 
 	int askForActionPosition(Position[] zonePositions);
+
+	void catchException(String message);
 }

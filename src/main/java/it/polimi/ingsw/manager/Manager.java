@@ -156,7 +156,7 @@ public class Manager {
 				}	
 			}
 			catch(Exception exc){			
-				exc.printStackTrace();
+				ConnectionManager.catchException(exc.getMessage(), player);
 			}
 		}
 		
