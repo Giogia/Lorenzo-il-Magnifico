@@ -39,7 +39,6 @@ public class TowerHandler {
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					ServantsHandler.handle(testFamilyMember, playerResources);
-					System.out.println(testFamilyMember.getPlayer().getName());
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)){
 						if (IsThereBonusController.check(towerFloor)){
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
@@ -140,8 +139,17 @@ public class TowerHandler {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
 		}
-		add(playerResources1, neg(cost));
+		// If cost or alternativeCost are null, negate playerResource, in this way checkResources return false
+		try {
+			add(playerResources1, neg(cost));
+		} catch (NullPointerException e) {
+			playerResources1 = neg(playerResources1);
+		}
+		try {
 		add(playerResources2, neg(alternativeCost));
+		} catch (NullPointerException e) {
+			playerResources2 = neg(playerResources2);
+		}
 		//this if else is in this way because if the cost of the ventureCard is military point, this cost is in requirement
 		if (checkResources(playerResources1)){
 			if (playerMilitaryPoints.getAmount() >= requirement){
