@@ -25,7 +25,7 @@ public class CLIView implements View{
 	}
 	
 	public String askName(){
-		System.out.println("Inserisci il tuo nome: ");
+		System.out.println("Please, insert your name: ");
 		return scanner.nextLine();
 	}
 	
@@ -36,74 +36,73 @@ public class CLIView implements View{
 
 	@Override
 	public void startTurn(Player player) {
-		System.out.println(player.getName() + " è il tuo turno!");
+		System.out.println(player.getName() + " is your round!");
 	}
 
 	@Override
 	public int turnChoice() {
-		System.out.println("Che azione vuoi effettuare?\n");
-		System.out.println("1) Posiziona familiare \n2) Attiva carta leader \n3) Scarta carta leader \n4) Attiva "
-				+ "l'effetto di una carta leader \n5) Statistiche \n6) Passa il turno\n");
+		System.out.println("What action do you want to do?\n");
+		System.out.println("1) Place a family member \n2) Activate leader card \n3) Discard leader card \n4) Activate "
+				+ "effect of a leader card \n5) Stats \n6) Pass the turn\n");
 		return checkInputError(1, 6);
 	}
 
 	@Override
 	public void moveAlreadyDone() {
-		System.out.println("Hai già posizionato in questo turno un familiare. Scegli un'altra opzione: ");
+		System.out.println("You have already positioned a family member. Choose another action: ");
 	}
 
 	@Override
 	public int chooseZone(Board board) {
-		System.out.println("Scegli la zona in cui vuoi posizionare il familiare:\n");
-		System.out.println("1) Torre Territori \n2) Torre Personaggi \n3) Torre Edifici \n4) Torre Imprese \n" + 
-			"5) Palazzo del Consiglio \n6) Zona Raccolto \n7) Zona Produzione \n8) Mercato \n9) Torna indietro");
+		System.out.println("Choose the area you want to place the family member:\n");
+		System.out.println("1) Territories Tower \n2) Characters Tower \n3) Buildings Tower \n4) Ventures Tower \n" + 
+			"5) Council Palace \n6) Harvest Area \n7) Production Area \n8) Market \n9) Go back");
 		return checkInputError(1, 9);
 	}
 
 	@Override
 	public int choosePosition(Position[] positions) {
-		System.out.println("Scegli la posizione in cui vuoi posizionare il familiare: ");
+		System.out.println("Choose the position where to put the family member: ");
 		for (int counter = 1; counter <= positions.length; counter ++) {
 			String message = counter + ") " + positions[counter - 1].getDescription();
 			System.out.println(message);
 		}
 		int lastChoice = positions.length + 1;
-		String lastMessage = lastChoice + ") Torna indietro";
+		String lastMessage = lastChoice + ") Go back";
 		System.out.println(lastMessage);
 		return checkInputError(1, lastChoice);
 	}
 
 	@Override
 	public int chooseFamilyMember(ArrayList<FamilyMember> familyMembers) {
-		System.out.println("Scegli il familiare che vuoi utilizzare per effettare l'azione: ");
+		System.out.println("Choose the family member you want to use for the action: ");
 		for (int counter = 1; counter <= familyMembers.size(); counter++){
 			String message = counter + ") " + familyMembers.get(counter - 1).getDescription();
 			System.out.println(message);
 		}
 		int lastChoice = familyMembers.size() + 1;
-		String lastMessage =  lastChoice + ") Torna indietro";
+		String lastMessage =  lastChoice + ") Go back";
 		System.out.println(lastMessage);
 		return checkInputError(1, lastChoice);
 	}
 
 	@Override
 	public int askForAlternativeCost(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost) {
-		System.out.println("La carta che hai scelto ha 2 costi. Scegli uno dei due: ");
-		System.out.println("1) Primo costo");
+		System.out.println("The card you have chosen has 2 costs. Choose one: ");
+		System.out.println("1) First cost");
 		for (Resource resource : cost) {
 			System.out.println(resource.getDescription());
 		}
-		System.out.println("2) Secondo costo");
+		System.out.println("2) Secondary cost:");
 		for (Resource resource : alternativeCost) {
 			System.out.println(resource.getDescription());
 		}
-		System.out.println("Scegli un costo");
 		return checkInputError(1, 2);
 	}
 
 	@Override
 	public int askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges) {
-		System.out.println("Scegli il bonus che vuoi avere dal Privilegio del Consiglio: ");
+		System.out.println("Choose the bonus of the Council Privilege: ");
 		for (int counter = 1; counter <= councilPrivileges.size(); counter++){
 			String message = counter + ") " + councilPrivileges.get(counter - 1).getDescription();
 			System.out.println(message);
@@ -113,19 +112,19 @@ public class CLIView implements View{
 
 	@Override
 	public int askForServants(int numberOfServants) {
-		System.out.println("Hai " + numberOfServants + " servitori. Quanti vuoi usarne?");
+		System.out.println("You have " + numberOfServants + " servants. How much do you want to use?");
 		return checkInputError(0, numberOfServants);	
 	}
 
 	@Override
 	public int askForInformation(Player[] players) {
-		System.out.println("Di quale giocatore vuoi vedere le statistiche?");
+		System.out.println("Choose the player whose statistics you want to see?");
 		for (int counter = 1; counter <= players.length; counter++){
 			String message = counter + ") " + players[counter - 1].getName();
 			System.out.println(message);
 		}
 		int lastChoice = players.length + 1;
-		String lastMessage = lastChoice + ") Torna indietro";
+		String lastMessage = lastChoice + ") Go back";
 		System.out.println(lastMessage);
 		return checkInputError(1, lastChoice);
 	}
@@ -137,7 +136,7 @@ public class CLIView implements View{
 	
 	@Override
 	public void cantPassTurn() {
-		System.out.println("Non puoi passare il turno poichè devi posizionare almeno un familiare.\n");
+		System.out.println("You can't pass the turn because you have to place at least one family member.\n");
 		
 	}
 
@@ -147,12 +146,12 @@ public class CLIView implements View{
 			try{
 				int choice = scanner.nextInt();
 				if ( choice < min || choice > max){
-					System.out.println("Input errato. Scegli di nuovo: ");
+					System.out.println("Incorrect input. Try again: ");
 				}else{
 					return choice;
 				}
 			}catch(InputMismatchException e){
-				System.out.println("Inserisci un numero intero: ");
+				System.out.println("The input must be an integer between "+ min + " and "+ max + ". Try again: ");
 			}
 		}
 	}
@@ -171,7 +170,7 @@ public class CLIView implements View{
 
 	@Override
 	public int askForAction(ArrayList<ActionZone> zones) {
-		System.out.println("Scegli dove effettuare l'azione bonus");
+		System.out.println("Choose where to make the action bonus: ");
 		for (int i = 1; i <= zones.size(); i++) {
 			System.out.println(i + ") " + zones.get(i-1).getDescription());
 		}
@@ -180,7 +179,7 @@ public class CLIView implements View{
 
 	@Override
 	public int askForActionPosition(Position[] zonePositions) {
-		System.out.println("Scegli la posizione in cui vuoi posizionare il familiare: ");
+		System.out.println("Choose where you want place your family member: ");
 		for (int counter = 1; counter <= zonePositions.length; counter ++) {
 			String message = counter + ") " + zonePositions[counter - 1].getDescription();
 			System.out.println(message);
