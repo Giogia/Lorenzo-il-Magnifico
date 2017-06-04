@@ -22,9 +22,11 @@ public abstract class HarvestProductionAreaHandler {
 
 	
 	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws Exception{
-		if(!PositionAlreadyOccupiedController.check(position) &&
-			!OccupiedYetBonusController.check(familyMember)){
-			return false;
+		if (position.equals(zone.getPosition(0))){
+			if(!PositionAlreadyOccupiedController.check(position) &&
+				!OccupiedYetBonusController.check(familyMember)){
+				return false;
+			}
 		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			ArrayList<Resource> playerResources = new ArrayList<>();
