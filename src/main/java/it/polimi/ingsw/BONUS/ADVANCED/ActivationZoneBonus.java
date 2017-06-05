@@ -5,6 +5,7 @@ import java.util.HashMap;
 import it.polimi.ingsw.BOARD.Tower;
 
 public class ActivationZoneBonus extends PermanentBonus {
+	// If some of this boolean are false you cannot take bonus from position
 	private HashMap<Tower, Boolean> towers;
 	private boolean councilPalace;
 	
