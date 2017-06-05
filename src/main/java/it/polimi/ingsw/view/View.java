@@ -6,6 +6,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
@@ -54,4 +55,6 @@ public interface View {
 	int askForActionPosition(Position[] zonePositions);
 
 	void catchException(String message);
+
+	int askForExcommunication(ExcommunicationTile excommunicationTile);
 }

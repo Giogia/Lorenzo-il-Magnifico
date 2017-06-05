@@ -14,6 +14,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -230,8 +231,10 @@ public class Manager {
 		return zone;
 	}
 
-	public static boolean askForExcommunication(Player player){
-		//TODO PERMANENT 
+	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile){
+		if (ConnectionManager.askForExcommunication(player, excommunicationTile) == 1){
+			return true;
+		}
 		return false;
 	}
 	

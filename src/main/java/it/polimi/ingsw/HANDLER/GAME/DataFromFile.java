@@ -249,5 +249,11 @@ public class DataFromFile {
 		default: //case building:
 			return getTowerBuildingPositionBonus();
 		}
+	}
+
+
+	public int getMinimumFaithPoints(int period) {
+		// TODO Auto-generated method stub
+		return 0;
 	} 
 }

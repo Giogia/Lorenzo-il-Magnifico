@@ -8,6 +8,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
@@ -190,6 +191,13 @@ public class CLIView implements View{
 	@Override
 	public void catchException(String message) {
 		System.out.println(message + "\n");
+	}
+
+	@Override
+	public int askForExcommunication(ExcommunicationTile excommunicationTile) {
+		System.out.println("Do you want to be excommunicated? \n");
+		System.out.println("The excommunication is: \n" + excommunicationTile.getDescription() + "\n" + "1) No \n" + "2) Yes");
+		return checkInputError(1, 2);
 	}
 	
 }

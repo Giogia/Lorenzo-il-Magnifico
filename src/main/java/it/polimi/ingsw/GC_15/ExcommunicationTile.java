@@ -14,4 +14,9 @@ public class ExcommunicationTile {
 	public void giveMalus(Player player){
 		//TODO PERMANENT
 	}
+
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

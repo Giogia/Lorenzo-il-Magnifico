@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -166,6 +167,12 @@ public class ConnectionManager {
 	public static void catchException(String message, Player player) {
 		View view = getView(player);
 		view.catchException(message);
+	}
+
+	public static int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) {
+		View view = getView(player);
+		int choice = view.askForExcommunication(excommunicationTile);
+		return choice;
 	}
 
 }

@@ -1,8 +1,11 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.manager.Manager;
+
 public final class VaticanReport {
 	private static VaticanReport instance;
-	private static ExcommunicationTile excommunicationTiles[];
+	private static ExcommunicationTile excommunicationTiles[] = new ExcommunicationTile[3];
 	
 	
 	private VaticanReport(ExcommunicationTile excommunicationTiles[]) {
@@ -25,11 +28,15 @@ public final class VaticanReport {
 		VaticanReport.excommunicationTiles = excommunicationTiles;
 	}
 	
-	public static void checkPlayersFaith(Player players[], int period) {
+	public static void checkPlayersFaith(int period) {
+		Player[] players = Game.getPlayers();
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
-				if ( players[i].wantsToRestartFaithPoints() ){
-					//TODO: dare punti vittoria in base a quanti faithpoints e poi azzera i punti fede
+				if (Manager.askForExcommunication(players[i], excommunicationTiles[period])){
+					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
+					int victoryPoints = Game.getData().getFromFaithPointsToVictoryPoints()[faithPoints];
+					players[i].getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPoints);
+					players[i].getPersonalBoard().getResource(ResourceType.faithPoints).setAmount(0);
 				}else{
 					excommunicationTiles[period].giveMalus(players[i]);
 				}
@@ -40,13 +47,9 @@ public final class VaticanReport {
 	}
 	
 	private static boolean checkFaithPoints(Player player, int period){
-		int minimumFaithPoints=0;//TODO: ricavare tali faith points in base al period!
-		return minimumFaithPoints < 0; //<-punti fede del player
+		int minimumFaithPoints = Game.getData().getMinimumFaithPoints(period); //TODO è configurabile anche questo
+		int playerFaithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
+		return playerFaithPoints - minimumFaithPoints < 0; //<-punti fede del player
 	}
 
-
-	public static void check() {
-		// TODO PERMANENT
-		
-	}
 }

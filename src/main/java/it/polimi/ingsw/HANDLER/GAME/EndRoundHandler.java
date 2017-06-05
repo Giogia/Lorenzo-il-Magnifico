@@ -7,6 +7,7 @@ import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
+import it.polimi.ingsw.GC_15.VaticanReport;
 
 public class EndRoundHandler {
 	private static EndRoundHandler instance;
@@ -24,9 +25,9 @@ public class EndRoundHandler {
 	public static void handle(Board board, RoundOrder roundOrder, int turn){
 		handleOrder(roundOrder, board);
 		board.resetPositions();
-		//if (turn % 2 == 0){ TODO REGOLE AVANZATE
-			//VaticanReport.check();
-		//}
+		if (turn % 2 == 0){ 
+			VaticanReport.checkPlayersFaith((turn+1)/2);
+		}
 		PassTurnController.lastMove(null);
 	}
 	
