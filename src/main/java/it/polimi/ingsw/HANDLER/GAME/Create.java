@@ -179,9 +179,9 @@ public class Create {
 			bonus = createResourcePerDevelopmentCardBonus();
 			break;
 			
-		case 6:
-			bonus = createResourceValueBonus();
-			break;
+//		case 6:
+	//		bonus = createResourceValueBonus();
+		//	break;
 		
 		case 7:
 			bonus = createAddResourceBonus();
@@ -250,9 +250,9 @@ public class Create {
 			resourceBonus = createMultiplyResourceBonus();
 			break;
 		
-		case 3:
-			resourceBonus = createResourceValueBonus();
-			break;
+//		case 3:
+	//		resourceBonus = createResourceValueBonus();
+		//	break;
 			
 		case 4: 
 			resourceBonus = createResourcePerDevelopmentCardBonus();

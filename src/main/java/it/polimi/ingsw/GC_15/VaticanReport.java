@@ -49,7 +49,7 @@ public final class VaticanReport {
 	private static boolean checkFaithPoints(Player player, int period){
 		int minimumFaithPoints = Game.getData().getMinimumFaithPoints(period); //TODO è configurabile anche questo
 		int playerFaithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
-		return playerFaithPoints - minimumFaithPoints < 0; //<-punti fede del player
+		return playerFaithPoints - minimumFaithPoints >= 0; //<-punti fede del player
 	}
 
 }

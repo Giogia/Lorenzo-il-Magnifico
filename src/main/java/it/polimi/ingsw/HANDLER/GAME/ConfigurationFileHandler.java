@@ -70,7 +70,7 @@ public class ConfigurationFileHandler {
 			        .registerSubtype(AddResourceBonus.class, "addResourceBonus")
 			        .registerSubtype(MultiplyResourceBonus.class, "multiplyResourceBonus")
 			        .registerSubtype(ResourcePerDevelopmentCardBonus.class, "ATTENTION")//TODO
-			        .registerSubtype(ResourceValueBonus.class, "resourceValueBonus");
+			        /*.registerSubtype(ResourceValueBonus.class, "resourceValueBonus")*/;
 			
 			final RuntimeTypeAdapterFactory<Resource> t2 = RuntimeTypeAdapterFactory
 					.of(Resource.class, "resourceType")
