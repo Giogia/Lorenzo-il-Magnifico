@@ -5,6 +5,7 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public class Position {
@@ -34,7 +35,7 @@ public class Position {
 		return this.diceRequirement;
 	}
 	
-	public void addFamilyMember(FamilyMember newFamilyMember) throws Exception{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException{
 		familyMembers.add(newFamilyMember);
 	}
 	
@@ -46,7 +47,7 @@ public class Position {
 		familyMembers.clear();
 	}
 	
-	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws Exception{
+	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException{
 		immediateBonus.getImmediateBonus(player);
 	}
 	protected void givePermanentBonus(Player player, PermanentBonus permanentBonus){

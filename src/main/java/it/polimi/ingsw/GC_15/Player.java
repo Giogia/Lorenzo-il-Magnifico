@@ -58,7 +58,7 @@ public class Player {
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws Exception{
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException{
 		position.addFamilyMember(familyMember);
 		if (!familyMember.getDice().getDiceColour().equals(DiceColour.Fake)){
 			if (familyMembers != null){

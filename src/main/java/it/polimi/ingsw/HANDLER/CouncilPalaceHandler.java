@@ -7,12 +7,13 @@ import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class CouncilPalaceHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws Exception{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException{
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
 			playerResources.add(resource.clone());

@@ -14,6 +14,7 @@ import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -21,7 +22,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public abstract class HarvestProductionAreaHandler {
 
 	
-	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws Exception{
+	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws MyException{
 		if (position.equals(zone.getPosition(0))){
 			if(!PositionAlreadyOccupiedController.check(position) &&
 				!OccupiedYetBonusController.check(familyMember)){
@@ -89,7 +90,7 @@ public abstract class HarvestProductionAreaHandler {
 		return null;
 	}
 	
-	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws Exception{
+	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException{
 		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}

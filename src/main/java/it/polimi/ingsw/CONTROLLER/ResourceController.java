@@ -1,6 +1,8 @@
 package it.polimi.ingsw.CONTROLLER;
 
 import java.util.ArrayList;
+
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.*;
 
@@ -15,13 +17,13 @@ public class ResourceController {
 	 * ritorna false
 	 * Dopo che controlla tutte le risorse, ritorna true
 	 */
-	public static boolean check(Player player, ArrayList<Resource> cost) throws Exception{
+	public static boolean check(Player player, ArrayList<Resource> cost) throws MyException{
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for(Resource playerResource : playerResources){
 			for (Resource costResource : cost) {
 				if(playerResource.getResourceType().equals(costResource.getResourceType())){ 
 					if(playerResource.getAmount()/playerResource.getValue() < costResource.getAmount()){  
-						throw new Exception("The resources are not enough");
+						throw new MyException("The resources are not enough");
 					}
 				}
 			}
