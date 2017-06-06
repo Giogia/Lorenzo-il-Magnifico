@@ -15,13 +15,14 @@ import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 
 public abstract class HarvestProductionAreaHandler {
 
 	
-	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws Exception{
+	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws Exception{
 		if (position.equals(zone.getPosition(0))){
 			if(!PositionAlreadyOccupiedController.check(position) &&
 				!OccupiedYetBonusController.check(familyMember)){
@@ -36,6 +37,7 @@ public abstract class HarvestProductionAreaHandler {
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 			ServantsHandler.handle(testFamilyMember, playerResources);
 			checkPositionMalus(testFamilyMember, zone, position);
+			ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
 			if(FamilyMemberValueController.check(testFamilyMember, position)){
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);

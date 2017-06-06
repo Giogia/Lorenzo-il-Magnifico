@@ -3,6 +3,7 @@ package it.polimi.ingsw.HANDLER;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -39,6 +40,7 @@ public class TowerHandler {
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					ServantsHandler.handle(testFamilyMember, playerResources);
+					ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)){
 						if (IsThereBonusController.check(towerFloor)){
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();

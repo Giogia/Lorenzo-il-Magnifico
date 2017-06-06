@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_15;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.CARD.BuildingCardContainer;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.CharacterCardContainer;
@@ -21,7 +22,7 @@ public class PersonalBoard {
 	private ArrayList<Resource> resources;
 	private ArrayList<LeaderCard> activatedLeaderCards;
 	private ArrayList<LeaderCard> oncePerRoundBonusLeaderCard;
-	private ArrayList<Bonus> permanentBonus;
+	private ArrayList<PermanentBonus> permanentBonus;
 	
 	public PersonalBoard() {
 		personalBonusTile = new PersonalBonusTile();
@@ -106,12 +107,12 @@ public class PersonalBoard {
 	}
 	
 	
-	public ArrayList<Bonus> getPermanentBonus() {
+	public ArrayList<PermanentBonus> getPermanentBonus() {
 		return permanentBonus;
 	}
 	
 	//ADD methods -> similar to setters
-	public void addPermanentBonus(Bonus bonus){
+	public void addPermanentBonus(PermanentBonus bonus){
 		permanentBonus.add(bonus);
 	}
 	
