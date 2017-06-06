@@ -68,7 +68,7 @@ public class Position {
 		}
 		try {
 			if(familyMembers.isEmpty()){
-				description = "Position not occupied \n";
+				description = description + "Position not occupied \n";
 			}
 			else{
 				description = description + "Position occupied by: \n";
