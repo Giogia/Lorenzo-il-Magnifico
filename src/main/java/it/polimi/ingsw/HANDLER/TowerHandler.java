@@ -204,7 +204,7 @@ public class TowerHandler {
 		Coins occupiedCost = new Coins(3, 1);
 		ArrayList<Resource> bonusResources = new ArrayList<>();
 		bonusResources.add(occupiedCost);
-		add(playerResources, bonusResources);
+		add(playerResources, neg(bonusResources));
 	}
 
 
