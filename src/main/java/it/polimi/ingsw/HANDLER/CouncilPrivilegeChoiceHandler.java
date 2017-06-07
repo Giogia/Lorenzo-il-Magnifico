@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ResourceBonus;
@@ -12,7 +13,7 @@ public class CouncilPrivilegeChoiceHandler {
 	//and removed from the councilPrivileges
 	private static ArrayList<ResourceBonus> councilPrivileges;
 	
-	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges){
+	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws RemoteException{
 		councilPrivileges = new ArrayList<>();
 		for (ResourceBonus resourceBonus : Game.getData().getCouncilPrivileges()) {
 			councilPrivileges.add(resourceBonus.clone());

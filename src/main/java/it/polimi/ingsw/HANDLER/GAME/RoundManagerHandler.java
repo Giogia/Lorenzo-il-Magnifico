@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -8,7 +9,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
-import it.polimi.ingsw.manager.ConnectionManager;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
 
 public class RoundManagerHandler {
@@ -24,11 +25,11 @@ public class RoundManagerHandler {
 		return instance;
 	}
 	
-	public static void handle( Board board, Player[] players){
+	public static void handle( Board board, Player[] players) throws RemoteException{
 		for (int turn = 1; turn <= 6; turn++){
 			int period = (turn+1)/2;
 			System.out.println("Period " + period + "\n");
-			ConnectionManager.roundBegins();
+			ConnectionManagerImpl.roundBegins();
 			RoundOrder roundOrder = Game.getOrder();
 			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
 			StartRoundHandler.handle(period, players, board);
@@ -53,7 +54,7 @@ public class RoundManagerHandler {
 	}*/
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
-	private static void handleOrder(RoundOrder roundOrder){
+	private static void handleOrder(RoundOrder roundOrder) throws RemoteException {
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Manager.turn(roundOrder.getPlayers().get(i));

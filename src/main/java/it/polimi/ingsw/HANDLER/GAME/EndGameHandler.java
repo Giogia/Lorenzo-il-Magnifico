@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -10,7 +11,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.ResourceType;
-import it.polimi.ingsw.manager.ConnectionManager;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public class EndGameHandler {
 	
@@ -25,14 +26,14 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board){
+	public static void handle(Board board) throws RemoteException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		//dai i punti vittoria fede
-		ConnectionManager.hasWon(getWinner(board));
+		ConnectionManagerImpl.hasWon(getWinner(board));
 	}
 
 	private static void transformResourcesIntoPoints(Board board) {
@@ -61,7 +62,7 @@ private static EndGameHandler istanza = null;
 	}
 	
 	//TODO: check!
-	private static Player getWinner(Board board){
+	private static String getWinner(Board board){
 		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = null;
 		for(Player player: board.getPlayers()){
@@ -70,7 +71,7 @@ private static EndGameHandler istanza = null;
 			winner = player;
 			}
 		}
-		return winner; 
+		return winner.getName(); 
 	}
 	
 	

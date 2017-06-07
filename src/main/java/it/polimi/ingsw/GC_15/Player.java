@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_15;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.*;
@@ -98,7 +99,7 @@ public class Player {
 		return personalBoard;
 	}
 	
-	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus){
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws RemoteException{
 		//trovo l'indice nell'arrayList dove vi sono le monete
 		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
 		//do al player una moneta

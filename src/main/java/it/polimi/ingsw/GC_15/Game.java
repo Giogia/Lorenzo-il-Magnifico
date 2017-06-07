@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
 import java.io.FileNotFoundException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -10,7 +11,7 @@ import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.HANDLER.GAME.EndGameHandler;
 import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
-import it.polimi.ingsw.manager.ConnectionManager;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public class Game {
 	private static Player[] players;
@@ -18,14 +19,14 @@ public class Game {
 	private static Board board;
 	private static DataFromFile data;
 	
-	public static void start(int numberOfPlayers){
+	public static void start(int numberOfPlayers) throws RemoteException{
 		//setta i vari attributi di game
 		try {
 			players = new Player[numberOfPlayers];
 			//TODO
 			players[0] = new Player("Michele" , Color.BLUE);
 			players[1] = new Player("Giovanni" , Color.RED);
-			ConnectionManager.addPlayers();
+			ConnectionManagerImpl.addPlayers();
 			data = ConfigurationFileHandler.getData();
 			board = new Board();
 			roundOrder = new RoundOrder();
