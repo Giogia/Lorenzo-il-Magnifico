@@ -36,7 +36,7 @@ public class TowerHandler {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
 					ArrayList<Resource> playerResources = new ArrayList<>();
 					for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-						playerResources.add(resource.clone());
+						playerResources.add(resource.createClone());
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					ServantsHandler.handle(testFamilyMember, playerResources);
@@ -216,7 +216,7 @@ public class TowerHandler {
 	private static ArrayList<Resource> neg(ArrayList<Resource> resources) {
 		ArrayList<Resource> negResources = new ArrayList<>();
 		for (Resource resource : resources) {
-			negResources.add(resource.clone());
+			negResources.add(resource.createClone());
 		}
 		for (Resource negResource : negResources) {
 			int amount = -negResource.getAmount();

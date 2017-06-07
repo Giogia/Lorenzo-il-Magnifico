@@ -31,7 +31,7 @@ public class ResourcePerResourceBonus extends AddResourceBonus{
 	}
 	
 	@Override
-	public ResourceBonus clone() {
+	public ResourceBonus createClone() {
 		ResourcePerResourceBonus newBonus = new ResourcePerResourceBonus(this.resources, this.requirement);
 		return newBonus;
 	}

@@ -77,7 +77,7 @@ public class Player {
 	
 	public void useServants(int servantsNumber, FamilyMember familyMember){
 		//decremento il valore dei serventi di - value
-		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);;
+		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);
 		//aumento il valore dei servernti di value
 		familyMember.addValue(servantsNumber);
 	}

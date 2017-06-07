@@ -23,7 +23,7 @@ public class MarketHandler {
 		}
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-			playerResources.add(resource.clone());
+			playerResources.add(resource.createClone());
 		}
 		FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 		ServantsHandler.handle(testFamilyMember, playerResources);

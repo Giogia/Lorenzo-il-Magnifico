@@ -13,7 +13,7 @@ public class FaithPoints extends Resource{
 	}
 	
 	@Override
-	public Resource clone() {
+	public Resource createClone() {
 		FaithPoints faithPoints = new FaithPoints(this.amount, this.value);
 		return faithPoints;
 	}
