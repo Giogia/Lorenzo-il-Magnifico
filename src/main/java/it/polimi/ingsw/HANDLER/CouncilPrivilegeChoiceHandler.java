@@ -15,7 +15,7 @@ public class CouncilPrivilegeChoiceHandler {
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges){
 		councilPrivileges = new ArrayList<>();
 		for (ResourceBonus resourceBonus : Game.getData().getCouncilPrivileges()) {
-			councilPrivileges.add(resourceBonus.clone());
+			councilPrivileges.add(resourceBonus.createClone());
 		}
 		for(int i=0; i < numberOfDifferentCouncilPrivileges; i++){
 			ResourceBonus singleBonus = Manager.getCouncilPrivilege(player, councilPrivileges); //the single bonus choosen from the human

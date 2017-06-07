@@ -2,6 +2,7 @@ package it.polimi.ingsw.HANDLER.GAME;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -10,7 +11,8 @@ import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
 
 public class Modify {
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
+		FileOutputStream prova = null;
 		try {
 			DataFromFile data = ConfigurationFileHandler.getData();
 			ArrayList<Building> buildings = data.getBuildings();
@@ -52,12 +54,23 @@ public class Modify {
 			data.setTerritories(territories);
 			data.setVentures(ventures);
 			
-			FileOutputStream prova = new FileOutputStream("config2.json");
+			prova = new FileOutputStream("config2.json");
 	        PrintStream scrivi = new PrintStream(prova);
 			scrivi.print(ConfigurationFileHandler.toSerialize(data));
+			prova.close();
 	        
-		} catch (FileNotFoundException e) {
+		} 
+		
+		catch (FileNotFoundException e) {
 			e.printStackTrace();
+		}
+		
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		finally {
+			if(prova !=null)
+			prova.close();
 		}
 	}
 }

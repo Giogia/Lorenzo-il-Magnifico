@@ -6,10 +6,11 @@ import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 
 public class EnoughSpaceInPersonalBoard implements Controller{
 	
-	public static boolean check(FamilyMember familyMember, DevelopmentCard developmentCard) throws Exception{
+	public static boolean check(FamilyMember familyMember, DevelopmentCard developmentCard) throws MyException{
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		ArrayList<CardContainer> containers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for (CardContainer containerCard : containers) {
@@ -17,10 +18,10 @@ public class EnoughSpaceInPersonalBoard implements Controller{
 				if(containerCard.getDevelopmentCards().size() < 6){
 					return true;
 				}
-				throw new Exception("The Personal board is full");
+				throw new MyException("The Personal board is full");
 			}
 		}
-		throw new Exception("ERROR - development card type not found");
+		throw new MyException("ERROR - development card type not found");
 	}
 
 }

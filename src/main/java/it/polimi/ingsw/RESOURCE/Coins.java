@@ -12,7 +12,7 @@ public class Coins extends Resource {
 		return amount +" Coins";
 	}
 	
-	public Resource clone(){
+	public Resource createClone(){
 		Coins coins = new Coins(this.amount, this.value);
 		return coins;
 	}

@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public abstract class PermanentResourceBonus extends PermanentBonus {
@@ -21,5 +22,7 @@ public abstract class PermanentResourceBonus extends PermanentBonus {
 	public String getSubtype() {
 		return subtype;
 	}
+	
+	public abstract PermanentResourceBonus createClone();
 
 }

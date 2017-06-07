@@ -51,7 +51,7 @@ public class PersonalBonusTile {
 		}
 		else
 			return null;
-	};
+	}
 	
 	
 }

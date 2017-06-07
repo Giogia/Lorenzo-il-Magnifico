@@ -1,5 +1,6 @@
 package it.polimi.ingsw.BONUS;
 
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public abstract class ImmediateBonus extends Bonus {
@@ -14,7 +15,7 @@ public abstract class ImmediateBonus extends Bonus {
 		return type;
 	}
 	
-	public void getImmediateBonus(Player player) throws Exception{ 
+	public void getImmediateBonus(Player player) throws MyException{ 
 		
 	}
 

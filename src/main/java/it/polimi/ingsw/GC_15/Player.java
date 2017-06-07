@@ -58,7 +58,7 @@ public class Player {
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws Exception{
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException{
 		position.addFamilyMember(familyMember);
 		if (!familyMember.getDice().getDiceColour().equals(DiceColour.Fake)){
 			if (familyMembers != null){
@@ -77,7 +77,7 @@ public class Player {
 	
 	public void useServants(int servantsNumber, FamilyMember familyMember){
 		//decremento il valore dei serventi di - value
-		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);;
+		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);
 		//aumento il valore dei servernti di value
 		familyMember.addValue(servantsNumber);
 	}

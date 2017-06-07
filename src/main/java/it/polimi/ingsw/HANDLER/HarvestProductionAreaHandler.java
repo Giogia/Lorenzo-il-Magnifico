@@ -32,7 +32,7 @@ public abstract class HarvestProductionAreaHandler {
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			ArrayList<Resource> playerResources = new ArrayList<>();
 			for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-				playerResources.add(resource.clone());
+				playerResources.add(resource.createClone());
 			}
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 			ServantsHandler.handle(testFamilyMember, playerResources);
@@ -44,15 +44,17 @@ public abstract class HarvestProductionAreaHandler {
 					PassTurnController.lastMove(testFamilyMember.getPlayer());
 					copyResource(testFamilyMember.getPlayer(), playerResources);
 					getPersonalBonusTileBonus(testFamilyMember, zone);
+					//inizio advanced
+					ArrayList<DevelopmentCard> cardsToActivate = getCards(familyMember, zone);
+					for(DevelopmentCard card :cardsToActivate){
+						
+					}
 					return true;
 				}
 			}
 		}
 		return false;
-		/*ArrayList<DevelopmentCard> cardsToActivate = MvcController.chooseCards(getCards(familyMember, zone)); //chiede le carte al giocatore
-		while(ActivateCardsController(cardsToActivate, familyMember.getPlayer())== false){ //le richiede finche non puo' attivarle
-			cardsToActivate = MvcController.chooseCards(getCards(familyMember, zone));
-		} */
+		
 	}
 	
 

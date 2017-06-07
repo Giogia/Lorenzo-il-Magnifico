@@ -3,6 +3,7 @@ package it.polimi.ingsw.BOARD;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class TowerFloor extends Position {
 	}
 	
 	@Override
-	public void addFamilyMember(FamilyMember newFamilyMember) throws Exception{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException{
 		
 		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
 		

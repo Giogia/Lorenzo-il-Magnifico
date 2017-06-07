@@ -10,4 +10,9 @@ public class PermanentMultResourceBonus extends PermanentResourceBonus {
 		super("PermanentMultResourceBonus", resources);
 	}
 
+	@Override
+	public PermanentMultResourceBonus createClone() {
+		return new PermanentMultResourceBonus(this.resources);
+	}
+
 }

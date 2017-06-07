@@ -11,4 +11,23 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 		super("ResourceValueBonus", resources);
 	}
 
+	@Override
+	protected void modify(Resource resource1, Resource resource2) {
+		resource1.setValue(resource2.getValue());
+	}
+	
+	@Override
+	public String getDescription() {
+		String description = "";
+		for (Resource resource : resources) {
+			description = description + "For each " + resource.getClass().getName() + " you have to pay " + resource.getAmount() + "\n";
+		}
+		return description;
+	}
+	
+	@Override
+	public ResourceValueBonus createClone() {
+		return new ResourceValueBonus(this.resources);
+	}
+
 }

@@ -13,7 +13,7 @@ public class Servants extends Resource{
 	}
 	
 	@Override
-	public Resource clone() {
+	public Resource createClone() {
 		Servants servants = new Servants(this.amount, this.value);
 		return servants;
 	}

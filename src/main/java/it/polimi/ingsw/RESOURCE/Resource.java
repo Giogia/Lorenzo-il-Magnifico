@@ -54,7 +54,7 @@ abstract public class Resource {
 
 	public abstract String getDescription();
 	
-	public abstract Resource clone();
+	public abstract Resource createClone();
     
 }
 

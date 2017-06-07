@@ -8,6 +8,7 @@ import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -18,7 +19,7 @@ public class FakeFamilyMemberHandler {
 	private static ArrayList<Resource> cost = new ArrayList<>();
 
 	
-	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws Exception{
+	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws MyException{
 		//check if there is a CostBonus associated to ActionBonus
 		//if there is, turn on the boolean and apply costBonus
 		if (costBonus != null){

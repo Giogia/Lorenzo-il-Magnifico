@@ -10,4 +10,9 @@ public class ResourcePerMissedExcommunicationBonus extends PermanentResourceBonu
 		super("ResourcePerMissedExcommunicationBonus", resources);
 	}
 
+	@Override
+	public ResourcePerMissedExcommunicationBonus createClone() {
+		return new ResourcePerMissedExcommunicationBonus(this.resources);
+	}
+
 }
