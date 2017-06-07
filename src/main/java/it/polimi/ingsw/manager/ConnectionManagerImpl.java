@@ -12,6 +12,7 @@ import java.util.HashMap;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
@@ -83,21 +84,21 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return choice;
 	}
 
-	public static int choosePosition(Player player, ArrayList<String> descriptions) throws RemoteException {
+	public static int choosePosition(Player player, Position[] positions) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
-		int choice = client.choosePosition(descriptions);
+		int choice = client.choosePosition(positions);
 		return choice;
 	}
 
-	public static int chooseFamilyMember(Player player, ArrayList<String> descriptions) throws RemoteException {
+	public static int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
-		int choice = client.chooseFamilyMember(descriptions);
+		int choice = client.chooseFamilyMember(familyMembers);
 		return choice;
 	}
 
-	public static int askForAlternativeCost(Player player, ArrayList<String> cost, ArrayList<String> alternativeCost) throws RemoteException {
+	public static int askForAlternativeCost(Player player, ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
-		int choice = client.askForAlternativeCost(cost, alternativeCost);
+		int choice = client.askForAlternativeCost(costs, alternativeCosts);
 		return choice;
 	}
 
@@ -119,9 +120,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return choice;
 	}
 
-	public static void showPersonalBoard(Player player, String personalBoardDescription) throws RemoteException {
+	public static void showPersonalBoard(Player player, PersonalBoard personalBoard) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
-		client.showPersonalBoard(personalBoardDescription);
+		client.showPersonalBoard(personalBoard);
 	}
 
 	public static void addPlayers(){
@@ -152,13 +153,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public static int askForZone(ArrayList<String> zones, Player player) throws RemoteException {
+	public static int askForZone(ArrayList<ActionZone> zones, Player player) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
 		int choice = client.askForAction(zones);
 		return choice;
 	}
 
-	public static int chooseActionPosition(Player player, String[] zonePositionsDescriptions) throws RemoteException {
+	public static int chooseActionPosition(Player player, Position[] zonePositionsDescriptions) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
 		int choice = client.askForActionPosition(zonePositionsDescriptions);
 		return choice;

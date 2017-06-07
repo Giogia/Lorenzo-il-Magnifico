@@ -86,7 +86,7 @@ public class Manager{
 			return;
 		}
 		PersonalBoard personalBoard = players[choice - 1].getPersonalBoard();
-		ConnectionManagerImpl.showPersonalBoard(player, personalBoard.getDescription());
+		ConnectionManagerImpl.showPersonalBoard(player, personalBoard);
 	}
 
 	private static void activationLeaderCardEffectManager(Player player) {
@@ -173,11 +173,7 @@ public class Manager{
 	 */
 	private static boolean zoneManager(Player player, Zone zone) throws Exception {
 		Position[] positions = zone.getPositions();
-		ArrayList<String> descriptions = new ArrayList<>();
-		for (Position position : positions) {
-			descriptions.add(position.getDescription());
-		}
-		int choice = ConnectionManagerImpl.choosePosition(player, descriptions);
+		int choice = ConnectionManagerImpl.choosePosition(player, positions);
 		if (choice == positions.length + 1){
 			return false;
 		} else {
@@ -188,11 +184,7 @@ public class Manager{
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
 	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws Exception{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
-		ArrayList<String> descriptions = new ArrayList<>();
-		for (FamilyMember familyMember : familyMembers) {
-			descriptions.add(familyMember.getDescription());
-		}
-		int choice = ConnectionManagerImpl.chooseFamilyMember(player, descriptions);
+		int choice = ConnectionManagerImpl.chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){
 			return false;
 		}
@@ -201,21 +193,13 @@ public class Manager{
 		}
 	}
 
-	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> cost,
-			ArrayList<Resource> alternativeCost) throws RemoteException {
-		ArrayList<String> costDescriptions = new ArrayList<>();
-		ArrayList<String> alternativeCostDescriptions = new ArrayList<>();
-		for (Resource resource : cost) {
-			costDescriptions.add(resource.getDescription());
-		}
-		for (Resource resource : alternativeCost) {
-			alternativeCostDescriptions.add(resource.getDescription());
-		}
-		int choice = ConnectionManagerImpl.askForAlternativeCost(player, costDescriptions, alternativeCostDescriptions);
+	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
+			ArrayList<Resource> alternativeCosts) throws RemoteException {
+		int choice = ConnectionManagerImpl.askForAlternativeCost(player, costs, alternativeCosts);
 		if (choice == 1){
-			return cost;
+			return costs;
 		}
-		else return alternativeCost;
+		else return alternativeCosts;
 	}
 
 	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws RemoteException {
@@ -233,11 +217,7 @@ public class Manager{
 		zone = getBoardZone(zone);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		String[] zonePositionsDescriptions = new String[zonePositions.length];
-		for (int i = 0; i < zonePositions.length; i++ ) {
-			zonePositionsDescriptions[i] = zonePositions[i].getDescription();
-		}
-		int choice = ConnectionManagerImpl.chooseActionPosition(player, zonePositionsDescriptions);
+		int choice = ConnectionManagerImpl.chooseActionPosition(player, zonePositions);
 		return zonePositions[choice - 1];
 	}
 
@@ -271,14 +251,7 @@ public class Manager{
 
 	public static ActionZone askForZone(Set<ActionZone> actionZones, Player player) throws RemoteException {
 		ArrayList<ActionZone> zones = new ArrayList<>();
-		ArrayList<String> zonesDescriptions = new ArrayList<>();
-		for (ActionZone actionZone : actionZones) {
-			zones.add(actionZone);
-		}
-		for (ActionZone zone : zones) {
-			zonesDescriptions.add(zone.getDescription());
-		}
-		int choice = ConnectionManagerImpl.askForZone(zonesDescriptions, player);
+		int choice = ConnectionManagerImpl.askForZone(zones, player);
 		return zones.get(choice - 1);
 	}
 

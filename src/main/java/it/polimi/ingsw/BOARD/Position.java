@@ -1,4 +1,5 @@
 package it.polimi.ingsw.BOARD;
+import java.io.Serializable;
 import java.util.*;
 
 import it.polimi.ingsw.BONUS.Bonus;
@@ -7,7 +8,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
-public class Position {
+public class Position implements Serializable{
 	protected ArrayList<FamilyMember> familyMembers;
 	protected ArrayList<ImmediateBonus> boardBonus;
 	protected int diceRequirement;

@@ -1,11 +1,13 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.BOARD.HarvestArea;
 import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
-public class PersonalBonusTile {
+public class PersonalBonusTile implements Serializable {
 	private final ImmediateBonus harvestBonus;
 	private final ImmediateBonus productionBonus;
 	private final int harvestActivationCondition;

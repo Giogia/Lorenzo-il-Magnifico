@@ -1,6 +1,8 @@
 package it.polimi.ingsw.BOARD;
 
-public abstract class Zone{
+import java.io.Serializable;
+
+public abstract class Zone implements Serializable{
 	protected Position[] positions;
 	private String type;
 	

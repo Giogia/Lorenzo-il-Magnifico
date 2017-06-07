@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.Bonus;
@@ -14,7 +15,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.RESOURCE.*;
 
-public class PersonalBoard {
+public class PersonalBoard implements Serializable {
 	private PersonalBonusTile personalBonusTile;
 	private boolean[] excommunicationCubes;
 	private ArrayList<CardContainer> cardContainers;

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
-public class Player {
+public class Player implements Serializable{
 	private String name;
 	private Color color;
 	public enum Color {RED, BLUE, YELLOW, GREEN}
