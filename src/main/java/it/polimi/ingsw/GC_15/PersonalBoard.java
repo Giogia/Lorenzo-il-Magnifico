@@ -83,6 +83,7 @@ public class PersonalBoard {
 	
 	public void putLeaderCard(LeaderCard leaderCard) {
 		activatedLeaderCards.add(leaderCard);
+		//TODO Bisogna aggiungere l'effetto della leader card che si attiva subito
 	}
 	
 	//attivo l'effetto onePerRound della carta leader

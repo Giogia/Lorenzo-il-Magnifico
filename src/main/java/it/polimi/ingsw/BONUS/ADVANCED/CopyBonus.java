@@ -1,22 +1,38 @@
 package it.polimi.ingsw.BONUS.ADVANCED;
 
+import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
+import it.polimi.ingsw.CARD.PermanentLeaderCard;
+import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.manager.Manager;
 
-
-/*public class CopyBonus extends ImmediateBonus{
-	TODO PERMANENT
-	  Bisogna creare un handler apposito per gestire questo bonus
-	  Il bonus dovrebbe dire al giocatore umano attraverso l'handler cosa può copiare
-	  Il giocatore umano sceglie la carta da copiare
-	  L'handler crea una carta uguale a quella copiata e la dà al player
-	 
+public class CopyBonus extends ImmediateBonus{
 	
 	
-	public void getImmediateBonus(Player player){
-		
+	public CopyBonus() {
+		super("CopyBonus");
 	}
+
+	public void getImmediateBonus(Player player){
+		LeaderCard chosenLeaderCard = Manager.choiceLeaderCardToCopy();
+		LeaderCard copiedCard;
+		if (chosenLeaderCard instanceof OncePerRoundLeaderCard){
+			copiedCard = new OncePerRoundLeaderCard(chosenLeaderCard.getName(), chosenLeaderCard.bonus, null, null);
+		}
+		else {
+			copiedCard = new PermanentLeaderCard(chosenLeaderCard.getName(), chosenLeaderCard.bonus, null, null);
+		}
+		player.getPersonalBoard().putLeaderCard(copiedCard);
+	}
+
+	@Override
+	public String getDescription() {
+		String description = "You can copy the effect of a Leader Card";
+		return description;
+	}
+	
 		
 
 	
 }
-
-*/
