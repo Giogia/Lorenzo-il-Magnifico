@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -14,6 +15,7 @@ import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.CONTROLLER.ActivationZoneBonusController;
 import it.polimi.ingsw.CONTROLLER.EnoughSpaceInPersonalBoard;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
@@ -43,7 +45,7 @@ public class TowerHandler {
 					ServantsHandler.handle(testFamilyMember, playerResources);
 					ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)) {
-						if (IsThereBonusController.check(towerFloor)) {
+						if (IsThereBonusController.check(towerFloor) && ActivationZoneBonusController.check(zone, familyMember.getPlayer())) {
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
 							ArrayList<Resource> bonusResources = new ArrayList<>();
 							for (ImmediateBonus immediateBonus : boardBonus) {
@@ -97,6 +99,7 @@ public class TowerHandler {
 		for (Resource resource : buildingCard.costs) {
 			cost.add(resource.createClone());
 		}
+		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.building);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
@@ -113,6 +116,7 @@ public class TowerHandler {
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		cost.add(characterCard.cost.createClone());
+		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.character);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
@@ -139,6 +143,8 @@ public class TowerHandler {
 		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
 				.getResource(ResourceType.militaryPoints);
 		ArrayList<Resource> playerResources2 = playerResources;
+		CardCostHandler.handle(alternativeCost, familyMember.getPlayer(), DevelopmentCardType.venture);
+		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.venture);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
