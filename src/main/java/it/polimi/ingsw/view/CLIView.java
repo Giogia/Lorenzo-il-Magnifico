@@ -40,13 +40,17 @@ public class CLIView implements ClientRMICallbackRemote{
 	
 	
 	public String askName(){
+		scanner= new Scanner(System.in);
 		System.out.println("Please, insert your name: ");
 		return scanner.nextLine();
 	}
 	
-	public int askColor(){
-		System.out.println("What color do you want for your family members?\n1)Red\n2)Blue\n3)Yellow\n4)Green\n");
-		return checkInputError(1, 4);
+	public int askColor(String[] availableColors){
+		System.out.println("What color do you want for your family members?");
+		for (int i = 1; i < availableColors.length + 1; i++) {
+			System.out.println(i + ") " + availableColors[i - 1]);
+		}
+		return checkInputError(1, availableColors.length);
 	}
 
 	@Override

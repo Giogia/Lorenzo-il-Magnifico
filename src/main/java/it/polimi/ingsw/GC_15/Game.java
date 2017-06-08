@@ -20,13 +20,24 @@ public class Game {
 	private static DataFromFile data;
 	
 	public static void start(int numberOfPlayers) throws RemoteException{
-		//setta i vari attributi di game
 		try {
 			players = new Player[numberOfPlayers];
-			//TODO
-			players[0] = new Player("Michele" , Color.BLUE);
-			players[1] = new Player("Giovanni" , Color.RED);
-			ConnectionManagerImpl.addPlayers();
+			
+			//Color[] availableColors = new Color[Color.values().length];
+			//availableColors = Color.values();
+			ArrayList<Color> colors = new ArrayList<>();
+			for (Color color : Color.values()) {
+				colors.add(color);
+			}
+			for (int i = 0; i < numberOfPlayers; i++) {
+				String nameChoosen = askName(i);
+				Color colorChoosen = askColor(i, colors);
+				players[i] = new Player(nameChoosen, colorChoosen);
+				
+				//delete the color choosen from the available colors
+				colors.remove(colorChoosen);
+			}
+			ConnectionManagerImpl.addPlayers();//do the binding between player and his view in connectionManagerImpl
 			data = ConfigurationFileHandler.getData();
 			board = new Board();
 			roundOrder = new RoundOrder();
@@ -38,6 +49,19 @@ public class Game {
 		StartGameHandler.handle(board);
 		RoundManagerHandler.handle(board, players);
 		EndGameHandler.handle(board);
+	}
+	
+	private static String askName(int numberOfPlayer) throws RemoteException{
+		return ConnectionManagerImpl.askName(numberOfPlayer);
+	}
+	
+	private static Color askColor(int numberOfPlayer, ArrayList<Color> availableColors) throws RemoteException {
+		String[] colors = new String[availableColors.size()];
+		for(int counter = 0; counter < availableColors.size(); counter++){
+			colors[counter] = availableColors.get(counter).toString().toLowerCase();
+		}
+		int colorChoiced = ConnectionManagerImpl.askColor(numberOfPlayer, colors) -1;//due the size of the array
+		return Color.values()[colorChoiced];
 	}
 	
 	public static DataFromFile getData() {

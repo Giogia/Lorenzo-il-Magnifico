@@ -16,7 +16,7 @@ void startTurn(String playerName) throws Exception;
 	
 	String askName() throws Exception;
 	
-	int askColor() throws Exception;
+	int askColor(String[] availableColors) throws Exception;
 
 	int turnChoice() throws Exception;
 

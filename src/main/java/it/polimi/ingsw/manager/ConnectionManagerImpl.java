@@ -1,10 +1,7 @@
 package it.polimi.ingsw.manager;
 
-import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,16 +9,14 @@ import java.util.HashMap;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
-import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
-import it.polimi.ingsw.view.CLIView;
 import it.polimi.ingsw.view.ClientRMICallbackRemote;
-import it.polimi.ingsw.view.View;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager {
 	private static ConnectionManagerImpl instance;
@@ -48,6 +43,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			System.out.println("The game starts!");
 			Game.start(temporaryView.size());
 		}
+	}
+	
+	public static String askName(int numberOfPlayer) throws RemoteException{
+		return temporaryView.get(numberOfPlayer).askName();
+	}
+	
+	public static int askColor(int numberOfPlayer, String[] availableColors) throws RemoteException{
+		return temporaryView.get(numberOfPlayer).askColor(availableColors);
 	}
 	
 	public static HashMap<Player, ClientRMICallbackRemote> getPlayersView() {

@@ -20,7 +20,7 @@ public interface ClientRMICallbackRemote extends Remote, View {
 	
 	String askName() throws RemoteException;
 	
-	int askColor() throws RemoteException;
+	int askColor(String[] availableColors) throws RemoteException;
 
 	int turnChoice() throws RemoteException;
 
