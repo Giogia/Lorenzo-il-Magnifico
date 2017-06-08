@@ -11,12 +11,7 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 		super("ResourceValueBonus", resources);
 	}
 
-	@Override
-	protected void modify(Resource resource1, Resource resource2) {
-		resource1.setValue(resource2.getValue());
-	}
 	
-	@Override
 	public String getDescription() {
 		String description = "";
 		for (Resource resource : resources) {

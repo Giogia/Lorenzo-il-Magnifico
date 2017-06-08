@@ -93,7 +93,10 @@ public class TowerHandler {
 	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
-		ArrayList<Resource> cost = buildingCard.costs;
+		ArrayList<Resource> cost = new ArrayList<>();
+		for (Resource resource : buildingCard.costs) {
+			cost.add(resource.createClone());
+		}
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
@@ -109,7 +112,7 @@ public class TowerHandler {
 			TowerFloor towerFloor) throws MyException {
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
-		cost.add(characterCard.cost);
+		cost.add(characterCard.cost.createClone());
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
@@ -123,11 +126,14 @@ public class TowerHandler {
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
-		ArrayList<Resource> cost = ventureCard.cost;
+		ArrayList<Resource> cost = new ArrayList<>();
+		for (Resource resource : ventureCard.cost) {
+			cost.add(resource.createClone());
+		}
 		// initialize the alternative cost to prevent null pointer exception
 		MilitaryPoints militaryPoints = ventureCard.alternativeCost;
 		ArrayList<Resource> alternativeCost = new ArrayList<>();
-		alternativeCost.add(militaryPoints);
+		alternativeCost.add(militaryPoints.createClone());
 		int requirement = ventureCard.militaryPointRequirement;
 		ArrayList<Resource> playerResources1 = playerResources;
 		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
