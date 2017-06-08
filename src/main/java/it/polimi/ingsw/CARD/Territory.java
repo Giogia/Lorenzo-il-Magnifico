@@ -14,8 +14,12 @@ public class Territory extends DevelopmentCard {
 		activationConditionHarvest=activationCondition;
 	}
 	
+	public int getActivationConditionHarvest() {
+		return activationConditionHarvest;
+	}
+	
 	public void getHarvestBonus(FamilyMember familyMember){
-		//TODO PERMANENT
+		
 	}
 	
 	@Override

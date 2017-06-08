@@ -10,17 +10,31 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public class Building extends DevelopmentCard{
 	public final int activationConditionProduction;
 	public final ArrayList<Resource> costs;
+	public final ArrayList<Bonus> tertiaryEffect;
 	
 	public Building(String name, int activationCondition, ArrayList<Resource> costs, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
 		super(name, period, DevelopmentCardType.building, immediateEffect, secondaryEffect);
 		activationConditionProduction=activationCondition;
 		this.costs=costs;
+		this.tertiaryEffect = new ArrayList<>();
 	}
 	
 	public void getProductionBonus(FamilyMember familyMember){
 		for(int i=0; i < secondaryEffect.size(); i++){
 			//TODO PERMANENT
 		}
+	}
+	
+	public int getActivationConditionProduction() {
+		return activationConditionProduction;
+	}
+	
+	public ArrayList<Resource> getCosts() {
+		return costs;
+	}
+	
+	public ArrayList<Bonus> getTertiaryEffect() {
+		return tertiaryEffect;
 	}
 	
 	@Override
