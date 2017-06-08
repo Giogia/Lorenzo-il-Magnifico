@@ -10,9 +10,14 @@ import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.Zone;
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -257,4 +262,16 @@ public class Manager {
 		return zones.get(choice - 1);
 	}
 
+	public static ArrayList<ImmediateBonus> chooseEffect(DevelopmentCard developmentCard){
+		ArrayList<ImmediateBonus> choice= new ArrayList<>();
+		if(developmentCard instanceof Territory){
+			Territory territory = (Territory) developmentCard;
+		//TODO da chiamare connectmanager
+		}
+		if(developmentCard instanceof Building){
+			Building building = (Building) developmentCard;
+			//TODO da chiamare connectmanager
+		}
+		return choice;
+	}
 }
