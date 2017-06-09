@@ -51,22 +51,7 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 	public void addBonus(CanFamilyMemberBonus canFamilyMemberBonus){
 		this.occupiedYet = this.occupiedYet || canFamilyMemberBonus.getOccupiedYet();
 		for (Zone zone : canFamilyMemberBonus.getCanGoTo().keySet()) {
-			Zone bonusZone = null;
-			if (zone instanceof Tower){
-				bonusZone = findTower(((Tower) zone).getDevelopmentCardType());
-			}
-			else if (zone instanceof HarvestArea){
-				bonusZone = findHarvest();
-			}
-			else if (zone instanceof ProductionArea){
-				bonusZone = findProduction();
-			}
-			else if (zone instanceof Market){
-				bonusZone = findMarket();
-			}
-			else {
-				bonusZone = findCouncilPalace();
-			}
+			Zone bonusZone = findZone(zone);
 			if (bonusZone == null){
 				canGoTo.put(zone, canFamilyMemberBonus.getCanGoTo().get(zone));
 			}
@@ -128,5 +113,25 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 			}
 		}
 		return null;
+	}
+	
+	public Zone findZone(Zone zone){
+		Zone foundZone;
+		if (zone instanceof Tower){
+			foundZone = findTower(((Tower) zone).getDevelopmentCardType());
+		}
+		else if (zone instanceof HarvestArea){
+			foundZone = findHarvest();
+		}
+		else if (zone instanceof ProductionArea){
+			foundZone = findProduction();
+		}
+		else if (zone instanceof Market){
+			foundZone = findMarket();
+		}
+		else {
+			foundZone = findCouncilPalace();
+		}
+		return foundZone;
 	}
 }
