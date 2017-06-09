@@ -3,6 +3,7 @@ package it.polimi.ingsw.BONUS;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentResourceBonusHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public abstract class ResourceBonus extends ImmediateBonus {
@@ -21,6 +22,7 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	}
 	
 	public void getImmediateBonus(Player player){ 
+		PermanentResourceBonusHandler.handle(resources, player);
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		modifyResources(playerResources);
 	}
