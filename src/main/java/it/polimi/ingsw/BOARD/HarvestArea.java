@@ -6,7 +6,7 @@ public class HarvestArea extends ActionZone {
 	
 	public HarvestArea() {
 		super("harvestArea");
-		int numberOfPlayers = Game.getPlayers().length;
+		int numberOfPlayers = getGame().getPlayers().length;
 		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
 		positions = new Position[numberOfPositions];
 				

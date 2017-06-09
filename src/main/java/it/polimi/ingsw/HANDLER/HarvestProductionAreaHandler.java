@@ -58,10 +58,10 @@ public abstract class HarvestProductionAreaHandler {
 		Position[] zonePosition = zone.getPositions();
 		int[] positionMalus;
 		if (zone instanceof HarvestArea){
-			positionMalus = Game.getData().getHarvestAreaPositionBonus();
+			positionMalus = familyMember.getPlayer().getBoard().getGame().getData().getHarvestAreaPositionBonus();
 		}
 		else {
-			positionMalus = Game.getData().getProductionAreaPositionBonus();
+			positionMalus = familyMember.getPlayer().getBoard().getGame().getData().getProductionAreaPositionBonus();
 		}
 		if (position.equals(zonePosition[0])){
 			familyMember.addValue(positionMalus[0]);

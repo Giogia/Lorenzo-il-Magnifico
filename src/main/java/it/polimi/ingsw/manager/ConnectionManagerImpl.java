@@ -41,7 +41,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		while(temporaryView.size()<2){ } //waiting for other players
 		if(temporaryView.size()==2){
 			System.out.println("The game starts!");
-			Game.start(temporaryView.size());
+			Game game = new Game();
+			game.start(temporaryView.size());
 		}
 	}
 	
@@ -128,8 +129,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		client.showPersonalBoard(personalBoard);
 	}
 
-	public static void addPlayers(){
-		Player[] players = Game.getPlayers();
+	public static void addPlayers(Player[] players){
 		int i = 0;
 		for (ClientRMICallbackRemote client : temporaryView) {
 			playersView.put(players[i], client);

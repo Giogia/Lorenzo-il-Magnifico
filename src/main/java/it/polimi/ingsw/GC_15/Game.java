@@ -1,10 +1,12 @@
 package it.polimi.ingsw.GC_15;
 
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
 import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
@@ -13,13 +15,13 @@ import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
-public class Game {
-	private static Player[] players;
-	private static RoundOrder roundOrder;
-	private static Board board;
-	private static DataFromFile data;
+public class Game implements Serializable{
+	private Player[] players;
+	private RoundOrder roundOrder;
+	private Board board;
+	private DataFromFile data;
 	
-	public static void start(int numberOfPlayers) throws RemoteException{
+	public void start(int numberOfPlayers) throws RemoteException{
 		try {
 			players = new Player[numberOfPlayers];
 			
@@ -37,9 +39,13 @@ public class Game {
 				//delete the color choosen from the available colors
 				colors.remove(colorChoosen);
 			}
-			ConnectionManagerImpl.addPlayers();//do the binding between player and his view in connectionManagerImpl
+			ConnectionManagerImpl.addPlayers(players);//do the binding between player and his view in connectionManagerImpl
+			Zone.setGame(this);
 			data = ConfigurationFileHandler.getData();
-			board = new Board();
+			board = new Board(this);
+			for (int i=0; i < players.length; i++){
+				players[i].setBoard(board);
+			}
 			roundOrder = new RoundOrder();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -51,11 +57,11 @@ public class Game {
 		EndGameHandler.handle(board);
 	}
 	
-	private static String askName(int numberOfPlayer) throws RemoteException{
+	private String askName(int numberOfPlayer) throws RemoteException{
 		return ConnectionManagerImpl.askName(numberOfPlayer);
 	}
 	
-	private static Color askColor(int numberOfPlayer, ArrayList<Color> availableColors) throws RemoteException {
+	private Color askColor(int numberOfPlayer, ArrayList<Color> availableColors) throws RemoteException {
 		String[] colors = new String[availableColors.size()];
 		for(int counter = 0; counter < availableColors.size(); counter++){
 			colors[counter] = availableColors.get(counter).toString().toLowerCase();
@@ -64,27 +70,27 @@ public class Game {
 		return Color.values()[colorChoiced];
 	}
 	
-	public static DataFromFile getData() {
+	public DataFromFile getData() {
 		return data;
 	}
 
-	public static Board getBoard() {
+	public Board getBoard() {
 		return board;
 	}
 	
-	public static Player[] getPlayers() {
+	public Player[] getPlayers() {
 		return players;
 	}
 
-	public static void setOrder(ArrayList<Player> players2) {
+	public void setOrder(ArrayList<Player> players2) {
 		roundOrder.setPlayers(players2);
 	}
 
-	public static ArrayList<Player> getRoundOrder() {
+	public ArrayList<Player> getRoundOrder() {
 		return roundOrder.getPlayers();
 	}
 	
-	public static RoundOrder getOrder(){
+	public RoundOrder getOrder(){
 		return roundOrder;
 	}
 }

@@ -76,7 +76,7 @@ public class Manager{
 	}
 
 	private static void askForInformation(Player player) throws RemoteException {
-		Player[] players = Game.getBoard().getPlayers();
+		Player[] players = player.getBoard().getGame().getBoard().getPlayers();
 		String[] names = new String[players.length];
 		for (int i = 0; i < players.length; i++) {
 			names[i] = players[i].getName();
@@ -111,7 +111,7 @@ public class Manager{
 				return;
 			}
 		}
-		Board board = Game.getBoard();
+		Board board = player.getBoard();
 		while(true){
 			int choice = ConnectionManagerImpl.chooseZone(player, board);
 			try{
@@ -224,13 +224,13 @@ public class Manager{
 	private static ActionZone getBoardZone(ActionZone zone) {
 		if (zone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
-			zone = Game.getBoard().getTower(developmentCardType);
+			zone = zone.getGame().getBoard().getTower(developmentCardType);
 		}
 		else if (zone instanceof ProductionArea){
-			zone = Game.getBoard().getProductioArea();
+			zone = zone.getGame().getBoard().getProductioArea();
 		}
 		else{
-			zone = Game.getBoard().getHarvestArea();
+			zone = zone.getGame().getBoard().getHarvestArea();
 		}
 		return zone;
 	}

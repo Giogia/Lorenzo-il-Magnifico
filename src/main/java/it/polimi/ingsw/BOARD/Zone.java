@@ -2,13 +2,24 @@ package it.polimi.ingsw.BOARD;
 
 import java.io.Serializable;
 
+import it.polimi.ingsw.GC_15.Game;
+
 public abstract class Zone implements Serializable{
+	private static Game game;
 	protected Position[] positions;
 	private String type;
 	
 	
 	public Zone(String type){
-		this.type = type;	
+		this.type = type;
+	}
+	
+	public static void setGame(Game g) {
+		game = g;
+	}
+	
+	public static Game getGame() {
+		return game;
 	}
 	
 	public String getType() {

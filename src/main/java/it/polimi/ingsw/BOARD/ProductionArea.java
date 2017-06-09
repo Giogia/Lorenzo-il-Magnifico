@@ -6,7 +6,7 @@ public class ProductionArea extends ActionZone{
 	
 	public ProductionArea() {
 		super("productionArea");
-		int numberOfPlayers = Game.getPlayers().length;
+		int numberOfPlayers = getGame().getPlayers().length;
 		int numberOfPositions = (numberOfPlayers>=3? 2 : 1);
 		positions = new Position[numberOfPositions];
 		

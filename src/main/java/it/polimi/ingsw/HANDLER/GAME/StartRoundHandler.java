@@ -17,9 +17,8 @@ import it.polimi.ingsw.GC_15.Player;
 
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
-	
+	private static Board board;
 	// Singleton Class
-	
 	private StartRoundHandler(){
 	}
 	
@@ -38,8 +37,9 @@ public class StartRoundHandler {
 		setCards(board, period);
 	}
 	
-	
-	
+	public static void setBoard(Board board) {
+		StartRoundHandler.board = board;
+	}
 	
 	//Create new dices
 	private static ArrayList<Dice> rollDices(){
@@ -71,17 +71,16 @@ public class StartRoundHandler {
 		player.setFamilyMember(familyMembers);
 	}
 	
-	
-	//Get the cards from DataFromFileì
+	//Get the cards from DataFromFile
 	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
 		if (developmentCardType.equals(DevelopmentCardType.building)){
-			return Game.getData().getBuildingsForPeriod(period);
+			return board.getGame().getData().getBuildingsForPeriod(period);
 		} else if (developmentCardType.equals(DevelopmentCardType.character)){
-			return Game.getData().getCharactersForPeriod(period);
+			return board.getGame().getData().getCharactersForPeriod(period);
 		} else if (developmentCardType.equals(DevelopmentCardType.territory)){
-			return Game.getData().getTerritoriesForPeriod(period);
+			return board.getGame().getData().getTerritoriesForPeriod(period);
 		} else// (developmentCardType.equals(DevelopmentCardType.VENTURE)){
-			return Game.getData().getVenturesForPeriod(period);
+			return board.getGame().getData().getVenturesForPeriod(period);
 		//}
 		
 	}
@@ -102,11 +101,7 @@ public class StartRoundHandler {
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}
-			Game.getData().lastCards(developmentCardType, period, developmentCards);
+			board.getGame().getData().lastCards(developmentCardType, period, developmentCards);
 		}
 	}
-	
-	
-	
-
 }

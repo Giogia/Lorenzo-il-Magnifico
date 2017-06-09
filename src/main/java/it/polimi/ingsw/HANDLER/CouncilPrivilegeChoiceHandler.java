@@ -15,7 +15,7 @@ public class CouncilPrivilegeChoiceHandler {
 	
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws RemoteException{
 		councilPrivileges = new ArrayList<>();
-		for (ResourceBonus resourceBonus : Game.getData().getCouncilPrivileges()) {
+		for (ResourceBonus resourceBonus : player.getBoard().getGame().getData().getCouncilPrivileges()) {
 			councilPrivileges.add(resourceBonus.clone());
 		}
 		for(int i=0; i < numberOfDifferentCouncilPrivileges; i++){

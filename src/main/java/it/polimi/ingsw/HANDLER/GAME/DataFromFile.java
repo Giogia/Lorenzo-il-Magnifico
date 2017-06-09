@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BONUS.ImmediateBonus;
@@ -10,7 +11,7 @@ import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 
 //classe contenitrice di tutti i dati che vengono caricati ad inizio gioco da file
-public class DataFromFile {
+public class DataFromFile implements Serializable{
 	private ArrayList<Territory> territories;
 	private ArrayList<Character> characters;
 	private ArrayList<Venture> ventures;

@@ -1,32 +1,44 @@
 package it.polimi.ingsw.BOARD;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.*;
 
 
-public class Board {
+public class Board implements Serializable{
 
 	private Tower[] towers;
 	private Market market;
 	private CouncilPalace councilPalace;
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
+	private Game game;
 	
-	public Board() {
+	public Board(Game game) {
+		this.game= game;
+		
 		market = new Market();
+		
 		councilPalace = new CouncilPalace();
+		
 		harvestArea = new HarvestArea();
+		
 		productionArea = new ProductionArea();
+		
 		towers = new Tower[4];
 		towers[0] = new Tower(DevelopmentCardType.territory);
 		towers[1] = new Tower(DevelopmentCardType.character);
 		towers[2] = new Tower(DevelopmentCardType.building);
 		towers[3] = new Tower(DevelopmentCardType.venture);
-		
+	}
+	
+	public Game getGame() {
+		return game;
 	}
 	
 	public Player[] getPlayers() {
-		return Game.getPlayers();
+		return game.getPlayers();
 	}
 
 	public Tower getTower(int towerNumber){

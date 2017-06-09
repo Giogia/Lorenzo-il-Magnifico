@@ -25,6 +25,10 @@ public class Player implements Serializable{
 		personalBoard = new PersonalBoard();
 	}
 	
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+	
 	public Color getColor() {
 		return color;
 	}

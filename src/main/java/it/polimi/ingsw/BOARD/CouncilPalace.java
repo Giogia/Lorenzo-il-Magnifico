@@ -12,7 +12,7 @@ public class CouncilPalace extends Zone {
 		super("councilPalace");
 		positions = new Position[1];
 		
-		ArrayList<ImmediateBonus> boardBonus = Game.getData().getCouncilPalaceBonus();
+		ArrayList<ImmediateBonus> boardBonus = getGame().getData().getCouncilPalaceBonus();
 		positions[0]= new Position(boardBonus, 1);
 	}
 	

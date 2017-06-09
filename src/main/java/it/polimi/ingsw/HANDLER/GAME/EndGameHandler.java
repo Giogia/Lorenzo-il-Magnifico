@@ -50,11 +50,11 @@ private static EndGameHandler istanza = null;
 	}
 	
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
-		for(Player player : Game.getRoundOrder()){
+		for(Player player : board.getGame().getRoundOrder()){
 			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
 				if(cardcontainer.getType().equals(developmentCardType)){
 					int numberOfCards = cardcontainer.getDevelopmentCards().size();
-					int[] victoryPointsPerCard= Game.getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
+					int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
 					player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
 				}
 			}

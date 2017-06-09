@@ -13,7 +13,7 @@ public class Tower extends ActionZone{
 		super("Tower");
 		positions = new TowerFloor[4];
 		for (int i = 0; i < positions.length; i++ ){
-			ArrayList<ArrayList<ImmediateBonus>> boardBonus=Game.getData().getTowerPositionBonus(developmentCardType);
+			ArrayList<ArrayList<ImmediateBonus>> boardBonus=getGame().getData().getTowerPositionBonus(developmentCardType);
 			positions[i] = new TowerFloor(boardBonus.get(i), 2*i + 1);
 		}
 		this.developmentCardType = developmentCardType;
@@ -28,7 +28,7 @@ public class Tower extends ActionZone{
 	}
 	
 	@Override
-	//PAY ATTENTION: this method returns an array of Position!
+	//PAY ATTENTION: this method returns an array of Position and not TowerFloor!!
 	public Position[] getPositions() {
 		return  positions;
 	}
