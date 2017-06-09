@@ -50,9 +50,10 @@ public abstract class HarvestProductionAreaHandler {
 					getPersonalBonusTileBonus(testFamilyMember, zone);
 					//start advanced
 					ArrayList<DevelopmentCard> activableCards = getActivableCards(testFamilyMember, zone,playerResources);
-					ArrayList<ImmediateBonus> chosenEffects = chooseEffects(activableCards,familyMember,playerResources);
-					for(Bonus bonus : chosenEffects){
-						
+					ArrayList<Bonus> chosenEffects = chooseEffects(activableCards,familyMember,playerResources);
+					for(Bonus chosenBonus : chosenEffects){
+						ImmediateBonus bonus = (ImmediateBonus) chosenBonus;
+						bonus.getImmediateBonus(familyMember.getPlayer());
 					}
 					return true;
 				}
@@ -113,9 +114,9 @@ public abstract class HarvestProductionAreaHandler {
 	}
 	
 	//advanced
-	protected static ArrayList<ImmediateBonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources){
+	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources){
 
-		ArrayList<ImmediateBonus> chosenEffects = null;
+		ArrayList<Bonus> chosenEffects = null;
 		do{
 			chosenEffects = new ArrayList<>();
 			for(DevelopmentCard card : activableCards){

@@ -262,8 +262,8 @@ public class Manager {
 		return zones.get(choice - 1);
 	}
 
-	public static ArrayList<ImmediateBonus> chooseEffect(DevelopmentCard developmentCard){
-		ArrayList<ImmediateBonus> choice= new ArrayList<>();
+	public static ArrayList<Bonus> chooseEffect(DevelopmentCard developmentCard){
+		ArrayList<Bonus> choice= new ArrayList<>();
 		if(developmentCard instanceof Territory){
 			Territory territory = (Territory) developmentCard;
 		//TODO da chiamare connectmanager
