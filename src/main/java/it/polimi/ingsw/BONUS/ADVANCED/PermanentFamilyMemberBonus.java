@@ -23,17 +23,6 @@ public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 		return subtype;
 	}
 	
-	@Override
-	public void getPermanentBonus(Player player) {
-		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		for (PermanentBonus permanentBonus : playerBonus) {
-			if (permanentBonus instanceof PermanentFamilyMemberBonus){
-				((PermanentFamilyMemberBonus) permanentBonus).addBonus(this);
-				return;
-			}
-		}
-		super.getPermanentBonus(player);
-	}
 	
 	public abstract void addBonus(PermanentFamilyMemberBonus newBonus);
 	
