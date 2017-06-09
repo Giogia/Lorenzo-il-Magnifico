@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
@@ -34,6 +35,7 @@ public class StartRoundHandler {
 		ArrayList<Dice> dices = rollDices();
 		for (Player player : players) {
 			setFamilyMembersValue(dices, player);
+			PermanentFamilyMemberBonusHandler.handle(player);
 		}
 		setCards(board, period);
 	}

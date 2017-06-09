@@ -3,6 +3,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Player;
 
 public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	protected ArrayList<FamilyMember> familyMembers;
@@ -22,4 +23,29 @@ public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 		return subtype;
 	}
 	
+	@Override
+	public void getPermanentBonus(Player player) {
+		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
+		for (PermanentBonus permanentBonus : playerBonus) {
+			if (permanentBonus instanceof PermanentFamilyMemberBonus){
+				((PermanentFamilyMemberBonus) permanentBonus).addBonus(this);
+				return;
+			}
+		}
+		super.getPermanentBonus(player);
+	}
+	
+	public abstract void addBonus(PermanentFamilyMemberBonus newBonus);
+	
+	protected void addFamilyMember(FamilyMember newFamilyMember) {
+		for (FamilyMember familyMember : familyMembers) {
+			if (familyMember.getDice().getDiceColour().equals(newFamilyMember.getDice().getDiceColour())){
+				modifyValue(familyMember, newFamilyMember);
+				return;
+			}
+		}
+		familyMembers.add(newFamilyMember);
+	}
+	
+	protected abstract void modifyValue(FamilyMember familyMember, FamilyMember newFamilyMember);
 }

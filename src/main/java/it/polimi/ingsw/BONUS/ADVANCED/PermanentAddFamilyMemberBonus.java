@@ -10,4 +10,20 @@ public class PermanentAddFamilyMemberBonus extends PermanentFamilyMemberBonus {
 		super("PermanentAddFamilyMemberBonus", familyMembers);
 	}
 
+	@Override
+	public void addBonus(PermanentFamilyMemberBonus newBonus) {
+		if (newBonus instanceof PermanentAddFamilyMemberBonus){
+			for (FamilyMember familyMember : newBonus.getFamilyMembers()) {
+				addFamilyMember(familyMember);
+			}
+		}
+		
+	}
+	
+	@Override
+	public void modifyValue(FamilyMember familyMember, FamilyMember newFamilyMember) {
+		familyMember.addValue(newFamilyMember.getValue());
+	}
+	
+
 }
