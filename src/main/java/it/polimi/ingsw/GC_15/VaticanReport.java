@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.Manager;
 
@@ -33,6 +34,7 @@ public final class VaticanReport {
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
 				if (Manager.askForExcommunication(players[i], excommunicationTiles[period])){
+					ResourcePerMissedExcommunicationHandler.handle(players[i]);
 					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
 					int victoryPoints = Game.getData().getFromFaithPointsToVictoryPoints()[faithPoints];
 					players[i].getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPoints);
