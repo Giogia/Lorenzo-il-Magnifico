@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.OccupiedTowerCostBonusHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -55,7 +56,7 @@ public class TowerHandler {
 							add(playerResources, bonusResources);
 						}
 						if (!ZoneAlreadyOccupiedController.check(zone)) {
-							addOccupiedCost(playerResources);
+							addOccupiedCost(playerResources, testFamilyMember.getPlayer());
 						}
 						if (checkZone(testFamilyMember, playerResources, towerFloor)) {
 							copyResource(testFamilyMember.getPlayer(), playerResources);
@@ -210,8 +211,9 @@ public class TowerHandler {
 		}
 	}
 
-	private static void addOccupiedCost(ArrayList<Resource> playerResources) {
+	private static void addOccupiedCost(ArrayList<Resource> playerResources, Player player) {
 		Coins occupiedCost = new Coins(3, 1);
+		OccupiedTowerCostBonusHandler.handle(occupiedCost, player);
 		ArrayList<Resource> bonusResources = new ArrayList<>();
 		bonusResources.add(occupiedCost);
 		add(playerResources, neg(bonusResources));
