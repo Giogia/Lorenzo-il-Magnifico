@@ -22,6 +22,7 @@ import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.CONTROLLER.PositionWithoutDevelopmentCardController;
+import it.polimi.ingsw.CONTROLLER.TerritoryCardRequirementController;
 import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
@@ -185,15 +186,17 @@ public class TowerHandler {
 
 	private static boolean checkTerritories(FamilyMember familyMember) throws MyException {
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
-		for (CardContainer cardContainer : cardContainers) {
-			if (cardContainer.getType().equals(DevelopmentCardType.territory)) {
-				int numberOfCards = cardContainer.getDevelopmentCards().size();
-				int[] militaryRequirement = Game.getData().getMilitaryRequirement();
-				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
-						.getResource(ResourceType.militaryPoints);
-				int requirementAmount = militaryRequirement[numberOfCards];
-				if (playerMilitaryPoints.getAmount() - requirementAmount < 0) {
-					throw new MyException("You don't have enough military points!");
+		if (TerritoryCardRequirementController.check(familyMember.getPlayer())){
+			for (CardContainer cardContainer : cardContainers) {
+				if (cardContainer.getType().equals(DevelopmentCardType.territory)) {
+					int numberOfCards = cardContainer.getDevelopmentCards().size();
+					int[] militaryRequirement = Game.getData().getMilitaryRequirement();
+					MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
+							.getResource(ResourceType.militaryPoints);
+					int requirementAmount = militaryRequirement[numberOfCards];
+					if (playerMilitaryPoints.getAmount() - requirementAmount < 0) {
+						throw new MyException("You don't have enough military points!");
+					}
 				}
 			}
 		}
