@@ -18,9 +18,7 @@ import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
-	
 	// Singleton Class
-	
 	private StartRoundHandler(){
 	}
 	
@@ -40,8 +38,7 @@ public class StartRoundHandler {
 		setCards(board, period);
 	}
 	
-	
-	
+
 	
 	//Create new dices
 	private static ArrayList<Dice> rollDices(){
@@ -73,17 +70,16 @@ public class StartRoundHandler {
 		player.setFamilyMember(familyMembers);
 	}
 	
-	
-	//Get the cards from DataFromFileì
-	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
+	//Get the cards from DataFromFile
+	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period, Board board){
 		if (developmentCardType.equals(DevelopmentCardType.building)){
-			return Game.getData().getBuildingsForPeriod(period);
+			return board.getGame().getData().getBuildingsForPeriod(period);
 		} else if (developmentCardType.equals(DevelopmentCardType.character)){
-			return Game.getData().getCharactersForPeriod(period);
+			return board.getGame().getData().getCharactersForPeriod(period);
 		} else if (developmentCardType.equals(DevelopmentCardType.territory)){
-			return Game.getData().getTerritoriesForPeriod(period);
+			return board.getGame().getData().getTerritoriesForPeriod(period);
 		} else// (developmentCardType.equals(DevelopmentCardType.VENTURE)){
-			return Game.getData().getVenturesForPeriod(period);
+			return board.getGame().getData().getVenturesForPeriod(period);
 		//}
 		
 	}
@@ -95,7 +91,7 @@ public class StartRoundHandler {
 		Tower[] towers = board.getTowers();
 		for (Tower tower : towers) {
 			DevelopmentCardType developmentCardType = tower.getDevelopmentCardType();
-			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
+			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period, board);
 			TowerFloor[] towerFloors = (TowerFloor[]) tower.getPositions();
 			for (TowerFloor towerFloor : towerFloors) {
 				Random r = new Random();
@@ -104,11 +100,7 @@ public class StartRoundHandler {
 				towerFloor.setDevelopmentCard(developmentCard);
 				developmentCards.remove(randomCard);
 			}
-			Game.getData().lastCards(developmentCardType, period, developmentCards);
+			board.getGame().getData().lastCards(developmentCardType, period, developmentCards);
 		}
 	}
-	
-	
-	
-
 }

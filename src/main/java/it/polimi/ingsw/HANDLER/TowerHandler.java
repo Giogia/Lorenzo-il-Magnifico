@@ -27,6 +27,7 @@ import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.*;
@@ -35,7 +36,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
-	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException {
+	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , RemoteException {
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
@@ -73,7 +74,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException {
+			TowerFloor towerFloor) throws MyException, RemoteException {
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
 			if (!checkTerritories(familyMember)) {
 				return false;
@@ -130,7 +131,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException {
+			TowerFloor towerFloor) throws MyException, RemoteException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		for (Resource resource : ventureCard.cost) {
@@ -190,11 +191,11 @@ public class TowerHandler {
 			for (CardContainer cardContainer : cardContainers) {
 				if (cardContainer.getType().equals(DevelopmentCardType.territory)) {
 					int numberOfCards = cardContainer.getDevelopmentCards().size();
-					int[] militaryRequirement = Game.getData().getMilitaryRequirement();
+					int[] militaryRequirement = familyMember.getPlayer().getBoard().getGame().getData().getMilitaryRequirement();
 					MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
 							.getResource(ResourceType.militaryPoints);
 					int requirementAmount = militaryRequirement[numberOfCards];
-					if (playerMilitaryPoints.getAmount() - requirementAmount < 0) {
+					if (playerMilitaryPoints.getAmount()  < requirementAmount) {
 						throw new MyException("You don't have enough military points!");
 					}
 				}

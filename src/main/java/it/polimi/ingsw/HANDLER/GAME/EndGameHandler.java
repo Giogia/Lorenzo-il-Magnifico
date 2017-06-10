@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.ResourceType;
-import it.polimi.ingsw.manager.ConnectionManager;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public class EndGameHandler {
 	
@@ -24,14 +25,15 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board){
+	public static void handle(Board board) throws RemoteException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
 		transformFaithPoints(board);
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
-		ConnectionManager.hasWon(getWinner(board));
+		//dai i punti vittoria fede
+		ConnectionManagerImpl.hasWon(getWinner(board));
 	}
 
 	private static void transformResourcesIntoPoints(Board board) {
@@ -48,18 +50,19 @@ private static EndGameHandler istanza = null;
 	}
 	
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
-		for(Player player : Game.getRoundOrder()){
-			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
-				if(cardcontainer.getType().equals(developmentCardType)){
-					int numberOfCards = cardcontainer.getDevelopmentCards().size();
-					int[] victoryPointsPerCard= Game.getData().getVictoryPointsPerCard(developmentCardType);
+		for(Player player : board.getGame().getRoundOrder()){
+			for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){
+				if(cardContainer.getType().equals(developmentCardType)){
+					int numberOfCards = cardContainer.getDevelopmentCards().size();
+					int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
 					player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
 				}
 			}
 		}
 	}
 
-	private static Player getWinner(Board board){
+	
+	private static String getWinner(Board board){
 		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = null;
 		for(Player player: board.getPlayers()){
@@ -68,13 +71,13 @@ private static EndGameHandler istanza = null;
 			winner = player;
 			}
 		}
-		return winner; 
+		return winner.getName(); 
 	}
 	
 	private static void transformFaithPoints(Board board){
 		for(Player player: board.getPlayers()){
 			int faithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
-			int[] fromFaithPointsToVictoryPoints = Game.getData().getFromFaithPointsToVictoryPoints();
+			int[] fromFaithPointsToVictoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints();
 			player.getPersonalBoard().getResource(ResourceType.faithPoints).addAmount(fromFaithPointsToVictoryPoints[faithPoints]);
 		}
 	}
@@ -82,7 +85,7 @@ private static EndGameHandler istanza = null;
 	private static void transformMilitaryPoints(Board board){
 		ArrayList<Player> firstPos = new ArrayList<Player>();
 		ArrayList<Player> secondPos = new ArrayList<Player>();
-		int[] fromMilitaryPointsToVictoryPoints = Game.getData().getFromMilitaryPointsToVictoryPoints();
+		int[] fromMilitaryPointsToVictoryPoints = board.getGame().getData().getFromMilitaryPointsToVictoryPoints();
 		int maxMilitaryPoints =0; 
 		int soCloseMilitaryPoints =0;
 		for(Player player: board.getPlayers()){

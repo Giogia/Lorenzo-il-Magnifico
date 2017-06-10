@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Dice {
+public class Dice implements Serializable{
 	private int value;
 	private DiceColour diceColour;
 

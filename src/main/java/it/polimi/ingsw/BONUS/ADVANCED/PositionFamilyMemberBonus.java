@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.HarvestArea;
 import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Tower;
@@ -26,27 +27,27 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 		return positionBonus;
 	}
 
-	public Integer getValue(ActionZone actionZone) throws Exception{
+	public Integer getValue(ActionZone actionZone, Board board) throws Exception{
 		Set<ActionZone> actionZones = positionBonus.keySet();
 		for (ActionZone bonusZone : actionZones) {
-			if (actionZone.equals(getBoardZone(bonusZone))){
+			if (actionZone.equals(getBoardZone(bonusZone, board))){
 				return positionBonus.get(bonusZone);
 			}
 		}
 		throw new Exception();
 	}
 	
-	private ActionZone getBoardZone(ActionZone actionZone) {
+	private ActionZone getBoardZone(ActionZone actionZone, Board board) {
 		ActionZone zone;
 		if (actionZone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) actionZone).getDevelopmentCardType();
-			zone = Game.getBoard().getTower(developmentCardType);
+			zone = board.getTower(developmentCardType);
 		}
 		else if (actionZone instanceof ProductionArea){
-			zone = Game.getBoard().getProductioArea();
+			zone = board.getProductioArea();
 		}
 		else{
-			zone = Game.getBoard().getHarvestArea();
+			zone = board.getHarvestArea();
 		}
 		return zone;
 	}

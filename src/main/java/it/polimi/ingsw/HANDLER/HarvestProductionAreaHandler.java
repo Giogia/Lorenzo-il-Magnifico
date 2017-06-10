@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.Bonus;
@@ -27,8 +28,8 @@ import it.polimi.ingsw.manager.Manager;
 
 public abstract class HarvestProductionAreaHandler {
 
-	
-	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException{
+
+	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, RemoteException{
 		if (position.equals(zone.getPosition(0))){
 			if(!PositionAlreadyOccupiedController.check(position) &&
 				!OccupiedYetBonusController.check(familyMember)){
@@ -68,10 +69,10 @@ public abstract class HarvestProductionAreaHandler {
 		Position[] zonePosition = zone.getPositions();
 		int[] positionMalus;
 		if (zone instanceof HarvestArea){
-			positionMalus = Game.getData().getHarvestAreaPositionBonus();
+			positionMalus = familyMember.getPlayer().getBoard().getGame().getData().getHarvestAreaPositionBonus();
 		}
 		else {
-			positionMalus = Game.getData().getProductionAreaPositionBonus();
+			positionMalus = familyMember.getPlayer().getBoard().getGame().getData().getProductionAreaPositionBonus();
 		}
 		if (position.equals(zonePosition[0])){
 			familyMember.addValue(positionMalus[0]);
@@ -113,6 +114,7 @@ public abstract class HarvestProductionAreaHandler {
 		return activableCards;
 	}
 	
+
 	//advanced
 	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources){
 
@@ -127,7 +129,8 @@ public abstract class HarvestProductionAreaHandler {
 	}
 
 
-	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException{
+
+	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, RemoteException{
 		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}

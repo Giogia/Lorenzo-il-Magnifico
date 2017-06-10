@@ -1,6 +1,8 @@
 package it.polimi.ingsw.BONUS;
 
-public abstract class Bonus {
+import java.io.Serializable;
+
+public abstract class Bonus implements Serializable {
 	private String type1;
 	
 	public Bonus(String type) {

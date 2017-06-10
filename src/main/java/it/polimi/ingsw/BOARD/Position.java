@@ -1,4 +1,6 @@
 package it.polimi.ingsw.BOARD;
+import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.BONUS.Bonus;
@@ -8,7 +10,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
-public class Position {
+public class Position implements Serializable{
 	protected ArrayList<FamilyMember> familyMembers;
 	protected ArrayList<ImmediateBonus> boardBonus;
 	protected int diceRequirement;
@@ -47,7 +49,7 @@ public class Position {
 		familyMembers.clear();
 	}
 	
-	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException{
+	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException, RemoteException{
 		immediateBonus.getImmediateBonus(player);
 	}
 	protected void givePermanentBonus(Player player, PermanentBonus permanentBonus){

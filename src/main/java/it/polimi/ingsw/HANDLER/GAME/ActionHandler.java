@@ -1,5 +1,7 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
+
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.CONTROLLER.CanGoToController;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -19,7 +21,8 @@ public final class ActionHandler {
     }
     
     
-    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException{
+
+    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException, RemoteException {
     	if (CanGoToController.check(familyMember.getPlayer(), zone)){
 	    	if(zone instanceof Market){
 	    		return MarketHandler.handle(familyMember,position);
@@ -36,7 +39,6 @@ public final class ActionHandler {
 	    	if(zone instanceof HarvestArea){
 	    		return HarvestAreaHandler.handle(familyMember,(HarvestArea) zone,position);
 	    	}	
-	    	return false;
     	}
     	throw new MyException("You cannot go to this Zone");
     }

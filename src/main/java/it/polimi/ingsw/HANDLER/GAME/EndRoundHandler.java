@@ -26,7 +26,7 @@ public class EndRoundHandler {
 		handleOrder(roundOrder, board);
 		board.resetPositions();
 		if (turn % 2 == 0){ 
-			VaticanReport.checkPlayersFaith((turn+1)/2);
+			VaticanReport.checkPlayersFaith((turn+1)/2, board);
 		}
 		PassTurnController.lastMove(null);
 	}

@@ -1,55 +1,50 @@
 package it.polimi.ingsw.GC_15;
 
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.Manager;
 
 public final class VaticanReport {
 	private static VaticanReport instance;
-	private static ExcommunicationTile excommunicationTiles[] = new ExcommunicationTile[3];
 	
 	
-	private VaticanReport(ExcommunicationTile excommunicationTiles[]) {
-		VaticanReport.excommunicationTiles=excommunicationTiles;
+	private VaticanReport() {
+
 	}
 	
 	
-	public static VaticanReport getVaticanReport(ExcommunicationTile excommunicationTiles[]){
+	public static VaticanReport getVaticanReport(){
 		if (instance == null){
-			instance = new VaticanReport(excommunicationTiles);
+			instance = new VaticanReport();
 		}
 		return instance;
 	}
 	
-	public static ExcommunicationTile[] getExcommunicationTiles() {
-		return excommunicationTiles;
-	}
 	
-	public static void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {
-		VaticanReport.excommunicationTiles = excommunicationTiles;
-	}
 	
-	public static void checkPlayersFaith(int period) {
-		Player[] players = Game.getPlayers();
+	public static void checkPlayersFaith(int period, Board board) {
+		Player[] players = board.getPlayers();
+		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period];
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
-				if (Manager.askForExcommunication(players[i], excommunicationTiles[period])){
+				if (Manager.askForExcommunication(players[i], excommunicationTile)){
 					ResourcePerMissedExcommunicationHandler.handle(players[i]);
 					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
-					int victoryPoints = Game.getData().getFromFaithPointsToVictoryPoints()[faithPoints];
+					int victoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints()[faithPoints];
 					players[i].getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPoints);
 					players[i].getPersonalBoard().getResource(ResourceType.faithPoints).setAmount(0);
 				}else{
-					excommunicationTiles[period].giveMalus(players[i]);
+					excommunicationTile.giveMalus(players[i]);
 				}
 			}else{
-				excommunicationTiles[period].giveMalus(players[i]);
+				excommunicationTile.giveMalus(players[i]);
 			}
 		}
 	}
 	
 	private static boolean checkFaithPoints(Player player, int period){
-		int minimumFaithPoints = Game.getData().getMinimumFaithPoints(period); //TODO è configurabile anche questo
+		int minimumFaithPoints = player.getBoard().getGame().getData().getMinimumFaithPoints(period); //TODO è configurabile anche questo
 		int playerFaithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
 		return playerFaithPoints - minimumFaithPoints >= 0;
 	}

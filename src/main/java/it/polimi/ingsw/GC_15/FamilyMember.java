@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_15;
 
-public class FamilyMember {
+import java.io.Serializable;
+
+public class FamilyMember implements Serializable {
 	private Dice dice;
 	private Player player;
 	private int value;

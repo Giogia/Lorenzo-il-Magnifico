@@ -18,7 +18,7 @@ public class ZoneFamilyMemberHandler{
 			for (PermanentBonus permanentBonus : playerBonus) {
 				positionFamilyMemberBonus = (PositionFamilyMemberBonus) controlBonus(positionFamilyMemberBonus, permanentBonus);
 			}
-			familyMember.addValue(positionFamilyMemberBonus.getValue(actionZone));
+			familyMember.addValue(positionFamilyMemberBonus.getValue(actionZone, familyMember.getPlayer().getBoard()));
 		} catch (Exception e){
 		}
 	}

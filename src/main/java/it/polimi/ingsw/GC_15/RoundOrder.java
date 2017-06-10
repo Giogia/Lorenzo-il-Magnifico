@@ -1,8 +1,9 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RoundOrder {
+public class RoundOrder implements Serializable {
 	private ArrayList<Player> players;
 	
 	public RoundOrder() {

@@ -1,43 +1,62 @@
 package it.polimi.ingsw.view;
 
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
-import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.ConnectionManager;
 
-public class CLIView implements View{
-	Scanner scanner;
+public class CLIView implements ClientRMICallbackRemote{
+	static Scanner scanner;
+	private final static int RMI_PORT = 52365;
+	private final static int SOCKET_PORT = 29999;
+	private static final String NAME = "connectionManager";
 	
-	public CLIView(){
-		hereIAm();
+	public static void main(String[] args) throws RemoteException, NotBoundException{
+		Registry registry = LocateRegistry.getRegistry("localhost", RMI_PORT);
+		System.out.println("preso referenza al registry");
+		
+		ConnectionManager connectionManager = (ConnectionManager) registry.lookup(NAME);
+		System.out.println("connesso al connectionManager");
+		
+		CLIView client = new CLIView();
+
+		UnicastRemoteObject.exportObject(client, 0);
+
+		connectionManager.register(client);
 	}
 	
-	private void hereIAm(){
-		connectionManager.acceptUser(this);
-	}
 	
 	public String askName(){
+		scanner= new Scanner(System.in);
 		System.out.println("Please, insert your name: ");
 		return scanner.nextLine();
 	}
 	
-	public int askColor(){
-		System.out.println("What color do you want for your family members?\n1)Red\n2)Blue\n3)Yellow\n4)Green\n");
-		return checkInputError(1, 4);
+	public int askColor(String[] availableColors){
+		System.out.println("What color do you want for your family members?");
+		for (int i = 1; i < availableColors.length + 1; i++) {
+			System.out.println(i + ") " + availableColors[i - 1]);
+		}
+		return checkInputError(1, availableColors.length);
 	}
 
 	@Override
-	public void startTurn(Player player) {
-		System.out.println(player.getName() + ", it's your turn!");
+	public void startTurn(String name) {
+		System.out.println(name + ", it's your turn!");
 	}
 
 	@Override
@@ -54,7 +73,7 @@ public class CLIView implements View{
 	}
 
 	@Override
-	public int chooseZone(Board board) {
+	public int chooseZone() {
 		System.out.println("Choose the area you want to place the family member in:\n");
 		System.out.println("1) Territories Tower \n2) Characters Tower \n3) Buildings Tower \n4) Ventures Tower \n" + 
 			"5) Council Palace \n6) Harvest Area \n7) Production Area \n8) Market \n9) Go back");
@@ -88,15 +107,15 @@ public class CLIView implements View{
 	}
 
 	@Override
-	public int askForAlternativeCost(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost) {
+	public int askForAlternativeCost(ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) {
 		System.out.println("The card you have chosen has 2 costs. Choose one: ");
 		System.out.println("1) First cost");
-		for (Resource resource : cost) {
+		for (Resource resource : costs) {
 			System.out.println(resource.getDescription());
 		}
 		System.out.println("2) Secondary cost:");
-		for (Resource resource : alternativeCost) {
-			System.out.println(resource.getDescription());
+		for (Resource alternativeResource : alternativeCosts ) {
+			System.out.println(alternativeResource.getDescription());
 		}
 		return checkInputError(1, 2);
 	}
@@ -118,13 +137,13 @@ public class CLIView implements View{
 	}
 
 	@Override
-	public int askForInformation(Player[] players) {
+	public int askForInformation(String[] playersNames) {
 		System.out.println("Whose player's statistics do you want to see?");
-		for (int counter = 1; counter <= players.length; counter++){
-			String message = counter + ") " + players[counter - 1].getName();
+		for (int counter = 1; counter <= playersNames.length; counter++){
+			String message = counter + ") " + playersNames[counter - 1];
 			System.out.println(message);
 		}
-		int lastChoice = players.length + 1;
+		int lastChoice = playersNames.length + 1;
 		String lastMessage = lastChoice + ") Go back";
 		System.out.println(lastMessage);
 		return checkInputError(1, lastChoice);
@@ -157,16 +176,12 @@ public class CLIView implements View{
 		}
 	}
 	
-	public void giveInitialInformations(String toSend){
-		System.out.println(toSend);
-	}
-	
 	public void roundBegins(){
 		System.out.println("New round!");
 	}
 	
-	public void hasWon(Player winner){
-		System.out.println("Congrats to "+winner.getName()+". He's the winner!");
+	public void hasWon(String winnerName){
+		System.out.println("Congrats to "+winnerName+". He's the winner!");
 	}
 
 	@Override
@@ -179,13 +194,13 @@ public class CLIView implements View{
 	}
 
 	@Override
-	public int askForActionPosition(Position[] zonePositions) {
+	public int askForActionPosition(Position[] positions) {
 		System.out.println("Choose where you want to place your family member: ");
-		for (int counter = 1; counter <= zonePositions.length; counter ++) {
-			String message = counter + ") " + zonePositions[counter - 1].getDescription();
+		for (int counter = 1; counter <= positions.length; counter ++) {
+			String message = counter + ") " + positions[counter - 1].getDescription();
 			System.out.println(message);
 		}
-		return checkInputError(1, zonePositions.length);
+		return checkInputError(1, positions.length);
 	}
 
 	@Override
@@ -193,11 +208,11 @@ public class CLIView implements View{
 		System.out.println(message + "\n");
 	}
 
+
 	@Override
-	public int askForExcommunication(ExcommunicationTile excommunicationTile) {
-		System.out.println("Do you want to be excommunicated? \n");
-		System.out.println("The excommunication is: \n" + excommunicationTile.getDescription() + "\n" + "1) No \n" + "2) Yes");
-		return checkInputError(1, 2);
+	public int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
-	
+
 }

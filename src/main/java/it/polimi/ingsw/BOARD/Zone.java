@@ -1,12 +1,25 @@
 package it.polimi.ingsw.BOARD;
 
-public abstract class Zone{
+import java.io.Serializable;
+
+import it.polimi.ingsw.GC_15.Game;
+
+public abstract class Zone implements Serializable{
+	private Board board;
 	protected Position[] positions;
 	private String type;
 	
 	
 	public Zone(String type){
-		this.type = type;	
+		this.type = type;
+	}
+	
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+	
+	public Board getBoard() {
+		return board;
 	}
 	
 	public String getType() {

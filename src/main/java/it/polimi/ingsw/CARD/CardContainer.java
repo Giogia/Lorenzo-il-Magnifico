@@ -1,8 +1,9 @@
 package it.polimi.ingsw.CARD;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class CardContainer {
+public abstract class CardContainer implements Serializable{
 	protected DevelopmentCardType type;
 	private ArrayList<DevelopmentCard> developmentCards;
 	

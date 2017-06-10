@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Position;
@@ -13,7 +14,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 
 public class CouncilPalaceHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws MyException{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, RemoteException{
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
 			playerResources.add(resource.createClone());

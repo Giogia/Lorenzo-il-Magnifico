@@ -1,8 +1,10 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.BONUS.Bonus;
 
-public class ExcommunicationTile {
+public class ExcommunicationTile implements Serializable{
 	public final int period;
 	public final Bonus malus[];
 	

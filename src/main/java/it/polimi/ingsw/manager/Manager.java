@@ -1,5 +1,6 @@
 package it.polimi.ingsw.manager;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -30,11 +31,11 @@ import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
-public class Manager {
+public class Manager{
+	
 	private Manager instance;
 	
-	private Manager() {
-	}
+	private Manager() { }
 	
 	public Manager getManager() {
 		if (instance == null){
@@ -44,10 +45,10 @@ public class Manager {
 	}
 
 	//begins the turn of the player 
-	public static void turn(Player player){
-		ConnectionManager.startTurn(player);
+	public static void turn(Player player) throws RemoteException{
+		ConnectionManagerImpl.startTurn(player);
 		while(true){
-			int choice = ConnectionManager.turnChoice(player);
+			int choice = ConnectionManagerImpl.turnChoice(player);
 			switch (choice) {
 			case 1:
 				actionManager(player);
@@ -74,21 +75,25 @@ public class Manager {
 					return;
 				}
 				//tell to player he can't pass turn
-				ConnectionManager.cantPassTurn(player);
+				ConnectionManagerImpl.cantPassTurn(player);
 				break;
 			}
 		}
 			
 	}
 
-	private static void askForInformation(Player player) {
-		Player[] players = Game.getBoard().getPlayers();
-		int choice = ConnectionManager.askForInformation(player, players);
+	private static void askForInformation(Player player) throws RemoteException {
+		Player[] players = player.getBoard().getGame().getBoard().getPlayers();
+		String[] names = new String[players.length];
+		for (int i = 0; i < players.length; i++) {
+			names[i] = players[i].getName();
+		}
+		int choice = ConnectionManagerImpl.askForInformation(player, names);
 		if (choice == players.length + 1){
 			return;
 		}
 		PersonalBoard personalBoard = players[choice - 1].getPersonalBoard();
-		ConnectionManager.showPersonalBoard(player, personalBoard);
+		ConnectionManagerImpl.showPersonalBoard(player, personalBoard);
 	}
 
 	private static void activationLeaderCardEffectManager(Player player) {
@@ -106,16 +111,16 @@ public class Manager {
 		
 	}
 
-	private static void actionManager(Player player) {
+	private static void actionManager(Player player) throws RemoteException {
 		if (PassTurnController.getLastMove() != null){
 			if (PassTurnController.getLastMove().equals(player)){
-				ConnectionManager.moveAlreadyDone(player);
+				ConnectionManagerImpl.moveAlreadyDone(player);
 				return;
 			}
 		}
-		Board board = Game.getBoard();
+		Board board = player.getBoard();
 		while(true){
-			int choice = ConnectionManager.chooseZone(player, board);
+			int choice = ConnectionManagerImpl.chooseZone(player, board);
 			try{
 				switch (choice) {
 				case 1:
@@ -163,7 +168,7 @@ public class Manager {
 				}	
 			}
 			catch(Exception exc){			
-				ConnectionManager.catchException(exc.getMessage(), player);
+				ConnectionManagerImpl.catchException(exc.getMessage(), player);
 			}
 		}
 		
@@ -173,9 +178,9 @@ public class Manager {
 	/* Le posizioni vanno da 1 alla posizione massima
 	 * Se ritorna posizione massima + 1, significa che devi tornare indietro
 	 */
-	private static boolean zoneManager(Player player, Zone zone) throws MyException {
+	private static boolean zoneManager(Player player, Zone zone) throws MyException, RemoteException {
 		Position[] positions = zone.getPositions();
-		int choice = ConnectionManager.choosePosition(player, positions);
+		int choice = ConnectionManagerImpl.choosePosition(player, positions);
 		if (choice == positions.length + 1){
 			return false;
 		} else {
@@ -184,9 +189,9 @@ public class Manager {
 	}
 	
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
-	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException{
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, RemoteException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
-		int choice = ConnectionManager.chooseFamilyMember(player, familyMembers);
+		int choice = ConnectionManagerImpl.chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){
 			return false;
 		}
@@ -195,50 +200,50 @@ public class Manager {
 		}
 	}
 
-	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> cost,
-			ArrayList<Resource> alternativeCost) {
-		int choice = ConnectionManager.askForAlternativeCost(player, cost, alternativeCost);
+	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
+			ArrayList<Resource> alternativeCosts) throws RemoteException {
+		int choice = ConnectionManagerImpl.askForAlternativeCost(player, costs, alternativeCosts);
 		if (choice == 1){
-			return cost;
+			return costs;
 		}
-		else return alternativeCost;
+		else return alternativeCosts;
 	}
 
-	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) {
-		int choice = ConnectionManager.askForCouncilPrivilege(player, councilPrivileges);
+	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws RemoteException {
+		int choice = ConnectionManagerImpl.askForCouncilPrivilege(player, councilPrivileges);
 		return councilPrivileges.get(choice-1);
 	}
 
-	public static int askForServants(Player player) {
+	public static int askForServants(Player player) throws RemoteException {
 		int numberOfServants = player.getPersonalBoard().getResource(ResourceType.servants).getAmount();
-		int choice = ConnectionManager.askForServants(player, numberOfServants);
+		int choice = ConnectionManagerImpl.askForServants(player, numberOfServants);
 		return choice;
 	}
 
-	public static Position askForAction(FamilyMember familyMember, ActionZone zone) {
-		zone = getBoardZone(zone);
+	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws RemoteException {
+		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		int choice = ConnectionManager.chooseActionPosition(player, zonePositions);
+		int choice = ConnectionManagerImpl.chooseActionPosition(player, zonePositions);
 		return zonePositions[choice - 1];
 	}
 
-	private static ActionZone getBoardZone(ActionZone zone) {
+	private static ActionZone getBoardZone(ActionZone zone, Board board) {
 		if (zone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
-			zone = Game.getBoard().getTower(developmentCardType);
+			zone = board.getTower(developmentCardType);
 		}
 		else if (zone instanceof ProductionArea){
-			zone = Game.getBoard().getProductioArea();
+			zone = board.getProductioArea();
 		}
 		else{
-			zone = Game.getBoard().getHarvestArea();
+			zone = board.getHarvestArea();
 		}
 		return zone;
 	}
 
 	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile){
-		if (ConnectionManager.askForExcommunication(player, excommunicationTile) == 1){
+		if (ConnectionManagerImpl.askForExcommunication(player, excommunicationTile) == 1){
 			return true;
 		}
 		return false;
@@ -253,13 +258,9 @@ public class Manager {
 		//TODO PERMANENT
 	}
 
-	public static ActionZone askForZone(Set<ActionZone> actionZones, Player player) {
-		ArrayList<ActionZone> zones = new ArrayList<>();
-		for (ActionZone actionZone : actionZones) {
-			zones.add(actionZone);
-		}
-		int choice = ConnectionManager.askForZone(zones, player);
-		return zones.get(choice - 1);
+	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws RemoteException {
+		int choice = ConnectionManagerImpl.askForZone(actionZones, player);
+		return actionZones.get(choice - 1);
 	}
 
 	public static ArrayList<Bonus> chooseEffect(DevelopmentCard developmentCard){

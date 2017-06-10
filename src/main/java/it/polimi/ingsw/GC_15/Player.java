@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.*;
@@ -8,7 +10,7 @@ import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
-public class Player {
+public class Player implements Serializable{
 	private String name;
 	private Color color;
 	public enum Color {RED, BLUE, YELLOW, GREEN}
@@ -21,6 +23,10 @@ public class Player {
 		this.name=name;
 		this.color=color;
 		personalBoard = new PersonalBoard();
+	}
+	
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 	
 	public Color getColor() {
@@ -98,7 +104,7 @@ public class Player {
 		return personalBoard;
 	}
 	
-	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus){
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws RemoteException, MyException{
 		//trovo l'indice nell'arrayList dove vi sono le monete
 		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
 		//do al player una moneta

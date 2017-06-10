@@ -26,14 +26,14 @@ public final class StartGameHandler {
 	}
 	
 	public static void handle(Board board){
-		setRandomExcommunicationTiles(Game.getData().getExcommunicationTiles());
+		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);
-		setPersonalBonusTiles(board, Game.getData().getPersonalBonusTiles());
+		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
 	}
 	
 	
-	private static void setRandomExcommunicationTiles(ArrayList<ExcommunicationTile> list){
+	private static void setRandomExcommunicationTiles(ArrayList<ExcommunicationTile> list, Board board){
 		ExcommunicationTile[] excommunicationTiles = new ExcommunicationTile[3];
 		for(int i=0;i<3;i++){
 			Random r= new Random();
@@ -41,12 +41,12 @@ public final class StartGameHandler {
 			ExcommunicationTile chosenExcommunicationTile = list.get(index); //tile preso con indice a caso
 			excommunicationTiles[chosenExcommunicationTile.period-1]= chosenExcommunicationTile; //guarda il periodo di quello scelto e lo mette in quella posizione dell'array
 		}
-		VaticanReport.setExcommunicationTiles(excommunicationTiles);
+		board.setExcommunicationTiles(excommunicationTiles);
 	}
 	
 	private static void setPlayersResources(Board board){
 		int i=0;
-		for(Player player: Game.getRoundOrder()){
+		for(Player player: board.getGame().getRoundOrder()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
 			personalBoard.getResource(ResourceType.stones).addAmount(2);
 			personalBoard.getResource(ResourceType.wood).addAmount(2);
@@ -59,7 +59,7 @@ public final class StartGameHandler {
 	//choose the order randomly
 	private static void chooseOrder(Board board) {
 		ArrayList<Player> players = new ArrayList<>();
-		Player[] gamePlayers = Game.getPlayers();
+		Player[] gamePlayers = board.getGame().getPlayers();
 		while (players.size() != gamePlayers.length){
 			Random r = new Random();
 			int order = r.nextInt(gamePlayers.length);
@@ -67,7 +67,7 @@ public final class StartGameHandler {
 				players.add(gamePlayers[order]);
 			}
 		}
-		Game.setOrder(players);
+		board.getGame().setOrder(players);
 	}
 
 	

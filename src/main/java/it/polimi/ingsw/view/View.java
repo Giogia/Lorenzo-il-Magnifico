@@ -1,60 +1,52 @@
 package it.polimi.ingsw.view;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
-import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
-import it.polimi.ingsw.manager.ConnectionManager;
 
 public interface View {
-	public static ConnectionManager connectionManager = ConnectionManager.getConnectionManager();
-	//Le view conterranno anche le connessioni
-
-	void startTurn(Player player);
+void startTurn(String playerName) throws Exception;
 	
-	String askName();
+	String askName() throws Exception;
 	
-	int askColor();
+	int askColor(String[] availableColors) throws Exception;
 
-	int turnChoice();
+	int turnChoice() throws Exception;
 
-	void moveAlreadyDone();
+	void moveAlreadyDone() throws Exception;
 
-	//methods to put a family member
-	int chooseZone(Board board);
+	int chooseZone() throws Exception;
 	
-	int choosePosition(Position[] positions);
+	int choosePosition(Position[] positions) throws Exception;
 	
-	int chooseFamilyMember(ArrayList<FamilyMember> familyMembers);
+	int chooseFamilyMember(ArrayList<FamilyMember> familyMembers) throws Exception;
 
-	int askForAlternativeCost(ArrayList<Resource> cost, ArrayList<Resource> alternativeCost);
+	int askForAlternativeCost(ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws Exception;
 
-	int askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges);
+	int askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges) throws Exception;
 
-	int askForServants(int numberOfServants);
+	int askForServants(int numberOfServants) throws Exception;
 
-	int askForInformation(Player[] players);
+	int askForInformation(String[] playersNames) throws Exception;
 
-	void showPersonalBoard(PersonalBoard personalBoard);
+	void showPersonalBoard(PersonalBoard personalBoard) throws Exception;
 	
-	void cantPassTurn();
+	void cantPassTurn() throws Exception;
 	
-	void roundBegins();
+	void roundBegins() throws Exception;
 	
-	void hasWon(Player winner);
+	void hasWon(String winner) throws Exception;
 
-	int askForAction(ArrayList<ActionZone> zones);
+	int askForAction(ArrayList<ActionZone> zone) throws Exception;
 
-	int askForActionPosition(Position[] zonePositions);
+	int askForActionPosition(Position[] positions) throws Exception;
 
-	void catchException(String message);
-
-	int askForExcommunication(ExcommunicationTile excommunicationTile);
 }
