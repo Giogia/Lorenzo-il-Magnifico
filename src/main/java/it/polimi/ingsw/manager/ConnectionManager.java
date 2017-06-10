@@ -4,7 +4,6 @@ import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import it.polimi.ingsw.view.CLIView;
 import it.polimi.ingsw.view.ClientRMICallbackRemote;
 
 

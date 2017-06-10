@@ -13,6 +13,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -204,5 +205,11 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	@Override
 	public void catchException(String message) {
 		System.out.println(message + "\n");
+	}
+	
+	public void showDices(ArrayList<Dice> dices){
+		for (Dice dice : dices) {
+			System.out.println(dice.getDescription());
+		}
 	}
 }

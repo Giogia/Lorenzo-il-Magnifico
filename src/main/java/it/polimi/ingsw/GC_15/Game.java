@@ -15,28 +15,15 @@ import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
-public class Game implements Serializable{
+public class Game implements Serializable, Runnable{
+	private String name;
 	private Player[] players;
 	private RoundOrder roundOrder;
 	private Board board;
 	private DataFromFile data;
 	
-	public void start(int numberOfPlayers) throws RemoteException{
+	public void run(){
 		try {
-			players = new Player[numberOfPlayers];
-			ArrayList<Color> colors = new ArrayList<>();
-			for (Color color : Color.values()) {
-				colors.add(color);
-			}
-			for (int i = 0; i < numberOfPlayers; i++) {
-				String nameChoosen = askName(i);
-				Color colorChoosen = askColor(i, colors);
-				players[i] = new Player(nameChoosen, colorChoosen);
-				
-				//delete the color choosen from the available colors
-				colors.remove(colorChoosen);
-			}
-			ConnectionManagerImpl.addPlayers(players);//do the binding between player and his view in connectionManagerImpl
 			data = ConfigurationFileHandler.getData();
 			board = new Board(this);
 			for (int i=0; i < players.length; i++){
@@ -47,23 +34,26 @@ public class Game implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		StartGameHandler.handle(board);
-		RoundManagerHandler.handle(board, players);
-		EndGameHandler.handle(board);
-	}
-	
-	private String askName(int numberOfPlayer) throws RemoteException{
-		return ConnectionManagerImpl.askName(numberOfPlayer);
-	}
-	
-	private Color askColor(int numberOfPlayer, ArrayList<Color> availableColors) throws RemoteException {
-		String[] colors = new String[availableColors.size()];
-		for(int counter = 0; counter < availableColors.size(); counter++){
-			colors[counter] = availableColors.get(counter).toString().toLowerCase();
+		try {
+			StartGameHandler.handle(board);
+			RoundManagerHandler.handle(board, players);
+			EndGameHandler.handle(board);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		int colorChoiced = ConnectionManagerImpl.askColor(numberOfPlayer, colors) -1;//due the size of the array
-		return Color.values()[colorChoiced];
+	}
+	
+	public void setPlayers(Player[] players) {
+		this.players = players;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public DataFromFile getData() {

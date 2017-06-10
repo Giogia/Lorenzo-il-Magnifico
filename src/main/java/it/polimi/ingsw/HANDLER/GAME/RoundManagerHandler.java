@@ -29,29 +29,14 @@ public class RoundManagerHandler {
 		for (int turn = 1; turn <= 6; turn++){
 			int period = (turn+1)/2;
 			System.out.println("Period " + period + "\n");
-			ConnectionManagerImpl.roundBegins();
+			ConnectionManagerImpl.roundBegins(board.getPlayers());
 			RoundOrder roundOrder = board.getGame().getOrder();
-			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
 			StartRoundHandler.handle(period, players, board);
 			//giveInitialInformations();
 			handleOrder(roundOrder);
 			EndRoundHandler.handle(board, roundOrder, turn);	
 		}
 	}
-	
-	/*public static void giveInitialInformations(){
-		String toSend="";
-		for(DevelopmentCardType type : DevelopmentCardType.values()){
-			TowerFloor[] towerFloor = Game.getBoard().getTower(type).getPositions();
-			toSend += type.toString().toUpperCase() + "\n";
-			for (TowerFloor position : towerFloor ){
-				toSend += "------------\n";
-				toSend += position.getDescription() + "\n";
-			}
-			toSend += "\n";
-		}
-		ConnectionManager.giveInitialInformations(toSend);
-	}*/
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
 	private static void handleOrder(RoundOrder roundOrder) throws RemoteException {

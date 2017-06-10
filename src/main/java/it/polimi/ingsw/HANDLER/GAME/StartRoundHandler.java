@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -14,6 +15,7 @@ import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
@@ -28,8 +30,8 @@ public class StartRoundHandler {
 		return instance;
 	}
 	
-	public static void handle(int period, Player[] players, Board board){
-		ArrayList<Dice> dices = rollDices();
+	public static void handle(int period, Player[] players, Board board) throws RemoteException{
+		ArrayList<Dice> dices = rollDices(board);
 		for (Player player : players) {
 			setFamilyMembersValue(dices, player);
 		}
@@ -39,8 +41,9 @@ public class StartRoundHandler {
 
 	
 	//Create new dices
-	private static ArrayList<Dice> rollDices(){
+	private static ArrayList<Dice> rollDices(Board board) throws RemoteException{
 		ArrayList<DiceColour> colours = new ArrayList<>();
+		Player[] players = board.getPlayers();
 		colours.add(DiceColour.Black);
 		colours.add(DiceColour.Orange);
 		colours.add(DiceColour.White);
@@ -50,10 +53,11 @@ public class StartRoundHandler {
 			Dice dice = new Dice(diceColour);
 			if (!diceColour.equals(DiceColour.Neutral)){
 				dice.setValue();
-				System.out.println(dice.getDescription());
 			}
 			dices.add(dice);
 		}
+
+		ConnectionManagerImpl.getConnectionManager().showDices(players, dices);
 		return dices;
 	}
 	

@@ -33,7 +33,7 @@ private static EndGameHandler istanza = null;
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		//dai i punti vittoria fede
-		ConnectionManagerImpl.hasWon(getWinner(board));
+		ConnectionManagerImpl.hasWon(getWinner(board), board.getPlayers());
 	}
 
 	private static void transformResourcesIntoPoints(Board board) {
