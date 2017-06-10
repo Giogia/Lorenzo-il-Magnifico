@@ -3,6 +3,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class LoseVictoryPointsPerCostBonus extends PermanentBonus {
@@ -21,6 +22,11 @@ public class LoseVictoryPointsPerCostBonus extends PermanentBonus {
 	
 	public ArrayList<Resource> getResources() {
 		return resources;
+	}
+	
+	@Override
+	public void getPermanentBonus(Player player) {
+		super.getPermanentBonus(player);
 	}
 
 }

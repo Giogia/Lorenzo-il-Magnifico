@@ -13,6 +13,7 @@ import it.polimi.ingsw.CONTROLLER.EndGameCardController;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerCostHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
@@ -45,6 +46,7 @@ private static EndGameHandler istanza = null;
 	private static void excommunicationMalus(Board board) {
 		for (Player player : board.getPlayers()) {
 			LoseVictoryPointsPerResourceHandler.handle(player);
+			LoseVictoryPointsPerCostHandler.handle(player);
 		}
 	}
 

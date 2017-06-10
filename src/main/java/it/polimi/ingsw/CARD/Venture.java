@@ -49,4 +49,12 @@ public class Venture extends DevelopmentCard{
 		description = description + super.getDescription();
 		return description;
 	}
+	
+	public ArrayList<Resource> getCost() {
+		return cost;
+	}
+	
+	public MilitaryPoints getAlternativeCost() {
+		return alternativeCost;
+	}
 }
