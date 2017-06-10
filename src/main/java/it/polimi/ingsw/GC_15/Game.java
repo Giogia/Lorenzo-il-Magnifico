@@ -20,6 +20,7 @@ public class Game implements Serializable{
 	private RoundOrder roundOrder;
 	private Board board;
 	private DataFromFile data;
+	private ArrayList<Player> skipActionPlayers = new ArrayList<>();
 	
 	public void start(int numberOfPlayers) throws RemoteException{
 		try {
@@ -88,5 +89,13 @@ public class Game implements Serializable{
 	
 	public RoundOrder getOrder(){
 		return roundOrder;
+	}
+	
+	public void addSkippedPlayer(Player player){
+		skipActionPlayers.add(player);
+	}
+	
+	public ArrayList<Player> getSkipActionPlayers() {
+		return skipActionPlayers;
 	}
 }

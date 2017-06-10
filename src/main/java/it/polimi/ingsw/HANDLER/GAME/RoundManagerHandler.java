@@ -9,6 +9,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
+import it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
 
@@ -34,7 +35,7 @@ public class RoundManagerHandler {
 			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
 			StartRoundHandler.handle(period, players, board);
 			//giveInitialInformations();
-			handleOrder(roundOrder);
+			handleOrder(roundOrder, board);
 			EndRoundHandler.handle(board, roundOrder, turn);	
 		}
 	}
@@ -54,11 +55,17 @@ public class RoundManagerHandler {
 	}*/
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
-	private static void handleOrder(RoundOrder roundOrder) throws RemoteException {
+	private static void handleOrder(RoundOrder roundOrder, Board board) throws RemoteException {
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
-				Manager.turn(roundOrder.getPlayers().get(i));
+				if (OrderBonusHandler.handle(roundOrder.getPlayer(i), numberOfAction)){
+					Manager.turn(roundOrder.getPlayers().get(i));
+				}
 			}
+		}
+		ArrayList<Player> skippedPlayers = board.getGame().getSkipActionPlayers();
+		for (Player player : skippedPlayers) {
+			Manager.turn(player);
 		}
 	}
 
