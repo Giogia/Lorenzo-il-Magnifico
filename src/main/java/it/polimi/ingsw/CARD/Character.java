@@ -20,4 +20,8 @@ public class Character extends DevelopmentCard{
 		description = description + super.getDescription();
 		return description;
 	}
+	
+	public Coins getCost() {
+		return cost;
+	}
 }
