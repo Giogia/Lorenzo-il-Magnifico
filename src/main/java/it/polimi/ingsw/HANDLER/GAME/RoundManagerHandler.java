@@ -66,6 +66,7 @@ public class RoundManagerHandler {
 		ArrayList<Player> skippedPlayers = board.getGame().getSkipActionPlayers();
 		for (Player player : skippedPlayers) {
 			Manager.turn(player);
+			board.getPassTurnController().lastMove(null);
 		}
 	}
 
