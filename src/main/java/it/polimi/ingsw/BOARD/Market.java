@@ -7,9 +7,22 @@ import it.polimi.ingsw.GC_15.Game;
 
 public class Market extends Zone{
 
+	public Market(Board board){
+		this();
+		setBoard(board);
+		int numberOfPlayers = board.getGame().getPlayers().length;
+		int numberOfPositions = (numberOfPlayers>=4? 4 : 2);
+		positions = new Position[numberOfPositions];
+		
+		ArrayList<ArrayList<ImmediateBonus>> boardBonus = board.getGame().getData().getMarketPositionBonus(); 
+		for(int i=0;i<numberOfPositions;i++){
+			positions[i]= new Position(boardBonus.get(i), 1);
+		}		
+
+	}
 	public Market() {
 			super("market");
-			int numberOfPlayers = getGame().getPlayers().length;
+			/*int numberOfPlayers = getGame().getPlayers().length;
 			int numberOfPositions = (numberOfPlayers>=4? 4 : 2);
 			positions = new Position[numberOfPositions];
 			
@@ -17,7 +30,7 @@ public class Market extends Zone{
 			for(int i=0;i<numberOfPositions;i++){
 				positions[i]= new Position(boardBonus.get(i), 1);
 			}		
-	
+	*/
 	}
 	
 	@Override

@@ -9,14 +9,25 @@ import it.polimi.ingsw.GC_15.Game;
 public class Tower extends ActionZone{
 	private DevelopmentCardType developmentCardType;
 	
+	public Tower(DevelopmentCardType developmentCardType, Board board) {
+		this(developmentCardType);
+		setBoard(board);
+		positions = new TowerFloor[4];
+		for (int i = 0; i < positions.length; i++ ){
+			ArrayList<ArrayList<ImmediateBonus>> boardBonus= board.getGame().getData().getTowerPositionBonus(developmentCardType);
+			positions[i] = new TowerFloor(boardBonus.get(i), 2*i + 1);
+		}
+		this.developmentCardType = developmentCardType;
+	}
+	
 	public Tower(DevelopmentCardType developmentCardType) {
 		super("Tower");
-		positions = new TowerFloor[4];
+		/* positions = new TowerFloor[4];
 		for (int i = 0; i < positions.length; i++ ){
 			ArrayList<ArrayList<ImmediateBonus>> boardBonus=getGame().getData().getTowerPositionBonus(developmentCardType);
 			positions[i] = new TowerFloor(boardBonus.get(i), 2*i + 1);
 		}
-		this.developmentCardType = developmentCardType;
+		this.developmentCardType = developmentCardType; */
 	}
 	
 	public DevelopmentCardType getDevelopmentCardType(){

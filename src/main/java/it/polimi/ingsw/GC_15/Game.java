@@ -24,9 +24,6 @@ public class Game implements Serializable{
 	public void start(int numberOfPlayers) throws RemoteException{
 		try {
 			players = new Player[numberOfPlayers];
-			
-			//Color[] availableColors = new Color[Color.values().length];
-			//availableColors = Color.values();
 			ArrayList<Color> colors = new ArrayList<>();
 			for (Color color : Color.values()) {
 				colors.add(color);
@@ -40,7 +37,6 @@ public class Game implements Serializable{
 				colors.remove(colorChoosen);
 			}
 			ConnectionManagerImpl.addPlayers(players);//do the binding between player and his view in connectionManagerImpl
-			Zone.setGame(this);
 			data = ConfigurationFileHandler.getData();
 			board = new Board(this);
 			for (int i=0; i < players.length; i++){

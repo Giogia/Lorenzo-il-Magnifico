@@ -18,19 +18,19 @@ public class Board implements Serializable{
 	public Board(Game game) {
 		this.game= game;
 		
-		market = new Market();
+		market = new Market(this);
 		
-		councilPalace = new CouncilPalace();
+		councilPalace = new CouncilPalace(this);
 		
-		harvestArea = new HarvestArea();
+		harvestArea = new HarvestArea(this);
 		
-		productionArea = new ProductionArea();
+		productionArea = new ProductionArea(this);
 		
 		towers = new Tower[4];
-		towers[0] = new Tower(DevelopmentCardType.territory);
-		towers[1] = new Tower(DevelopmentCardType.character);
-		towers[2] = new Tower(DevelopmentCardType.building);
-		towers[3] = new Tower(DevelopmentCardType.venture);
+		towers[0] = new Tower(DevelopmentCardType.territory, this);
+		towers[1] = new Tower(DevelopmentCardType.character, this);
+		towers[2] = new Tower(DevelopmentCardType.building, this);
+		towers[3] = new Tower(DevelopmentCardType.venture, this);
 	}
 	
 	public Game getGame() {

@@ -17,7 +17,6 @@ import it.polimi.ingsw.GC_15.Player;
 
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
-	private static Board board;
 	// Singleton Class
 	private StartRoundHandler(){
 	}
@@ -37,9 +36,7 @@ public class StartRoundHandler {
 		setCards(board, period);
 	}
 	
-	public static void setBoard(Board board) {
-		StartRoundHandler.board = board;
-	}
+
 	
 	//Create new dices
 	private static ArrayList<Dice> rollDices(){
@@ -72,7 +69,7 @@ public class StartRoundHandler {
 	}
 	
 	//Get the cards from DataFromFile
-	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period){
+	private static ArrayList<DevelopmentCard> getDevelopmentCards(DevelopmentCardType developmentCardType, int period, Board board){
 		if (developmentCardType.equals(DevelopmentCardType.building)){
 			return board.getGame().getData().getBuildingsForPeriod(period);
 		} else if (developmentCardType.equals(DevelopmentCardType.character)){
@@ -92,7 +89,7 @@ public class StartRoundHandler {
 		Tower[] towers = board.getTowers();
 		for (Tower tower : towers) {
 			DevelopmentCardType developmentCardType = tower.getDevelopmentCardType();
-			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period);
+			ArrayList<DevelopmentCard> developmentCards = getDevelopmentCards(developmentCardType, period, board);
 			TowerFloor[] towerFloors = (TowerFloor[]) tower.getPositions();
 			for (TowerFloor towerFloor : towerFloors) {
 				Random r = new Random();

@@ -27,10 +27,14 @@ public class FakeFamilyMemberHandler {
 			}
 		}
 		Dice fakeDice = new Dice(DiceColour.Fake);
-		ActionZone zone = Manager.askForZone(action.keySet(), player);
+		ArrayList<ActionZone> actionZones = new ArrayList<>();
+		for (ActionZone actionZone : action.keySet()) {
+			actionZones.add(actionZone);
+		}
+		ActionZone zone = Manager.askForZone(actionZones, player);
 		fakeDice.setValue(action.get(zone)); 
 		FamilyMember fakeFamilyMember = new FamilyMember(fakeDice, player);
-		Position position = Manager.askForAction(fakeFamilyMember, zone);
+		Position position = Manager.askForAction(fakeFamilyMember, zone, player.getBoard());
 		//if it's set correctly then remove the fake family member
 		if(ActionHandler.handle(fakeFamilyMember,zone,position)){ 
 			position.removeFamilyMember(fakeFamilyMember);

@@ -32,8 +32,6 @@ public class RoundManagerHandler {
 			ConnectionManagerImpl.roundBegins();
 			RoundOrder roundOrder = board.getGame().getOrder();
 			ArrayList<Player> orderPlayers = roundOrder.getPlayers();
-			
-			StartRoundHandler.setBoard(board);
 			StartRoundHandler.handle(period, players, board);
 			//giveInitialInformations();
 			handleOrder(roundOrder);

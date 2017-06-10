@@ -5,7 +5,7 @@ import java.io.Serializable;
 import it.polimi.ingsw.GC_15.Game;
 
 public abstract class Zone implements Serializable{
-	private static Game game;
+	private Board board;
 	protected Position[] positions;
 	private String type;
 	
@@ -14,12 +14,12 @@ public abstract class Zone implements Serializable{
 		this.type = type;
 	}
 	
-	public static void setGame(Game g) {
-		game = g;
+	public void setBoard(Board board) {
+		this.board = board;
 	}
 	
-	public static Game getGame() {
-		return game;
+	public Board getBoard() {
+		return board;
 	}
 	
 	public String getType() {

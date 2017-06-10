@@ -213,24 +213,24 @@ public class Manager{
 		return choice;
 	}
 
-	public static Position askForAction(FamilyMember familyMember, ActionZone zone) throws RemoteException {
-		zone = getBoardZone(zone);
+	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws RemoteException {
+		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
 		int choice = ConnectionManagerImpl.chooseActionPosition(player, zonePositions);
 		return zonePositions[choice - 1];
 	}
 
-	private static ActionZone getBoardZone(ActionZone zone) {
+	private static ActionZone getBoardZone(ActionZone zone, Board board) {
 		if (zone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
-			zone = zone.getGame().getBoard().getTower(developmentCardType);
+			zone = board.getTower(developmentCardType);
 		}
 		else if (zone instanceof ProductionArea){
-			zone = zone.getGame().getBoard().getProductioArea();
+			zone = board.getProductioArea();
 		}
 		else{
-			zone = zone.getGame().getBoard().getHarvestArea();
+			zone = board.getHarvestArea();
 		}
 		return zone;
 	}
@@ -249,10 +249,9 @@ public class Manager{
 		//TODO PERMANENT
 	}
 
-	public static ActionZone askForZone(Set<ActionZone> actionZones, Player player) throws RemoteException {
-		ArrayList<ActionZone> zones = new ArrayList<>();
-		int choice = ConnectionManagerImpl.askForZone(zones, player);
-		return zones.get(choice - 1);
+	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws RemoteException {
+		int choice = ConnectionManagerImpl.askForZone(actionZones, player);
+		return actionZones.get(choice - 1);
 	}
 
 }
