@@ -10,6 +10,7 @@ import it.polimi.ingsw.CONTROLLER.EndGameCardController;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
@@ -34,7 +35,14 @@ private static EndGameHandler istanza = null;
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		//dai i punti vittoria fede
+		excommunicationMalus(board);
 		ConnectionManagerImpl.hasWon(getWinner(board));
+	}
+
+	private static void excommunicationMalus(Board board) {
+		for (Player player : board.getPlayers()) {
+			LoseVictoryPointsPerResourceHandler.handle(player);
+		}
 	}
 
 	private static void transformResourcesIntoPoints(Board board) {
