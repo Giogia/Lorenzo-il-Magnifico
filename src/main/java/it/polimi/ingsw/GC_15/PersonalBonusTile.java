@@ -53,7 +53,7 @@ public class PersonalBonusTile implements Serializable {
 		}
 		else
 			return null;
-	};
+	}
 	
 	
 }

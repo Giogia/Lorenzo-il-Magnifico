@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.CARD.CardContainer;
-import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -30,6 +29,7 @@ private static EndGameHandler istanza = null;
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
+		transformFaithPoints(board);
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		//dai i punti vittoria fede
@@ -51,17 +51,17 @@ private static EndGameHandler istanza = null;
 	
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
 		for(Player player : board.getGame().getRoundOrder()){
-			for(CardContainer cardcontainer: player.getPersonalBoard().getCardContainers()){
-				if(cardcontainer.getType().equals(developmentCardType)){
-					int numberOfCards = cardcontainer.getDevelopmentCards().size();
+			for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){
+				if(cardContainer.getType().equals(developmentCardType)){
+					int numberOfCards = cardContainer.getDevelopmentCards().size();
 					int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
 					player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
 				}
 			}
 		}
 	}
+
 	
-	//TODO: check!
 	private static String getWinner(Board board){
 		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = null;
@@ -74,10 +74,18 @@ private static EndGameHandler istanza = null;
 		return winner.getName(); 
 	}
 	
+	private static void transformFaithPoints(Board board){
+		for(Player player: board.getPlayers()){
+			int faithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
+			int[] fromFaithPointsToVictoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints();
+			player.getPersonalBoard().getResource(ResourceType.faithPoints).addAmount(fromFaithPointsToVictoryPoints[faithPoints]);
+		}
+	}
 	
 	private static void transformMilitaryPoints(Board board){
 		ArrayList<Player> firstPos = new ArrayList<Player>();
 		ArrayList<Player> secondPos = new ArrayList<Player>();
+		int[] fromMilitaryPointsToVictoryPoints = board.getGame().getData().getFromMilitaryPointsToVictoryPoints();
 		int maxMilitaryPoints =0; 
 		int soCloseMilitaryPoints =0;
 		for(Player player: board.getPlayers()){
@@ -96,25 +104,12 @@ private static EndGameHandler istanza = null;
 			}
 		}
 		for(Player player: firstPos){//add 5 vicotry points to the winners
-			player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(5);	
+			player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(fromMilitaryPointsToVictoryPoints[0]);	
 		}
 		if(firstPos.size()==1){// add 2 victory points to the second ones if there hasn't been a tie of winners
 			for(Player player: secondPos){
-				player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(2);
+				player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(fromMilitaryPointsToVictoryPoints[1]);
 			}
 		}
 	}
-	
-	private static void transformVenturePoints(Board board){
-		for(Player player : board.getPlayers()){ //per ogni giocatore
-			for(CardContainer cardContainer :player.getPersonalBoard().getCardContainers()){// find ventures in cardcontainer
-				if(cardContainer.getType().equals(DevelopmentCardType.venture)){
-					for(DevelopmentCard venture : cardContainer.getDevelopmentCards()){// for every venture
-						//activate the secondary effect
-					}	
-				}
-			}
-		}
-	}
-	
 }

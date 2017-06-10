@@ -1,7 +1,10 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
+
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.HANDLER.*;
 
 public final class ActionHandler {
@@ -17,7 +20,7 @@ public final class ActionHandler {
     }
     
     
-    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws Exception{
+    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException, RemoteException{
     	if(zone instanceof Market){
     		return MarketHandler.handle(familyMember,position);
     	}

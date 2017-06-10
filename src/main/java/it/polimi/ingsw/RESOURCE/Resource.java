@@ -56,7 +56,7 @@ abstract public class Resource implements Serializable{
 
 	public abstract String getDescription();
 	
-	public abstract Resource clone();
+	public abstract Resource createClone();
     
 }
 

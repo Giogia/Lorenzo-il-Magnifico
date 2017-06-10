@@ -14,7 +14,7 @@ public class MilitaryPoints extends Resource {
 	}
 	
 	@Override
-	public Resource clone() {
+	public Resource createClone() {
 		MilitaryPoints militaryPoints = new MilitaryPoints(this.amount, this.value);
 		return militaryPoints;
 	}

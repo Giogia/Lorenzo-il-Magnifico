@@ -2,6 +2,7 @@ package it.polimi.ingsw.HANDLER;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -21,6 +22,7 @@ import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.*;
@@ -29,18 +31,18 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
-	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws Exception{
-		if (PositionWithoutDevelopmentCardController.check(towerFloor)){
-			if (ZoneOccupiedBySameColorController.check(zone, familyMember)){
-				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())){
+	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , RemoteException {
+		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
+			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
+				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
 					ArrayList<Resource> playerResources = new ArrayList<>();
 					for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-						playerResources.add(resource.clone());
+						playerResources.add(resource.createClone());
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					ServantsHandler.handle(testFamilyMember, playerResources);
-					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)){
-						if (IsThereBonusController.check(towerFloor)){
+					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)) {
+						if (IsThereBonusController.check(towerFloor)) {
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
 							ArrayList<Resource> bonusResources = new ArrayList<>();
 							for (ImmediateBonus immediateBonus : boardBonus) {
@@ -49,10 +51,10 @@ public class TowerHandler {
 							}
 							add(playerResources, bonusResources);
 						}
-						if (!ZoneAlreadyOccupiedController.check(zone)){
+						if (!ZoneAlreadyOccupiedController.check(zone)) {
 							addOccupiedCost(playerResources);
 						}
-						if (checkZone(testFamilyMember, playerResources, towerFloor)){
+						if (checkZone(testFamilyMember, playerResources, towerFloor)) {
 							copyResource(testFamilyMember.getPlayer(), playerResources);
 							testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
 							PassTurnController.lastMove(testFamilyMember.getPlayer());
@@ -64,25 +66,23 @@ public class TowerHandler {
 		}
 		return false;
 	}
-	
-	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) throws Exception{
-		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)){
-			if (!checkTerritories(familyMember)){
+
+	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
+			TowerFloor towerFloor) throws MyException, RemoteException {
+		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
+			if (!checkTerritories(familyMember)) {
 				return false;
 			}
-		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.venture)) {
-			if (!checkVentures(familyMember, playerResources, towerFloor)){
+		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.venture)) {
+			if (!checkVentures(familyMember, playerResources, towerFloor)) {
 				return false;
 			}
-		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.character)) {
-			if (!checkCharacters(familyMember, playerResources, towerFloor)){
+		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.character)) {
+			if (!checkCharacters(familyMember, playerResources, towerFloor)) {
 				return false;
 			}
-		}
-		else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.building)) {
-			if (!checkBuildings(familyMember, playerResources, towerFloor)){
+		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.building)) {
+			if (!checkBuildings(familyMember, playerResources, towerFloor)) {
 				return false;
 			}
 		}
@@ -90,138 +90,133 @@ public class TowerHandler {
 	}
 
 	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws Exception {
+			TowerFloor towerFloor) throws MyException {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = buildingCard.costs;
-		if (FakeFamilyMemberHandler.getBoolean()){
+		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
 		add(playerResources, neg(cost));
-		if (checkResources(playerResources)){
+		if (checkResources(playerResources)) {
 			return true;
-		}
-		else{
-			throw new Exception("You don't have enough resources!");
+		} else {
+			throw new MyException("You don't have enough resources!");
 		}
 	}
 
-
 	private static boolean checkCharacters(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws Exception{
+			TowerFloor towerFloor) throws MyException {
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		cost.add(characterCard.cost);
-		if (FakeFamilyMemberHandler.getBoolean()){
+		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 		}
 		add(playerResources, neg(cost));
-		if (checkResources(playerResources)){
+		if (checkResources(playerResources)) {
 			return true;
 		}
-		throw new Exception("You don't have enough resources!");
+		throw new MyException("You don't have enough resources!");
 	}
 
-
-	
-
-	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources, TowerFloor towerFloor) throws Exception{
+	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
+			TowerFloor towerFloor) throws MyException, RemoteException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = ventureCard.cost;
-		//initialize the alternative cost to prevent null pointer exception
+		// initialize the alternative cost to prevent null pointer exception
 		MilitaryPoints militaryPoints = ventureCard.alternativeCost;
 		ArrayList<Resource> alternativeCost = new ArrayList<>();
 		alternativeCost.add(militaryPoints);
 		int requirement = ventureCard.militaryPointRequirement;
 		ArrayList<Resource> playerResources1 = playerResources;
-		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
+		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
+				.getResource(ResourceType.militaryPoints);
 		ArrayList<Resource> playerResources2 = playerResources;
-		if (FakeFamilyMemberHandler.getBoolean()){
+		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
 		}
-		// If cost or alternativeCost are null, negate playerResource, in this way checkResources return false
+		// If cost or alternativeCost are null, negate playerResource, in this
+		// way checkResources return false
 		try {
 			add(playerResources1, neg(cost));
 		} catch (NullPointerException e) {
 			playerResources1 = neg(playerResources1);
 		}
 		try {
-		add(playerResources2, neg(alternativeCost));
+			add(playerResources2, neg(alternativeCost));
 		} catch (NullPointerException e) {
 			playerResources2 = neg(playerResources2);
 		}
-		//this if else is in this way because if the cost of the ventureCard is military point, this cost is in requirement
-		if (checkResources(playerResources1)){
-			if (playerMilitaryPoints.getAmount() >= requirement){
-				if (checkResources(playerResources2)){
-					ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(familyMember.getPlayer(), cost, alternativeCost);
+		// this if else is in this way because if the cost of the ventureCard is
+		// military point, this cost is in requirement
+		if (checkResources(playerResources1)) {
+			if (playerMilitaryPoints.getAmount() >= requirement) {
+				if (checkResources(playerResources2)) {
+					ArrayList<Resource> chooseCost = Manager.askForAlternativeCost(familyMember.getPlayer(), cost,
+							alternativeCost);
 					add(playerResources, neg(chooseCost));
 					return true;
 				}
-			add(playerResources, neg(cost));
-			return true;
+				add(playerResources, neg(cost));
+				return true;
 			}
-		}
-		else if(playerMilitaryPoints.getAmount() >= requirement){
+		} else if (playerMilitaryPoints.getAmount() >= requirement) {
 			if (checkResources(playerResources2))
 				add(playerResources, neg(alternativeCost));
-				return true;
+			return true;
 		}
-		throw new Exception("You don't have enough resources!");
+		throw new MyException("You don't have enough resources!");
 	}
 
-
-	private static boolean checkTerritories(FamilyMember familyMember) throws Exception{
+	private static boolean checkTerritories(FamilyMember familyMember) throws MyException {
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		for (CardContainer cardContainer : cardContainers) {
-			if (cardContainer.getType().equals(DevelopmentCardType.territory)){
+			if (cardContainer.getType().equals(DevelopmentCardType.territory)) {
 				int numberOfCards = cardContainer.getDevelopmentCards().size();
 				int[] militaryRequirement = familyMember.getPlayer().getBoard().getGame().getData().getMilitaryRequirement();
 				MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard().getResource(ResourceType.militaryPoints);
 				int requirementAmount = militaryRequirement[numberOfCards];
-				if (playerMilitaryPoints.getAmount() - requirementAmount < 0){
-					throw new Exception("You don't have enough military points!");
+				if (playerMilitaryPoints.getAmount() - requirementAmount < 0) {
+					throw new MyException("You don't have enough military points!");
 				}
 			}
 		}
 		return true;
 	}
-	
-	
+
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for (Resource playerResource : playerResources) {
 			for (Resource copiedResource : copiedResources) {
-				if (copiedResource.getResourceType().equals(playerResource.getResourceType())){
+				if (copiedResource.getResourceType().equals(playerResource.getResourceType())) {
 					playerResource.setAmount(copiedResource.getAmount());
 				}
 			}
 		}
 	}
 
-
 	private static void addOccupiedCost(ArrayList<Resource> playerResources) {
 		Coins occupiedCost = new Coins(3, 1);
 		ArrayList<Resource> bonusResources = new ArrayList<>();
 		bonusResources.add(occupiedCost);
-		add(playerResources, bonusResources);
+		add(playerResources, neg(bonusResources));
 	}
-
 
 	private static void add(ArrayList<Resource> playerResources, ArrayList<Resource> bonusResources) {
 		for (Resource resource : bonusResources) {
 			for (Resource playerResource : playerResources) {
-				if (resource.getClass().equals(playerResource.getClass())){
+				if (resource.getClass().equals(playerResource.getClass())) {
 					playerResource.addAmount(resource.getAmount());
 				}
 			}
 		}
 	}
-	
-	private static ArrayList<Resource> neg(ArrayList<Resource> resources){
+
+	private static ArrayList<Resource> neg(ArrayList<Resource> resources) {
 		ArrayList<Resource> negResources = new ArrayList<>();
 		for (Resource resource : resources) {
-			negResources.add(resource.clone());
+			negResources.add(resource.createClone());
 		}
 		for (Resource negResource : negResources) {
 			int amount = -negResource.getAmount();
@@ -229,20 +224,19 @@ public class TowerHandler {
 		}
 		return negResources;
 	}
-	
-	
-	
-	private static boolean checkResources(ArrayList<Resource> resources){
+
+	private static boolean checkResources(ArrayList<Resource> resources) {
 		for (Resource resource : resources) {
-			if (resource.getAmount() < 0) return false;
+			if (resource.getAmount() < 0)
+				return false;
 		}
 		return true;
 	}
-	
+
 	private static void subOrZero(ArrayList<Resource> cost, ArrayList<Resource> cost2) {
 		add(cost, neg(cost2));
 		for (Resource resource : cost) {
-			if (resource.getAmount() < 0){
+			if (resource.getAmount() < 0) {
 				resource.setAmount(0);
 			}
 		}

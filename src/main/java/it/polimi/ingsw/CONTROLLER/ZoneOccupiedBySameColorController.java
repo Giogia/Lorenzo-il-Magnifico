@@ -6,6 +6,7 @@ import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 
 public class ZoneOccupiedBySameColorController implements Controller{
 	
@@ -17,7 +18,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 	 * Se non è neutro ritorna falso
 	 * Dopo tutto il ciclo, siamo sicuri che non ci siano familiari dello stesso colore, ritorna vero
 	 */
-	public static boolean check(Zone zone, FamilyMember familyMember) throws Exception{
+	public static boolean check(Zone zone, FamilyMember familyMember) throws MyException{
 		if (isNeutral(familyMember)){
 			return true;
 		}
@@ -31,7 +32,7 @@ public class ZoneOccupiedBySameColorController implements Controller{
 				for (FamilyMember positionFamilyMember : positionFamilyMembers) {
 					if (samePlayer(familyMember, positionFamilyMember)){
 						if (!isNeutral(positionFamilyMember))
-							throw new Exception("This Zone is already occupied by this family member color!");	
+							throw new MyException("This Zone is already occupied by this family member color!");	
 					}
 				}
 			}

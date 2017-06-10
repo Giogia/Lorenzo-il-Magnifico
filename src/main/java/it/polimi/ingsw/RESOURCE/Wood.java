@@ -13,7 +13,7 @@ public class Wood extends Resource{
 	}
 	
 	@Override
-	public Resource clone() {
+	public Resource createClone() {
 		Wood wood = new Wood(this.amount, this.value);
 		return wood;
 	}

@@ -17,6 +17,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
@@ -171,7 +172,7 @@ public class Manager{
 	/* Le posizioni vanno da 1 alla posizione massima
 	 * Se ritorna posizione massima + 1, significa che devi tornare indietro
 	 */
-	private static boolean zoneManager(Player player, Zone zone) throws Exception {
+	private static boolean zoneManager(Player player, Zone zone) throws MyException, RemoteException {
 		Position[] positions = zone.getPositions();
 		int choice = ConnectionManagerImpl.choosePosition(player, positions);
 		if (choice == positions.length + 1){
@@ -182,7 +183,7 @@ public class Manager{
 	}
 	
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
-	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws Exception{
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, RemoteException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
 		int choice = ConnectionManagerImpl.chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){

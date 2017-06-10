@@ -25,7 +25,7 @@ public class ResourceValueBonus extends ResourceBonus{
 	}
 	
 	@Override
-	public ResourceBonus clone() {
+	public ResourceBonus createClone() {
 		ResourceValueBonus newBonus = new ResourceValueBonus(this.resources);
 		return newBonus;
 	}

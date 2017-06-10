@@ -33,7 +33,7 @@ public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 	}
 	
 	@Override
-	public ResourceBonus clone() {
+	public ResourceBonus createClone() {
 		ResourcePerDevelopmentCardBonus newBonus = new ResourcePerDevelopmentCardBonus(this.resources, this.developmentCardType);
 		return newBonus;
 	}

@@ -11,12 +11,12 @@ import it.polimi.ingsw.manager.Manager;
 public class CouncilPrivilegeChoiceHandler {
 	//councilPrivileges is the arraylist of bonus to send to the human. He choose one oh this and this is immediately activated
 	//and removed from the councilPrivileges
-	private static ArrayList<ResourceBonus> councilPrivileges;
+private static ArrayList<ResourceBonus> councilPrivileges;
 	
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws RemoteException{
 		councilPrivileges = new ArrayList<>();
 		for (ResourceBonus resourceBonus : player.getBoard().getGame().getData().getCouncilPrivileges()) {
-			councilPrivileges.add(resourceBonus.clone());
+			councilPrivileges.add(resourceBonus.createClone());
 		}
 		for(int i=0; i < numberOfDifferentCouncilPrivileges; i++){
 			ResourceBonus singleBonus = Manager.getCouncilPrivilege(player, councilPrivileges); //the single bonus choosen from the human

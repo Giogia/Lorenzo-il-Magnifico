@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Position;
@@ -9,12 +10,13 @@ import it.polimi.ingsw.CONTROLLER.OccupiedYetBonusController;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class MarketHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws Exception{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, RemoteException{
 		if (!PositionAlreadyOccupiedController.check(position)){
 			if (!OccupiedYetBonusController.check(familyMember)){
 				return false;
@@ -22,7 +24,7 @@ public class MarketHandler {
 		}
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-			playerResources.add(resource.clone());
+			playerResources.add(resource.createClone());
 		}
 		FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 		ServantsHandler.handle(testFamilyMember, playerResources);
