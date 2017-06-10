@@ -30,7 +30,7 @@ public class MarketHandler {
 		ServantsHandler.handle(testFamilyMember, playerResources);
 		if (FamilyMemberValueController.check(testFamilyMember, position)){
 			testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
-			PassTurnController.lastMove(testFamilyMember.getPlayer());
+			familyMember.getPlayer().getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
 			copyResource(testFamilyMember.getPlayer(), playerResources);
 			for (ImmediateBonus immediateBonus : position.getBoardBonus()) {
 				immediateBonus.getImmediateBonus(testFamilyMember.getPlayer());

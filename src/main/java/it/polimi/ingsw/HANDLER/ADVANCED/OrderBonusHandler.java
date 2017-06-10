@@ -15,6 +15,7 @@ public class OrderBonusHandler {
 				if (permanentBonus instanceof OrderBonus){
 					if (((OrderBonus) permanentBonus).getSkipAction()[turn]){
 						player.getBoard().getGame().addSkippedPlayer(player);
+						player.getBoard().getPassTurnController().lastMove(null);
 						return false;
 					}
 				}

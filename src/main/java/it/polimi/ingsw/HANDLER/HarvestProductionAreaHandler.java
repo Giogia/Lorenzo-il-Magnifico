@@ -46,7 +46,7 @@ public abstract class HarvestProductionAreaHandler {
 			if(FamilyMemberValueController.check(testFamilyMember, position)){
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
-					PassTurnController.lastMove(testFamilyMember.getPlayer());
+					familyMember.getPlayer().getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
 					copyResource(testFamilyMember.getPlayer(), playerResources);
 					getPersonalBonusTileBonus(testFamilyMember, zone);
 					//start advanced

@@ -5,13 +5,17 @@ import it.polimi.ingsw.GC_15.Player;
 //tell last action to pass turn handler
 
 public class PassTurnController implements Controller {
-	private static Player lastMove;
+	private Player lastMove;
 	
-	public static void lastMove(Player player){
+	public PassTurnController() {
+		lastMove = null;
+	}
+	
+	public void lastMove(Player player){
 		lastMove = player;
 	}
 
-	public static Player getLastMove() {
+	public Player getLastMove() {
 		return lastMove;
 	}
 }

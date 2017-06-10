@@ -112,8 +112,9 @@ public class Manager{
 	}
 
 	private static void actionManager(Player player) throws RemoteException {
-		if (PassTurnController.getLastMove() != null){
-			if (PassTurnController.getLastMove().equals(player)){
+		PassTurnController passTurnController = player.getBoard().getPassTurnController();
+		if (passTurnController.getLastMove() != null){
+			if (passTurnController.getLastMove().equals(player)){
 				ConnectionManagerImpl.moveAlreadyDone(player);
 				return;
 			}

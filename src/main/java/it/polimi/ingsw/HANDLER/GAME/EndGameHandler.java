@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CONTROLLER.EndGameCardController;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
@@ -51,11 +52,13 @@ private static EndGameHandler istanza = null;
 	
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
 		for(Player player : board.getGame().getRoundOrder()){
-			for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){
-				if(cardContainer.getType().equals(developmentCardType)){
-					int numberOfCards = cardContainer.getDevelopmentCards().size();
-					int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
-					player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
+			if (EndGameCardController.check(player, developmentCardType)){
+				for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){
+					if(cardContainer.getType().equals(developmentCardType)){
+						int numberOfCards = cardContainer.getDevelopmentCards().size();
+						int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
+						player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
+					}
 				}
 			}
 		}

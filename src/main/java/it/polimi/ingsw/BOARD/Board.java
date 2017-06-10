@@ -3,6 +3,7 @@ package it.polimi.ingsw.BOARD;
 import java.io.Serializable;
 
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.*;
 
 
@@ -15,6 +16,7 @@ public class Board implements Serializable{
 	private ProductionArea productionArea;
 	private ExcommunicationTile excommunicationTiles[] = new ExcommunicationTile[3];
 	private Game game;
+	private PassTurnController passTurnController;
 	
 	public Board(Game game) {
 		this.game= game;
@@ -32,6 +34,8 @@ public class Board implements Serializable{
 		towers[1] = new Tower(DevelopmentCardType.character, this);
 		towers[2] = new Tower(DevelopmentCardType.building, this);
 		towers[3] = new Tower(DevelopmentCardType.venture, this);
+		
+		passTurnController = new PassTurnController();
 	}
 	
 	public Game getGame() {
@@ -115,6 +119,11 @@ public class Board implements Serializable{
 	public ExcommunicationTile[] getExcommunicationTiles() {
 		return excommunicationTiles;
 	}
+	
+	public PassTurnController getPassTurnController() {
+		return passTurnController;
+	}
+	
 }
 
 

@@ -63,7 +63,7 @@ public class TowerHandler {
 						if (checkZone(testFamilyMember, playerResources, towerFloor)) {
 							copyResource(testFamilyMember.getPlayer(), playerResources);
 							testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
-							PassTurnController.lastMove(testFamilyMember.getPlayer());
+							zone.getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
 							return true;
 						}
 					}

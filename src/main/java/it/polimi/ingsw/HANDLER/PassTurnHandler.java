@@ -11,10 +11,11 @@ import it.polimi.ingsw.RESOURCE.Servants;
 public class PassTurnHandler {
 	
 	public static boolean handle(Player player){
-		if (PassTurnController.getLastMove() == null){
+		PassTurnController passTurnController = player.getBoard().getPassTurnController();
+		if (passTurnController.getLastMove() == null){
 			return false;
 		}
-		if (PassTurnController.getLastMove().equals(player)){
+		if (passTurnController.getLastMove().equals(player)){
 			return true;
 		}
 		else{
@@ -28,7 +29,7 @@ public class PassTurnHandler {
 			if (playerServants.getAmount() >= playerServants.getValue()){
 				return false;
 			}
-			PassTurnController.lastMove(player);
+			passTurnController.lastMove(player);
 			return true;
 		}
 	}

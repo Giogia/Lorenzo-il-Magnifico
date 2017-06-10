@@ -28,7 +28,8 @@ public class EndRoundHandler {
 		if (turn % 2 == 0){ 
 			VaticanReport.checkPlayersFaith((turn+1)/2, board);
 		}
-		PassTurnController.lastMove(null);
+		board.getPassTurnController().lastMove(null);
+		board.getGame().getSkipActionPlayers().clear();
 	}
 	
 	/*This Handler see if there are some FamilyMembers in CouncilPalace.
