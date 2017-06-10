@@ -266,14 +266,7 @@ public class Manager{
 
 	public static ArrayList<Bonus> chooseEffect(DevelopmentCard developmentCard){
 		ArrayList<Bonus> choice= new ArrayList<>();
-		if(developmentCard instanceof Territory){
-			Territory territory = (Territory) developmentCard;
-		//TODO da chiamare connectmanager
-		}
-		if(developmentCard instanceof Building){
-			Building building = (Building) developmentCard;
-			//TODO da chiamare connectmanager
-		}
+		//TODO chiedere di scegliere
 		return choice;
 	}
 }

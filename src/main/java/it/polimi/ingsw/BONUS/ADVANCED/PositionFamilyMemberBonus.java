@@ -11,6 +11,7 @@ import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public class PositionFamilyMemberBonus extends PermanentBonus{
@@ -27,14 +28,14 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 		return positionBonus;
 	}
 
-	public Integer getValue(ActionZone actionZone, Board board) throws Exception{
+	public Integer getValue(ActionZone actionZone, Board board) throws MyException{
 		Set<ActionZone> actionZones = positionBonus.keySet();
 		for (ActionZone bonusZone : actionZones) {
 			if (actionZone.equals(getBoardZone(bonusZone, board))){
 				return positionBonus.get(bonusZone);
 			}
 		}
-		throw new Exception();
+		throw new MyException("ERROR-getvalue");
 	}
 	
 	private ActionZone getBoardZone(ActionZone actionZone, Board board) {
@@ -55,15 +56,11 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 	@Override
 	public void getPermanentBonus(Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		try{
-			for (PermanentBonus permanentBonus : playerBonus) {
-				if (permanentBonus instanceof PositionFamilyMemberBonus){
-					((PositionFamilyMemberBonus) permanentBonus).addBonus(this);
-					return;
-				}
+		for (PermanentBonus permanentBonus : playerBonus) {
+			if (permanentBonus instanceof PositionFamilyMemberBonus){
+				((PositionFamilyMemberBonus) permanentBonus).addBonus(this);
+				return;
 			}
-		}catch (Exception e){
-			
 		}
 		super.getPermanentBonus(player);
 	}

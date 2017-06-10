@@ -62,14 +62,15 @@ public class Position implements Serializable{
 
 	public String getDescription() {
 		String description = "Family Member minimum value: " + diceRequirement + "\n";
-		try{
 			description = description + "Bonus on this position: \n";
-			for (ImmediateBonus immediateBonus : boardBonus) {
-				description = description + immediateBonus.getDescription() + "\n";
+			if(boardBonus==null){
+				description= description + "No Bonus on this Position \n";
 			}
-		} catch (NullPointerException e){
-		}
-		try {
+			else{
+				for (ImmediateBonus immediateBonus : boardBonus) {
+					description = description + immediateBonus.getDescription() + "\n";
+				}
+			}
 			if(familyMembers.isEmpty()){
 				description = description + "Position not occupied \n";
 			}
@@ -79,8 +80,6 @@ public class Position implements Serializable{
 					description = description + familyMember.getPlayer().getName() + "\n " + familyMember.getDescription() + "\n";
 				}
 			}	
-		} catch (NullPointerException e){
-		}
 		return description;
 	}
 }

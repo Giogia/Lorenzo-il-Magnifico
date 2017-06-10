@@ -14,13 +14,13 @@ public class CardCostHandler {
 	
 	
 	public static void handle(ArrayList<Resource> cost, Player player, DevelopmentCardType developmentCardType){
-		try{ //If permanentBonus is an empty Array this try catch nullPointerException
-			ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
+		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
+		if(playerBonus!=null){
 			CardCostBonus[] cardCostBonus = new CardCostBonus[2];
 			for (PermanentBonus permanentBonus : playerBonus) {
 				cardCostBonus = controlBonus(cardCostBonus, permanentBonus, developmentCardType);
 			}
-			try{ //if player doesn't have an AddCardCostBonus this try catch nullPointerException
+			if(cardCostBonus[0]!=null){
 				ArrayList<Resource> addBonus = cardCostBonus[0].getResources();
 				for (Resource resource : addBonus) {
 					for (Resource costResource : cost) {
@@ -29,10 +29,8 @@ public class CardCostHandler {
 						}
 					}
 				}
-			} catch (Exception e){
-				
-			}
-			try { //if player doesn't have an MultiplyCardCostBonus this try catch nullPointerException
+			} 
+			if(cardCostBonus[1]!=null){
 				ArrayList<Resource> multBonus = cardCostBonus[0].getResources();
 				for (Resource resource : multBonus) {
 					for (Resource costResource : cost) {
@@ -41,11 +39,7 @@ public class CardCostHandler {
 						}
 					}
 				}
-			} catch (Exception e){
-				
 			}
-		} catch (Exception e){
-			
 		}
 	}
 
