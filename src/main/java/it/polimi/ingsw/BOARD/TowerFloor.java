@@ -5,6 +5,8 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 public class TowerFloor extends Position {
@@ -26,7 +28,7 @@ public class TowerFloor extends Position {
 	}
 	
 	@Override
-	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, RemoteException{
 		
 		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
 		
@@ -34,12 +36,11 @@ public class TowerFloor extends Position {
 		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //aggiunge la carta alla personal board del player
 		ArrayList<ImmediateBonus> cardImmediateBonus = developmentCard.immediateEffect;
 		this.developmentCard = null;
-		try{
+		if(cardImmediateBonus!=null){
 			for(ImmediateBonus immediateBonus : cardImmediateBonus){ //attiva il metodo immediate bonus per ogni primary effect 
 				giveImmediateBonus(cardPlayer,immediateBonus);
 			}
-		}catch(Exception e){
-		}
+		}	
 		/*TODO: permanent bonus
 		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
 			for(Bonus immediateBonus : this.developmentCard.secondaryEffect){
@@ -52,10 +53,11 @@ public class TowerFloor extends Position {
 	@Override
 	public String getDescription() {
 		String description = super.getDescription();
-		try{
-			description = description + developmentCard.getDescription();
-		} catch (Exception e){
+		if(developmentCard==null){
 			description = description + "No Cards in this position \n";
+		}
+		else{
+		description = description + developmentCard.getDescription();
 		}
 		return description;
 	}

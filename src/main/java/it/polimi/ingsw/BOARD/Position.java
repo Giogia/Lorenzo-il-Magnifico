@@ -37,7 +37,7 @@ public class Position implements Serializable{
 		return this.diceRequirement;
 	}
 	
-	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, RemoteException{
 		familyMembers.add(newFamilyMember);
 	}
 	

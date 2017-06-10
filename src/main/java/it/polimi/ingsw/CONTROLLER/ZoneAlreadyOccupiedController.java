@@ -9,13 +9,9 @@ public class ZoneAlreadyOccupiedController implements Controller{
 	public static boolean check(Zone zone) throws MyException{
 		Position[] positions = zone.getPositions();
 		for(Position position: positions){
-			try{
-				if(!position.getFamilyMembers().isEmpty()){
-					return false;
-				}	
-			}catch(NullPointerException e){
+			if(!position.getFamilyMembers().isEmpty()){
 				return false;
-			}
+			}	
 		}
 		return true;
 	}

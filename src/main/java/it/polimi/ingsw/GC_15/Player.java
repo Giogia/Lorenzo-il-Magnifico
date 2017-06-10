@@ -64,7 +64,7 @@ public class Player implements Serializable{
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException{
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException, RemoteException{
 		position.addFamilyMember(familyMember);
 		if (!familyMember.getDice().getDiceColour().equals(DiceColour.Fake)){
 			if (familyMembers != null){

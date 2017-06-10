@@ -30,16 +30,14 @@ public class ActivationZoneBonus extends PermanentBonus {
 	@Override
 	public void getPermanentBonus(Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		try {
+		if(playerBonus!=null){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof ActivationZoneBonus){
 					((ActivationZoneBonus) permanentBonus).addBonus(this);
 					return;
 				}
 			}
-		} catch (Exception e) {
-		}
-		super.getPermanentBonus(player);
+		} 
 	}
 	
 	public void addBonus(ActivationZoneBonus activationZoneBonus){

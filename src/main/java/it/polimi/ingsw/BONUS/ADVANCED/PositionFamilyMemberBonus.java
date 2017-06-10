@@ -68,7 +68,7 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 	public void addBonus(PositionFamilyMemberBonus positionFamilyMemberBonus){
 		Set<ActionZone> bonusZones = positionFamilyMemberBonus.getPositionBonus().keySet();
 		for (ActionZone actionZone : bonusZones) {
-			ActionZone permanentZone = null;
+			ActionZone permanentZone;
 			if (actionZone instanceof Tower){
 				permanentZone = findTower((Tower) actionZone);
 			}
