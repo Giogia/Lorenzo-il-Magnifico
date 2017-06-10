@@ -13,6 +13,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -34,7 +35,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private ConnectionManagerImpl() throws RemoteException {
 	}
 
-	public void register(ClientRMICallbackRemote client) throws RemoteException, NotBoundException{
+	public void register(ClientRMICallbackRemote client) throws RemoteException, NotBoundException, MyException{
 		temporaryView.add(client);
 		System.out.println("New user in the game");
 		System.out.println("Per ora vi sono " + temporaryView.size() + " giocatori");

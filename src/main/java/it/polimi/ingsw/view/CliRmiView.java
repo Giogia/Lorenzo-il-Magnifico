@@ -15,6 +15,7 @@ import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
@@ -24,7 +25,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	private final static int RMI_PORT = 52365;
 	private static final String NAME = "connectionManager";
 	
-	public static void main(String[] args) throws RemoteException, NotBoundException{
+	public static void main(String[] args) throws RemoteException, NotBoundException, MyException{
 		Registry registry = LocateRegistry.getRegistry("localhost", RMI_PORT);
 		System.out.println("preso referenza al registry");
 		

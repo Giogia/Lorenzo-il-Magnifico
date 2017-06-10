@@ -22,7 +22,7 @@ public class Game implements Serializable{
 	private DataFromFile data;
 	private ArrayList<Player> skipActionPlayers = new ArrayList<>();
 	
-	public void start(int numberOfPlayers) throws RemoteException{
+	public void start(int numberOfPlayers) throws RemoteException, MyException{
 		try {
 			players = new Player[numberOfPlayers];
 			ArrayList<Color> colors = new ArrayList<>();

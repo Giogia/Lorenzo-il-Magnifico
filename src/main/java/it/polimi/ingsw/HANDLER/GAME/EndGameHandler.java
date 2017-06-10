@@ -4,10 +4,13 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.CardContainer;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CONTROLLER.EndGameCardController;
-import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler;
@@ -27,14 +30,14 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board) throws RemoteException{
+	public static void handle(Board board) throws RemoteException, MyException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
 		transformFaithPoints(board);
 		transformCardIntoPoints(board, DevelopmentCardType.territory);
 		transformCardIntoPoints(board, DevelopmentCardType.character);
-		//dai i punti vittoria fede
+		transformVentureIntoPoints(board);
 		excommunicationMalus(board);
 		ConnectionManagerImpl.hasWon(getWinner(board));
 	}
@@ -61,17 +64,29 @@ private static EndGameHandler istanza = null;
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
 		for(Player player : board.getGame().getRoundOrder()){
 			if (EndGameCardController.check(player, developmentCardType)){
-				for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){
-					if(cardContainer.getType().equals(developmentCardType)){
-						int numberOfCards = cardContainer.getDevelopmentCards().size();
-						int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); //TODO prendere l'array giusto con la codifica
-						player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
+				CardContainer cardContainer = player.getPersonalBoard().getCardContainer(developmentCardType);
+				int numberOfCards = cardContainer.getDevelopmentCards().size();
+				int[] victoryPointsPerCard= board.getGame().getData().getVictoryPointsPerCard(developmentCardType); 
+				player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPointsPerCard[numberOfCards]);
+			}
+		}
+	}
+	
+
+	private static void transformVentureIntoPoints(Board board) throws MyException,RemoteException {
+		for(Player player : board.getPlayers()){
+			if(EndGameCardController.check(player, DevelopmentCardType.venture)){
+				CardContainer cardContainer = player.getPersonalBoard().getCardContainer(DevelopmentCardType.venture);
+				for (DevelopmentCard ventureCard : cardContainer.getDevelopmentCards()) {
+					for (Bonus bonus : ventureCard.secondaryEffect) {
+					ImmediateBonus immediateBonus = (ImmediateBonus) bonus;
+					immediateBonus.getImmediateBonus(player);
 					}
 				}
 			}
 		}
 	}
-
+	
 	
 	private static String getWinner(Board board){
 		int maxVictoryPoints =-1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
