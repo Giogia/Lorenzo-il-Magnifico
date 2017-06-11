@@ -13,12 +13,14 @@ public class ZoneFamilyMemberHandler{
 	//Check if player has PositionFamilyMemberBonus, if so modify the value of the familyMember
 	public static void handle(ActionZone actionZone, FamilyMember familyMember) throws MyException {
 			ArrayList<PermanentBonus> playerBonus = familyMember.getPlayer().getPersonalBoard().getPermanentBonus();
-			if(playerBonus!=null){
+			if(playerBonus!=null && !playerBonus.isEmpty()){
 				PositionFamilyMemberBonus positionFamilyMemberBonus = null;
 				for (PermanentBonus permanentBonus : playerBonus) {
 					positionFamilyMemberBonus = (PositionFamilyMemberBonus) controlBonus(positionFamilyMemberBonus, permanentBonus);
 				}
-				familyMember.addValue(positionFamilyMemberBonus.getValue(actionZone, familyMember.getPlayer().getBoard()));
+				if (positionFamilyMemberBonus != null){
+					familyMember.addValue(positionFamilyMemberBonus.getValue(actionZone, familyMember.getPlayer().getBoard()));
+				}
 			}
 	}
 

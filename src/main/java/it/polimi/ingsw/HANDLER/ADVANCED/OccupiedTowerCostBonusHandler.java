@@ -11,7 +11,7 @@ public class OccupiedTowerCostBonusHandler {
 	
 	public static void handle(Coins occupiedTowerCost, Player player){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if (playerBonus != null){
+		if (playerBonus != null && !playerBonus.isEmpty()){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof OccupiedTowerCostBonus){
 					occupiedTowerCost.addAmount(((OccupiedTowerCostBonus) permanentBonus).getAddOccupiedCost());

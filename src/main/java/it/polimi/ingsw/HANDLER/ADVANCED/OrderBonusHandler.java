@@ -10,7 +10,7 @@ public class OrderBonusHandler {
 	
 	public static boolean handle(Player player, int turn){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if (playerBonus != null){
+		if (playerBonus != null && !playerBonus.isEmpty()){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof OrderBonus){
 					if (((OrderBonus) permanentBonus).getSkipAction()[turn]){

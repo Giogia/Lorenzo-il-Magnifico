@@ -19,13 +19,15 @@ public class PermanentFamilyMemberBonusHandler {
 
 	private static void handleAddBonus(Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		for (PermanentBonus permanentBonus : playerBonus) {
-			if (permanentBonus instanceof PermanentAddFamilyMemberBonus){
-				ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentAddFamilyMemberBonus) permanentBonus).getFamilyMembers();
-				for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
-					for (FamilyMember familyMember : player.getFamilyMembers()) {
-						if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
-							familyMember.addValue(bonusFamilyMember.getValue());
+		if (playerBonus != null && !playerBonus.isEmpty()){
+			for (PermanentBonus permanentBonus : playerBonus) {
+				if (permanentBonus instanceof PermanentAddFamilyMemberBonus){
+					ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentAddFamilyMemberBonus) permanentBonus).getFamilyMembers();
+					for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
+						for (FamilyMember familyMember : player.getFamilyMembers()) {
+							if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
+								familyMember.addValue(bonusFamilyMember.getValue());
+							}
 						}
 					}
 				}
@@ -35,13 +37,15 @@ public class PermanentFamilyMemberBonusHandler {
 
 	private static void handleMultBonus(Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		for (PermanentBonus permanentBonus : playerBonus) {
-			if (permanentBonus instanceof PermanentMultFamilyMemberBonus){
-				ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentMultFamilyMemberBonus) permanentBonus).getFamilyMembers();
-				for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
-					for (FamilyMember familyMember : player.getFamilyMembers()) {
-						if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
-							familyMember.multValue(bonusFamilyMember.getValue());
+		if (playerBonus != null && !playerBonus.isEmpty()){
+			for (PermanentBonus permanentBonus : playerBonus) {
+				if (permanentBonus instanceof PermanentMultFamilyMemberBonus){
+					ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentMultFamilyMemberBonus) permanentBonus).getFamilyMembers();
+					for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
+						for (FamilyMember familyMember : player.getFamilyMembers()) {
+							if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
+								familyMember.multValue(bonusFamilyMember.getValue());
+							}
 						}
 					}
 				}
@@ -51,13 +55,15 @@ public class PermanentFamilyMemberBonusHandler {
 
 	private static void handleValueBonus(Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		for (PermanentBonus permanentBonus : playerBonus) {
-			if (permanentBonus instanceof PermanentValueFamilyMemberBonus){
-				ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentValueFamilyMemberBonus) permanentBonus).getFamilyMembers();
-				for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
-					for (FamilyMember familyMember : player.getFamilyMembers()) {
-						if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
-							familyMember.addValue(bonusFamilyMember.getValue());
+		if (playerBonus != null && !playerBonus.isEmpty()){
+			for (PermanentBonus permanentBonus : playerBonus) {
+				if (permanentBonus instanceof PermanentValueFamilyMemberBonus){
+					ArrayList<FamilyMember> bonusFamilyMembers = ((PermanentValueFamilyMemberBonus) permanentBonus).getFamilyMembers();
+					for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
+						for (FamilyMember familyMember : player.getFamilyMembers()) {
+							if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
+								familyMember.addValue(bonusFamilyMember.getValue());
+							}
 						}
 					}
 				}

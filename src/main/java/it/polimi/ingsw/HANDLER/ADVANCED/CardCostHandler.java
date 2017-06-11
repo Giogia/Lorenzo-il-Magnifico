@@ -15,7 +15,7 @@ public class CardCostHandler {
 	
 	public static void handle(ArrayList<Resource> cost, Player player, DevelopmentCardType developmentCardType){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if(playerBonus!=null){
+		if(playerBonus!=null && !playerBonus.isEmpty()){
 			CardCostBonus[] cardCostBonus = new CardCostBonus[2];
 			for (PermanentBonus permanentBonus : playerBonus) {
 				cardCostBonus = controlBonus(cardCostBonus, permanentBonus, developmentCardType);

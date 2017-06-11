@@ -20,9 +20,11 @@ public class LoseVictoryPointsPerCostHandler {
 	
 	public static void handle(Player player){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		for (PermanentBonus permanentBonus : playerBonus) {
-			if (permanentBonus instanceof LoseVictoryPointsPerCostBonus){
-				modifyResources(player, (LoseVictoryPointsPerCostBonus) permanentBonus);
+		if (playerBonus != null && !playerBonus.isEmpty()){
+			for (PermanentBonus permanentBonus : playerBonus) {
+				if (permanentBonus instanceof LoseVictoryPointsPerCostBonus){
+					modifyResources(player, (LoseVictoryPointsPerCostBonus) permanentBonus);
+				}
 			}
 		}
 	}

@@ -18,7 +18,7 @@ public class PermanentResourceBonusHandler {
 	//Increase the amount of the resources of the ImmediateBonus
 	private static void handleAdd(ArrayList<Resource> resourceBonus, Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if (playerBonus != null){
+		if (playerBonus != null && !playerBonus.isEmpty()){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof PermanentAddResourceBonus){
 					ArrayList<Resource> permanentBonusResources = ((PermanentAddResourceBonus) permanentBonus).getResources();
@@ -37,7 +37,7 @@ public class PermanentResourceBonusHandler {
 	//Multiply the amount of the resources of the ImmediateBonus
 	private static void handleMult(ArrayList<Resource> resourceBonus, Player player) {
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if (playerBonus != null){
+		if (playerBonus != null && !playerBonus.isEmpty()){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof PermanentMultResourceBonus){
 					ArrayList<Resource> permanentBonusResources = ((PermanentMultResourceBonus) permanentBonus).getResources();
