@@ -41,6 +41,10 @@ public class Player implements Serializable{
 		return leaderCardInHand;
 	}
 	
+	public void addLeadercard(LeaderCard leaderCard){
+		leaderCardInHand.add(leaderCard);
+	}
+	
 	public void setFamilyMember(ArrayList<FamilyMember> familyMembers) {
 		this.familyMembers = familyMembers;
 	}

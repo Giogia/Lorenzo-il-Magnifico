@@ -271,6 +271,12 @@ public class Manager{
 		return choice;
 	}
 	
+	public static LeaderCard chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards){
+		LeaderCard choice = null;
+		//TODO chieder di scegliere
+		return choice;
+	}
+	
 	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles){
 		PersonalBonusTile choice = null;
 		//TODO chiedere di scegliere
