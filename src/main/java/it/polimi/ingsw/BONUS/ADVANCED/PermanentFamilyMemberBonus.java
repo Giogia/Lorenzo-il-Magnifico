@@ -7,11 +7,11 @@ import it.polimi.ingsw.GC_15.Player;
 
 public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	protected ArrayList<FamilyMember> familyMembers;
-	private String subtype;
+	private String subsubtype;
 	
 	public PermanentFamilyMemberBonus(String subtype, ArrayList<FamilyMember> familyMembers) {
 		super("PermanentFamilyMemberBonus");
-		this.subtype = subtype;
+		subsubtype = subtype;
 		this.familyMembers = familyMembers;
 	}
 	
@@ -19,10 +19,9 @@ public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 		return familyMembers;
 	}
 	
-	public String getSubtype() {
-		return subtype;
+	public String getSubsubtype() {
+		return subsubtype;
 	}
-	
 	
 	public abstract void addBonus(PermanentFamilyMemberBonus newBonus);
 	

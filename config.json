@@ -2,6 +2,26 @@
   "territories": [
     {
       "activationConditionHarvest": 1,
+      "period": 1,
+      "developmentCardType": "territory",
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Commercial Hub"
+    },
+    {
+      "activationConditionHarvest": 1,
       "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
@@ -18,13 +38,114 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "bosco"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Woods"
     },
     {
       "activationConditionHarvest": 1,
       "period": 3,
       "developmentCardType": "territory",
-      "name": "borgo"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Village"
+    },
+    {
+      "activationConditionHarvest": 1,
+      "period": 4,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Gravel Pit"
+    },
+    {
+      "activationConditionHarvest": 1,
+      "period": 5,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Forest"
     },
     {
       "activationConditionHarvest": 1,
@@ -49,19 +170,18 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "monastero"
-    },
-    {
-      "activationConditionHarvest": 1,
-      "period": 5,
-      "developmentCardType": "territory",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
               "amount": 1,
               "value": 1,
-              "resourceType": "wood"
+              "resourceType": "faithPoints"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "stones"
             }
           ],
           "subtype": "addResourceBonus",
@@ -69,19 +189,32 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "foresta"
-    },
-    {
-      "activationConditionHarvest": 1,
-      "period": 1,
-      "developmentCardType": "territory",
-      "name": "avamposto commerciale"
+      "name": "Monastery"
     },
     {
       "activationConditionHarvest": 1,
       "period": 5,
       "developmentCardType": "territory",
-      "name": "rocca"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Citadel"
     },
     {
       "activationConditionHarvest": 1,
@@ -101,31 +234,18 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "città"
-    },
-    {
-      "activationConditionHarvest": 1,
-      "period": 4,
-      "developmentCardType": "territory",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "stones"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
           "type1": "immediateBonus"
         }
       ],
-      "name": "cava di ghiaia"
+      "name": "City"
     },
     {
       "activationConditionHarvest": 2,
-      "period": 2,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -133,7 +253,7 @@
             {
               "amount": 1,
               "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "coins"
             }
           ],
           "subtype": "addResourceBonus",
@@ -141,7 +261,60 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "eremo"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Gold Mine"
+    },
+    {
+      "activationConditionHarvest": 2,
+      "period": 3,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Mountain Town"
     },
     {
       "activationConditionHarvest": 2,
@@ -166,7 +339,163 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "villaggio minerario"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Mining Town"
+    },
+    {
+      "activationConditionHarvest": 2,
+      "period": 3,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Rock Pit"
+    },
+    {
+      "activationConditionHarvest": 2,
+      "period": 4,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Estate"
+    },
+    {
+      "activationConditionHarvest": 2,
+      "period": 2,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Hermitage"
+    },
+    {
+      "activationConditionHarvest": 2,
+      "period": 5,
+      "developmentCardType": "territory",
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Manor House"
     },
     {
       "activationConditionHarvest": 2,
@@ -186,25 +515,82 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "ducato"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "wood"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Dukedom"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 5,
-      "developmentCardType": "territory",
-      "name": "maniero"
-    },
-    {
-      "activationConditionHarvest": 2,
-      "period": 4,
+      "activationConditionHarvest": 3,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
           "resources": [
             {
-              "amount": 2,
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 1,
               "value": 1,
               "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Trading Town"
+    },
+    {
+      "activationConditionHarvest": 3,
+      "period": 3,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "victoryPoints"
             },
             {
               "amount": 1,
@@ -217,73 +603,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "possedimento"
-    },
-    {
-      "activationConditionHarvest": 2,
-      "period": 3,
-      "developmentCardType": "territory",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "servants"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "villaggio montano"
-    },
-    {
-      "activationConditionHarvest": 2,
-      "period": 3,
-      "developmentCardType": "territory",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "wood"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "cava di pietra"
-    },
-    {
-      "activationConditionHarvest": 2,
-      "period": 1,
-      "developmentCardType": "territory",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "coins"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "miniera d\u0027oro"
-    },
-    {
-      "activationConditionHarvest": 3,
-      "period": 4,
-      "developmentCardType": "territory",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
@@ -294,7 +614,7 @@
             {
               "amount": 2,
               "value": 1,
-              "resourceType": "coins"
+              "resourceType": "wood"
             }
           ],
           "subtype": "addResourceBonus",
@@ -302,32 +622,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "castello"
-    },
-    {
-      "activationConditionHarvest": 3,
-      "period": 2,
-      "developmentCardType": "territory",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "militaryPoints"
-            },
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "servants"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "città fortificata"
+      "name": "Farm"
     },
     {
       "activationConditionHarvest": 3,
@@ -347,19 +642,18 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "colonia"
-    },
-    {
-      "activationConditionHarvest": 3,
-      "period": 1,
-      "developmentCardType": "territory",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            },
+            {
               "amount": 1,
               "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "wood"
             }
           ],
           "subtype": "addResourceBonus",
@@ -367,7 +661,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "santuario"
+      "name": "Colony"
     },
     {
       "activationConditionHarvest": 3,
@@ -387,13 +681,37 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "cava di marmo"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Marble Pit"
     },
     {
       "activationConditionHarvest": 3,
       "period": 6,
       "developmentCardType": "territory",
       "immediateEffect": [
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        },
         {
           "resources": [
             {
@@ -405,14 +723,28 @@
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
           "type1": "immediateBonus"
-        },
+        }
+      ],
+      "secondaryEffect": [
         {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
           "type1": "immediateBonus"
         }
       ],
-      "name": "provincia"
+      "name": "Province"
     },
     {
       "activationConditionHarvest": 3,
@@ -424,7 +756,65 @@
             {
               "amount": 1,
               "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
               "resourceType": "coins"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Sanctuary"
+    },
+    {
+      "activationConditionHarvest": 3,
+      "period": 4,
+      "developmentCardType": "territory",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "militaryPoints"
             },
             {
               "amount": 1,
@@ -437,24 +827,24 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "città mercantile"
+      "name": "Castle"
     },
     {
       "activationConditionHarvest": 3,
-      "period": 3,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
           "resources": [
             {
-              "amount": 1,
+              "amount": 2,
               "value": 1,
-              "resourceType": "victoryPoints"
+              "resourceType": "militaryPoints"
             },
             {
               "amount": 1,
               "value": 1,
-              "resourceType": "wood"
+              "resourceType": "servants"
             }
           ],
           "subtype": "addResourceBonus",
@@ -462,10 +852,292 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "tenuta"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Fortified Town"
     }
   ],
   "characters": [
+    {
+      "cost": {
+        "amount": 2,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Warlord"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        },
+        {
+          "cardType": "building",
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subsubtype": "AddCardCostBonus",
+          "subtype": "CardCostBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Stonemason"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        },
+        {
+          "cardType": "character",
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subsubtype": "AddCardCostBonus",
+          "subtype": "CardCostBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Dame"
+    },
+    {
+      "cost": {
+        "amount": 2,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Knight"
+    },
+    {
+      "cost": {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "harvestArea",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Farmer"
+    },
+    {
+      "cost": {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "productionArea",
+                "type": "actionZone"
+              },
+              2
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Artisan"
+    },
+    {
+      "cost": {
+        "amount": 2,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 1,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "towers": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              false
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              false
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              false
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              false
+            ]
+          ],
+          "councilPalace": true,
+          "subtype": "ActivationZoneBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Preacher"
+    },
     {
       "cost": {
         "amount": 3,
@@ -476,59 +1148,43 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
           "action": [
             [
               {
-                "developmentCardType": "building",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               4
             ],
             [
               {
-                "developmentCardType": "character",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               4
             ],
             [
               {
-                "developmentCardType": "venture",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               4
             ],
             [
               {
-                "developmentCardType": "territory",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               4
@@ -536,45 +1192,9 @@
           ],
           "type": "actionBonus",
           "type1": "immediateBonus"
-        },
-        {
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
         }
       ],
-      "name": "badessa"
-    },
-    {
-      "cost": {
-        "amount": 2,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 4,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "predicatore"
+      "name": "Abbess"
     },
     {
       "cost": {
@@ -582,70 +1202,13 @@
         "value": 1,
         "resourceType": "coins"
       },
-      "period": 1,
-      "developmentCardType": "character",
-      "name": "dama"
-    },
-    {
-      "cost": {
-        "amount": 2,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "cavaliere"
-    },
-    {
-      "cost": {
-        "amount": 3,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
-      "developmentCardType": "character",
-      "name": "contadino"
-    },
-    {
-      "cost": {
-        "amount": 3,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
-      "developmentCardType": "character",
-      "name": "artigiano"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
-      "developmentCardType": "character",
-      "name": "costruttore"
-    },
-    {
-      "cost": {
-        "amount": 2,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 1,
+      "period": 2,
       "developmentCardType": "character",
       "immediateEffect": [
         {
           "resources": [
             {
-              "amount": 3,
+              "amount": 2,
               "value": 1,
               "resourceType": "militaryPoints"
             }
@@ -653,9 +1216,171 @@
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
           "type1": "immediateBonus"
+        },
+        {
+          "action": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              6
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
         }
       ],
-      "name": "condottiero"
+      "name": "Captain"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 2,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              6
+            ]
+          ],
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Architect"
+    },
+    {
+      "cost": {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 2,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              6
+            ]
+          ],
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Patron"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 2,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              6
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Hero"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 2,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "harvestArea",
+                "type": "actionZone"
+              },
+              3
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Peasant"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 2,
+      "developmentCardType": "character",
+      "secondaryEffect": [
+        {
+          "positionBonus": [
+            [
+              {
+                "subType": "productionArea",
+                "type": "actionZone"
+              },
+              3
+            ]
+          ],
+          "subtype": "PositionFamilyMemberBonus",
+          "type1": "PermanentBonus"
+        }
+      ],
+      "name": "Scholar"
     },
     {
       "cost": {
@@ -679,17 +1404,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "messo papale"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "name": "fattore"
+      "name": "Papal Messenger"
     },
     {
       "cost": {
@@ -706,218 +1421,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "messo reale"
-    },
-    {
-      "cost": {
-        "amount": 3,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "character",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              6
-            ]
-          ],
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "coins"
-            }
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "mecenate"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "territory",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              6
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "militaryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "capitano"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "name": "studioso"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "building",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              6
-            ]
-          ],
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "stones"
-            },
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "stones"
-            }
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "architetto"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 2,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "venture",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              6
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "eroe"
-    },
-    {
-      "cost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 3,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "subType": "harvestArea",
-                "type": "actionZone"
-              },
-              4
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "cardinale"
+      "name": "Royal Messenger"
     },
     {
       "cost": {
@@ -929,7 +1433,7 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
-          "developmentCardType": "venture",
+          "developmentCardType": "territory",
           "resources": [
             {
               "amount": 2,
@@ -942,44 +1446,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "araldo"
-    },
-    {
-      "cost": {
-        "amount": 5,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 3,
-      "developmentCardType": "character",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "subType": "productionArea",
-                "type": "actionZone"
-              },
-              4
-            ]
-          ],
-          "type": "actionBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "vescovo"
+      "name": "Noble"
     },
     {
       "cost": {
@@ -991,74 +1458,20 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "developmentCardType": "building",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "character",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "venture",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              7
-            ],
-            [
-              {
-                "developmentCardType": "territory",
-                "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
-                "type": "actionZone"
-              },
-              7
-            ]
+          "developmentCardType": "building",
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
           ],
-          "type": "actionBonus",
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
           "type1": "immediateBonus"
         }
       ],
-      "name": "ambasciatore"
+      "name": "Governor"
     },
     {
       "cost": {
@@ -1083,7 +1496,106 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "cortigiana"
+      "name": "Paramour"
+    },
+    {
+      "cost": {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 3,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "developmentCardType": "venture",
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Herald"
+    },
+    {
+      "cost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 3,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "harvestArea",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Cardinal"
+    },
+    {
+      "cost": {
+        "amount": 5,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      "period": 3,
+      "developmentCardType": "character",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "productionArea",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Bishop"
     },
     {
       "cost": {
@@ -1112,7 +1624,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "generale"
+      "name": "General"
     },
     {
       "cost": {
@@ -1124,55 +1636,56 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
-          "developmentCardType": "territory",
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
+          "action": [
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              7
+            ],
+            [
+              {
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              7
+            ]
           ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
+          "type": "actionBonus",
           "type1": "immediateBonus"
-        }
-      ],
-      "name": "nobile"
-    },
-    {
-      "cost": {
-        "amount": 6,
-        "value": 1,
-        "resourceType": "coins"
-      },
-      "period": 3,
-      "developmentCardType": "character",
-      "immediateEffect": [
+        },
         {
-          "developmentCardType": "building",
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
           "type1": "immediateBonus"
         }
       ],
-      "name": "governatore"
+      "name": "Ambassador"
     }
   ],
   "ventures": [
     {
-      "militaryPointRequirement": 3,
+      "militaryPointRequirement": 0,
       "cost": [
         {
-          "amount": 2,
+          "amount": 4,
           "value": 1,
-          "resourceType": "militaryPoints"
+          "resourceType": "coins"
         }
       ],
       "period": 1,
@@ -1181,9 +1694,9 @@
         {
           "resources": [
             {
-              "amount": 3,
+              "amount": 5,
               "value": 1,
-              "resourceType": "coins"
+              "resourceType": "militaryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1191,26 +1704,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "campagna militare"
-    },
-    {
-      "militaryPointRequirement": 0,
-      "cost": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
               "amount": 4,
               "value": 1,
-              "resourceType": "servants"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1218,7 +1718,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "ospitare i mendicanti"
+      "name": "Hiring Recruits"
     },
     {
       "militaryPointRequirement": 0,
@@ -1255,26 +1755,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "riparare la chiesa"
-    },
-    {
-      "militaryPointRequirement": 0,
-      "cost": [
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
               "amount": 5,
               "value": 1,
-              "resourceType": "militaryPoints"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1282,76 +1769,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "ingaggiare reclute"
-    },
-    {
-      "militaryPointRequirement": 5,
-      "cost": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "venture",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 2,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "combattere le eresie"
-    },
-    {
-      "militaryPointRequirement": 4,
-      "cost": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "stones"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "alternativeCost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "militaryPoints"
-      },
-      "period": 1,
-      "developmentCardType": "venture",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 3,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "sostegno al vescovo"
+      "name": "Repairing the Church"
     },
     {
       "militaryPointRequirement": 0,
@@ -1383,7 +1801,21 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "costruire le mura"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Building the Walls"
     },
     {
       "militaryPointRequirement": 0,
@@ -1408,7 +1840,196 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "innalzare una statua"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Raising a Statue"
+    },
+    {
+      "militaryPointRequirement": 3,
+      "alternativeCost": {
+        "amount": 2,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 1,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Military Campaign"
+    },
+    {
+      "militaryPointRequirement": 0,
+      "cost": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "period": 1,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "servants"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Hosting Panhandlers"
+    },
+    {
+      "militaryPointRequirement": 5,
+      "alternativeCost": {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 1,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Fighting Heresies"
+    },
+    {
+      "militaryPointRequirement": 4,
+      "cost": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "coins"
+        },
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "alternativeCost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 1,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Support to the Bishop"
     },
     {
       "militaryPointRequirement": 0,
@@ -1435,39 +2056,21 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "ingaggiare soldati"
-    },
-    {
-      "militaryPointRequirement": 0,
-      "cost": [
+      "secondaryEffect": [
         {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "servants"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "period": 2,
-      "developmentCardType": "venture",
-      "immediateEffect": [
-        {
-          "action": [
-            [
-              {
-                "subType": "harvestArea"
-              },
-              4
-            ]
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
           ],
-          "type": "actionBonus",
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
           "type1": "immediateBonus"
         }
       ],
-      "name": "scavare canalizzazioni"
+      "name": "Hiring Soldiers"
     },
     {
       "militaryPointRequirement": 0,
@@ -1504,73 +2107,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "riparare l\u0027abbazia"
-    },
-    {
-      "militaryPointRequirement": 6,
-      "cost": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "period": 2,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 5,
+              "amount": 6,
               "value": 1,
-              "resourceType": "coins"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "differentCouncilPrivilege": 1,
-          "type": "councilPrivilegeBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "supporto al re"
-    },
-    {
-      "militaryPointRequirement": 7,
-      "cost": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "stones"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "alternativeCost": {
-        "amount": 4,
-        "value": 1,
-        "resourceType": "militaryPoints"
-      },
-      "period": 2,
-      "developmentCardType": "venture",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 3,
-              "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1578,39 +2121,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "sostegno al cardinale"
-    },
-    {
-      "militaryPointRequirement": 8,
-      "cost": [
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "period": 2,
-      "developmentCardType": "venture",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 5,
-              "value": 1,
-              "resourceType": "coins"
-            },
-            {
-              "amount": 1,
-              "value": 1,
-              "resourceType": "faithPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "crociata"
+      "name": "Repairing the Abbey"
     },
     {
       "militaryPointRequirement": 0,
@@ -1642,7 +2153,112 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "costruire i bastioni"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Building the Bastions"
+    },
+    {
+      "militaryPointRequirement": 6,
+      "alternativeCost": {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 2,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Support to the King"
+    },
+    {
+      "militaryPointRequirement": 0,
+      "cost": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "servants"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "period": 2,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "action": [
+            [
+              {
+                "subType": "harvestArea",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Improving the Canals"
     },
     {
       "militaryPointRequirement": 0,
@@ -1650,7 +2266,7 @@
         {
           "amount": 4,
           "value": 1,
-          "resourceType": "stones"
+          "resourceType": "wood"
         }
       ],
       "period": 2,
@@ -1669,7 +2285,162 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "accogliere gli stranieri"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Hosting Foreigners"
+    },
+    {
+      "militaryPointRequirement": 8,
+      "alternativeCost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 2,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Crusade"
+    },
+    {
+      "militaryPointRequirement": 7,
+      "cost": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "coins"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "alternativeCost": {
+        "amount": 4,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 2,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Support to the Cardinal"
+    },
+    {
+      "militaryPointRequirement": 0,
+      "cost": [
+        {
+          "amount": 8,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "period": 3,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 7,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 6,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Hiring Mercenaries"
     },
     {
       "militaryPointRequirement": 0,
@@ -1709,56 +2480,28 @@
           "action": [
             [
               {
-                "developmentCardType": "building",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               7
             ],
             [
               {
-                "developmentCardType": "character",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               7
             ],
             [
               {
-                "developmentCardType": "venture",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               7
             ],
             [
               {
-                "developmentCardType": "territory",
                 "subType": "Tower",
-                "positions": [
-                  null,
-                  null,
-                  null,
-                  null
-                ],
                 "type": "actionZone"
               },
               7
@@ -1768,26 +2511,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "riparare la cattedrale"
-    },
-    {
-      "militaryPointRequirement": 0,
-      "cost": [
-        {
-          "amount": 6,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 3,
+              "amount": 5,
               "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1795,7 +2525,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "commissionare arte sacra"
+      "name": "Repairing the Cathedral"
     },
     {
       "militaryPointRequirement": 0,
@@ -1827,15 +2557,29 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "costruire le torri"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Building the Towers"
     },
     {
       "militaryPointRequirement": 0,
       "cost": [
         {
-          "amount": 8,
+          "amount": 6,
           "value": 1,
-          "resourceType": "coins"
+          "resourceType": "wood"
         }
       ],
       "period": 3,
@@ -1844,9 +2588,9 @@
         {
           "resources": [
             {
-              "amount": 7,
+              "amount": 3,
               "value": 1,
-              "resourceType": "militaryPoints"
+              "resourceType": "faithPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1854,7 +2598,70 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "ingaggiare mercenari"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Promoting Sacred Art"
+    },
+    {
+      "militaryPointRequirement": 12,
+      "alternativeCost": {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 3,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 7,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Military Conquest"
     },
     {
       "militaryPointRequirement": 0,
@@ -1887,36 +2694,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "migliorare le strade"
-    },
-    {
-      "militaryPointRequirement": 12,
-      "cost": [
-        {
-          "amount": 6,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 3,
+              "amount": 5,
               "value": 1,
-              "resourceType": "wood"
-            },
-            {
-              "amount": 3,
-              "value": 1,
-              "resourceType": "stones"
-            },
-            {
-              "amount": 3,
-              "value": 1,
-              "resourceType": "coins"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1924,7 +2708,46 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "conquista militare"
+      "name": "Improving the Roads"
+    },
+    {
+      "militaryPointRequirement": 15,
+      "alternativeCost": {
+        "amount": 8,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      "period": 3,
+      "developmentCardType": "venture",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 8,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Sacred War"
     },
     {
       "militaryPointRequirement": 10,
@@ -1935,14 +2758,14 @@
           "resourceType": "wood"
         },
         {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "stones"
-        },
-        {
           "amount": 4,
           "value": 1,
           "resourceType": "coins"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "stones"
         }
       ],
       "alternativeCost": {
@@ -1966,26 +2789,13 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "sostegno al papa"
-    },
-    {
-      "militaryPointRequirement": 15,
-      "cost": [
-        {
-          "amount": 8,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "venture",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 4,
+              "amount": 10,
               "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "victoryPoints"
             }
           ],
           "subtype": "addResourceBonus",
@@ -1993,23 +2803,140 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "guerra santa"
+      "name": "Support to the Pope"
     }
   ],
   "buildings": [
     {
-      "activationConditionProduction": 1,
+      "activationConditionProduction": 5,
       "costs": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 1,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "developmentCardType": "building",
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Mint"
+    },
+    {
+      "activationConditionProduction": 5,
+      "costs": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 1,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "developmentCardType": "territory",
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Tax Office"
+    },
+    {
+      "activationConditionProduction": 6,
+      "costs": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "coins"
+        },
         {
           "amount": 2,
           "value": 1,
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 1,
       "developmentCardType": "building",
       "immediateEffect": [
         {
+          "resources": [
+            {
+              "amount": 6,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "developmentCardType": "venture",
           "resources": [
             {
               "amount": 1,
@@ -2022,7 +2949,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "residenza"
+      "name": "Triumphal Arch"
     },
     {
       "activationConditionProduction": 6,
@@ -2038,6 +2965,7 @@
           "resourceType": "wood"
         }
       ],
+      "tertiaryEffect": [],
       "period": 1,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2054,29 +2982,12 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "teatro"
-    },
-    {
-      "activationConditionProduction": 5,
-      "costs": [
+      "secondaryEffect": [
         {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
+          "developmentCardType": "character",
           "resources": [
             {
-              "amount": 5,
+              "amount": 1,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2086,71 +2997,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "esattoria"
-    },
-    {
-      "activationConditionProduction": 6,
-      "costs": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "coins"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 6,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "arco di trionfo"
-    },
-    {
-      "activationConditionProduction": 5,
-      "costs": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 5,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "zecca"
+      "name": "Theater"
     },
     {
       "activationConditionProduction": 4,
@@ -2166,6 +3013,7 @@
           "resourceType": "wood"
         }
       ],
+      "tertiaryEffect": [],
       "period": 1,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2182,26 +3030,35 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "falegnameria"
-    },
-    {
-      "activationConditionProduction": 2,
-      "costs": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 1,
-      "developmentCardType": "building",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 1,
+              "amount": -1,
               "value": 1,
-              "resourceType": "faithPoints"
+              "resourceType": "wood"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -2,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "coins"
             }
           ],
           "subtype": "addResourceBonus",
@@ -2209,7 +3066,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "cappella"
+      "name": "Carpenter\u0027s Shop"
     },
     {
       "activationConditionProduction": 3,
@@ -2225,6 +3082,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 1,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2241,26 +3099,35 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "tagliapietre"
-    },
-    {
-      "activationConditionProduction": 5,
-      "costs": [
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 2,
-      "developmentCardType": "building",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 6,
+              "amount": -1,
               "value": 1,
-              "resourceType": "victoryPoints"
+              "resourceType": "stones"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -2,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "coins"
             }
           ],
           "subtype": "addResourceBonus",
@@ -2268,42 +3135,72 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "gilda degli scultori"
+      "name": "Stonemason\u0027s Shop"
     },
     {
-      "activationConditionProduction": 4,
+      "activationConditionProduction": 2,
       "costs": [
         {
-          "amount": 1,
+          "amount": 2,
           "value": 1,
           "resourceType": "wood"
-        },
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 1,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Chapel"
+    },
+    {
+      "activationConditionProduction": 1,
+      "costs": [
         {
           "amount": 2,
           "value": 1,
           "resourceType": "stones"
         }
       ],
-      "period": 2,
-      "developmentCardType": "building",
-      "name": "gilda dei costruttori"
-    },
-    {
-      "activationConditionProduction": 4,
-      "costs": [
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 2,
+      "tertiaryEffect": [],
+      "period": 1,
       "developmentCardType": "building",
       "immediateEffect": [
         {
           "resources": [
             {
-              "amount": 5,
+              "amount": 1,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2313,7 +3210,26 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "gilda dei pittori"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Residence"
     },
     {
       "activationConditionProduction": 3,
@@ -2329,6 +3245,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 2,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2345,7 +3262,285 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "mercato"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -3,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Marketplace"
+    },
+    {
+      "activationConditionProduction": 3,
+      "costs": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 2,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -2,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Treasury"
+    },
+    {
+      "activationConditionProduction": 4,
+      "costs": [
+        {
+          "amount": 4,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 2,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -3,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 7,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Painters\u0027 Guild"
+    },
+    {
+      "activationConditionProduction": 5,
+      "costs": [
+        {
+          "amount": 4,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 2,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 6,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -3,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 7,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Sculptors\u0027 Guild"
+    },
+    {
+      "activationConditionProduction": 4,
+      "costs": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 2,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 6,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Stonemasons\u0027 Guild"
     },
     {
       "activationConditionProduction": 2,
@@ -2356,6 +3551,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 2,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2377,7 +3573,83 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "battistero"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "faithPoints"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Baptistery"
+    },
+    {
+      "activationConditionProduction": 1,
+      "costs": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 2,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Barracks"
     },
     {
       "activationConditionProduction": 6,
@@ -2398,6 +3670,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 2,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2414,24 +3687,16 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "fortezza"
-    },
-    {
-      "activationConditionProduction": 3,
-      "costs": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 2,
-      "developmentCardType": "building",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 4,
+              "amount": 2,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 2,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2441,11 +3706,16 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "tesoreria"
+      "name": "Stronghold"
     },
     {
-      "activationConditionProduction": 1,
+      "activationConditionProduction": 2,
       "costs": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "coins"
+        },
         {
           "amount": 1,
           "value": 1,
@@ -2457,13 +3727,14 @@
           "resourceType": "stones"
         }
       ],
-      "period": 2,
+      "tertiaryEffect": [],
+      "period": 3,
       "developmentCardType": "building",
       "immediateEffect": [
         {
           "resources": [
             {
-              "amount": 3,
+              "amount": 7,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2473,7 +3744,78 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "caserma"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 5,
+              "value": 1,
+              "resourceType": "coins"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Bank"
+    },
+    {
+      "activationConditionProduction": 4,
+      "costs": [
+        {
+          "amount": 4,
+          "value": 1,
+          "resourceType": "coins"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "wood"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 3,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 8,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -4,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "stones"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Fair"
     },
     {
       "activationConditionProduction": 1,
@@ -2494,6 +3836,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 3,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2510,34 +3853,11 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "giardino"
-    },
-    {
-      "activationConditionProduction": 2,
-      "costs": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "coins"
-        },
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "building",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 7,
+              "amount": 3,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2547,7 +3867,126 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "banca"
+      "name": "Garden"
+    },
+    {
+      "activationConditionProduction": 5,
+      "costs": [
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "coins"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 4,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 3,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 9,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "differentCouncilPrivilege": 1,
+          "type": "councilPrivilegeBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Fortress"
+    },
+    {
+      "activationConditionProduction": 6,
+      "costs": [
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "coins"
+        },
+        {
+          "amount": 3,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 3,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 9,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "coins"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": 4,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Palace"
     },
     {
       "activationConditionProduction": 1,
@@ -2563,6 +4002,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 3,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2584,7 +4024,105 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "basilica"
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "wood"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        },
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "stones"
+            },
+            {
+              "amount": 2,
+              "value": 1,
+              "resourceType": "faithPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Church"
+    },
+    {
+      "activationConditionProduction": 3,
+      "costs": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "servants"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "wood"
+        },
+        {
+          "amount": 2,
+          "value": 1,
+          "resourceType": "stones"
+        }
+      ],
+      "tertiaryEffect": [],
+      "period": 3,
+      "developmentCardType": "building",
+      "immediateEffect": [
+        {
+          "resources": [
+            {
+              "amount": 7,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "secondaryEffect": [
+        {
+          "resources": [
+            {
+              "amount": -1,
+              "value": 1,
+              "resourceType": "servants"
+            },
+            {
+              "amount": 3,
+              "value": 1,
+              "resourceType": "militaryPoints"
+            },
+            {
+              "amount": 1,
+              "value": 1,
+              "resourceType": "victoryPoints"
+            }
+          ],
+          "subtype": "addResourceBonus",
+          "type": "resourceBonus",
+          "type1": "immediateBonus"
+        }
+      ],
+      "name": "Military Academy"
     },
     {
       "activationConditionProduction": 2,
@@ -2600,6 +4138,7 @@
           "resourceType": "stones"
         }
       ],
+      "tertiaryEffect": [],
       "period": 3,
       "developmentCardType": "building",
       "immediateEffect": [
@@ -2621,29 +4160,11 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "cattedrale"
-    },
-    {
-      "activationConditionProduction": 4,
-      "costs": [
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "coins"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "building",
-      "immediateEffect": [
+      "secondaryEffect": [
         {
           "resources": [
             {
-              "amount": 8,
+              "amount": 1,
               "value": 1,
               "resourceType": "victoryPoints"
             }
@@ -2653,118 +4174,7 @@
           "type1": "immediateBonus"
         }
       ],
-      "name": "fiera"
-    },
-    {
-      "activationConditionProduction": 3,
-      "costs": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "servants"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 7,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "accademia militare"
-    },
-    {
-      "activationConditionProduction": 6,
-      "costs": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "coins"
-        },
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 9,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "palazzo"
-    },
-    {
-      "activationConditionProduction": 5,
-      "costs": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "coins"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "wood"
-        },
-        {
-          "amount": 4,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "period": 3,
-      "developmentCardType": "building",
-      "immediateEffect": [
-        {
-          "resources": [
-            {
-              "amount": 9,
-              "value": 1,
-              "resourceType": "victoryPoints"
-            }
-          ],
-          "subtype": "addResourceBonus",
-          "type": "resourceBonus",
-          "type1": "immediateBonus"
-        }
-      ],
-      "name": "castelletto"
+      "name": "Cathedral"
     }
   ],
   "excommunicationTiles": [
@@ -2909,7 +4319,7 @@
           {
             "amount": 1,
             "value": 1,
-            "resourceType": "militaryPoints"
+            "resourceType": "coins"
           }
         ],
         "subtype": "addResourceBonus",
@@ -2935,7 +4345,7 @@
           {
             "amount": 1,
             "value": 1,
-            "resourceType": "militaryPoints"
+            "resourceType": "servants"
           }
         ],
         "subtype": "addResourceBonus",
@@ -3141,12 +4551,14 @@
   "victoryPointsForTerritoryCard": [
     0,
     0,
+    0,
     1,
     4,
     10,
     20
   ],
   "victoryPointsForCharacterCard": [
+    0,
     1,
     3,
     6,
@@ -3163,214 +4575,214 @@
     18
   ],
   "towerTerritoryPositionBonus": [
-  null,
-  null,
-  [
-    {
-      "resources": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "wood"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ]
-  ],
-  "towerCharacterPositionBonus": [
-  null,
-  null,
-  [
-    {
-      "resources": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "stones"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ]
-],
-  "towerBuildingPositionBonus": [
-  null,
-  null,
-  [
-    {
-      "resources": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ]
-],
-  "towerVenturePositionBonus": [
-  null,
-  null,
-  [
-    {
-      "resources": [
-        {
-          "amount": 1,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ]
-],
-  "marketPositionBonus": [
-  [
-    {
-      "resources": [
-        {
-          "amount": 5,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 5,
-          "value": 1,
-          "resourceType": "servants"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "resources": [
-        {
-          "amount": 3,
-          "value": 1,
-          "resourceType": "militaryPoints"
-        },
-        {
-          "amount": 2,
-          "value": 1,
-          "resourceType": "coins"
-        }
-      ],
-      "subtype": "addResourceBonus",
-      "type": "resourceBonus",
-      "type1": "immediateBonus"
-    }
-  ],
-  [
-    {
-      "differentCouncilPrivilege": 2,
-      "type": "councilPrivilegeBonus",
-      "type1": "immediateBonus"
-    }
-  ]
-],
-  "councilPalaceBonus": [
-  {
-    "resources": [
+    null,
+    null,
+    [
       {
-        "amount": 1,
-        "value": 1,
-        "resourceType": "coins"
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "wood"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
       }
     ],
-    "subtype": "addResourceBonus",
-    "type": "resourceBonus",
-    "type1": "immediateBonus"
-  },
-  {
-    "differentCouncilPrivilege": 1,
-    "type": "councilPrivilegeBonus",
-    "type1": "immediateBonus"
-  }
-],
+    [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "wood"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ]
+  ],
+  "towerCharacterPositionBonus": [
+    null,
+    null,
+    [
+      {
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "stones"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "stones"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ]
+  ],
+  "towerBuildingPositionBonus": [
+    null,
+    null,
+    [
+      {
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "militaryPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "militaryPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ]
+  ],
+  "towerVenturePositionBonus": [
+    null,
+    null,
+    [
+      {
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ]
+  ],
+  "marketPositionBonus": [
+    [
+      {
+        "resources": [
+          {
+            "amount": 5,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "resources": [
+          {
+            "amount": 5,
+            "value": 1,
+            "resourceType": "servants"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "resources": [
+          {
+            "amount": 3,
+            "value": 1,
+            "resourceType": "militaryPoints"
+          },
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    [
+      {
+        "differentCouncilPrivilege": 2,
+        "type": "councilPrivilegeBonus",
+        "type1": "immediateBonus"
+      }
+    ]
+  ],
+  "councilPalaceBonus": [
+    {
+      "differentCouncilPrivilege": 1,
+      "type": "councilPrivilegeBonus",
+      "type1": "immediateBonus"
+    },
+    {
+      "resources": [
+        {
+          "amount": 1,
+          "value": 1,
+          "resourceType": "coins"
+        }
+      ],
+      "subtype": "addResourceBonus",
+      "type": "resourceBonus",
+      "type1": "immediateBonus"
+    }
+  ],
   "harvestAreaPositionBonus": [
-  0,
-  -3
+    0,
+    -3
   ],
   "productionAreaPositionBonus": [
-  0,
-  -3
+    0,
+    -3
   ]
 }

@@ -45,6 +45,16 @@ public class Create {
 		return generic;
 	}
 	
+	public static ArrayList<ArrayList<ImmediateBonus>> genericArrayListArrayList(int numOfPosition){
+		ArrayList<ArrayList<ImmediateBonus>> a = new ArrayList<ArrayList<ImmediateBonus>>();
+		for (int i = 0; i< numOfPosition; i++){
+			System.out.println("------------nuova posizione--------------");
+			ArrayList<ImmediateBonus> a2 = createArrayImmediateBonus();
+			a.add(a2);
+		}
+		return a;
+	}
+	
 	public static ArrayList<ResourceBonus> createCouncilPrivileges(){
 		boolean vuoleUnAltroBonus=true;
 		String risposta;
@@ -138,7 +148,7 @@ public class Create {
 		int requirement = in.nextInt();
 		System.out.println("Insert card costs");
 		ArrayList<Resource> costs = createArrayResource();
-		System.out.println("Does the card have an alternative cost?");
+		System.out.println("Does the card have an alternative cost?( si / no)");
 		String risposta = in2.nextLine();
 		if ("si".equals(risposta)){
 			MilitaryPoints alternativeCosts = createMilitaryPoints();

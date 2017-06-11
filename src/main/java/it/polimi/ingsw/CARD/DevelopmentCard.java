@@ -31,6 +31,9 @@ public abstract class DevelopmentCard extends Card{
 				description = description + immediateEffect.get(i).getDescription() + "\n";
 			}
 		}
+		if (secondaryEffect != null){
+			description += "Bonus from secondary effect: \n";
+		}
 		return description;
 	}
 }
