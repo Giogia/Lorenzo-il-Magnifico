@@ -13,7 +13,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -207,11 +207,11 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	public void catchException(String message) {
 		System.out.println(message + "\n");
 	}
-
-
-	@Override
-	public int askForExcommunication(ExcommunicationTile excommunicationTile) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public void showDices(ArrayList<Dice> dices){
+		for (Dice dice : dices) {
+			System.out.println(dice.getDescription());
+		}
 	}
 }
+

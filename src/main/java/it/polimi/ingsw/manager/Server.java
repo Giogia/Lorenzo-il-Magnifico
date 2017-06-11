@@ -39,7 +39,7 @@ public class Server {
 		Server server = new Server();
 		System.out.println("START RMI");
 		server.startRMI();
-		System.out.println("START SOCKET----------TODO");
+		System.out.println("START SOCKET");
 		//TODO: to implement
 		server.startSocket();
 	}

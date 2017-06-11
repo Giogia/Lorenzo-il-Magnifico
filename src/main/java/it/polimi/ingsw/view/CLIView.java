@@ -13,6 +13,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
@@ -210,10 +211,17 @@ public class CLIView implements ClientRMICallbackRemote{
 	}
 
 
-	@Override
+	
 	public int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public void showDices(ArrayList<Dice> dices) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

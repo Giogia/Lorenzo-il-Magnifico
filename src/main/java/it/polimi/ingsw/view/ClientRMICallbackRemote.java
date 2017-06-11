@@ -9,13 +9,13 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
-public interface ClientRMICallbackRemote extends Remote, View {
+public interface ClientRMICallbackRemote extends Remote {
 	
 	void startTurn(String playerName) throws RemoteException;
 	
@@ -56,5 +56,6 @@ public interface ClientRMICallbackRemote extends Remote, View {
 
 	void catchException(String message) throws RemoteException;
 	
-	int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException;
+	void showDices(ArrayList<Dice> dices) throws RemoteException;
 }
+

@@ -31,7 +31,7 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board) throws RemoteException, MyException{
+	public static void handle(Board board) throws RemoteException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
@@ -40,7 +40,7 @@ private static EndGameHandler istanza = null;
 		transformCardIntoPoints(board, DevelopmentCardType.character);
 		transformVentureIntoPoints(board);
 		excommunicationMalus(board);
-		ConnectionManagerImpl.hasWon(getWinner(board));
+		ConnectionManagerImpl.hasWon(getWinner(board), board.getPlayers());
 	}
 
 	private static void excommunicationMalus(Board board) {
@@ -49,6 +49,7 @@ private static EndGameHandler istanza = null;
 			LoseVictoryPointsPerCostHandler.handle(player);
 		}
 	}
+
 
 	private static void transformResourcesIntoPoints(Board board) {
 		for(Player player : board.getPlayers()){
@@ -75,14 +76,19 @@ private static EndGameHandler istanza = null;
 	}
 	
 
-	private static void transformVentureIntoPoints(Board board) throws MyException,RemoteException {
+	private static void transformVentureIntoPoints(Board board) throws RemoteException {
 		for(Player player : board.getPlayers()){
 			if(EndGameCardController.check(player, DevelopmentCardType.venture)){
 				CardContainer cardContainer = player.getPersonalBoard().getCardContainer(DevelopmentCardType.venture);
 				for (DevelopmentCard ventureCard : cardContainer.getDevelopmentCards()) {
 					for (Bonus bonus : ventureCard.secondaryEffect) {
 					ImmediateBonus immediateBonus = (ImmediateBonus) bonus;
-					immediateBonus.getImmediateBonus(player);
+					try {
+						immediateBonus.getImmediateBonus(player);
+					} catch (MyException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					}
 				}
 			}
