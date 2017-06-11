@@ -62,9 +62,9 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	@Override
 	public int turnChoice() {
 		System.out.println("What action do you want to do?\n");
-		System.out.println("1) Place a family member \n2) Activate leader card \n3) Discard leader card \n4) Activate "
-				+ "effect of a leader card \n5) Stats \n6) Pass the turn\n");
-		return checkInputError(1, 6);
+		System.out.println("1) Place a family member \n2) See leader cards in your hand \n3) Activate "
+				+ "effect of a leader card \n4) Stats \n5) Pass the turn\n");
+		return checkInputError(1, 5);
 	}
 
 	@Override

@@ -55,22 +55,18 @@ public class Manager{
 				break;
 			
 			case 2:
-				activationLeaderCardManager(player);
+				leaderCardManager(player);
 				break;
 		
 			case 3:
-				discardLeaderCardManager(player);
-				break;
-		
-			case 4:
 				activationLeaderCardEffectManager(player);
 				break;
 				
-			case 5:
+			case 4:
 				askForInformation(player);
 				break;
 		
-			case 6:
+			case 5:
 				if (PassTurnHandler.handle(player)){
 					return;
 				}
@@ -80,6 +76,11 @@ public class Manager{
 			}
 		}
 			
+	}
+
+	private static void leaderCardManager(Player player) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	private static void askForInformation(Player player) throws RemoteException {
