@@ -10,6 +10,7 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.VaticanReport;
+import it.polimi.ingsw.HANDLER.ADVANCED.PersonalBonusTileDraftHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public final class StartGameHandler {
@@ -29,7 +30,8 @@ public final class StartGameHandler {
 		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);
-		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
+		//setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
+		PersonalBonusTileDraftHandler.handle(board);
 	}
 	
 	
