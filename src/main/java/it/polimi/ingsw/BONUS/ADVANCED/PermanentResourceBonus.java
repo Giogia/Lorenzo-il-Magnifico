@@ -8,11 +8,11 @@ import it.polimi.ingsw.RESOURCE.Resource;
 
 public abstract class PermanentResourceBonus extends PermanentBonus {
 	protected ArrayList<Resource> resources;
-	private String subtype;
+	private String subsubtype;
 
 	public PermanentResourceBonus(String type, ArrayList<Resource> resources) {
 		super("PermanentResourceBonus");
-		this.subtype = type;
+		subsubtype = type;
 		this.resources = resources;
 	}
 	
@@ -20,8 +20,8 @@ public abstract class PermanentResourceBonus extends PermanentBonus {
 		return resources;
 	}
 	
-	public String getSubtype() {
-		return subtype;
+	public String getSubsubtype() {
+		return subsubtype;
 	}
 	
 	public abstract PermanentResourceBonus createClone();

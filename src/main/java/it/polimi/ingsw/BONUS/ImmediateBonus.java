@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public abstract class ImmediateBonus extends Bonus {
-	private String type;
+	private String type; 
 	
 	public ImmediateBonus(String type) {
 		super("immediateBonus");

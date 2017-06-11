@@ -10,7 +10,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public class AddCardCostBonus extends CardCostBonus{
 
 	public AddCardCostBonus(DevelopmentCardType cardType, ArrayList<Resource> resources) {
-		super(cardType, resources);
+		super(cardType, resources, "AddCardCostBonus");
 	}
 	
 	@Override

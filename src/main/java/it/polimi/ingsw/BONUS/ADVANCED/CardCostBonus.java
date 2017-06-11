@@ -10,14 +10,20 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public abstract class CardCostBonus extends PermanentBonus {
 	protected DevelopmentCardType cardType;
 	protected ArrayList<Resource> resources;
+	private String subsubtype;
 	
-	public CardCostBonus(DevelopmentCardType cardType, ArrayList<Resource> resources){
+	public CardCostBonus(DevelopmentCardType cardType, ArrayList<Resource> resources, String type){
 		super("CardCostBonus");
 		this.cardType = cardType;
 		this.resources = new ArrayList<>();
 		this.resources.addAll(resources);
+		subsubtype = type;
 	}
 
+	public String getSubsubtype() {
+		return subsubtype;
+	}
+	
 	public DevelopmentCardType getCardType() {
 		return cardType;
 	}
