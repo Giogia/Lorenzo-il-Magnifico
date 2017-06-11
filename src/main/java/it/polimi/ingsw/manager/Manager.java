@@ -25,6 +25,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
 import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
@@ -266,6 +267,12 @@ public class Manager{
 
 	public static ArrayList<Bonus> chooseEffect(DevelopmentCard developmentCard){
 		ArrayList<Bonus> choice= new ArrayList<>();
+		//TODO chiedere di scegliere
+		return choice;
+	}
+	
+	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles){
+		PersonalBonusTile choice = null;
 		//TODO chiedere di scegliere
 		return choice;
 	}
