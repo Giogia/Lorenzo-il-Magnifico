@@ -25,6 +25,7 @@ import it.polimi.ingsw.BONUS.MultiplyResourceBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus;
 import it.polimi.ingsw.BONUS.ResourceValueBonus;
+import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
@@ -34,7 +35,7 @@ import it.polimi.ingsw.RESOURCE.Stones;
 import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
-public class ConfigurationFileHandler {
+public class ConfigurationFileHandler {	
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
@@ -114,12 +115,13 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t6)
 					.create();
 			
-			//return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
+			//return gsonToDeserialize.fromJson(inJson, Territory.class);
 			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
 			
 		} catch (Exception e){
 			e.printStackTrace();
 			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+			//return new Territory("", 2, 1, null, null);
 		}
 	}
 }

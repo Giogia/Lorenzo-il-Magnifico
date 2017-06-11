@@ -1,11 +1,30 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.*;
+import it.polimi.ingsw.BONUS.ADVANCED.ActivationZoneBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.AddCardCostBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.CanFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.CopyBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.EndGameCardBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerCostBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerResourceBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.OrderBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentAddFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentAddResourceBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentMultFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
 import it.polimi.ingsw.GC_15.*;
@@ -88,6 +107,26 @@ public class Create {
 		return new Character(nome, cost, periodo, immediateEffects, secondaryEffects);
 	}
 	
+	private static ArrayList<Bonus> createArrayBonus() {
+		System.out.println("La carta ha bonus permanenti?(si/ no)");
+		String r = in2.nextLine();
+		if (r.equals("no")){
+			return null;
+		}
+		boolean bool= true;
+		String risposta;
+		ArrayList<Bonus> bonuses = new ArrayList<>();
+		while(bool){
+			bonuses.add(createBonus());
+			System.out.println("vuoi aggiungere un altro bonus? (si/no)");
+			risposta = in2.nextLine();
+			if(risposta.equals("no")){
+				bool = false;
+			}
+		}
+		return bonuses;
+	}
+
 	public static Venture createVenture(){
 		System.out.println("Insert name: ");
 		String nome = in2.nextLine();
@@ -139,10 +178,513 @@ public class Create {
 		return bonusScelti;
 	}
 	
-	private static ArrayList<Bonus> createArrayBonus(){
-		return null; //TODO!!!
+	private static Bonus createBonus(){
+		Bonus bonus = null;
+		System.out.println("Which typer of bonus should it be?");
+		System.out.println("1) Action Bonus");
+		System.out.println("2) Add Family Member Bonus");
+		System.out.println("3) Multiply Family Member Bonus");
+		System.out.println("4) Family Member Value Bonus");
+		System.out.println("5) Resource Per DevelopmentCard Bonus");
+		System.out.println("6) Copy Bonus");
+		System.out.println("7) Add Resource Bonus");
+		System.out.println("8) Multiply Resource Bonus");
+		System.out.println("9) Council Privilege Bonus");
+		System.out.println("10) Resource Per Resource");
+		
+		System.out.println("----PERMA------");
+		System.out.println("11) ActivationZoneBonus");
+		System.out.println("12) Add CardCostBonus");
+		System.out.println("13) Can Family Member Bonus");
+		System.out.println("14) End Game Card Bonus");
+		System.out.println("15) Lose Victory Points per cost bonus");
+		System.out.println("16) Lose victory points per resource bonus");
+		System.out.println("17) multiply card cost bonus");
+		System.out.println("18) occupied tower cost bonus");
+		System.out.println("19) order bonus");
+		System.out.println("20) permanent add family member bonus");
+		System.out.println("21) permanent add resource bonus");
+		System.out.println("22) permanent mult family member bonus");
+		System.out.println("23) permanent mult resource bonus");
+		System.out.println("24) permanent value family member bonus");
+		System.out.println("25) position family member bonus");
+		System.out.println("26) resource per missed excommunication bonus");
+		System.out.println("27) territory card requirement bonus");
+		System.out.println("28) ResourceValueBonus");
+		
+		int answer = in.nextInt();
+		switch (answer) {
+		case 1:	
+			bonus = createActionBonus();
+			break;
+
+		case 2:
+			bonus = createAddFamilyMemberBonus();
+			break;
+		
+		case 3:
+			bonus = createMultiplyFamilyMemberBonus();
+			break;
+			
+		case 4:
+			bonus = createFamilyMemberValueBonus();
+			break;
+		
+		case 5:
+			bonus = createResourcePerDevelopmentCardBonus();
+			break;
+			
+		case 6:
+			bonus = createCopyBonus();
+			break;
+		
+		case 7:
+			bonus = createAddResourceBonus();
+			break;
+			
+		case 8:
+			bonus = createMultiplyResourceBonus();
+			break;
+			
+		case 9:
+			bonus = createCouncilPrivilegeBonus();
+			break;
+		
+		case 10:
+			bonus = createResourcePerResourceBonus();
+			break;
+		
+		case 11:
+			bonus = createActivationZoneBonus();
+			break;
+			
+		case 12:
+			bonus = createAddCardCostBonus();
+			break;
+			
+		case 13:
+			bonus = createCanFamilyMemberBonus();
+			break;
+			
+		case 14:
+			bonus= createEdGameCardBonus();
+			break;
+			
+		case 15:
+			bonus= createLoseVictoryPointsPerCostBonus();
+			break;
+		
+		case 16:
+			bonus= createLoseVictoryPointsPerResourceBonus();
+			break;
+			
+		case 17:
+			bonus= createMultiplyCardCostBonus();
+			break;
+			
+		case 18:
+			bonus= createOccupiedTowerCostBonus();
+			break;
+			
+		case 19:
+			bonus= createOrderBonus();
+			break;
+			
+		case 20:
+			bonus= createPermanentAddFamilyMemberBonus();
+			break;
+			
+		case 21:
+			bonus = createPermanentAddResourceBonus();
+			break;
+			
+		case 22:
+			bonus = createPermanentMultFamilyMemberBonus();
+			break;
+			
+		case 23:
+			bonus = createPermanentMultResourceBonus();
+			break;
+			
+		case 24:
+			bonus = createPermanentValueFamilyMemberBonus();
+			break;
+			
+		case 25:
+			bonus = createPositionFamilyMemberBonus();
+			break;
+			
+		case 26:
+			bonus= createResourcePerMissedExcommunicationBonus();
+			break;
+			
+		case 27:
+			bonus= createTerritoryCardRequirementBonus();
+			break;
+			
+		case 28:
+			bonus= createResourceValueBonus();
+		}
+		
+		return bonus;
 	}
 	
+	private static Bonus createCopyBonus() {
+		return new CopyBonus();
+	}
+
+	private static Bonus createTerritoryCardRequirementBonus() {
+		boolean needRequirement = false;
+		return new TerritoryCardRequirementBonus(needRequirement);
+	}
+
+	private static Bonus createResourcePerMissedExcommunicationBonus() {
+		return new ResourcePerMissedExcommunicationBonus(createArrayResource());
+	}
+
+	private static Bonus createPositionFamilyMemberBonus() {
+		return new PositionFamilyMemberBonus(createHashmapActionZoneInteger());
+	}
+	
+	public static HashMap<ActionZone, Integer> createHashmapActionZoneInteger(){
+		HashMap<ActionZone, Integer> hashmap = new HashMap<>();
+		String risp;
+		boolean bool = true;
+		while(bool){
+			ActionZone zona = null;
+			Integer i;
+			System.out.println("in quale zona deve esserci il bonus?");
+			System.out.println("1) Torre verde");
+			System.out.println("2) Torre blu");
+			System.out.println("3) Torre gialla");
+			System.out.println("4) Torre viola");
+			System.out.println("5) Harvest");
+			System.out.println("6) Production");
+			
+			int risposta = in.nextInt();
+			switch (risposta) {
+			case 1:
+				zona = new Tower(DevelopmentCardType.territory);
+				break;
+
+			case 2:
+				zona = new Tower(DevelopmentCardType.character);
+				break;
+				
+			case 3:
+				zona = new Tower(DevelopmentCardType.building);
+				break;
+			
+			case 4:
+				zona = new Tower(DevelopmentCardType.venture);
+				break;
+				
+			case 5:
+				zona = new HarvestArea();
+				break;
+			
+			case 6: 
+				zona = new ProductionArea();
+				break;
+			}
+			System.out.println("Di quanto vuoi aumentare il familiare?");
+			i = in.nextInt();
+			hashmap.put(zona, i);
+			System.out.println("vuoi inserire un'altra zona?(si / no)");
+			risp = in2.nextLine();
+			if (risp.equals("si")){
+				bool=true;
+			}else{
+				bool=false;
+			}
+		}
+		return hashmap;
+	}
+
+	private static Bonus createPermanentValueFamilyMemberBonus() {
+		return new PermanentValueFamilyMemberBonus(createFamilyMembers());
+	}
+
+	private static Bonus createPermanentMultResourceBonus() {
+		return new PermanentMultResourceBonus(createArrayResource());
+	}
+
+	private static Bonus createPermanentMultFamilyMemberBonus() {
+		return new PermanentMultFamilyMemberBonus(createFamilyMembers());
+	}
+
+	private static Bonus createPermanentAddResourceBonus() {
+		return new PermanentAddResourceBonus(createArrayResource());
+	}
+
+	private static Bonus createPermanentAddFamilyMemberBonus() {
+		return new PermanentAddFamilyMemberBonus(createFamilyMembers());
+	}
+
+	private static Bonus createOrderBonus() {
+		boolean[] skipAction = new boolean[4];
+		String risposta = in2.nextLine();
+		for (int i=0 ; i< 4; i++){
+			System.out.println("vuoi saltare "+ i+" turno? si/no");
+			if (risposta.equals("si")){
+				skipAction[i]=true;
+			}else{
+				skipAction[i]=false;
+			}
+		}
+		return new OrderBonus(skipAction);
+	}
+
+	private static Bonus createOccupiedTowerCostBonus() {
+		int addOccupiedCost;
+		int multOccupiedCost;
+		System.out.println("Di quanto vuoi aumentare il costo della torre occupata?");
+		addOccupiedCost= in.nextInt();
+		System.out.println("Di quanto vuoi moltiplicare il costo della torre occupata?");
+		multOccupiedCost = in.nextInt();
+		return new OccupiedTowerCostBonus(addOccupiedCost, multOccupiedCost);
+	}
+
+	private static Bonus createMultiplyCardCostBonus() {
+		return new MultiplyCardCostBonus(createDevelopmentCardType(), createArrayResource());
+		
+	}
+
+	private static DevelopmentCardType createDevelopmentCardType() {
+		System.out.println("Quale development card type scegli? ");
+		System.out.println("1) territorio");
+		System.out.println("2) personaggio");
+		System.out.println("3) edeifici");
+		System.out.println("4) imprese");
+		int risposta = in.nextInt();
+		
+		switch (risposta) {
+		case 1:
+			return DevelopmentCardType.territory;
+
+		case 2:
+			return DevelopmentCardType.character;
+			
+		case 3:
+			return DevelopmentCardType.building;
+			
+		case 4:
+			return DevelopmentCardType.venture;
+		}
+		return null;
+	}
+
+	private static Bonus createLoseVictoryPointsPerResourceBonus() {
+		return new LoseVictoryPointsPerResourceBonus(createArrayResource());
+	}
+
+	private static Bonus createLoseVictoryPointsPerCostBonus() {
+		return new LoseVictoryPointsPerCostBonus(createDevelopmentCardType(), createArrayResource());
+	}
+
+	private static Bonus createEdGameCardBonus() {
+		return new EndGameCardBonus(createHashmapDevelopmentCardTypeBoolean());
+	}
+
+	private static HashMap<DevelopmentCardType, Boolean> createHashmapDevelopmentCardTypeBoolean() {
+		HashMap<DevelopmentCardType, Boolean> hashmap = new HashMap<>();
+		String risp;
+		boolean bool = true;
+		while(bool){
+			DevelopmentCardType type = null;
+			String i;
+			System.out.println("Quale development Card vuoi??");
+			System.out.println("1) Territorio");
+			System.out.println("2) Personaggio");
+			System.out.println("3) Edificio");
+			System.out.println("4) Impresa");
+			
+			int risposta = in.nextInt();
+			switch (risposta) {
+			case 1:
+				type = DevelopmentCardType.territory;
+				break;
+
+			case 2:
+				type = DevelopmentCardType.character;
+				break;
+				
+			case 3:
+				type = DevelopmentCardType.building;
+				break;
+			
+			case 4:
+				type = DevelopmentCardType.venture;
+				break;
+			}
+			System.out.println("puoi prendere il bonus della posizione?");
+			i = in2.nextLine();
+			Boolean bolean = false;
+			if (i.equals("si")){
+				bolean = true;
+			}
+			hashmap.put(type, bolean);
+			System.out.println("vuoi inserire un'altra development card type?(si / no)");
+			risp = in2.nextLine();
+			if (risp.equals("si")){
+				bool=true;
+			}else{
+				bool=false;
+			}
+		}
+		return hashmap;
+	}
+
+	private static Bonus createCanFamilyMemberBonus() {
+		String risposta = in2.nextLine();
+		boolean occupiedYet;
+		System.out.println("vuoi andare in un posto occupato?");
+		if (risposta.equals("si")){
+			occupiedYet = true;
+		}else{
+			occupiedYet =false;
+		}
+		HashMap<Zone, Boolean> canGoTo = createHashmapZoneBoolean();
+		return new CanFamilyMemberBonus(occupiedYet, canGoTo);
+	}
+
+	private static HashMap<Zone, Boolean> createHashmapZoneBoolean() {
+		HashMap<Zone, Boolean> hashmap = new HashMap<>();
+		String risp;
+		boolean bool = true;
+		while(bool){
+			Zone zona = null;
+			String i;
+			System.out.println("in quale zona deve esserci il bonus?");
+			System.out.println("1) Torre verde");
+			System.out.println("2) Torre blu");
+			System.out.println("3) Torre gialla");
+			System.out.println("4) Torre viola");
+			System.out.println("5) Harvest");
+			System.out.println("6) Production");
+			System.out.println("7) Council Palace");
+			System.out.println("8) Market");
+			
+			int risposta = in.nextInt();
+			switch (risposta) {
+			case 1:
+				zona = new Tower(DevelopmentCardType.territory);
+				break;
+
+			case 2:
+				zona = new Tower(DevelopmentCardType.character);
+				break;
+				
+			case 3:
+				zona = new Tower(DevelopmentCardType.building);
+				break;
+			
+			case 4:
+				zona = new Tower(DevelopmentCardType.venture);
+				break;
+				
+			case 5:
+				zona = new HarvestArea();
+				break;
+			
+			case 6: 
+				zona = new ProductionArea();
+				break;
+				
+			case 7:
+				zona = new CouncilPalace();
+				break;
+				
+			case 8:
+				zona = new Market();
+				break;
+			}
+			System.out.println("Il familiare può andarci?");
+			i = in2.nextLine();
+			Boolean bolean = false;
+			if (i.equals("si")){
+				bolean = true;
+			}
+			hashmap.put(zona, bolean);
+			System.out.println("vuoi inserire un'altra zona?(si / no)");
+			risp = in2.nextLine();
+			if (risp.equals("si")){
+				bool=true;
+			}else{
+				bool=false;
+			}
+		}
+		return hashmap;
+	}
+
+	private static Bonus createAddCardCostBonus() {
+		return new AddCardCostBonus(createDevelopmentCardType(), createArrayResource());
+	}
+
+	private static Bonus createActivationZoneBonus() {
+		String risposta = in2.nextLine();
+		boolean councilPalace;
+		System.out.println("vuoi prendere i bonus del council palace??");
+		if (risposta.equals("si")){
+			councilPalace = true;
+		}else{
+			councilPalace =false;
+		}
+		return new ActivationZoneBonus(createHashmapTowerBoolean(), councilPalace);
+	}
+
+	
+	
+	private static HashMap<Tower, Boolean> createHashmapTowerBoolean() {
+		HashMap<Tower, Boolean> hashmap = new HashMap<>();
+		String risp;
+		boolean bool = true;
+		while(bool){
+			Tower tower = null;
+			String i;
+			System.out.println("in quale zona deve esserci il bonus?");
+			System.out.println("1) Torre verde");
+			System.out.println("2) Torre blu");
+			System.out.println("3) Torre gialla");
+			System.out.println("4) Torre viola");
+			
+			int risposta = in.nextInt();
+			switch (risposta) {
+			case 1:
+				tower = new Tower(DevelopmentCardType.territory);
+				break;
+
+			case 2:
+				tower = new Tower(DevelopmentCardType.character);
+				break;
+				
+			case 3:
+				tower = new Tower(DevelopmentCardType.building);
+				break;
+			
+			case 4:
+				tower = new Tower(DevelopmentCardType.venture);
+				break;
+			
+			}
+			System.out.println("Il familiare può andarci?");
+			i = in2.nextLine();
+			Boolean bolean = false;
+			if (i.equals("si")){
+				bolean = true;
+			}
+			hashmap.put(tower, bolean);
+			System.out.println("vuoi inserire un'altra zona?(si / no)");
+			risp = in2.nextLine();
+			if (risp.equals("si")){
+				bool=true;
+			}else{
+				bool=false;
+			}
+		}
+		return hashmap;
+	}
+
 	public static ImmediateBonus createImmediateBonus(){
 		ImmediateBonus bonus = null;
 		System.out.println("Which typer of bonus should it be?");
@@ -197,6 +739,7 @@ public class Create {
 		
 		case 10:
 			bonus = createResourcePerResourceBonus();
+			break;
 		}
 		return bonus;
 		
