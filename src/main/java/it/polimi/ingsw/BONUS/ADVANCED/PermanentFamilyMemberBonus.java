@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.RESOURCE.Resource;
 
 public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	protected ArrayList<FamilyMember> familyMembers;
@@ -36,4 +37,12 @@ public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	}
 	
 	protected abstract void modifyValue(FamilyMember familyMember, FamilyMember newFamilyMember);
+	
+	public String getDescription(){
+		String description = null;
+		for(FamilyMember familyMember: familyMembers){
+			description = description + familyMember.getValue()+ "the value of your " + familyMember.getDice().getDiceColour().name() + " family member \n";
+		}
+		return description;
+	}
 }

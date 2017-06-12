@@ -46,4 +46,11 @@ public class PermanentAddResourceBonus extends PermanentResourceBonus {
 			}
 		}
 	}
+	
+	public String getDescription(){
+		String description = "Add: ";
+		description = description + super.getDescription() +" each time you get that resource";
+		return description;		
+	}
+
 }

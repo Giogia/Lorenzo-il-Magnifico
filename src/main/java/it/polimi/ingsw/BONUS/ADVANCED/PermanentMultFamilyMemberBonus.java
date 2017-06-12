@@ -39,4 +39,9 @@ public class PermanentMultFamilyMemberBonus extends PermanentFamilyMemberBonus{
 		familyMember.multValue(newFamilyMember.getValue());
 	}
 	
+	public String getDescription(){
+		String description = "Mult permanently for: \n";
+		description = description + super.getDescription();
+		return description;		
+	}
 }

@@ -45,4 +45,10 @@ public class ResourcePerMissedExcommunicationBonus extends PermanentResourceBonu
 		}
 		resources.add(newResource);
 	}
+	
+	public String getDescription(){
+		String description = "when you miss the excommunication you get: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

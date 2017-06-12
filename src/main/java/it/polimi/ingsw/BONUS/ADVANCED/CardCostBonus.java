@@ -49,4 +49,11 @@ public abstract class CardCostBonus extends PermanentBonus {
 		resources.add(bonusResource);
 	}
 	
+	public String getDescription(){
+		String description = null;
+		for(Resource resource : resources){
+			description = description + resource.getDescription() +"\n";
+		}
+		return description;
+	}
 }

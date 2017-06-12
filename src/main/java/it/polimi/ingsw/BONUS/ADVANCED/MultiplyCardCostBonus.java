@@ -28,4 +28,9 @@ public class MultiplyCardCostBonus extends CardCostBonus{
 		return;
 	}
 
+	public String getDescription(){
+		String description ="Multiply "+super.getCardType()+" cards' cost for: \n";
+		description = description + super.getDescription();
+		return description;
+	}
 }

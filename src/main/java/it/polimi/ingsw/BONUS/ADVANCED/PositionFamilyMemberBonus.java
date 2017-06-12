@@ -118,4 +118,14 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 		}
 		return null;
 	}
+	
+	public String getDescription(){
+		String description = "Increase permanently the value of your family members of: \n";
+		for(ActionZone zone : positionBonus.keySet()){
+			description = description +positionBonus.get(zone)+" if you go to "+zone.getDescription()+"\n";
+		}
+		return description;
+	}
 }
+
+

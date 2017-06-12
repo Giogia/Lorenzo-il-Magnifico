@@ -32,7 +32,14 @@ public abstract class DevelopmentCard extends Card{
 			}
 		}
 		if (secondaryEffect != null){
-			description += "Bonus from secondary effect: \n";
+			description = description +"Bonus from secondary effect: \n";
+			
+			for (int i=0; i < secondaryEffect.size(); i++){
+				if (i == secondaryEffect.size()-1){
+					return description + secondaryEffect.get(i).getDescription();
+				}
+				description = description + secondaryEffect.get(i).getDescription() + "\n";
+			}
 		}
 		return description;
 	}

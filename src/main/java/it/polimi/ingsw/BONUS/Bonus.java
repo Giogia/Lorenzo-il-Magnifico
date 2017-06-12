@@ -12,4 +12,6 @@ public abstract class Bonus implements Serializable {
 	public String getType1() {
 		return type1;
 	}
+	
+	public abstract String getDescription();
 }

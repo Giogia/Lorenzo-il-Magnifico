@@ -63,5 +63,18 @@ public class ActivationZoneBonus extends PermanentBonus {
 		}
 		return null;
 	}
+	
+	public String getDescription(){
+		 String description = "You cannot take position bonus from : \n";
+		 for(Tower tower : towers.keySet()){
+			 if(towers.get(tower)==false){
+				 description = description + tower.getDescription();
+			 }
+		 }
+		 if(councilPalace==false){
+			 description = description + "Council Palace";
+		 }
+		 return description;
+	} 
 
 }

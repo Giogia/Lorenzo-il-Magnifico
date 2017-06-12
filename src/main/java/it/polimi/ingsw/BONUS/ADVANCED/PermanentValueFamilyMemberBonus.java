@@ -37,4 +37,9 @@ public class PermanentValueFamilyMemberBonus extends PermanentFamilyMemberBonus 
 		familyMember.setValue(newFamilyMember.getValue());
 	}
 
+	public String getDescription(){
+		String description = "Set permanently at: \n";
+		description = description + super.getDescription();
+		return description;		
+	}
 }

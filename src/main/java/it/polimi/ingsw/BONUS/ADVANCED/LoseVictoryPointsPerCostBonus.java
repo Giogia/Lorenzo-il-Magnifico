@@ -29,4 +29,12 @@ public class LoseVictoryPointsPerCostBonus extends PermanentBonus {
 		super.getPermanentBonus(player);
 	}
 
+	public String getDescription(){
+		String description = "You lose a victory point every :\n";
+		for(Resource resource : resources){
+			description = description + resource.getDescription() + "\n";
+		}
+		description = description + "in " + developmentCardType + " cards' cost \n";
+		return description;
+	}
 }

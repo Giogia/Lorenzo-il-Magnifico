@@ -22,4 +22,11 @@ public class LoseVictoryPointsPerResourceBonus extends PermanentBonus {
 		super.getPermanentBonus(player);
 	}
 
+	public String getDescription(){
+		String description = "You lose a victory point every :\n";
+		for(Resource resource : resources){
+			description = description + resource.getDescription() +" you have \n";
+		}
+		return description;
+	}
 }

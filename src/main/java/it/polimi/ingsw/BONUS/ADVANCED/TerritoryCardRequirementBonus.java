@@ -35,4 +35,11 @@ public class TerritoryCardRequirementBonus extends PermanentBonus{
 		super.getPermanentBonus(player);
 	}
 
+	public String getDescription(){
+		String description = "you need military points to activate a territory card ";
+		if(needRequirement==false){
+			description = "You don't need Military Points to activate a territory card \n";
+		}
+		return description;
+	}
 }

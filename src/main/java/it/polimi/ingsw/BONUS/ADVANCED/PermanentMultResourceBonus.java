@@ -46,4 +46,10 @@ public class PermanentMultResourceBonus extends PermanentResourceBonus {
 			}
 		}
 	}
+	
+	public String getDescription(){
+		String description = "Mult for: ";
+		description = description + super.getDescription() +" each time you get that resource";
+		return description;		
+	}
 }

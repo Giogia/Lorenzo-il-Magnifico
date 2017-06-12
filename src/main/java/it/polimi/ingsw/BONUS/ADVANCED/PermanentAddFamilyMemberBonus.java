@@ -40,5 +40,10 @@ public class PermanentAddFamilyMemberBonus extends PermanentFamilyMemberBonus {
 		familyMember.addValue(newFamilyMember.getValue());
 	}
 	
+	public String getDescription(){
+		String description = "increase permanently of: \n";
+		description = description + super.getDescription();
+		return description;		
+	}
 
 }

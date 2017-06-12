@@ -28,5 +28,10 @@ public class AddCardCostBonus extends CardCostBonus{
 		return;
 	}
 	
+	public String getDescription(){
+		String description ="Add to "+super.getCardType()+"cards' cost : \n";
+		description = description + super.getDescription();
+		return description;
+	}
 
 }

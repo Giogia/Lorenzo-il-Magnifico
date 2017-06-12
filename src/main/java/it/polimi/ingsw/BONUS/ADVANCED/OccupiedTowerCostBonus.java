@@ -47,4 +47,12 @@ public class OccupiedTowerCostBonus extends PermanentBonus {
 		super.getPermanentBonus(player);
 	}
 	
+	public String getDescription(){
+		String description = "Everytime a tower is occupied you have to pay : \n";
+		if(addOccupiedCost!=0)
+			description = description + addOccupiedCost +"more coins \n";
+		if(multOccupiedCost!=1)
+			description = description + multOccupiedCost +"times the coins \n";
+		return description;
+	}
 }

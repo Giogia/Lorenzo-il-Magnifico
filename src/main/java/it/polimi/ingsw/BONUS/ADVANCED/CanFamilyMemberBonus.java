@@ -134,4 +134,19 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 		}
 		return foundZone;
 	}
+	
+	public String getDescription(){
+		String description = null;
+		for(Zone zone : canGoTo.keySet()){
+			if(canGoTo.get(zone)==false){
+			description = description + zone.getDescription()+"\n";
+			}
+		}
+		if(description!=null)
+			description = "Your family members cannot go to: \n" + description;
+		if(occupiedYet==true)
+			description = description + "you can go to any position even if occupied \n";
+	return description;
+	}
+	
 }
