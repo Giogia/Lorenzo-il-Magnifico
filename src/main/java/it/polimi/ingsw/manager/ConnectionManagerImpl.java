@@ -100,9 +100,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		for (int i = 0; i < numberOfPlayers; i++) {
 			String nameChoosen = tempRmiUsers.get(i).askName();
 			Color colorChoosen = askColor(tempRmiUsers.get(i), colors);
-			players[i] = new Player(nameChoosen, colorChoosen);
-			//delete the color choosen from the available colors
 			colors.remove(colorChoosen);
+			players[i] = new Player(nameChoosen, colorChoosen);
 		}
 		game.setPlayers(players);
 		for (int i = 0; i < players.length; i++) {
@@ -117,7 +116,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			colors[counter] = availableColors.get(counter).toString().toLowerCase();
 		}
 		int colorChoiced = client.askColor(colors) -1;
-		return Color.values()[colorChoiced];
+		return availableColors.get(colorChoiced);
 	}
 	
 	public static HashMap<Player, ClientRMICallbackRemote> getPlayersView() {
