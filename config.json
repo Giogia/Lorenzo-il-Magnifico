@@ -1148,6 +1148,44 @@
       "developmentCardType": "character",
       "immediateEffect": [
         {
+          "action": [
+            [
+              {
+                "developmentCardType": "building",
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              4
+            ],
+            [
+              {
+                "developmentCardType": "character",
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              4
+            ],
+            [
+              {
+                "developmentCardType": "venture",
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              4
+            ],
+            [
+              {
+                "developmentCardType": "territory",
+                "subType": "Tower",
+                "type": "actionZone"
+              },
+              4
+            ]
+          ],
+          "type": "actionBonus",
+          "type1": "immediateBonus"
+        },
+        {
           "resources": [
             {
               "amount": 1,
@@ -1157,40 +1195,6 @@
           ],
           "subtype": "addResourceBonus",
           "type": "resourceBonus",
-          "type1": "immediateBonus"
-        },
-        {
-          "action": [
-            [
-              {
-                "subType": "Tower",
-                "type": "actionZone"
-              },
-              4
-            ],
-            [
-              {
-                "subType": "Tower",
-                "type": "actionZone"
-              },
-              4
-            ],
-            [
-              {
-                "subType": "Tower",
-                "type": "actionZone"
-              },
-              4
-            ],
-            [
-              {
-                "subType": "Tower",
-                "type": "actionZone"
-              },
-              4
-            ]
-          ],
-          "type": "actionBonus",
           "type1": "immediateBonus"
         }
       ],

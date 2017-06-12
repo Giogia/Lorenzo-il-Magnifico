@@ -65,11 +65,14 @@ import it.polimi.ingsw.RESOURCE.Wood;
 import it.polimi.ingsw.CARD.Character;
 
 public class ConfigurationFileHandler {
-	/*public static void main(String[] args) throws FileNotFoundException{
-		Character prova = Create.createCharacter();
-		System.out.println(toSerialize(prova));
-		Character vsidufhg = toDeserialize(toSerialize(prova));
-	}*/
+	public static void main(String[] args) throws FileNotFoundException{
+		/*DataFromFile data = getData();
+		for (Character c : data.getCharacters()) {
+			System.out.println(c.getDescription());
+		}*/
+		Character c = Create.createCharacter();
+		System.out.println(toSerialize(c));
+	}
 	
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
