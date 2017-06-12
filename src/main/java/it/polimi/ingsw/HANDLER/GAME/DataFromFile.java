@@ -36,9 +36,7 @@ public class DataFromFile implements Serializable{
 	private ArrayList<ImmediateBonus> councilPalaceBonus;
 	private int[] harvestAreaPositionBonus;
 	private int[] productionAreaPositionBonus;
-	
-	//TODO PERMANENT
-	//private static ArrayList<LeaderCard> leaderCards; think to them later
+	private ArrayList<LeaderCard> leaderCards;
 	//condizioni di attivazione di tutte le zone
 	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
 	//timeout per la mossa di un giocatore
@@ -52,7 +50,7 @@ public class DataFromFile implements Serializable{
 			ArrayList<ArrayList<ImmediateBonus>> towerBuildingPositionBonus,
 			ArrayList<ArrayList<ImmediateBonus>> towerVenturePositionBonus, ArrayList<ArrayList<ImmediateBonus>> marketPositionBonus,
 			ArrayList<ImmediateBonus> councilPalaceBonus, int[] harvestAreaPositionBonus,
-			int[] productionAreaPositionBonus) {
+			int[] productionAreaPositionBonus, ArrayList<LeaderCard> leaderCards) {
 		super();
 		this.territories = territories;
 		this.characters = characters;
@@ -74,8 +72,16 @@ public class DataFromFile implements Serializable{
 		this.councilPalaceBonus = councilPalaceBonus;
 		this.harvestAreaPositionBonus = harvestAreaPositionBonus;
 		this.productionAreaPositionBonus = productionAreaPositionBonus;
+		this.leaderCards = leaderCards;
 	}
 	
+	public ArrayList<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+	
+	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;
+	}
 	
 	public void setTerritories(ArrayList<Territory> territories) {
 		this.territories = territories;

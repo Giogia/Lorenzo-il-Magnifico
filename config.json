@@ -4202,70 +4202,396 @@
     }
   ],
   "excommunicationTiles": [
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 1
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 2
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    },
-    {
-      "period": 3
-    }
-  ],
+      {
+        "period": 1,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": -1,
+                "value": 1,
+                "resourceType": "militaryPoints"
+              }
+            ],
+            "subsubtype": "PermanentAddResourceBonus",
+            "subtype": "PermanentResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": -1,
+                "value": 1,
+                "resourceType": "coins"
+              }
+            ],
+            "subsubtype": "PermanentAddResourceBonus",
+            "subtype": "PermanentResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": -1,
+                "value": 1,
+                "resourceType": "servants"
+              }
+            ],
+            "subsubtype": "PermanentAddResourceBonus",
+            "subtype": "PermanentResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": -1,
+                "value": 1,
+                "resourceType": "stones"
+              },
+              {
+                "amount": -1,
+                "value": 1,
+                "resourceType": "wood"
+              }
+            ],
+            "subsubtype": "PermanentAddResourceBonus",
+            "subtype": "PermanentResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "subType": "harvestArea",
+                  "type": "actionZone"
+                },
+                -3
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "subType": "productionArea",
+                  "type": "actionZone"
+                },
+                -3
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 1,
+        "malus": [
+          {
+            "familyMembers": [
+              {
+                "dice": {
+                  "value": 0,
+                  "diceColour": "Orange"
+                },
+                "value": 0
+              },
+              {
+                "dice": {
+                  "value": 0,
+                  "diceColour": "White"
+                },
+                "value": 0
+              },
+              {
+                "dice": {
+                  "value": 0,
+                  "diceColour": "Black"
+                },
+                "value": 0
+              }
+            ],
+            "subsubtype": "PermanentAddFamilyMemberBonus",
+            "subtype": "PermanentFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "developmentCardType": "territory",
+                  "subType": "Tower",
+                  "type": "actionZone"
+                },
+                -4
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "developmentCardType": "building",
+                  "subType": "Tower",
+                  "type": "actionZone"
+                },
+                -4
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "developmentCardType": "character",
+                  "subType": "Tower",
+                  "type": "actionZone"
+                },
+                -4
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "positionBonus": [
+              [
+                {
+                  "developmentCardType": "venture",
+                  "subType": "Tower",
+                  "type": "actionZone"
+                },
+                -4
+              ]
+            ],
+            "subtype": "PositionFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "occupiedYet": false,
+            "canGoTo": [
+              [
+                {
+                  "type": "market"
+                },
+                false
+              ]
+            ],
+            "subtype": "CanFamilyMemberBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": 2,
+                "value": 1,
+                "resourceType": "servants"
+              }
+            ],
+            "subsubtype": "ResourceValueBonus",
+            "subtype": "PermanentResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 2,
+        "malus": [
+          {
+            "skipAction": [
+              true,
+              false,
+              false,
+              false
+            ],
+            "subtype": "OrderBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "developmentCardTypes": {
+              "character": false
+            },
+            "subtype": "EndGameCardBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "developmentCardTypes": {
+              "venture": false
+            },
+            "subtype": "EndGameCardBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "developmentCardTypes": {
+              "territory": false
+            },
+            "subtype": "EndGameCardBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": 5,
+                "value": 1,
+                "resourceType": "victoryPoints"
+              }
+            ],
+            "subtype": "LoseVictoryPointsPerResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "militaryPoints"
+              }
+            ],
+            "subtype": "LoseVictoryPointsPerResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "developmentCardType": "building",
+            "resources": [
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "stones"
+              },
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "wood"
+              }
+            ],
+            "subtype": "LoseVictoryPointsPerCostBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      },
+      {
+        "period": 3,
+        "malus": [
+          {
+            "resources": [
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "coins"
+              },
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "servants"
+              },
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "stones"
+              },
+              {
+                "amount": 1,
+                "value": 1,
+                "resourceType": "wood"
+              }
+            ],
+            "subtype": "LoseVictoryPointsPerResourceBonus",
+            "type1": "PermanentBonus"
+          }
+        ]
+      }
+    ],
   "personalBonusTiles": [
     {
       "harvestBonus": {
@@ -4808,5 +5134,611 @@
   "productionAreaPositionBonus": [
     0,
     -3
-  ]
+  ],
+  "leaderCards": [
+  {
+    "cardActivationCondition": {
+      "venture": 5
+    },
+    "bonus": [
+      {
+        "action": [
+          [
+            {
+              "subType": "harvestArea",
+              "type": "actionZone"
+            },
+            1
+          ]
+        ],
+        "type": "actionBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Francesco Sforza"
+  },
+  {
+    "cardActivationCondition": {
+      "character": 5
+    },
+    "bonus": [
+      {
+        "occupiedYet": true,
+        "subtype": "CanFamilyMemberBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Ludovico Ariosto"
+  },
+  {
+    "cardActivationCondition": {
+      "building": 5
+    },
+    "bonus": [
+      {
+        "addOccupiedCost": 0,
+        "multOccupiedCost": 0,
+        "subtype": "OccupiedTowerCostBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Filippo Brunelleschi"
+  },
+  {
+    "cardActivationCondition": {
+      "territory": 5
+    },
+    "bonus": [
+      {
+        "familyMembers": [
+          {
+            "dice": {
+              "value": 6,
+              "diceColour": "Orange"
+            },
+            "value": 6
+          },
+          {
+            "dice": {
+              "value": 6,
+              "diceColour": "White"
+            },
+            "value": 6
+          },
+          {
+            "dice": {
+              "value": 6,
+              "diceColour": "Black"
+            },
+            "value": 6
+          }
+        ],
+        "subtype": "familyMemberValueBonus",
+        "type": "familyMemberBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Federico da Montefeltro"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 18,
+        "value": 1,
+        "resourceType": "coins"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "faithPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Girolamo Savonarola"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 12,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "wood"
+          },
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "stones"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Giovanni dalle Bande Nere"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 10,
+        "value": 1,
+        "resourceType": "wood"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "militaryPoints"
+          },
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "victoryPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Sandro Botticelli"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 10,
+        "value": 1,
+        "resourceType": "stones"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 3,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Michelangelo Buonarroti"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 15,
+        "value": 1,
+        "resourceType": "servants"
+      }
+    ],
+    "bonus": [
+      {
+        "differentCouncilPrivilege": 1,
+        "type": "councilPrivilegeBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Ludovico III Gonzaga"
+  },
+  {
+    "cardActivationCondition": {
+      "territory": 2,
+      "character": 4
+    },
+    "bonus": [
+      {
+        "action": [
+          [
+            {
+              "subType": "productionArea",
+              "type": "actionZone"
+            },
+            0
+          ]
+        ],
+        "type": "actionBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Leonardo da Vinci"
+  },
+  {
+    "cardActivationCondition": {
+      "venture": 4,
+      "building": 2
+    },
+    "bonus": [
+      {
+        "cardType": "territory",
+        "resources": [
+          {
+            "amount": -3,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subsubtype": "AddCardCostBonus",
+        "subtype": "CardCostBonus",
+        "type1": "PermanentBonus"
+      },
+      {
+        "cardType": "character",
+        "resources": [
+          {
+            "amount": -3,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subsubtype": "AddCardCostBonus",
+        "subtype": "CardCostBonus",
+        "type1": "PermanentBonus"
+      },
+      {
+        "cardType": "building",
+        "resources": [
+          {
+            "amount": -3,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subsubtype": "AddCardCostBonus",
+        "subtype": "CardCostBonus",
+        "type1": "PermanentBonus"
+      },
+      {
+        "cardType": "venture",
+        "resources": [
+          {
+            "amount": -3,
+            "value": 1,
+            "resourceType": "coins"
+          }
+        ],
+        "subsubtype": "AddCardCostBonus",
+        "subtype": "CardCostBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Pico della Mirandola"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "servants"
+      },
+      {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "stones"
+      },
+      {
+        "amount": 6,
+        "value": 1,
+        "resourceType": "wood"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 5,
+            "value": 1,
+            "resourceType": "victoryPoints"
+          }
+        ],
+        "subsubtype": "ResourcePerMissedExcommunicationBonus",
+        "subtype": "PermanentResourceBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Sisto IV"
+  },
+  {
+    "bonus": [
+      {
+        "familyMembers": [
+          {
+            "dice": {
+              "value": 2,
+              "diceColour": "Orange"
+            },
+            "value": 2
+          },
+          {
+            "dice": {
+              "value": 2,
+              "diceColour": "White"
+            },
+            "value": 2
+          },
+          {
+            "dice": {
+              "value": 2,
+              "diceColour": "Black"
+            },
+            "value": 2
+          }
+        ],
+        "subsubtype": "PermanentAddFamilyMemberBonus",
+        "subtype": "PermanentFamilyMemberBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 6,
+    "type": "PermanentLeaderCard",
+    "name": "Lucrezia Borgia"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 7,
+        "value": 1,
+        "resourceType": "militaryPoints"
+      },
+      {
+        "amount": 3,
+        "value": 1,
+        "resourceType": "faithPoints"
+      }
+    ],
+    "bonus": [
+      {
+        "familyMembers": [
+          {
+            "dice": {
+              "value": 3,
+              "diceColour": "Neutral"
+            },
+            "value": 3
+          }
+        ],
+        "subsubtype": "PermanentAddFamilyMemberBonus",
+        "subtype": "PermanentFamilyMemberBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Sigismondo Malatesta"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 35,
+        "value": 1,
+        "resourceType": "victoryPoints"
+      }
+    ],
+    "bonus": [
+      {
+        "type": "CopyBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Lorenzo de\u0027 Medici"
+  },
+  {
+    "cardActivationCondition": {
+      "venture": 2,
+      "territory": 2,
+      "building": 2,
+      "character": 2
+    },
+    "bonus": [
+      {
+        "familyMembers": [
+          {
+            "dice": {
+              "value": 5,
+              "diceColour": "Orange"
+            },
+            "value": 5
+          },
+          {
+            "dice": {
+              "value": 5,
+              "diceColour": "White"
+            },
+            "value": 5
+          },
+          {
+            "dice": {
+              "value": 5,
+              "diceColour": "Black"
+            },
+            "value": 5
+          }
+        ],
+        "subsubtype": "PermanentValueFamilyMemberBonus",
+        "subtype": "PermanentFamilyMemberBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Ludovico il Moro"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 12,
+        "value": 1,
+        "resourceType": "coins"
+      },
+      {
+        "amount": 2,
+        "value": 1,
+        "resourceType": "faithPoints"
+      }
+    ],
+    "cardActivationCondition": {
+      "building": 3
+    },
+    "bonus": [
+      {
+        "needRequirement": false,
+        "subtype": "TerritoryCardRequirementBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Cesare Borgia"
+  },
+  {
+    "resourceActivationCondition": [
+      {
+        "amount": 8,
+        "value": 1,
+        "resourceType": "faithPoints"
+      }
+    ],
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "coins"
+          },
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "servants"
+          },
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "stones"
+          },
+          {
+            "amount": 2,
+            "value": 1,
+            "resourceType": "wood"
+          }
+        ],
+        "subsubtype": "PermanentMultResourceBonus",
+        "subtype": "PermanentResourceBonus",
+        "type1": "PermanentBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "PermanentLeaderCard",
+    "name": "Santa Rita"
+  },
+  {
+    "cardActivationCondition": {
+      "building": 4,
+      "character": 2
+    },
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 3,
+            "value": 1,
+            "resourceType": "servants"
+          },
+          {
+            "amount": 1,
+            "value": 1,
+            "resourceType": "victoryPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Cosimo de\u0027 Medici"
+  },
+  {
+    "cardActivationCondition": {
+      "venture": 2,
+      "territory": 4
+    },
+    "bonus": [
+      {
+        "resources": [
+          {
+            "amount": 4,
+            "value": 1,
+            "resourceType": "victoryPoints"
+          }
+        ],
+        "subtype": "addResourceBonus",
+        "type": "resourceBonus",
+        "type1": "immediateBonus"
+      }
+    ],
+    "numberOfSameTypeCards": 0,
+    "type": "OncePerRoundLeaderCard",
+    "name": "Bartolomeo Colleoni"
+  }
+]
 }

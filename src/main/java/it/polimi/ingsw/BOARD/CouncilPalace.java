@@ -18,10 +18,6 @@ public class CouncilPalace extends Zone {
 	
 	public CouncilPalace() {
 		super("councilPalace");
-		/* positions = new Position[1];
-		
-		ArrayList<ImmediateBonus> boardBonus = getGame().getData().getCouncilPalaceBonus();
-		positions[0]= new Position(boardBonus, 1); */
 	}
 	
 	@Override

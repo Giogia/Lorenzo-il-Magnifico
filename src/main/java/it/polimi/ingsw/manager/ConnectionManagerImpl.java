@@ -6,6 +6,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -17,7 +19,6 @@ import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
-import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -25,6 +26,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.ClientRMICallbackRemote;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager {
+	private static Timer timer = new Timer();
 	private static ConnectionManagerImpl instance;
 	private static List<ClientRMICallbackRemote> rmiUsers = new ArrayList<>();
 	private static List<Socket> socketUsers = new ArrayList<>();
@@ -46,24 +48,48 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public void register(ClientRMICallbackRemote client) throws RemoteException{
 		rmiUsers.add(client);
 		System.out.println("New user in the game");
+		List<ClientRMICallbackRemote> temporaryRmiUsers = new ArrayList<>();
+		List<Socket> temporarySocketUsers = new ArrayList<>();
 		if (rmiUsers.size() + socketUsers.size() == 1){//the first player will create the game and he will run the game
 			game = new Game();
 		}else{
-			ArrayList<ClientRMICallbackRemote> temporaryRmiUsers = new ArrayList<>();
-			ArrayList<Socket> temporarySocketUsers = new ArrayList<>();
-			for (ClientRMICallbackRemote c : rmiUsers) {
-				temporaryRmiUsers.add(c);
+			//timer starts when there are 2 players
+			if(rmiUsers.size() + socketUsers.size() == 2){
+				timer.schedule(new TimerTask() {
+					public void run() {
+						try {
+							for (ClientRMICallbackRemote c : rmiUsers) {
+								temporaryRmiUsers.add(c);
+							}
+							for (Socket s : socketUsers) {
+								temporarySocketUsers.add(s);
+							}
+							rmiUsers.clear();
+							socketUsers.clear();
+							startGame(temporaryRmiUsers, temporarySocketUsers);
+						} catch (RemoteException e) {
+							e.printStackTrace();
+						}
+					}
+				}, 15000);
 			}
-			for (Socket s : socketUsers) {
-				temporarySocketUsers.add(s);
+			//if there are 4 users, the game must start
+			if(rmiUsers.size() + socketUsers.size() == 4){
+				for (ClientRMICallbackRemote c : rmiUsers) {
+					temporaryRmiUsers.add(c);
+				}
+				for (Socket s : socketUsers) {
+					temporarySocketUsers.add(s);
+				}
+				rmiUsers.clear();
+				socketUsers.clear();
+				timer.cancel();
+				startGame(temporaryRmiUsers, temporarySocketUsers);
 			}
-			rmiUsers.clear();
-			socketUsers.clear();
-			startGame(temporaryRmiUsers, temporarySocketUsers);
 		}
 	}
 	
-	private static void startGame(ArrayList<ClientRMICallbackRemote> tempRmiUsers, ArrayList<Socket> tempSocketUsers) throws RemoteException{
+	private static void startGame(List<ClientRMICallbackRemote> tempRmiUsers, List<Socket> tempSocketUsers) throws RemoteException{
 		ExecutorService executor = Executors.newCachedThreadPool();
 		ArrayList<Color> colors = new ArrayList<>();
 		int numberOfPlayers = tempRmiUsers.size() + tempSocketUsers.size();

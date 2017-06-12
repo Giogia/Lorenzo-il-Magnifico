@@ -22,15 +22,6 @@ public class Market extends Zone{
 	}
 	public Market() {
 			super("market");
-			/*int numberOfPlayers = getGame().getPlayers().length;
-			int numberOfPositions = (numberOfPlayers>=4? 4 : 2);
-			positions = new Position[numberOfPositions];
-			
-			ArrayList<ArrayList<ImmediateBonus>> boardBonus = getGame().getData().getMarketPositionBonus(); 
-			for(int i=0;i<numberOfPositions;i++){
-				positions[i]= new Position(boardBonus.get(i), 1);
-			}		
-	*/
 	}
 	
 	@Override

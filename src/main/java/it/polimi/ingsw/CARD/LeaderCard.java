@@ -1,28 +1,26 @@
 package it.polimi.ingsw.CARD;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public abstract class LeaderCard extends Card {
-	private ArrayList<Resource> resourceActivationCondition;
-	private ArrayList<DevelopmentCard> cardActivationCondition;
-	public final ArrayList<Bonus> bonus;
 	
-	public LeaderCard(String name, ArrayList<Resource> resourceActivationCondition, ArrayList<DevelopmentCard> cardActivationCondition, ArrayList<Bonus> bonus) {
+	public final ArrayList<Resource> resourceActivationCondition;
+	public final HashMap<DevelopmentCardType, Integer> cardActivationCondition;
+	public final ArrayList<Bonus> bonus;
+	public final int numberOfSameTypeCards;
+	private String type;
+	
+	public LeaderCard(String name, ArrayList<Resource> resourceActivationCondition, HashMap<DevelopmentCardType, Integer> cardActivationCondition, ArrayList<Bonus> bonus, int numberOfSameTypeCards, String type) {
 		super(name);
 		this.resourceActivationCondition=resourceActivationCondition;
 		this.cardActivationCondition=cardActivationCondition;
 		this.bonus=bonus;
-	}
-	
-	public ArrayList<DevelopmentCard> getCardActivationCondition() {
-		return cardActivationCondition;
-	}
-	
-	public ArrayList<Resource> getResourceActivationCondition() {
-		return resourceActivationCondition;
+		this.numberOfSameTypeCards = numberOfSameTypeCards;
+		this.type = type;
 	}
 	
 	public boolean checkActivationCondition(){

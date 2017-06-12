@@ -11,9 +11,12 @@ import com.google.gson.*;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.CouncilPalace;
 import it.polimi.ingsw.BOARD.HarvestArea;
+import it.polimi.ingsw.BOARD.Market;
 import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ActionBonus;
 import it.polimi.ingsw.BONUS.AddFamilyMemberBonus;
 import it.polimi.ingsw.BONUS.AddResourceBonus;
@@ -63,15 +66,13 @@ import it.polimi.ingsw.RESOURCE.Stones;
 import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 import it.polimi.ingsw.CARD.Character;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
+import it.polimi.ingsw.CARD.PermanentLeaderCard;
 
 public class ConfigurationFileHandler {
 	public static void main(String[] args) throws FileNotFoundException{
-		/*DataFromFile data = getData();
-		for (Character c : data.getCharacters()) {
-			System.out.println(c.getDescription());
-		}*/
-		Character c = Create.createCharacter();
-		System.out.println(toSerialize(c));
+		
 	}
 	
 	public static DataFromFile getData() throws FileNotFoundException{
@@ -180,6 +181,17 @@ public class ConfigurationFileHandler {
 			        .registerSubtype(ProductionArea.class, "productionArea")
 			        .registerSubtype(Tower.class, "Tower");
 			
+			final RuntimeTypeAdapterFactory<Zone> t11 = RuntimeTypeAdapterFactory
+					.of(Zone.class, "type")
+			        .registerSubtype(ActionZone.class, "actionZone")
+			        .registerSubtype(Market.class, "market")
+			        .registerSubtype(CouncilPalace.class, "councilPalace");
+			
+			final RuntimeTypeAdapterFactory<LeaderCard> t12 = RuntimeTypeAdapterFactory
+					.of(LeaderCard.class, "type")
+			        .registerSubtype(PermanentLeaderCard.class, "PermanentLeaderCard")
+			        .registerSubtype(OncePerRoundLeaderCard.class, "OncePerRoundLeaderCard");
+			
 			Gson gsonToDeserialize = new GsonBuilder()
 					.registerTypeAdapterFactory(t6)
 					.registerTypeAdapterFactory(t2)
@@ -191,6 +203,8 @@ public class ConfigurationFileHandler {
 					.registerTypeAdapterFactory(t7)
 					.registerTypeAdapterFactory(t3)
 					.registerTypeAdapterFactory(t5)
+					.registerTypeAdapterFactory(t11)
+					.registerTypeAdapterFactory(t12)
 					.create();
 			
 			return gsonToDeserialize.fromJson(inJson, DataFromFile.class);
@@ -198,7 +212,7 @@ public class ConfigurationFileHandler {
 			
 		} catch (Exception e){
 			e.printStackTrace();
-			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 			//return new Character("", null, 1, null, null);
 			//return new Territory("", 2, 1, null, null);
 		}
