@@ -18,10 +18,10 @@ public class CopyBonus extends ImmediateBonus{
 		LeaderCard chosenLeaderCard = Manager.choiceLeaderCardToCopy();
 		LeaderCard copiedCard;
 		if (chosenLeaderCard instanceof OncePerRoundLeaderCard){
-			copiedCard = new OncePerRoundLeaderCard(chosenLeaderCard.getName(), chosenLeaderCard.bonus, null, null);
+			copiedCard = new OncePerRoundLeaderCard(chosenLeaderCard.getName(), chosenLeaderCard.bonus, null, null, 0);
 		}
 		else {
-			copiedCard = new PermanentLeaderCard(chosenLeaderCard.getName(), chosenLeaderCard.bonus, null, null);
+			copiedCard = new PermanentLeaderCard(chosenLeaderCard.getName(), null, null, chosenLeaderCard.bonus, 0);
 		}
 		player.getPersonalBoard().putLeaderCard(copiedCard);
 	}
