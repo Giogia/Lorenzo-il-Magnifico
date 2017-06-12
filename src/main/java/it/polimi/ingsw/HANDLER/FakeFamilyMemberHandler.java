@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.ProductionArea;
+import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -37,14 +41,18 @@ public class FakeFamilyMemberHandler {
 		fakeDice.setValue(action.get(zone)); 
 		FamilyMember fakeFamilyMember = new FamilyMember(fakeDice, player);
 		Position position = Manager.askForAction(fakeFamilyMember, zone, player.getBoard());
+		zone = getBoardZone(zone, player.getBoard());
 		//if it's set correctly then remove the fake family member
-		if(ActionHandler.handle(fakeFamilyMember,zone,position)){ 
+		try{
+			ActionHandler.handle(fakeFamilyMember,zone,position);
 			position.removeFamilyMember(fakeFamilyMember);
 			turnOffBoolean();
 			return true;
+		} catch (MyException e) {
+			player.getBoard().getPassTurnController().lastMove(player);
+			turnOffBoolean();
+			return false;
 		}
-		turnOffBoolean();
-		return false;
 	}
 
 
@@ -70,5 +78,18 @@ public class FakeFamilyMemberHandler {
 		return cost;
 	}
 	
+	private static ActionZone getBoardZone(ActionZone zone, Board board) {
+		if (zone instanceof Tower){
+			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
+			zone = board.getTower(developmentCardType);
+		}
+		else if (zone instanceof ProductionArea){
+			zone = board.getProductioArea();
+		}
+		else{
+			zone = board.getHarvestArea();
+		}
+		return zone;
+	}
 	
 }
