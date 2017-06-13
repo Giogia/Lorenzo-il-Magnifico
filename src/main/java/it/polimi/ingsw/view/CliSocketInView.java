@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Set;
 
-public class ClientInHandler implements Runnable{
+public class CliSocketInView implements Runnable{
 private ObjectInputStream socketIn;
 	
-	public ClientInHandler(ObjectInputStream socketIn) {
+	public CliSocketInView(ObjectInputStream socketIn) {
 		this.socketIn=socketIn;
 	}
 	

@@ -35,6 +35,9 @@ import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ConfigurationFileHandler {
+	public static void main(String[] args) throws FileNotFoundException{
+		DataFromFile data = getData();
+	}
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);

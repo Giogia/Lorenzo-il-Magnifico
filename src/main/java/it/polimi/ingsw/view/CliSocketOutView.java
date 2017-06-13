@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
-public class ClientOutHandler implements Runnable {
+public class CliSocketOutView implements Runnable {
 	private ObjectOutputStream socketOut;
 
-	public ClientOutHandler(ObjectOutputStream socketOut) {
+	public CliSocketOutView(ObjectOutputStream socketOut) {
 		this.socketOut = socketOut;
 	}
 
