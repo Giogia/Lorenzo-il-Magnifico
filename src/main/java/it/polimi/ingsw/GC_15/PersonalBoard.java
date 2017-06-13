@@ -87,13 +87,6 @@ public class PersonalBoard implements Serializable {
 		//TODO Bisogna aggiungere l'effetto della leader card che si attiva subito
 	}
 	
-	//attivo l'effetto onePerRound della carta leader
-	public void activateLeaderEffect(LeaderCard leaderCard){
-		if(leaderCard.checkActivationCondition()){
-			((OncePerRoundLeaderCard) leaderCard).activateOncePerRoundBonus();
-		}
-	}
-	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
 		for(CardContainer cardContainer: cardContainers){
 			if(cardContainer.getType().equals(developmentCard.developmentCardType)){

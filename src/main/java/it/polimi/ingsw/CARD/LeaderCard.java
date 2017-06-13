@@ -23,8 +23,19 @@ public abstract class LeaderCard extends Card {
 		this.type = type;
 	}
 	
-	public boolean checkActivationCondition(){
-		//TODO PERMANENT
-		return true;
+	public HashMap<DevelopmentCardType, Integer> getCardActivationCondition() {
+		return cardActivationCondition;
+	}
+	
+	public ArrayList<Resource> getResourceActivationCondition() {
+		return resourceActivationCondition;
+	}
+	
+	public ArrayList<Bonus> getBonus() {
+		return bonus;
+	}
+	
+	public int getNumberOfSameTypeCards() {
+		return numberOfSameTypeCards;
 	}
 }

@@ -100,10 +100,6 @@ public class Player implements Serializable{
 		}
 	}
 	
-	public void activateLeaderEffect(LeaderCard leaderCard){
-		personalBoard.activateLeaderEffect(leaderCard);
-	}
-	
 	public PersonalBoard getPersonalBoard() {
 		return personalBoard;
 	}
