@@ -13,6 +13,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
@@ -212,6 +213,24 @@ public class CliRmiView implements ClientRMICallbackRemote{
 		for (Dice dice : dices) {
 			System.out.println(dice.getDescription());
 		}
+	}
+
+
+	@Override
+	public int askForLeaderCardAction() throws RemoteException {
+		System.out.println("Choose the action you want to do with this Leader Card : \n");
+		System.out.println("1) activate this leader Card : \n 2) Discard this leader card \n");
+		System.out.println("3)come back \n");
+		return checkInputError(1, 3);
+	}
+
+
+	@Override
+	public int askForLeaderCard(ArrayList<LeaderCard> leaderCardInHand) throws RemoteException{
+		for(int i=1;i==leaderCardInHand.size();i++){
+			System.out.println(i+")"+leaderCardInHand.get(i).getDescription()+" \n");
+		}
+		return checkInputError(1, leaderCardInHand.size()-1);
 	}
 }
 

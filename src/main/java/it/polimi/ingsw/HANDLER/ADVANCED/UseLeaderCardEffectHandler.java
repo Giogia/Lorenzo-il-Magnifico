@@ -11,8 +11,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public class UseLeaderCardEffectHandler {
 
-	public static void handle(Player player) throws RemoteException, MyException{
-		LeaderCard chosen = Manager.chooseLeaderCard(player, player.getPersonalBoard().getOncePerRoundBonusLeaderCard());
+	public static void handle(Player player, LeaderCard chosen) throws RemoteException, MyException{
 		for(Bonus bonus: chosen.getBonus()){
 			ImmediateBonus immediateBonus = (ImmediateBonus) bonus;
 			immediateBonus.getImmediateBonus(player);

@@ -38,4 +38,24 @@ public abstract class LeaderCard extends Card {
 	public int getNumberOfSameTypeCards() {
 		return numberOfSameTypeCards;
 	}
+	
+	public String getDescription(){
+		String description = this.getName() +" \n Activation conditions: \n";
+		for(Resource resource : resourceActivationCondition){
+			description = description + resource.getDescription();
+		}
+		for(DevelopmentCardType developmentCardType : cardActivationCondition.keySet()){
+			description = description + cardActivationCondition.get(developmentCardType) +" "+developmentCardType +" \n";
+		}
+		description = description +"Bonus: \n";
+		for(Bonus bonus : bonus){
+			if(this instanceof OncePerRoundLeaderCard){
+				description = description +"Every round you get ";
+			}
+			description = description + bonus.getDescription();
+		}
+		if(numberOfSameTypeCards!=0)
+			description = description +"you need to have "+ numberOfSameTypeCards +"cards of the same color to activate this card \n"; 
+		return description;
+	}
 }

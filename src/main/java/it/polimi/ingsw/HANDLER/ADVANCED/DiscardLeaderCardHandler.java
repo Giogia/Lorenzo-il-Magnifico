@@ -9,8 +9,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public class DiscardLeaderCardHandler {
 	
-	public static void handle(Player player) throws RemoteException{
-		LeaderCard chosen = Manager.chooseLeaderCard(player, player.getLeaderCardInHand());
+	public static void handle(Player player, LeaderCard chosen) throws RemoteException{
 		player.getLeaderCardInHand().remove(chosen);
 		CouncilPrivilegeChoiceHandler.handle(player, 1);
 	}

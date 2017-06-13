@@ -15,6 +15,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -240,6 +241,18 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public static int LeaderCardActionChoice(Player player) throws RemoteException {
+		ClientRMICallbackRemote client = getView(player);
+		int choice = client.askForLeaderCardAction();
+		return choice;
+	}
+
+	public static LeaderCard chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCardInHand) throws RemoteException {
+		ClientRMICallbackRemote client = getView(player);
+		LeaderCard choice = leaderCardInHand.get(client.askForLeaderCard(leaderCardInHand));
+		return choice;
 	}
 
 }

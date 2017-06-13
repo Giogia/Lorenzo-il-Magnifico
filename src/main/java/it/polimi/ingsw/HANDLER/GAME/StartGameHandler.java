@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,7 +28,7 @@ public final class StartGameHandler {
         return istanza;
 	}
 	
-	public static void handle(Board board){
+	public static void handle(Board board) throws RemoteException{
 		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);

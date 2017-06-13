@@ -28,6 +28,9 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.ActivateLeaderCardHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.DiscardLeaderCardHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.UseLeaderCardEffectHandler;
 import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
@@ -79,8 +82,36 @@ public class Manager{
 			
 	}
 
-	private static void leaderCardManager(Player player) {
-		// TODO Auto-generated method stub
+	private static void leaderCardManager(Player player) throws RemoteException {
+		while(true){
+			LeaderCard chosenCard = chooseLeaderCard(player, player.getLeaderCardInHand());
+			int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
+			try{
+				switch (choice) {
+				case 1:
+					ActivateLeaderCardHandler.handle(player,chosenCard);
+					break;
+				case 2:
+					DiscardLeaderCardHandler.handle(player,chosenCard);
+					break;
+				case 3:
+					return;
+				}
+			}
+			catch(MyException exc){			
+				ConnectionManagerImpl.catchException(exc.getMessage(), player);
+			}
+		}
+	}
+	
+	private static void activationLeaderCardEffectManager(Player player) throws RemoteException {
+		try{
+			LeaderCard chosenCard = chooseLeaderCard(player, player.getLeaderCardInHand());
+			UseLeaderCardEffectHandler.handle(player, chosenCard);
+		}
+		catch(MyException exc){			
+			ConnectionManagerImpl.catchException(exc.getMessage(), player);
+		}
 		
 	}
 
@@ -96,21 +127,6 @@ public class Manager{
 		}
 		PersonalBoard personalBoard = players[choice - 1].getPersonalBoard();
 		ConnectionManagerImpl.showPersonalBoard(player, personalBoard);
-	}
-
-	private static void activationLeaderCardEffectManager(Player player) {
-		// TODO PERMANENT
-		
-	}
-
-	private static void discardLeaderCardManager(Player player) {
-		// TODO PERMANENT
-		
-	}
-
-	private static void activationLeaderCardManager(Player player) {
-		// TODO PERMANENT
-		
 	}
 
 	private static void actionManager(Player player) throws RemoteException {
@@ -170,7 +186,7 @@ public class Manager{
 					return;
 				}	
 			}
-			catch(Exception exc){			
+			catch(MyException exc){			
 				ConnectionManagerImpl.catchException(exc.getMessage(), player);
 			}
 		}
@@ -272,15 +288,14 @@ public class Manager{
 		return choice;
 	}
 	
-	public static LeaderCard chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards){
-		LeaderCard choice = null;
-		//TODO chieder di scegliere
-		return choice;
-	}
-	
 	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles){
 		PersonalBonusTile choice = null;
 		//TODO chiedere di scegliere
 		return choice;
+	}
+	
+	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws RemoteException {
+		LeaderCard chosenCard = ConnectionManagerImpl.chooseLeaderCard(player, player.getLeaderCardInHand());
+		return chosenCard;
 	}
 }
