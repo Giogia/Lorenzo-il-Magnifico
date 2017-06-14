@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.*;
@@ -23,7 +24,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public abstract class HarvestProductionAreaHandler {
 
 	
-	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws MyException, RemoteException{
+	public static boolean abstractHandle(FamilyMember familyMember, Zone zone, Position position) throws MyException, IOException{
 		if (position.equals(zone.getPosition(0))){
 			if(!PositionAlreadyOccupiedController.check(position) &&
 				!OccupiedYetBonusController.check(familyMember)){
@@ -91,7 +92,7 @@ public abstract class HarvestProductionAreaHandler {
 		return null;
 	}
 	
-	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, RemoteException{
+	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, IOException{
 		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class RoundManagerHandler {
 		return instance;
 	}
 	
-	public static void handle( Board board, Player[] players) throws RemoteException{
+	public static void handle( Board board, Player[] players) throws IOException{
 		for (int turn = 1; turn <= 6; turn++){
 			int period = (turn+1)/2;
 			System.out.println("Period " + period + "\n");
@@ -39,7 +40,7 @@ public class RoundManagerHandler {
 	}
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
-	private static void handleOrder(RoundOrder roundOrder) throws RemoteException {
+	private static void handleOrder(RoundOrder roundOrder) throws IOException {
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Manager.turn(roundOrder.getPlayers().get(i));

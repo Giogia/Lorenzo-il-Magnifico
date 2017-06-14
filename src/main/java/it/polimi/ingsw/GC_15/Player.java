@@ -1,5 +1,6 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -104,7 +105,7 @@ public class Player implements Serializable{
 		return personalBoard;
 	}
 	
-	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws RemoteException, MyException{
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws IOException, MyException{
 		//trovo l'indice nell'arrayList dove vi sono le monete
 		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
 		//do al player una moneta

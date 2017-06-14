@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 
 public class MarketHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, RemoteException{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException{
 		if (!PositionAlreadyOccupiedController.check(position)){
 			if (!OccupiedYetBonusController.check(familyMember)){
 				return false;

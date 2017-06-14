@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board) throws RemoteException{
+	public static void handle(Board board) throws IOException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);

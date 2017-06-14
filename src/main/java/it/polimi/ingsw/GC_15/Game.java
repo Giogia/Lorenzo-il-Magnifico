@@ -1,6 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Game implements Serializable, Runnable{
 			StartGameHandler.handle(board);
 			RoundManagerHandler.handle(board, players);
 			EndGameHandler.handle(board);
-		} catch (RemoteException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -1,4 +1,5 @@
 package it.polimi.ingsw.BOARD;
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -49,7 +50,7 @@ public class Position implements Serializable{
 		familyMembers.clear();
 	}
 	
-	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException, RemoteException{
+	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException, IOException{
 		immediateBonus.getImmediateBonus(player);
 	}
 	protected void givePermanentBonus(Player player, PermanentBonus permanentBonus){

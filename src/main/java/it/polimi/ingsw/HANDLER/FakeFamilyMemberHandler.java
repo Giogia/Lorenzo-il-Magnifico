@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,7 @@ public class FakeFamilyMemberHandler {
 	private static ArrayList<Resource> cost = new ArrayList<>();
 
 	
-	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws MyException, RemoteException{
+	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws MyException, IOException{
 		//check if there is a CostBonus associated to ActionBonus
 		//if there is, turn on the boolean and apply costBonus
 		if (costBonus != null){
