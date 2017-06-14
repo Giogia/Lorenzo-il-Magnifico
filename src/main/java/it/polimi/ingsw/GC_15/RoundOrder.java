@@ -25,7 +25,4 @@ public class RoundOrder implements Serializable {
 	public void setplayer(Player player, int i){
 		players.set(i, player);
 	}
-	
-	
-	
 }
