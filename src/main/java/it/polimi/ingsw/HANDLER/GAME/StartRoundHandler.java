@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -31,7 +32,7 @@ public class StartRoundHandler {
 		return instance;
 	}
 	
-	public static void handle(int period, Player[] players, Board board) throws RemoteException{
+	public static void handle(int period, Player[] players, Board board) throws IOException{
 		ArrayList<Dice> dices = rollDices(board);
 		for (Player player : players) {
 			setFamilyMembersValue(dices, player);
@@ -43,7 +44,7 @@ public class StartRoundHandler {
 
 	
 	//Create new dices
-	private static ArrayList<Dice> rollDices(Board board) throws RemoteException{
+	private static ArrayList<Dice> rollDices(Board board) throws IOException{
 		ArrayList<DiceColour> colours = new ArrayList<>();
 		Player[] players = board.getPlayers();
 		colours.add(DiceColour.Black);

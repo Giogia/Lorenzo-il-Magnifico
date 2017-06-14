@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.ADVANCED;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -11,7 +12,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public class LeaderCardDraftHandler {
 	
-	public static void handle(Board board) throws RemoteException{
+	public static void handle(Board board) throws IOException{
 		ArrayList<LeaderCard> leaderCards = board.getGame().getData().getLeaderCards();
 		Random r= new Random();
 		ArrayList<ArrayList<LeaderCard>> draftLeaderCards = new ArrayList<>();//ArrayList of the players' hands

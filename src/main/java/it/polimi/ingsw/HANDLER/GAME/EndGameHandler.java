@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ private static EndGameHandler istanza = null;
         return istanza;
 	}
 
-	public static void handle(Board board) throws RemoteException{
+	public static void handle(Board board) throws IOException{
 		
 		transformResourcesIntoPoints(board);
 		transformMilitaryPoints(board);
@@ -76,7 +77,7 @@ private static EndGameHandler istanza = null;
 	}
 	
 
-	private static void transformVentureIntoPoints(Board board) throws RemoteException {
+	private static void transformVentureIntoPoints(Board board) throws IOException {
 		for(Player player : board.getPlayers()){
 			if(EndGameCardController.check(player, DevelopmentCardType.venture)){
 				CardContainer cardContainer = player.getPersonalBoard().getCardContainer(DevelopmentCardType.venture);
