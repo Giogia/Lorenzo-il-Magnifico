@@ -3,6 +3,7 @@ package it.polimi.ingsw.view;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class CliSocketView{
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new CliSocketOutView(new ObjectOutputStream(socket.getOutputStream())));
+		executor.submit(new CliSocketOutView(new PrintWriter(socket.getOutputStream())));
 
 		//Creates one thread to receive messages from the server
 		executor.submit(new CliSocketInView(new ObjectInputStream(socket.getInputStream())));
