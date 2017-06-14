@@ -54,6 +54,10 @@ public class ActionSocket implements Serializable{
 		this.a = a;
 	}
 	
+	public void setA(action a) {
+		this.a = a;
+	}
+	
 	public action getA() {
 		return a;
 	}
