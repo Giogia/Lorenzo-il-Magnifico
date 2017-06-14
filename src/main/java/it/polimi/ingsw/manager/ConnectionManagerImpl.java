@@ -125,8 +125,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		ArrayList<Color> colors = new ArrayList<>();
 		int numberOfRmiUsers = tempRmiUsers.size();
 		int numberOfSocketUsers = tempSocketUsers.size();
-		System.out.println("rmi: " + numberOfRmiUsers);
-		System.out.println("socket: "+ numberOfSocketUsers);
+		System.out.println("number of rmi players: " + numberOfRmiUsers);
+		System.out.println("number of socket players: "+ numberOfSocketUsers);
 		Player[] players = new Player[numberOfRmiUsers + numberOfSocketUsers];
 		for (Color color : Color.values()) {
 			colors.add(color);
@@ -139,7 +139,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			players[i] = new Player(nameChoosen, colorChoosen);
 			
 			rmiPlayers.put(players[i], tempRmiUsers.get(i));
-			System.out.println("inserito rmi plyer");
+			System.out.println("added new rmi plyer");
 		}
 		for(int i=0; i < numberOfSocketUsers; i++){
 			ObjectOutputStream socketOut = new ObjectOutputStream(tempSocketUsers.get(i).getOutputStream());
@@ -160,9 +160,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			players[i + numberOfRmiUsers] = new Player(nameChoosen, colors.get(colorChoosen));
 			colors.remove(colorChoosen);
 			
-			socketInPlayers.put(players[i], socketIn);
-			socketOutPlayers.put(players[i], socketOut);
-			System.out.println("inserito socket player");
+			socketInPlayers.put(players[i + numberOfRmiUsers], socketIn);
+			socketOutPlayers.put(players[i + numberOfRmiUsers], socketOut);
+			System.out.println("Added new socket player");
 		}
 		game.setPlayers(players);
 		executor.submit(game);
@@ -252,7 +252,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			out.flush();
 			
 			int choice = in.nextInt();
-			System.out.println(choice);
 			return choice;
 		}
 	}
@@ -528,18 +527,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			if (rmiPlayersList.contains(player)){ //if player is a rmi user
 				ClientRMICallbackRemote client = getRmiView(player);
 				client.showDices(dices);
-				System.out.println("--------------------------------SONO CLIENTE RMI---------------------");
 			}else{ //player is a socket user
-				System.out.println("------------++++++++++++++++++++++++");
-				ObjectOutputStream out = getSocketOutView(player);;
-				
-				System.out.println("---------------------------------------------");
-				
+				ObjectOutputStream out = getSocketOutView(player);
+				System.out.println(player);
+			
 				ActionSocket act = new ActionSocket(action.showDices);
 				act.setDices(dices);
 				out.writeObject(act);
 				out.flush();
-				System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
 			}
 		}
 	}
