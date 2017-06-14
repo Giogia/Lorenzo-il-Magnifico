@@ -233,7 +233,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 			System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 		}
 		System.out.println(leaderCards.size()+1+") come back \n");
-		return checkInputError(1, leaderCards.size());
+		return checkInputError(1, leaderCards.size()+1);
 	}
 
 

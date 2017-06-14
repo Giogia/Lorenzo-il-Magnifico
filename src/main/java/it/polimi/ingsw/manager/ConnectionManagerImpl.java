@@ -542,11 +542,23 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return 0;
 	}
 
-	public static int LeaderCardActionChoice(Player player) throws RemoteException {
-		ClientRMICallbackRemote client = getRmiView(player);
-		int choice = client.askForLeaderCardAction();
-		return choice;
-		//TODO fare parte socket
+	public static int LeaderCardActionChoice(Player player) throws IOException {
+		ArrayList<Player> rmiPlayersList = getRmiPlayers();
+		if (rmiPlayersList.contains(player)){ //if player is a rmi user
+			ClientRMICallbackRemote client = getRmiView(player);
+			int choice = client.askForLeaderCardAction();
+			return choice;
+		}
+		else{
+			ObjectOutputStream out = getSocketOutView(player);
+			Scanner in = getSocketInView(player);
+			
+			ActionSocket act = new ActionSocket(action.askForLeaderCardAction);
+			out.writeObject(act);
+			out.flush();
+			
+			return in.nextInt();
+		}
 	}
 
 	public static int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {

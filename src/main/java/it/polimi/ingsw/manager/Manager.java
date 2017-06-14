@@ -86,7 +86,7 @@ public class Manager{
 	private static void leaderCardManager(Player player) throws IOException {
 		while(true){
 			int index = chooseLeaderCard(player, player.getLeaderCardInHand());
-			if(index==player.getLeaderCardInHand().size()+1)
+			if(index==player.getLeaderCardInHand().size())
 				return;
 			LeaderCard chosenCard = player.getLeaderCardInHand().get(index);
 			System.out.println("carta scelta");

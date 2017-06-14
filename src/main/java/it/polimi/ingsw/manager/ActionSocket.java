@@ -37,7 +37,8 @@ public class ActionSocket implements Serializable{
 		showDices,
 		catchException, 
 		askForPersonalBonusTile,
-		askForLeaderCards
+		askForLeaderCards, 
+		askForLeaderCardAction
 	}
 	
 	private action a;
@@ -144,5 +145,11 @@ public class ActionSocket implements Serializable{
 	}
 	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
 		this.leaderCards = leaderCards;	
+	}
+	public ArrayList<LeaderCard> getLeaderCards() {
+		return leaderCards;
+	}
+	public ArrayList<PersonalBonusTile> getPersonalBonusTiles() {
+		return personalBonusTiles;
 	}
 }

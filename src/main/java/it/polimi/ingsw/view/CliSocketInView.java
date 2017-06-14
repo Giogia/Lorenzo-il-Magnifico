@@ -2,14 +2,17 @@ package it.polimi.ingsw.view;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
+import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket;
@@ -165,6 +168,29 @@ private ObjectInputStream socketIn;
 						lastChoice = familyMembers.size() + 1;
 						lastMessage =  lastChoice + ") Go back";
 						System.out.println(lastMessage);
+						break;
+						
+					case askForLeaderCards:
+						ArrayList<LeaderCard> leaderCards = action.getLeaderCards();
+						System.out.println("Choose the leader card you want \n");
+						for(int i=1;i<leaderCards.size()+1;i++){
+							System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
+						}
+						System.out.println(leaderCards.size()+1+") come back \n");
+						break;
+						
+					case askForPersonalBonusTile:
+						ArrayList<PersonalBonusTile> personalBonusTiles = action.getPersonalBonusTiles();
+						System.out.println("Choose the personal bonus tile you want \n");
+						for(int i=1;i<personalBonusTiles.size();i++){
+							System.out.println(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
+						}
+						break;
+						
+					case askForLeaderCardAction:
+						System.out.println("Choose the action you want to do with this Leader Card : \n");
+						System.out.println("1) activate this leader Card \n2) Discard this leader card");
+						System.out.println("3) come back \n");
 						break;
 				}
 				
