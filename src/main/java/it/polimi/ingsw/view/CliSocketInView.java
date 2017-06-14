@@ -49,8 +49,8 @@ private ObjectInputStream socketIn;
 						
 					case turnChoice:
 						System.out.println("What action do you want to do?\n");
-						System.out.println("1) Place a family member \n2) Activate leader card \n3) Discard leader card \n4) Activate "
-								+ "effect of a leader card \n5) Stats \n6) Pass the turn\n");
+						System.out.println("1) Place a family member \n2) See leader cards in your hand \n3) Activate "
+								+ "effect of a leader card \n4) Stats \n5) Pass the turn\n");
 						break;
 						
 					case moveAlreadyDone:
@@ -100,7 +100,8 @@ private ObjectInputStream socketIn;
 						break;
 						
 					case showDices:
-						for (Dice dice : action.getDices()) {
+						ArrayList<Dice> dices = action.getDices();
+						for (Dice dice : dices) {
 							System.out.println(dice.getDescription());
 						}
 						break;
