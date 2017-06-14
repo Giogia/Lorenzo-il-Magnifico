@@ -97,7 +97,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							e.printStackTrace();
 						}
 					}
-				}, 15000);//15 seconds, then the game starts
+				}, 10000);//10 seconds, then the game starts
 			}
 			//if there are 4 users, the game must start
 			if(rmiUsers.size() + socketUsers.size() == 4){
@@ -168,7 +168,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			colors[counter] = availableColors.get(counter).toString().toLowerCase();
 		}
 		int colorChoiced = client.askColor(colors) -1;
-		return Color.values()[colorChoiced];
+		return availableColors.get(colorChoiced);
 	}
 	
 	public static void addSocketUsers(Socket userSocket){
