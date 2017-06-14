@@ -85,16 +85,20 @@ public class Manager{
 
 	private static void leaderCardManager(Player player) throws IOException {
 		while(true){
-			LeaderCard chosenCard = chooseLeaderCard(player, player.getLeaderCardInHand());
+			int index = chooseLeaderCard(player, player.getLeaderCardInHand());
+			if(index==player.getLeaderCardInHand().size()+1)
+				return;
+			LeaderCard chosenCard = player.getLeaderCardInHand().get(index);
+			System.out.println("carta scelta");
 			int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
 			try{
 				switch (choice) {
 				case 1:
 					ActivateLeaderCardHandler.handle(player,chosenCard);
-					break;
+					return;
 				case 2:
 					DiscardLeaderCardHandler.handle(player,chosenCard);
-					break;
+					return;
 				case 3:
 					return;
 				}
@@ -107,7 +111,8 @@ public class Manager{
 	
 	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
-			LeaderCard chosenCard = chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
+			int choice= chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
+			LeaderCard chosenCard = player.getBoard().getGame().getData().getLeaderCards().get(choice);
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
 		}
 		catch(MyException exc){			
@@ -294,8 +299,8 @@ public class Manager{
 		return choice;
 	}
 	
-	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException {
-		LeaderCard chosenCard = leaderCards.get(ConnectionManagerImpl.chooseLeaderCard(player, leaderCards)-1);
-		return chosenCard;
+	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException { //return i if i-th element of array is chosen
+		int choice = ConnectionManagerImpl.chooseLeaderCard(player, leaderCards);
+		return choice-1;
 	}
 }

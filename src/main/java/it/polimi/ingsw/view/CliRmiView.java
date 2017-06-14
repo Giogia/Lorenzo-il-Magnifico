@@ -220,8 +220,8 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	@Override
 	public int askForLeaderCardAction() throws RemoteException {
 		System.out.println("Choose the action you want to do with this Leader Card : \n");
-		System.out.println("1) activate this leader Card : \n 2) Discard this leader card \n");
-		System.out.println("3)come back \n");
+		System.out.println("1) activate this leader Card \n2) Discard this leader card");
+		System.out.println("3) come back \n");
 		return checkInputError(1, 3);
 	}
 
@@ -232,6 +232,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 		for(int i=1;i<leaderCards.size()+1;i++){
 			System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 		}
+		System.out.println(leaderCards.size()+1+") come back \n");
 		return checkInputError(1, leaderCards.size());
 	}
 

@@ -549,12 +549,11 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return 0;
 	}
 
-	//TODO PERMANENT
 	public static int LeaderCardActionChoice(Player player) throws RemoteException {
-		//ClientRMICallbackRemote client = getView(player);
-		//int choice = client.askForLeaderCardAction();
-		//return choice;
-		return 0;
+		ClientRMICallbackRemote client = getRmiView(player);
+		int choice = client.askForLeaderCardAction();
+		return choice;
+		//TODO fare parte socket
 	}
 
 	public static int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
