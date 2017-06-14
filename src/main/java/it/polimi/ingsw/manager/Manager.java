@@ -84,28 +84,25 @@ public class Manager{
 	}
 
 	private static void leaderCardManager(Player player) throws IOException {
-		while(true){
-			int index = chooseLeaderCard(player, player.getLeaderCardInHand());
-			if(index==player.getLeaderCardInHand().size())
+		int index = chooseLeaderCard(player, player.getLeaderCardInHand());
+		if(index==player.getLeaderCardInHand().size())
+			return;
+		LeaderCard chosenCard = player.getLeaderCardInHand().get(index);
+		int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
+		try{
+			switch (choice) {
+			case 1:
+				ActivateLeaderCardHandler.handle(player,chosenCard);
 				return;
-			LeaderCard chosenCard = player.getLeaderCardInHand().get(index);
-			System.out.println("carta scelta");
-			int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
-			try{
-				switch (choice) {
-				case 1:
-					ActivateLeaderCardHandler.handle(player,chosenCard);
-					return;
-				case 2:
-					DiscardLeaderCardHandler.handle(player,chosenCard);
-					return;
-				case 3:
-					return;
-				}
+			case 2:
+				DiscardLeaderCardHandler.handle(player,chosenCard);
+				return;
+			case 3:
+				return;
 			}
-			catch(MyException exc){			
-				ConnectionManagerImpl.catchException(exc.getMessage(), player);
-			}
+		}
+		catch(MyException exc){			
+			ConnectionManagerImpl.catchException(exc.getMessage(), player);
 		}
 	}
 	
