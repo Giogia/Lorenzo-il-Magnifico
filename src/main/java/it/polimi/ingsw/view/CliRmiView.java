@@ -229,7 +229,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	@Override
 	public int askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException{
 		System.out.println("Choose the leader card you want \n");
-		for(int i=1;i<leaderCards.size()-1;i++){
+		for(int i=1;i<=leaderCards.size()-1;i++){
 			System.out.println(i+")"+leaderCards.get(i).getDescription()+" \n");
 		}
 		return checkInputError(1, leaderCards.size()-1);
@@ -239,7 +239,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	@Override
 	public int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
 		System.out.println("Choose the personal bonus tile you want \n");
-		for(int i=1;i<personalBonusTiles.size()-1;i++){
+		for(int i=1;i<=personalBonusTiles.size()-1;i++){
 			System.out.println(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
 		}
 		return checkInputError(1, personalBonusTiles.size()-1);
