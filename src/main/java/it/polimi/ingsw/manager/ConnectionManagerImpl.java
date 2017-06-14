@@ -82,7 +82,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			game = new Game();
 		}else{
 			//timer starts when there are 2 players
-			if(rmiUsers.size() + socketUsers.size() == 2){
+			if(rmiUsers.size() + socketUsers.size() == 2){//from now, the timer starts
 				timer = new Timer();
 				timer.schedule(new TimerTask() {
 					public void run() {

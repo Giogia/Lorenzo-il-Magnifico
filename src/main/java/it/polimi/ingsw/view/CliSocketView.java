@@ -30,10 +30,10 @@ public class CliSocketView{
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new CliSocketOutView(new PrintWriter(socket.getOutputStream())));
+		//executor.submit(new CliSocketOutView(new PrintWriter(socket.getOutputStream())));
 
 		//Creates one thread to receive messages from the server
-		executor.submit(new CliSocketInView(new ObjectInputStream(socket.getInputStream())));
+		executor.submit(new CliSocketInOutView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream())));
 	}
 	
 	public static void main(String[] args) throws UnknownHostException, IOException{

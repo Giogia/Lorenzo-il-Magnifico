@@ -119,7 +119,7 @@ public class Manager{
 	}
 
 	private static void askForInformation(Player player) throws IOException {
-		Player[] players = player.getBoard().getGame().getBoard().getPlayers();
+		Player[] players = player.getBoard().getPlayers();
 		String[] names = new String[players.length];
 		for (int i = 0; i < players.length; i++) {
 			names[i] = players[i].getName();

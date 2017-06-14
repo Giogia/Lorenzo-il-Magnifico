@@ -42,7 +42,7 @@ public class ActionSocket implements Serializable{
 		draftLeaderCards
 	}
 	
-	private action a;
+	private action action;
 	private Position[] positions;
 	private ArrayList<PersonalBonusTile> personalBonusTiles;
 	private ArrayList<FamilyMember> familyMembers;
@@ -59,15 +59,15 @@ public class ActionSocket implements Serializable{
 	private ArrayList<LeaderCard> leaderCards;
 	
 	public ActionSocket(action a) {
-		this.a = a;
+		this.action = a;
 	}
 	
-	public void setA(action a) {
-		this.a = a;
+	public void setAction(action a) {
+		this.action = a;
 	}
 	
-	public action getA() {
-		return a;
+	public action getAction() {
+		return action;
 	}
 	public Position[] getPositions() {
 		return positions;

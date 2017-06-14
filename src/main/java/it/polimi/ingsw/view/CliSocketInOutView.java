@@ -3,7 +3,10 @@ package it.polimi.ingsw.view;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
@@ -17,11 +20,30 @@ import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket;
 
-public class CliSocketInView implements Runnable{
-private ObjectInputStream socketIn;
+public class CliSocketInOutView implements Runnable{
+	private ObjectInputStream socketIn;
+	private Scanner scanner = new Scanner(System.in);
+	private PrintWriter socketOut;
 	
-	public CliSocketInView(ObjectInputStream socketIn) {
-		this.socketIn=socketIn;
+	public CliSocketInOutView(ObjectInputStream socketIn, PrintWriter socketOut) {
+		this.socketIn = socketIn;
+		this.socketOut = socketOut;
+	}
+	
+	private int checkInputError(int min, int max){
+		while (true){
+			scanner = new Scanner(System.in);
+			try{
+				int risp = scanner.nextInt();
+				if ( risp < min || risp > max){
+					System.out.println("Incorrect input. Try again: ");
+				}else{
+					return risp;
+				}
+			}catch(InputMismatchException e){
+				System.out.println("The input must be an integer between "+ min + " and "+ max + ". Try again: ");
+			}
+		}
 	}
 	
 	@Override
@@ -30,11 +52,15 @@ private ObjectInputStream socketIn;
 			// handles input messages coming from the server, just showing them to the user
 			try {
 				ActionSocket action =(ActionSocket) socketIn.readObject();
-				ActionSocket.action question = action.getA();
+				ActionSocket.action question = action.getAction();
 				
 				switch (question) {
 					case chooseName:
 						System.out.println("Please, insert your name: ");
+						String nameChoosen = scanner.nextLine();
+						
+						socketOut.println(nameChoosen);//the answer
+						socketOut.flush();
 						break;
 						
 					case chooseColor:
@@ -43,6 +69,10 @@ private ObjectInputStream socketIn;
 						for (int i = 1; i < availableColors.size() + 1; i++) {
 							System.out.println(i + ") " + availableColors.get(i - 1).toString().toLowerCase());
 						}
+						int choice = checkInputError(1, availableColors.size());
+						
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case startTurn:
@@ -54,6 +84,10 @@ private ObjectInputStream socketIn;
 						System.out.println("What action do you want to do?\n");
 						System.out.println("1) Place a family member \n2) See leader cards in your hand \n3) Activate "
 								+ "effect of a leader card \n4) Stats \n5) Pass the turn\n");
+						
+						choice = checkInputError(1, 5); //the answer
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case moveAlreadyDone:
@@ -64,6 +98,10 @@ private ObjectInputStream socketIn;
 						System.out.println("Choose the area you want to place the family member in:\n");
 						System.out.println("1) Territories Tower \n2) Characters Tower \n3) Buildings Tower \n4) Ventures Tower \n" + 
 							"5) Council Palace \n6) Harvest Area \n7) Production Area \n8) Market \n9) Go back");
+						
+						choice = checkInputError(1, 9);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case choosePosition:
@@ -75,6 +113,10 @@ private ObjectInputStream socketIn;
 						int lastChoice = action.getPositions().length + 1;
 						String lastMessage = lastChoice + ") Go back";
 						System.out.println(lastMessage);
+						
+						choice = checkInputError(1, lastChoice);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForAlternativeCost:
@@ -87,6 +129,10 @@ private ObjectInputStream socketIn;
 						for (Resource alternativeResource : action.getAlternativeCosts()) {
 							System.out.println(alternativeResource.getDescription());
 						}
+						
+						choice = checkInputError(1, 2);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForCouncilPrivilege:
@@ -95,11 +141,19 @@ private ObjectInputStream socketIn;
 							String message = counter + ") " + action.getBonus().get(counter - 1).getDescription();
 							System.out.println(message);
 						}
+						
+						choice = checkInputError(1, action.getBonus().size());
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForServants:
 						int numberOfServants = action.getNumberOfServants();
 						System.out.println("You have " + numberOfServants + " servants. How many of them do you want to use?");
+						
+						choice = checkInputError(0, numberOfServants);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case showDices:
@@ -127,6 +181,10 @@ private ObjectInputStream socketIn;
 						lastChoice = playersNames.length + 1;
 						lastMessage = lastChoice + ") Go back";
 						System.out.println(lastMessage);
+						
+						choice = checkInputError(1, lastChoice);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case showPersonalBoard:
@@ -143,6 +201,10 @@ private ObjectInputStream socketIn;
 						for (int i = 1; i <= zones.size(); i++) {
 							System.out.println(i + ") " + zones.get(i-1).getDescription());
 						}
+						
+						choice = checkInputError(1, zones.size());
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForActionPosition:
@@ -152,6 +214,10 @@ private ObjectInputStream socketIn;
 							String message = counter + ") " + positions[counter - 1].getDescription();
 							System.out.println(message);
 						}
+						
+						choice = checkInputError(1, positions.length);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case catchException:
@@ -168,6 +234,10 @@ private ObjectInputStream socketIn;
 						lastChoice = familyMembers.size() + 1;
 						lastMessage =  lastChoice + ") Go back";
 						System.out.println(lastMessage);
+						
+						choice = checkInputError(1, lastChoice);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForLeaderCards:
@@ -201,7 +271,6 @@ private ObjectInputStream socketIn;
 						}
 						break;
 				}
-				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
