@@ -295,7 +295,7 @@ public class Manager{
 	}
 	
 	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException {
-		LeaderCard chosenCard = leaderCards.get(ConnectionManagerImpl.chooseLeaderCard(player, player.getLeaderCardInHand())-1);
+		LeaderCard chosenCard = leaderCards.get(ConnectionManagerImpl.chooseLeaderCard(player, leaderCards)-1);
 		return chosenCard;
 	}
 }

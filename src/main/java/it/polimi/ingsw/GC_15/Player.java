@@ -17,8 +17,8 @@ public class Player implements Serializable{
 	public enum Color {RED, BLUE, YELLOW, GREEN}
 	private Board board;
 	private PersonalBoard personalBoard;
-	private ArrayList<LeaderCard> leaderCardInHand;
-	private ArrayList<FamilyMember> familyMembers;
+	private ArrayList<LeaderCard> leaderCardInHand = new ArrayList<>();
+	private ArrayList<FamilyMember> familyMembers = new ArrayList<>();
 	
 	public Player(String name, Color color) {
 		this.name=name;
