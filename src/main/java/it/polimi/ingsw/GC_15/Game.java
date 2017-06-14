@@ -26,19 +26,18 @@ public class Game implements Serializable, Runnable{
 	
 
 	public void run(){
-
+		System.out.println("sono entrato nel game");
 		try {
 			data = ConfigurationFileHandler.getData();
 			board = new Board(this);
 			for (int i=0; i < players.length; i++){
+				System.out.println(players[i]);
 				players[i].setBoard(board);
+				System.out.println("entro nel for");
 			}
+			System.out.println("---------------------------");
 			roundOrder = new RoundOrder();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
+			System.out.println("ho caricato tutto ed è andato a buon fine");
 			StartGameHandler.handle(board);
 			RoundManagerHandler.handle(board, players);
 			EndGameHandler.handle(board);
