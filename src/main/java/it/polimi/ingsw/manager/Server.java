@@ -40,7 +40,7 @@ public class Server {
 		//creates the socket
 		ServerSocket serverSocket = new ServerSocket(SOCKET_PORT);
 
-		System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
+		System.out.println("Server socket ready on port: " + SOCKET_PORT);
 		
 		while (true) {
 			//Waits for a new client to connect
@@ -58,9 +58,9 @@ public class Server {
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException {
 		Server server = new Server();
-		System.out.println("START RMI");
+		System.out.println("Starting RMI...");
 		server.startRMI();
-		System.out.println("START SOCKET");
+		System.out.println("Starting socket...");
 		server.startSocket();
 	}
 }
