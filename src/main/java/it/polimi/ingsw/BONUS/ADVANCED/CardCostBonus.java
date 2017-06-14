@@ -50,7 +50,7 @@ public abstract class CardCostBonus extends PermanentBonus {
 	}
 	
 	public String getDescription(){
-		String description = null;
+		String description = "";
 		for(Resource resource : resources){
 			description = description + resource.getDescription() +"\n";
 		}
