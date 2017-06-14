@@ -1,11 +1,14 @@
 package it.polimi.ingsw.manager;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Server {
 	//Main class from the server side
@@ -32,7 +35,25 @@ public class Server {
 	}
 	
 	private void startSocket() throws IOException {
-		//TODO
+		// creates the thread pool to handle clients
+		ExecutorService executor = Executors.newCachedThreadPool();
+		//creates the socket
+		ServerSocket serverSocket = new ServerSocket(SOCKET_PORT);
+
+		System.out.println("SERVER SOCKET READY ON PORT" + SOCKET_PORT);
+		
+		while (true) {
+			//Waits for a new client to connect
+			Socket socket = serverSocket.accept();
+
+			// creates the view (server side) associated with the new client
+			ConnectionManagerImpl view = ConnectionManagerImpl.getConnectionManager();
+			
+			view.addSocketUsers(socket);//added the new user 
+			
+			// a new thread handle the connection with the view
+			executor.submit(view);
+		}
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException {
@@ -40,7 +61,6 @@ public class Server {
 		System.out.println("START RMI");
 		server.startRMI();
 		System.out.println("START SOCKET");
-		//TODO: to implement
 		server.startSocket();
 	}
 }
