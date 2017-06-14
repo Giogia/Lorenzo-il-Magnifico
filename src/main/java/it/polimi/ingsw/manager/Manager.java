@@ -1,5 +1,6 @@
 package it.polimi.ingsw.manager;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class Manager{
 	}
 
 	//begins the turn of the player 
-	public static void turn(Player player) throws RemoteException{
+	public static void turn(Player player) throws IOException{
 		ConnectionManagerImpl.startTurn(player);
 		while(true){
 			int choice = ConnectionManagerImpl.turnChoice(player);
@@ -82,7 +83,7 @@ public class Manager{
 			
 	}
 
-	private static void leaderCardManager(Player player) throws RemoteException {
+	private static void leaderCardManager(Player player) throws IOException {
 		while(true){
 			LeaderCard chosenCard = chooseLeaderCard(player, player.getLeaderCardInHand());
 			int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
@@ -104,7 +105,7 @@ public class Manager{
 		}
 	}
 	
-	private static void activationLeaderCardEffectManager(Player player) throws RemoteException {
+	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
 			LeaderCard chosenCard = chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
@@ -115,7 +116,7 @@ public class Manager{
 		
 	}
 
-	private static void askForInformation(Player player) throws RemoteException {
+	private static void askForInformation(Player player) throws IOException {
 		Player[] players = player.getBoard().getGame().getBoard().getPlayers();
 		String[] names = new String[players.length];
 		for (int i = 0; i < players.length; i++) {
@@ -129,7 +130,7 @@ public class Manager{
 		ConnectionManagerImpl.showPersonalBoard(player, personalBoard);
 	}
 
-	private static void actionManager(Player player) throws RemoteException {
+	private static void actionManager(Player player) throws IOException {
 		PassTurnController passTurnController = player.getBoard().getPassTurnController();
 		if (passTurnController.getLastMove() != null){
 			if (passTurnController.getLastMove().equals(player)){
@@ -139,7 +140,7 @@ public class Manager{
 		}
 		Board board = player.getBoard();
 		while(true){
-			int choice = ConnectionManagerImpl.chooseZone(player, board);
+			int choice = ConnectionManagerImpl.chooseZone(player);
 			try{
 				switch (choice) {
 				case 1:
@@ -197,7 +198,7 @@ public class Manager{
 	/* Le posizioni vanno da 1 alla posizione massima
 	 * Se ritorna posizione massima + 1, significa che devi tornare indietro
 	 */
-	private static boolean zoneManager(Player player, Zone zone) throws MyException, RemoteException {
+	private static boolean zoneManager(Player player, Zone zone) throws MyException, IOException {
 		Position[] positions = zone.getPositions();
 		int choice = ConnectionManagerImpl.choosePosition(player, positions);
 		if (choice == positions.length + 1){
@@ -208,7 +209,7 @@ public class Manager{
 	}
 	
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
-	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, RemoteException{
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, IOException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
 		int choice = ConnectionManagerImpl.chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){
@@ -220,7 +221,7 @@ public class Manager{
 	}
 
 	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
-			ArrayList<Resource> alternativeCosts) throws RemoteException {
+			ArrayList<Resource> alternativeCosts) throws IOException {
 		int choice = ConnectionManagerImpl.askForAlternativeCost(player, costs, alternativeCosts);
 		if (choice == 1){
 			return costs;
@@ -228,18 +229,18 @@ public class Manager{
 		else return alternativeCosts;
 	}
 
-	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws RemoteException {
+	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
 		int choice = ConnectionManagerImpl.askForCouncilPrivilege(player, councilPrivileges);
 		return councilPrivileges.get(choice-1);
 	}
 
-	public static int askForServants(Player player) throws RemoteException {
+	public static int askForServants(Player player) throws IOException {
 		int numberOfServants = player.getPersonalBoard().getResource(ResourceType.servants).getAmount();
 		int choice = ConnectionManagerImpl.askForServants(player, numberOfServants);
 		return choice;
 	}
 
-	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws RemoteException {
+	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws IOException {
 		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
@@ -277,7 +278,7 @@ public class Manager{
 		//TODO PERMANENT
 	}
 
-	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws RemoteException {
+	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws IOException {
 		int choice = ConnectionManagerImpl.askForZone(actionZones, player);
 		return actionZones.get(choice - 1);
 	}
@@ -288,12 +289,12 @@ public class Manager{
 		return choice;
 	}
 	
-	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException{
+	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws IOException{
 		PersonalBonusTile choice = personalBonusTiles.get(ConnectionManagerImpl.choosePersonalBonusTile(player, personalBonusTiles)-1);
 		return choice;
 	}
 	
-	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws RemoteException {
+	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException {
 		LeaderCard chosenCard = leaderCards.get(ConnectionManagerImpl.chooseLeaderCard(player, player.getLeaderCardInHand())-1);
 		return chosenCard;
 	}

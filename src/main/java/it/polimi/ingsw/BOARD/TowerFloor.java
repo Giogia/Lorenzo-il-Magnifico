@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class TowerFloor extends Position {
 	}
 	
 	@Override
-	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, RemoteException{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException{
 		
 		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
 		

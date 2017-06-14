@@ -27,6 +27,7 @@ import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.CARD.Character;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
-	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , RemoteException {
+	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , IOException {
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
@@ -74,7 +75,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException, RemoteException {
+			TowerFloor towerFloor) throws MyException, IOException {
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
 			if (!checkTerritories(familyMember)) {
 				return false;
@@ -131,7 +132,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException, RemoteException {
+			TowerFloor towerFloor) throws MyException, IOException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		for (Resource resource : ventureCard.cost) {

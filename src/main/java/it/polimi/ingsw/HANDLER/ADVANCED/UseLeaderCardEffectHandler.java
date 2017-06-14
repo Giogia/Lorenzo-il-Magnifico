@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.ADVANCED;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.BONUS.Bonus;
@@ -11,7 +12,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public class UseLeaderCardEffectHandler {
 
-	public static void handle(Player player, LeaderCard chosen) throws RemoteException, MyException{
+	public static void handle(Player player, LeaderCard chosen) throws IOException, MyException{
 		for(Bonus bonus: chosen.getBonus()){
 			ImmediateBonus immediateBonus = (ImmediateBonus) bonus;
 			immediateBonus.getImmediateBonus(player);

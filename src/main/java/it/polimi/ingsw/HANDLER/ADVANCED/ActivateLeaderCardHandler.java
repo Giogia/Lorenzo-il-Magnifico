@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.ADVANCED;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.BONUS.Bonus;
@@ -15,7 +16,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public class ActivateLeaderCardHandler {
 
-	public static void handle(Player player,LeaderCard chosen) throws RemoteException, MyException{
+	public static void handle(Player player,LeaderCard chosen) throws IOException, MyException{
 		if(chosen.getResourceActivationCondition()!=null){
 			if(ResourceController.check(player, chosen.getResourceActivationCondition())){
 				if(chosen.getCardActivationCondition()!=null){

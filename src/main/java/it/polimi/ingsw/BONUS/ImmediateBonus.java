@@ -1,5 +1,6 @@
 package it.polimi.ingsw.BONUS;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_15.MyException;
@@ -17,7 +18,7 @@ public abstract class ImmediateBonus extends Bonus {
 		return type;
 	}
 	
-	public void getImmediateBonus(Player player) throws MyException, RemoteException{ 
+	public void getImmediateBonus(Player player) throws MyException, IOException{ 
 		
 	}
 

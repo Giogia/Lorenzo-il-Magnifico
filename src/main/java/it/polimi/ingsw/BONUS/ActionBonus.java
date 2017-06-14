@@ -1,5 +1,6 @@
 package it.polimi.ingsw.BONUS;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class ActionBonus extends ImmediateBonus {
 		action.putAll(actionMap);
 	}
 	
-	public void getImmediateBonus(Player player) throws MyException, RemoteException{
+	public void getImmediateBonus(Player player) throws MyException, IOException{
 		FakeFamilyMemberHandler.handle(player, action, resources);
 	}
 

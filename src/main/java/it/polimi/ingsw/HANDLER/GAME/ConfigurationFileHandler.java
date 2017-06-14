@@ -71,10 +71,6 @@ import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.CARD.PermanentLeaderCard;
 
 public class ConfigurationFileHandler {
-	public static void main(String[] args) throws FileNotFoundException{
-		
-	}
-	
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
