@@ -554,16 +554,43 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return 0;
 	}
 
-	public static int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws RemoteException {
-		ClientRMICallbackRemote client = getRmiView(player);
-		int choice = client.askForLeaderCard(leaderCards);
-		return choice;
+	public static int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
+		ArrayList<Player> rmiPlayersList = getRmiPlayers();
+		if (rmiPlayersList.contains(player)){ //if player is a rmi user
+			ClientRMICallbackRemote client = getRmiView(player);
+			int choice = client.askForLeaderCard(leaderCards);
+			return choice;
+		}
+		else{
+			ObjectOutputStream out = getSocketOutView(player);
+			Scanner in = getSocketInView(player);
+			
+			ActionSocket act = new ActionSocket(action.askForLeaderCards);
+			act.setLeaderCards(leaderCards);
+			out.writeObject(act);
+			out.flush();
+			
+			return in.nextInt();
+		}
 	}
 
-	public static int choosePersonalBonusTile(Player player,
-			ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
-		ClientRMICallbackRemote client = getRmiView(player);
-		int choice = client.askForPersonalBonusTile(personalBonusTiles);
-		return choice;
+	public static int choosePersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws  IOException {
+		ArrayList<Player> rmiPlayersList = getRmiPlayers();
+		if (rmiPlayersList.contains(player)){ //if player is a rmi user
+			ClientRMICallbackRemote client = getRmiView(player);
+			int choice = client.askForPersonalBonusTile(personalBonusTiles);
+			return choice;
+		}
+		else{
+			ObjectOutputStream out = getSocketOutView(player);
+			Scanner in = getSocketInView(player);
+			
+			ActionSocket act = new ActionSocket(action.askForPersonalBonusTile);
+			act.setPersonalBonusTiles(personalBonusTiles);
+			out.writeObject(act);
+			out.flush();
+			
+			return in.nextInt();
+		}
 	}
 }

@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -33,11 +35,14 @@ public class ActionSocket implements Serializable{
 		askForAction,
 		askForActionPosition,
 		showDices,
-		catchException
+		catchException, 
+		askForPersonalBonusTile,
+		askForLeaderCards
 	}
 	
 	private action a;
 	private Position[] positions;
+	private ArrayList<PersonalBonusTile> personalBonusTiles;
 	private ArrayList<FamilyMember> familyMembers;
 	private ArrayList<Resource> costs;
 	private ArrayList<Resource> alternativeCosts;
@@ -49,6 +54,7 @@ public class ActionSocket implements Serializable{
 	private ArrayList<ActionZone> zones;
 	private ArrayList<Dice> dices;
 	private ArrayList<Color> availableColors;
+	private ArrayList<LeaderCard> leaderCards;
 	
 	public ActionSocket(action a) {
 		this.a = a;
@@ -132,5 +138,11 @@ public class ActionSocket implements Serializable{
 	}
 	public void setAvailableColors(ArrayList<Color> availableColors) {
 		this.availableColors = availableColors;
+	}
+	public void setPersonalBonusTiles(ArrayList<PersonalBonusTile> personalBonusTiles){
+		this.personalBonusTiles = personalBonusTiles;
+	}
+	public void setLeaderCards(ArrayList<LeaderCard> leaderCards) {
+		this.leaderCards = leaderCards;	
 	}
 }
