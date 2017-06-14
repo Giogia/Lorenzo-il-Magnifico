@@ -45,7 +45,7 @@ public abstract class PermanentResourceBonus extends PermanentBonus {
 	}
 	
 	public String getDescription(){
-		String description = null;
+		String description = "";
 		for(Resource resource : resources){
 			description = description + resource.getDescription()+ "\n";
 		}

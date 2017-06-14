@@ -39,7 +39,7 @@ public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	protected abstract void modifyValue(FamilyMember familyMember, FamilyMember newFamilyMember);
 	
 	public String getDescription(){
-		String description = null;
+		String description = "";
 		for(FamilyMember familyMember: familyMembers){
 			description = description + familyMember.getValue()+ "the value of your " + familyMember.getDice().getDiceColour().name() + " family member \n";
 		}

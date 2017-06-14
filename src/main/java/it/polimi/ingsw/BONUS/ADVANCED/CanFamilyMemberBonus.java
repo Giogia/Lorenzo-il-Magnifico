@@ -136,7 +136,7 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 	}
 	
 	public String getDescription(){
-		String description = null;
+		String description = "";
 		for(Zone zone : canGoTo.keySet()){
 			if(canGoTo.get(zone)==false){
 			description = description + zone.getDescription()+"\n";
