@@ -1,7 +1,6 @@
 package it.polimi.ingsw.manager;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
@@ -18,11 +17,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.LeaderCard;
-import it.polimi.ingsw.CARD.PermanentLeaderCard;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -36,8 +33,8 @@ import it.polimi.ingsw.view.ClientRMICallbackRemote;
 import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
+	static Timer timer;
 	private static ConnectionManagerImpl instance;
-	private static Timer timer = new Timer();
 	private static List<ClientRMICallbackRemote> rmiUsers = new ArrayList<>();
 	private static List<Socket> socketUsers = new ArrayList<>();
 	private static HashMap<Player, ClientRMICallbackRemote> rmiPlayers = new HashMap<>();
@@ -86,6 +83,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}else{
 			//timer starts when there are 2 players
 			if(rmiUsers.size() + socketUsers.size() == 2){
+				timer = new Timer();
 				timer.schedule(new TimerTask() {
 					public void run() {
 						try {
