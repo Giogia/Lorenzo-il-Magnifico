@@ -65,5 +65,7 @@ public interface ClientRMICallbackRemote extends Remote {
 	int askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException;
 
 	int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException;
+
+	int draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException;
 }
 

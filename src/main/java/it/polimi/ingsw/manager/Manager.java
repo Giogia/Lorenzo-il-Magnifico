@@ -300,4 +300,9 @@ public class Manager{
 		int choice = ConnectionManagerImpl.chooseLeaderCard(player, leaderCards);
 		return choice-1;
 	}
+
+	public static int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
+		int choice = ConnectionManagerImpl.draftLeaderCard(player, leaderCards);
+		return choice-1;
+	}
 }

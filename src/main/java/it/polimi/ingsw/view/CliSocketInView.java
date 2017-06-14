@@ -192,6 +192,14 @@ private ObjectInputStream socketIn;
 						System.out.println("1) activate this leader Card \n2) Discard this leader card");
 						System.out.println("3) come back \n");
 						break;
+						
+					case draftLeaderCards:
+						ArrayList<LeaderCard> draftleaderCards = action.getLeaderCards();
+						System.out.println("Choose the leader card you want \n");
+						for(int i=1;i<draftleaderCards.size()+1;i++){
+							System.out.println(i+")"+draftleaderCards.get(i-1).getDescription()+" \n");
+						}
+						break;
 				}
 				
 			} catch (ClassNotFoundException e) {

@@ -245,5 +245,15 @@ public class CliRmiView implements ClientRMICallbackRemote{
 		}
 		return checkInputError(1, personalBonusTiles.size()-1);
 	}
+
+
+	@Override
+	public int draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException{
+		System.out.println("Choose the leader card you want \n");
+		for(int i=1;i<leaderCards.size()+1;i++){
+			System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
+		}
+		return checkInputError(1, leaderCards.size());
+	}
 }
 

@@ -35,7 +35,7 @@ public class LeaderCardDraftHandler {
 			for(Player player : board.getPlayers()){//every player chose one card and then the cards rotate
 				int numberOfArray = (k+playerOrder)%numberOfPlayers;
 				ArrayList<LeaderCard> leaderCards = draftLeaderCards.get(numberOfArray);
-				int index = Manager.chooseLeaderCard(player, leaderCards);	
+				int index = Manager.draftLeaderCard(player, leaderCards);	
 				LeaderCard chosen = leaderCards.get(index);			
 				player.addLeadercard(chosen);
 				leaderCards.remove(chosen);

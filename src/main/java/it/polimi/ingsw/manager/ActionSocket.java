@@ -38,7 +38,8 @@ public class ActionSocket implements Serializable{
 		catchException, 
 		askForPersonalBonusTile,
 		askForLeaderCards, 
-		askForLeaderCardAction
+		askForLeaderCardAction,
+		draftLeaderCards
 	}
 	
 	private action a;
