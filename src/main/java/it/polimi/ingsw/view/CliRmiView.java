@@ -48,7 +48,7 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	public int askColor(String[] availableColors){
 		System.out.println("What color do you want for your family members?");
 		for (int i = 1; i < availableColors.length + 1; i++) {
-			System.out.println(i + ") " + availableColors[i - 1]);
+			System.out.println(i + ") " + availableColors[i - 1].toLowerCase());
 		}
 		return checkInputError(1, availableColors.length);
 	}
