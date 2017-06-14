@@ -54,6 +54,16 @@ public class PersonalBonusTile implements Serializable {
 		else
 			return null;
 	}
+
+	public String getDescription() {
+		String description = "This personal bonus tile contains: \n"+
+				"Harvest dice requirement: "+harvestActivationCondition+" \n"+
+				"Harvest Bonus: "+harvestBonus.getDescription()+" \n"+
+				"Production dice requirement: "+productionActivationCondition+" \n"+
+				"Production Bonus: "+productionBonus.getDescription()+" \n";
+				
+		return description;
+	}
 	
 	
 }

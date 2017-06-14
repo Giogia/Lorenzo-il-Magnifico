@@ -106,7 +106,7 @@ public class Manager{
 	
 	private static void activationLeaderCardEffectManager(Player player) throws RemoteException {
 		try{
-			LeaderCard chosenCard = chooseLeaderCard(player, player.getLeaderCardInHand());
+			LeaderCard chosenCard = chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
 		}
 		catch(MyException exc){			
@@ -288,14 +288,13 @@ public class Manager{
 		return choice;
 	}
 	
-	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles){
-		PersonalBonusTile choice = null;
-		//TODO chiedere di scegliere
+	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException{
+		PersonalBonusTile choice = personalBonusTiles.get(ConnectionManagerImpl.choosePersonalBonusTile(player, personalBonusTiles)-1);
 		return choice;
 	}
 	
 	public static LeaderCard chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws RemoteException {
-		LeaderCard chosenCard = ConnectionManagerImpl.chooseLeaderCard(player, player.getLeaderCardInHand());
+		LeaderCard chosenCard = leaderCards.get(ConnectionManagerImpl.chooseLeaderCard(player, player.getLeaderCardInHand())-1);
 		return chosenCard;
 	}
 }

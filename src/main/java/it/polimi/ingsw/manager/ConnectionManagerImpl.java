@@ -21,6 +21,7 @@ import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -249,9 +250,16 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return choice;
 	}
 
-	public static LeaderCard chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCardInHand) throws RemoteException {
+	public static int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws RemoteException {
 		ClientRMICallbackRemote client = getView(player);
-		LeaderCard choice = leaderCardInHand.get(client.askForLeaderCard(leaderCardInHand));
+		int choice = client.askForLeaderCard(leaderCards);
+		return choice;
+	}
+
+	public static int choosePersonalBonusTile(Player player,
+			ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
+		ClientRMICallbackRemote client = getView(player);
+		int choice = client.askForPersonalBonusTile(personalBonusTiles);
 		return choice;
 	}
 

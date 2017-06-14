@@ -13,6 +13,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -61,6 +62,8 @@ public interface ClientRMICallbackRemote extends Remote {
 	
 	void showDices(ArrayList<Dice> dices) throws RemoteException;
 
-	int askForLeaderCard(ArrayList<LeaderCard> leaderCardInHand) throws RemoteException;
+	int askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException;
+
+	int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException;
 }
 

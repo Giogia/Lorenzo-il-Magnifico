@@ -18,6 +18,7 @@ import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 
@@ -226,11 +227,22 @@ public class CliRmiView implements ClientRMICallbackRemote{
 
 
 	@Override
-	public int askForLeaderCard(ArrayList<LeaderCard> leaderCardInHand) throws RemoteException{
-		for(int i=1;i==leaderCardInHand.size();i++){
-			System.out.println(i+")"+leaderCardInHand.get(i).getDescription()+" \n");
+	public int askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException{
+		System.out.println("Choose the leader card you want \n");
+		for(int i=1;i<leaderCards.size()-1;i++){
+			System.out.println(i+")"+leaderCards.get(i).getDescription()+" \n");
 		}
-		return checkInputError(1, leaderCardInHand.size()-1);
+		return checkInputError(1, leaderCards.size()-1);
+	}
+
+
+	@Override
+	public int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
+		System.out.println("Choose the personal bonus tile you want \n");
+		for(int i=1;i<personalBonusTiles.size()-1;i++){
+			System.out.println(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
+		}
+		return checkInputError(1, personalBonusTiles.size()-1);
 	}
 }
 
