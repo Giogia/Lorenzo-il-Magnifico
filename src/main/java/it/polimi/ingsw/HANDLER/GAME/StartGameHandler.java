@@ -39,14 +39,25 @@ public final class StartGameHandler {
 	private static void setRandomExcommunicationTiles(ArrayList<ExcommunicationTile> list, Board board){
 		ExcommunicationTile[] excommunicationTiles = new ExcommunicationTile[3];
 		for(int i=0;i<3;i++){
+			ArrayList<ExcommunicationTile> periodExcommunicationTiles = findByPeriod(list, i+1);
 			Random r= new Random();
-			int index = r.nextInt(list.size());
-			ExcommunicationTile chosenExcommunicationTile = list.get(index); //tile preso con indice a caso
-			excommunicationTiles[chosenExcommunicationTile.period-1]= chosenExcommunicationTile; //guarda il periodo di quello scelto e lo mette in quella posizione dell'array
+			int index = r.nextInt(periodExcommunicationTiles.size());
+			ExcommunicationTile chosenExcommunicationTile = periodExcommunicationTiles.get(index); //tile preso con indice a caso
+			excommunicationTiles[i]= chosenExcommunicationTile; //guarda il periodo di quello scelto e lo mette in quella posizione dell'array
 		}
 		board.setExcommunicationTiles(excommunicationTiles);
 	}
 	
+	private static ArrayList<ExcommunicationTile> findByPeriod(ArrayList<ExcommunicationTile> list, int period) {
+		ArrayList<ExcommunicationTile> periodExcommunicationTiles = new ArrayList<>();
+		for (ExcommunicationTile excommunicationTile : list) {
+			if (excommunicationTile.period == period){
+				periodExcommunicationTiles.add(excommunicationTile);
+			}
+		}
+		return periodExcommunicationTiles;
+	}
+
 	private static void setPlayersResources(Board board){
 		int i=0;
 		for(Player player: board.getGame().getRoundOrder()){

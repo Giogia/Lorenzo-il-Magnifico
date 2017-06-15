@@ -29,7 +29,7 @@ public class EndRoundHandler {
 		handleOrder(roundOrder, board);
 		board.resetPositions();
 		if (turn % 2 == 0){ 
-			VaticanReport.checkPlayersFaith((turn+1)/2, board);
+			VaticanReport.checkPlayersFaith(turn/2, board);
 		}
 		board.getPassTurnController().lastMove(null);
 		board.getGame().getSkipActionPlayers().clear();
