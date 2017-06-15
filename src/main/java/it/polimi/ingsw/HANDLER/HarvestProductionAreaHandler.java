@@ -52,9 +52,11 @@ public abstract class HarvestProductionAreaHandler {
 					//start advanced
 					ArrayList<DevelopmentCard> activableCards = getActivableCards(testFamilyMember, zone,playerResources);
 					ArrayList<Bonus> chosenEffects = chooseEffects(activableCards,familyMember,playerResources);
-					for(Bonus chosenBonus : chosenEffects){
-						ImmediateBonus bonus = (ImmediateBonus) chosenBonus;
-						bonus.getImmediateBonus(familyMember.getPlayer());
+					if(!chosenEffects.isEmpty()){
+						for(Bonus chosenBonus : chosenEffects){
+							ImmediateBonus bonus = (ImmediateBonus) chosenBonus;
+							bonus.getImmediateBonus(familyMember.getPlayer());
+						}
 					}
 					return true;
 				}
@@ -115,13 +117,15 @@ public abstract class HarvestProductionAreaHandler {
 	}
 
 	//advanced
-	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources){
+	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException{
 
-		ArrayList<Bonus> chosenEffects = null;
+		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
 		do{
 			chosenEffects = new ArrayList<>();
 			for(DevelopmentCard card : activableCards){
-			chosenEffects.addAll(Manager.chooseEffect(card));
+				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
+				if(cardChosenEffects!=null)//it's null if the user didn't choose to activate these effects
+					chosenEffects.addAll(cardChosenEffects);
 			}
 		}while(ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
 		return chosenEffects;

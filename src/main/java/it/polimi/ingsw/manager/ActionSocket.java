@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
@@ -41,7 +42,8 @@ public class ActionSocket implements Serializable{
 		askForLeaderCards, 
 		askForLeaderCardAction,
 		draftLeaderCards, 
-		askForExcommunication
+		askForExcommunication,
+		askForCardEffect
 	}
 	
 	private action action;
@@ -60,6 +62,7 @@ public class ActionSocket implements Serializable{
 	private ArrayList<Color> availableColors;
 	private ArrayList<LeaderCard> leaderCards;
 	private ArrayList<ExcommunicationTile> excommunicationTiles;
+	private DevelopmentCard developmentCard;
 	
 	public ActionSocket(action a) {
 		this.action = a;
@@ -163,5 +166,12 @@ public class ActionSocket implements Serializable{
 	
 	public ArrayList<ExcommunicationTile> getExcommunicationTiles() {
 		return excommunicationTiles;
+	}
+	
+	public DevelopmentCard getDevelopmentCard() {
+		return developmentCard;
+	}
+	public void setDevelopmentCardEffect(DevelopmentCard developmentCard) {
+		this.developmentCard = developmentCard;
 	}
 }

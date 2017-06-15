@@ -9,6 +9,7 @@ import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
@@ -70,5 +71,7 @@ public interface ClientRMICallbackRemote extends Remote {
 	int draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException;
 
 	int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException;
+
+	int askForCardEffect(DevelopmentCard developmentCard) throws RemoteException;
 }
 
