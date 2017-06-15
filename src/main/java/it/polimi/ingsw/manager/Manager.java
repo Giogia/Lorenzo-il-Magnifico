@@ -285,9 +285,35 @@ public class Manager{
 		return actionZones.get(choice - 1);
 	}
 
-	public static ArrayList<Bonus> chooseEffect(DevelopmentCard developmentCard){
-		ArrayList<Bonus> choice= new ArrayList<>();
-		//TODO chiedere di scegliere
+	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
+		int index= ConnectionManagerImpl.chooseEffect(player,developmentCard);
+		ArrayList<Bonus> choice = new ArrayList<>();
+	
+		if(developmentCard instanceof Territory){
+			switch (index){
+				case 1:
+					choice = developmentCard.secondaryEffect;
+					break;
+				case 2:
+					choice = null;
+					break;
+			}
+		}
+		if(developmentCard instanceof Building){
+			Building building = (Building) developmentCard;
+			switch (index){
+				case 1:
+					choice = developmentCard.secondaryEffect;
+						break;
+				case 2:
+					
+					choice = building.tertiaryEffect;
+					break;
+				case 3:
+					choice = null;
+					break;
+			}
+		}
 		return choice;
 	}
 	

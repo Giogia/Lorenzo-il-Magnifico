@@ -18,7 +18,9 @@ import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Dice;
@@ -617,6 +619,25 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			out.writeObject(act);
 			out.flush();
 			
+			return in.nextInt();
+		}
+	}
+
+	public static int chooseEffect(Player player, DevelopmentCard developmentCard)throws IOException {
+		ArrayList<Player> rmiPlayersList = getRmiPlayers();
+		if (rmiPlayersList.contains(player)){ //if player is a rmi user
+			ClientRMICallbackRemote client = getRmiView(player);
+			int choice = client.askForCardEffect(developmentCard);
+			return choice;
+		}
+		else{
+			ObjectOutputStream out = getSocketOutView(player);
+			Scanner in = getSocketInView(player);
+			
+			ActionSocket act = new ActionSocket(action.askForCardEffect);
+			act.setDevelopmentCardEffect(developmentCard);
+			out.writeObject(act);
+			out.flush();
 			return in.nextInt();
 		}
 	}

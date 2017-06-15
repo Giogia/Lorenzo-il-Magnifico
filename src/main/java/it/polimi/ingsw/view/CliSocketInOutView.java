@@ -12,6 +12,9 @@ import java.util.Set;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.CARD.Building;
+import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -247,6 +250,10 @@ public class CliSocketInOutView implements Runnable{
 							System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 						}
 						System.out.println(leaderCards.size()+1+") come back \n");
+						
+						choice = checkInputError(1, leaderCards.size()+1);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForPersonalBonusTile:
@@ -255,12 +262,18 @@ public class CliSocketInOutView implements Runnable{
 						for(int i=1;i<personalBonusTiles.size();i++){
 							System.out.println(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
 						}
+						choice = checkInputError(1, personalBonusTiles.size()-1);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case askForLeaderCardAction:
 						System.out.println("Choose the action you want to do with this Leader Card : \n");
 						System.out.println("1) activate this leader Card \n2) Discard this leader card");
 						System.out.println("3) come back \n");
+						choice = checkInputError(1,3);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 						
 					case draftLeaderCards:
@@ -269,6 +282,31 @@ public class CliSocketInOutView implements Runnable{
 						for(int i=1;i<draftleaderCards.size()+1;i++){
 							System.out.println(i+")"+draftleaderCards.get(i-1).getDescription()+" \n");
 						}
+						choice = checkInputError(1, draftleaderCards.size());
+						socketOut.println(choice);
+						socketOut.flush();
+						break;
+						
+					case askForCardEffect:
+						DevelopmentCard developmentCard = action.getDevelopmentCard();
+						System.out.println("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");
+						int i =1;
+						for(Bonus bonus : developmentCard.secondaryEffect){
+							System.out.println(bonus.getDescription());
+						}
+						if(developmentCard instanceof Building){
+							Building building = (Building) developmentCard;
+							i++;
+							System.out.println("2) Second Effect: \n");
+							for(Bonus bonus : building.tertiaryEffect){
+								System.out.println(bonus.getDescription());
+							}
+						}
+						i++;
+						System.out.println(i+") Don't activate this card's Effect \n");
+						choice = checkInputError(1, i);
+						socketOut.println(choice);
+						socketOut.flush();
 						break;
 				}
 			} catch (ClassNotFoundException e) {
