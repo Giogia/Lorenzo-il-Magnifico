@@ -298,6 +298,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.choosePosition);
 			act.setPositions(positions);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -317,6 +318,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.chooseFamilyMember);
 			act.setFamilyMembers(familyMembers);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -337,6 +339,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			ActionSocket act = new ActionSocket(action.askForAlternativeCost);
 			act.setCosts(costs);
 			act.setAlternativeCosts(alternativeCosts);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -354,8 +357,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			ObjectOutputStream out = getSocketOutView(player);
 			Scanner in = getSocketInView(player);
 			
-			ActionSocket act = new ActionSocket(action.askForAlternativeCost);
+			ActionSocket act = new ActionSocket(action.askForCouncilPrivilege);
 			act.setBonus(councilPrivileges);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -376,6 +380,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForServants);
 			act.setNumberOfServants(numberOfServants);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -395,6 +400,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForInformation);
 			act.setPlayersName(playersNames);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -412,6 +418,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.showPersonalBoard);
 			act.setPersonalBoard(personalBoard);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 		}
@@ -478,6 +485,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForAction);
 			act.setZones(zones);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -497,6 +505,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForActionPosition);
 			act.setPositions(zonePositionsDescriptions);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -514,6 +523,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.catchException);
 			act.setMessage(message);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 		}
@@ -531,6 +541,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 				ActionSocket act = new ActionSocket(action.showDices);
 				act.setDices(dices);
+				out.reset();
 				out.writeObject(act);
 				out.flush();
 			}
@@ -574,6 +585,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForLeaderCards);
 			act.setLeaderCards(leaderCards);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -594,6 +606,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForPersonalBonusTile);
 			act.setPersonalBonusTiles(personalBonusTiles);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -614,6 +627,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.draftLeaderCards);
 			act.setLeaderCards(leaderCards);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
