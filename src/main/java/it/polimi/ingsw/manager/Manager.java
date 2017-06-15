@@ -264,7 +264,7 @@ public class Manager{
 		return zone;
 	}
 
-	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile){
+	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException{
 		if (ConnectionManagerImpl.askForExcommunication(player, excommunicationTile) == 1){
 			return true;
 		}

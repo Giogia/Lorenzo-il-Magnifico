@@ -11,6 +11,7 @@ import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
@@ -67,5 +68,7 @@ public interface ClientRMICallbackRemote extends Remote {
 	int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException;
 
 	int draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException;
+
+	int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException;
 }
 

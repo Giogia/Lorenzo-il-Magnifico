@@ -15,6 +15,7 @@ import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -254,6 +255,14 @@ public class CliRmiView implements ClientRMICallbackRemote{
 			System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 		}
 		return checkInputError(1, leaderCards.size());
+	}
+
+
+	@Override
+	public int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
+		System.out.println(excommunicationTile.getDescription());
+		System.out.println("Do you want to be excommunicated? \n1) No \n2)Yes");
+		return checkInputError(1, 2);
 	}
 }
 
