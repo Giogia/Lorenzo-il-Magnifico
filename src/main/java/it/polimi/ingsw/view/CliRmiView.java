@@ -18,6 +18,7 @@ import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
@@ -260,6 +261,13 @@ public class CliRmiView implements ClientRMICallbackRemote{
 	}
 
 
+	@Override
+	public int askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
+		System.out.println(excommunicationTile.getDescription());
+		System.out.println("Do you want to be excommunicated? \n1) No \n2)Yes");
+		return checkInputError(1, 2);
+	}
+		
 	@Override
 	public int askForCardEffect(DevelopmentCard developmentCard) throws RemoteException {
 		System.out.println("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");

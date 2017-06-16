@@ -9,6 +9,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
@@ -41,6 +42,7 @@ public class ActionSocket implements Serializable{
 		askForLeaderCards, 
 		askForLeaderCardAction,
 		draftLeaderCards, 
+		askForExcommunication,
 		askForCardEffect
 	}
 	
@@ -59,6 +61,7 @@ public class ActionSocket implements Serializable{
 	private ArrayList<Dice> dices;
 	private ArrayList<Color> availableColors;
 	private ArrayList<LeaderCard> leaderCards;
+	private ArrayList<ExcommunicationTile> excommunicationTiles;
 	private DevelopmentCard developmentCard;
 	
 	public ActionSocket(action a) {
@@ -156,6 +159,15 @@ public class ActionSocket implements Serializable{
 	public ArrayList<PersonalBonusTile> getPersonalBonusTiles() {
 		return personalBonusTiles;
 	}
+	
+	public void setExcommunicationTiles(ArrayList<ExcommunicationTile> excommunicationTiles) {
+		this.excommunicationTiles = excommunicationTiles;
+	}
+	
+	public ArrayList<ExcommunicationTile> getExcommunicationTiles() {
+		return excommunicationTiles;
+	}
+	
 	public DevelopmentCard getDevelopmentCard() {
 		return developmentCard;
 	}

@@ -550,9 +550,27 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public static int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) {
-		// TODO Auto-generated method stub
-		return 0;
+	public static int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException {
+		ArrayList<Player> rmiPlayerList = getRmiPlayers();
+		if (rmiPlayerList.contains(player)){
+			ClientRMICallbackRemote client = getRmiView(player);
+			int choice = client.askForExcommunication(excommunicationTile);
+			return choice;
+		}
+		else {
+			ObjectOutputStream out = getSocketOutView(player);
+			Scanner in = getSocketInView(player);
+			
+			ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
+			excommunicationTiles.add(excommunicationTile);
+			ActionSocket act = new ActionSocket(action.askForExcommunication);
+			act.setExcommunicationTiles(excommunicationTiles);
+			out.reset();
+			out.writeObject(act);
+			out.flush();
+			
+			return in.nextInt();
+		}
 	}
 
 	public static int LeaderCardActionChoice(Player player) throws IOException {

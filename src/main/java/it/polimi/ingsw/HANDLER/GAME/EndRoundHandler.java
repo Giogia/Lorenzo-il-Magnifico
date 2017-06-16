@@ -1,5 +1,6 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.BOARD.Board;
@@ -24,11 +25,11 @@ public class EndRoundHandler {
 		return instance;
 	}
 	
-	public static void handle(Board board, RoundOrder roundOrder, int turn){
+	public static void handle(Board board, RoundOrder roundOrder, int turn) throws IOException{
 		handleOrder(roundOrder, board);
 		board.resetPositions();
 		if (turn % 2 == 0){ 
-			VaticanReport.checkPlayersFaith((turn+1)/2, board);
+			VaticanReport.checkPlayersFaith(turn/2, board);
 		}
 		board.getPassTurnController().lastMove(null);
 		board.getGame().getSkipActionPlayers().clear();

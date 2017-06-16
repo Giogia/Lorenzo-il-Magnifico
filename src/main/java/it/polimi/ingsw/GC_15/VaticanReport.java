@@ -1,5 +1,7 @@
 package it.polimi.ingsw.GC_15;
 
+import java.io.IOException;
+
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
@@ -23,12 +25,13 @@ public final class VaticanReport {
 	
 	
 	
-	public static void checkPlayersFaith(int period, Board board) {
+	public static void checkPlayersFaith(int period, Board board) throws IOException {
 		Player[] players = board.getPlayers();
 		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period];
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
-				if (Manager.askForExcommunication(players[i], excommunicationTile)){
+				boolean notExcommunicated = Manager.askForExcommunication(players[i], excommunicationTile);
+				if (notExcommunicated){
 					ResourcePerMissedExcommunicationHandler.handle(players[i]);
 					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
 					int victoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints()[faithPoints];

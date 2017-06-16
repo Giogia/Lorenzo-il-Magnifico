@@ -17,6 +17,7 @@ import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -308,6 +309,17 @@ public class CliSocketInOutView implements Runnable{
 						socketOut.println(choice);
 						socketOut.flush();
 						break;
+					
+					case askForExcommunication:
+						ArrayList<ExcommunicationTile> excommunicationTiles = action.getExcommunicationTiles();
+						ExcommunicationTile excommunicationTile = excommunicationTiles.get(0);
+						System.out.println(excommunicationTile.getDescription());
+						System.out.println("Do you want to be excommunicated? \n1) No \n2) Yes");
+						
+						choice = checkInputError(1, 2);
+						socketOut.println(choice);
+						socketOut.flush();
+						
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
