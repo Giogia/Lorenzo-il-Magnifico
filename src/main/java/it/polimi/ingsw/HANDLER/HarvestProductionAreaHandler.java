@@ -51,15 +51,15 @@ public abstract class HarvestProductionAreaHandler {
 					getPersonalBonusTileBonus(testFamilyMember, zone);
 					//start advanced
 					ArrayList<DevelopmentCard> activableCards = getActivableCards(testFamilyMember, zone,playerResources);
+					if(activableCards.isEmpty())
+						return true;
 					ArrayList<Bonus> chosenEffects = chooseEffects(activableCards,familyMember,playerResources);
-					if(!chosenEffects.isEmpty()){
-						for(Bonus chosenBonus : chosenEffects){
-							ImmediateBonus bonus = (ImmediateBonus) chosenBonus;
-							bonus.getImmediateBonus(familyMember.getPlayer());
-						}
+					for(Bonus chosenBonus : chosenEffects){
+						ImmediateBonus bonus = (ImmediateBonus) chosenBonus;
+						bonus.getImmediateBonus(familyMember.getPlayer());
 					}
-					return true;
 				}
+				return true;
 			}
 		}
 		return false;
@@ -115,19 +115,17 @@ public abstract class HarvestProductionAreaHandler {
 		}
 		return activableCards;
 	}
-
+	
 	//advanced
-	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException{
-
+	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException{
 		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
 		do{
 			chosenEffects = new ArrayList<>();
 			for(DevelopmentCard card : activableCards){
 				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
-				if(cardChosenEffects!=null)//it's null if the user didn't choose to activate these effects
-					chosenEffects.addAll(cardChosenEffects);
+				chosenEffects.addAll(cardChosenEffects);
 			}
-		}while(ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
+		}while(!ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
 		return chosenEffects;
 	}
 

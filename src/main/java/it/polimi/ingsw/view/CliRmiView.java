@@ -269,10 +269,12 @@ public class CliRmiView implements ClientRMICallbackRemote{
 		}
 		if(developmentCard instanceof Building){
 			Building building = (Building) developmentCard;
-			i++;
-			System.out.println("2) Second Effect: \n");
-			for(Bonus bonus : building.tertiaryEffect){
-				System.out.println(bonus.getDescription());
+			if(!building.tertiaryEffect.isEmpty()){
+				i++;
+				System.out.println("2) Second Effect: \n");
+				for(Bonus bonus : building.tertiaryEffect){
+					System.out.println(bonus.getDescription());
+				}
 			}
 		}
 		i++;

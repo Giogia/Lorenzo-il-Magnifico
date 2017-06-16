@@ -567,6 +567,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			Scanner in = getSocketInView(player);
 			
 			ActionSocket act = new ActionSocket(action.askForLeaderCardAction);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			
@@ -650,6 +651,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			
 			ActionSocket act = new ActionSocket(action.askForCardEffect);
 			act.setDevelopmentCardEffect(developmentCard);
+			out.reset();
 			out.writeObject(act);
 			out.flush();
 			return in.nextInt();

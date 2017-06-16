@@ -295,7 +295,6 @@ public class Manager{
 					choice = developmentCard.secondaryEffect;
 					break;
 				case 2:
-					choice = null;
 					break;
 			}
 		}
@@ -310,7 +309,6 @@ public class Manager{
 					choice = building.tertiaryEffect;
 					break;
 				case 3:
-					choice = null;
 					break;
 			}
 		}
