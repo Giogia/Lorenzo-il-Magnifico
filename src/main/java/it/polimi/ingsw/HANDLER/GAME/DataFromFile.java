@@ -259,8 +259,8 @@ public class DataFromFile implements Serializable{
 	}
 
 
+	//TODO Si dovrebbe rendere configurabile
 	public int getMinimumFaithPoints(int period) {
-		// TODO Auto-generated method stub
-		return 0;
+		return period + 2;
 	} 
 }
