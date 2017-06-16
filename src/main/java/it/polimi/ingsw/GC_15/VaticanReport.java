@@ -27,7 +27,7 @@ public final class VaticanReport {
 	
 	public static void checkPlayersFaith(int period, Board board) throws IOException {
 		Player[] players = board.getPlayers();
-		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period];
+		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period-1];
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
 				boolean notExcommunicated = Manager.askForExcommunication(players[i], excommunicationTile);
