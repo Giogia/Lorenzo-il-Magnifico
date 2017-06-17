@@ -18,10 +18,10 @@ public class ResourceController {
 	 * Dopo che controlla tutte le risorse, ritorna true
 	 */
 	public static boolean check(Player player, ArrayList<Resource> cost) throws MyException{
-		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
-		for(Resource playerResource : playerResources){
+		ArrayList<Resource> resources = player.getPersonalBoard().getResources();
+		for (Resource playerResource : resources) {
 			for (Resource costResource : cost) {
-				if(playerResource.getResourceType().equals(costResource.getResourceType())){ 
+				if(playerResource.getClass().equals(costResource.getClass())){ 
 					if(playerResource.getAmount()/playerResource.getValue() < costResource.getAmount()){  
 						throw new MyException("The resources are not enough");
 					}
