@@ -25,12 +25,8 @@ public class Dice implements Serializable{
 		value= r.nextInt(6) + 1;
 	}
 	
-	public boolean setValue(int value){
-		if(value>=0 && value<=7){
-			this.value = value;
-			return true;
-		}
-		return false;
+	public void setValue(int value){
+		this.value = value;
 	}
 
 	public String getDescription() {
