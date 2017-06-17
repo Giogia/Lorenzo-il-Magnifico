@@ -15,12 +15,12 @@ public class ResourceBonusCardController {// controlla se un array di bonus cont
 					AddResourceBonus addResourceBonus = (AddResourceBonus) bonus;
 					for(Resource resource : addResourceBonus.getResources()){
 						if(resource.getAmount()<0){
-							for(Resource playerResource : playerResources){
-								if(playerResource.getResourceType().equals(resource.getResourceType())){
-									if(playerResource.getAmount()+resource.getAmount()<0)
-										return false;
-								}
-							}
+							Resource playerResource = player.getPersonalBoard().getResource(resource.getResourceType());
+							//System.out.println(playerResource.getAmount());
+							System.out.println(resource.getAmount());
+							System.out.println(playerResource.getAmount());
+							if((playerResource.getAmount()+resource.getAmount())<0)
+								return false;
 						}
 					}
 				}

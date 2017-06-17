@@ -288,28 +288,18 @@ public class Manager{
 	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
 		int index= ConnectionManagerImpl.chooseEffect(player,developmentCard);
 		ArrayList<Bonus> choice = new ArrayList<>();
-	
-		if(developmentCard instanceof Territory){
-			switch (index){
-				case 1:
-					choice = developmentCard.secondaryEffect;
-					break;
-				case 2:
-					break;
-			}
-		}
-		if(developmentCard instanceof Building){
-			Building building = (Building) developmentCard;
-			switch (index){
-				case 1:
-					choice = developmentCard.secondaryEffect;
-						break;
-				case 2:
-					
-					choice = building.tertiaryEffect;
-					break;
-				case 3:
-					break;
+		int counter = 0;
+		for(int i=0; i<developmentCard.secondaryEffect.size();i++){
+			if(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus ){
+				counter++;
+				if(index==counter){
+				choice.add(developmentCard.secondaryEffect.get(i));
+				i++;
+				while(i<developmentCard.secondaryEffect.size() && !(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus)){
+					choice.add(developmentCard.secondaryEffect.get(i));
+					i++;
+					}
+				}
 			}
 		}
 		return choice;

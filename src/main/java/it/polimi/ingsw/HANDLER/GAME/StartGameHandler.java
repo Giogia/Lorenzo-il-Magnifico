@@ -32,7 +32,7 @@ public final class StartGameHandler {
 		setPlayersResources(board);
 		//setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
 		PersonalBonusTileDraftHandler.handle(board);
-		LeaderCardDraftHandler.handle(board);
+		//LeaderCardDraftHandler.handle(board);
 	}
 	
 	
