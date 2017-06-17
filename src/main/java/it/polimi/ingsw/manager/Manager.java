@@ -108,8 +108,11 @@ public class Manager{
 	
 	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
-			int choice= chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
-			LeaderCard chosenCard = player.getBoard().getGame().getData().getLeaderCards().get(choice);
+			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getOncePerRoundBonusLeaderCard();
+			int choice= chooseLeaderCard(player, leaderCards);
+			if (choice == leaderCards.size())
+				return;
+			LeaderCard chosenCard = leaderCards.get(choice);
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
 		}
 		catch(MyException exc){			
@@ -271,9 +274,26 @@ public class Manager{
 		return false;
 	}
 	
-	public static LeaderCard choiceLeaderCardToCopy() {
-		//TODO PERMANENT
-		return null;
+	public static LeaderCard choiceLeaderCardToCopy(Player activatedPlayer, LeaderCard leaderCard) throws IOException, MyException {
+		ArrayList<LeaderCard> leaderCardsToChoice = new ArrayList<>();
+		Player[] players = activatedPlayer.getBoard().getPlayers();
+		for (Player player : players) {
+			ArrayList<LeaderCard> activatedLeaderCard = player.getPersonalBoard().getActivatedLeaderCards();
+			for (LeaderCard leaderCard2 : activatedLeaderCard) {
+				if (!leaderCard2.equals(leaderCard)){
+					leaderCardsToChoice.add(leaderCard2);
+				}
+			}
+		}
+		if (leaderCardsToChoice.isEmpty()){
+			return null;
+		}
+		int choice = ConnectionManagerImpl.chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
+		if (choice == leaderCardsToChoice.size() + 1){
+			return null;
+		}
+		return leaderCardsToChoice.get(choice - 1);
+		
 	}
 	
 	public static void getHarvestProductionBonus() {

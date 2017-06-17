@@ -4318,24 +4318,24 @@
             "familyMembers": [
               {
                 "dice": {
-                  "value": 0,
+                  "value": -1,
                   "diceColour": "Orange"
                 },
-                "value": 0
+                "value": -1
               },
               {
                 "dice": {
-                  "value": 0,
+                  "value": -1,
                   "diceColour": "White"
                 },
-                "value": 0
+                "value": -1
               },
               {
                 "dice": {
-                  "value": 0,
+                  "value": -1,
                   "diceColour": "Black"
                 },
-                "value": 0
+                "value": -1
               }
             ],
             "subsubtype": "PermanentAddFamilyMemberBonus",
