@@ -108,8 +108,11 @@ public class Manager{
 	
 	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
-			int choice= chooseLeaderCard(player, player.getBoard().getGame().getData().getLeaderCards());
-			LeaderCard chosenCard = player.getBoard().getGame().getData().getLeaderCards().get(choice);
+			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getActivatedLeaderCards();
+			int choice= chooseLeaderCard(player, leaderCards);
+			if (choice == leaderCards.size())
+				return;
+			LeaderCard chosenCard = leaderCards.get(choice);
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
 		}
 		catch(MyException exc){			

@@ -22,13 +22,17 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	}
 	
 	public void getImmediateBonus(Player player){ 
-		PermanentResourceBonusHandler.handle(resources, player);
+		ArrayList<Resource> clonedResources = new ArrayList<>();
+		for (Resource resource : resources) {
+			clonedResources.add(resource.createClone());
+		}
+		PermanentResourceBonusHandler.handle(clonedResources, player);
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
-		modifyResources(playerResources);
+		modifyResources(playerResources, clonedResources);
 	}
 
-	protected void modifyResources(ArrayList<Resource> playerResources){
-		for (Resource resource : resources) {
+	protected void modifyResources(ArrayList<Resource> playerResources, ArrayList<Resource> clonedResources){
+		for (Resource resource : clonedResources) {
 			for (Resource playerResource : playerResources) {
 				if (compareClass(playerResource, resource)){
 					modify(playerResource, resource);
