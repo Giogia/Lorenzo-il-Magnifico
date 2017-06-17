@@ -5,6 +5,7 @@ import it.polimi.ingsw.BONUS.AddResourceBonus;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class ResourceBonusCardController {// controlla se un array di bonus contiene resourceBonus attivabili
 
@@ -15,12 +16,12 @@ public class ResourceBonusCardController {// controlla se un array di bonus cont
 					AddResourceBonus addResourceBonus = (AddResourceBonus) bonus;
 					for(Resource resource : addResourceBonus.getResources()){
 						if(resource.getAmount()<0){
-							Resource playerResource = player.getPersonalBoard().getResource(resource.getResourceType());
-							//System.out.println(playerResource.getAmount());
-							System.out.println(resource.getAmount());
-							System.out.println(playerResource.getAmount());
-							if((playerResource.getAmount()+resource.getAmount())<0)
-								return false;
+							for(Resource playerResource : playerResources){
+								if(resource.getClass().equals(playerResource.getClass())){//find the right resource type
+									if((playerResource.getAmount()+resource.getAmount())<0)
+										return false;
+								}
+							}
 						}
 					}
 				}
