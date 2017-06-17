@@ -46,6 +46,7 @@ public class TowerHandler {
 						playerResources.add(resource.createClone());
 					}
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
+					testFamilyMember.setValue(familyMember.getValue());
 					ServantsHandler.handle(testFamilyMember, playerResources);
 					ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)) {

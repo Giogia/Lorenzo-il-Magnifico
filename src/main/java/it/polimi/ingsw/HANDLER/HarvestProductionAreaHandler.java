@@ -39,7 +39,7 @@ public abstract class HarvestProductionAreaHandler {
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			ArrayList<Resource> playerResources = cloneResources(familyMember.getPlayer());
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
-			
+			testFamilyMember.setValue(familyMember.getValue());
 			ServantsHandler.handle(testFamilyMember, playerResources);
 			checkPositionMalus(testFamilyMember, zone, position);
 			ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
