@@ -21,6 +21,7 @@ public class CouncilPalaceHandler {
 			playerResources.add(resource.createClone());
 		}
 		FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
+		testFamilyMember.setValue(familyMember.getValue());
 		ServantsHandler.handle(testFamilyMember, playerResources);
 		if (FamilyMemberValueController.check(testFamilyMember, position)){
 			testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);

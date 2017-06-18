@@ -108,7 +108,7 @@ public class Manager{
 	
 	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
-			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getActivatedLeaderCards();
+			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getOncePerRoundBonusLeaderCard();
 			int choice= chooseLeaderCard(player, leaderCards);
 			if (choice == leaderCards.size())
 				return;
@@ -274,9 +274,26 @@ public class Manager{
 		return false;
 	}
 	
-	public static LeaderCard choiceLeaderCardToCopy() {
-		//TODO PERMANENT
-		return null;
+	public static LeaderCard choiceLeaderCardToCopy(Player activatedPlayer, LeaderCard leaderCard) throws IOException, MyException {
+		ArrayList<LeaderCard> leaderCardsToChoice = new ArrayList<>();
+		Player[] players = activatedPlayer.getBoard().getPlayers();
+		for (Player player : players) {
+			ArrayList<LeaderCard> activatedLeaderCard = player.getPersonalBoard().getActivatedLeaderCards();
+			for (LeaderCard leaderCard2 : activatedLeaderCard) {
+				if (!leaderCard2.equals(leaderCard)){
+					leaderCardsToChoice.add(leaderCard2);
+				}
+			}
+		}
+		if (leaderCardsToChoice.isEmpty()){
+			return null;
+		}
+		int choice = ConnectionManagerImpl.chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
+		if (choice == leaderCardsToChoice.size() + 1){
+			return null;
+		}
+		return leaderCardsToChoice.get(choice - 1);
+		
 	}
 	
 	public static void getHarvestProductionBonus() {
@@ -291,28 +308,18 @@ public class Manager{
 	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
 		int index= ConnectionManagerImpl.chooseEffect(player,developmentCard);
 		ArrayList<Bonus> choice = new ArrayList<>();
-	
-		if(developmentCard instanceof Territory){
-			switch (index){
-				case 1:
-					choice = developmentCard.secondaryEffect;
-					break;
-				case 2:
-					break;
-			}
-		}
-		if(developmentCard instanceof Building){
-			Building building = (Building) developmentCard;
-			switch (index){
-				case 1:
-					choice = developmentCard.secondaryEffect;
-						break;
-				case 2:
-					
-					choice = building.tertiaryEffect;
-					break;
-				case 3:
-					break;
+		int counter = 0;
+		for(int i=0; i<developmentCard.secondaryEffect.size();i++){
+			if(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus ){
+				counter++;
+				if(index==counter){
+				choice.add(developmentCard.secondaryEffect.get(i));
+				i++;
+				while(i<developmentCard.secondaryEffect.size() && !(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus)){
+					choice.add(developmentCard.secondaryEffect.get(i));
+					i++;
+					}
+				}
 			}
 		}
 		return choice;

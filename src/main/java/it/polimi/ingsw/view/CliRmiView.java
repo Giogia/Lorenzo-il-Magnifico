@@ -273,19 +273,13 @@ public class CliRmiView implements ClientRMICallbackRemote{
 		System.out.println("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");
 		int i =1;
 		for(Bonus bonus : developmentCard.secondaryEffect){
-			System.out.println(bonus.getDescription());
-		}
-		if(developmentCard instanceof Building){
-			Building building = (Building) developmentCard;
-			if(!building.tertiaryEffect.isEmpty()){
+			if(bonus instanceof ResourceBonus){
+				System.out.println("\n"+i+")"+bonus.getDescription());
 				i++;
-				System.out.println("2) Second Effect: \n");
-				for(Bonus bonus : building.tertiaryEffect){
-					System.out.println(bonus.getDescription());
-				}
 			}
+			else
+				System.out.println(bonus.getDescription());
 		}
-		i++;
 		System.out.println(i+") Don't activate this card's Effect \n");
 		return checkInputError(1, i);
 	}

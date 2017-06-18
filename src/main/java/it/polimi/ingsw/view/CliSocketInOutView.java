@@ -13,6 +13,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
@@ -290,20 +291,16 @@ public class CliSocketInOutView implements Runnable{
 						
 					case askForCardEffect:
 						DevelopmentCard developmentCard = action.getDevelopmentCard();
-						System.out.println("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");
+						System.out.println("Choose which effect of the card you want to acctivate :");
 						int i =1;
 						for(Bonus bonus : developmentCard.secondaryEffect){
-							System.out.println(bonus.getDescription());
-						}
-						if(developmentCard instanceof Building){
-							Building building = (Building) developmentCard;
-							i++;
-							System.out.println("2) Second Effect: \n");
-							for(Bonus bonus : building.tertiaryEffect){
-								System.out.println(bonus.getDescription());
+							if(bonus instanceof ResourceBonus){
+								System.out.println("\n"+i+")"+bonus.getDescription());
+								i++;
 							}
+							else
+								System.out.println(bonus.getDescription());
 						}
-						i++;
 						System.out.println(i+") Don't activate this card's Effect \n");
 						choice = checkInputError(1, i);
 						socketOut.println(choice);

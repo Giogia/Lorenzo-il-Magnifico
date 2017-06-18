@@ -1,25 +1,19 @@
 package it.polimi.ingsw.HANDLER;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.Building;
-import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CONTROLLER.CheckBonusTileRequirementController;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
-import it.polimi.ingsw.CONTROLLER.OccupiedYetBonusController;
-import it.polimi.ingsw.CONTROLLER.PassTurnController;
-import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ResourceBonusCardController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
@@ -30,16 +24,10 @@ import it.polimi.ingsw.manager.Manager;
 public abstract class HarvestProductionAreaHandler {
 
 	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, IOException{
-		if (position.equals(zone.getPosition(0))){
-			if(!PositionAlreadyOccupiedController.check(position) &&
-				!OccupiedYetBonusController.check(familyMember)){
-				return false;
-			}
-		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			ArrayList<Resource> playerResources = cloneResources(familyMember.getPlayer());
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
-			
+			testFamilyMember.setValue(familyMember.getValue());
 			ServantsHandler.handle(testFamilyMember, playerResources);
 			checkPositionMalus(testFamilyMember, zone, position);
 			ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
@@ -47,8 +35,8 @@ public abstract class HarvestProductionAreaHandler {
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
 					familyMember.getPlayer().getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
-					copyResource(testFamilyMember.getPlayer(), playerResources);
 					getPersonalBonusTileBonus(testFamilyMember, zone);
+					copyResource(testFamilyMember.getPlayer(), playerResources);
 					//start advanced
 					ArrayList<DevelopmentCard> activableCards = getActivableCards(testFamilyMember, zone,playerResources);
 					if(activableCards.isEmpty())
@@ -63,7 +51,6 @@ public abstract class HarvestProductionAreaHandler {
 			}
 		}
 		return false;
-		
 	}
 	
 
@@ -84,56 +71,19 @@ public abstract class HarvestProductionAreaHandler {
 		}
 	}
 	
-	//advanced
-	protected static ArrayList<DevelopmentCard> getActivableCards(FamilyMember familyMember, Zone zone,ArrayList<Resource> resources){ //serve per le regole avanzate
-	ArrayList<CardContainer> cardContainers= familyMember.getPlayer().getPersonalBoard().getCardContainers();
-	ArrayList<DevelopmentCard> activableCards= new ArrayList<>();	
-		for(CardContainer cardContainer : cardContainers){// cerca tra i container quello giusto
-			if(zone instanceof HarvestArea){
-				if(cardContainer.getType().equals(DevelopmentCardType.territory)){// prende il container giusto 
-					for(DevelopmentCard card: cardContainer.getDevelopmentCards()){
-						Territory territory = (Territory) card;
-						if(territory.getActivationConditionHarvest()<=familyMember.getValue()){//aggiunge quelle solo con valore maggiore
-							if(ResourceBonusCardController.check(territory.secondaryEffect, familyMember.getPlayer(),resources))//aggiunge solo quelle con un resource bonus attivabile
-								activableCards.add(territory);
-						}
-					}
-				}
-			}
-			if(zone instanceof ProductionArea){// prende il container giusto 
-				if(cardContainer.getType().equals(DevelopmentCardType.building)){
-					for(DevelopmentCard card: cardContainer.getDevelopmentCards()){
-						Building building = (Building) card;
-						if(building.getActivationConditionProduction()<=familyMember.getValue()){//aggiunge quelle solo con valore maggiore
-							if(ResourceBonusCardController.check(building.secondaryEffect,familyMember.getPlayer(),resources) || 
-								ResourceBonusCardController.check(building.tertiaryEffect,familyMember.getPlayer(),resources))//aggiunge solo quelle con almeno un resource bonus attivabile
-								activableCards.add(building);
-						}
-					}
-				}
-			} 
-		}
-		return activableCards;
-	}
 	
-	//advanced
-	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException{
-		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
-		do{
-			chosenEffects = new ArrayList<>();
-			for(DevelopmentCard card : activableCards){
-				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
-				chosenEffects.addAll(cardChosenEffects);
-			}
-		}while(!ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
-		return chosenEffects;
-	}
-
-
-
 	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, IOException{
 		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
+	}
+	
+	
+	protected static ArrayList<Resource> cloneResources(Player player){
+		ArrayList<Resource> playerResources = new ArrayList<>();
+		for (Resource resource : player.getPersonalBoard().getResources()) {
+			playerResources.add(resource.createClone());
+		}
+		return playerResources;
 	}
 	
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
@@ -147,15 +97,47 @@ public abstract class HarvestProductionAreaHandler {
 		}
 	}
 	
-	protected static ArrayList<Resource> cloneResources(Player player){
-		ArrayList<Resource> playerResources = new ArrayList<>();
-		for (Resource resource : player.getPersonalBoard().getResources()) {
-			playerResources.add(resource.createClone());
+	//advanced
+	protected static ArrayList<DevelopmentCard> getActivableCards(FamilyMember familyMember, Zone zone,ArrayList<Resource> resources){ //serve per le regole avanzate
+		ArrayList<DevelopmentCard> activableCards= new ArrayList<>();	
+		DevelopmentCardType developmentCardType = null;
+		if(zone instanceof HarvestArea)			
+			developmentCardType = DevelopmentCardType.territory;
+		if(zone instanceof ProductionArea)
+			developmentCardType = DevelopmentCardType.building;
+		ArrayList<DevelopmentCard> cards = familyMember.getPlayer().getPersonalBoard().getCardContainer(developmentCardType).getDevelopmentCards();
+		for(DevelopmentCard card: cards){
+			if(zone instanceof HarvestArea){
+				Territory territory = (Territory) card;
+				if(territory.getActivationConditionHarvest()<=familyMember.getValue()){
+					if(ResourceBonusCardController.check(territory.secondaryEffect, familyMember.getPlayer(),resources))//aggiunge solo quelle con un resource bonus attivabile
+						activableCards.add(territory);
+				}
+			}
+			if(zone instanceof ProductionArea){
+				Building building = (Building) card;
+				if(building.getActivationConditionProduction()<=familyMember.getValue()){//aggiunge quelle solo con valore maggiore
+					if(ResourceBonusCardController.check(building.secondaryEffect,familyMember.getPlayer(),resources))
+						activableCards.add(building);
+				}
+			}
 		}
-		return playerResources;
+		return activableCards;
 	}
-	
-	
+		
+	//advanced
+	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException{
+		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
+		do{
+			chosenEffects = new ArrayList<>();
+			for(DevelopmentCard card : activableCards){
+				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
+				chosenEffects.addAll(cardChosenEffects);
+			}
+		}while(!ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
+		return chosenEffects;
+	}
+
 	
 	
 	
