@@ -7,11 +7,14 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
@@ -38,9 +41,9 @@
       </MenuBar>
    </top>
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="696.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane layoutX="514.0" layoutY="348.0" prefHeight="421.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="464.0" layoutY="353.0" prefHeight="326.0" prefWidth="758.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Rugg">
                   <content>
@@ -54,27 +57,68 @@
                 </Tab>
               </tabs>
             </TabPane>
-            <ImageView fitHeight="328.0" fitWidth="290.0" layoutX="515.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageZoomed" fitHeight="328.0" fitWidth="290.0" layoutX="464.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@resources/devcards_f_en_c_1.png" />
+                  <Image url="@resources/RetroLeaderCard.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="760.0" fitWidth="497.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="666.0" fitWidth="442.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@resources/gameboard_f_c.jpeg" />
+                  <Image url="@resources/gameboard_f_c.jpg" />
                </image>
             </ImageView>
-            <Rectangle fx:id="imageZoomed" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="327.0" layoutX="514.0" layoutY="8.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="221.0" />
-            <Rectangle fx:id="towerFloor4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="95.0" layoutX="23.0" layoutY="24.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
-            <Rectangle fx:id="towerFloor3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="95.0" layoutX="23.0" layoutY="124.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
-            <Label layoutX="748.0" layoutY="14.0" prefHeight="53.0" prefWidth="201.0" text="Get Description" textAlignment="CENTER">
+            <Label layoutX="693.0" layoutY="8.0" prefHeight="53.0" prefWidth="178.0" text="Get Description" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Button layoutX="748.0" layoutY="236.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" text="Button" />
-            <Button layoutX="748.0" layoutY="289.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" text="Button" />
-            <Button layoutX="748.0" layoutY="189.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" text="Button" />
+            <Button layoutX="693.0" layoutY="221.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" text="Button" />
+            <Button layoutX="693.0" layoutY="275.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" text="Button" />
+            <Button layoutX="693.0" layoutY="171.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="201.0" text="Button" />
+            <Label fx:id="getDescription" layoutX="693.0" layoutY="49.0" prefHeight="123.0" prefWidth="200.0" text="Type: Territory" />
+            <Label layoutX="1105.0" layoutY="-2.0" prefHeight="53.0" prefWidth="66.0" text="Chat" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="1026.0" layoutY="295.0" prefHeight="34.0" prefWidth="224.0" />
+            <Label layoutX="1026.0" layoutY="54.0" prefHeight="233.0" prefWidth="224.0" text="Marco: sisì, hai ragione!" />
+            <Rectangle fx:id="territory2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="85.0" layoutX="24.0" layoutY="210.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="territory1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="23.0" layoutY="300.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="character1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="125.0" layoutY="300.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="territory1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="125.0" layoutY="207.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="character2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="91.0" layoutX="125.0" layoutY="207.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="character3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="125.0" layoutY="111.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="character4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="125.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="building4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="227.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="building3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="227.0" layoutY="111.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="building2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="227.0" layoutY="208.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="building1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="227.0" layoutY="301.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="venture4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="328.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="venture3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="328.0" layoutY="111.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="venture2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="328.0" layoutY="208.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Rectangle fx:id="venture1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="328.0" layoutY="301.0" onMouseClicked="#towerFloorCkd" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="53.0" />
+            <Ellipse fx:id="councilPalace" fill="DODGERBLUE" layoutX="293.0" layoutY="421.0" opacity="0.0" radiusX="75.0" radiusY="24.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="production1" fill="DODGERBLUE" layoutX="39.0" layoutY="581.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="harvest1" fill="DODGERBLUE" layoutX="38.0" layoutY="644.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="market1" fill="DODGERBLUE" layoutX="286.0" layoutY="571.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="market2" fill="DODGERBLUE" layoutX="334.0" layoutY="571.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="market3" fill="DODGERBLUE" layoutX="377.0" layoutY="581.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="market4" fill="DODGERBLUE" layoutX="412.0" layoutY="617.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Rectangle fx:id="production2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="81.0" layoutY="566.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+            <Rectangle fx:id="harvest2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="81.0" layoutY="629.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+            <Rectangle fx:id="dice1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="258.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+            <Rectangle fx:id="dice2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="307.0" layoutY="630.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+            <Rectangle fx:id="dice3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="355.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
+            <Rectangle fx:id="excommunicationTile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="86.0" layoutY="434.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
+            <Rectangle fx:id="excommunicationTile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="68.0" layoutX="123.0" layoutY="440.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Rectangle fx:id="excommunicationTile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="164.0" layoutY="435.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
+            <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="57.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/devcards_f_en_c_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="114.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>
