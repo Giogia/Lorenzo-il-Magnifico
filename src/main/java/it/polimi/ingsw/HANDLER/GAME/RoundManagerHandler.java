@@ -10,7 +10,9 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
+import it.polimi.ingsw.HANDLER.ResetFamilyMemberValueHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
 
@@ -43,15 +45,16 @@ public class RoundManagerHandler {
 	private static void handleOrder(RoundOrder roundOrder, Board board) throws IOException {
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
-				if (OrderBonusHandler.handle(roundOrder.getPlayer(i), numberOfAction)){
-					Manager.turn(roundOrder.getPlayers().get(i));
+				Player player = roundOrder.getPlayer(i);
+				if (OrderBonusHandler.handle(player, numberOfAction)){
+					Manager.turn(player);
 				}
 			}
 		}
 		ArrayList<Player> skippedPlayers = board.getGame().getSkipActionPlayers();
 		for (Player player : skippedPlayers) {
-			Manager.turn(player);
 			board.getPassTurnController().lastMove(null);
+			Manager.turn(player);
 		}
 	}
 

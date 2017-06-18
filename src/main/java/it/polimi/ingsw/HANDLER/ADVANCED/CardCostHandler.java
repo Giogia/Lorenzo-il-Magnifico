@@ -14,28 +14,30 @@ public class CardCostHandler {
 	
 	
 	public static void handle(ArrayList<Resource> cost, Player player, DevelopmentCardType developmentCardType){
-		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
-		if(playerBonus!=null && !playerBonus.isEmpty()){
-			CardCostBonus[] cardCostBonus = new CardCostBonus[2];
-			for (PermanentBonus permanentBonus : playerBonus) {
-				cardCostBonus = controlBonus(cardCostBonus, permanentBonus, developmentCardType);
-			}
-			if(cardCostBonus[0]!=null){
-				ArrayList<Resource> addBonus = cardCostBonus[0].getResources();
-				for (Resource resource : addBonus) {
-					for (Resource costResource : cost) {
-						if (resource.getClass().equals(costResource.getClass())){
-							addOrZero(costResource, resource);
+		if (!cost.isEmpty()){
+			ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
+			if(playerBonus!=null && !playerBonus.isEmpty()){
+				CardCostBonus[] cardCostBonus = new CardCostBonus[2];
+				for (PermanentBonus permanentBonus : playerBonus) {
+					cardCostBonus = controlBonus(cardCostBonus, permanentBonus, developmentCardType);
+				}
+				if(cardCostBonus[0]!=null){
+					ArrayList<Resource> addBonus = cardCostBonus[0].getResources();
+					for (Resource resource : addBonus) {
+						for (Resource costResource : cost) {
+							if (resource.getClass().equals(costResource.getClass())){
+								addOrZero(costResource, resource);
+							}
 						}
 					}
-				}
-			} 
-			if(cardCostBonus[1]!=null){
-				ArrayList<Resource> multBonus = cardCostBonus[0].getResources();
-				for (Resource resource : multBonus) {
-					for (Resource costResource : cost) {
-						if (resource.getClass().equals(costResource.getClass())){
-							costResource.multAmount(resource.getAmount());
+				} 
+				if(cardCostBonus[1]!=null){
+					ArrayList<Resource> multBonus = cardCostBonus[0].getResources();
+					for (Resource resource : multBonus) {
+						for (Resource costResource : cost) {
+							if (resource.getClass().equals(costResource.getClass())){
+								costResource.multAmount(resource.getAmount());
+							}
 						}
 					}
 				}

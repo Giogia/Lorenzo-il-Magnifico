@@ -117,7 +117,10 @@ private static EndGameHandler istanza = null;
 		for(Player player: board.getPlayers()){
 			int faithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
 			int[] fromFaithPointsToVictoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints();
-			player.getPersonalBoard().getResource(ResourceType.faithPoints).addAmount(fromFaithPointsToVictoryPoints[faithPoints]);
+			if (faithPoints > fromFaithPointsToVictoryPoints.length - 1){
+				faithPoints = fromFaithPointsToVictoryPoints.length - 1;
+			}
+			player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(fromFaithPointsToVictoryPoints[faithPoints]);
 		}
 	}
 	

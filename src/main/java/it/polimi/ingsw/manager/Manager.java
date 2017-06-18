@@ -29,8 +29,10 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
+import it.polimi.ingsw.HANDLER.ResetFamilyMemberValueHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.ActivateLeaderCardHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.DiscardLeaderCardHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.UseLeaderCardEffectHandler;
 import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -73,6 +75,8 @@ public class Manager{
 		
 			case 5:
 				if (PassTurnHandler.handle(player)){
+					ResetFamilyMemberValueHandler.handle(player);
+					PermanentFamilyMemberBonusHandler.handle(player);
 					return;
 				}
 				//tell to player he can't pass turn

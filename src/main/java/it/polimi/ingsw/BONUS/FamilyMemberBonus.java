@@ -33,7 +33,7 @@ public abstract class FamilyMemberBonus extends ImmediateBonus{
 	}
 	
 	protected boolean compareDice(FamilyMember familyMember1, FamilyMember familyMember2) {
-		return familyMember1.getDice().equals(familyMember2.getDice());
+		return familyMember1.getDice().getDiceColour().equals(familyMember2.getDice().getDiceColour());
 	}
 	
 	protected abstract void modifyValue(FamilyMember familyMember1, FamilyMember familyMember2);

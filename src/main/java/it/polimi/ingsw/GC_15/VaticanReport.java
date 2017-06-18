@@ -34,8 +34,11 @@ public final class VaticanReport {
 				if (notExcommunicated){
 					ResourcePerMissedExcommunicationHandler.handle(players[i]);
 					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
-					int victoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints()[faithPoints];
-					players[i].getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(victoryPoints);
+					int[] fromFaithPointsToVictoryPoints = board.getGame().getData().getFromFaithPointsToVictoryPoints();
+					if (faithPoints > fromFaithPointsToVictoryPoints.length - 1){
+						faithPoints = fromFaithPointsToVictoryPoints.length - 1;
+					}
+					players[i].getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(fromFaithPointsToVictoryPoints[faithPoints]);
 					players[i].getPersonalBoard().getResource(ResourceType.faithPoints).setAmount(0);
 				}else{
 					excommunicationTile.giveMalus(players[i]);

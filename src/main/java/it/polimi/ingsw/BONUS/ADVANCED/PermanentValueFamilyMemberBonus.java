@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.BONUS.FamilyMemberValueBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
@@ -13,6 +14,8 @@ public class PermanentValueFamilyMemberBonus extends PermanentFamilyMemberBonus 
 	
 	@Override
 	public void getPermanentBonus(Player player) {
+		FamilyMemberValueBonus immediateBonus = new FamilyMemberValueBonus(familyMembers);
+		immediateBonus.getImmediateBonus(player);
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
 		for (PermanentBonus permanentBonus : playerBonus) {
 			if (permanentBonus instanceof PermanentValueFamilyMemberBonus){

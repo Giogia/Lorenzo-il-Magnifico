@@ -41,10 +41,7 @@ public class TowerHandler {
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
-					ArrayList<Resource> playerResources = new ArrayList<>();
-					for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
-						playerResources.add(resource.createClone());
-					}
+					ArrayList<Resource> playerResources = createCloneArray(familyMember.getPlayer().getPersonalBoard().getResources());
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					testFamilyMember.setValue(familyMember.getValue());
 					ServantsHandler.handle(testFamilyMember, playerResources);
@@ -100,10 +97,7 @@ public class TowerHandler {
 	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
-		ArrayList<Resource> cost = new ArrayList<>();
-		for (Resource resource : buildingCard.costs) {
-			cost.add(resource.createClone());
-		}
+		ArrayList<Resource> cost = createCloneArray(buildingCard.costs);
 		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.building);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
@@ -136,34 +130,35 @@ public class TowerHandler {
 			TowerFloor towerFloor) throws MyException, IOException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
-		for (Resource resource : ventureCard.cost) {
-			cost.add(resource.createClone());
-		}
+		if (ventureCard.cost != null)
+			cost = createCloneArray(ventureCard.cost);
 		// initialize the alternative cost to prevent null pointer exception
 		MilitaryPoints militaryPoints = ventureCard.alternativeCost;
 		ArrayList<Resource> alternativeCost = new ArrayList<>();
-		alternativeCost.add(militaryPoints.createClone());
+		if (militaryPoints != null)
+			alternativeCost.add(militaryPoints.createClone());
 		int requirement = ventureCard.militaryPointRequirement;
-		ArrayList<Resource> playerResources1 = playerResources;
+		ArrayList<Resource> playerResources1 = createCloneArray(playerResources);
 		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
 				.getResource(ResourceType.militaryPoints);
-		ArrayList<Resource> playerResources2 = playerResources;
+		ArrayList<Resource> playerResources2 = createCloneArray(playerResources);
 		CardCostHandler.handle(alternativeCost, familyMember.getPlayer(), DevelopmentCardType.venture);
 		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.venture);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
 		}
-		// If cost or alternativeCost are null, negate playerResource, in this
+		// If cost or alternativeCost are empty, negate playerResource, in this
 		// way checkResources return false
-		try {
+		if (!cost.isEmpty()){
 			add(playerResources1, neg(cost));
-		} catch (NullPointerException e) {
+		}
+		else {
 			playerResources1 = neg(playerResources1);
 		}
-		try {
+		if (!alternativeCost.isEmpty()){
 			add(playerResources2, neg(alternativeCost));
-		} catch (NullPointerException e) {
+		} else{
 			playerResources2 = neg(playerResources2);
 		}
 		// this if else is in this way because if the cost of the ventureCard is
@@ -186,6 +181,7 @@ public class TowerHandler {
 		}
 		throw new MyException("You don't have enough resources!");
 	}
+
 
 	private static boolean checkTerritories(FamilyMember familyMember) throws MyException {
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
@@ -262,5 +258,13 @@ public class TowerHandler {
 				resource.setAmount(0);
 			}
 		}
+	}
+
+	private static ArrayList<Resource> createCloneArray(ArrayList<Resource> playerResources) {
+		ArrayList<Resource> newArray = new ArrayList<>();
+		for (Resource resource : playerResources) {
+			newArray.add(resource.createClone());
+		}
+		return newArray;
 	}
 }

@@ -15,7 +15,7 @@ public class Venture extends DevelopmentCard{
 	
 	public Venture(String name,int requirement, ArrayList<Resource> cost, MilitaryPoints alternativeCost, int period, ArrayList<ImmediateBonus> immediateEffect, ArrayList<Bonus> secondaryEffect) {
 		super(name, period, DevelopmentCardType.venture, immediateEffect, secondaryEffect);
-		if (cost.size() == 1 && cost.get(0).getResourceType().equals(ResourceType.militaryPoints)){
+		if (cost.size() == 1 && cost.get(0).getClass().equals(MilitaryPoints.class)){
 			this.alternativeCost = (MilitaryPoints) cost.get(0);
 			this.cost = null;
 			this.militaryPointRequirement = requirement;

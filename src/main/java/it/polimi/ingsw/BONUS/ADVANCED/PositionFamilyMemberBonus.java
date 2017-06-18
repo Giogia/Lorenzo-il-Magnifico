@@ -35,7 +35,7 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 				return positionBonus.get(bonusZone);
 			}
 		}
-		throw new MyException("ERROR-getvalue");
+		return 0;
 	}
 	
 	private ActionZone getBoardZone(ActionZone actionZone, Board board) {
