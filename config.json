@@ -21,8 +21,8 @@
       "name": "Commercial Hub"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 2,
+      "activationConditionHarvest": 2,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -55,8 +55,8 @@
       "name": "Woods"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 3,
+      "activationConditionHarvest": 3,
+      "period": 1,
       "developmentCardType": "territory",
       "secondaryEffect": [
         {
@@ -80,8 +80,8 @@
       "name": "Village"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 4,
+      "activationConditionHarvest": 4,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -114,8 +114,8 @@
       "name": "Gravel Pit"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 5,
+      "activationConditionHarvest": 5,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -148,8 +148,8 @@
       "name": "Forest"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 6,
+      "activationConditionHarvest": 6,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -192,8 +192,8 @@
       "name": "Monastery"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 5,
+      "activationConditionHarvest": 5,
+      "period": 1,
       "developmentCardType": "territory",
       "secondaryEffect": [
         {
@@ -217,8 +217,8 @@
       "name": "Citadel"
     },
     {
-      "activationConditionHarvest": 1,
-      "period": 6,
+      "activationConditionHarvest": 6,
+      "period": 1,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -244,8 +244,8 @@
       "name": "City"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 1,
+      "activationConditionHarvest": 1,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -278,8 +278,8 @@
       "name": "Gold Mine"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 3,
+      "activationConditionHarvest": 3,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -317,8 +317,8 @@
       "name": "Mountain Town"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 4,
+      "activationConditionHarvest": 4,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -361,8 +361,8 @@
       "name": "Mining Town"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 3,
+      "activationConditionHarvest": 3,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -395,8 +395,8 @@
       "name": "Rock Pit"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 4,
+      "activationConditionHarvest": 4,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -473,8 +473,8 @@
       "name": "Hermitage"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 5,
+      "activationConditionHarvest": 5,
+      "period": 2,
       "developmentCardType": "territory",
       "secondaryEffect": [
         {
@@ -498,8 +498,8 @@
       "name": "Manor House"
     },
     {
-      "activationConditionHarvest": 2,
-      "period": 6,
+      "activationConditionHarvest": 6,
+      "period": 2,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -542,8 +542,8 @@
       "name": "Dukedom"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 1,
+      "activationConditionHarvest": 1,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -625,8 +625,8 @@
       "name": "Farm"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 5,
+      "activationConditionHarvest": 5,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -664,8 +664,8 @@
       "name": "Colony"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 2,
+      "activationConditionHarvest": 2,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -703,8 +703,8 @@
       "name": "Marble Pit"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 6,
+      "activationConditionHarvest": 6,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -747,8 +747,8 @@
       "name": "Province"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 1,
+      "activationConditionHarvest": 1,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -786,8 +786,8 @@
       "name": "Sanctuary"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 4,
+      "activationConditionHarvest": 4,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
@@ -830,8 +830,8 @@
       "name": "Castle"
     },
     {
-      "activationConditionHarvest": 3,
-      "period": 2,
+      "activationConditionHarvest": 2,
+      "period": 3,
       "developmentCardType": "territory",
       "immediateEffect": [
         {
