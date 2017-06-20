@@ -1,9 +1,15 @@
 package it.polimi.ingsw.gui;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
@@ -17,12 +23,21 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.ClientRMICallbackRemote;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
@@ -43,46 +58,46 @@ public class GameController implements ClientRMICallbackRemote{
     private ImageView territory3;
 
     @FXML
-    private Rectangle territory2;
+    private ImageView territory2;
 
     @FXML
-    private Rectangle territory1;
+    private ImageView territory1;
 
     @FXML
-    private Rectangle character1;
+    private ImageView character1;
 
     @FXML
-    private Rectangle character2;
+    private ImageView character2;
 
     @FXML
-    private Rectangle character3;
+    private ImageView character3;
 
     @FXML
-    private Rectangle character4;
+    private ImageView character4;
 
     @FXML
-    private Rectangle building4;
+    private ImageView building4;
 
     @FXML
-    private Rectangle building3;
+    private ImageView building3;
 
     @FXML
-    private Rectangle building2;
+    private ImageView building2;
 
     @FXML
-    private Rectangle building1;
+    private ImageView building1;
 
     @FXML
-    private Rectangle venture4;
+    private ImageView venture4;
 
     @FXML
-    private Rectangle venture3;
+    private ImageView venture3;
 
     @FXML
-    private Rectangle venture2;
+    private ImageView venture2;
 
     @FXML
-    private Rectangle venture1;
+    private ImageView venture1;
 
     @FXML
     private Ellipse councilPalace;
@@ -128,10 +143,30 @@ public class GameController implements ClientRMICallbackRemote{
 
     @FXML
     private Rectangle excommunicationTile3;
+    
+
+    @FXML
+    private Button action2;
+
+    @FXML
+    private Button action4;
+
+    @FXML
+    private Button action1;
+    
+    @FXML
+    private Button action5;
+
+    @FXML
+    private Label labelAction;
+
+    @FXML
+    private Button action3;
 
     @FXML
     void towerFloorCkd(MouseEvent event) {
     	System.out.println(event.getPickResult().getIntersectedNode().getId());
+    	
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
     		imageZoomed.setImage(positionClicked.getImage());
@@ -144,6 +179,11 @@ public class GameController implements ClientRMICallbackRemote{
     		getDescription.setText("In this position there isn't a card.");
     	}
     }
+    
+    @FXML
+    void actionCkd(MouseEvent event) {
+    	
+    }
 
 	@Override
 	public int askForLeaderCardAction() throws RemoteException {
@@ -153,26 +193,59 @@ public class GameController implements ClientRMICallbackRemote{
 
 	@Override
 	public void startTurn(String playerName) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("inizia il turno");
 	}
-
+    
 	@Override
 	public String askName() throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		NewWindow newWindow = new NewWindow();
+		Thread thread = new Thread(newWindow);
+		//thread.start();
+	
+		Platform.runLater(thread);
+		//name = newWindow.getNome();
+		Risposta risposta = Risposta.getRisposta();
+		String name = risposta.getNome();
+		System.out.println("SONO VIVO SONO VIVO");
+		
+		System.out.println("EVVIVA EVVIVA" + name);
+		
+		return "marco";
 	}
 
 	@Override
 	public int askColor(String[] availableColors) throws RemoteException {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
+	private int risposta = 0;
+	
 	@Override
 	public int turnChoice() throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+
+				System.out.println("-------------sono arrivato qui------------------");
+				action1.setText("See leader cards in your hand");
+				action2.setText("Activate effect of a leader card");
+				action3.setText("Pass the turn");
+				action4.setVisible(false);
+				action5.setVisible(false);
+			}
+		});
+		while(risposta == 0){
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return risposta;
 	}
 
 	@Override
@@ -238,8 +311,7 @@ public class GameController implements ClientRMICallbackRemote{
 
 	@Override
 	public void roundBegins() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		System.out.println("ciaovkjbgvierogiweho");
 	}
 
 	@Override
@@ -268,7 +340,7 @@ public class GameController implements ClientRMICallbackRemote{
 
 	@Override
 	public void showDices(ArrayList<Dice> dices) throws RemoteException {
-		// TODO Auto-generated method stub
+		System.out.println("qui andranno i dadi");
 		
 	}
 
@@ -280,7 +352,6 @@ public class GameController implements ClientRMICallbackRemote{
 
 	@Override
 	public int askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -300,7 +371,5 @@ public class GameController implements ClientRMICallbackRemote{
 	public int askForCardEffect(DevelopmentCard developmentCard) throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-    
-    
+	}  
 }
