@@ -30,9 +30,9 @@ public final class StartGameHandler {
 		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);
-		//setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
-		PersonalBonusTileDraftHandler.handle(board);
-		LeaderCardDraftHandler.handle(board);
+		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
+		//PersonalBonusTileDraftHandler.handle(board);
+		//LeaderCardDraftHandler.handle(board);
 	}
 	
 	

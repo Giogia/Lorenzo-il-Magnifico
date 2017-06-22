@@ -2,6 +2,7 @@ package it.polimi.ingsw.gui;
 
 import java.io.IOException;
 
+import it.polimi.ingsw.GC_15.Player;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -27,9 +28,12 @@ public class NewWindow implements Runnable{
     	nome = name;
     	Risposta risposta = Risposta.getRisposta();
     	risposta.setNome(name);
+    	
     	Stage stage = (Stage) event.getPickResult().getIntersectedNode().getScene().getWindow();
     	stage.close();
     }
+    
+    
     
 	@Override
 	public void run(){
