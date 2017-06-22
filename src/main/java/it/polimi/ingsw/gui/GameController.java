@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gui;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -10,6 +11,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.Action;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
@@ -44,7 +47,7 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameController implements ClientRMICallbackRemote{
+public class GameController implements ClientRMICallbackRemote, ActionListener{
 	@FXML
 	private Label getDescription;
 	
@@ -200,15 +203,7 @@ public class GameController implements ClientRMICallbackRemote{
 	public String askName() throws RemoteException {
 		NewWindow newWindow = new NewWindow();
 		Thread thread = new Thread(newWindow);
-		//thread.start();
-	
 		Platform.runLater(thread);
-		//name = newWindow.getNome();
-		Risposta risposta = Risposta.getRisposta();
-		String name = risposta.getNome();
-		System.out.println("SONO VIVO SONO VIVO");
-		
-		System.out.println("EVVIVA EVVIVA" + name);
 		
 		return "marco";
 	}
@@ -220,6 +215,8 @@ public class GameController implements ClientRMICallbackRemote{
 	}
 
 	private int risposta = 0;
+
+	private Main main;
 	
 	@Override
 	public int turnChoice() throws RemoteException {
@@ -371,5 +368,16 @@ public class GameController implements ClientRMICallbackRemote{
 	public int askForCardEffect(DevelopmentCard developmentCard) throws RemoteException {
 		// TODO Auto-generated method stub
 		return 0;
-	}  
+	}
+
+	public void getMain(Main main) {
+		this.main = main;
+		
+	}
+
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }

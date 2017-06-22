@@ -17,20 +17,27 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	Scene sceneLogin;
-	Scene sceneGame;
-	Stage primaryStage;
+	private Scene sceneLogin;
+	private Scene sceneGame;
+	private Stage primaryStage;
 	private final static int RMI_PORT = 52365;
 	private static final String NAME = "connectionManager";
 	
 	@Override
 	public void start(Stage primaryStage) {
+		this.primaryStage = primaryStage;
+		mainWindow();
+	}
+		
+	public void mainWindow(){
 		try {
-			Parent login = FXMLLoader.load(getClass().getResource("Game.fxml"));
-			sceneLogin = new Scene(login,1280,800);
+			FXMLLoader login = new FXMLLoader(getClass().getResource("Game.fxml"));
+	
+			sceneLogin = new Scene(login.load());
 			
-			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
-			
+			GameController controller = login.getController();
+			controller.getMain(this);
+			 
 			primaryStage.setTitle("Lorenzo Il Magnifico");
 			primaryStage.setScene(sceneLogin);
 			primaryStage.show();
@@ -53,6 +60,6 @@ public class Main extends Application {
 		connectionManager.register(controller);
 
 		//starting gui
-		Application.launch(Main.class , args);
+		Application.launch(args);
 	}
 }

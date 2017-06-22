@@ -132,11 +132,11 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			colors.add(color);
 		}
 		for (int i = 0; i < numberOfRmiUsers; i++) {
-			String nameChoosen = tempRmiUsers.get(i).askName();
-			Color colorChoosen = askColor(tempRmiUsers.get(i), colors);
-			colors.remove(colorChoosen);
+			String nameChosen = tempRmiUsers.get(i).askName();
+			Color colorChosen = askColor(tempRmiUsers.get(i), colors);
+			colors.remove(colorChosen);
 			
-			players[i] = new Player(nameChoosen, colorChoosen);
+			players[i] = new Player(nameChosen, colorChosen);
 			
 			rmiPlayers.put(players[i], tempRmiUsers.get(i));
 			System.out.println("added new rmi plyer");
