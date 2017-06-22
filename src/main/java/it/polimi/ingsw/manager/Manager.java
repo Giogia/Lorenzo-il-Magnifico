@@ -55,7 +55,7 @@ public class Manager{
 	public static void turn(Player player) throws IOException{
 		ConnectionManagerImpl.startTurn(player);
 		while(true){
-			int choice = ConnectionManagerImpl.turnChoice(player);
+			int choice = ConnectionManagerImpl.getConnectionManager().turnChoice(player);
 			switch (choice) {
 			case 1:
 				actionManager(player);
@@ -92,7 +92,7 @@ public class Manager{
 		if(index==player.getLeaderCardInHand().size())
 			return;
 		LeaderCard chosenCard = player.getLeaderCardInHand().get(index);
-		int choice = ConnectionManagerImpl.LeaderCardActionChoice(player);
+		int choice = ConnectionManagerImpl.getConnectionManager().LeaderCardActionChoice(player);
 		try{
 			switch (choice) {
 			case 1:
@@ -131,7 +131,7 @@ public class Manager{
 		for (int i = 0; i < players.length; i++) {
 			names[i] = players[i].getName();
 		}
-		int choice = ConnectionManagerImpl.askForInformation(player, names);
+		int choice = ConnectionManagerImpl.getConnectionManager().askForInformation(player, names);
 		if (choice == players.length + 1){
 			return;
 		}
@@ -149,7 +149,7 @@ public class Manager{
 		}
 		Board board = player.getBoard();
 		while(true){
-			int choice = ConnectionManagerImpl.chooseZone(player);
+			int choice = ConnectionManagerImpl.getConnectionManager().chooseZone(player);
 			try{
 				switch (choice) {
 				case 1:
@@ -192,7 +192,7 @@ public class Manager{
 						return;
 					}
 					break;
-				case 9:
+				case 9:	
 					return;
 				}	
 			}
@@ -209,7 +209,7 @@ public class Manager{
 	 */
 	private static boolean zoneManager(Player player, Zone zone) throws MyException, IOException {
 		Position[] positions = zone.getPositions();
-		int choice = ConnectionManagerImpl.choosePosition(player, positions);
+		int choice = ConnectionManagerImpl.getConnectionManager().choosePosition(player, positions);
 		if (choice == positions.length + 1){
 			return false;
 		} else {
@@ -220,7 +220,7 @@ public class Manager{
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
 	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, IOException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
-		int choice = ConnectionManagerImpl.chooseFamilyMember(player, familyMembers);
+		int choice = ConnectionManagerImpl.getConnectionManager().chooseFamilyMember(player, familyMembers);
 		if (choice == familyMembers.size() + 1){
 			return false;
 		}
@@ -231,7 +231,7 @@ public class Manager{
 
 	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
 			ArrayList<Resource> alternativeCosts) throws IOException {
-		int choice = ConnectionManagerImpl.askForAlternativeCost(player, costs, alternativeCosts);
+		int choice = ConnectionManagerImpl.getConnectionManager().askForAlternativeCost(player, costs, alternativeCosts);
 		if (choice == 1){
 			return costs;
 		}
@@ -239,13 +239,13 @@ public class Manager{
 	}
 
 	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
-		int choice = ConnectionManagerImpl.askForCouncilPrivilege(player, councilPrivileges);
+		int choice = ConnectionManagerImpl.getConnectionManager().askForCouncilPrivilege(player, councilPrivileges);
 		return councilPrivileges.get(choice-1);
 	}
 
 	public static int askForServants(Player player) throws IOException {
 		int numberOfServants = player.getPersonalBoard().getResource(ResourceType.servants).getAmount();
-		int choice = ConnectionManagerImpl.askForServants(player, numberOfServants);
+		int choice = ConnectionManagerImpl.getConnectionManager().askForServants(player, numberOfServants);
 		return choice;
 	}
 
@@ -253,7 +253,7 @@ public class Manager{
 		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		int choice = ConnectionManagerImpl.chooseActionPosition(player, zonePositions);
+		int choice = ConnectionManagerImpl.getConnectionManager().chooseActionPosition(player, zonePositions);
 		return zonePositions[choice - 1];
 	}
 
@@ -272,7 +272,7 @@ public class Manager{
 	}
 
 	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException{
-		if (ConnectionManagerImpl.askForExcommunication(player, excommunicationTile) == 1){
+		if (ConnectionManagerImpl.getConnectionManager().askForExcommunication(player, excommunicationTile) == 1){
 			return true;
 		}
 		return false;
@@ -292,7 +292,7 @@ public class Manager{
 		if (leaderCardsToChoice.isEmpty()){
 			return null;
 		}
-		int choice = ConnectionManagerImpl.chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
+		int choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
 		if (choice == leaderCardsToChoice.size() + 1){
 			return null;
 		}
@@ -305,12 +305,12 @@ public class Manager{
 	}
 
 	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws IOException {
-		int choice = ConnectionManagerImpl.askForZone(actionZones, player);
+		int choice = ConnectionManagerImpl.getConnectionManager().askForZone(actionZones, player);
 		return actionZones.get(choice - 1);
 	}
 
 	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
-		int index= ConnectionManagerImpl.chooseEffect(player,developmentCard);
+		int index= ConnectionManagerImpl.getConnectionManager().chooseEffect(player,developmentCard);
 		ArrayList<Bonus> choice = new ArrayList<>();
 		int counter = 0;
 		for(int i=0; i<developmentCard.secondaryEffect.size();i++){
@@ -330,17 +330,17 @@ public class Manager{
 	}
 	
 	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws IOException{
-		PersonalBonusTile choice = personalBonusTiles.get(ConnectionManagerImpl.choosePersonalBonusTile(player, personalBonusTiles)-1);
+		PersonalBonusTile choice = personalBonusTiles.get(ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles)-1);
 		return choice;
 	}
 	
 	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException { //return i if i-th element of array is chosen
-		int choice = ConnectionManagerImpl.chooseLeaderCard(player, leaderCards);
+		int choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(player, leaderCards);
 		return choice-1;
 	}
 
 	public static int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
-		int choice = ConnectionManagerImpl.draftLeaderCard(player, leaderCards);
+		int choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
 		return choice-1;
 	}
 }

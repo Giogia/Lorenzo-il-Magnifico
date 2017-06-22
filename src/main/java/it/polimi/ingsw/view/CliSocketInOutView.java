@@ -27,28 +27,10 @@ import it.polimi.ingsw.manager.ActionSocket;
 
 public class CliSocketInOutView implements Runnable{
 	private ObjectInputStream socketIn;
-	private Scanner scanner = new Scanner(System.in);
 	private PrintWriter socketOut;
 	
 	public CliSocketInOutView(ObjectInputStream socketIn, PrintWriter socketOut) {
 		this.socketIn = socketIn;
-		this.socketOut = socketOut;
-	}
-	
-	private int checkInputError(int min, int max){
-		while (true){
-			scanner = new Scanner(System.in);
-			try{
-				int risp = scanner.nextInt();
-				if ( risp < min || risp > max){
-					System.out.println("Incorrect input. Try again: ");
-				}else{
-					return risp;
-				}
-			}catch(InputMismatchException e){
-				System.out.println("The input must be an integer between "+ min + " and "+ max + ". Try again: ");
-			}
-		}
 	}
 	
 	@Override
@@ -62,10 +44,6 @@ public class CliSocketInOutView implements Runnable{
 				switch (question) {
 					case chooseName:
 						System.out.println("Please, insert your name: ");
-						String nameChoosen = scanner.nextLine();
-						
-						socketOut.println(nameChoosen);//the answer
-						socketOut.flush();
 						break;
 						
 					case chooseColor:
@@ -74,10 +52,6 @@ public class CliSocketInOutView implements Runnable{
 						for (int i = 1; i < availableColors.size() + 1; i++) {
 							System.out.println(i + ") " + availableColors.get(i - 1).toString().toLowerCase());
 						}
-						int choice = checkInputError(1, availableColors.size());
-						
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case startTurn:
@@ -89,10 +63,6 @@ public class CliSocketInOutView implements Runnable{
 						System.out.println("What action do you want to do?\n");
 						System.out.println("1) Place a family member \n2) See leader cards in your hand \n3) Activate "
 								+ "effect of a leader card \n4) Stats \n5) Pass the turn\n");
-						
-						choice = checkInputError(1, 5); //the answer
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case moveAlreadyDone:
@@ -103,10 +73,6 @@ public class CliSocketInOutView implements Runnable{
 						System.out.println("Choose the area you want to place the family member in:\n");
 						System.out.println("1) Territories Tower \n2) Characters Tower \n3) Buildings Tower \n4) Ventures Tower \n" + 
 							"5) Council Palace \n6) Harvest Area \n7) Production Area \n8) Market \n9) Go back");
-						
-						choice = checkInputError(1, 9);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case choosePosition:
@@ -118,10 +84,6 @@ public class CliSocketInOutView implements Runnable{
 						int lastChoice = action.getPositions().length + 1;
 						String lastMessage = lastChoice + ") Go back";
 						System.out.println(lastMessage);
-						
-						choice = checkInputError(1, lastChoice);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForAlternativeCost:
@@ -134,10 +96,6 @@ public class CliSocketInOutView implements Runnable{
 						for (Resource alternativeResource : action.getAlternativeCosts()) {
 							System.out.println(alternativeResource.getDescription());
 						}
-						
-						choice = checkInputError(1, 2);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForCouncilPrivilege:
@@ -146,19 +104,11 @@ public class CliSocketInOutView implements Runnable{
 							String message = counter + ") " + action.getBonus().get(counter - 1).getDescription();
 							System.out.println(message);
 						}
-						
-						choice = checkInputError(1, action.getBonus().size());
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForServants:
 						int numberOfServants = action.getNumberOfServants();
 						System.out.println("You have " + numberOfServants + " servants. How many of them do you want to use?");
-						
-						choice = checkInputError(0, numberOfServants);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case showDices:
@@ -186,10 +136,6 @@ public class CliSocketInOutView implements Runnable{
 						lastChoice = playersNames.length + 1;
 						lastMessage = lastChoice + ") Go back";
 						System.out.println(lastMessage);
-						
-						choice = checkInputError(1, lastChoice);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case showPersonalBoard:
@@ -206,10 +152,6 @@ public class CliSocketInOutView implements Runnable{
 						for (int i = 1; i <= zones.size(); i++) {
 							System.out.println(i + ") " + zones.get(i-1).getDescription());
 						}
-						
-						choice = checkInputError(1, zones.size());
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForActionPosition:
@@ -219,10 +161,6 @@ public class CliSocketInOutView implements Runnable{
 							String message = counter + ") " + positions[counter - 1].getDescription();
 							System.out.println(message);
 						}
-						
-						choice = checkInputError(1, positions.length);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case catchException:
@@ -239,10 +177,6 @@ public class CliSocketInOutView implements Runnable{
 						lastChoice = familyMembers.size() + 1;
 						lastMessage =  lastChoice + ") Go back";
 						System.out.println(lastMessage);
-						
-						choice = checkInputError(1, lastChoice);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForLeaderCards:
@@ -252,10 +186,6 @@ public class CliSocketInOutView implements Runnable{
 							System.out.println(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 						}
 						System.out.println(leaderCards.size()+1+") come back \n");
-						
-						choice = checkInputError(1, leaderCards.size()+1);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForPersonalBonusTile:
@@ -264,18 +194,12 @@ public class CliSocketInOutView implements Runnable{
 						for(int i=1;i<personalBonusTiles.size();i++){
 							System.out.println(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
 						}
-						choice = checkInputError(1, personalBonusTiles.size()-1);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForLeaderCardAction:
 						System.out.println("Choose the action you want to do with this Leader Card : \n");
 						System.out.println("1) activate this leader Card \n2) Discard this leader card");
 						System.out.println("3) come back \n");
-						choice = checkInputError(1,3);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case draftLeaderCards:
@@ -284,9 +208,6 @@ public class CliSocketInOutView implements Runnable{
 						for(int i=1;i<draftleaderCards.size()+1;i++){
 							System.out.println(i+")"+draftleaderCards.get(i-1).getDescription()+" \n");
 						}
-						choice = checkInputError(1, draftleaderCards.size());
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 						
 					case askForCardEffect:
@@ -302,21 +223,26 @@ public class CliSocketInOutView implements Runnable{
 								System.out.println(bonus.getDescription());
 						}
 						System.out.println(i+") Don't activate this card's Effect \n");
-						choice = checkInputError(1, i);
-						socketOut.println(choice);
-						socketOut.flush();
 						break;
 					
 					case askForExcommunication:
 						ArrayList<ExcommunicationTile> excommunicationTiles = action.getExcommunicationTiles();
 						ExcommunicationTile excommunicationTile = excommunicationTiles.get(0);
 						System.out.println(excommunicationTile.getDescription());
-						System.out.println("Do you want to be excommunicated? \n1) No \n2) Yes");
+						System.out.println("Do you want to be excommunicated? \n1) No \n2) Yes");		
+						break;
 						
-						choice = checkInputError(1, 2);
-						socketOut.println(choice);
-						socketOut.flush();
+					case notYourTurn:
+						System.out.println("Non è il tuo turno, aspetta!");
+						break;
 						
+					case wrongInput:
+						System.out.println("The input must be an integer! Try again!");
+						break;
+						
+					case integerError:
+						System.out.println("The integer doesn't match any possible choice");
+						break;
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

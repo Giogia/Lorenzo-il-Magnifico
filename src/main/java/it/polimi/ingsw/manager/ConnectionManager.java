@@ -4,9 +4,9 @@ import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-import it.polimi.ingsw.view.ClientRMICallbackRemote;
+import it.polimi.ingsw.view.CliRmi;
 
 
 public interface ConnectionManager extends Remote{
-	public void register(ClientRMICallbackRemote client) throws RemoteException, NotBoundException;
+	public void register(CliRmi client) throws RemoteException, NotBoundException;
 }

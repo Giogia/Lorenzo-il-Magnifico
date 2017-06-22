@@ -17,7 +17,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	Scene sceneLogin;
+	Scene scene;
 	Scene sceneGame;
 	Stage primaryStage;
 	private final static int RMI_PORT = 52365;
@@ -27,12 +27,12 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent login = FXMLLoader.load(getClass().getResource("Game.fxml"));
-			sceneLogin = new Scene(login,1280,800);
+			scene = new Scene(login,1280,800);
 			
-			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
+			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			
 			primaryStage.setTitle("Lorenzo Il Magnifico");
-			primaryStage.setScene(sceneLogin);
+			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -40,19 +40,19 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException {
-		Registry registry = LocateRegistry.getRegistry("localhost", RMI_PORT);
+		/*Registry registry = LocateRegistry.getRegistry("localhost", RMI_PORT);
 		System.out.println("preso referenza al registry");
 		
 		ConnectionManager connectionManager = (ConnectionManager) registry.lookup(NAME);
 		System.out.println("connesso al connectionManager");
 		
-		GameController controller = new GameController();
+		ClientGui client = new ClientGui();
 
-		UnicastRemoteObject.exportObject(controller, 0);
+		UnicastRemoteObject.exportObject(client, 0);
 
-		connectionManager.register(controller);
+		connectionManager.register(client);*/
 
 		//starting gui
-		Application.launch(Main.class , args);
+		Application.launch(args);
 	}
 }

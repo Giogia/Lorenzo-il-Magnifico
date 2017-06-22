@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ActionSocket implements Serializable{
 	public enum action{
@@ -43,7 +44,10 @@ public class ActionSocket implements Serializable{
 		askForLeaderCardAction,
 		draftLeaderCards, 
 		askForExcommunication,
-		askForCardEffect
+		askForCardEffect,
+		notYourTurn, 
+		wrongInput, 
+		integerError
 	}
 	
 	private action action;
