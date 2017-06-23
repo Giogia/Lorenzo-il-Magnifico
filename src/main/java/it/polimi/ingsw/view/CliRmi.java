@@ -81,5 +81,7 @@ public interface CliRmi extends Remote {
 	void askForCardEffect(DevelopmentCard developmentCard) throws RemoteException;
 
 	void integerError() throws RemoteException;
+
+	void leftGame(String name) throws RemoteException;
 }
 

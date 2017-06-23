@@ -67,6 +67,11 @@ public class CliRmiView implements CliRmi{
 		System.out.println("Please, wait your turn!");
 	}
 	
+	@Override
+	public void leftGame(String playerDisconnected) throws RemoteException {
+		System.out.println(playerDisconnected + " left the game!");
+	}
+	
 	public void askName(){
 		scanner= new Scanner(System.in);
 		System.out.println("Please, insert your name: ");

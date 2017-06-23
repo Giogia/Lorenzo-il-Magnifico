@@ -52,8 +52,17 @@ public class Manager{
 	}
 
 	//begins the turn of the player 
-	public static void turn(Player player) throws IOException{
-		ConnectionManagerImpl.startTurn(player);
+	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException{
+		ConnectionManagerImpl.startTurn(player, playersInGame);
+		//if player is connected, ask question. Else go ahead with next player
+		if(!ConnectionManagerImpl.getConnectionManager().getPlayersDisconnected().contains(player)){ 
+			turnChoice(player);
+		}	
+	}
+
+	
+	
+	private static void turnChoice(Player player) throws IOException{
 		while(true){
 			int choice = ConnectionManagerImpl.getConnectionManager().turnChoice(player);
 			switch (choice) {
@@ -84,7 +93,6 @@ public class Manager{
 				break;
 			}
 		}
-			
 	}
 
 	private static void leaderCardManager(Player player) throws IOException {

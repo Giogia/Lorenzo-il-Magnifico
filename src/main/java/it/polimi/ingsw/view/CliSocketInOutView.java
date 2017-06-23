@@ -243,6 +243,10 @@ public class CliSocketInOutView implements Runnable{
 					case integerError:
 						System.out.println("The integer doesn't match any possible choice");
 						break;
+						
+					case leftGame:
+						String playerDisconnected = action.getPlayerName();
+						System.out.println(playerDisconnected + " left the game!");
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

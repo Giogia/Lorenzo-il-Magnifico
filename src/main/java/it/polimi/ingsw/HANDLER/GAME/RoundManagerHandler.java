@@ -43,18 +43,21 @@ public class RoundManagerHandler {
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
 	private static void handleOrder(RoundOrder roundOrder, Board board) throws IOException {
+		for (Player pl : roundOrder.getPlayers()) {
+			System.out.println(pl.getName());
+		}
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Player player = roundOrder.getPlayer(i);
 				if (OrderBonusHandler.handle(player, numberOfAction)){
-					Manager.turn(player);
+					Manager.startTurn(player, roundOrder.getPlayers());
 				}
 			}
 		}
 		ArrayList<Player> skippedPlayers = board.getGame().getSkipActionPlayers();
 		for (Player player : skippedPlayers) {
 			board.getPassTurnController().lastMove(null);
-			Manager.turn(player);
+			Manager.startTurn(player, roundOrder.getPlayers());
 		}
 	}
 

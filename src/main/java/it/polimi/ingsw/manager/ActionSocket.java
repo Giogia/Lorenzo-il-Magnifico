@@ -47,7 +47,8 @@ public class ActionSocket implements Serializable{
 		askForCardEffect,
 		notYourTurn, 
 		wrongInput, 
-		integerError
+		integerError, 
+		leftGame
 	}
 	
 	private action action;
@@ -67,6 +68,7 @@ public class ActionSocket implements Serializable{
 	private ArrayList<LeaderCard> leaderCards;
 	private ArrayList<ExcommunicationTile> excommunicationTiles;
 	private DevelopmentCard developmentCard;
+	private String playerName;
 	
 	public ActionSocket(action a) {
 		this.action = a;
@@ -105,6 +107,12 @@ public class ActionSocket implements Serializable{
 	}
 	public ArrayList<ResourceBonus> getBonus() {
 		return bonus;
+	}
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+	public String getPlayerName() {
+		return playerName;
 	}
 	public void setBonus(ArrayList<ResourceBonus> bonus) {
 		this.bonus = bonus;

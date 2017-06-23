@@ -3,6 +3,8 @@ package it.polimi.ingsw.manager;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -29,15 +31,19 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
 import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
 	
+	//ConnectionManagerImpl is a singleton called by Manager. It handles connection (Rmi and Socket) with clients
+	//there is a difference between users and players. users are players that doesn't belong to any match started. When a match starts
+	//users become players.
 	static Timer timer;
 	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl; //takes the incoming answer of rmi users
-	private static ConnectionManagerImpl instance;
+	private static ConnectionManagerImpl instance;//singleton
 	
 	//contains all rmiUsers. When a game starts, users are removed from here and moved to hashmap above
 	private static List<CliRmi> rmiUsers = new ArrayList<>();
@@ -51,6 +57,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	// contains all listeners of socket players of the server
 	private static HashMap<Player, ConnectionManagerSocketServer> clientListener = new HashMap<>(); 
 	
+	//contains players disconnected from any game running on the server
+	private static List<Player> playersDisconnected = new ArrayList<>(); 
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	private static Game game;
 	
@@ -320,21 +328,62 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return rmiPlayers.get(player);
 	}
 	
+	public static List<Player> getPlayersDisconnected() {
+		return playersDisconnected;
+	}
+	
 	public static ObjectOutputStream getSocketOutView(Player player){
 		return socketOutPlayers.get(player);
 	}
 	
-	public static void startTurn(Player player) throws IOException {
+	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException {
 		ArrayList<Player> rmiPlayersList = getRmiPlayers();
 		if (rmiPlayersList.contains(player)){ //if player is a rmi user
 			CliRmi client = getRmiView(player);
-			client.startTurn(player.getName());
+			try{
+				client.startTurn(player.getName());
+			}catch(ConnectException e){ //client disconnects from the server
+				System.out.println(player.getName() + " left the game!");
+				playersDisconnected.add(player); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
+				notifyPlayers(player, playersInGame);
+			}
 		}else{ //player is a socket user
 			ObjectOutputStream o = getSocketOutView(player);
 			ActionSocket act = new ActionSocket(action.startTurn);
 			act.setMessage(player.getName());
-			o.writeObject(act);
-			o.flush();
+			try{
+				o.writeObject(act);
+				o.flush();
+			}catch(SocketException e){
+				System.out.println(player.getName() + " left the game!");
+				playersDisconnected.add(player); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
+				notifyPlayers(player, playersInGame);
+			}
+		}
+	}
+
+	private static void notifyPlayers(Player playerDisconnected, ArrayList<Player> playersInGame) throws IOException{
+		for (Player player : playersInGame) {
+			ArrayList<Player> rmiPlayersList = getRmiPlayers();
+			ArrayList<Player> socketPlayersList = getSocketOutPlayers();
+			if (rmiPlayersList.contains(player)){ //if player is a rmi user
+				CliRmi client = getRmiView(player);
+				try{
+					client.leftGame(playerDisconnected.getName());
+				}catch(ConnectException e){ }//don't do nothing!
+			}
+			if(socketPlayersList.contains(player)){ //player is a socket user
+				ObjectOutputStream out = getSocketOutView(player);
+				
+				ActionSocket act = new ActionSocket(action.leftGame); 
+				act.setPlayerName(playerDisconnected.getName());
+	
+				try{
+					out.reset();
+					out.writeObject(act);
+					out.flush();
+				}catch(SocketException e){ } //don't do nothing!
+			}
 		}
 	}
 
