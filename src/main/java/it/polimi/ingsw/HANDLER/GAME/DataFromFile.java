@@ -174,23 +174,79 @@ public class DataFromFile implements Serializable{
 	public void lastCards(DevelopmentCardType developmentCardType, int period,
 			ArrayList<DevelopmentCard> developmentCards) {
 		if (developmentCardType.equals(DevelopmentCardType.building)){
+			removeBuildings(period);
 			for (DevelopmentCard developmentCard : developmentCards) {
 				buildings.add((Building) developmentCard);
 			}
 		}
 		else if (developmentCardType.equals(DevelopmentCardType.character)){
+			removeCharacters(period);
 			for (DevelopmentCard developmentCard : developmentCards) {
 				characters.add((Character) developmentCard);
 			}
 		}
 		else if (developmentCardType.equals(DevelopmentCardType.venture)){
+			removeVentures(period);
 			for (DevelopmentCard developmentCard : developmentCards) {
 				ventures.add((Venture) developmentCard);
 			}
 		}
 		else{
+			removeTerritories(period);
 			for (DevelopmentCard developmentCard : developmentCards) {
 				territories.add((Territory) developmentCard);
+			}
+		}
+	}
+
+	private void removeBuildings(int period) {
+		int i = 0;
+		while (i < buildings.size()) {
+			Building building = buildings.get(i);
+			if (building.period == period){
+				buildings.remove(building);
+			}
+			else {
+				i++;
+			}
+		}
+	}
+	
+	private void removeVentures(int period) {
+		int i = 0;
+		while (i < ventures.size()) {
+			Venture venture = ventures.get(i);
+			if (venture.period == period){
+				ventures.remove(venture);
+			}
+			else {
+				i++;
+			}
+		}
+	}
+	
+	private void removeTerritories(int period) {
+		int i = 0;
+		while (i < territories.size()) {
+			Territory territory = territories.get(i);
+			if (territory.period == period){
+				territories.remove(territory);
+			}
+			else {
+				i++;
+			}
+		}
+	}
+	
+	private void removeCharacters(int period) {
+		int i = 0;
+		while (i < characters.size()) {
+			Character character = characters.get(i);
+			if (character.period == period){
+				characters.remove(character);
+			}
+			else {
+				i++;
 			}
 		}
 	}

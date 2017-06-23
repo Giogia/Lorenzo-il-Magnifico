@@ -1,7 +1,10 @@
 package it.polimi.ingsw.BOARD;
 
+import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
@@ -36,19 +39,21 @@ public class TowerFloor extends Position {
 		Player cardPlayer = newFamilyMember.getPlayer(); //variabile temp del giocatore associato al familymember
 		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //aggiunge la carta alla personal board del player
 		ArrayList<ImmediateBonus> cardImmediateBonus = developmentCard.immediateEffect;
+		ArrayList<Bonus> secondaryEffect = developmentCard.secondaryEffect;
+		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		this.developmentCard = null;
 		if(cardImmediateBonus!=null){
 			for(ImmediateBonus immediateBonus : cardImmediateBonus){ //attiva il metodo immediate bonus per ogni primary effect 
 				giveImmediateBonus(cardPlayer,immediateBonus);
 			}
 		}	
-		/*TODO: permanent bonus
-		if(this.developmentCard.developmentCardType != DevelopmentCardType.CHARACTER){
-			for(Bonus immediateBonus : this.developmentCard.secondaryEffect){
-				giveImmediateBonus(cardPlayer, immediateBonus); 
-			}//da testare assolutamente 
-		} */
-		 //cancella carta sul piano della torre
+		if (developmentCardType.equals(DevelopmentCardType.character)){
+			if (secondaryEffect != null){
+				for (Bonus bonus : secondaryEffect) {
+					((PermanentBonus) bonus).getPermanentBonus(cardPlayer);
+				}
+			}
+		}
 	}
 	
 	@Override

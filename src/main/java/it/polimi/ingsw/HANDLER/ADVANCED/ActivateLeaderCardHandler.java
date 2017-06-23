@@ -32,7 +32,6 @@ public class ActivateLeaderCardHandler {
 			if(bonus instanceof PermanentBonus){
 				PermanentBonus permanentBonus = (PermanentBonus) bonus;
 				permanentBonus.getPermanentBonus(player);
-				return;
 			}
 		}
 	}	

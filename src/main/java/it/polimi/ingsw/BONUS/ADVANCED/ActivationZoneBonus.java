@@ -38,6 +38,7 @@ public class ActivationZoneBonus extends PermanentBonus {
 				}
 			}
 		} 
+		super.getPermanentBonus(player);
 	}
 	
 	public void addBonus(ActivationZoneBonus activationZoneBonus){

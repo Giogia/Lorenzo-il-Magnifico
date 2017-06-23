@@ -18,7 +18,7 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 	public String getDescription() {
 		String description = "";
 		for (Resource resource : resources) {
-			description = description + "For each " + resource.getClass().getName() + " you have to pay " + resource.getAmount() + "\n";
+			description = description + "For each " + resource.getClass().getSimpleName() + " you have to pay " + resource.getAmount() + "\n";
 		}
 		return description;
 	}
@@ -49,7 +49,7 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 		for (Resource bonusResource : resources) {
 			for (Resource playerResource : player.getPersonalBoard().getResources()) {
 				if (playerResource.getClass().equals(bonusResource.getClass())){
-					playerResource.setValue(bonusResource.getValue());
+					playerResource.setValue(bonusResource.getAmount());
 				}
 			}
 		}

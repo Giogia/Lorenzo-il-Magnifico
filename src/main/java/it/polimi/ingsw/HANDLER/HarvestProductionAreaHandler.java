@@ -11,6 +11,8 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CONTROLLER.CheckBonusTileRequirementController;
 import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
+import it.polimi.ingsw.CONTROLLER.OccupiedYetBonusController;
+import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.CONTROLLER.ResourceBonusCardController;
 import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -24,6 +26,11 @@ import it.polimi.ingsw.manager.Manager;
 public abstract class HarvestProductionAreaHandler {
 
 	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, IOException{
+		if (position.equals(zone.getPositions()[0]) && !OccupiedYetBonusController.check(familyMember)){
+			if (!PositionAlreadyOccupiedController.check(position)){
+				return false;
+			}
+		}
 		if(ZoneOccupiedBySameColorController.check(zone, familyMember)){
 			ArrayList<Resource> playerResources = cloneResources(familyMember.getPlayer());
 			FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());

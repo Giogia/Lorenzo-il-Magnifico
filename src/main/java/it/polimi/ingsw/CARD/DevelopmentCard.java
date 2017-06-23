@@ -25,9 +25,7 @@ public abstract class DevelopmentCard extends Card{
 			description = description + "Bonus from the immediate effect of the card: \n";
 			
 			for (int i=0; i < immediateEffect.size(); i++){
-				if (i == immediateEffect.size()-1){
-					return description + immediateEffect.get(i).getDescription();
-				}
+				
 				description = description + immediateEffect.get(i).getDescription() + "\n";
 			}
 		}
@@ -35,9 +33,7 @@ public abstract class DevelopmentCard extends Card{
 			description = description +"Bonus from secondary effect: \n";
 			
 			for (int i=0; i < secondaryEffect.size(); i++){
-				if (i == secondaryEffect.size()-1){
-					return description + secondaryEffect.get(i).getDescription();
-				}
+				
 				description = description + secondaryEffect.get(i).getDescription() + "\n";
 			}
 		}

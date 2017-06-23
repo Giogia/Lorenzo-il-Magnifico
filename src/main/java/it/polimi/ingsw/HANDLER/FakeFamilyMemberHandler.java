@@ -44,16 +44,14 @@ public class FakeFamilyMemberHandler {
 		Position position = Manager.askForAction(fakeFamilyMember, zone, player.getBoard());
 		zone = getBoardZone(zone, player.getBoard());
 		//if it's set correctly then remove the fake family member
-		try{
-			ActionHandler.handle(fakeFamilyMember,zone,position);
+		if (ActionHandler.handle(fakeFamilyMember,zone,position)){
 			position.removeFamilyMember(fakeFamilyMember);
 			turnOffBoolean();
 			return true;
-		} catch (MyException e) {
-			player.getBoard().getPassTurnController().lastMove(player);
-			turnOffBoolean();
-			return false;
 		}
+		player.getBoard().getPassTurnController().lastMove(player);
+		turnOffBoolean();
+		return false;
 	}
 
 

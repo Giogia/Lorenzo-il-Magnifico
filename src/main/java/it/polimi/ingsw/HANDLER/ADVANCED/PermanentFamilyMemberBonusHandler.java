@@ -62,7 +62,7 @@ public class PermanentFamilyMemberBonusHandler {
 					for (FamilyMember bonusFamilyMember : bonusFamilyMembers) {
 						for (FamilyMember familyMember : player.getFamilyMembers()) {
 							if (familyMember.getDice().getDiceColour().equals(bonusFamilyMember.getDice().getDiceColour())){
-								familyMember.addValue(bonusFamilyMember.getValue());
+								familyMember.setValue(bonusFamilyMember.getValue());
 							}
 						}
 					}

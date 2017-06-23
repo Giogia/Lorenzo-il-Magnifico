@@ -30,9 +30,9 @@ public final class StartGameHandler {
 		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);
-		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
-		//PersonalBonusTileDraftHandler.handle(board);
-		//LeaderCardDraftHandler.handle(board);
+		//setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
+		PersonalBonusTileDraftHandler.handle(board);
+		LeaderCardDraftHandler.handle(board);
 	}
 	
 	
@@ -62,13 +62,10 @@ public final class StartGameHandler {
 		int i=0;
 		for(Player player: board.getGame().getRoundOrder()){
 			PersonalBoard personalBoard = player.getPersonalBoard();
-			personalBoard.getResource(ResourceType.stones).addAmount(20);
-			personalBoard.getResource(ResourceType.wood).addAmount(20);
-			personalBoard.getResource(ResourceType.servants).addAmount(30);
-			personalBoard.getResource(ResourceType.coins).addAmount(50+i);
-			personalBoard.getResource(ResourceType.victoryPoints).addAmount(50);
-			personalBoard.getResource(ResourceType.faithPoints).addAmount(10);
-			personalBoard.getResource(ResourceType.militaryPoints).addAmount(10);
+			personalBoard.getResource(ResourceType.stones).addAmount(2);
+			personalBoard.getResource(ResourceType.wood).addAmount(2);
+			personalBoard.getResource(ResourceType.servants).addAmount(3);
+			personalBoard.getResource(ResourceType.coins).addAmount(5+i);
 			i++;	
 		}
 	}

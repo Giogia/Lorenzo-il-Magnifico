@@ -75,9 +75,11 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 
 
 	private Zone findMarket() {
-		for (Zone zone : canGoTo.keySet()) {
-			if (zone instanceof Market){
-				return zone;
+		if (canGoTo != null){
+			for (Zone zone : canGoTo.keySet()) {
+				if (zone instanceof Market){
+					return zone;
+				}
 			}
 		}
 		return null;

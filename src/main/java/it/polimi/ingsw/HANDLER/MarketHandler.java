@@ -18,8 +18,8 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public class MarketHandler {
 	
 	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException{
-		if (!PositionAlreadyOccupiedController.check(position)){
-			if (!OccupiedYetBonusController.check(familyMember)){
+		if (!OccupiedYetBonusController.check(familyMember)){
+			if (!PositionAlreadyOccupiedController.check(position)){
 				return false;
 			}
 		}

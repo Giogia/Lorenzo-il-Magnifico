@@ -43,7 +43,17 @@ public class Position implements Serializable{
 	}
 	
 	public void removeFamilyMember(FamilyMember familyMember){
-		familyMembers.remove(familyMember);
+		int i = 0;
+		while (i < familyMembers.size()) {
+			FamilyMember positionFamilyMember = familyMembers.get(i);
+			if (positionFamilyMember.getPlayer().equals(familyMember.getPlayer()) && 
+					positionFamilyMember.getDice().getDiceColour().equals(familyMember.getDice().getDiceColour())){
+				familyMembers.remove(positionFamilyMember);
+			}
+			else {
+				i++;
+			}
+		}
 	}
 	
 	public void deleteAllFamilyMember(){
