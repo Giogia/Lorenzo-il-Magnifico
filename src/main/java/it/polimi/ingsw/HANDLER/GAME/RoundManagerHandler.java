@@ -43,10 +43,14 @@ public class RoundManagerHandler {
 	
 	//For each action and for each turn give to Manger the player that have the right to do an action
 	private static void handleOrder(RoundOrder roundOrder, Board board) throws IOException {
+		//print on server the order of the game
 		for (Player pl : roundOrder.getPlayers()) {
 			System.out.println(pl.getName());
 		}
+		
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
+			//each action clear player disconnected
+			ConnectionManagerImpl.getConnectionManager().getPlayersDisconnected().clear();
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Player player = roundOrder.getPlayer(i);
 				if (OrderBonusHandler.handle(player, numberOfAction)){
