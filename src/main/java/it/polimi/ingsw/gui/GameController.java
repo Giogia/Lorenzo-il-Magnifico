@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gui;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,6 +23,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.view.CliRmi;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -44,7 +46,16 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameController {
+public class GameController implements ActionListener {
+	private ConnectionManagerRmiServer rmiServer;
+	private GuiRmiView guiRmiView;
+	
+	public ConnectionManagerRmiServer getRmiServer() {
+		return rmiServer;
+	}
+	
+	
+	
 	@FXML
 	private Label getDescription;
 	
@@ -183,5 +194,26 @@ public class GameController {
     @FXML
     void actionCkd(MouseEvent event) {
     	
+    	
     }
+
+	public void setGuiRmiView(GuiRmiView guiRmiView) {
+		this.guiRmiView = guiRmiView;
+		
+	}
+
+	public void setRmiServer(ConnectionManagerRmiServer connectionManagerRmiServer) {
+		this.rmiServer = connectionManagerRmiServer;
+		
+	}
+
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+ 
+    
+    
 }

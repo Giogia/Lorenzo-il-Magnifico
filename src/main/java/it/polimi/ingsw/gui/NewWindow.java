@@ -1,8 +1,11 @@
 package it.polimi.ingsw.gui;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -15,6 +18,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class NewWindow implements Runnable{
+	private static GuiRmiView guiRmiView;
+	
+	
+	public void setGuiRmiView(GuiRmiView guiRmiView) {
+		this.guiRmiView = guiRmiView;
+	}
+	
+	
 	private String nome;
 	@FXML
 	private TextField nameChoosen;
@@ -25,12 +36,17 @@ public class NewWindow implements Runnable{
     @FXML
     void btnClicked(MouseEvent event) {
     	String name = nameChoosen.getText();
-    	nome = name;
-    	Risposta risposta = Risposta.getRisposta();
-    	risposta.setNome(name);
-    	
+    	System.out.println(guiRmiView);
+    	System.out.println(name);
+
     	Stage stage = (Stage) event.getPickResult().getIntersectedNode().getScene().getWindow();
     	stage.close();
+    	try {
+			guiRmiView.reply(name);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     
@@ -38,8 +54,8 @@ public class NewWindow implements Runnable{
 	@Override
 	public void run(){
 		try {
-			Parent login = FXMLLoader.load(getClass().getResource("NameAndColor.fxml"));
-			Scene sceneLogin = new Scene(login,800,600);
+			FXMLLoader login = new FXMLLoader(getClass().getResource("NameAndColor.fxml"));
+			Scene sceneLogin = new Scene(login.load());
 			
 			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			
@@ -52,5 +68,9 @@ public class NewWindow implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public TextField getNameChoosen() {
+		return nameChoosen;
 	}
 }
