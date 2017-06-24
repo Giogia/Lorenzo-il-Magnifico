@@ -10,6 +10,7 @@ import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.manager.User;
 
 public class Player implements Serializable{
 	private String name;

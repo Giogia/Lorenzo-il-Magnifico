@@ -26,9 +26,10 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 		}
 	}
 	
-	public String getStringReceived() {
+	public synchronized String getStringReceived() {
 		isAvailable = false;
 		cliRmi = null;
+		notifyAll();
 		return stringReceived;
 	}
 	
@@ -40,4 +41,7 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 		this.cliRmi = cliRmi;
 	}
 	
+	public CliRmi getCliRmi() {
+		return cliRmi;
+	}
 }

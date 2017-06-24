@@ -72,6 +72,11 @@ public class CliRmiView implements CliRmi{
 		System.out.println(playerDisconnected + " left the game!");
 	}
 	
+	@Override
+	public void reconnectedToGame(String name) throws RemoteException {
+		System.out.println(name + " has reconnected himself to the game!");
+	}
+	
 	public void askName(){
 		scanner= new Scanner(System.in);
 		System.out.println("Please, insert your name: ");
@@ -274,6 +279,11 @@ public class CliRmiView implements CliRmi{
 				System.out.println(bonus.getDescription());
 		}
 		System.out.println(i+") Don't activate this card's Effect \n");
+	}
+	
+	@Override
+	public void askForUsername() throws RemoteException {
+		System.out.println("Please, insert your username: ");
 	}
 }
 

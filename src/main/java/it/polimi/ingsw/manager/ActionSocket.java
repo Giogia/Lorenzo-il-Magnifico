@@ -48,7 +48,10 @@ public class ActionSocket implements Serializable{
 		notYourTurn, 
 		wrongInput, 
 		integerError, 
-		leftGame
+		leftGame,
+		askForUsername, 
+		reconnectedToGame, 
+		usernameHasAlreadyChoosen
 	}
 	
 	private action action;

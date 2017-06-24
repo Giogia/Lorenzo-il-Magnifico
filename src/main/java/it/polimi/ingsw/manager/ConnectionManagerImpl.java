@@ -8,9 +8,10 @@ import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Timer;
@@ -38,32 +39,26 @@ import it.polimi.ingsw.manager.ActionSocket.action;
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
 	
 	//ConnectionManagerImpl is a singleton called by Manager. It handles connection (Rmi and Socket) with clients
-	//there is a difference between users and players. users are players that doesn't belong to any match started. When a match starts
-	//users become players.
+	//there is a difference between users and players. users contains players and own also socket and rmi stuff.
 	static Timer timer;
 	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl; //takes the incoming answer of rmi users
 	private static ConnectionManagerImpl instance;//singleton
 	
-	//contains all rmiUsers. When a game starts, users are removed from here and moved to hashmap above
-	private static List<CliRmi> rmiUsers = new ArrayList<>();
-	
-	//contains all socketUsers. When a game starts, users are removed from here and moved to hashmap above
-	private static List<Socket> socketUsers = new ArrayList<>();
-	private static List<ConnectionManagerSocketServer> socketListenersUsers = new ArrayList<>();//contains all listeners of users
-	
-	private static HashMap<Player, CliRmi> rmiPlayers = new HashMap<>(); //contains all rmi players of the server
-	private static HashMap<Player, ObjectOutputStream> socketOutPlayers = new HashMap<>(); //contains all socket players of the server
-	// contains all listeners of socket players of the server
-	private static HashMap<Player, ConnectionManagerSocketServer> clientListener = new HashMap<>(); 
+	//there are only socket users because the socket is setted from Server.
+	private static List<User> users = new ArrayList<>();
+	//are the socket users that have insert their username and all rmi users
+	private static List<User> usersReady = new ArrayList<>();  
+	private static List<User> usersInGame = new ArrayList<>();
 	
 	//contains players disconnected from any game running on the server
-	private static List<Player> playersDisconnected = new ArrayList<>(); 
+	private static List<User> usersDisconnected = new ArrayList<>();
+	
+	
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	private static Game game;
 	
 	
-	public static void setRmiServerImpl(
-			ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl) {
+	public static void setRmiServerImpl(ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl) {
 		ConnectionManagerImpl.connectionManagerRmiServerImpl = connectionManagerRmiServerImpl;
 	}
 	
@@ -83,48 +78,133 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		try{
 			System.out.println("New socket user in the game");
 			
-			Scanner socketInClient = new Scanner(socketUsers.get(socketUsers.size() - 1).getInputStream());
-			ObjectOutputStream socketOutClient = new ObjectOutputStream(socketUsers.get(socketUsers.size() - 1).getOutputStream() );
+			User thisUser =  users.get(users.size() - 1);
+			Scanner socketInClient = new Scanner(thisUser.getSocket().getInputStream());
+			ObjectOutputStream socketOutClient = new ObjectOutputStream(thisUser.getSocket().getOutputStream());
 			
 			//create now this listener of socket because in this way server can tell to user it's not time to talk 
 			ConnectionManagerSocketServer connectionManagerSocketServer = new ConnectionManagerSocketServer(socketInClient, socketOutClient);
-
-			socketListenersUsers.add(connectionManagerSocketServer);
 			
+			thisUser.setConnectionManagerSocketServer(connectionManagerSocketServer);
+			
+			//creating the thread that listen only this client
 			executor.submit(connectionManagerSocketServer);
-			lobby();
+			
+			ActionSocket act = new ActionSocket(action.askForUsername);
+			socketOutClient.writeObject(act);
+			socketOutClient.flush();
+			
+			boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
+			while(usernameChoosenHasAlreadyChoosen){
+				
+				//asking for his username
+				connectionManagerSocketServer.setIsRightTurn(true);
+				synchronized (connectionManagerSocketServer) {
+					while(!connectionManagerSocketServer.getIsAvailable()){
+						try {
+							connectionManagerSocketServer.wait();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				String usernameChoosen =  connectionManagerSocketServer.getStringReceived();
+				connectionManagerSocketServer.setIsRightTurn(false);
+				
+				//if username has already choosen
+				if(usernameHasAlreadyChoosen(usernameChoosen)){
+					//if user isn't reconnecting himself but he his a new user
+					if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
+						//tell to player to choice another username
+						
+						ActionSocket a = new ActionSocket(action.usernameHasAlreadyChoosen);
+						socketOutClient.writeObject(a);
+						socketOutClient.flush();
+						
+					}else{//user is reconnecting himself
+						usernameChoosenHasAlreadyChoosen = false; //end of the while
+						thisUser.setUsername(usernameChoosen);
+						reconnectionManager(thisUser);
+					}
+				}else{//username hasn't already choosen
+					usernameChoosenHasAlreadyChoosen = false; //end of the while
+					thisUser.setUsername(usernameChoosen);
+					usersReady.add(thisUser);
+					users.remove(thisUser);
+					lobby();
+				}
+			}
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void register(CliRmi client) throws RemoteException{
-		rmiUsers.add(client);
-		System.out.println("New rmi user in the game");
-		try {
-			lobby();
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	private void lobby() throws ClassNotFoundException, IOException{
-		List<CliRmi> temporaryRmiUsers = new ArrayList<>();
-		List<ConnectionManagerSocketServer> temporarySocketUsers = new ArrayList<>();
 		
-		if (rmiUsers.size() + socketUsers.size() == 1){//the first player will create the game and he will run the game
+	public void register(CliRmi client) throws RemoteException{
+		System.out.println("New rmi user in the game");
+		User thisUser = new User(client);
+		
+		synchronized (connectionManagerRmiServerImpl) {
+			while(connectionManagerRmiServerImpl.getCliRmi() != null){ //while I'm listening another thread
+				try {
+					connectionManagerRmiServerImpl.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		client.askForUsername();
+		connectionManagerRmiServerImpl.setCliRmi(client);
+		synchronized (connectionManagerRmiServerImpl) {
+			while(!connectionManagerRmiServerImpl.getIsAvailable()){
+				try {
+					connectionManagerRmiServerImpl.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		//now the answer is available
+		String usernameChoosen = connectionManagerRmiServerImpl.getStringReceived();
+		thisUser.setUsername(usernameChoosen);
+		
+		if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){//user isn't reconnecting himself, he his a new user
+			usersReady.add(thisUser);
+			users.remove(thisUser);
+			try {
+				lobby();
+			} catch (ClassNotFoundException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{//user is reconnecting himself
+			System.out.println("ENTRO NEL BRANCH ESATTO");
+			try {
+				reconnectionManager(thisUser);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	private void lobby() throws ClassNotFoundException, IOException{	
+		List<User> temporaryUsers = new ArrayList<>();
+		
+		if (usersReady.size() == 1){//the first player will create the game and he will run the game
 			game = new Game();
 		}else{
 			//timer starts when there are 2 players
-			if(rmiUsers.size() + socketUsers.size() == 2){//from now, the timer starts
+			if(usersReady.size() == 2){//from now, the timer starts
 				timer = new Timer();
 				timer.schedule(new TimerTask() {
 					public void run() {
-						fixingUsers(temporaryRmiUsers, temporarySocketUsers);
+						fixingUsers(temporaryUsers);
 						try {
-							startGame(temporaryRmiUsers, temporarySocketUsers);
+							startGame(temporaryUsers);
 						} catch (ClassNotFoundException | IOException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -133,247 +213,291 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}, 10000);//10 seconds, then the game starts
 			}
 			//if there are 4 users, the game must start
-			if(rmiUsers.size() + socketUsers.size() == 4){
-				fixingUsers(temporaryRmiUsers, temporarySocketUsers);
+			if(usersReady.size() == 4){
+				fixingUsers(temporaryUsers);
 				timer.cancel();
-				startGame(temporaryRmiUsers, temporarySocketUsers);
+				startGame(temporaryUsers);
 			}
 		}	
 	}
 	
-	private static void fixingUsers(List<CliRmi> temporaryRmi, List<ConnectionManagerSocketServer> temporarySocket){
-		for (CliRmi c : rmiUsers) {
-			temporaryRmi.add(c);
+	private static void fixingUsers(List<User> temporaryUsers){
+		for (User user : usersReady) {
+			temporaryUsers.add(user);
 		}
-		for (ConnectionManagerSocketServer s : socketListenersUsers) {
-			temporarySocket.add(s);
-		}
-		rmiUsers.clear();
-		socketListenersUsers.clear();
+		usersReady.clear();
 	}
 	
-	private void startGame(List<CliRmi> tempRmiUsers, List<ConnectionManagerSocketServer> tempSocketUsers) throws IOException, ClassNotFoundException{
+	private void startGame(List<User> tempUsers) throws IOException, ClassNotFoundException{
+		String nameChoosen = null;
 		ArrayList<Color> colors = new ArrayList<>();
-		int numberOfRmiUsers = tempRmiUsers.size();
-		int numberOfSocketUsers = tempSocketUsers.size();
+		int numberOfUsers = tempUsers.size();
 		
-		System.out.println("number of rmi players: " + numberOfRmiUsers);
-		System.out.println("number of socket players: "+ numberOfSocketUsers);
-		
-		Player[] players = new Player[numberOfRmiUsers + numberOfSocketUsers];
+		Player[] players = new Player[numberOfUsers];
 		for (Color color : Color.values()) {
 			colors.add(color);
 		}
-		for (int i = 0; i < numberOfRmiUsers; i++) {
-			tempRmiUsers.get(i).askName();
-			connectionManagerRmiServerImpl.setCliRmi(tempRmiUsers.get(i));
+		for(int i = 0; i < numberOfUsers; i++){
+			User tempUser = tempUsers.get(i);
 			
-			synchronized (connectionManagerRmiServerImpl) {
-				while(!connectionManagerRmiServerImpl.getIsAvailable()){
-					try {
-						connectionManagerRmiServerImpl.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+			if(tempUser.getCliRmi() != null){//this user is a cli user
+				CliRmi clientRmi = tempUser.getCliRmi();
+				try{
+					clientRmi.askName();
+				}catch(ConnectException e){
+					usersDisconnected.add(tempUser);// user is disconnected
 				}
-			}
-
-			//now the answer is available
-			String nameChoosen = connectionManagerRmiServerImpl.getStringReceived();
-			
-			Color colorChoosen = askRmiColor(tempRmiUsers.get(i), colors);
-			colors.remove(colorChoosen);
-			
-			players[i] = new Player(nameChoosen, colorChoosen);
-			
-			rmiPlayers.put(players[i], tempRmiUsers.get(i));
-			System.out.println("added new rmi plyer");
-		}
-		for(int i=0; i < numberOfSocketUsers; i++){
-			ConnectionManagerSocketServer listener = tempSocketUsers.get(i);
-			ObjectOutputStream socketOut = listener.getSocketOutClient();
-			
-			ActionSocket name = new ActionSocket(action.chooseName);
-			socketOut.writeObject(name);
-			socketOut.flush();
-			
-			listener.setIsRightTurn(true);
-			synchronized (listener) {
-				while(!listener.getIsAvailable()){
-					try {
-						listener.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+				if(!usersDisconnected.contains(tempUser)){ //user is connected, go normal
+					connectionManagerRmiServerImpl.setCliRmi(clientRmi);
+					synchronized (connectionManagerRmiServerImpl) {
+						while(!connectionManagerRmiServerImpl.getIsAvailable()){
+							try {
+								connectionManagerRmiServerImpl.wait();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
 					}
+					//now the answer is available	
+					nameChoosen = connectionManagerRmiServerImpl.getStringReceived();
+				}else{ //user is disconnected, set a standard name
+					nameChoosen = "Guest";
+					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
+				Color colorChoosen = askRmiColor(tempUser, colors);
+				colors.remove(colorChoosen);
+				
+				players[i] = new Player(nameChoosen, colorChoosen);
+				tempUser.setPlayer(players[i]);
+				usersInGame.add(tempUser);
+				System.out.println("added new rmi plyer");
+			}else{//this user is a socket user
+				
+				ConnectionManagerSocketServer listener = tempUser.getConnectionManagerSocketServer();
+				ObjectOutputStream socketOut = listener.getSocketOutClient();
+				
+				ActionSocket name = new ActionSocket(action.chooseName);
+				try{
+					socketOut.writeObject(name);
+					socketOut.flush();
+				}catch(SocketException e){
+					usersDisconnected.add(tempUser);
+				}
+				if(!usersDisconnected.contains(tempUser)){//user is connected
+					listener.setIsRightTurn(true);
+					synchronized (listener) {
+						while(!listener.getIsAvailable()){
+							try {
+								listener.wait();
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
+					nameChoosen =  listener.getStringReceived();
+					listener.setIsRightTurn(false);
+				}else{
+					nameChoosen = "Guest";
+					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
+				}
+				
+				Color colorChoosen = askSocketColor(tempUser, colors);
+				
+				players[i] = new Player(nameChoosen, colorChoosen);
+				colors.remove(colorChoosen);
+				
+				tempUser.setPlayer(players[i]);
+				usersInGame.add(tempUser);
+				System.out.println("Added new socket player");
 			}
-			String nameChoosen =  listener.getStringReceived();
-			listener.setIsRightTurn(false);
-			
-			Color colorChoosen = askSocketColor(listener, colors);
-			
-			players[i + numberOfRmiUsers] = new Player(nameChoosen, colorChoosen);
-			colors.remove(colorChoosen);
-			
-			clientListener.put(players[i + numberOfRmiUsers], listener);
-			socketOutPlayers.put(players[i + numberOfRmiUsers], socketOut);
-			System.out.println("Added new socket player");
-		}
+		}//end for
 		game.setPlayers(players);
 		executor.submit(game);
 	}
 	
 	
 	
-	private Color askSocketColor(ConnectionManagerSocketServer listener, ArrayList<Color> availableColors) throws IOException {
+	private Color askSocketColor(User user, ArrayList<Color> availableColors) throws IOException {
+		ConnectionManagerSocketServer listener = user.getConnectionManagerSocketServer();
 		ObjectOutputStream socketOut = listener.getSocketOutClient();
 		ActionSocket color = new ActionSocket(action.chooseColor);
 		color.setAvailableColors(availableColors);
 		while(true){//while the user doesn't answer well to the question	
-			socketOut.writeObject(color);
-			socketOut.flush();
-			listener.setIsRightTurn(true);
-			synchronized (listener) {
-				while(!listener.getIsAvailable()){
-					try {
-						listener.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			try{
+				socketOut.writeObject(color);
+				socketOut.flush();
+			}catch(SocketException e){
+				usersDisconnected.add(user);
+			}
+			if(!usersDisconnected.contains(user)){
+				listener.setIsRightTurn(true);
+				synchronized (listener) {
+					while(!listener.getIsAvailable()){
+						try {
+							listener.wait();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
-			}
-			listener.setIsRightTurn(false);
-			try{
-				int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
-				if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
-					return availableColors.get(colorChoiced);
-				}else{
-					ActionSocket act = new ActionSocket(action.integerError);
+				listener.setIsRightTurn(false);
+				try{
+					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
+					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
+						return availableColors.get(colorChoiced);
+					}else{
+						ActionSocket act = new ActionSocket(action.integerError);
+						socketOut.writeObject(act);
+						socketOut.flush();
+					}
+				}catch(NumberFormatException e){
+					ActionSocket act = new ActionSocket(action.wrongInput);
 					socketOut.writeObject(act);
 					socketOut.flush();
 				}
-			}catch(NumberFormatException e){
-				ActionSocket act = new ActionSocket(action.wrongInput);
-				socketOut.writeObject(act);
-				socketOut.flush();
+			}else{
+				usersDisconnected.remove(user);//remove in user disconnected so the user has the opportunity of reconnect
+				return availableColors.get(1);
 			}
 		}
 	}
 
-	private static Color askRmiColor(CliRmi client, ArrayList<Color> availableColors) throws RemoteException {
+	private static Color askRmiColor(User user, ArrayList<Color> availableColors) throws RemoteException {
+		CliRmi client = user.getCliRmi();
 		while(true){//while user doesn't answer well
 			String[] colors = new String[availableColors.size()];
 			for(int counter = 0; counter < availableColors.size(); counter++){
 				colors[counter] = availableColors.get(counter).toString().toLowerCase();
 			}
-			client.askColor(colors);
-			
-			connectionManagerRmiServerImpl.setCliRmi(client);
-			
-			synchronized (connectionManagerRmiServerImpl) {
-				while(!connectionManagerRmiServerImpl.getIsAvailable()){
-					try {
-						connectionManagerRmiServerImpl.wait();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+			try{
+				client.askColor(colors);
+			}catch (ConnectException e) {
+				usersDisconnected.add(user);
+			}
+			if(!usersDisconnected.contains(user)){
+				connectionManagerRmiServerImpl.setCliRmi(client);
+				
+				synchronized (connectionManagerRmiServerImpl) {
+					while(!connectionManagerRmiServerImpl.getIsAvailable()){
+						try {
+							connectionManagerRmiServerImpl.wait();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
-			}
-			
-			try{
-				int colorChoiced = Integer.parseInt(connectionManagerRmiServerImpl.getStringReceived()) - 1;
-				if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
-					return availableColors.get(colorChoiced);
-				}else{
-					client.integerError();
+				try{
+					int colorChoiced = Integer.parseInt(connectionManagerRmiServerImpl.getStringReceived()) - 1;
+					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
+						return availableColors.get(colorChoiced);
+					}else{
+						client.integerError();
+					}
+				}catch(NumberFormatException e){
+					client.wrongInput();
 				}
-			}catch(NumberFormatException e){
-				client.wrongInput();
+			}else{//user is disconnected
+				usersDisconnected.remove(user);//remove in user disconnected so the user has the opportunity of reconnect
+				return availableColors.get(1);
 			}
 		}
 	}
 	
-	public static void addSocketUsers(Socket userSocket){
-		socketUsers.add(userSocket);
+	public static List<User> getUsers() {
+		return users;
 	}
 	
-	public static ArrayList<Player> getRmiPlayers(){
-		ArrayList<Player> rmiPlayersList = new ArrayList<Player>();
-		Set<Player> players = rmiPlayers.keySet();
-		for (Player player : players) {
-			rmiPlayersList.add(player);
-		}
-		return rmiPlayersList;
-	}
-	
-	public static ArrayList<Player> getSocketOutPlayers(){
-		ArrayList<Player> socketPlayersList = new ArrayList<Player>();
-		Set<Player> players = socketOutPlayers.keySet();
-		for (Player player : players) {
-			socketPlayersList.add(player);
-		}
-		return socketPlayersList;
-	}
-	
-	public static void addPlayerView(Player player, CliRmi client){
-		rmiPlayers.put(player, client);
-	}
-	
-	public static CliRmi getRmiView(Player player){
-		return rmiPlayers.get(player);
-	}
-	
-	public static List<Player> getPlayersDisconnected() {
-		return playersDisconnected;
-	}
-	
-	public static ObjectOutputStream getSocketOutView(Player player){
-		return socketOutPlayers.get(player);
+	public static List<User> getUsersInGame() {
+		return usersInGame;
 	}
 	
 	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			try{
 				client.startTurn(player.getName());
 			}catch(ConnectException e){ //client disconnects from the server
-				System.out.println(player.getName() + " left the game!");
-				playersDisconnected.add(player); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
-				notifyPlayers(player, playersInGame);
+				disconnectionManager(player, playersInGame);
 			}
 		}else{ //player is a socket user
-			ObjectOutputStream o = getSocketOutView(player);
+			ObjectOutputStream o = user.getConnectionManagerSocketServer().getSocketOutClient();
 			ActionSocket act = new ActionSocket(action.startTurn);
 			act.setMessage(player.getName());
 			try{
 				o.writeObject(act);
 				o.flush();
 			}catch(SocketException e){
-				System.out.println(player.getName() + " left the game!");
-				playersDisconnected.add(player); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
-				notifyPlayers(player, playersInGame);
+				disconnectionManager(player, playersInGame);
+			}
+		}
+	}
+	
+	private static void disconnectionManager(Player player, ArrayList<Player> playersInGame) throws IOException{
+		System.out.println(player.getName() + " left the game!");
+		User user = findUserByPlayer(player);
+		usersDisconnected.add(user); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
+		notifyOfDisconnectionToPlayers(player, playersInGame);
+	}
+	
+	private static void reconnectionManager(User userReconnected) throws IOException{
+		//find the userInGame by username of userReconnected
+		User userInGame = findUserDisconnectedByUsername(userReconnected.getUsername());
+		
+		//giving to user the new connection!
+		if(userInGame.getCliRmi() != null){ //user in game was a rmi user
+			userInGame.setCliRmi(userReconnected.getCliRmi());
+		}else{//user in game was a socket user
+			userInGame.setConnectionManagerSocketServer(userReconnected.getConnectionManagerSocketServer());
+		}
+		
+		Player player = userInGame.getPlayer();
+		System.out.println(player.getName() + " reconnected himself!");
+		
+		usersDisconnected.remove(userInGame); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
+		//swipe from array of players into arraylist!
+		ArrayList<Player> playersInGame = userInGame.getPlayer().getBoard().getGame().getRoundOrder();
+		notifyOfReconnectionToPlayers(player, playersInGame);
+	}
+
+	private static void notifyOfReconnectionToPlayers(Player playerReconnected, ArrayList<Player> playersInGame) throws IOException {
+		for (Player player : playersInGame) {
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				CliRmi client = user.getCliRmi();
+				try{
+					client.reconnectedToGame(playerReconnected.getName());
+				}catch(ConnectException e){ }//don't do nothing! This means that also this player is disconnected
+				
+			}else{ //player is a socket user
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
+				ActionSocket act = new ActionSocket(action.reconnectedToGame); 
+				act.setPlayerName(playerReconnected.getName());
+	
+				try{
+					out.reset();
+					out.writeObject(act);
+					out.flush();
+				}catch(SocketException e){ } //don't do nothing! This means that also this player is disconnected
 			}
 		}
 	}
 
-	private static void notifyPlayers(Player playerDisconnected, ArrayList<Player> playersInGame) throws IOException{
+	private static void notifyOfDisconnectionToPlayers(Player playerDisconnected, ArrayList<Player> playersInGame) throws IOException{
 		for (Player player : playersInGame) {
-			ArrayList<Player> rmiPlayersList = getRmiPlayers();
-			ArrayList<Player> socketPlayersList = getSocketOutPlayers();
-			if (rmiPlayersList.contains(player)){ //if player is a rmi user
-				CliRmi client = getRmiView(player);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				CliRmi client = user.getCliRmi();
 				try{
 					client.leftGame(playerDisconnected.getName());
-				}catch(ConnectException e){ }//don't do nothing!
-			}
-			if(socketPlayersList.contains(player)){ //player is a socket user
-				ObjectOutputStream out = getSocketOutView(player);
+				}catch(ConnectException e){ }//don't do nothing! This means that also this player is disconnected
 				
+			}else{ //player is a socket user
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				ActionSocket act = new ActionSocket(action.leftGame); 
 				act.setPlayerName(playerDisconnected.getName());
 	
@@ -381,30 +505,60 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.reset();
 					out.writeObject(act);
 					out.flush();
-				}catch(SocketException e){ } //don't do nothing!
+				}catch(SocketException e){ } //don't do nothing! This means that also this player is disconnected
 			}
 		}
 	}
 
+	//if username is a username of a user in game return true, else return false
+	public static boolean usernameHasAlreadyChoosen(String username){
+		for (int i = 0; i < usersInGame.size(); i++) {
+			if(usersInGame.get(i).getUsername().equals(username)){
+				return true;
+			}
+		}
+		return false; //arrive here only if the username hasn't already choosen
+	}
+	
+	//if username is a username of a user disconnected return the reference to userDisconnected, else return null
+	public static User findUserDisconnectedByUsername(String username){
+		for (int i = 0; i < usersDisconnected.size(); i++) {
+			if(usersDisconnected.get(i).getUsername().equals(username)){
+				return usersDisconnected.get(i);
+			}
+		}
+		return null; //arrive here only if the user is a new user
+	}
+	
+	public static User findUserByPlayer(Player player) {
+		for (int i = 0; i < usersInGame.size(); i++) {
+			if(usersInGame.get(i).getPlayer().equals(player)){
+				return usersInGame.get(i);
+			}
+		}
+		System.out.println("++++qui non dovrei arrivarci in findUserByPlayer");
+		return null;//never arrived here
+	}
+
 	private int getSocketAnswer(Player player) throws IOException{
-		clientListener.get(player).setIsRightTurn(true);
-		synchronized (clientListener.get(player)) {
-			
-			while(!clientListener.get(player).getIsAvailable()){
+		ConnectionManagerSocketServer clientListener = findUserByPlayer(player).getConnectionManagerSocketServer();
+		clientListener.setIsRightTurn(true);
+		synchronized (clientListener) {
+			while(!clientListener.getIsAvailable()){
 				try {
-					clientListener.get(player).wait();
+					clientListener.wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		clientListener.get(player).setIsRightTurn(false);
+		clientListener.setIsRightTurn(false);
 		try{
-			int choice = Integer.parseInt(clientListener.get(player).getStringReceived());
+			int choice = Integer.parseInt(clientListener.getStringReceived());
 			return choice;
 		}catch (NumberFormatException e) {
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = clientListener.getSocketOutClient();
 			ActionSocket act = new ActionSocket(action.wrongInput);
 			out.writeObject(act);
 			out.flush();
@@ -413,7 +567,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 	
 	private int getRmiAnswer(Player player) throws RemoteException{
-		connectionManagerRmiServerImpl.setCliRmi(rmiPlayers.get(player));
+		CliRmi clientRmi = findUserByPlayer(player).getCliRmi();
+		connectionManagerRmiServerImpl.setCliRmi(clientRmi);
 		
 		synchronized (connectionManagerRmiServerImpl) {
 			while(!connectionManagerRmiServerImpl.getIsAvailable()){
@@ -429,21 +584,20 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			int choice = Integer.parseInt(connectionManagerRmiServerImpl.getStringReceived());
 			return choice;
 		}catch(NumberFormatException e){
-			CliRmi client = getRmiView(player);
-			client.wrongInput();
+			clientRmi.wrongInput();
 		}
 		return 0;
 	}
 	
 	public int turnChoice(Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.turnChoice();
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			ActionSocket act = new ActionSocket(action.turnChoice);
 			out.writeObject(act);
 			out.flush();
@@ -454,12 +608,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public static void moveAlreadyDone(Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.moveAlreadyDone();
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.moveAlreadyDone);
 			out.writeObject(act);
@@ -468,14 +622,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int chooseZone(Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.chooseZone();
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.chooseZone);
 			out.writeObject(act);
@@ -487,15 +641,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int choosePosition(Player player, Position[] positions) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.choosePosition(positions);
 			
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.choosePosition);
 			act.setPositions(positions);
@@ -509,14 +663,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.chooseFamilyMember(familyMembers);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.chooseFamilyMember);
 			act.setFamilyMembers(familyMembers);
@@ -530,14 +684,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int askForAlternativeCost(Player player, ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForAlternativeCost(costs, alternativeCosts);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForAlternativeCost);
 			act.setCosts(costs);
@@ -552,15 +706,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForCouncilPrivilege(councilPrivileges);
 			
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForCouncilPrivilege);
 			act.setBonus(councilPrivileges);
@@ -575,14 +729,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int askForServants(Player player, int numberOfServants) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForServants(numberOfServants);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForServants);
 			act.setNumberOfServants(numberOfServants);
@@ -596,15 +750,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int askForInformation(Player player, String[] playersNames) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForInformation(playersNames);
 			
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForInformation);
 			act.setPlayersName(playersNames);
@@ -618,12 +772,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public static void showPersonalBoard(Player player, PersonalBoard personalBoard) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.showPersonalBoard(personalBoard);
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.showPersonalBoard);
 			act.setPersonalBoard(personalBoard);
@@ -634,12 +788,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 	
 	public static void cantPassTurn(Player player) throws IOException{
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.cantPassTurn();
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.cantPassTurn);
 			out.writeObject(act);
@@ -649,30 +803,36 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	public static void roundBegins(Player[] players) throws IOException{
 		for (Player player : players){
-			ArrayList<Player> rmiPlayersList = getRmiPlayers();
-			ArrayList<Player> socketPlayersList = getSocketOutPlayers();
-			if (rmiPlayersList.contains(player)){ //if player is a rmi user
-				CliRmi client = getRmiView(player);
-				client.roundBegins();
-			}
-			if(socketPlayersList.contains(player)){ //player is a socket user
-				ObjectOutputStream out = getSocketOutView(player);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				CliRmi client = user.getCliRmi();
+				try{
+					client.roundBegins();
+				}catch(ConnectException e){
+					//user disconnected
+				}
+			}else{ //player is a socket user
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				
 				ActionSocket act = new ActionSocket(action.roundBegins);
-				out.writeObject(act);
-				out.flush();
+				try{
+					out.writeObject(act);
+					out.flush();
+				}catch(SocketException e){
+					//user disconnected
+				}
 			}
 		}
 	}
 	
 	public static void hasWon(String winner, Player[] players) throws IOException{
 		for (Player player : players){
-			ArrayList<Player> rmiPlayersList = getRmiPlayers();
-			if (rmiPlayersList.contains(player)){ //if player is a rmi user
-				CliRmi client = getRmiView(player);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				CliRmi client = user.getCliRmi();
 				client.hasWon(winner);
 			}else{ //player is a socket user
-				ObjectOutputStream out = getSocketOutView(player);
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				
 				ActionSocket act = new ActionSocket(action.hasWon);
 				act.setMessage(winner);
@@ -683,14 +843,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int askForZone(ArrayList<ActionZone> zones, Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForAction(zones);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForAction);
 			act.setZones(zones);
@@ -704,14 +864,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int chooseActionPosition(Player player, Position[] zonePositionsDescriptions) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForActionPosition(zonePositionsDescriptions);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForActionPosition);
 			act.setPositions(zonePositionsDescriptions);
@@ -725,12 +885,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public static void catchException(String message, Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.catchException(message);
 		}else{ //player is a socket user
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.catchException);
 			act.setMessage(message);
@@ -742,32 +902,40 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	public static void showDices(Player[] players, ArrayList<Dice> dices) throws IOException{
 		for (Player player: players){
-			ArrayList<Player> rmiPlayersList = getRmiPlayers();
-			if (rmiPlayersList.contains(player)){ //if player is a rmi user
-				CliRmi client = getRmiView(player);
-				client.showDices(dices);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				CliRmi client = user.getCliRmi();
+				try{
+					client.showDices(dices);
+				}catch(ConnectException e){
+					//user disconnected
+				}
 			}else{ //player is a socket user
-				ObjectOutputStream out = getSocketOutView(player);
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 				ActionSocket act = new ActionSocket(action.showDices);
 				act.setDices(dices);
-				out.reset();
-				out.writeObject(act);
-				out.flush();
+				try{
+					out.reset();
+					out.writeObject(act);
+					out.flush();
+				}catch (SocketException e) {
+					//user disconnected
+				}
 			}
 		}
 	}
 
 	public int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException {
-		ArrayList<Player> rmiPlayerList = getRmiPlayers();
-		if (rmiPlayerList.contains(player)){
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForExcommunication(excommunicationTile);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else {
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 			excommunicationTiles.add(excommunicationTile);
@@ -783,15 +951,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int LeaderCardActionChoice(Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForLeaderCardAction();
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForLeaderCardAction);
 			out.reset();
@@ -804,15 +972,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForLeaderCard(leaderCards);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForLeaderCards);
 			act.setLeaderCards(leaderCards);
@@ -826,15 +994,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int choosePersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws  IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForPersonalBonusTile(personalBonusTiles);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForPersonalBonusTile);
 			act.setPersonalBonusTiles(personalBonusTiles);
@@ -848,15 +1016,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.draftLeaderCard(leaderCards);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.draftLeaderCards);
 			act.setLeaderCards(leaderCards);
@@ -870,15 +1038,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public int chooseEffect(Player player, DevelopmentCard developmentCard)throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.askForCardEffect(developmentCard);
 			int choice = getRmiAnswer(player);
 			return choice;
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.askForCardEffect);
 			act.setDevelopmentCardEffect(developmentCard);
@@ -892,19 +1060,21 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public static void integerError(Player player) throws IOException {
-		ArrayList<Player> rmiPlayersList = getRmiPlayers();
-		if (rmiPlayersList.contains(player)){ //if player is a rmi user
-			CliRmi client = getRmiView(player);
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
 			client.integerError();
 		}
 		else{
-			ObjectOutputStream out = getSocketOutView(player);
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 			
 			ActionSocket act = new ActionSocket(action.integerError);
 			out.writeObject(act);
 			out.flush();
 		}
 	}
-	
-	
+
+	public static List<User> getUsersDisconnected() {
+		return usersDisconnected;
+	}
 }

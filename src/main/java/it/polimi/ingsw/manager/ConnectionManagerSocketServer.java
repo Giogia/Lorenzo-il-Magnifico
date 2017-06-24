@@ -29,9 +29,9 @@ public class ConnectionManagerSocketServer implements Runnable {
 					}
 				}else{
 					socketInClient.nextLine();
-					ActionSocket action = new ActionSocket(it.polimi.ingsw.manager.ActionSocket.action.notYourTurn);
+					ActionSocket act = new ActionSocket(action.notYourTurn);
 					try {
-						socketOutClient.writeObject(action);
+						socketOutClient.writeObject(act);
 						socketOutClient.flush();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block

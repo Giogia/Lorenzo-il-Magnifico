@@ -247,6 +247,20 @@ public class CliSocketInOutView implements Runnable{
 					case leftGame:
 						String playerDisconnected = action.getPlayerName();
 						System.out.println(playerDisconnected + " left the game!");
+						break;
+					
+					case askForUsername:
+						System.out.println("Please, insert your username: ");
+						break;
+						
+					case reconnectedToGame:
+						String playerReconnected = action.getPlayerName();
+						System.out.println(playerReconnected + " has reconnected himself!");
+						break;
+						
+					case usernameHasAlreadyChoosen:
+						System.out.println("The username choosen has already choosen. Please, choice another one:");
+						break;
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

@@ -55,9 +55,12 @@ public class Manager{
 	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException{
 		ConnectionManagerImpl.startTurn(player, playersInGame);
 		//if player is connected, ask question. Else go ahead with next player
-		if(!ConnectionManagerImpl.getConnectionManager().getPlayersDisconnected().contains(player)){ 
+		User user = ConnectionManagerImpl.getConnectionManager().findUserByPlayer(player);
+		if(!ConnectionManagerImpl.getConnectionManager().getUsersDisconnected().contains(user)){ 
 			turnChoice(player);
-		}	
+		}else{
+			player.getBoard().getPassTurnController().lastMove(player);//also if he isn't connected, he has done the action!
+		}
 	}
 
 	

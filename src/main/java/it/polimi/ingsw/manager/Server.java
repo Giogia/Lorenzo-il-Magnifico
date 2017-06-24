@@ -51,8 +51,9 @@ public class Server {
 
 			// creates the view (server side) associated with the new client
 			ConnectionManagerImpl view = ConnectionManagerImpl.getConnectionManager();
-			
-			view.addSocketUsers(socket);//added the new user 
+			 
+			User user = new User(socket);
+			view.getUsers().add(user);
 			
 			// a new thread handle the connection with the view
 			executor.submit(view);

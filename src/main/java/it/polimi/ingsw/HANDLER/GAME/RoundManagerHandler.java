@@ -3,6 +3,7 @@ package it.polimi.ingsw.HANDLER.GAME;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.TowerFloor;
@@ -15,6 +16,7 @@ import it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
+import it.polimi.ingsw.manager.User;
 
 public class RoundManagerHandler {
 	private static RoundManagerHandler instance;
@@ -32,7 +34,7 @@ public class RoundManagerHandler {
 	public static void handle( Board board, Player[] players) throws IOException{
 		for (int turn = 1; turn <= 6; turn++){
 			int period = (turn+1)/2;
-			System.out.println("Period " + period + "\n");
+			System.out.println("Period " + period);
 			ConnectionManagerImpl.roundBegins(board.getPlayers());
 			RoundOrder roundOrder = board.getGame().getOrder();
 			StartRoundHandler.handle(period, players, board);
@@ -50,7 +52,6 @@ public class RoundManagerHandler {
 		
 		for (int numberOfAction = 0; numberOfAction < 4; numberOfAction++){
 			//each action clear player disconnected
-			ConnectionManagerImpl.getConnectionManager().getPlayersDisconnected().clear();
 			for (int i = 0; i < roundOrder.getPlayers().size(); i++){
 				Player player = roundOrder.getPlayer(i);
 				if (OrderBonusHandler.handle(player, numberOfAction)){
@@ -63,6 +64,18 @@ public class RoundManagerHandler {
 			board.getPassTurnController().lastMove(null);
 			Manager.startTurn(player, roundOrder.getPlayers());
 		}
+		clearUsersDisconnected(ConnectionManagerImpl.getConnectionManager().getUsersDisconnected(), roundOrder.getPlayers());//each turn clear 
+	}
+
+	//every end turn remove players of this game. So, disconnected players can reconnect
+	private static void clearUsersDisconnected(List<User> usersDisconnected, ArrayList<Player> players) throws RemoteException {
+		for (Player player : players) {
+			User user = ConnectionManagerImpl.getConnectionManager().findUserByPlayer(player);
+			if (usersDisconnected.contains(user)){
+				usersDisconnected.remove(player);
+			}
+		}
+		
 	}
 
 }

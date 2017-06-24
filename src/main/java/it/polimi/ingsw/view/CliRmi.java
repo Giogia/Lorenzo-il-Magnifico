@@ -83,5 +83,9 @@ public interface CliRmi extends Remote {
 	void integerError() throws RemoteException;
 
 	void leftGame(String name) throws RemoteException;
+
+	void askForUsername() throws RemoteException;
+
+	void reconnectedToGame(String name) throws RemoteException;
 }
 
