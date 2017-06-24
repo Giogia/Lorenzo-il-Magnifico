@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gui;
 
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,7 +45,10 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GameController {
+public class GuiController implements ActionListener {
+	
+	private GuiSocketView guiSocketView;
+	
 	@FXML
 	private Label getDescription;
 	
@@ -184,4 +188,15 @@ public class GameController {
     void actionCkd(MouseEvent event) {
     	
     }
+
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setMain(GuiSocketView guiSocketView) {
+		this.guiSocketView = guiSocketView;
+		
+	}
 }

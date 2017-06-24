@@ -2,34 +2,30 @@ package it.polimi.ingsw.gui;
 
 import java.io.IOException;
 
-import it.polimi.ingsw.GC_15.Player;
-import javafx.application.Application;
-import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class NewWindow implements Runnable{
-	private String nome;
+	
 	@FXML
-	private TextField nameChoosen;
+	private TextField nameChosen;
 
     @FXML
     private Button okButton;
     
     @FXML
-    void btnClicked(MouseEvent event) {
-    	String name = nameChoosen.getText();
-    	nome = name;
-    	Risposta risposta = Risposta.getRisposta();
-    	risposta.setNome(name);
-    	
-    	Stage stage = (Stage) event.getPickResult().getIntersectedNode().getScene().getWindow();
+    void btnClicked(ActionEvent event) {
+    	//TODO il namechosen rimane a null 
+    	String string = "username-11";
+    	Node  source = (Node) event.getSource(); 
+        Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();
     }
     

@@ -31,6 +31,7 @@ public class CliSocketView{
 
 		//Creates one thread to send messages to the server
 		executor.submit(new CliSocketOutView(new PrintWriter(socket.getOutputStream())));
+		
 
 		//Creates one thread to receive messages from the server
 		executor.submit(new CliSocketInOutView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream())));

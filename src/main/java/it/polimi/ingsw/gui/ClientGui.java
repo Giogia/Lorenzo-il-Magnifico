@@ -22,7 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 
-public class ClientGui /*implements CliRmi*/ {
+public class ClientGui implements CliRmi{
 
 	public void startTurn(String playerName) throws RemoteException {
 		System.out.println("inizia il turno");
@@ -32,16 +32,9 @@ public class ClientGui /*implements CliRmi*/ {
 	public void askName() throws RemoteException {
 		NewWindow newWindow = new NewWindow();
 		Thread thread = new Thread(newWindow);
-		//thread.start();
+	
 	
 		Platform.runLater(thread);
-		//name = newWindow.getNome();
-		Risposta risposta = Risposta.getRisposta();
-		String name = risposta.getNome();
-		
-		System.out.println("name choosen: " + name);
-		
-		//return name;
 	}
 	
 	public void turnChoice() throws RemoteException {
@@ -57,6 +50,181 @@ public class ClientGui /*implements CliRmi*/ {
             }
         });
 		//return 2;
+	}
+
+	@Override
+	public void wrongInput() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void isNotYourTurn() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForLeaderCardAction() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askColor(String[] availableColors) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void moveAlreadyDone() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chooseZone() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void choosePosition(Position[] positions) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void chooseFamilyMember(ArrayList<FamilyMember> familyMembers) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForAlternativeCost(ArrayList<Resource> costDescriptions,
+			ArrayList<Resource> alternativeCostDescriptions) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForServants(int numberOfServants) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForInformation(String[] playersNames) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showPersonalBoard(PersonalBoard personalBoard) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void cantPassTurn() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void roundBegins() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hasWon(String winner) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForAction(ArrayList<ActionZone> zones) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForActionPosition(Position[] positions) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void catchException(String message) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showDices(ArrayList<Dice> dices) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForCardEffect(DevelopmentCard developmentCard) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void integerError() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void leftGame(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void askForUsername() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reconnectedToGame(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
