@@ -513,7 +513,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	//if username is a username of a user in game return true, else return false
 	public static boolean usernameHasAlreadyChoosen(String username){
 		for (int i = 0; i < usersInGame.size(); i++) {
-			if(usersInGame.get(i).getUsername().equals(username)){
+			if(usersInGame.get(i).getUsername().equals(username)){ //if username is already choosen and it belongs to users in game
+				return true;
+			}
+		}
+		for(int i = 0; i < usersReady.size(); i++){
+			if(usersReady.get(i).getUsername().equals(username)){ //if username is already choosen and it belongs to users ready to play
 				return true;
 			}
 		}
