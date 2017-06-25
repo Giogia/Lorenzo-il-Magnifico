@@ -10,6 +10,7 @@ public class User {
 	private Player player;
 	private Socket socket;
 	private ConnectionManagerSocketServer connectionManagerSocketServer;
+	private ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl;
 	private CliRmi cliRmi;
 	
 	
@@ -47,5 +48,14 @@ public class User {
 	}
 	public void setCliRmi(CliRmi cliRmi) {
 		this.cliRmi = cliRmi;
+	}
+	
+	
+	
+	public ConnectionManagerRmiServerImpl getConnectionManagerRmiServerImpl() {
+		return connectionManagerRmiServerImpl;
+	}
+	public void setConnectionManagerRmiServerImpl(ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl) {
+		this.connectionManagerRmiServerImpl = connectionManagerRmiServerImpl;
 	}
 }
