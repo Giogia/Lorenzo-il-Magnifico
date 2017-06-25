@@ -18,10 +18,14 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 
 
 //this is the remote object through the server can tell to client what to do
 public interface CliRmi extends Remote {
+	
+	void setConnectionManagerRmiServer(ConnectionManagerRmiServer connectionManagerRmiServer) throws RemoteException;
 	
 	void wrongInput() throws RemoteException;
 	
@@ -87,5 +91,7 @@ public interface CliRmi extends Remote {
 	void askForUsername() throws RemoteException;
 
 	void reconnectedToGame(String name) throws RemoteException;
+
+	void usernameHasAlreadyChoosen() throws RemoteException;
 }
 

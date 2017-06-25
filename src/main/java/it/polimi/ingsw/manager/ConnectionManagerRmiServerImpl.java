@@ -8,14 +8,14 @@ import it.polimi.ingsw.view.CliRmi;
 public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implements ConnectionManagerRmiServer{
 	private boolean isAvailable = false;
 	private String stringReceived;
-	private CliRmi cliRmi = null; //it's the right user
+	private boolean isRightTurn = false;
 	
 	public ConnectionManagerRmiServerImpl() throws RemoteException{
 	}
 	
 	@Override
 	public void getAnswer(String stringReceived, CliRmi cliRmi) throws RemoteException{
-		if(cliRmi.equals(this.cliRmi)){ //if the user that talks is the right user
+		if( isRightTurn ){ //if the user that talks is the right user
 			this.stringReceived = stringReceived;
 			isAvailable = true;
 			synchronized (this) {
@@ -26,10 +26,8 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 		}
 	}
 	
-	public synchronized String getStringReceived() {
+	public String getStringReceived() {
 		isAvailable = false;
-		cliRmi = null;
-		notifyAll();
 		return stringReceived;
 	}
 	
@@ -37,11 +35,11 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 		return isAvailable;
 	}
 	
-	public void setCliRmi(CliRmi cliRmi) {
-		this.cliRmi = cliRmi;
+	public boolean getIsRightTurn(){
+		return isRightTurn;
 	}
 	
-	public CliRmi getCliRmi() {
-		return cliRmi;
+	public void setIsRightTurn(boolean isRightTurn){
+		this.isRightTurn = isRightTurn;
 	}
 }

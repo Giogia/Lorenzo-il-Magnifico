@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.ConnectException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +37,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
+import it.polimi.ingsw.view.CliRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
@@ -41,7 +45,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	//ConnectionManagerImpl is a singleton called by Manager. It handles connection (Rmi and Socket) with clients
 	//there is a difference between users and players. users contains players and own also socket and rmi stuff.
 	static Timer timer;
-	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl; //takes the incoming answer of rmi users
+	//private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl; //takes the incoming answer of rmi users
 	private static ConnectionManagerImpl instance;//singleton
 	
 	//there are only socket users because the socket is setted from Server.
@@ -57,10 +61,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	private static Game game;
 	
-	
-	public static void setRmiServerImpl(ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl) {
-		ConnectionManagerImpl.connectionManagerRmiServerImpl = connectionManagerRmiServerImpl;
-	}
 	
 	//singleton
 	public static ConnectionManagerImpl getConnectionManager() throws RemoteException{
@@ -142,52 +142,72 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 		
 	public void register(CliRmi client) throws RemoteException{
-		System.out.println("New rmi user in the game");
-		User thisUser = new User(client);
-		
-		synchronized (connectionManagerRmiServerImpl) {
-			while(connectionManagerRmiServerImpl.getCliRmi() != null){ //while I'm listening another thread
-				try {
-					connectionManagerRmiServerImpl.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		try{
+			System.out.println("New rmi user in the game");
+			User thisUser = new User(client);
+			ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl = new ConnectionManagerRmiServerImpl();
+			
+			
+			
+			thisUser.setConnectionManagerRmiServerImpl(connectionManagerRmiServerImpl);
+			
+			client.setConnectionManagerRmiServer(connectionManagerRmiServerImpl);
+			
+			client.askForUsername();
+			connectionManagerRmiServerImpl.setIsRightTurn(true);
+			synchronized (connectionManagerRmiServerImpl) {
+				while(!connectionManagerRmiServerImpl.getIsAvailable()){
+					try {
+						connectionManagerRmiServerImpl.wait();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
-		}
-		client.askForUsername();
-		connectionManagerRmiServerImpl.setCliRmi(client);
-		synchronized (connectionManagerRmiServerImpl) {
-			while(!connectionManagerRmiServerImpl.getIsAvailable()){
-				try {
-					connectionManagerRmiServerImpl.wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			connectionManagerRmiServerImpl.setIsRightTurn(false);//user can't talk anymore
+			//now the answer is available
+	
+			boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
+			while(usernameChoosenHasAlreadyChoosen){
+				
+				//asking for his username
+				connectionManagerRmiServerImpl.setIsRightTurn(true);
+				synchronized (connectionManagerRmiServerImpl) {
+					while(!connectionManagerRmiServerImpl.getIsAvailable()){
+						try {
+							connectionManagerRmiServerImpl.wait();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				String usernameChoosen =  connectionManagerRmiServerImpl.getStringReceived();
+				connectionManagerRmiServerImpl.setIsRightTurn(false);
+				
+				//if username has already choosen
+				if(usernameHasAlreadyChoosen(usernameChoosen)){
+					//if user isn't reconnecting himself but he his a new user
+					if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
+						//tell to player to choice another username
+						client.usernameHasAlreadyChoosen();
+					}else{//user is reconnecting himself
+						usernameChoosenHasAlreadyChoosen = false; //end of the while
+						thisUser.setUsername(usernameChoosen);
+						reconnectionManager(thisUser);
+					}
+				}else{//username hasn't already choosen
+					usernameChoosenHasAlreadyChoosen = false; //end of the while
+					thisUser.setUsername(usernameChoosen);
+					usersReady.add(thisUser);
+					users.remove(thisUser);
+					lobby();
 				}
 			}
-		}
-		//now the answer is available
-		String usernameChoosen = connectionManagerRmiServerImpl.getStringReceived();
-		thisUser.setUsername(usernameChoosen);
-		
-		if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){//user isn't reconnecting himself, he his a new user
-			usersReady.add(thisUser);
-			users.remove(thisUser);
-			try {
-				lobby();
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}else{//user is reconnecting himself
-			System.out.println("ENTRO NEL BRANCH ESATTO");
-			try {
-				reconnectionManager(thisUser);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		}catch (IOException| ClassNotFoundException e) {
+			// TODO: handle exception
+			e.printStackTrace();
 		}
 	}
 	
@@ -240,27 +260,29 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		for(int i = 0; i < numberOfUsers; i++){
 			User tempUser = tempUsers.get(i);
 			
-			if(tempUser.getCliRmi() != null){//this user is a cli user
+			if(tempUser.getCliRmi() != null){//this user is a rmi user
 				CliRmi clientRmi = tempUser.getCliRmi();
+				ConnectionManagerRmiServerImpl listener = tempUser.getConnectionManagerRmiServerImpl(); 
 				try{
 					clientRmi.askName();
 				}catch(ConnectException e){
 					usersDisconnected.add(tempUser);// user is disconnected
 				}
 				if(!usersDisconnected.contains(tempUser)){ //user is connected, go normal
-					connectionManagerRmiServerImpl.setCliRmi(clientRmi);
-					synchronized (connectionManagerRmiServerImpl) {
-						while(!connectionManagerRmiServerImpl.getIsAvailable()){
+					listener.setIsRightTurn(true);
+					synchronized (listener) {
+						while(!listener.getIsAvailable()){
 							try {
-								connectionManagerRmiServerImpl.wait();
+								listener.wait();
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
 					}
+					listener.setIsRightTurn(false);
 					//now the answer is available	
-					nameChoosen = connectionManagerRmiServerImpl.getStringReceived();
+					nameChoosen = listener.getStringReceived();
 				}else{ //user is disconnected, set a standard name
 					nameChoosen = "Guest";
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
@@ -367,6 +389,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	private static Color askRmiColor(User user, ArrayList<Color> availableColors) throws RemoteException {
 		CliRmi client = user.getCliRmi();
+		ConnectionManagerRmiServerImpl listener = user.getConnectionManagerRmiServerImpl();
 		while(true){//while user doesn't answer well
 			String[] colors = new String[availableColors.size()];
 			for(int counter = 0; counter < availableColors.size(); counter++){
@@ -378,20 +401,21 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				usersDisconnected.add(user);
 			}
 			if(!usersDisconnected.contains(user)){
-				connectionManagerRmiServerImpl.setCliRmi(client);
+				listener.setIsRightTurn(true);
 				
-				synchronized (connectionManagerRmiServerImpl) {
-					while(!connectionManagerRmiServerImpl.getIsAvailable()){
+				synchronized (listener) {
+					while(!listener.getIsAvailable()){
 						try {
-							connectionManagerRmiServerImpl.wait();
+							listener.wait();
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
 				}
+				listener.setIsRightTurn(false);
 				try{
-					int colorChoiced = Integer.parseInt(connectionManagerRmiServerImpl.getStringReceived()) - 1;
+					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
 					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
 						return availableColors.get(colorChoiced);
 					}else{
@@ -572,23 +596,26 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 	
 	private int getRmiAnswer(Player player) throws RemoteException{
-		CliRmi clientRmi = findUserByPlayer(player).getCliRmi();
-		connectionManagerRmiServerImpl.setCliRmi(clientRmi);
+		User user = findUserByPlayer(player);
+		ConnectionManagerRmiServerImpl listener = user.getConnectionManagerRmiServerImpl();
+		listener.setIsRightTurn(true);
 		
-		synchronized (connectionManagerRmiServerImpl) {
-			while(!connectionManagerRmiServerImpl.getIsAvailable()){
+		synchronized (listener) {
+			while(!listener.getIsAvailable()){
 				try {
-					connectionManagerRmiServerImpl.wait();
+					listener.wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
+		listener.setIsRightTurn(false);
 		try{
-			int choice = Integer.parseInt(connectionManagerRmiServerImpl.getStringReceived());
+			int choice = Integer.parseInt(listener.getStringReceived());
 			return choice;
 		}catch(NumberFormatException e){
+			CliRmi clientRmi = user.getCliRmi();
 			clientRmi.wrongInput();
 		}
 		return 0;

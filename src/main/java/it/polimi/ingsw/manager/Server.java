@@ -27,12 +27,9 @@ public class Server {
 
 		// getting connectionManagerImpl, then binding on the registry it with "connectionManager"
 		ConnectionManagerImpl connectionManagerImpl = ConnectionManagerImpl.getConnectionManager();
-		ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl = new ConnectionManagerRmiServerImpl();
-		ConnectionManagerImpl.setRmiServerImpl(connectionManagerRmiServerImpl);
 		
 		System.out.println("Binding the server implementation to the registry");
 		registry.bind(NAME, connectionManagerImpl);
-		registry.bind("connectionManagerRmiServer", connectionManagerRmiServerImpl);
 		
 		System.out.println("Waiting for invocations from clients...");
 	}

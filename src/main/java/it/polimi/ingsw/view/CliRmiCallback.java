@@ -12,7 +12,7 @@ public class CliRmiCallback implements Runnable{
 	
 	public CliRmiCallback(ConnectionManagerRmiServer rmiServer, CliRmiView cliRmiView){
 		this.rmiServer = rmiServer;
-		this.cliRmiView = cliRmiView;
+		this.cliRmiView = (CliRmiView) cliRmiView;
 	}
 
 	@Override

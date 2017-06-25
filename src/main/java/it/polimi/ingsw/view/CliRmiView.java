@@ -1,5 +1,6 @@
 package it.polimi.ingsw.view;
 
+import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -28,28 +29,31 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 
 public class CliRmiView implements CliRmi{
 	static Scanner scanner;
 	private final static int RMI_PORT = 52365;
 	private static final String NAME = "connectionManager";
+	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl;
+	private static CliRmiView client;
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException, MyException{
 		Registry registry = LocateRegistry.getRegistry("localhost", RMI_PORT);
 		System.out.println("preso referenza al registry");
 		
 		ConnectionManager connectionManager = (ConnectionManager) registry.lookup(NAME);
-		ConnectionManagerRmiServer connectionManagerRmiServer = (ConnectionManagerRmiServer) registry.lookup("connectionManagerRmiServer");
 		System.out.println("connesso al connectionManager");
 		
-		CliRmiView client = new CliRmiView();
-
+		client = new CliRmiView();
+		
 		UnicastRemoteObject.exportObject(client, 0);
-
+		connectionManager.register(client);//client register himself on server
+	}
+	
+	public void setConnectionManagerRmiServer(ConnectionManagerRmiServer connectionManagerRmiServer) throws RemoteException{
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		executor.submit(new CliRmiCallback(connectionManagerRmiServer, client));
-		
-		connectionManager.register(client);//client register himself on server
 	}
 	
 	@Override
@@ -284,6 +288,11 @@ public class CliRmiView implements CliRmi{
 	@Override
 	public void askForUsername() throws RemoteException {
 		System.out.println("Please, insert your username: ");
+	}
+	
+	@Override
+	public void usernameHasAlreadyChoosen() throws RemoteException {
+		System.out.println("The username choosen has already choosen. Please, choice another one:");	
 	}
 }
 
