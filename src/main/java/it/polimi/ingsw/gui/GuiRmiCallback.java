@@ -9,25 +9,19 @@ public class GuiRmiCallback implements Runnable{
 
 	
 	ConnectionManagerRmiServer rmiServer;
-	Scanner scanner = new  Scanner(System.in);//TODO passare stringa
-	ClientGui clientGui = new ClientGui(); // the stub of the user
+	private GuiRmiView guiRmiView;
 	
-	public GuiRmiCallback(ConnectionManagerRmiServer rmiServer, ClientGui clientGui){
+	public GuiRmiCallback(ConnectionManagerRmiServer rmiServer, GuiRmiView guiRmiView){
 		this.rmiServer = rmiServer;
-		this.clientGui = clientGui;
+		this.guiRmiView = guiRmiView;
+	}
+	
+	public void answer(String answer) throws RemoteException {
+		rmiServer.getAnswer(answer, guiRmiView);
+		
 	}
 
 	@Override
 	public void run() {
-		while(true){
-			if(scanner.hasNext()){//TODO passare stringa
-				try {
-					rmiServer.getAnswer(scanner.nextLine(), clientGui);
-				} catch (RemoteException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
 	}
 }

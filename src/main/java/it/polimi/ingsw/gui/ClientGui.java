@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.view.CliRmi;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -217,12 +218,26 @@ public class ClientGui implements CliRmi{
 
 	@Override
 	public void askForUsername() throws RemoteException {
+		NewWindow newWindow = new NewWindow();
+		Thread thread = new Thread(newWindow);
+		Platform.runLater(thread);
+	}
+
+	@Override
+	public void reconnectedToGame(String name) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void reconnectedToGame(String name) throws RemoteException {
+	public void setConnectionManagerRmiServer(ConnectionManagerRmiServer connectionManagerRmiServer)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void usernameHasAlreadyChoosen() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

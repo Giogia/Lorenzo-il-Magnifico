@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gui;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,9 +22,9 @@ public class NewWindow implements Runnable{
     private Button okButton;
     
     @FXML
-    void btnClicked(ActionEvent event) {
-    	//TODO il namechosen rimane a null 
-    	String string = "username-11";
+    void btnClicked(ActionEvent event) throws RemoteException {
+    	String username = nameChosen.getText();
+    	GuiRmiView.getCallback().answer(username);
     	Node  source = (Node) event.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();

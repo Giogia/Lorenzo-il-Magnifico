@@ -17,7 +17,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nameChoosen" layoutX="73.0" layoutY="101.0" prefHeight="30.0" prefWidth="184.0" />
+      <TextField fx:id="nameChosen" layoutX="73.0" layoutY="101.0" prefHeight="30.0" prefWidth="184.0" />
       <Label layoutX="73.0" layoutY="163.0" prefHeight="17.0" prefWidth="393.0" text="Choose the color for your family members:">
          <font>
             <Font size="20.0" />

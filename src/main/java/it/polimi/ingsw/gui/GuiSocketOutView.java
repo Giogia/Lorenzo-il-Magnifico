@@ -16,6 +16,7 @@ public class GuiSocketOutView implements Runnable {
 			if(answer!=null){
 				socketOut.println(answer);
 				socketOut.flush();
+				answer=null;
 			}
 		}
 	}
