@@ -39,7 +39,7 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class Manager{
-	
+	private static int choice = 0;
 	private Manager instance;
 	
 	private Manager() { }
@@ -63,8 +63,6 @@ public class Manager{
 		}
 	}
 
-	
-	
 	private static void turnChoice(Player player) throws IOException{
 		while(true){
 			int choice = ConnectionManagerImpl.getConnectionManager().turnChoice(player);
@@ -94,6 +92,9 @@ public class Manager{
 				//tell to player he can't pass turn
 				ConnectionManagerImpl.cantPassTurn(player);
 				break;
+				
+			default:
+				ConnectionManagerImpl.integerError(player);
 			}
 		}
 	}
@@ -114,6 +115,8 @@ public class Manager{
 				return;
 			case 3:
 				return;
+			default:
+				ConnectionManagerImpl.integerError(player);
 			}
 		}
 		catch(MyException exc){			
@@ -124,7 +127,10 @@ public class Manager{
 	private static void activationLeaderCardEffectManager(Player player) throws IOException {
 		try{
 			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getOncePerRoundBonusLeaderCard();
-			int choice= chooseLeaderCard(player, leaderCards);
+			
+			do{
+				choice= chooseLeaderCard(player, leaderCards);
+			}while(!hasAnsweredWell(1, leaderCards.size(), choice, player));
 			if (choice == leaderCards.size())
 				return;
 			LeaderCard chosenCard = leaderCards.get(choice);
@@ -142,12 +148,24 @@ public class Manager{
 		for (int i = 0; i < players.length; i++) {
 			names[i] = players[i].getName();
 		}
-		int choice = ConnectionManagerImpl.getConnectionManager().askForInformation(player, names);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForInformation(player, names);
+		}while(! hasAnsweredWell(1, players.length +1, choice, player));
+		
 		if (choice == players.length + 1){
 			return;
 		}
 		PersonalBoard personalBoard = players[choice - 1].getPersonalBoard();
 		ConnectionManagerImpl.showPersonalBoard(player, personalBoard);
+	}
+
+	private static boolean hasAnsweredWell(int i, int j, int choice, Player player) throws RemoteException, IOException {
+		if(i <= choice && choice <= j){
+			return true;
+		}else{
+			ConnectionManagerImpl.getConnectionManager().integerError(player);//tell player he has answered wrong 
+			return false;
+		}
 	}
 
 	private static void actionManager(Player player) throws IOException {
@@ -160,7 +178,10 @@ public class Manager{
 		}
 		Board board = player.getBoard();
 		while(true){
-			int choice = ConnectionManagerImpl.getConnectionManager().chooseZone(player);
+			do{
+				choice = ConnectionManagerImpl.getConnectionManager().chooseZone(player);
+			}while(! hasAnsweredWell(1, 9, choice, player));
+			
 			try{
 				switch (choice) {
 				case 1:
@@ -220,7 +241,10 @@ public class Manager{
 	 */
 	private static boolean zoneManager(Player player, Zone zone) throws MyException, IOException {
 		Position[] positions = zone.getPositions();
-		int choice = ConnectionManagerImpl.getConnectionManager().choosePosition(player, positions);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().choosePosition(player, positions);
+		}while(! hasAnsweredWell(1, positions.length+1, choice, player));
+		
 		if (choice == positions.length + 1){
 			return false;
 		} else {
@@ -231,7 +255,10 @@ public class Manager{
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
 	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, IOException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
-		int choice = ConnectionManagerImpl.getConnectionManager().chooseFamilyMember(player, familyMembers);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().chooseFamilyMember(player, familyMembers);
+		}while(! hasAnsweredWell(1, familyMembers.size() + 1, choice, player));
+		
 		if (choice == familyMembers.size() + 1){
 			return false;
 		}
@@ -242,7 +269,9 @@ public class Manager{
 
 	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
 			ArrayList<Resource> alternativeCosts) throws IOException {
-		int choice = ConnectionManagerImpl.getConnectionManager().askForAlternativeCost(player, costs, alternativeCosts);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForAlternativeCost(player, costs, alternativeCosts);
+		}while(!hasAnsweredWell(1, 2, choice, player));
 		if (choice == 1){
 			return costs;
 		}
@@ -250,13 +279,17 @@ public class Manager{
 	}
 
 	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
-		int choice = ConnectionManagerImpl.getConnectionManager().askForCouncilPrivilege(player, councilPrivileges);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForCouncilPrivilege(player, councilPrivileges);	
+		}while(!hasAnsweredWell(1, councilPrivileges.size(), choice, player));
 		return councilPrivileges.get(choice-1);
 	}
-
+	
 	public static int askForServants(Player player) throws IOException {
 		int numberOfServants = player.getPersonalBoard().getResource(ResourceType.servants).getAmount();
-		int choice = ConnectionManagerImpl.getConnectionManager().askForServants(player, numberOfServants);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForServants(player, numberOfServants);
+		}while(!hasAnsweredWell(0, numberOfServants, choice, player));
 		return choice;
 	}
 
@@ -264,7 +297,10 @@ public class Manager{
 		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
-		int choice = ConnectionManagerImpl.getConnectionManager().chooseActionPosition(player, zonePositions);
+		
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().chooseActionPosition(player, zonePositions);
+		}while(!hasAnsweredWell(1, zonePositions.length, choice, player));
 		return zonePositions[choice - 1];
 	}
 
@@ -282,8 +318,13 @@ public class Manager{
 		return zone;
 	}
 
+	
 	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException{
-		if (ConnectionManagerImpl.getConnectionManager().askForExcommunication(player, excommunicationTile) == 1){
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForExcommunication(player, excommunicationTile);
+		}while(! hasAnsweredWell(1, 2, choice, player));
+		
+		if ( choice == 1){//player wants to be excommunicated
 			return true;
 		}
 		return false;
@@ -303,55 +344,66 @@ public class Manager{
 		if (leaderCardsToChoice.isEmpty()){
 			return null;
 		}
-		int choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(activatedPlayer, leaderCardsToChoice);
+		}while(!hasAnsweredWell(1, leaderCardsToChoice.size() + 1, choice, activatedPlayer));
+		
 		if (choice == leaderCardsToChoice.size() + 1){
 			return null;
 		}
 		return leaderCardsToChoice.get(choice - 1);
 		
 	}
-	
-	public static void getHarvestProductionBonus() {
-		//TODO PERMANENT
-	}
 
 	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws IOException {
-		int choice = ConnectionManagerImpl.getConnectionManager().askForZone(actionZones, player);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().askForZone(actionZones, player);
+		}while(!hasAnsweredWell(1, actionZones.size(), choice, player));
 		return actionZones.get(choice - 1);
 	}
-
+	
 	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
-		int index= ConnectionManagerImpl.getConnectionManager().chooseEffect(player,developmentCard);
-		ArrayList<Bonus> choice = new ArrayList<>();
+		do{
+			choice= ConnectionManagerImpl.getConnectionManager().chooseEffect(player,developmentCard);
+		}while(!hasAnsweredWell(1, developmentCard.secondaryEffect.size(), choice, player));
+		ArrayList<Bonus> bonusChoosen = new ArrayList<>();
 		int counter = 0;
 		for(int i=0; i<developmentCard.secondaryEffect.size();i++){
 			if(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus ){
 				counter++;
-				if(index==counter){
-				choice.add(developmentCard.secondaryEffect.get(i));
+				if(choice == counter){
+				bonusChoosen.add(developmentCard.secondaryEffect.get(i));
 				i++;
 				while(i<developmentCard.secondaryEffect.size() && !(developmentCard.secondaryEffect.get(i) instanceof ResourceBonus)){
-					choice.add(developmentCard.secondaryEffect.get(i));
+					bonusChoosen.add(developmentCard.secondaryEffect.get(i));
 					i++;
 					}
 				}
 			}
 		}
-		return choice;
+		return bonusChoosen;
 	}
 	
 	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws IOException{
-		PersonalBonusTile choice = personalBonusTiles.get(ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles)-1);
-		return choice;
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles);
+ 		}while(!hasAnsweredWell(1, personalBonusTiles.size(), choice, player));
+		
+		PersonalBonusTile tileChoosen = personalBonusTiles.get(choice - 1);
+		return tileChoosen;
 	}
 	
 	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException { //return i if i-th element of array is chosen
-		int choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(player, leaderCards);
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(player, leaderCards);
+		}while(!hasAnsweredWell(1, leaderCards.size() , choice, player));
 		return choice-1;
 	}
 
 	public static int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
-		int choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
-		return choice-1;
+		do{
+			choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
+		}while(!hasAnsweredWell(1, leaderCards.size(), choice, player));
+		return choice - 1;
 	}
 }
