@@ -122,7 +122,7 @@ public class GuiSocketInView implements Runnable {
 						break;
 					
 					case askForUsername:
-						NewWindow newWindow = new NewWindow();
+						UsernameWindow newWindow = new UsernameWindow();
 						Thread thread = new Thread(newWindow);
 						Platform.runLater(thread);
 						break;

@@ -18,7 +18,6 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 		if( isRightTurn ){ //if the user that talks is the right user
 			this.stringReceived = stringReceived;
 			isAvailable = true;
-			System.out.println(stringReceived);
 			synchronized (this) {
 				notifyAll();
 			}

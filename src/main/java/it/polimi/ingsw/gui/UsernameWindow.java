@@ -10,10 +10,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class NewWindow implements Runnable{
+public class UsernameWindow implements Runnable{
 	
 	@FXML
 	private TextField nameChosen;
@@ -22,7 +23,7 @@ public class NewWindow implements Runnable{
     private Button okButton;
     
     @FXML
-    void btnClicked(ActionEvent event) throws RemoteException {
+    void UsernameConfirm (ActionEvent event) throws RemoteException {
     	String username = nameChosen.getText();
     	GuiRmiView.getCallback().answer(username);
     	Node  source = (Node) event.getSource(); 
@@ -35,8 +36,8 @@ public class NewWindow implements Runnable{
 	@Override
 	public void run(){
 		try {
-			Parent login = FXMLLoader.load(getClass().getResource("NameAndColor.fxml"));
-			Scene sceneLogin = new Scene(login,800,600);
+			FXMLLoader login = new FXMLLoader(getClass().getResource("Username.fxml"));
+			Scene sceneLogin = new Scene(login.load());
 			
 			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			
@@ -45,6 +46,7 @@ public class NewWindow implements Runnable{
 			stage.setTitle("Lorenzo Il Magnifico");
 			stage.setScene(sceneLogin);
 			stage.show();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

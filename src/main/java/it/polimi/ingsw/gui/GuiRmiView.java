@@ -96,6 +96,18 @@ public class GuiRmiView extends Application implements CliRmi{
 		callback = new GuiRmiCallback(connectionManagerRmiServer, client);
 		executor.submit(callback);
 	}
+	
+	@Override
+	public void askForUsername() throws RemoteException {
+		UsernameWindow usernameWindow = new UsernameWindow();
+		Thread thread = new Thread(usernameWindow);
+		Platform.runLater(thread);
+	}
+	
+	@Override
+	public void usernameHasAlreadyChoosen() throws RemoteException {
+	
+	}
 
 	@Override
 	public void wrongInput() throws RemoteException {
@@ -278,21 +290,9 @@ public class GuiRmiView extends Application implements CliRmi{
 		
 	}
 
-	@Override
-	public void askForUsername() throws RemoteException {
-		NewWindow newWindow = new NewWindow();
-		Thread thread = new Thread(newWindow);
-		Platform.runLater(thread);
-	}
 
 	@Override
 	public void reconnectedToGame(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void usernameHasAlreadyChoosen() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
