@@ -3,6 +3,7 @@ package it.polimi.ingsw.gui;
 import java.io.IOException;
 import java.rmi.RemoteException;
 
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

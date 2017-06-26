@@ -292,7 +292,7 @@ public class CliRmiView implements CliRmi{
 	
 	@Override
 	public void usernameHasAlreadyChoosen() throws RemoteException {
-		System.out.println("The username choosen has already choosen. Please, choice another one:");	
+		System.out.println("The username choosen has already chosen. Please, choose another one:");	
 	}
 }
 

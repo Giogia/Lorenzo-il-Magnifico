@@ -103,6 +103,21 @@ public class GuiRmiView extends Application implements CliRmi{
 		Thread thread = new Thread(usernameWindow);
 		Platform.runLater(thread);
 	}
+
+	@Override
+	public void askName() throws RemoteException {
+		NameWindow nameWindow = new NameWindow();
+		Thread thread = new Thread(nameWindow);
+		Platform.runLater(thread);
+	}
+
+	@Override
+	public void askColor(String[] availableColors){
+		ColorWindow colorWindow = new ColorWindow();
+		colorWindow.setList(availableColors);
+		Thread thread = new Thread(colorWindow);
+		Platform.runLater(thread);
+	}
 	
 	@Override
 	public void usernameHasAlreadyChoosen() throws RemoteException {
@@ -133,17 +148,6 @@ public class GuiRmiView extends Application implements CliRmi{
 		
 	}
 
-	@Override
-	public void askName() throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void askColor(String[] availableColors) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void turnChoice() throws RemoteException {
