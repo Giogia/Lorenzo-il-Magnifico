@@ -414,7 +414,7 @@ public class Manager{
 	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException { //return i if i-th element of array is chosen
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(player, leaderCards);
-		}while(!hasAnsweredWell(1, leaderCards.size() , choice, player));
+		}while(!hasAnsweredWell(1, leaderCards.size() +1 , choice, player));
 		return choice-1;
 	}
 
