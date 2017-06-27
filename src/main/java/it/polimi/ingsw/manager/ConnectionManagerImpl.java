@@ -34,6 +34,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
@@ -271,7 +272,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				if(!usersDisconnected.contains(tempUser)){ //user is connected, go normal
 					listener.setIsRightTurn(true);
 					synchronized (listener) {
-						while(!listener.getIsAvailable()){
+						listener.startTurn();
+						while(!listener.getIsAvailable() && !listener.getTimeExpired()){
 							try {
 								listener.wait();
 							} catch (InterruptedException e) {
@@ -281,10 +283,22 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						}
 					}
 					listener.setIsRightTurn(false);
+					listener.cancelTimer();
 					//now the answer is available	
-					nameChoosen = listener.getStringReceived();
+					if (listener.getTimeExpired()){
+						nameChoosen = "Guest" + i; 
+						listener.setTimeExpired(false);
+						try{
+							clientRmi.timeExpired();
+						} catch (ConnectException e){
+							usersDisconnected.add(tempUser);
+						}
+					}
+					else {
+						nameChoosen = listener.getStringReceived();
+					}
 				}else{ //user is disconnected, set a standard name
-					nameChoosen = "Guest";
+					nameChoosen = "Guest" + i;
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
 				Color colorChoosen = askRmiColor(tempUser, colors);
@@ -309,7 +323,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				if(!usersDisconnected.contains(tempUser)){//user is connected
 					listener.setIsRightTurn(true);
 					synchronized (listener) {
-						while(!listener.getIsAvailable()){
+						listener.startTurn();
+						while(!listener.getIsAvailable() && !listener.getTimeExpired()){
 							try {
 								listener.wait();
 							} catch (InterruptedException e) {
@@ -318,10 +333,24 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							}
 						}
 					}
-					nameChoosen =  listener.getStringReceived();
+					listener.cancelTimer();
+					if (listener.getTimeExpired()){
+						nameChoosen = "Guest" + i;
+						listener.setTimeExpired(false);
+						try {
+							ActionSocket act = new ActionSocket(action.timeExpired);
+							socketOut.writeObject(act);
+							socketOut.flush();
+						} catch (SocketException e) {
+							usersDisconnected.add(tempUser);
+						}
+					}
+					else{
+						nameChoosen =  listener.getStringReceived();
+					}
 					listener.setIsRightTurn(false);
 				}else{
-					nameChoosen = "Guest";
+					nameChoosen = "Guest" + i;
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
 				
@@ -356,7 +385,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			if(!usersDisconnected.contains(user)){
 				listener.setIsRightTurn(true);
 				synchronized (listener) {
-					while(!listener.getIsAvailable()){
+					listener.startTurn();
+					while(!listener.getIsAvailable() && !listener.getTimeExpired()){
 						try {
 							listener.wait();
 						} catch (InterruptedException e) {
@@ -366,6 +396,18 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					}
 				}
 				listener.setIsRightTurn(false);
+				listener.cancelTimer();
+				if (listener.getTimeExpired()){
+					listener.setTimeExpired(false);
+					try{
+						ActionSocket act = new ActionSocket(action.timeExpired);
+						socketOut.writeObject(act);
+						socketOut.flush();
+					} catch(SocketException e){
+						usersDisconnected.add(user);
+					}
+					return availableColors.get(0);
+				}
 				try{
 					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
 					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
@@ -382,7 +424,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}else{
 				usersDisconnected.remove(user);//remove in user disconnected so the user has the opportunity of reconnect
-				return availableColors.get(1);
+				return availableColors.get(0);
 			}
 		}
 	}
@@ -404,7 +446,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				listener.setIsRightTurn(true);
 				
 				synchronized (listener) {
-					while(!listener.getIsAvailable()){
+					listener.startTurn();
+					while(!listener.getIsAvailable() && !listener.getTimeExpired()){
 						try {
 							listener.wait();
 						} catch (InterruptedException e) {
@@ -414,6 +457,16 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					}
 				}
 				listener.setIsRightTurn(false);
+				listener.cancelTimer();
+				if (listener.getTimeExpired()){
+					listener.setTimeExpired(false);
+					try{
+						user.getCliRmi().timeExpired();
+					} catch (ConnectException e){
+						usersDisconnected.add(user);
+					}
+					return availableColors.get(0);
+				}
 				try{
 					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
 					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
@@ -426,7 +479,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}else{//user is disconnected
 				usersDisconnected.remove(user);//remove in user disconnected so the user has the opportunity of reconnect
-				return availableColors.get(1);
+				return availableColors.get(0);
 			}
 		}
 	}
@@ -445,16 +498,24 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			CliRmi client = user.getCliRmi();
 			try{
 				client.startTurn(player.getName());
+				ConnectionManagerRmiServerImpl con = user.getConnectionManagerRmiServerImpl();
+				synchronized (con) {
+					con.startTurn();
+				}
 			}catch(ConnectException e){ //client disconnects from the server
 				disconnectionManager(player, playersInGame);
 			}
 		}else{ //player is a socket user
-			ObjectOutputStream o = user.getConnectionManagerSocketServer().getSocketOutClient();
+			ConnectionManagerSocketServer con = user.getConnectionManagerSocketServer();
+			ObjectOutputStream o = con.getSocketOutClient();
 			ActionSocket act = new ActionSocket(action.startTurn);
 			act.setMessage(player.getName());
 			try{
 				o.writeObject(act);
 				o.flush();
+				synchronized (con) {
+					con.startTurn();
+				}
 			}catch(SocketException e){
 				disconnectionManager(player, playersInGame);
 			}
@@ -569,7 +630,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return null;//never arrived here
 	}
 
-	private int getSocketAnswer(Player player) throws IOException{
+	private int getSocketAnswer(Player player) throws IOException, TimeExpiredException{
 		ConnectionManagerSocketServer clientListener = findUserByPlayer(player).getConnectionManagerSocketServer();
 		clientListener.setIsRightTurn(true);
 		synchronized (clientListener) {
@@ -579,6 +640,10 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				if (clientListener.getTimeExpired()){
+					clientListener.setTimeExpired(false);
+					throw new TimeExpiredException();
 				}
 			}
 		}
@@ -595,7 +660,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return 0;
 	}
 	
-	private int getRmiAnswer(Player player) throws RemoteException{
+	private int getRmiAnswer(Player player) throws RemoteException, TimeExpiredException{
 		User user = findUserByPlayer(player);
 		ConnectionManagerRmiServerImpl listener = user.getConnectionManagerRmiServerImpl();
 		listener.setIsRightTurn(true);
@@ -607,6 +672,10 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+				}
+				if (listener.getTimeExpired()){
+					listener.setTimeExpired(false);
+					throw new TimeExpiredException();
 				}
 			}
 		}
@@ -621,7 +690,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		return 0;
 	}
 	
-	public int turnChoice(Player player) throws IOException {
+	public int turnChoice(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -653,7 +722,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int chooseZone(Player player) throws IOException {
+	public int chooseZone(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -672,7 +741,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int choosePosition(Player player, Position[] positions) throws IOException {
+	public int choosePosition(Player player, Position[] positions) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -694,7 +763,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) throws IOException {
+	public int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -715,7 +784,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int askForAlternativeCost(Player player, ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws IOException {
+	public int askForAlternativeCost(Player player, ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -737,7 +806,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
+	public int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -760,7 +829,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	}
 
-	public int askForServants(Player player, int numberOfServants) throws IOException {
+	public int askForServants(Player player, int numberOfServants) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -781,7 +850,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int askForInformation(Player player, String[] playersNames) throws IOException {
+	public int askForInformation(Player player, String[] playersNames) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -872,9 +941,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				out.flush();
 			}
 		}
+		for (Player player : players) {
+			User user = findUserByPlayer(player);
+			usersInGame.remove(user);
+		}
 	}
 
-	public int askForZone(ArrayList<ActionZone> zones, Player player) throws IOException {
+	public int askForZone(ArrayList<ActionZone> zones, Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -895,7 +968,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int chooseActionPosition(Player player, Position[] zonePositionsDescriptions) throws IOException {
+	public int chooseActionPosition(Player player, Position[] zonePositionsDescriptions) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -958,7 +1031,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException {
+	public int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -982,7 +1055,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int LeaderCardActionChoice(Player player) throws IOException {
+	public int LeaderCardActionChoice(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -1003,7 +1076,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
+	public int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -1025,7 +1098,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int choosePersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws  IOException {
+	public int choosePersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws  IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -1047,7 +1120,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
+	public int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -1069,7 +1142,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public int chooseEffect(Player player, DevelopmentCard developmentCard)throws IOException {
+	public int chooseEffect(Player player, DevelopmentCard developmentCard)throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
 		if (user.getCliRmi() != null){//player is a rmi user
 			CliRmi client = user.getCliRmi();
@@ -1108,5 +1181,48 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static List<User> getUsersDisconnected() {
 		return usersDisconnected;
+	}
+
+	public static void cancelTimer(Player player) {
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			user.getConnectionManagerRmiServerImpl().cancelTimer();
+		}
+		else{
+			user.getConnectionManagerSocketServer().cancelTimer();
+		}
+	}
+
+	public static void timeExpired(Player player) throws IOException {
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			CliRmi client = user.getCliRmi();
+			try{
+				client.timeExpired();
+			} catch (ConnectException e) {
+				disconnectionManager(player, player.getBoard().getGame().getRoundOrder());
+			}
+		}
+		else{
+			ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
+			
+			try{
+				ActionSocket act = new ActionSocket(action.timeExpired);
+				out.writeObject(act);
+				out.flush();
+			} catch(SocketException e){
+				disconnectionManager(player, player.getBoard().getGame().getRoundOrder());
+			}
+		}
+	}
+
+	public static void startTimer(Player player) {
+		User user = findUserByPlayer(player);
+		if (user.getCliRmi() != null){//player is a rmi user
+			user.getConnectionManagerRmiServerImpl().startTurn();
+		}
+		else{
+			user.getConnectionManagerSocketServer().startTurn();
+		}
 	}
 }

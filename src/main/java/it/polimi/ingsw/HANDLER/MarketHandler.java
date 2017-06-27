@@ -13,11 +13,12 @@ import it.polimi.ingsw.CONTROLLER.PositionAlreadyOccupiedController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class MarketHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException, TimeExpiredException{
 		if (!OccupiedYetBonusController.check(familyMember)){
 			if (!PositionAlreadyOccupiedController.check(position)){
 				return false;

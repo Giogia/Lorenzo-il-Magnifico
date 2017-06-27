@@ -4,6 +4,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.OccupiedTowerCostBonusHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
@@ -37,7 +38,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
-	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , IOException {
+	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , IOException, TimeExpiredException {
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
@@ -73,7 +74,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException, IOException {
+			TowerFloor towerFloor) throws MyException, IOException, TimeExpiredException {
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
 			if (!checkTerritories(familyMember)) {
 				return false;
@@ -127,7 +128,7 @@ public class TowerHandler {
 	}
 
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
-			TowerFloor towerFloor) throws MyException, IOException {
+			TowerFloor towerFloor) throws MyException, IOException, TimeExpiredException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
 		ArrayList<Resource> cost = new ArrayList<>();
 		if (ventureCard.cost != null)

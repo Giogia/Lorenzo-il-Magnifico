@@ -8,6 +8,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -32,7 +33,7 @@ public class TowerFloor extends Position {
 	}
 	
 	@Override
-	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException, TimeExpiredException{
 		
 		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
 		

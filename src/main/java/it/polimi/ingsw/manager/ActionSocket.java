@@ -51,7 +51,8 @@ public class ActionSocket implements Serializable{
 		leftGame,
 		askForUsername, 
 		reconnectedToGame, 
-		usernameHasAlreadyChoosen
+		usernameHasAlreadyChoosen, 
+		timeExpired
 	}
 	
 	private action action;

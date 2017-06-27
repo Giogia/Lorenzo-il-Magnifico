@@ -9,6 +9,7 @@ import java.util.Set;
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.FakeFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 
@@ -23,7 +24,7 @@ public class ActionBonus extends ImmediateBonus {
 		action.putAll(actionMap);
 	}
 	
-	public void getImmediateBonus(Player player) throws MyException, IOException{
+	public void getImmediateBonus(Player player) throws MyException, IOException, TimeExpiredException{
 		FakeFamilyMemberHandler.handle(player, action, resources);
 	}
 

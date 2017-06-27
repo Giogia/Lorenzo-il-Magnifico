@@ -10,6 +10,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 
 public class Position implements Serializable{
 	protected ArrayList<FamilyMember> familyMembers;
@@ -38,7 +39,7 @@ public class Position implements Serializable{
 		return this.diceRequirement;
 	}
 	
-	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException{
+	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException, TimeExpiredException{
 		familyMembers.add(newFamilyMember);
 	}
 	
@@ -60,7 +61,7 @@ public class Position implements Serializable{
 		familyMembers.clear();
 	}
 	
-	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException, IOException{
+	protected void giveImmediateBonus(Player player, ImmediateBonus immediateBonus) throws MyException, IOException, TimeExpiredException{
 		immediateBonus.getImmediateBonus(player);
 	}
 	protected void givePermanentBonus(Player player, PermanentBonus permanentBonus){

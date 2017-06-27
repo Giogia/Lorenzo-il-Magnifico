@@ -8,6 +8,7 @@ import java.util.Random;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
 public class LeaderCardDraftHandler {
@@ -35,7 +36,7 @@ public class LeaderCardDraftHandler {
 			for(Player player : board.getPlayers()){//every player chose one card and then the cards rotate
 				int numberOfArray = (k+playerOrder)%numberOfPlayers;
 				ArrayList<LeaderCard> leaderCards = draftLeaderCards.get(numberOfArray);
-				int index = Manager.draftLeaderCard(player, leaderCards);	
+				int index = Manager.draftLeaderCard(player, leaderCards);
 				LeaderCard chosen = leaderCards.get(index);			
 				player.addLeadercard(chosen);
 				leaderCards.remove(chosen);

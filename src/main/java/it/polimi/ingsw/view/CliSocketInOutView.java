@@ -261,6 +261,9 @@ public class CliSocketInOutView implements Runnable{
 					case usernameHasAlreadyChoosen:
 						System.out.println("The username choosen has already choosen. Please, choice another one:");
 						break;
+					
+					case timeExpired:
+						System.out.println("TIME IS EXPIRED! \n");
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

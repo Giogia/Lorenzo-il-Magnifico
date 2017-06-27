@@ -10,6 +10,7 @@ import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.CARD.PermanentLeaderCard;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
@@ -21,7 +22,7 @@ public class CopyBonus extends ImmediateBonus{
 		super("CopyBonus");
 	}
 
-	public void getImmediateBonus(Player player) throws IOException, MyException{
+	public void getImmediateBonus(Player player) throws IOException, MyException, TimeExpiredException{
 		LeaderCard activatedLeaderCard = findCopyBonus(player);
 		LeaderCard chosenLeaderCard = Manager.choiceLeaderCardToCopy(player, activatedLeaderCard);
 		if (chosenLeaderCard == null){

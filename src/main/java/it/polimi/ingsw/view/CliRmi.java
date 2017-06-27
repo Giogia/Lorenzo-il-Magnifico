@@ -93,5 +93,7 @@ public interface CliRmi extends Remote {
 	void reconnectedToGame(String name) throws RemoteException;
 
 	void usernameHasAlreadyChoosen() throws RemoteException;
+
+	void timeExpired() throws RemoteException;
 }
 

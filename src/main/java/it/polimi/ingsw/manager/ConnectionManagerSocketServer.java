@@ -3,14 +3,19 @@ package it.polimi.ingsw.manager;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ConnectionManagerSocketServer implements Runnable {
+	private Timer timer;
 	private Scanner socketInClient;
 	private ObjectOutputStream socketOutClient;
 	private volatile String stringReceived;
 	private volatile boolean isRightTurn = false;
 	private volatile boolean isAvailable = false;
+	private volatile boolean timeExpired = false;
 	
 	public ConnectionManagerSocketServer(Scanner socketInClient, ObjectOutputStream socketOutClient) {
 		this.socketInClient = socketInClient;
@@ -42,6 +47,10 @@ public class ConnectionManagerSocketServer implements Runnable {
 		}
 	}
 	
+	public void cancelTimer(){
+		timer.cancel();
+	}
+	
 	public String getStringReceived() {
 		isAvailable = false;
 		return stringReceived;
@@ -57,5 +66,43 @@ public class ConnectionManagerSocketServer implements Runnable {
 	
 	public ObjectOutputStream getSocketOutClient() {
 		return socketOutClient;
+	}
+	
+	public boolean getTimeExpired(){
+		return timeExpired;
+	}
+	
+	public void setTimeExpired(boolean timeExpired) {
+		this.timeExpired = timeExpired;
+	}
+	
+	public void startTurn(){
+		timer = new Timer();
+		ClientTimer clientTimer = new ClientTimer(this);
+		timer.schedule(clientTimer, 30000);
+	}
+	
+
+	private class ClientTimer extends TimerTask{
+		private ConnectionManagerSocketServer con;
+		
+		public ClientTimer(ConnectionManagerSocketServer con) {
+			this.con = con;
+		}
+
+		@Override
+		public void run() {
+			con.isRightTurn = false;
+			con.timeExpired = true;
+			con.endTurn();
+		}
+		
+	}
+
+
+	public void endTurn() {
+		synchronized (this) {
+			notifyAll();
+		}
 	}
 }

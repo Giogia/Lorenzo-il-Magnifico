@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.CONTROLLER.CanGoToController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.*;
 
 public final class ActionHandler {
@@ -21,7 +22,7 @@ public final class ActionHandler {
         return istanza;
     }
     
-    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException, IOException {
+    public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException, IOException, TimeExpiredException {
     	if (CanGoToController.check(familyMember.getPlayer(), zone)){
 	    	if(zone instanceof Market){
 	    		return MarketHandler.handle(familyMember,position);

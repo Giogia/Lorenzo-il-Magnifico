@@ -12,11 +12,12 @@ import it.polimi.ingsw.CONTROLLER.LeaderCardCardActivationConditionController;
 import it.polimi.ingsw.CONTROLLER.ResourceController;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
 public class ActivateLeaderCardHandler {
 
-	public static void handle(Player player,LeaderCard chosen) throws IOException, MyException{
+	public static void handle(Player player,LeaderCard chosen) throws IOException, MyException, TimeExpiredException{
 		if(chosen.getResourceActivationCondition()!=null)
 			ResourceController.check(player, chosen.getResourceActivationCondition());
 		if(chosen.getCardActivationCondition()!=null)

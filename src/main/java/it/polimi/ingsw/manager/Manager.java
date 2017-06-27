@@ -28,6 +28,7 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.PassTurnHandler;
 import it.polimi.ingsw.HANDLER.ResetFamilyMemberValueHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.ActivateLeaderCardHandler;
@@ -65,41 +66,52 @@ public class Manager{
 
 	private static void turnChoice(Player player) throws IOException{
 		while(true){
-			int choice = ConnectionManagerImpl.getConnectionManager().turnChoice(player);
-			switch (choice) {
-			case 1:
-				actionManager(player);
-				break;
+			int choice;
+			try {
+				choice = ConnectionManagerImpl.getConnectionManager().turnChoice(player);
+				switch (choice) {
+				case 1:
+					actionManager(player);
+					break;
+				
+				case 2:
+					leaderCardManager(player);
+					break;
 			
-			case 2:
-				leaderCardManager(player);
-				break;
-		
-			case 3:
-				activationLeaderCardEffectManager(player);
-				break;
-				
-			case 4:
-				askForInformation(player);
-				break;
-		
-			case 5:
-				if (PassTurnHandler.handle(player)){
-					ResetFamilyMemberValueHandler.handle(player);
-					PermanentFamilyMemberBonusHandler.handle(player);
-					return;
+				case 3:
+					activationLeaderCardEffectManager(player);
+					break;
+					
+				case 4:
+					askForInformation(player);
+					break;
+			
+				case 5:
+					if (PassTurnHandler.handle(player)){
+						ConnectionManagerImpl.cancelTimer(player);
+						ResetFamilyMemberValueHandler.handle(player);
+						PermanentFamilyMemberBonusHandler.handle(player);
+						return;
+					}
+					//tell to player he can't pass turn
+					ConnectionManagerImpl.cantPassTurn(player);
+					break;
+					
+				default:
+					ConnectionManagerImpl.integerError(player);
 				}
-				//tell to player he can't pass turn
-				ConnectionManagerImpl.cantPassTurn(player);
-				break;
-				
-			default:
-				ConnectionManagerImpl.integerError(player);
+			} catch (TimeExpiredException e) {
+				ConnectionManagerImpl.cancelTimer(player);
+				ConnectionManagerImpl.timeExpired(player);
+				player.getBoard().getPassTurnController().lastMove(player);
+				ResetFamilyMemberValueHandler.handle(player);
+				PermanentFamilyMemberBonusHandler.handle(player);
+				return;
 			}
 		}
 	}
 
-	private static void leaderCardManager(Player player) throws IOException {
+	private static void leaderCardManager(Player player) throws IOException, TimeExpiredException {
 		int index = chooseLeaderCard(player, player.getLeaderCardInHand());
 		if(index==player.getLeaderCardInHand().size())
 			return;
@@ -124,7 +136,7 @@ public class Manager{
 		}
 	}
 	
-	private static void activationLeaderCardEffectManager(Player player) throws IOException {
+	private static void activationLeaderCardEffectManager(Player player) throws IOException, TimeExpiredException {
 		try{
 			ArrayList<LeaderCard> leaderCards = player.getPersonalBoard().getOncePerRoundBonusLeaderCard();
 			
@@ -142,7 +154,7 @@ public class Manager{
 		
 	}
 
-	private static void askForInformation(Player player) throws IOException {
+	private static void askForInformation(Player player) throws IOException, TimeExpiredException {
 		Player[] players = player.getBoard().getPlayers();
 		String[] names = new String[players.length];
 		for (int i = 0; i < players.length; i++) {
@@ -168,7 +180,7 @@ public class Manager{
 		}
 	}
 
-	private static void actionManager(Player player) throws IOException {
+	private static void actionManager(Player player) throws IOException, TimeExpiredException {
 		PassTurnController passTurnController = player.getBoard().getPassTurnController();
 		if (passTurnController.getLastMove() != null){
 			if (passTurnController.getLastMove().equals(player)){
@@ -239,7 +251,7 @@ public class Manager{
 	/* Le posizioni vanno da 1 alla posizione massima
 	 * Se ritorna posizione massima + 1, significa che devi tornare indietro
 	 */
-	private static boolean zoneManager(Player player, Zone zone) throws MyException, IOException {
+	private static boolean zoneManager(Player player, Zone zone) throws MyException, IOException, TimeExpiredException {
 		Position[] positions = zone.getPositions();
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().choosePosition(player, positions);
@@ -253,7 +265,7 @@ public class Manager{
 	}
 	
 	//Come prima, se il connectionManager ritorna numero di familiari +1, torna indietro, altrimenti usa quel familiare
-	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, IOException{
+	private static boolean familyMemberManager(Player player, Zone zone, Position position) throws MyException, IOException, TimeExpiredException{
 		ArrayList<FamilyMember> familyMembers = player.getFamilyMembers();
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().chooseFamilyMember(player, familyMembers);
@@ -268,7 +280,7 @@ public class Manager{
 	}
 
 	public static ArrayList<Resource> askForAlternativeCost(Player player, ArrayList<Resource> costs,
-			ArrayList<Resource> alternativeCosts) throws IOException {
+			ArrayList<Resource> alternativeCosts) throws IOException, TimeExpiredException {
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().askForAlternativeCost(player, costs, alternativeCosts);
 		}while(!hasAnsweredWell(1, 2, choice, player));
@@ -278,14 +290,14 @@ public class Manager{
 		else return alternativeCosts;
 	}
 
-	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException {
+	public static ResourceBonus getCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException, TimeExpiredException {
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().askForCouncilPrivilege(player, councilPrivileges);	
 		}while(!hasAnsweredWell(1, councilPrivileges.size(), choice, player));
 		return councilPrivileges.get(choice-1);
 	}
 	
-	public static int askForServants(Player player) throws IOException {
+	public static int askForServants(Player player) throws IOException, TimeExpiredException {
 		int numberOfServants = player.getPersonalBoard().getResource(ResourceType.servants).getAmount();
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().askForServants(player, numberOfServants);
@@ -293,7 +305,7 @@ public class Manager{
 		return choice;
 	}
 
-	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws IOException {
+	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws IOException, TimeExpiredException {
 		zone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
 		Position[] zonePositions = zone.getPositions();
@@ -319,7 +331,7 @@ public class Manager{
 	}
 
 	
-	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException{
+	public static boolean askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException, TimeExpiredException{
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().askForExcommunication(player, excommunicationTile);
 		}while(! hasAnsweredWell(1, 2, choice, player));
@@ -330,7 +342,7 @@ public class Manager{
 		return false;
 	}
 	
-	public static LeaderCard choiceLeaderCardToCopy(Player activatedPlayer, LeaderCard leaderCard) throws IOException, MyException {
+	public static LeaderCard choiceLeaderCardToCopy(Player activatedPlayer, LeaderCard leaderCard) throws IOException, MyException, TimeExpiredException {
 		ArrayList<LeaderCard> leaderCardsToChoice = new ArrayList<>();
 		Player[] players = activatedPlayer.getBoard().getPlayers();
 		for (Player player : players) {
@@ -355,14 +367,14 @@ public class Manager{
 		
 	}
 
-	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws IOException {
+	public static ActionZone askForZone(ArrayList<ActionZone> actionZones, Player player) throws IOException, TimeExpiredException {
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().askForZone(actionZones, player);
 		}while(!hasAnsweredWell(1, actionZones.size(), choice, player));
 		return actionZones.get(choice - 1);
 	}
 	
-	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException{
+	public static ArrayList<Bonus> chooseEffect(Player player, DevelopmentCard developmentCard) throws IOException, TimeExpiredException{
 		do{
 			choice= ConnectionManagerImpl.getConnectionManager().chooseEffect(player,developmentCard);
 		}while(!hasAnsweredWell(1, developmentCard.secondaryEffect.size(), choice, player));
@@ -386,23 +398,35 @@ public class Manager{
 	
 	public static PersonalBonusTile askForPersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws IOException{
 		do{
-			choice = ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles);
+			try {
+				ConnectionManagerImpl.startTimer(player);
+				choice = ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles);
+			} catch (TimeExpiredException e) {
+				choice = 1;
+			}
+			ConnectionManagerImpl.cancelTimer(player);
  		}while(!hasAnsweredWell(1, personalBonusTiles.size(), choice, player));
 		
 		PersonalBonusTile tileChoosen = personalBonusTiles.get(choice - 1);
 		return tileChoosen;
 	}
 	
-	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException { //return i if i-th element of array is chosen
+	public static int chooseLeaderCard(Player player,ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException { //return i if i-th element of array is chosen
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().chooseLeaderCard(player, leaderCards);
 		}while(!hasAnsweredWell(1, leaderCards.size() , choice, player));
 		return choice-1;
 	}
 
-	public static int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException {
+	public static int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException{
 		do{
-			choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
+			ConnectionManagerImpl.startTimer(player);
+			try {
+				choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
+			} catch (TimeExpiredException e) {
+				choice = 1;
+			}
+			ConnectionManagerImpl.cancelTimer(player);
 		}while(!hasAnsweredWell(1, leaderCards.size(), choice, player));
 		return choice - 1;
 	}

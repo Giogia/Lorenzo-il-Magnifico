@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.CouncilPrivilegeChoiceHandler;
 
 public class CouncilPrivilegeBonus extends ImmediateBonus{
@@ -17,7 +18,7 @@ public class CouncilPrivilegeBonus extends ImmediateBonus{
 	
 	
 	@Override
-	public void getImmediateBonus(Player player) throws MyException, IOException{
+	public void getImmediateBonus(Player player) throws MyException, IOException, TimeExpiredException{
 		CouncilPrivilegeChoiceHandler.handle(player, differentCouncilPrivilege);
 	}
 	

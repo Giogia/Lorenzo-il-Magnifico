@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
 public class CouncilPrivilegeChoiceHandler {
@@ -14,7 +15,7 @@ public class CouncilPrivilegeChoiceHandler {
 	//and removed from the councilPrivileges
 private static ArrayList<ResourceBonus> councilPrivileges;
 	
-	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws IOException{
+	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws IOException, TimeExpiredException{
 		councilPrivileges = new ArrayList<>();
 		for (ResourceBonus resourceBonus : player.getBoard().getGame().getData().getCouncilPrivileges()) {
 			councilPrivileges.add(resourceBonus.createClone());

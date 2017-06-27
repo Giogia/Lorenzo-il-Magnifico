@@ -30,7 +30,12 @@ public final class VaticanReport {
 		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period-1];
 		for (int i=0; i < players.length; i++) {
 			if (checkFaithPoints(players[i], period)) {
-				boolean notExcommunicated = Manager.askForExcommunication(players[i], excommunicationTile);
+				boolean notExcommunicated;
+				try {
+					notExcommunicated = Manager.askForExcommunication(players[i], excommunicationTile);
+				} catch (TimeExpiredException e) {
+					notExcommunicated = true;
+				}
 				if (notExcommunicated){
 					ResourcePerMissedExcommunicationHandler.handle(players[i]);
 					int faithPoints = players[i].getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();

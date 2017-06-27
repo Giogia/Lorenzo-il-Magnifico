@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 
 public abstract class ImmediateBonus extends Bonus {
 	private String type; 
@@ -18,7 +19,7 @@ public abstract class ImmediateBonus extends Bonus {
 		return type;
 	}
 	
-	public void getImmediateBonus(Player player) throws MyException, IOException{ 
+	public void getImmediateBonus(Player player) throws MyException, IOException, TimeExpiredException{ 
 		
 	}
 

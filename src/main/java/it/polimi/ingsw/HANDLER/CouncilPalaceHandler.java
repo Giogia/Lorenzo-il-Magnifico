@@ -11,11 +11,12 @@ import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.RESOURCE.Resource;
 
 public class CouncilPalaceHandler {
 	
-	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException{
+	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException, TimeExpiredException{
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
 			playerResources.add(resource.createClone());

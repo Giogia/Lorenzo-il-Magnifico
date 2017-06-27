@@ -14,6 +14,7 @@ import it.polimi.ingsw.CONTROLLER.EndGameCardController;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerCostHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
@@ -87,6 +88,9 @@ private static EndGameHandler istanza = null;
 					try {
 						immediateBonus.getImmediateBonus(player);
 					} catch (MyException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (TimeExpiredException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

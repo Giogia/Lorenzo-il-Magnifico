@@ -70,7 +70,7 @@ public class Player implements Serializable{
 		return decision;
 	}
 	
-	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException, IOException{
+	public void setFamilyMemberPosition(FamilyMember familyMember, Position position) throws MyException, IOException, TimeExpiredException{
 		position.addFamilyMember(familyMember);
 		if (!familyMember.getDice().getDiceColour().equals(DiceColour.Fake)){
 			if (familyMembers != null){
@@ -106,7 +106,7 @@ public class Player implements Serializable{
 		return personalBoard;
 	}
 	
-	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws IOException, MyException{
+	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws IOException, MyException, TimeExpiredException{
 		//trovo l'indice nell'arrayList dove vi sono le monete
 		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
 		//do al player una moneta

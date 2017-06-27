@@ -2,13 +2,17 @@ package it.polimi.ingsw.manager;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import it.polimi.ingsw.view.CliRmi;
 
 public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implements ConnectionManagerRmiServer{
+	private Timer timer;
 	private boolean isAvailable = false;
 	private String stringReceived;
 	private boolean isRightTurn = false;
+	private boolean timeExpired = false;
 	
 	public ConnectionManagerRmiServerImpl() throws RemoteException{
 	}
@@ -41,5 +45,47 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 	
 	public void setIsRightTurn(boolean isRightTurn){
 		this.isRightTurn = isRightTurn;
+	}
+	
+	public boolean getTimeExpired(){
+		return timeExpired;
+	}
+	
+	public void setTimeExpired(boolean timeExpired) {
+		this.timeExpired = timeExpired;
+	}
+	
+	public void startTurn(){
+		timer = new Timer();
+		ClientTimer clientTimer = new ClientTimer(this);
+		timer.schedule(clientTimer, 30000);
+	}
+	
+
+	private class ClientTimer extends TimerTask{
+		private ConnectionManagerRmiServerImpl con;
+		
+		public ClientTimer(ConnectionManagerRmiServerImpl con) {
+			this.con = con;
+		}
+
+		@Override
+		public void run() {
+			con.endTurn();
+		}
+		
+	}
+
+
+	public void endTurn() {
+		isRightTurn = false;
+		timeExpired = true;
+		synchronized (this) {
+			notifyAll();
+		}
+	}
+	
+	public void cancelTimer(){
+		timer.cancel();
 	}
 }

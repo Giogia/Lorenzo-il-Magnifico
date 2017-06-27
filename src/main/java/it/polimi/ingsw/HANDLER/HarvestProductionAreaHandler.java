@@ -18,6 +18,7 @@ import it.polimi.ingsw.CONTROLLER.ZoneOccupiedBySameColorController;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.Manager;
@@ -25,7 +26,7 @@ import it.polimi.ingsw.manager.Manager;
 
 public abstract class HarvestProductionAreaHandler {
 
-	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, IOException{
+	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, IOException, TimeExpiredException{
 		if (position.equals(zone.getPositions()[0]) && !OccupiedYetBonusController.check(familyMember)){
 			if (!PositionAlreadyOccupiedController.check(position)){
 				return false;
@@ -79,7 +80,7 @@ public abstract class HarvestProductionAreaHandler {
 	}
 	
 	
-	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, IOException{
+	protected static void getPersonalBonusTileBonus(FamilyMember familyMember,Zone zone) throws MyException, IOException, TimeExpiredException{
 		ImmediateBonus personalBonusTileBonus = familyMember.getPlayer().getPersonalBoard().getPersonalBonusTile().getImmediateBonus(zone);
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}
@@ -133,7 +134,7 @@ public abstract class HarvestProductionAreaHandler {
 	}
 		
 	//advanced
-	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException{
+	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException, TimeExpiredException{
 		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
 		do{
 			chosenEffects = new ArrayList<>();
