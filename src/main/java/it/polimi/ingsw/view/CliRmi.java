@@ -14,6 +14,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
@@ -95,5 +96,7 @@ public interface CliRmi extends Remote {
 	void usernameHasAlreadyChoosen() throws RemoteException;
 
 	void timeExpired() throws RemoteException;
+	
+	void startGame(Game game) throws RemoteException;
 }
 

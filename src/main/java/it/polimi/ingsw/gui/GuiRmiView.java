@@ -17,6 +17,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
@@ -25,8 +26,6 @@ import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.view.CliRmi;
-import it.polimi.ingsw.view.CliRmiCallback;
-import it.polimi.ingsw.view.CliRmiView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -34,6 +33,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GuiRmiView extends Application implements CliRmi{
+	boolean wait = true;
 	Scene scene;
 	Scene sceneGame;
 	Stage primaryStage;
@@ -58,13 +58,13 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader login = new FXMLLoader(getClass().getResource("Game.fxml"));
-			
-			scene = new Scene(login.load());
-			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+			scene = new Scene(loader.load());
 			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			
-			GuiController controller = login.getController();
+			GuiController controller = new GuiController();
+			loader.setController(controller);
+			controller.setLoader(loader);
 			
 			primaryStage.setTitle("Lorenzo Il Magnifico");
 			primaryStage.setScene(scene);
@@ -86,21 +86,35 @@ public class GuiRmiView extends Application implements CliRmi{
 		
 		UnicastRemoteObject.exportObject(client, 0);
 		connectionManager.register(client);//client register himself on server
-		//starting gui
-		Application.launch(args);
+		client.showStage();
+	}
+	
+	public void showStage(){
+		while(wait){
+			synchronized (this) {
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		Application.launch();
 	}
 
 	@Override
 	public void setConnectionManagerRmiServer(ConnectionManagerRmiServer connectionManagerRmiServer) throws RemoteException{
 		ExecutorService executor = Executors.newSingleThreadExecutor();
 		callback = new GuiRmiCallback(connectionManagerRmiServer, client);
-		executor.submit(callback);
 	}
 	
 	@Override
 	public void askForUsername() throws RemoteException {
 		UsernameWindow usernameWindow = new UsernameWindow();
 		Thread thread = new Thread(usernameWindow);
+		Platform.setImplicitExit(false);
 		Platform.runLater(thread);
 	}
 
@@ -114,9 +128,26 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void askColor(String[] availableColors){
 		ColorWindow colorWindow = new ColorWindow();
-		colorWindow.setList(availableColors);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Color.fxml"));
+		loader.setController(colorWindow);
+		colorWindow.setLoader(loader);
 		Thread thread = new Thread(colorWindow);
 		Platform.runLater(thread);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				colorWindow.setButton(availableColors);
+			}
+		});
+	}
+	
+	@Override
+	public void startGame(Game game){
+		//starting gui
+		synchronized (this) {
+			wait = false;
+			notifyAll();
+		}
 	}
 	
 	@Override
@@ -132,7 +163,6 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void isNotYourTurn() throws RemoteException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -297,6 +327,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void reconnectedToGame(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void timeExpired() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

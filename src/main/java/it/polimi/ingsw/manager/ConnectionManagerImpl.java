@@ -444,7 +444,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			}
 			if(!usersDisconnected.contains(user)){
 				listener.setIsRightTurn(true);
-				
 				synchronized (listener) {
 					listener.startTurn();
 					while(!listener.getIsAvailable() && !listener.getTimeExpired()){
@@ -469,6 +468,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 				try{
 					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
+					System.out.println(colorChoiced);
 					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
 						return availableColors.get(colorChoiced);
 					}else{
@@ -1223,6 +1223,19 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 		else{
 			user.getConnectionManagerSocketServer().startTurn();
+		}
+	}
+
+	public void startGame(Game thisGame) throws IOException{
+		for (Player player : thisGame.getPlayers()) {
+			System.out.println(player);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				user.getCliRmi().startGame(thisGame);
+			}
+			else{
+				user.getConnectionManagerSocketServer().startTurn();
+			}
 		}
 	}
 }

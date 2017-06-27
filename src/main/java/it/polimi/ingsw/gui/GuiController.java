@@ -24,6 +24,7 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
@@ -45,9 +46,10 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
-public class GuiController implements ActionListener {
+public class GuiController extends Application implements ActionListener {
 	
 	private GuiSocketView guiSocketView;
+	private FXMLLoader loader;
 	
 	@FXML
 	private Label getDescription;
@@ -167,6 +169,30 @@ public class GuiController implements ActionListener {
     @FXML
     private Button action3;
 
+    public void setLoader(FXMLLoader loader){
+    	this.loader = loader;
+    }
+    
+    @Override
+	public void start(Stage primaryStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+			Scene scene = new Scene(loader.load());
+			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
+			
+			GuiController controller = new GuiController();
+			loader.setController(controller);
+			controller.setLoader(loader);
+			
+			primaryStage.setTitle("Lorenzo Il Magnifico");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
     @FXML
     void towerFloorCkd(MouseEvent event) {
     	System.out.println(event.getPickResult().getIntersectedNode().getId());
