@@ -9,6 +9,8 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.view.CliSocketInOutView;
 import it.polimi.ingsw.view.CliSocketOutView;
 import javafx.application.Application;
@@ -18,22 +20,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GuiSocketView extends Application{
-	private final static String IP= "localhost";
-	private final static int SOCKET_PORT = 29999;
+	static boolean wait = true;
 	Scene scene;
 	Scene sceneGame;
 	Stage primaryStage;
+	private final static String IP= "localhost";
+	private final static int SOCKET_PORT = 29999;
+	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl;
+	private static GuiSocketInView clientIn;
+	private static GuiSocketOutView callback;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			FXMLLoader login = new FXMLLoader(getClass().getResource("Game.fxml"));
-			
-			scene = new Scene(login.load());
-			
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+			scene = new Scene(loader.load());
 			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			
-			GuiController controller = login.getController();
+			GuiController controller = new GuiController();
+			loader.setController(controller);
+			controller.setLoader(loader);
 			
 			primaryStage.setTitle("Lorenzo Il Magnifico");
 			primaryStage.setScene(scene);
@@ -52,18 +58,37 @@ public class GuiSocketView extends Application{
 		ExecutorService executor = Executors.newFixedThreadPool(2);
 
 		//Creates one thread to send messages to the server
-		executor.submit(new GuiSocketOutView(new PrintWriter(socket.getOutputStream())));
+		callback = new GuiSocketOutView(new PrintWriter(socket.getOutputStream()));
 
 		//Creates one thread to receive messages from the server
-		executor.submit(new GuiSocketInView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream())));
+		GuiSocketInView clientIn = new GuiSocketInView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream()));
+		executor.submit(clientIn);
+		showStage();
 	}
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException, UnknownHostException, IOException {
-		GuiSocketView client=new GuiSocketView();
+		GuiSocketView client = new GuiSocketView();
 		client.startClient();
-		
-		//starting gui
-		Application.launch(args);
+	}
+	
+	public static GuiSocketOutView getCallback() {
+		return callback;
+	}
+	
+	
+	public void showStage(){
+		/*while(wait){
+			synchronized (this) {
+				try {
+					wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		*/
+		Application.launch();
 	}
 }
 

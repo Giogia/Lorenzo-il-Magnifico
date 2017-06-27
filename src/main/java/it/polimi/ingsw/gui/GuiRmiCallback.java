@@ -5,10 +5,9 @@ import java.util.Scanner;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 
-public class GuiRmiCallback implements Runnable{
-
+public class GuiRmiCallback{
 	
-	ConnectionManagerRmiServer rmiServer;
+	private ConnectionManagerRmiServer rmiServer;
 	private GuiRmiView guiRmiView;
 	
 	public GuiRmiCallback(ConnectionManagerRmiServer rmiServer, GuiRmiView guiRmiView){
@@ -18,10 +17,5 @@ public class GuiRmiCallback implements Runnable{
 	
 	public void answer(String answer) throws RemoteException {
 		rmiServer.getAnswer(answer, guiRmiView);
-		
-	}
-
-	@Override
-	public void run() {
 	}
 }

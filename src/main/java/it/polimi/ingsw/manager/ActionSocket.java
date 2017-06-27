@@ -11,6 +11,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -52,7 +53,8 @@ public class ActionSocket implements Serializable{
 		askForUsername, 
 		reconnectedToGame, 
 		usernameHasAlreadyChoosen, 
-		timeExpired
+		timeExpired, 
+		startGame,
 	}
 	
 	private action action;
@@ -68,11 +70,12 @@ public class ActionSocket implements Serializable{
 	private String message; //it can be or a message of a exception or the name of the winner
 	private ArrayList<ActionZone> zones;
 	private ArrayList<Dice> dices;
-	private ArrayList<Color> availableColors;
+	private String[] availableColors;
 	private ArrayList<LeaderCard> leaderCards;
 	private ArrayList<ExcommunicationTile> excommunicationTiles;
 	private DevelopmentCard developmentCard;
 	private String playerName;
+	private Game game;
 	
 	public ActionSocket(action a) {
 		this.action = a;
@@ -157,10 +160,10 @@ public class ActionSocket implements Serializable{
 	public void setDices(ArrayList<Dice> dices) {
 		this.dices = dices;
 	}
-	public ArrayList<Color> getAvailableColors() {
+	public String[] getAvailableColors() {
 		return availableColors;
 	}
-	public void setAvailableColors(ArrayList<Color> availableColors) {
+	public void setAvailableColors(String[] availableColors) {
 		this.availableColors = availableColors;
 	}
 	public void setPersonalBonusTiles(ArrayList<PersonalBonusTile> personalBonusTiles){
@@ -189,5 +192,13 @@ public class ActionSocket implements Serializable{
 	}
 	public void setDevelopmentCardEffect(DevelopmentCard developmentCard) {
 		this.developmentCard = developmentCard;
+	}
+
+	public void setGame(Game thisGame) {
+		this.game= thisGame;
+	}
+	
+	public Game getGame() {
+		return game;
 	}
 }

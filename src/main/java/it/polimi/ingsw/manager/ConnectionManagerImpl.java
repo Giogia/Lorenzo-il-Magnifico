@@ -353,11 +353,10 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					nameChoosen = "Guest" + i;
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
+				Color colorChosen = askSocketColor(tempUser, colors);
 				
-				Color colorChoosen = askSocketColor(tempUser, colors);
-				
-				players[i] = new Player(nameChoosen, colorChoosen);
-				colors.remove(colorChoosen);
+				players[i] = new Player(nameChoosen, colorChosen);
+				colors.remove(colorChosen);
 				
 				tempUser.setPlayer(players[i]);
 				usersInGame.add(tempUser);
@@ -371,10 +370,16 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	
 	private Color askSocketColor(User user, ArrayList<Color> availableColors) throws IOException {
+		
+		String[] colors = new String[availableColors.size()];
+		for(int counter = 0; counter < availableColors.size(); counter++){
+			colors[counter] = availableColors.get(counter).toString().toLowerCase();
+		}
+		
 		ConnectionManagerSocketServer listener = user.getConnectionManagerSocketServer();
 		ObjectOutputStream socketOut = listener.getSocketOutClient();
 		ActionSocket color = new ActionSocket(action.chooseColor);
-		color.setAvailableColors(availableColors);
+		color.setAvailableColors(colors);
 		while(true){//while the user doesn't answer well to the question	
 			try{
 				socketOut.writeObject(color);
@@ -444,7 +449,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			}
 			if(!usersDisconnected.contains(user)){
 				listener.setIsRightTurn(true);
-				
 				synchronized (listener) {
 					listener.startTurn();
 					while(!listener.getIsAvailable() && !listener.getTimeExpired()){
@@ -469,6 +473,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 				try{
 					int colorChoiced = Integer.parseInt(listener.getStringReceived()) - 1;
+					System.out.println(colorChoiced);
 					if(colorChoiced >= 0 && colorChoiced < availableColors.size()){
 						return availableColors.get(colorChoiced);
 					}else{
@@ -1223,6 +1228,24 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 		else{
 			user.getConnectionManagerSocketServer().startTurn();
+		}
+	}
+
+	public void startGame(Game thisGame) throws IOException{
+		for (Player player : thisGame.getPlayers()) {
+			System.out.println(player);
+			User user = findUserByPlayer(player);
+			if (user.getCliRmi() != null){//player is a rmi user
+				user.getCliRmi().startGame(thisGame);
+			}
+			else{
+				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
+				
+				ActionSocket act = new ActionSocket(action.startGame);
+				act.setGame(thisGame);
+				out.writeObject(act);
+				out.flush();
+			}
 		}
 	}
 }

@@ -2,17 +2,12 @@ package it.polimi.ingsw.gui;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
-
-import javafx.application.Platform;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -27,7 +22,8 @@ public class UsernameWindow implements Runnable{
     @FXML
     void UsernameConfirm (ActionEvent event) throws RemoteException {
     	String username = nameChosen.getText();
-    	GuiRmiView.getCallback().answer(username);
+    	//GuiRmiView.getCallback().answer(username);
+    	GuiSocketView.getCallback().answer(username);
     	Node  source = (Node) event.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();
@@ -55,3 +51,4 @@ public class UsernameWindow implements Runnable{
 		}
 	}
 }
+

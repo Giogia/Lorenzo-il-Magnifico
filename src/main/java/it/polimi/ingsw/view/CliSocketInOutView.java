@@ -42,15 +42,19 @@ public class CliSocketInOutView implements Runnable{
 				ActionSocket.action question = action.getAction();
 				
 				switch (question) {
+					case startGame:
+						System.out.println("The game starts!");
+						break;
+				
 					case chooseName:
 						System.out.println("Please, insert your name: ");
 						break;
 						
 					case chooseColor:
 						System.out.println("What color do you want for your family members?");
-						ArrayList<Color> availableColors = action.getAvailableColors();
-						for (int i = 1; i < availableColors.size() + 1; i++) {
-							System.out.println(i + ") " + availableColors.get(i - 1).toString().toLowerCase());
+						String[] availableColors = action.getAvailableColors();
+						for (int i = 1; i < availableColors.length + 1; i++) {
+							System.out.println(i + ") " + availableColors[i - 1].toString().toLowerCase());
 						}
 						break;
 						

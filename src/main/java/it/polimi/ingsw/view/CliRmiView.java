@@ -23,6 +23,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
@@ -298,6 +299,11 @@ public class CliRmiView implements CliRmi{
 	@Override
 	public void timeExpired() throws RemoteException {
 		System.out.println("TIME IS EXPIRED! \n");
+	}
+	
+	@Override
+	public void startGame(Game game) throws RemoteException {
+		System.out.println("The game starts!");
 	}
 }
 

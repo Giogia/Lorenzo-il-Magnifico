@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.LeaderCardDraftHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.PersonalBonusTileDraftHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public final class StartGameHandler {
 	
@@ -30,9 +31,10 @@ public final class StartGameHandler {
 		setRandomExcommunicationTiles(board.getGame().getData().getExcommunicationTiles(), board);
 		chooseOrder(board);
 		setPlayersResources(board);
-		//setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
-		PersonalBonusTileDraftHandler.handle(board);
-		LeaderCardDraftHandler.handle(board);
+		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
+		//PersonalBonusTileDraftHandler.handle(board);
+		//LeaderCardDraftHandler.handle(board);
+		ConnectionManagerImpl.getConnectionManager().startGame(board.getGame());
 	}
 	
 	

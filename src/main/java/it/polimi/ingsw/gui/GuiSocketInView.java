@@ -3,11 +3,17 @@ package it.polimi.ingsw.gui;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.manager.ActionSocket;
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 
 
 public class GuiSocketInView implements Runnable {
+	
 	private ObjectInputStream socketIn;
 	
 	public GuiSocketInView(ObjectInputStream socketIn, PrintWriter socketOut) {
@@ -23,11 +29,42 @@ public class GuiSocketInView implements Runnable {
 				ActionSocket.action question = action.getAction();
 				
 				switch (question) {
+				
+					case askForUsername:
+						UsernameWindow newWindow = new UsernameWindow();
+						Thread thread = new Thread(newWindow);
+						Platform.runLater(thread);
+						break;
+						
 					case chooseName:
+						NameWindow nameWindow = new NameWindow();
+						Thread thread1 = new Thread(nameWindow);
+						Platform.runLater(thread1);
 						break;
 						
 					case chooseColor:
+						String[] availableColors = action.getAvailableColors();
+						ColorWindow colorWindow = new ColorWindow();
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("Color.fxml"));
+						loader.setController(colorWindow);
+						colorWindow.setLoader(loader);
+						Thread thread2 = new Thread(colorWindow);
+						Platform.runLater(thread2);
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								colorWindow.setButton(availableColors);
+							}
+						});
+						break;
 						
+					case startGame:
+						Game game = action.getGame();
+						//starting gui
+						synchronized (this) {
+							GuiSocketView.wait = false;
+							notifyAll();
+						}
 						break;
 						
 					case startTurn:
@@ -119,12 +156,6 @@ public class GuiSocketInView implements Runnable {
 						break;
 						
 					case leftGame:
-						break;
-					
-					case askForUsername:
-						UsernameWindow newWindow = new UsernameWindow();
-						Thread thread = new Thread(newWindow);
-						Platform.runLater(thread);
 						break;
 						
 					case reconnectedToGame:
