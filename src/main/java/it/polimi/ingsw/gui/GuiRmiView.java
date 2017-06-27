@@ -87,7 +87,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		UnicastRemoteObject.exportObject(client, 0);
 		connectionManager.register(client);//client register himself on server
 		//starting gui
-		Application.launch(args);
+		//Application.launch(args);
 	}
 
 	@Override
@@ -101,6 +101,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	public void askForUsername() throws RemoteException {
 		UsernameWindow usernameWindow = new UsernameWindow();
 		Thread thread = new Thread(usernameWindow);
+		Platform.setImplicitExit(false);
 		Platform.runLater(thread);
 	}
 
@@ -297,6 +298,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void reconnectedToGame(String name) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void timeExpired() throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}
