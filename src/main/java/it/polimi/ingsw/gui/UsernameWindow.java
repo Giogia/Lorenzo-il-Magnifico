@@ -2,6 +2,9 @@ package it.polimi.ingsw.gui;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class UsernameWindow implements Runnable{
+	
+	private final static Logger LOGGER = Logger.getLogger(UsernameWindow.class.getName());
 	
 	@FXML
 	private TextField nameChosen;
@@ -46,8 +51,7 @@ public class UsernameWindow implements Runnable{
 			stage.show();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 }

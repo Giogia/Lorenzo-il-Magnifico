@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -13,6 +15,8 @@ import javafx.fxml.FXMLLoader;
 
 
 public class GuiSocketInView implements Runnable {
+	
+	private final static Logger LOGGER = Logger.getLogger(GuiSocketInView.class.getName());
 	
 	private ObjectInputStream socketIn;
 	
@@ -166,9 +170,9 @@ public class GuiSocketInView implements Runnable {
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				e.printStackTrace();
 			}
 		}

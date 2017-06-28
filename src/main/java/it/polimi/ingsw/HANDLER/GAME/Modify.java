@@ -6,11 +6,16 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
 
 public class Modify {
+	
+	private final static Logger LOGGER = Logger.getLogger(Modify.class.getName());
+	
 	public static void main(String[] args) throws IOException{
 		FileOutputStream prova = null;
 		try {
@@ -62,11 +67,11 @@ public class Modify {
 		} 
 		
 		catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 		
 		catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 		finally {
 			if(prova !=null)

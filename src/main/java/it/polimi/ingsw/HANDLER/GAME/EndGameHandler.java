@@ -3,6 +3,8 @@ package it.polimi.ingsw.HANDLER.GAME;
 import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BONUS.Bonus;
@@ -22,7 +24,9 @@ import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
 public class EndGameHandler {
 	
-private static EndGameHandler istanza = null;
+	private static EndGameHandler istanza = null;
+	
+	private final static Logger LOGGER = Logger.getLogger(EndGameHandler.class.getName());
 	
 	private EndGameHandler() {}
 	
@@ -88,11 +92,9 @@ private static EndGameHandler istanza = null;
 					try {
 						immediateBonus.getImmediateBonus(player);
 					} catch (MyException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
 					} catch (TimeExpiredException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
 					}
 					}
 				}

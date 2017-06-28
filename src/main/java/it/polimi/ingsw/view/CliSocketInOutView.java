@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
@@ -28,6 +30,8 @@ import it.polimi.ingsw.manager.ActionSocket;
 public class CliSocketInOutView implements Runnable{
 	private ObjectInputStream socketIn;
 	private PrintWriter socketOut;
+	
+	private final static Logger LOGGER = Logger.getLogger(CliSocketInOutView.class.getName());
 	
 	public CliSocketInOutView(ObjectInputStream socketIn, PrintWriter socketOut) {
 		this.socketIn = socketIn;
@@ -270,11 +274,9 @@ public class CliSocketInOutView implements Runnable{
 						System.out.println("TIME IS EXPIRED! \n");
 				}
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			}
 		}
 	}

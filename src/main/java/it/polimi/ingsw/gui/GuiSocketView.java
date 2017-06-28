@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.view.CliSocketInOutView;
@@ -30,23 +31,21 @@ public class GuiSocketView extends Application{
 	private static GuiSocketInView clientIn;
 	private static GuiSocketOutView callback;
 	
+	private final static Logger LOGGER = Logger.getLogger(GuiSocketView.class.getName());
+	
 	@Override
-	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-			scene = new Scene(loader.load());
-			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
-			
-			GuiController controller = new GuiController();
-			loader.setController(controller);
-			controller.setLoader(loader);
-			
-			primaryStage.setTitle("Lorenzo Il Magnifico");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+	public void start(Stage primaryStage) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+		scene = new Scene(loader.load());
+		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
+		
+		GuiController controller = new GuiController();
+		loader.setController(controller);
+		controller.setLoader(loader);
+		
+		primaryStage.setTitle("Lorenzo Il Magnifico");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	public void startClient() throws UnknownHostException, IOException {
@@ -83,7 +82,7 @@ public class GuiSocketView extends Application{
 					wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					private final static Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
 				}
 			}
 		}

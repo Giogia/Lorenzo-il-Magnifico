@@ -5,6 +5,8 @@ import java.net.URL;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -21,6 +23,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ColorWindow implements Runnable{
+	
+	private final static Logger LOGGER = Logger.getLogger(ColorWindow.class.getName());
 	
 	private FXMLLoader loader;
 	
@@ -100,8 +104,7 @@ public class ColorWindow implements Runnable{
 			stage.show();
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 }

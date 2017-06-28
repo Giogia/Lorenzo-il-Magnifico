@@ -5,6 +5,8 @@ import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ActionSocket.action;
 
@@ -16,6 +18,8 @@ public class ConnectionManagerSocketServer implements Runnable {
 	private volatile boolean isRightTurn = false;
 	private volatile boolean isAvailable = false;
 	private volatile boolean timeExpired = false;
+	
+	private final static Logger LOGGER = Logger.getLogger(ConnectionManagerSocketServer.class.getName());
 	
 	public ConnectionManagerSocketServer(Scanner socketInClient, ObjectOutputStream socketOutClient) {
 		this.socketInClient = socketInClient;
@@ -39,8 +43,7 @@ public class ConnectionManagerSocketServer implements Runnable {
 						socketOutClient.writeObject(act);
 						socketOutClient.flush();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
 					}
 				}
 			}

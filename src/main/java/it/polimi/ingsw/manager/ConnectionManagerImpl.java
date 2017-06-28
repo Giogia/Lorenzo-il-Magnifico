@@ -21,6 +21,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
@@ -62,6 +64,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	private static Game game;
 	
+	private final static Logger LOGGER = Logger.getLogger(ConnectionManagerImpl.class.getName());
 	
 	//singleton
 	public static ConnectionManagerImpl getConnectionManager() throws RemoteException{
@@ -105,8 +108,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						try {
 							connectionManagerSocketServer.wait();
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
 				}
@@ -137,8 +139,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}
 		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 		
@@ -161,8 +162,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					try {
 						connectionManagerRmiServerImpl.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
 					}
 				}
 			}
@@ -179,8 +179,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						try {
 							connectionManagerRmiServerImpl.wait();
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
 				}
@@ -207,8 +206,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}
 		}catch (IOException| ClassNotFoundException e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 	
@@ -227,8 +225,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						try {
 							startGame(temporaryUsers);
 						} catch (ClassNotFoundException | IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
 				}, 10000);//10 seconds, then the game starts
@@ -277,8 +274,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							try {
 								listener.wait();
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								LOGGER.log(Level.SEVERE, e.getMessage(),e);
 							}
 						}
 					}
@@ -328,8 +324,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							try {
 								listener.wait();
 							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								LOGGER.log(Level.SEVERE, e.getMessage(),e);
 							}
 						}
 					}
@@ -395,8 +390,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						try {
 							listener.wait();
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
 				}
@@ -455,8 +449,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						try {
 							listener.wait();
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
 				}
@@ -643,8 +636,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				try {
 					clientListener.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 				if (clientListener.getTimeExpired()){
 					clientListener.setTimeExpired(false);
@@ -675,8 +667,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				try {
 					listener.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 				if (listener.getTimeExpired()){
 					listener.setTimeExpired(false);

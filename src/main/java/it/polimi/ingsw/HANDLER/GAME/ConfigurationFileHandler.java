@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.google.gson.*;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
@@ -71,12 +73,14 @@ import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.CARD.PermanentLeaderCard;
 
 public class ConfigurationFileHandler {
+	
+	private final static Logger LOGGER = Logger.getLogger(ConfigurationFileHandler.class.getName());
+	
 	public static void main(String[] args) {
 		try {
 			DataFromFile data = ConfigurationFileHandler.getData();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 	public static DataFromFile getData() throws FileNotFoundException{
@@ -100,7 +104,7 @@ public class ConfigurationFileHandler {
 			Gson gsonToSerialize = new GsonBuilder().enableComplexMapKeySerialization().setPrettyPrinting().create();
 			return gsonToSerialize.toJson(object);
 		} catch(Exception e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			return "error"; //TODO da vedere cosa ritornare
 		}
 	}
@@ -215,7 +219,7 @@ public class ConfigurationFileHandler {
 			//return gsonToDeserialize.fromJson(inJson, Character.class);
 			
 		} catch (Exception e){
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
 			//return new Character("", null, 1, null, null);
 			//return new Territory("", 2, 1, null, null);

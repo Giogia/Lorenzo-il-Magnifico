@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Zone;
@@ -24,6 +26,8 @@ public class Game implements Serializable, Runnable{
 	private DataFromFile data;
 	private ArrayList<Player> skipActionPlayers = new ArrayList<>();
 	
+	private final static Logger LOGGER = Logger.getLogger(Game.class.getName());
+	
 
 	public void run(){
 		try {
@@ -37,8 +41,7 @@ public class Game implements Serializable, Runnable{
 			RoundManagerHandler.handle(board, players);
 			EndGameHandler.handle(board);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 	

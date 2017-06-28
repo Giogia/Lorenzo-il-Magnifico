@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gui;
 
+import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -8,6 +9,8 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
@@ -45,6 +48,8 @@ public class GuiRmiView extends Application implements CliRmi{
 	private volatile static GuiController controller;
 	private static Game game;
 	
+	private final static Logger LOGGER = Logger.getLogger(GuiRmiView.class.getName());
+	
 	public static GuiRmiCallback getCallback() {
 		return callback;
 	}
@@ -58,25 +63,21 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 	
 	@Override
-	public void start(Stage primaryStage) {
-		try {
-			synchronized (lock) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-			controller = new GuiController();
-			loader.setController(controller);
-			
-			System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
-			controller.setLoader(loader);
-			lock.notifyAll();
-			System.out.println("notifico tutti");
-			Scene scene = new Scene(loader.load());
-			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
-			primaryStage.setTitle("Lorenzo Il Magnifico");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
+	public void start(Stage primaryStage) throws IOException {
+		synchronized (lock) {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+		controller = new GuiController();
+		loader.setController(controller);
+		
+		System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
+		controller.setLoader(loader);
+		lock.notifyAll();
+		System.out.println("notifico tutti");
+		Scene scene = new Scene(loader.load());
+		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
+		primaryStage.setTitle("Lorenzo Il Magnifico");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		}
 	}
 	
@@ -101,7 +102,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					wait();
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 			}
 		}
@@ -268,8 +269,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					lock.wait();
 					System.out.println("mi sono risvegliato");
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 			}
 		}
