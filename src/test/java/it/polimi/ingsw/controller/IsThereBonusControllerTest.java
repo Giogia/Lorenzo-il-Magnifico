@@ -11,25 +11,21 @@ import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CONTROLLER.IsThereBonusController;
+import it.polimi.ingsw.GC_15.MyException;
 
 public class IsThereBonusControllerTest {
 
 	@Test
 	public void test() throws Exception {
-		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
+		ArrayList<ImmediateBonus> boardBonus = null;
 		ImmediateBonus bonus = new CouncilPrivilegeBonus(2);
-		DevelopmentCard developmentCard = null;
 		TowerFloor towerFloor = new TowerFloor(boardBonus, 4);
 		
-		try{
-		IsThereBonusController.check(towerFloor);
-		}
-		catch(Exception exc){
-			assertEquals(exc.getMessage(),"there is no bonus in this position");
-		}
+		assertFalse(IsThereBonusController.check(towerFloor));
 		
+		boardBonus = new ArrayList<>();
 		boardBonus.add(bonus);
-		assertEquals(true, IsThereBonusController.check(towerFloor));
+		towerFloor = new TowerFloor(boardBonus, 0);
+		assertTrue( IsThereBonusController.check(towerFloor));
 	}
-
 }

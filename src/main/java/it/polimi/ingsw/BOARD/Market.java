@@ -21,7 +21,7 @@ public class Market extends Zone{
 
 	}
 	public Market() {
-			super("market");
+		super("market");
 	}
 	
 	@Override

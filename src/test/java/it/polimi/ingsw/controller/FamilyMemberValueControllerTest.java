@@ -9,33 +9,25 @@ import it.polimi.ingsw.CONTROLLER.FamilyMemberValueController;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 
 public class FamilyMemberValueControllerTest {
 
-	@Test
+	@Test (expected = MyException.class)
 	public void test() throws Exception {
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);
 		FamilyMember familyMember = new FamilyMember(dice, player);
 		familyMember.setValue(5);
-		ArrayList<ImmediateBonus> boardBonus = new ArrayList<>();
-		Position position1 = new Position(boardBonus, 3);
+		Position position1 = new Position(null, 3);
 		
 		assertEquals(true, FamilyMemberValueController.check(familyMember, position1));
 		
-		Position position2 = new Position(boardBonus, 7);
+		Position position2 = new Position(null, 7);
 		
-		assertEquals(5,familyMember.getValue());
-		assertEquals(7,position2.getDiceRequirement());
-		
-		try{
-			FamilyMemberValueController.check(familyMember, position2);
-		}
-		catch(Exception exc){
-			assertEquals(exc.getMessage(),"The Family Member Value is not enough!");
-		}
+		assertEquals(new MyException("The Family Member Value is not enough!"), FamilyMemberValueController.check(familyMember, position2));
 	}
 
 }

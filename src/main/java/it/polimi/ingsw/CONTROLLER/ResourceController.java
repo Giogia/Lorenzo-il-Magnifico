@@ -8,9 +8,6 @@ import it.polimi.ingsw.RESOURCE.*;
 
 public class ResourceController {
 	
-	
-	//TODO per Michele se non ti piace come sta scritto dividiamo quei metodi lunghi in metodi privati
-	
 	/* Fa un ciclo delle risorse del player per ogni risorsa del costo. 
 	 * ogni volta che le risorse sono dello stesso tipo controlla
 	 * Se le risorse del player al netto del valore dell'unità sono minori dell'amount del cost

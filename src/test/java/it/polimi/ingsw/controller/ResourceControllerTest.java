@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import it.polimi.ingsw.CONTROLLER.ResourceController;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Coins;
@@ -21,17 +22,13 @@ import it.polimi.ingsw.RESOURCE.Wood;
 
 public class ResourceControllerTest {
 
-	@Test
+	@Test(expected = MyException.class)
 	public void test() throws Exception {
 		Player player = new Player("player", Color.BLUE);
-		player.getPersonalBoard().getResource(ResourceType.coins).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.wood).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.servants).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.stones).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.faithPoints).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.militaryPoints).addAmount(2);
-		player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(2);
-
+		
+		for (ResourceType type : ResourceType.values() ) {
+			player.getPersonalBoard().getResource(type).addAmount(2);
+		}
 		
 		ArrayList<Resource> resources = new ArrayList<>();
 		resources.add(new Coins(2,1));
@@ -42,23 +39,12 @@ public class ResourceControllerTest {
 		resources.add(new MilitaryPoints(2,1));
 		resources.add(new VictoryPoints(2,1));
 		
-		assertEquals(true,ResourceController.check(player, resources));
+		assertTrue(ResourceController.check(player, resources));
 		
-		player.getPersonalBoard().getResource(ResourceType.coins).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.wood).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.servants).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.stones).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.faithPoints).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.militaryPoints).addAmount(-2);
-		player.getPersonalBoard().getResource(ResourceType.victoryPoints).addAmount(-2);
-		
-		
-		try{
-			ResourceController.check(player, resources);
+		for (ResourceType type : ResourceType.values() ) {
+			player.getPersonalBoard().getResource(type).addAmount(-2);
 		}
-		catch(Exception exc){
-			assertEquals(exc.getMessage(),"The resources are not enough");
-		}
+		assertEquals(ResourceController.check(player, resources) ,new MyException("The resources are not enough"));
 	}
 
 }

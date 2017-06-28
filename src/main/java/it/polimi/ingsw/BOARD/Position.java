@@ -71,6 +71,10 @@ public class Position implements Serializable{
 	public ArrayList<FamilyMember> getFamilyMembers() {
 		return familyMembers;
 	}
+	
+	public void setFamilyMembers(ArrayList<FamilyMember> familyMembers) {
+		this.familyMembers = familyMembers;
+	}
 
 	public String getDescription() {
 		String description = "Family Member minimum value: " + diceRequirement + "\n";

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import it.polimi.ingsw.BOARD.Market;
+import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.CONTROLLER.ZoneAlreadyOccupiedController;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
@@ -16,21 +17,22 @@ public class ZoneAlreadyOccupiedControllerTest {
 
 	@Test
 	public void test() throws Exception{
+		Market market =new Market();
+		Position[] positions = new Position[4];
+		
+		for (int i = 0; i < positions.length; i++){
+			positions[i] = new Position(null, 1);
+		}
+		
+		market.setPosition(positions);
+		
+		assertTrue(ZoneAlreadyOccupiedController.check(market));
+		
 		Player player = new Player("player", Color.BLUE);
 		Dice dice = new Dice(DiceColour.Black);
 		FamilyMember familyMember = new FamilyMember(dice, player);
-		Market market =new Market();
-		
-		assertEquals(true, ZoneAlreadyOccupiedController.check(market));
 		market.getPosition(0).addFamilyMember(familyMember);
 		
-		
-		try{
-			ZoneAlreadyOccupiedController.check(market);
-		}
-		catch(Exception exc){
-			assertEquals(exc.getMessage(),"This zone is already occupied");
-		}
+		assertFalse(ZoneAlreadyOccupiedController.check(market));
 	}
-
-}//TODO sistemare NullPointerException
+}
