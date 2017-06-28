@@ -22,8 +22,8 @@ public class UsernameWindow implements Runnable{
     @FXML
     void UsernameConfirm (ActionEvent event) throws RemoteException {
     	String username = nameChosen.getText();
-    	//GuiRmiView.getCallback().answer(username);
-    	GuiSocketView.getCallback().answer(username);
+    	GuiRmiView.getCallback().answer(username);
+    	//GuiSocketView.getCallback().answer(username);
     	Node  source = (Node) event.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();
