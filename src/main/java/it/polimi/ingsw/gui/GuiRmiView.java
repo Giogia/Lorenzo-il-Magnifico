@@ -181,14 +181,24 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void startTurn(String playerName) throws RemoteException {
-		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				controller.setChatLabel(playerName +" is your turn!");
+			}
+		});
 	}
 
 
 	@Override
 	public void turnChoice() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.turnChoice();
+			}
+		});
 	}
 
 	@Override
@@ -248,8 +258,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void cantPassTurn() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("You can't pass the turn, you have to place at least one family member.");
+			}
+		});
 	}
 
 	@Override
@@ -285,8 +299,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void hasWon(String winner) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel(winner + " has won the game!");
+			}
+		});
 	}
 
 	@Override
@@ -303,8 +321,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void catchException(String message) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel(message);
+			}
+		});
 	}
 
 	@Override
@@ -351,20 +373,32 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void leftGame(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel(name + " left the game!");
+			}
+		});
 	}
 
 
 	@Override
 	public void reconnectedToGame(String name) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel(name + " has reconnected himself to the game!");
+			}
+		});
 	}
 
 	@Override
 	public void timeExpired() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("TIME IS EXPIRED!");
+			}
+		});
 	}
 }

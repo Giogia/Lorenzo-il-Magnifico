@@ -17,10 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
@@ -29,9 +32,6 @@ public class GuiController implements Initializable {
 	
 	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
-	ObjectProperty<Image> excommunicationTile1Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> excommunicationTile2Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> excommunicationTile3Property = new SimpleObjectProperty<>();
 	
 	ObjectProperty<Image> territory1Property = new SimpleObjectProperty<>();
 	ObjectProperty<Image> territory2Property = new SimpleObjectProperty<>();
@@ -64,6 +64,9 @@ public class GuiController implements Initializable {
 	
 	@FXML
     private Tab tabPlayer4;
+	
+	@FXML
+	private Label chatLabel;
 	
 	@FXML
 	private Label getDescription;
@@ -182,20 +185,35 @@ public class GuiController implements Initializable {
 
     @FXML
     private Button action3;
+    
+    @FXML
+    private TextArea chatText;
 
     public void setLoader(FXMLLoader loader){
     	this.loader = loader;
     }
     
+    public void turnChoice(){
+    	action1.setText("Place Family Member");
+    	action2.setText("Pass the turn");
+    	action3.setVisible(false);
+    	action4.setVisible(false);
+    	action5.setVisible(false);
+    }
+    
+    public void setChatLabel(String textToAdd){
+    	chatText.setText(chatText.getText() + "\n"+"Lorenzo: " + textToAdd);
+    }
+    
     @FXML
     void towerFloorCkd(MouseEvent event) {
-    	System.out.println(event.getPickResult().getIntersectedNode().getId());
-    	
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
     		imageZoomed.setImage(positionClicked.getImage());
-    		
-    		getDescription.setText("TODO");
+    		if(positionClicked.getId().equals("territory4")){
+    			String description = GuiRmiView.getGame().getBoard().getTower(DevelopmentCardType.territory).getPosition(3).getDescription();
+    			getDescription.setText(description);
+    		}
     	}else{//there isn't a card
 			Image image = new Image("it/polimi/ingsw/gui/resources/towerFloor.jpeg");
     		imageZoomed.setImage(image);
@@ -206,7 +224,7 @@ public class GuiController implements Initializable {
     
     @FXML
     void actionCkd(MouseEvent event) {
-    	
+    	System.out.println(event.getPickResult().getIntersectedNode().getId());
     }
 
 	public void setMain(GuiSocketView guiSocketView) {
@@ -239,10 +257,6 @@ public class GuiController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Game game = GuiRmiView.getGame();
-		
-		excommunicationTile1.imageProperty().bind(excommunicationTile1Property);
-		excommunicationTile2.imageProperty().bind(excommunicationTile2Property);
-		excommunicationTile3.imageProperty().bind(excommunicationTile3Property);
 		
 		//setting name players
 		Player[] players = game.getPlayers();
