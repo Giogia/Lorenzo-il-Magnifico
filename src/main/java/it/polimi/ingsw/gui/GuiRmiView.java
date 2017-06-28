@@ -55,17 +55,10 @@ public class GuiRmiView extends Application implements CliRmi{
 		return client;
 	}
 	
-<<<<<<< Updated upstream
-=======
 	public static Game getGame() {
 		return game;
 	}
 	
-	public static ConnectionManagerRmiServerImpl getConnectionManagerRmiServerImpl() {
-		return connectionManagerRmiServerImpl;
-	}
-	
->>>>>>> Stashed changes
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -113,12 +106,7 @@ public class GuiRmiView extends Application implements CliRmi{
 				}
 			}
 		}
-<<<<<<< Updated upstream
-		
 		Application.launch();
-=======
-		Application.launch();
->>>>>>> Stashed changes
 	}
 
 	@Override
