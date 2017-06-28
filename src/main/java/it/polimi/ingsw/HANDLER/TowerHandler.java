@@ -38,16 +38,25 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 
 public class TowerHandler {
 
+	
 	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , IOException, TimeExpiredException {
+		
+		//Check if is possible to place the familyMember in this position
 		if (PositionWithoutDevelopmentCardController.check(towerFloor)) {
 			if (ZoneOccupiedBySameColorController.check(zone, familyMember)) {
 				if (EnoughSpaceInPersonalBoard.check(familyMember, towerFloor.getDevelopmentCard())) {
+					
+					//Clone the player resources to check if he has enough resources
 					ArrayList<Resource> playerResources = createCloneArray(familyMember.getPlayer().getPersonalBoard().getResources());
+					
+					//Create a test FamilyMember to check if its value is enough
 					FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
 					testFamilyMember.setValue(familyMember.getValue());
 					ServantsHandler.handle(testFamilyMember, playerResources);
 					ZoneFamilyMemberHandler.handle(zone, testFamilyMember);
 					if (FamilyMemberValueController.check(testFamilyMember, towerFloor)) {
+						
+						//If there is a bonus in the choosen position add that bonus to the cloned resources
 						if (IsThereBonusController.check(towerFloor) && ActivationZoneBonusController.check(zone, familyMember.getPlayer())) {
 							ArrayList<ImmediateBonus> boardBonus = towerFloor.getBoardBonus();
 							ArrayList<Resource> bonusResources = new ArrayList<>();
@@ -57,10 +66,16 @@ public class TowerHandler {
 							}
 							add(playerResources, bonusResources);
 						}
+						
+						//Tower occupied by another familyMember
 						if (!ZoneAlreadyOccupiedController.check(zone)) {
 							addOccupiedCost(playerResources, testFamilyMember.getPlayer());
 						}
+						
+						//Check if can take the Development card 
 						if (checkZone(testFamilyMember, playerResources, towerFloor)) {
+							
+							//Then give to the player the cloned resources, in this way we update the personal resources
 							copyResource(testFamilyMember.getPlayer(), playerResources);
 							testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
 							zone.getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
@@ -73,6 +88,8 @@ public class TowerHandler {
 		return false;
 	}
 
+	
+	//Check if the player can take the development Card
 	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException, IOException, TimeExpiredException {
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
@@ -95,6 +112,8 @@ public class TowerHandler {
 		return true;
 	}
 
+
+	//Check if the player has enough resources to take the Building card
 	private static boolean checkBuildings(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException {
 		Building buildingCard = (Building) towerFloor.getDevelopmentCard();
@@ -111,6 +130,7 @@ public class TowerHandler {
 		}
 	}
 
+	//Check if the player has enough resources to take the Character card
 	private static boolean checkCharacters(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException {
 		Character characterCard = (Character) towerFloor.getDevelopmentCard();
@@ -127,6 +147,8 @@ public class TowerHandler {
 		throw new MyException("You don't have enough resources!");
 	}
 
+
+	//Check if the player has enough resources to take the Venture card
 	private static boolean checkVentures(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException, IOException, TimeExpiredException {
 		Venture ventureCard = (Venture) towerFloor.getDevelopmentCard();
@@ -139,16 +161,21 @@ public class TowerHandler {
 		if (militaryPoints != null)
 			alternativeCost.add(militaryPoints.createClone());
 		int requirement = ventureCard.militaryPointRequirement;
+		
+		//Clone twice the player resources, one for each cost of this type of card
 		ArrayList<Resource> playerResources1 = createCloneArray(playerResources);
 		MilitaryPoints playerMilitaryPoints = (MilitaryPoints) familyMember.getPlayer().getPersonalBoard()
 				.getResource(ResourceType.militaryPoints);
 		ArrayList<Resource> playerResources2 = createCloneArray(playerResources);
+		
+		//Check if the player has some CardCostBonus
 		CardCostHandler.handle(alternativeCost, familyMember.getPlayer(), DevelopmentCardType.venture);
 		CardCostHandler.handle(cost, familyMember.getPlayer(), DevelopmentCardType.venture);
 		if (FakeFamilyMemberHandler.getBoolean()) {
 			subOrZero(cost, FakeFamilyMemberHandler.getCost());
 			subOrZero(alternativeCost, FakeFamilyMemberHandler.getCost());
 		}
+		
 		// If cost or alternativeCost are empty, negate playerResource, in this
 		// way checkResources return false
 		if (!cost.isEmpty()){
@@ -162,6 +189,7 @@ public class TowerHandler {
 		} else{
 			playerResources2 = neg(playerResources2);
 		}
+		
 		// this if else is in this way because if the cost of the ventureCard is
 		// military point, this cost is in requirement
 		if (checkResources(playerResources1)) {
@@ -184,6 +212,7 @@ public class TowerHandler {
 	}
 
 
+	//Check if the player has enough militaryPoints to take the Territory Card
 	private static boolean checkTerritories(FamilyMember familyMember) throws MyException {
 		ArrayList<CardContainer> cardContainers = familyMember.getPlayer().getPersonalBoard().getCardContainers();
 		if (TerritoryCardRequirementController.check(familyMember.getPlayer())){
@@ -203,6 +232,7 @@ public class TowerHandler {
 		return true;
 	}
 
+	//Give to the player these resources
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for (Resource playerResource : playerResources) {
@@ -214,6 +244,7 @@ public class TowerHandler {
 		}
 	}
 
+	//Add the cost for occupied tower and check if the player has some OccupiedTowerCostBonus
 	private static void addOccupiedCost(ArrayList<Resource> playerResources, Player player) {
 		Coins occupiedCost = new Coins(3, 1);
 		OccupiedTowerCostBonusHandler.handle(occupiedCost, player);
@@ -222,6 +253,7 @@ public class TowerHandler {
 		add(playerResources, neg(bonusResources));
 	}
 
+	//For each resource add the bonus resource to the player resource
 	private static void add(ArrayList<Resource> playerResources, ArrayList<Resource> bonusResources) {
 		for (Resource resource : bonusResources) {
 			for (Resource playerResource : playerResources) {
@@ -232,6 +264,7 @@ public class TowerHandler {
 		}
 	}
 
+	//Negate the value of every resource from this array
 	private static ArrayList<Resource> neg(ArrayList<Resource> resources) {
 		ArrayList<Resource> negResources = new ArrayList<>();
 		for (Resource resource : resources) {
@@ -244,6 +277,7 @@ public class TowerHandler {
 		return negResources;
 	}
 
+	//Check if the value of each resource is positive
 	private static boolean checkResources(ArrayList<Resource> resources) {
 		for (Resource resource : resources) {
 			if (resource.getAmount() < 0)
@@ -252,6 +286,8 @@ public class TowerHandler {
 		return true;
 	}
 
+	//Subtract from the value of each resource of cost, the value of the same resource of cost2
+	//If some value become negative, it is setted to 0
 	private static void subOrZero(ArrayList<Resource> cost, ArrayList<Resource> cost2) {
 		add(cost, neg(cost2));
 		for (Resource resource : cost) {
@@ -261,6 +297,7 @@ public class TowerHandler {
 		}
 	}
 
+	//Clone an arraylist of resources
 	private static ArrayList<Resource> createCloneArray(ArrayList<Resource> playerResources) {
 		ArrayList<Resource> newArray = new ArrayList<>();
 		for (Resource resource : playerResources) {
