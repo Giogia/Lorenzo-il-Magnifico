@@ -37,9 +37,7 @@ import javafx.stage.Stage;
 
 public class GuiRmiView extends Application implements CliRmi{
 	volatile boolean wait = true;
-	Scene scene;
-	Scene sceneGame;
-	Stage primaryStage;
+	private static Object lock = new Object();
 	private final static int RMI_PORT = 52365;
 	private static final String NAME = "connectionManager";
 	private static GuiRmiView client;
@@ -62,15 +60,16 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			synchronized (GuiRmiView.client) {
+			synchronized (lock) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
 			controller = new GuiController();
 			loader.setController(controller);
 			
-			System.out.println("sono nello start e ho settato il controller");
+			System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
 			controller.setLoader(loader);
-			GuiRmiView.client.notifyAll();
-			scene = new Scene(loader.load());
+			lock.notifyAll();
+			System.out.println("notifico tutti");
+			Scene scene = new Scene(loader.load());
 			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			primaryStage.setTitle("Lorenzo Il Magnifico");
 			primaryStage.setScene(scene);
@@ -262,22 +261,26 @@ public class GuiRmiView extends Application implements CliRmi{
 		}
 		
 		System.out.println("sono in round begins e il controller:" + controller);
+		while(controller == null){
+			synchronized (lock) {
+				try {
+					System.out.println("vado a dormire");
+					lock.wait();
+					System.out.println("mi sono risvegliato");
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println("controller: " + controller);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				while(controller == null){
-					synchronized (GuiRmiView.client) {
-						try {
-							GuiRmiView.client.wait();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-					}
-				}
 				controller.setCards(cards);
 			}
 		});
+		System.out.println("ho finito con il platform");
 	}
 
 	@Override
