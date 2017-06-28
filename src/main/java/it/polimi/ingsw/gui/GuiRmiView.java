@@ -10,9 +10,12 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
@@ -33,7 +36,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class GuiRmiView extends Application implements CliRmi{
-	boolean wait = true;
+	volatile boolean wait = true;
 	Scene scene;
 	Scene sceneGame;
 	Stage primaryStage;
@@ -41,6 +44,8 @@ public class GuiRmiView extends Application implements CliRmi{
 	private static final String NAME = "connectionManager";
 	private static GuiRmiView client;
 	private static GuiRmiCallback callback;
+	private volatile static GuiController controller;
+	private static Game game;
 	
 	public static GuiRmiCallback getCallback() {
 		return callback;
@@ -50,20 +55,34 @@ public class GuiRmiView extends Application implements CliRmi{
 		return client;
 	}
 	
+<<<<<<< Updated upstream
+=======
+	public static Game getGame() {
+		return game;
+	}
+	
+	public static ConnectionManagerRmiServerImpl getConnectionManagerRmiServerImpl() {
+		return connectionManagerRmiServerImpl;
+	}
+	
+>>>>>>> Stashed changes
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			synchronized (GuiRmiView.client) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
+			controller = new GuiController();
+			loader.setController(controller);
+			
+			System.out.println("sono nello start e ho settato il controller");
+			controller.setLoader(loader);
+			GuiRmiView.client.notifyAll();
 			scene = new Scene(loader.load());
 			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
-			
-			GuiController controller = new GuiController();
-			loader.setController(controller);
-			controller.setLoader(loader);
-			
 			primaryStage.setTitle("Lorenzo Il Magnifico");
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			}
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -94,8 +113,12 @@ public class GuiRmiView extends Application implements CliRmi{
 				}
 			}
 		}
+<<<<<<< Updated upstream
 		
 		Application.launch();
+=======
+		Application.launch();
+>>>>>>> Stashed changes
 	}
 
 	@Override
@@ -136,11 +159,14 @@ public class GuiRmiView extends Application implements CliRmi{
 	
 	@Override
 	public void startGame(Game game){
+		
+		this.game = game;
 		//starting gui
 		synchronized (this) {
 			wait = false;
 			notifyAll();
 		}
+		
 	}
 	
 	@Override
@@ -167,7 +193,6 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void startTurn(String playerName) throws RemoteException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -240,9 +265,31 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 
 	@Override
-	public void roundBegins() throws RemoteException {
-		// TODO Auto-generated method stub
+	public void roundBegins(Board board) throws RemoteException {
+		ArrayList<DevelopmentCard> cards = new ArrayList<>();
+		for(int typeTower = 0; typeTower < 4; typeTower++){
+			for (TowerFloor floor : (TowerFloor[]) board.getTower(typeTower).getPositions()) {
+				cards.add(floor.getDevelopmentCard());
+			}
+		}
 		
+		System.out.println("sono in round begins e il controller:" + controller);
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				while(controller == null){
+					synchronized (GuiRmiView.client) {
+						try {
+							GuiRmiView.client.wait();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				controller.setCards(cards);
+			}
+		});
 	}
 
 	@Override

@@ -63,7 +63,7 @@ public interface CliRmi extends Remote {
 	
 	void cantPassTurn() throws RemoteException;
 	
-	void roundBegins() throws RemoteException;
+	void roundBegins(Board board) throws RemoteException;
 	
 	void hasWon(String winner) throws RemoteException;
 

@@ -1,55 +1,69 @@
 package it.polimi.ingsw.gui;
 
-import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.rmi.RemoteException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ResourceBundle;
 
-import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.Position;
-import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.LeaderCard;
-import it.polimi.ingsw.GC_15.Dice;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
-import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.PersonalBoard;
-import it.polimi.ingsw.GC_15.PersonalBonusTile;
-import it.polimi.ingsw.RESOURCE.Resource;
-import it.polimi.ingsw.view.CliRmi;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.Player;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Tab;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
 
-public class GuiController extends Application implements ActionListener {
+public class GuiController implements Initializable {
 	
 	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
+	ObjectProperty<Image> excommunicationTile1Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> excommunicationTile2Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> excommunicationTile3Property = new SimpleObjectProperty<>();
+	
+	ObjectProperty<Image> territory1Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> territory2Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> territory3Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> territory4Property = new SimpleObjectProperty<>();
+	
+	ObjectProperty<Image> building1Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> building2Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> building3Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> building4Property = new SimpleObjectProperty<>();
+	
+	ObjectProperty<Image> character1Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> character2Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> character3Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> character4Property = new SimpleObjectProperty<>();
+	
+	ObjectProperty<Image> venture1Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> venture2Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> venture3Property = new SimpleObjectProperty<>();
+	ObjectProperty<Image> venture4Property = new SimpleObjectProperty<>();
+	
+	@FXML
+    private Tab tabPlayer1;
+
+	@FXML
+    private Tab tabPlayer2;
+	
+	@FXML
+    private Tab tabPlayer3;
+	
+	@FXML
+    private Tab tabPlayer4;
 	
 	@FXML
 	private Label getDescription;
@@ -142,13 +156,13 @@ public class GuiController extends Application implements ActionListener {
     private Rectangle dice3;
 
     @FXML
-    private Rectangle excommunicationTile1;
+    private ImageView excommunicationTile1;
 
     @FXML
-    private Rectangle excommunicationTile2;
+    private ImageView excommunicationTile2;
 
     @FXML
-    private Rectangle excommunicationTile3;
+    private ImageView excommunicationTile3;
     
 
     @FXML
@@ -173,26 +187,6 @@ public class GuiController extends Application implements ActionListener {
     	this.loader = loader;
     }
     
-    @Override
-	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-			Scene scene = new Scene(loader.load());
-			scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
-			
-			GuiController controller = new GuiController();
-			loader.setController(controller);
-			controller.setLoader(loader);
-			
-			primaryStage.setTitle("Lorenzo Il Magnifico");
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-    
     @FXML
     void towerFloorCkd(MouseEvent event) {
     	System.out.println(event.getPickResult().getIntersectedNode().getId());
@@ -215,14 +209,72 @@ public class GuiController extends Application implements ActionListener {
     	
     }
 
-	@Override
-	public void actionPerformed(java.awt.event.ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void setMain(GuiSocketView guiSocketView) {
+		this.guiSocketView = guiSocketView;
+	}
+	
+	public void setCards(ArrayList<DevelopmentCard> cards){
+		territory1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(0).getName() + ".png"));
+		territory2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(1).getName() + ".png"));
+		territory3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(2).getName() + ".png"));
+		territory4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(3).getName() + ".png"));
+		
+		building1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(4).getName() + ".png"));
+		building2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(5).getName() + ".png"));
+		building3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(6).getName() + ".png"));
+		building4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(7).getName() + ".png"));
+		
+		character1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(8).getName() + ".png"));
+		character2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(9).getName() + ".png"));
+		character3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(10).getName() + ".png"));
+		character4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(11).getName() + ".png"));
+		
+		venture1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(12).getName() + ".png"));
+		venture2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(13).getName() + ".png"));
+		venture3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(14).getName() + ".png"));
+		venture4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(15).getName() + ".png"));
 		
 	}
 
-	public void setMain(GuiSocketView guiSocketView) {
-		this.guiSocketView = guiSocketView;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		Game game = GuiRmiView.getGame();
 		
+		excommunicationTile1.imageProperty().bind(excommunicationTile1Property);
+		excommunicationTile2.imageProperty().bind(excommunicationTile2Property);
+		excommunicationTile3.imageProperty().bind(excommunicationTile3Property);
+		
+		//setting name players
+		Player[] players = game.getPlayers();
+		tabPlayer1.setText(players[0].getName());
+		tabPlayer2.setText(players[1].getName());
+		if(players.length >2){
+			tabPlayer3.setText(players[2].getName());
+		}else tabPlayer3.setDisable(true);;
+		
+		if(players.length >3){
+			tabPlayer4.setText(players[3].getName());
+		}else tabPlayer4.setDisable(true);
+		
+		//setting cards binding
+		territory1.imageProperty().bind(territory1Property);
+		territory2.imageProperty().bind(territory2Property);
+		territory3.imageProperty().bind(territory3Property);
+		territory4.imageProperty().bind(territory4Property);
+		
+		building1.imageProperty().bind(building1Property);
+		building2.imageProperty().bind(building2Property);
+		building3.imageProperty().bind(building3Property);
+		building4.imageProperty().bind(building4Property);
+		
+		character1.imageProperty().bind(character1Property);
+		character2.imageProperty().bind(character2Property);
+		character3.imageProperty().bind(character3Property);
+		character4.imageProperty().bind(character4Property);
+		
+		venture1.imageProperty().bind(venture1Property);
+		venture2.imageProperty().bind(venture2Property);
+		venture3.imageProperty().bind(venture3Property);
+		venture4.imageProperty().bind(venture4Property);
 	}
 }

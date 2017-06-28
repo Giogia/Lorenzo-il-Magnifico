@@ -913,7 +913,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			if (user.getCliRmi() != null){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
-					client.roundBegins();
+					client.roundBegins(player.getBoard());
 				}catch(ConnectException e){
 					//user disconnected
 				}
@@ -1233,7 +1233,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public void startGame(Game thisGame) throws IOException{
 		for (Player player : thisGame.getPlayers()) {
-			System.out.println(player);
 			User user = findUserByPlayer(player);
 			if (user.getCliRmi() != null){//player is a rmi user
 				user.getCliRmi().startGame(thisGame);

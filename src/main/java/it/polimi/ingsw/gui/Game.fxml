@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1900.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gui.GuiController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1900.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -45,7 +45,7 @@
          <children>
             <TabPane layoutX="464.0" layoutY="304.0" prefHeight="370.0" prefWidth="886.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Rugg">
+                <Tab fx:id="tabPlayer1" text="tab1">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -57,11 +57,21 @@
                            </children></AnchorPane>
                   </content>
                 </Tab>
-                <Tab text="Giogia">
+                <Tab fx:id="tabPlayer2" text="tab2">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                   </content>
                 </Tab>
+                  <Tab fx:id="tabPlayer3" text="tab3">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabPlayer4" text="tab4">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
               </tabs>
             </TabPane>
             <ImageView fx:id="imageZoomed" fitHeight="287.0" fitWidth="199.0" layoutX="464.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
@@ -102,25 +112,18 @@
             <Rectangle fx:id="dice1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="258.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
             <Rectangle fx:id="dice2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="307.0" layoutY="630.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
             <Rectangle fx:id="dice3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="355.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
-            <Rectangle fx:id="excommunicationTile1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="86.0" layoutY="434.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="36.0" />
-            <Rectangle fx:id="excommunicationTile2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="68.0" layoutX="123.0" layoutY="440.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-            <Rectangle fx:id="excommunicationTile3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="66.0" layoutX="164.0" layoutY="435.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="38.0" />
-            <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="57.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@resources/devcards_f_en_c_1.png" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="57.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="114.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="territory2" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="207.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="territory1" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="300.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character4" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="18.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character3" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character2" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character1" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="297.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building4" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="18.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building3" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building2" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building1" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="302.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="building4" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="18.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="building3" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="building2" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="building1" fitHeight="89.0" fitWidth="55.0" layoutX="123.0" layoutY="297.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="character4" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="18.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="character3" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="character2" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="character1" fitHeight="89.0" fitWidth="55.0" layoutX="226.0" layoutY="302.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="venture4" fitHeight="89.0" fitWidth="55.0" layoutX="325.0" layoutY="18.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="venture3" fitHeight="89.0" fitWidth="55.0" layoutX="325.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="venture2" fitHeight="89.0" fitWidth="55.0" layoutX="325.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
@@ -132,6 +135,9 @@
                </font>
             </Label>
             <Button fx:id="action3" layoutX="894.0" layoutY="152.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="201.0" text="Button" />
+            <ImageView fx:id="excommunicationTile1" fitHeight="74.0" fitWidth="35.0" layoutX="86.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excommunicationTile2" fitHeight="74.0" fitWidth="35.0" layoutX="127.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excommunicationTile3" fitHeight="74.0" fitWidth="35.0" layoutX="165.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>

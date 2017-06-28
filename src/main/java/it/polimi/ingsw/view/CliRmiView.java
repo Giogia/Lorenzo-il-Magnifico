@@ -13,6 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.Bonus;
@@ -192,7 +193,7 @@ public class CliRmiView implements CliRmi{
 		
 	}
 	
-	public void roundBegins(){
+	public void roundBegins(Board board){
 		System.out.println("New round!");
 	}
 	
