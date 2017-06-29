@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextArea?>
@@ -139,15 +138,7 @@
             <ImageView fx:id="excommunicationTile1" fitHeight="74.0" fitWidth="35.0" layoutX="86.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excommunicationTile2" fitHeight="74.0" fitWidth="35.0" layoutX="127.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excommunicationTile3" fitHeight="74.0" fitWidth="35.0" layoutX="165.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
-            <ScrollPane layoutX="1126.0" layoutY="52.0" prefHeight="200.0" prefWidth="224.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <TextArea fx:id="chatText" layoutY="1.0" prefHeight="192.0" prefWidth="200.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
+            <TextArea fx:id="chatText" layoutX="1127.0" layoutY="56.0" prefHeight="192.0" prefWidth="223.0" />
          </children>
       </Pane>
    </center>
