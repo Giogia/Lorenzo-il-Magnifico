@@ -1,31 +1,12 @@
 package it.polimi.ingsw.HANDLER.GAME;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.*;
-import it.polimi.ingsw.BONUS.ADVANCED.ActivationZoneBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.AddCardCostBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.CanFamilyMemberBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.CopyBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.EndGameCardBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerCostBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerResourceBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.OrderBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentAddFamilyMemberBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentAddResourceBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentMultFamilyMemberBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus;
-import it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus;
+import it.polimi.ingsw.BONUS.ADVANCED.*;
 import it.polimi.ingsw.CARD.*;
 import it.polimi.ingsw.CARD.Character;
 import it.polimi.ingsw.GC_15.*;

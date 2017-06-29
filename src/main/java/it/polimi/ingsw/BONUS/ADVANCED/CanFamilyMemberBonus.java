@@ -13,6 +13,10 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 
 public class CanFamilyMemberBonus extends PermanentBonus{
+	//usato in differenti casi:
+	//o per vedere se il player ha un bonus che gli permette di andare in un posto già occupato (e quindi si usa occupiedYet)
+	//o quando bisogna controllare se ha una scomunica che non gli permette di andare in un posto (si usa l'HashMap)
+	
 	//di default false: se è occupato il familyMember non può andarci
 	private boolean occupiedYet;
 	//particolare scomunica: di default true
