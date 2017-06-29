@@ -147,14 +147,12 @@ public class GuiRmiView extends Application implements CliRmi{
 	
 	@Override
 	public void startGame(Game game){
-		
 		this.game = game;
 		//starting gui
 		synchronized (this) {
 			wait = false;
 			notifyAll();
 		}
-		
 	}
 	
 	@Override
@@ -182,7 +180,6 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void startTurn(String playerName) throws RemoteException {
 		Platform.runLater(new Runnable() {
-			
 			@Override
 			public void run() {
 				controller.setChatLabel(playerName +" is your turn!");
@@ -203,8 +200,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void moveAlreadyDone() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("You have already positioned a family member. Choose another action.");
+			}
+		});
 	}
 
 	@Override
