@@ -1,5 +1,6 @@
 package it.polimi.ingsw.manager;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -24,6 +25,8 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.security.auth.login.Configuration;
+
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BONUS.ResourceBonus;
@@ -38,6 +41,8 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
+import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
 import it.polimi.ingsw.view.CliRmiView;
@@ -56,15 +61,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	//are the socket users that have insert their username and all rmi users
 	private static List<User> usersReady = new ArrayList<>();  
 	private static List<User> usersInGame = new ArrayList<>();
-	
 	//contains players disconnected from any game running on the server
 	private static List<User> usersDisconnected = new ArrayList<>();
-	
-	
 	private ExecutorService executor = Executors.newCachedThreadPool();
 	private static Game game;
-	
 	private final static Logger LOGGER = Logger.getLogger(ConnectionManagerImpl.class.getName());
+	private static int timerTurn;
+	private static int timerBeforeStartGame;
+	
 	
 	//singleton
 	public static ConnectionManagerImpl getConnectionManager() throws RemoteException{
@@ -75,6 +79,14 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 	
 	private ConnectionManagerImpl() throws RemoteException {
+		try {
+			//in file the timer is in seconds
+			timerTurn = ConfigurationFileHandler.getData().getTimerTurn() * 1000; 
+			timerBeforeStartGame = ConfigurationFileHandler.getData().getTimerBeforeStartGame() * 1000;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
@@ -228,7 +240,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							LOGGER.log(Level.SEVERE, e.getMessage(),e);
 						}
 					}
-				}, 10000);//10 seconds, then the game starts
+				}, timerBeforeStartGame);//timer then the game starts
 			}
 			//if there are 4 users, the game must start
 			if(usersReady.size() == 4){
@@ -480,6 +492,10 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				return availableColors.get(0);
 			}
 		}
+	}
+	
+	public static int getTimerTurn() {
+		return timerTurn;
 	}
 	
 	public static List<User> getUsers() {

@@ -5740,5 +5740,7 @@
     "type": "OncePerRoundLeaderCard",
     "name": "Bartolomeo Colleoni"
   }
-]
+],
+    "timerBeforeStartGame": 10,
+    "timerTurn": "30"
 }

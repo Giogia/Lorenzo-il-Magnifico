@@ -57,6 +57,8 @@ import it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus;
 import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.GC_15.Dice;
+import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.RESOURCE.Coins;
@@ -220,7 +222,7 @@ public class ConfigurationFileHandler {
 			
 		} catch (Exception e){
 			LOGGER.log(Level.SEVERE, e.getMessage(),e);
-			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+			return new DataFromFile(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 0, 0);
 			//return new Character("", null, 1, null, null);
 			//return new Territory("", 2, 1, null, null);
 		}

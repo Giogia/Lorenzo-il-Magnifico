@@ -37,10 +37,11 @@ public class DataFromFile implements Serializable{
 	private int[] harvestAreaPositionBonus;
 	private int[] productionAreaPositionBonus;
 	private ArrayList<LeaderCard> leaderCards;
-	//condizioni di attivazione di tutte le zone
-	//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
-	//timeout per la mossa di un giocatore
-
+	private int timerBeforeStartGame;//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
+	private int timerTurn;//timeout per la mossa di un giocatore
+	
+	
+	
 	public DataFromFile(ArrayList<Territory> territories, ArrayList<Character> characters, ArrayList<Venture> ventures,
 			ArrayList<Building> buildings, ArrayList<ExcommunicationTile> excommunicationTiles,
 			ArrayList<PersonalBonusTile> personalBonusTiles, ArrayList<ResourceBonus> councilPrivileges,
@@ -50,7 +51,7 @@ public class DataFromFile implements Serializable{
 			ArrayList<ArrayList<ImmediateBonus>> towerBuildingPositionBonus,
 			ArrayList<ArrayList<ImmediateBonus>> towerVenturePositionBonus, ArrayList<ArrayList<ImmediateBonus>> marketPositionBonus,
 			ArrayList<ImmediateBonus> councilPalaceBonus, int[] harvestAreaPositionBonus,
-			int[] productionAreaPositionBonus, ArrayList<LeaderCard> leaderCards) {
+			int[] productionAreaPositionBonus, ArrayList<LeaderCard> leaderCards, int timerBeforeStartGame,int timerTurn) {
 		super();
 		this.territories = territories;
 		this.characters = characters;
@@ -73,6 +74,16 @@ public class DataFromFile implements Serializable{
 		this.harvestAreaPositionBonus = harvestAreaPositionBonus;
 		this.productionAreaPositionBonus = productionAreaPositionBonus;
 		this.leaderCards = leaderCards;
+		this.timerBeforeStartGame = timerBeforeStartGame;
+		this.timerTurn = timerTurn;
+	}
+	
+	public int getTimerBeforeStartGame() {
+		return timerBeforeStartGame;
+	}
+	
+	public int getTimerTurn() {
+		return timerTurn;
 	}
 	
 	public ArrayList<LeaderCard> getLeaderCards() {

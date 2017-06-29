@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.gui.GuiRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
 
 public class ConnectionManagerSocketServer implements Runnable {
@@ -82,7 +83,7 @@ public class ConnectionManagerSocketServer implements Runnable {
 	public void startTurn(){
 		timer = new Timer();
 		ClientTimer clientTimer = new ClientTimer(this);
-		timer.schedule(clientTimer, 30000);
+		timer.schedule(clientTimer, ConnectionManagerImpl.getTimerTurn());
 	}
 	
 

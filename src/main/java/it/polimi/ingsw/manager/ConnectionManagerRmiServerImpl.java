@@ -58,7 +58,7 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 	public void startTurn(){
 		timer = new Timer();
 		ClientTimer clientTimer = new ClientTimer(this);
-		timer.schedule(clientTimer, 30000);
+		timer.schedule(clientTimer, ConnectionManagerImpl.getTimerTurn());
 	}
 	
 
