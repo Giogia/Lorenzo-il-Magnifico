@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 
 public class TerritoryCardRequirementController {
 	
+	//return true if player need military point requirement to take a territory card from board
 	public static boolean check(Player player){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
 		if (playerBonus != null){

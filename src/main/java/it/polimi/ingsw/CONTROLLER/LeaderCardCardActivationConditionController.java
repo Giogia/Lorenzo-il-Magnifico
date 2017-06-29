@@ -8,7 +8,8 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public class LeaderCardCardActivationConditionController {
-
+	//check if player can activate a leader card 
+	//the activation condition controlled is the number of development card of same type
 	
 	public static boolean check(Player player, HashMap<DevelopmentCardType, Integer> cardActivationCondition)  throws MyException{
 		for(DevelopmentCardType developmentCardType : cardActivationCondition.keySet()){
