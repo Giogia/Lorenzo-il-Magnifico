@@ -105,7 +105,7 @@ public class EndGameHandler {
 	
 	private static String getWinner(Board board){
 		int maxVictoryPoints = -1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
-		Player winner = null;
+		Player winner = new Player("Nessuno", null);
 		for(Player player: board.getGame().getRoundOrder()){
 			int victoryPoints = player.getPersonalBoard().getResource(ResourceType.victoryPoints).getAmount();
 			if(maxVictoryPoints==-1){

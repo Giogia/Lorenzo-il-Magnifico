@@ -84,8 +84,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			timerTurn = ConfigurationFileHandler.getData().getTimerTurn() * 1000; 
 			timerBeforeStartGame = ConfigurationFileHandler.getData().getTimerBeforeStartGame() * 1000;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 	
@@ -277,6 +276,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					clientRmi.askName();
 				}catch(ConnectException e){
 					usersDisconnected.add(tempUser);// user is disconnected
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 				if(!usersDisconnected.contains(tempUser)){ //user is connected, go normal
 					listener.setIsRightTurn(true);
@@ -300,6 +300,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							clientRmi.timeExpired();
 						} catch (ConnectException e){
 							usersDisconnected.add(tempUser);
+							LOGGER.log(Level.INFO, e.getMessage(),e);
 						}
 					}
 					else {
@@ -327,6 +328,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					socketOut.flush();
 				}catch(SocketException e){
 					usersDisconnected.add(tempUser);
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 				if(!usersDisconnected.contains(tempUser)){//user is connected
 					listener.setIsRightTurn(true);
@@ -350,6 +352,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							socketOut.flush();
 						} catch (SocketException e) {
 							usersDisconnected.add(tempUser);
+							LOGGER.log(Level.INFO, e.getMessage(),e);
 						}
 					}
 					else{
@@ -393,6 +396,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				socketOut.flush();
 			}catch(SocketException e){
 				usersDisconnected.add(user);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 			if(!usersDisconnected.contains(user)){
 				listener.setIsRightTurn(true);
@@ -416,6 +420,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						socketOut.flush();
 					} catch(SocketException e){
 						usersDisconnected.add(user);
+						LOGGER.log(Level.INFO, e.getMessage(),e);
 					}
 					return availableColors.get(0);
 				}
@@ -452,6 +457,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				client.askColor(colors);
 			}catch (ConnectException e) {
 				usersDisconnected.add(user);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 			if(!usersDisconnected.contains(user)){
 				listener.setIsRightTurn(true);
@@ -473,6 +479,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						user.getCliRmi().timeExpired();
 					} catch (ConnectException e){
 						usersDisconnected.add(user);
+						LOGGER.log(Level.INFO, e.getMessage(),e);
 					}
 					return availableColors.get(0);
 				}
@@ -486,6 +493,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					}
 				}catch(NumberFormatException e){
 					client.wrongInput();
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 			}else{//user is disconnected
 				usersDisconnected.remove(user);//remove in user disconnected so the user has the opportunity of reconnect
@@ -518,6 +526,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}catch(ConnectException e){ //client disconnects from the server
 				disconnectionManager(player, playersInGame);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 		}else{ //player is a socket user
 			ConnectionManagerSocketServer con = user.getConnectionManagerSocketServer();
@@ -532,6 +541,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				}
 			}catch(SocketException e){
 				disconnectionManager(player, playersInGame);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 		}
 	}
@@ -570,7 +580,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				CliRmi client = user.getCliRmi();
 				try{
 					client.reconnectedToGame(playerReconnected.getName());
-				}catch(ConnectException e){ }//don't do nothing! This means that also this player is disconnected
+				}catch(ConnectException e){
+					LOGGER.log(Level.INFO, e.getMessage(),e); 
+					}//don't do nothing! This means that also this player is disconnected
 				
 			}else{ //player is a socket user
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
@@ -581,7 +593,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.reset();
 					out.writeObject(act);
 					out.flush();
-				}catch(SocketException e){ } //don't do nothing! This means that also this player is disconnected
+				}catch(SocketException e){ 
+					LOGGER.log(Level.INFO, e.getMessage(),e);
+				} //don't do nothing! This means that also this player is disconnected
 			}
 		}
 	}
@@ -593,7 +607,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				CliRmi client = user.getCliRmi();
 				try{
 					client.leftGame(playerDisconnected.getName());
-				}catch(ConnectException e){ }//don't do nothing! This means that also this player is disconnected
+				}catch(ConnectException e){ 
+					LOGGER.log(Level.INFO, e.getMessage(),e);
+				}//don't do nothing! This means that also this player is disconnected
 				
 			}else{ //player is a socket user
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
@@ -604,7 +620,9 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.reset();
 					out.writeObject(act);
 					out.flush();
-				}catch(SocketException e){ } //don't do nothing! This means that also this player is disconnected
+				}catch(SocketException e){ 
+					LOGGER.log(Level.INFO, e.getMessage(),e);
+				} //don't do nothing! This means that also this player is disconnected
 			}
 		}
 	}
@@ -698,6 +716,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}catch(NumberFormatException e){
 			CliRmi clientRmi = user.getCliRmi();
 			clientRmi.wrongInput();
+			LOGGER.log(Level.INFO, e.getMessage(),e);
 		}
 		return 0;
 	}
@@ -923,6 +942,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					client.roundBegins(player.getBoard());
 				}catch(ConnectException e){
 					//user disconnected
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 			}else{ //player is a socket user
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
@@ -1026,6 +1046,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					client.showDices(dices);
 				}catch(ConnectException e){
 					//user disconnected
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 			}else{ //player is a socket user
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
@@ -1038,6 +1059,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.flush();
 				}catch (SocketException e) {
 					//user disconnected
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 			}
 		}
@@ -1213,6 +1235,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				client.timeExpired();
 			} catch (ConnectException e) {
 				disconnectionManager(player, player.getBoard().getGame().getRoundOrder());
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 		}
 		else{
@@ -1224,6 +1247,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				out.flush();
 			} catch(SocketException e){
 				disconnectionManager(player, player.getBoard().getGame().getRoundOrder());
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 		}
 	}

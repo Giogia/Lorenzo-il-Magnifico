@@ -2,10 +2,14 @@ package it.polimi.ingsw.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 //main class that will start the game in cli view!
 public class CliView {
 	private static int choice;
+	private final static Logger LOGGER = Logger.getLogger(CliView.class.getName());
 	
 	public static void main(String[] args) {
 		System.out.println("Welcome in Lorenzo Il Magnifico. What kind of connection do you want to use?");
@@ -34,6 +38,7 @@ public class CliView {
 					}
 				}catch (InputMismatchException e) {
 					System.out.println("The input must be an integer, try again!");
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 			}
 		}

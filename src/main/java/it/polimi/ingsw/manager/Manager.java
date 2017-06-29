@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
@@ -42,6 +44,7 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 public class Manager{
 	private static int choice = 0;
 	private Manager instance;
+	private final static Logger LOGGER = Logger.getLogger(Manager.class.getName());
 	
 	private Manager() { }
 	
@@ -106,6 +109,7 @@ public class Manager{
 				player.getBoard().getPassTurnController().lastMove(player);
 				ResetFamilyMemberValueHandler.handle(player);
 				PermanentFamilyMemberBonusHandler.handle(player);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 				return;
 			}
 		}
@@ -131,8 +135,9 @@ public class Manager{
 				ConnectionManagerImpl.integerError(player);
 			}
 		}
-		catch(MyException exc){			
-			ConnectionManagerImpl.catchException(exc.getMessage(), player);
+		catch(MyException e){			
+			ConnectionManagerImpl.catchException(e.getMessage(), player);
+			LOGGER.log(Level.INFO, e.getMessage(),e);
 		}
 	}
 	
@@ -148,8 +153,9 @@ public class Manager{
 			LeaderCard chosenCard = leaderCards.get(choice);
 			UseLeaderCardEffectHandler.handle(player, chosenCard);
 		}
-		catch(MyException exc){			
-			ConnectionManagerImpl.catchException(exc.getMessage(), player);
+		catch(MyException e){			
+			ConnectionManagerImpl.catchException(e.getMessage(), player);
+			LOGGER.log(Level.INFO, e.getMessage(),e);
 		}
 		
 	}
@@ -240,8 +246,9 @@ public class Manager{
 					return;
 				}	
 			}
-			catch(MyException exc){			
-				ConnectionManagerImpl.catchException(exc.getMessage(), player);
+			catch(MyException e){			
+				ConnectionManagerImpl.catchException(e.getMessage(), player);
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 		}
 		
@@ -403,6 +410,7 @@ public class Manager{
 				choice = ConnectionManagerImpl.getConnectionManager().choosePersonalBonusTile(player, personalBonusTiles);
 			} catch (TimeExpiredException e) {
 				choice = 1;
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 			ConnectionManagerImpl.cancelTimer(player);
  		}while(!hasAnsweredWell(1, personalBonusTiles.size(), choice, player));
@@ -425,6 +433,7 @@ public class Manager{
 				choice = ConnectionManagerImpl.getConnectionManager().draftLeaderCard(player, leaderCards);
 			} catch (TimeExpiredException e) {
 				choice = 1;
+				LOGGER.log(Level.INFO, e.getMessage(),e);
 			}
 			ConnectionManagerImpl.cancelTimer(player);
 		}while(!hasAnsweredWell(1, leaderCards.size(), choice, player));

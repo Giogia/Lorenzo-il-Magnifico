@@ -1,6 +1,8 @@
 package it.polimi.ingsw.GC_15;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
@@ -10,6 +12,7 @@ import it.polimi.ingsw.manager.Manager;
 public final class VaticanReport {
 	private static VaticanReport instance;
 	
+	private final static Logger LOGGER = Logger.getLogger(VaticanReport.class.getName());
 	
 	private VaticanReport() {
 
@@ -35,6 +38,7 @@ public final class VaticanReport {
 					notExcommunicated = Manager.askForExcommunication(players[i], excommunicationTile);
 				} catch (TimeExpiredException e) {
 					notExcommunicated = true;
+					LOGGER.log(Level.INFO, e.getMessage(),e);
 				}
 				if (notExcommunicated){
 					ResourcePerMissedExcommunicationHandler.handle(players[i]);
