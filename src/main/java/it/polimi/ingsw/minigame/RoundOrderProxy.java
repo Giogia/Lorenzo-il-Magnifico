@@ -6,7 +6,7 @@ import it.polimi.ingsw.GC_15.Player.Color;
 
 public class RoundOrderProxy {
 
-	private ArrayList<OrderPawn> orderPawns;
+	private ArrayList<OrderPawn> orderPawns = new ArrayList<>();
 	
 	public ArrayList<OrderPawn> getOrderPawns() {
 		return orderPawns;

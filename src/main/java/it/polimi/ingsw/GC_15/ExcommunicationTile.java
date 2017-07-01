@@ -15,6 +15,10 @@ public class ExcommunicationTile implements Serializable{
 		this.malus= malus;
 	}
 	
+	public int getPeriod() {
+		return period;
+	}
+	
 	public void giveMalus(Player player){
 		for (PermanentBonus permanentBonus : malus) {
 			permanentBonus.getPermanentBonus(player);

@@ -9,8 +9,8 @@ public class PlayerProxy {
 
 	private String name;
 	private Color color;
-	private PersonalBoardProxy personalBoardProxy;
-	private ArrayList<FamilyMemberProxy> familyMemberProxies;
+	private PersonalBoardProxy personalBoardProxy = new PersonalBoardProxy();
+	private ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
 	
 	public String getName() {
 		return name;

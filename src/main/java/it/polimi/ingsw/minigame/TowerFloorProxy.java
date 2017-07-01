@@ -8,4 +8,8 @@ public class TowerFloorProxy extends PositionProxy {
 		return developmentCardProxy;
 	}
 	
+	public void setDevelopmentCardProxy(DevelopmentCardProxy developmentCardProxy) {
+		this.developmentCardProxy = developmentCardProxy;
+	}
+	
 }
