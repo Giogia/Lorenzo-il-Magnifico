@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
+import it.polimi.ingsw.minigame.Update;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
@@ -43,6 +44,7 @@ public class TowerFloor extends Position {
 		ArrayList<Bonus> secondaryEffect = developmentCard.secondaryEffect;
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		this.developmentCard = null;
+		Update.getInstance().TowerFloorOccupied(this, cardPlayer.getBoard().getTower(developmentCardType));
 		if(cardImmediateBonus!=null){
 			for(ImmediateBonus immediateBonus : cardImmediateBonus){ //attiva il metodo immediate bonus per ogni primary effect 
 				giveImmediateBonus(cardPlayer,immediateBonus);

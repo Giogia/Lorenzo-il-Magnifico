@@ -20,13 +20,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
-import it.polimi.ingsw.GC_15.Dice;
-import it.polimi.ingsw.GC_15.ExcommunicationTile;
-import it.polimi.ingsw.GC_15.FamilyMember;
-import it.polimi.ingsw.GC_15.Game;
-import it.polimi.ingsw.GC_15.MyException;
-import it.polimi.ingsw.GC_15.PersonalBoard;
-import it.polimi.ingsw.GC_15.PersonalBonusTile;
+import it.polimi.ingsw.GC_15.*;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
@@ -58,19 +52,16 @@ public class GuiRmiView extends Application implements CliRmi{
 		return client;
 	}
 	
-	public static Game getGame() {
-		return game;
-	}
 	
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		synchronized (lock) {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
-		controller = new GuiController();
+		controller = new GuiController(game);
 		loader.setController(controller);
 		
 		System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
-		controller.setLoader(loader);
+
 		lock.notifyAll();
 		System.out.println("notifico tutti");
 		Scene scene = new Scene(loader.load());
@@ -95,7 +86,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		client.showStage();
 	}
 	
-	public void showStage(){
+	public void showStage(){//waiting the start game (with the reference to game)
 		while(wait){
 			synchronized (this) {
 				try {
@@ -116,7 +107,9 @@ public class GuiRmiView extends Application implements CliRmi{
 	
 	@Override
 	public void askForUsername() throws RemoteException {
-		UsernameWindow usernameWindow = new UsernameWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Username.fxml"));
+		UsernameWindow usernameWindow = new UsernameWindow(true, loader);//true because it means this is a rmi client
+		loader.setController(usernameWindow);
 		Thread thread = new Thread(usernameWindow);
 		Platform.setImplicitExit(false);
 		Platform.runLater(thread);
@@ -124,17 +117,18 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askName() throws RemoteException {
-		NameWindow nameWindow = new NameWindow();
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Name.fxml"));
+		NameWindow nameWindow = new NameWindow(true, loader);
+		loader.setController(nameWindow);
 		Thread thread = new Thread(nameWindow);
 		Platform.runLater(thread);
 	}
 
 	@Override
 	public void askColor(String[] availableColors){
-		ColorWindow colorWindow = new ColorWindow();
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Color.fxml"));
+		ColorWindow colorWindow = new ColorWindow(true, loader);
 		loader.setController(colorWindow);
-		colorWindow.setLoader(loader);
 		Thread thread = new Thread(colorWindow);
 		Platform.runLater(thread);
 		Platform.runLater(new Runnable() {
@@ -168,7 +162,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void isNotYourTurn() throws RemoteException {
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("Please, wait your turn!");
+			}
+		});
 	}
 
 	@Override
@@ -182,6 +181,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				controller.disableButtons(false);//Now player can press button
 				controller.setChatLabel(playerName +" is your turn!");
 			}
 		});
@@ -190,12 +190,10 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void turnChoice() throws RemoteException {
-		Platform.runLater(new Runnable() {
-			@Override
-			public void run() {
-				controller.turnChoice();
-			}
-		});
+		synchronized (GuiRmiCallback.getLock()) {
+			GuiRmiCallback.setServerPass(true);
+			GuiRmiCallback.getLock().notifyAll();
+		}
 	}
 
 	@Override
@@ -210,20 +208,28 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void chooseZone() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		synchronized (GuiRmiCallback.getLock()) {
+			GuiRmiCallback.setServerPass(true);
+			GuiRmiCallback.getLock().notifyAll();
+		}
 	}
 
 	@Override
 	public void choosePosition(Position[] positions) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		synchronized (GuiRmiCallback.getLock()) {
+			GuiRmiCallback.setServerPass(true);;
+			GuiRmiCallback.getLock().notifyAll();
+		}
 	}
 
 	@Override
 	public void chooseFamilyMember(ArrayList<FamilyMember> familyMembers) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("Choose the family member you want to use for the action.");
+			}
+		});
 	}
 
 	@Override
@@ -241,8 +247,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askForServants(int numberOfServants) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("You have " + numberOfServants + " servants. How many of them do you want to use?");
+			}
+		});
 	}
 
 	@Override
@@ -262,6 +272,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				controller.disableButtons(false);//Now player can press button
 				controller.setChatLabel("You can't pass the turn, you have to place at least one family member.");
 			}
 		});
@@ -275,7 +286,6 @@ public class GuiRmiView extends Application implements CliRmi{
 				cards.add(floor.getDevelopmentCard());
 			}
 		}
-		
 		System.out.println("sono in round begins e il controller:" + controller);
 		while(controller == null){
 			synchronized (lock) {
@@ -295,7 +305,6 @@ public class GuiRmiView extends Application implements CliRmi{
 				controller.setCards(cards);
 			}
 		});
-		System.out.println("ho finito con il platform");
 	}
 
 	@Override
@@ -356,8 +365,12 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askForExcommunication(ExcommunicationTile excommunicationTile) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("Do you want to be excommunicated? \n1) No \n2)Yes");
+			}
+		});
 	}
 
 	@Override
@@ -398,6 +411,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				controller.disableButtons(false);//Now player can press button
 				controller.setChatLabel("TIME IS EXPIRED!");
 			}
 		});

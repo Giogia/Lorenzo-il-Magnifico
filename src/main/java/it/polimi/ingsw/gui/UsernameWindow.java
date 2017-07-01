@@ -12,11 +12,19 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class UsernameWindow implements Runnable{
-	
+	private boolean isRmiClient; //boolean setted or from GuiSocketInView or from GuiSocketInView 
 	private final static Logger LOGGER = Logger.getLogger(UsernameWindow.class.getName());
+	Scene sceneLogin;
+	private FXMLLoader loader;
+	
+	public UsernameWindow(boolean isRmiClient, FXMLLoader loader) {
+		this.isRmiClient = isRmiClient;
+		this.loader = loader;
+	}
 	
 	@FXML
 	private TextField nameChosen;
@@ -25,10 +33,19 @@ public class UsernameWindow implements Runnable{
     private Button okButton;
     
     @FXML
-    void UsernameConfirm (ActionEvent event) throws RemoteException {
+    void UsernameConfirm (MouseEvent event) throws RemoteException {
     	String username = nameChosen.getText();
-    	GuiRmiView.getCallback().answer(username);
-    	//GuiSocketView.getCallback().answer(username);
+    	if(isRmiClient){
+    		synchronized (GuiRmiCallback.getLock()) {//wait when server send a request (only then I can send answer)
+    			GuiRmiCallback.setServerPass(true);
+    			GuiRmiCallback.getLock().notifyAll();
+    		}
+        	
+        	GuiRmiView.getCallback().answer(username);
+    	}else{
+    		GuiSocketView.getCallback().setToSend(username);
+    	}
+    	//after sending username close window
     	Node  source = (Node) event.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();
@@ -39,8 +56,7 @@ public class UsernameWindow implements Runnable{
 	@Override
 	public void run(){
 		try {
-			FXMLLoader login = new FXMLLoader(getClass().getResource("Username.fxml"));
-			Scene sceneLogin = new Scene(login.load());
+			sceneLogin = new Scene(loader.load());
 			
 			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			

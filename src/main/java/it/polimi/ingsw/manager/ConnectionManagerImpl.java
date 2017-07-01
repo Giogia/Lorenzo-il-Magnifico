@@ -105,52 +105,59 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			//creating the thread that listen only this client
 			executor.submit(connectionManagerSocketServer);
 			
-			ActionSocket act = new ActionSocket(action.askForUsername);
-			socketOutClient.writeObject(act);
-			socketOutClient.flush();
+			askSocketUsername(thisUser);
+		} catch (IOException | ClassNotFoundException e) {
+			LOGGER.log(Level.SEVERE, e.getMessage(),e);
+		}
+	}
+	
+	private void askSocketUsername(User thisUser) throws IOException, ClassNotFoundException{
+		ConnectionManagerSocketServer connectionManagerSocketServer = thisUser.getConnectionManagerSocketServer();
+		ObjectOutputStream socketOutClient = connectionManagerSocketServer.getSocketOutClient(); 
+		
+		ActionSocket act = new ActionSocket(action.askForUsername);
+		socketOutClient.writeObject(act);
+		socketOutClient.flush();
+		
+		boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
+		while(usernameChoosenHasAlreadyChoosen){
 			
-			boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
-			while(usernameChoosenHasAlreadyChoosen){
-				
-				//asking for his username
-				connectionManagerSocketServer.setIsRightTurn(true);
-				synchronized (connectionManagerSocketServer) {
-					while(!connectionManagerSocketServer.getIsAvailable()){
-						try {
-							connectionManagerSocketServer.wait();
-						} catch (InterruptedException e) {
-							LOGGER.log(Level.SEVERE, e.getMessage(),e);
-						}
+			//asking for his username
+			connectionManagerSocketServer.setIsRightTurn(true);
+			synchronized (connectionManagerSocketServer) {
+				while(!connectionManagerSocketServer.getIsAvailable()){
+					try {
+						connectionManagerSocketServer.wait();
+					} catch (InterruptedException e) {
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
 					}
-				}
-				String usernameChoosen =  connectionManagerSocketServer.getStringReceived();
-				connectionManagerSocketServer.setIsRightTurn(false);
-				
-				//if username has already choosen
-				if(usernameHasAlreadyChoosen(usernameChoosen)){
-					//if user isn't reconnecting himself but he his a new user
-					if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
-						//tell to player to choice another username
-						
-						ActionSocket a = new ActionSocket(action.usernameHasAlreadyChoosen);
-						socketOutClient.writeObject(a);
-						socketOutClient.flush();
-						
-					}else{//user is reconnecting himself
-						usernameChoosenHasAlreadyChoosen = false; //end of the while
-						thisUser.setUsername(usernameChoosen);
-						reconnectionManager(thisUser);
-					}
-				}else{//username hasn't already choosen
-					usernameChoosenHasAlreadyChoosen = false; //end of the while
-					thisUser.setUsername(usernameChoosen);
-					usersReady.add(thisUser);
-					users.remove(thisUser);
-					lobby();
 				}
 			}
-		} catch (ClassNotFoundException | IOException e) {
-			LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			String usernameChoosen =  connectionManagerSocketServer.getStringReceived();
+			connectionManagerSocketServer.setIsRightTurn(false);
+			
+			//if username has already choosen
+			if(usernameHasAlreadyChoosen(usernameChoosen)){
+				//if user isn't reconnecting himself but he his a new user
+				if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
+					//tell to player to choice another username
+					
+					ActionSocket a = new ActionSocket(action.usernameHasAlreadyChoosen);
+					socketOutClient.writeObject(a);
+					socketOutClient.flush();
+					
+				}else{//user is reconnecting himself
+					usernameChoosenHasAlreadyChoosen = false; //end of the while
+					thisUser.setUsername(usernameChoosen);
+					reconnectionManager(thisUser);
+				}
+			}else{//username hasn't already choosen
+				usernameChoosenHasAlreadyChoosen = false; //end of the while
+				thisUser.setUsername(usernameChoosen);
+				usersReady.add(thisUser);
+				users.remove(thisUser);
+				lobby();
+			}
 		}
 	}
 		
@@ -594,8 +601,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.writeObject(act);
 					out.flush();
 				}catch(SocketException e){ 
-					LOGGER.log(Level.INFO, e.getMessage(),e);
-				} //don't do nothing! This means that also this player is disconnected
+					//don't do nothing! This means that also this player is disconnected
+				} 
 			}
 		}
 	}
@@ -621,8 +628,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.writeObject(act);
 					out.flush();
 				}catch(SocketException e){ 
-					LOGGER.log(Level.INFO, e.getMessage(),e);
-				} //don't do nothing! This means that also this player is disconnected
+					//don't do nothing! This means that also this player is disconnected
+				} 
 			}
 		}
 	}
@@ -658,7 +665,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				return usersInGame.get(i);
 			}
 		}
-		System.out.println("++++qui non dovrei arrivarci in findUserByPlayer");
 		return null;//never arrived here
 	}
 

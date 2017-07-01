@@ -21,6 +21,7 @@ public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implemen
 	public void getAnswer(String stringReceived, CliRmi cliRmi) throws RemoteException{
 		if( isRightTurn ){ //if the user that talks is the right user
 			this.stringReceived = stringReceived;
+			System.out.println(stringReceived);
 			isAvailable = true;
 			synchronized (this) {
 				notifyAll();

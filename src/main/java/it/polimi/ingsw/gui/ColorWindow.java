@@ -25,8 +25,13 @@ import javafx.stage.Stage;
 public class ColorWindow implements Runnable{
 	
 	private final static Logger LOGGER = Logger.getLogger(ColorWindow.class.getName());
-	
 	private FXMLLoader loader;
+	private boolean isRmiClient;
+	
+	public ColorWindow(boolean isRmiClient, FXMLLoader loader) {
+		this.isRmiClient = isRmiClient;
+		this.loader = loader;
+	}
 	
     @FXML
     private Button btn1;
@@ -42,28 +47,39 @@ public class ColorWindow implements Runnable{
 	
     @FXML
     void btn1Clicked(MouseEvent event) throws RemoteException {
-    	GuiRmiView.getCallback().answer("1");
+    	giveAnswer("1");
     	closeWindow(event);
     }
 
     @FXML
     void btn2Clicked(MouseEvent event) throws RemoteException {
-    	GuiRmiView.getCallback().answer("2");
-    	
+    	giveAnswer("2");
     	closeWindow(event);
     }
 
     @FXML
     void btn3Clicked(MouseEvent event) throws RemoteException{
-    	GuiRmiView.getCallback().answer("3");
+    	giveAnswer("3");
     	closeWindow(event);
     }
 
     @FXML
     void btn4Clicked(MouseEvent event) throws RemoteException{
-    	GuiRmiView.getCallback().answer("4");
+    	giveAnswer("4");
     	closeWindow(event);
     }
+    
+    private void giveAnswer(String toSend) throws RemoteException {
+    	if (isRmiClient) {
+    		synchronized (GuiRmiCallback.getLock()) {
+    			GuiRmiCallback.setServerPass(true);
+    			GuiRmiCallback.getLock().notifyAll();
+    		}
+        	GuiRmiView.getCallback().answer(toSend);
+		}else{
+			GuiSocketView.getCallback().setToSend(toSend);
+		}
+	}
     
     private void closeWindow(MouseEvent event){
     	Node  source = (Node) event.getSource(); 
@@ -87,10 +103,6 @@ public class ColorWindow implements Runnable{
 		}else btn4.setVisible(false);
 	}
 	
-	public void setLoader(FXMLLoader loader) {
-		this.loader = loader;
-	}
-    
 	@Override
 	public void run(){
 		try {

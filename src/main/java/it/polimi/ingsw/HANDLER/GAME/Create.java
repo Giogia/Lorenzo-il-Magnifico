@@ -1,4 +1,4 @@
-package it.polimi.ingsw.HANDLER.GAME;
+/*package it.polimi.ingsw.HANDLER.GAME;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -1280,4 +1280,4 @@ public class Create {
 		dice.setValue(value);
 		return new FamilyMember(dice, null);
 	}
-}
+}*/

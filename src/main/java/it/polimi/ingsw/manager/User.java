@@ -56,8 +56,6 @@ public class User {
 		this.cliRmi = cliRmi;
 	}
 	
-	
-	
 	public ConnectionManagerRmiServerImpl getConnectionManagerRmiServerImpl() {
 		return connectionManagerRmiServerImpl;
 	}

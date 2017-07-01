@@ -14,9 +14,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NameWindow implements Runnable{
-	
 	private final static Logger LOGGER = Logger.getLogger(NameWindow.class.getName());
-
+	private boolean isRmiClient;
+	private FXMLLoader loader;
+	
+	public NameWindow(boolean isRmiClient, FXMLLoader loader) {
+		this.isRmiClient = isRmiClient;
+		this.loader = loader;
+	}
+	
 	@FXML
 	private TextField nameChosen;
 
@@ -26,8 +32,17 @@ public class NameWindow implements Runnable{
     @FXML
     void UsernameConfirm (ActionEvent event) throws RemoteException {
     	String username = nameChosen.getText();
-    	GuiRmiView.getCallback().answer(username);
-    	//GuiSocketView.getCallback().answer(username);
+
+    	if(isRmiClient){
+	    	synchronized (GuiRmiCallback.getLock()) {
+				GuiRmiCallback.setServerPass(true);
+				GuiRmiCallback.getLock().notifyAll();
+			}
+	    	
+	    	GuiRmiView.getCallback().answer(username);
+	    }else{
+	    	GuiSocketView.getCallback().setToSend(username);
+	    }
     	Node  source = (Node) event.getSource(); 
         Stage stage  = (Stage) source.getScene().getWindow();
     	stage.close();
@@ -36,8 +51,7 @@ public class NameWindow implements Runnable{
 	@Override
 	public void run(){
 		try {
-			FXMLLoader login = new FXMLLoader(getClass().getResource("Name.fxml"));
-			Scene sceneLogin = new Scene(login.load());
+			Scene sceneLogin = new Scene(loader.load());
 			
 			sceneLogin.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 			

@@ -1,15 +1,14 @@
 package it.polimi.ingsw.gui;
 
 import java.net.URL;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
-import javafx.application.Application;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -17,11 +16,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -29,9 +30,13 @@ import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Rectangle;
 
 public class GuiController implements Initializable {
-	
 	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
+	private Game game;
+	
+	public GuiController(Game game) {
+		this.game = game;
+	}
 	
 	ObjectProperty<Image> territory1Property = new SimpleObjectProperty<>();
 	ObjectProperty<Image> territory2Property = new SimpleObjectProperty<>();
@@ -52,6 +57,14 @@ public class GuiController implements Initializable {
 	ObjectProperty<Image> venture2Property = new SimpleObjectProperty<>();
 	ObjectProperty<Image> venture3Property = new SimpleObjectProperty<>();
 	ObjectProperty<Image> venture4Property = new SimpleObjectProperty<>();
+	
+	ObjectProperty<Image> neutralFamilyMemberProperty = new SimpleObjectProperty<>();
+	ObjectProperty<Image> blackFamilyMemberProperty = new SimpleObjectProperty<>();
+	ObjectProperty<Image> whiteFamilyMemberProperty = new SimpleObjectProperty<>();
+	ObjectProperty<Image> orangeFamilyMemberProperty = new SimpleObjectProperty<>();
+	
+    @FXML
+    private TextField answerChat;
 	
 	@FXML
     private Tab tabPlayer1;
@@ -167,39 +180,29 @@ public class GuiController implements Initializable {
     @FXML
     private ImageView excommunicationTile3;
     
+    @FXML
+    private Button action1;
 
     @FXML
     private Button action2;
-
-    @FXML
-    private Button action4;
-
-    @FXML
-    private Button action1;
     
     @FXML
-    private Button action5;
-
-    @FXML
     private Label labelAction;
-
-    @FXML
-    private Button action3;
     
     @FXML
     private TextArea chatText;
 
-    public void setLoader(FXMLLoader loader){
-    	this.loader = loader;
-    }
-    
-    public void turnChoice(){
-    	action1.setText("Place Family Member");
-    	action2.setText("Pass the turn");
-    	action3.setVisible(false);
-    	action4.setVisible(false);
-    	action5.setVisible(false);
-    }
+    @FXML
+    private ImageView neutralFamilyMember;
+
+    @FXML
+    private ImageView blackFamilyMember;
+
+    @FXML
+    private ImageView whiteFamilyMember;
+
+    @FXML
+    private ImageView orangeFamilyMember;
     
     public void setChatLabel(String textToAdd){
     	chatText.setText(chatText.getText() + "\n"+"Lorenzo: " + textToAdd);
@@ -210,8 +213,8 @@ public class GuiController implements Initializable {
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
     		imageZoomed.setImage(positionClicked.getImage());
-    		if(positionClicked.getId().equals("territory4")){
-    			String description = GuiRmiView.getGame().getBoard().getTower(DevelopmentCardType.territory).getPosition(3).getDescription();
+    		if(positionClicked.getId().equals("territory4")){ // getting description of the card
+    			String description = game.getBoard().getTower(DevelopmentCardType.territory).getPosition(3).getDescription();
     			getDescription.setText(description);
     		}
     	}else{//there isn't a card
@@ -223,9 +226,40 @@ public class GuiController implements Initializable {
     }
     
     @FXML
-    void actionCkd(MouseEvent event) {
-    	System.out.println(event.getPickResult().getIntersectedNode().getId());
+    void passTurnCkd(MouseEvent event) throws RemoteException {
+    	GuiRmiView.getCallback().answer("5");
+    	action1.setDisable(true);
+    	action2.setDisable(true);
     }
+
+    @FXML
+    void placeFamilyMemberCkd(MouseEvent event) throws RemoteException {
+    	GuiRmiView.getCallback().answer("1$1$1");//first 1 means place family member
+    }
+    
+    public void disableButtons(boolean bool){
+    	action1.setDisable(bool);
+    	action2.setDisable(bool);
+    }
+  
+    @FXML
+    void enterPressed(KeyEvent event) throws RemoteException {
+    	if (event.getCode() == KeyCode.ENTER)  {
+            sendFunction();
+       }
+    }
+    
+    @FXML
+    void sendCkd(MouseEvent event) throws RemoteException{
+    	sendFunction();
+    }
+    
+	private void sendFunction() throws RemoteException {
+		String text = answerChat.getText();
+		chatText.setText(chatText.getText() + "\n"+"Michele: " + text);//adding input of user in chat
+		answerChat.setText("");//clear answer field 
+		GuiRmiView.getCallback().answer(text);
+	}
 
 	public void setMain(GuiSocketView guiSocketView) {
 		this.guiSocketView = guiSocketView;
@@ -256,7 +290,7 @@ public class GuiController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Game game = GuiRmiView.getGame();
+		disableButtons(true);
 		
 		//setting name players
 		Player[] players = game.getPlayers();
@@ -290,5 +324,10 @@ public class GuiController implements Initializable {
 		venture2.imageProperty().bind(venture2Property);
 		venture3.imageProperty().bind(venture3Property);
 		venture4.imageProperty().bind(venture4Property);
+		
+		neutralFamilyMember.imageProperty().bind(neutralFamilyMemberProperty);
+		blackFamilyMember.imageProperty().bind(blackFamilyMemberProperty);
+		whiteFamilyMember.imageProperty().bind(whiteFamilyMemberProperty);
+		orangeFamilyMember.imageProperty().bind(orangeFamilyMemberProperty);
 	}
 }
