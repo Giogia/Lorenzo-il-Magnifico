@@ -2,30 +2,69 @@ package it.polimi.ingsw.minigame;
 
 import java.util.ArrayList;
 
+import it.polimi.ingsw.BOARD.Board;
+import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.ExcommunicationTile;
+
 public class BoardProxy {
 	
-	private RoundOrderProxy roundOrderProxy = new RoundOrderProxy();
-	private ZoneProxy zoneProxy;
-	private ArrayList<ExcommunicationTileProxy> excommunicationTileProxies;
+	private RoundOrderProxy roundOrderProxy;
+	private ArrayList<TowerProxy> towerProxies = new ArrayList<>();
+	private MarketProxy marketProxy;
+	private CouncilPalaceProxy councilPalaceProxy;
+	private HarvestProxy harvestProxy;
+	private ProductionProxy productionProxy;
+	private ArrayList<ExcommunicationTileProxy> excommunicationTileProxies = new ArrayList<>();
 	
-	public BoardProxy(ZoneProxy zoneProxy) {
-		this.zoneProxy = zoneProxy;
+	public BoardProxy(Board board) {
+		
+		roundOrderProxy = new RoundOrderProxy(board.getGame().getOrder());
+		
+		for(Tower tower: board.getTowers()){
+			towerProxies.add(new TowerProxy(tower));
+		}
+		
+		marketProxy = new MarketProxy(board.getMarket());
+		councilPalaceProxy = new CouncilPalaceProxy(board.getCouncilPalace());
+		harvestProxy = new HarvestProxy(board.getHarvestArea());
+		productionProxy = new ProductionProxy(board.getProductioArea());
+		
+		for(ExcommunicationTile excommunicationTile : board.getExcommunicationTiles()){
+			excommunicationTileProxies.add(new ExcommunicationTileProxy(excommunicationTile));
+		}
 	}
 	
 	public RoundOrderProxy getRoundOrderProxy() {
 		return roundOrderProxy;
 	}
 	
-	public ZoneProxy getZoneProxy() {
-		return zoneProxy;
+	public TowerProxy getTowerProxy(DevelopmentCardType developmentCardType) {
+		for (TowerProxy towerProxy : towerProxies) {
+			if(towerProxy.getDevelopmentCardType().equals(developmentCardType))
+				return towerProxy;
+		}
+		return null;
 	}
 	
+	public MarketProxy getMarketProxy() {
+		return marketProxy;
+	}
+	
+	public CouncilPalaceProxy getCouncilPalaceProxy() {
+		return councilPalaceProxy;
+	}
+	
+	public HarvestProxy getHarvestProxy() {
+		return harvestProxy;
+	}
+	
+	public ProductionProxy getProductionProxy() {
+		return productionProxy;
+	}
+
 	public ArrayList<ExcommunicationTileProxy> getExcommunicationTileProxies() {
 		return excommunicationTileProxies;
-	}
-	
-	public void setZoneProxy(ZoneProxy zoneProxy) {
-		this.zoneProxy = zoneProxy;
 	}
 	
 	public void setExcommunicationTileProxies(ArrayList<ExcommunicationTileProxy> excommunicationTileProxies) {

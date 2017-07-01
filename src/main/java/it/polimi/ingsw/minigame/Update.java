@@ -28,10 +28,9 @@ public class Update {
 		observers.remove(observer);
 	}
 	
-	public void TowerFloorOccupied(TowerFloor newTowerFloor, Tower tower){
+	public void TowerFloorOccupied(TowerFloor towerFloor){
 		
-		int towerFloor = getTowerFloor(newTowerFloor, tower);
-		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(null, towerFloor, tower.getDevelopmentCardType());
+		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor);
 
 		
 		for (User observer : observers) {

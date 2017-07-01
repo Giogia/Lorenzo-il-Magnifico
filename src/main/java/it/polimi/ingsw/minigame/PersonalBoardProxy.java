@@ -4,33 +4,45 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
 public class PersonalBoardProxy {
 
 	private PersonalBonusTileProxy personalBonusTileProxy;
-	private ArrayList<CardContainer> cardContainers = new ArrayList<>();
+	private ArrayList<CardContainerProxy> cardContainerProxies = new ArrayList<>();
 	private ArrayList<Resource> resources = new ArrayList<>();
 	private ArrayList<LeaderCardProxy> leaderCardProxies = new ArrayList<>();
-	private ArrayList<LeaderCardProxy> leaderCardInHandProxies = new ArrayList<>();
+	
+	public PersonalBoardProxy(PersonalBoard personalBoard) {
+		personalBonusTileProxy = new PersonalBonusTileProxy(personalBoard.getPersonalBonusTile());
+		for(CardContainer cardContainer : personalBoard.getCardContainers()){
+			cardContainerProxies.add(new CardContainerProxy(cardContainer));
+		}
+		resources = personalBoard.getResources();
+		for(LeaderCard leaderCard : personalBoard.getActivatedLeaderCards()){
+			leaderCardProxies.add(new LeaderCardProxy(leaderCard));
+		}
+	}
 	
 	public PersonalBonusTileProxy getPersonalBonusTileProxy() {
 		return personalBonusTileProxy;
 	}
 	
-	public ArrayList<CardContainer> getCardContainers() {
-		return cardContainers;
+	public ArrayList<CardContainerProxy> getCardContainers() {
+		return cardContainerProxies;
 	}
 	
 	public ArrayList<Resource> getResources() {
 		return resources;
 	}
 	
-	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){
-		for(CardContainer cardContainer: cardContainers){
-			if(cardContainer.getType().equals(developmentCardType)){
-				return cardContainer;
+	public CardContainerProxy getCardContainer(DevelopmentCardType developmentCardType){
+		for(CardContainerProxy cardContainerProxy: cardContainerProxies){
+			if(cardContainerProxy.getDevelopmentCardType().equals(developmentCardType)){
+				return cardContainerProxy;
 			}
 		}
 		return null;
@@ -49,9 +61,6 @@ public class PersonalBoardProxy {
 		return leaderCardProxies;
 	}
 	
-	public ArrayList<LeaderCardProxy> getLeaderCardInHandProxies() {
-		return leaderCardInHandProxies;
-	}
 	
 	public void setPersonalBonusTileProxy(PersonalBonusTileProxy personalBonusTileProxy) {
 		this.personalBonusTileProxy = personalBonusTileProxy;

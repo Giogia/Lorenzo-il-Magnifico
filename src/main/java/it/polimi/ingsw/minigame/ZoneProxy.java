@@ -2,9 +2,19 @@ package it.polimi.ingsw.minigame;
 
 import java.util.ArrayList;
 
-public abstract class ZoneProxy {
+import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BOARD.Zone;
 
-	private ArrayList<PositionProxy> positionProxies  = new ArrayList<>();
+public abstract class ZoneProxy {
+	
+	protected ArrayList<PositionProxy> positionProxies  = new ArrayList<>();
+	
+	public ZoneProxy(Zone zone) {
+		for(Position position : zone.getPositions()){
+			positionProxies.add(new PositionProxy(position));
+		}
+	}
+
 
 	public ArrayList<PositionProxy> getPositionProxies() {
 		return positionProxies;

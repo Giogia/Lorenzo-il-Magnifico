@@ -44,7 +44,7 @@ public class TowerFloor extends Position {
 		ArrayList<Bonus> secondaryEffect = developmentCard.secondaryEffect;
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		this.developmentCard = null;
-		Update.getInstance().TowerFloorOccupied(this, cardPlayer.getBoard().getTower(developmentCardType));
+		Update.getInstance().TowerFloorOccupied(this);
 		if(cardImmediateBonus!=null){
 			for(ImmediateBonus immediateBonus : cardImmediateBonus){ //attiva il metodo immediate bonus per ogni primary effect 
 				giveImmediateBonus(cardPlayer,immediateBonus);

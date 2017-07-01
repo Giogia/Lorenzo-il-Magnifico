@@ -1,17 +1,14 @@
 package it.polimi.ingsw.minigame;
 
-import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.BOARD.TowerFloor;
 
 public class TowerFloorProxy extends PositionProxy {
 
 	private DevelopmentCardProxy developmentCardProxy;
-	private int towerFloor;
-	private DevelopmentCardType towerType;
-	
-	public TowerFloorProxy(DevelopmentCardProxy developmentCardProxy, int towerFloor, DevelopmentCardType towerType) {
-		this.developmentCardProxy = developmentCardProxy;
-		this.towerFloor = towerFloor;
-		this.towerType = towerType;
+
+	public TowerFloorProxy(TowerFloor towerFloor) {
+		super(towerFloor);
+		developmentCardProxy = new DevelopmentCardProxy(towerFloor.getDevelopmentCard());
 	}
 	
 	public DevelopmentCardProxy getDevelopmentCardProxy() {
@@ -20,14 +17,6 @@ public class TowerFloorProxy extends PositionProxy {
 	
 	public void setDevelopmentCardProxy(DevelopmentCardProxy developmentCardProxy) {
 		this.developmentCardProxy = developmentCardProxy;
-	}
-	
-	public int getTowerFloor() {
-		return towerFloor;
-	}
-	
-	public DevelopmentCardType getTowerType() {
-		return towerType;
 	}
 	
 }
