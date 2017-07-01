@@ -100,6 +100,7 @@ public class TowerHandlerTest {
 		when(user.getPlayer()).thenReturn(player);
 		ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl = mock(ConnectionManagerRmiServerImpl.class);
 		
+		when(user.getConnectionType()).thenReturn(true);
 		when(user.getConnectionManagerRmiServerImpl()).thenReturn(connectionManagerRmiServerImpl);
 		when(connectionManagerRmiServerImpl.getIsAvailable()).thenReturn(true);
 		when(connectionManagerRmiServerImpl.getStringReceived()).thenReturn("0");
