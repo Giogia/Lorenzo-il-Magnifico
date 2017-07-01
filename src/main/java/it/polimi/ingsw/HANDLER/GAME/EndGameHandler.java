@@ -137,10 +137,13 @@ public class EndGameHandler {
 		int maxMilitaryPoints =0; 
 		int soCloseMilitaryPoints =0;
 		for(Player player: board.getPlayers()){
-			int militaryPoints = player.getPersonalBoard().getResource(ResourceType.victoryPoints).getAmount();
+			int militaryPoints = player.getPersonalBoard().getResource(ResourceType.militaryPoints).getAmount();
 			if(militaryPoints > maxMilitaryPoints){ // only major otherwise a tie will put soclose equal to max
 				soCloseMilitaryPoints = maxMilitaryPoints; //calculate the second higher amount of military points
 				maxMilitaryPoints = militaryPoints; //calculate the max amount of victorypoints
+			}
+			else if (militaryPoints > soCloseMilitaryPoints){
+				soCloseMilitaryPoints = militaryPoints;
 			}
 		}
 		for(Player player: board.getPlayers()){
@@ -148,7 +151,7 @@ public class EndGameHandler {
 				firstPos.add(player); //add the player to the arraylist if they have the max amount of militaryPoints
 			}
 			if(player.getPersonalBoard().getResource(ResourceType.militaryPoints).getAmount()==soCloseMilitaryPoints){
-				firstPos.add(player); //add the player to the arraylist if they have the second higher amount of victoryPoints
+				secondPos.add(player); //add the player to the arraylist if they have the second higher amount of victoryPoints
 			}
 		}
 		for(Player player: firstPos){//add 5 vicotry points to the winners
