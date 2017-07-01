@@ -50,7 +50,7 @@ public class ActivationZoneBonus extends PermanentBonus {
 				this.towers.put(bonusTower, activationZoneBonus.getTowers().get(bonusTower));
 			}
 			else{
-				Boolean newValue = towers.get(tower) || activationZoneBonus.getTowers().get(bonusTower);
+				Boolean newValue = towers.get(tower) && activationZoneBonus.getTowers().get(bonusTower);
 				this.towers.replace(tower, towers.get(tower), newValue);
 			}
 		}
