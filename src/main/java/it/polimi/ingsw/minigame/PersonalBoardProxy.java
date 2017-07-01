@@ -10,10 +10,10 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 public class PersonalBoardProxy {
 
 	private PersonalBonusTileProxy personalBonusTileProxy;
-	private ArrayList<CardContainer> cardContainers;
-	private ArrayList<Resource> resources;
-	private ArrayList<LeaderCardProxy> leaderCardProxies;
-	private ArrayList<LeaderCardProxy> leaderCardInHandProxies;
+	private ArrayList<CardContainer> cardContainers = new ArrayList<>();
+	private ArrayList<Resource> resources = new ArrayList<>();
+	private ArrayList<LeaderCardProxy> leaderCardProxies = new ArrayList<>();
+	private ArrayList<LeaderCardProxy> leaderCardInHandProxies = new ArrayList<>();
 	
 	public PersonalBonusTileProxy getPersonalBonusTileProxy() {
 		return personalBonusTileProxy;
@@ -53,4 +53,7 @@ public class PersonalBoardProxy {
 		return leaderCardInHandProxies;
 	}
 	
+	public void setPersonalBonusTileProxy(PersonalBonusTileProxy personalBonusTileProxy) {
+		this.personalBonusTileProxy = personalBonusTileProxy;
+	}
 }

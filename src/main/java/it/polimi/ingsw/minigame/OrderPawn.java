@@ -15,4 +15,10 @@ public class OrderPawn {
 	public Image getImage() {
 		return image;
 	}
+	
+	public OrderPawn(Color color) {
+		this.color = color;
+		String imagePath = color.name()+".png";
+		this.image = new Image(imagePath);
+	}
 }
