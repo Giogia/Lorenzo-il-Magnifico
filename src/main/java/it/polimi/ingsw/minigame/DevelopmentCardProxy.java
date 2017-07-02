@@ -32,6 +32,8 @@ public class DevelopmentCardProxy implements Serializable {
 		return imageProperty;
 	}
 	
+	
+	
 	public void setImageProperty(Image image){
 		System.out.println(image);
 		imageProperty = new SimpleObjectProperty<>();
