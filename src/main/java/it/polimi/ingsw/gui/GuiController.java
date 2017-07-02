@@ -268,6 +268,7 @@ public class GuiController implements Initializable {
 			int towerFloor = i/4;
 			String imagePath = cards.get(i).getImagePath();
 			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(imagePath);
+
 		}
 	}
 	
