@@ -43,8 +43,8 @@ public abstract class HarvestProductionAreaHandler {
 				if(CheckBonusTileRequirementController.check(testFamilyMember, zone)){
 					testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, position);
 					familyMember.getPlayer().getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
-					getPersonalBonusTileBonus(testFamilyMember, zone);
 					copyResource(testFamilyMember.getPlayer(), playerResources);
+					getPersonalBonusTileBonus(testFamilyMember, zone);
 					//start advanced
 					ArrayList<DevelopmentCard> activableCards = getActivableCards(testFamilyMember, zone,playerResources);
 					if(activableCards.isEmpty())
