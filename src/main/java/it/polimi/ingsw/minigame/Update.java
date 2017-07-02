@@ -12,7 +12,7 @@ import it.polimi.ingsw.manager.User;
 
 public class Update {
 	//class which all clients register themself.
-	private List<User> observers = new ArrayList<>();
+	private List<User> users = new ArrayList<>();
 	
 	private static Update instance = new Update();
 	private Update() { } //singleton 
@@ -21,20 +21,25 @@ public class Update {
 		return instance;
 	}
 	
-	public void addUsers(User observer) {
-		observers.add(observer);
+	public void addUser(User observer) {
+		users.add(observer);
 	}
 	
-	public void removeObservers(User observer){
-		observers.remove(observer);
+	public void addUsers(List<User> users){
+		this.users.addAll(users);
+	}
+	
+	public void removeUser(User observer){
+		users.remove(observer);
 	}
 	
 	public void TowerFloorOccupied(TowerFloor towerFloor, Tower tower) throws RemoteException{
+		System.out.println("sono arrivato nel metodo towerFloorOccupied");
 		int numberOfFloor = getNumberOfFloor(towerFloor, tower);
 		DevelopmentCardType towerType = tower.getDevelopmentCardType();
 		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor, towerType, numberOfFloor);
 
-		for (User observer : observers) {
+		for (User observer : users) {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
 					
 				observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy);

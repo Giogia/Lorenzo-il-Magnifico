@@ -49,6 +49,7 @@ import it.polimi.ingsw.view.CliRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.Update;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
 	
@@ -382,6 +383,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				System.out.println("Added new socket player");
 			}
 		}//end for
+		Update.getInstance().addUsers(tempUsers);
 		game.setPlayers(players);
 		executor.submit(game);
 	}

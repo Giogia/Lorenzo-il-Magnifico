@@ -88,7 +88,7 @@ public class ActionBonusTest {
 			User user = mock(User.class);
 			user.setPlayer(players[i]);
 			users.add(user);
-			Update.getInstance().addUsers(user);
+			Update.getInstance().addUser(user);
 			when(user.getConnectionType()).thenReturn(true);
 			when(user.getCliRmi()).thenReturn(cliRmiView);
 			when(user.getPlayer()).thenReturn(players[i]);

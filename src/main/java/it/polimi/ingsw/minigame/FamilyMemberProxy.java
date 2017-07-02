@@ -1,5 +1,7 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -7,12 +9,12 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-public class FamilyMemberProxy {
+public class FamilyMemberProxy implements Serializable{
 	
 	private Color color;
 	private DiceColour diceColour;
 	private String imagePath;
-	private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
+	private ObjectProperty<Image> imageProperty;
 	
 	public FamilyMemberProxy(FamilyMember familyMember) {
 		this.color = familyMember.getPlayer().getColor();

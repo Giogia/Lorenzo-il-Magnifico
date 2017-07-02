@@ -256,7 +256,7 @@ public class GuiController implements Initializable {
 		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
 		
 		//setting to null the image of card on towerFloor where player setted.
-		towerFloorProxy.getDevelopmentCardProxy().setImageProperty(" ");
+		towerFloorProxy.getDevelopmentCardProxy().setImageProperty("it/polimi/ingsw/gui/resources/towerFloor.jpeg");
 		
 		//setting the image of family member on tower floor
 		towerFloorProxy.getFamilyMemberProxy().setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
@@ -265,10 +265,11 @@ public class GuiController implements Initializable {
 	public void setCards(ArrayList<DevelopmentCardProxy> cards){
 		BoardProxy board = game.getBoardProxy();
 		for(int i = 0; i < 15; i++){
-			int towerFloor = i/4;
+			int toowerType = i/4;
 			String imagePath = cards.get(i).getImagePath();
-			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(imagePath);
-
+			for(int numberOfFloor = 0; numberOfFloor < 4; numberOfFloor ++){
+				board.getTowerProxyByInt(toowerType).getTowerFloorProxies().get(numberOfFloor).getDevelopmentCardProxy().setImageProperty(imagePath);
+			}
 		}
 	}
 	
@@ -282,10 +283,10 @@ public class GuiController implements Initializable {
 				towerFloorProxy.getDevelopmentCardProxy().setImageProperty();
 			}
 		}
-		for(ExcommunicationTileProxy excommunicationTileProxy : board.getExcommunicationTileProxies()){
+		/*for(ExcommunicationTileProxy excommunicationTileProxy : board.getExcommunicationTileProxies()){
 			excommunicationTileProxy.setImageProperty();
-		}
-		for(PlayerProxy playerProxy : game.getPlayerProxies()){
+		}*/
+		/*for(PlayerProxy playerProxy : game.getPlayerProxies()){
 			PersonalBoardProxy personalBoardProxy = playerProxy.getPersonalBoardProxy();
 			for(CardContainerProxy cardContainerProxy : personalBoardProxy.getCardContainers()){
 				for(DevelopmentCardProxy developmentCardProxy : cardContainerProxy.getDevelopmentCardProxies()){
@@ -298,7 +299,7 @@ public class GuiController implements Initializable {
 			for(LeaderCardProxy leaderCardProxy : playerProxy.getLeaderCardInHandProxies()){
 				leaderCardProxy.setImageProperty();
 			}
-		}
+		}*/
 		
 	}
 
