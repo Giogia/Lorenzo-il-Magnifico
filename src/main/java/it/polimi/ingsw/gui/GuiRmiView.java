@@ -25,6 +25,10 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
+import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.view.CliRmi;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -40,7 +44,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	private static GuiRmiView client;
 	private static GuiRmiCallback callback;
 	private volatile static GuiController controller;
-	private static Game game;
+	private static GameProxy game;
 	
 	private final static Logger LOGGER = Logger.getLogger(GuiRmiView.class.getName());
 	
@@ -68,8 +72,8 @@ public class GuiRmiView extends Application implements CliRmi{
 		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 		primaryStage.setTitle("Lorenzo Il Magnifico");
 		primaryStage.setScene(scene);
-		primaryStage.show();
 		}
+		primaryStage.show();
 	}
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException, MyException {
@@ -140,7 +144,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 	
 	@Override
-	public void startGame(Game game){
+	public void startGame(GameProxy game){
 		this.game = game;
 		//starting gui
 		synchronized (this) {
@@ -279,13 +283,15 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 
 	@Override
-	public void roundBegins(Board board) throws RemoteException {
-		ArrayList<DevelopmentCard> cards = new ArrayList<>();
+	public void roundBegins(BoardProxy board) throws RemoteException {
+		System.out.println("round begins!");
+		ArrayList<DevelopmentCardProxy> cards = new ArrayList<>();
 		for(int typeTower = 0; typeTower < 4; typeTower++){
-			for (TowerFloor floor : (TowerFloor[]) board.getTower(typeTower).getPositions()) {
-				cards.add(floor.getDevelopmentCard());
+			for (TowerFloorProxy floor : board.getTowerProxyByInt(typeTower).getTowerFloorProxies()) {
+				cards.add(floor.getDevelopmentCardProxy());
 			}
 		}
+		
 		System.out.println("sono in round begins e il controller:" + controller);
 		while(controller == null){
 			synchronized (lock) {
@@ -413,6 +419,16 @@ public class GuiRmiView extends Application implements CliRmi{
 			public void run() {
 				controller.disableButtons(false);//Now player can press button
 				controller.setChatLabel("TIME IS EXPIRED!");
+			}
+		});
+	}
+
+	@Override
+	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.updateTowerFloor(towerFloorProxy);
 			}
 		});
 	}

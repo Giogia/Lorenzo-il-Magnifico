@@ -6,6 +6,7 @@ import java.util.Random;
 
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
@@ -13,6 +14,7 @@ import it.polimi.ingsw.HANDLER.ADVANCED.LeaderCardDraftHandler;
 import it.polimi.ingsw.HANDLER.ADVANCED.PersonalBonusTileDraftHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
+import it.polimi.ingsw.minigame.GameProxy;
 
 public final class StartGameHandler {
 	
@@ -34,7 +36,9 @@ public final class StartGameHandler {
 		setPersonalBonusTiles(board, board.getGame().getData().getPersonalBonusTiles());
 		//PersonalBonusTileDraftHandler.handle(board);
 		//LeaderCardDraftHandler.handle(board);
-		ConnectionManagerImpl.getConnectionManager().startGame(board.getGame());
+		Game thisGame = board.getGame();
+		GameProxy gameProxy = new GameProxy(thisGame);
+		ConnectionManagerImpl.getConnectionManager().startGame(thisGame, gameProxy);
 	}
 	
 	

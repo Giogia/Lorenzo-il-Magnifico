@@ -1,9 +1,11 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import javafx.scene.image.Image;
 
-public class ExcommunicationTileProxy {
+public class ExcommunicationTileProxy implements Serializable{
 
 	private Image image;
 	

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.CARD.CardContainer;
@@ -9,7 +10,7 @@ import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
-public class PersonalBoardProxy {
+public class PersonalBoardProxy implements Serializable {
 
 	private PersonalBonusTileProxy personalBonusTileProxy;
 	private ArrayList<CardContainerProxy> cardContainerProxies = new ArrayList<>();

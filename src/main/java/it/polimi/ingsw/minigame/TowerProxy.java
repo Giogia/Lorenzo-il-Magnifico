@@ -1,17 +1,27 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import it.polimi.ingsw.BOARD.Tower;
+import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 
-public class TowerProxy extends ZoneProxy{
+public class TowerProxy implements Serializable{
 
 	private ArrayList<TowerFloorProxy> towerFloorProxies = new ArrayList<>();
 	private DevelopmentCardType developmentCardType;
 	
 	public TowerProxy(Tower tower) {
-		super(tower);
+		//super(tower);
 		developmentCardType = tower.getDevelopmentCardType();
+		int numberOfTowerFloor = 0;
+		for (TowerFloor position : (TowerFloor[]) tower.getPositions()) {
+			System.out.println(position);
+			System.out.println(developmentCardType);
+			System.out.println(numberOfTowerFloor);
+			towerFloorProxies.add(new TowerFloorProxy(position, developmentCardType, numberOfTowerFloor));
+			numberOfTowerFloor++;
+		}
 	}
 
 	public ArrayList<TowerFloorProxy> getTowerFloorProxies() {
@@ -20,5 +30,9 @@ public class TowerProxy extends ZoneProxy{
 	
 	public DevelopmentCardType getDevelopmentCardType() {
 		return developmentCardType;
+	}
+	
+	public TowerFloorProxy getTowerFloorProxy(int numberOfFloor){
+		return towerFloorProxies.get(numberOfFloor);
 	}
 }

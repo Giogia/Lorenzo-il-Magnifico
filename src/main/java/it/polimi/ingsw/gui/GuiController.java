@@ -7,8 +7,15 @@ import java.util.ResourceBundle;
 
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PlayerProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
+import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
@@ -32,36 +39,11 @@ import javafx.scene.shape.Rectangle;
 public class GuiController implements Initializable {
 	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
-	private Game game;
+	private GameProxy game;
 	
-	public GuiController(Game game) {
+	public GuiController(GameProxy game) {
 		this.game = game;
 	}
-	
-	ObjectProperty<Image> territory1Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> territory2Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> territory3Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> territory4Property = new SimpleObjectProperty<>();
-	
-	ObjectProperty<Image> building1Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> building2Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> building3Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> building4Property = new SimpleObjectProperty<>();
-	
-	ObjectProperty<Image> character1Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> character2Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> character3Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> character4Property = new SimpleObjectProperty<>();
-	
-	ObjectProperty<Image> venture1Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> venture2Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> venture3Property = new SimpleObjectProperty<>();
-	ObjectProperty<Image> venture4Property = new SimpleObjectProperty<>();
-	
-	ObjectProperty<Image> neutralFamilyMemberProperty = new SimpleObjectProperty<>();
-	ObjectProperty<Image> blackFamilyMemberProperty = new SimpleObjectProperty<>();
-	ObjectProperty<Image> whiteFamilyMemberProperty = new SimpleObjectProperty<>();
-	ObjectProperty<Image> orangeFamilyMemberProperty = new SimpleObjectProperty<>();
 	
     @FXML
     private TextField answerChat;
@@ -213,10 +195,6 @@ public class GuiController implements Initializable {
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
     		imageZoomed.setImage(positionClicked.getImage());
-    		if(positionClicked.getId().equals("territory4")){ // getting description of the card
-    			String description = game.getBoard().getTower(DevelopmentCardType.territory).getPosition(3).getDescription();
-    			getDescription.setText(description);
-    		}
     	}else{//there isn't a card
 			Image image = new Image("it/polimi/ingsw/gui/resources/towerFloor.jpeg");
     		imageZoomed.setImage(image);
@@ -265,69 +243,78 @@ public class GuiController implements Initializable {
 		this.guiSocketView = guiSocketView;
 	}
 	
-	public void setCards(ArrayList<DevelopmentCard> cards){
-		territory1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(0).getName() + ".png"));
-		territory2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(1).getName() + ".png"));
-		territory3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(2).getName() + ".png"));
-		territory4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(3).getName() + ".png"));
+	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy){
+		DevelopmentCardType towerType = newTowerFloorProxy.getTowerType();
+		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfFloor();
+		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
 		
-		building1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(4).getName() + ".png"));
-		building2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(5).getName() + ".png"));
-		building3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(6).getName() + ".png"));
-		building4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(7).getName() + ".png"));
+		//setting to null the image of card on towerFloor where player setted.
+		towerFloorProxy.getDevelopmentCardProxy().setImageProperty(null);
 		
-		character1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(8).getName() + ".png"));
-		character2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(9).getName() + ".png"));
-		character3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(10).getName() + ".png"));
-		character4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(11).getName() + ".png"));
-		
-		venture1Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(12).getName() + ".png"));
-		venture2Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(13).getName() + ".png"));
-		venture3Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(14).getName() + ".png"));
-		venture4Property.set(new Image("it/polimi/ingsw/gui/resources/developmentCards/" + cards.get(15).getName() + ".png"));
-		
+		//setting the image of family member on tower floor
+		towerFloorProxy.getFamilyMemberProxy().setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImageProperty().get());
+	}
+	
+	public void setCards(ArrayList<DevelopmentCardProxy> cards){
+		BoardProxy board = game.getBoardProxy();
+		for(int i = 0; i < 15; i++){
+			int towerFloor = i/4;
+			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(cards.get(i).getImageProperty().get());
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		disableButtons(true);
+		disableButtons(true);//place family member and pass the turn are disabled.
 		
 		//setting name players
-		Player[] players = game.getPlayers();
-		tabPlayer1.setText(players[0].getName());
-		tabPlayer2.setText(players[1].getName());
-		if(players.length >2){
-			tabPlayer3.setText(players[2].getName());
-		}else tabPlayer3.setDisable(true);;
+		ArrayList<PlayerProxy> players = game.getPlayerProxies();
+		tabPlayer1.setText(players.get(0).getName());
+		tabPlayer2.setText(players.get(1).getName());
 		
-		if(players.length >3){
-			tabPlayer4.setText(players[3].getName());
+		if(players.size() >2){
+			tabPlayer3.setText(players.get(2).getName());
+		}else tabPlayer3.setDisable(true);
+		
+		if(players.size() >3){
+			tabPlayer4.setText(players.get(3).getName());
 		}else tabPlayer4.setDisable(true);
 		
 		//setting cards binding
-		territory1.imageProperty().bind(territory1Property);
-		territory2.imageProperty().bind(territory2Property);
-		territory3.imageProperty().bind(territory3Property);
-		territory4.imageProperty().bind(territory4Property);
+		TowerProxy towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.territory);
+		System.out.println(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPath());
+		String path = towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPath();
+		Image image = new Image(path);
+		towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty();
+		System.out.println(territory1);
+		territory1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
+		territory2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
+		territory3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
+		territory4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 		
-		building1.imageProperty().bind(building1Property);
-		building2.imageProperty().bind(building2Property);
-		building3.imageProperty().bind(building3Property);
-		building4.imageProperty().bind(building4Property);
+		towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.building);
+		building1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
+		building2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
+		building3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
+		building4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 		
-		character1.imageProperty().bind(character1Property);
-		character2.imageProperty().bind(character2Property);
-		character3.imageProperty().bind(character3Property);
-		character4.imageProperty().bind(character4Property);
+		towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.character);
+		character1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
+		character2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
+		character3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
+		character4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 		
-		venture1.imageProperty().bind(venture1Property);
-		venture2.imageProperty().bind(venture2Property);
-		venture3.imageProperty().bind(venture3Property);
-		venture4.imageProperty().bind(venture4Property);
+		towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.venture);
+		venture1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
+		venture2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
+		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
+		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 		
-		neutralFamilyMember.imageProperty().bind(neutralFamilyMemberProperty);
-		blackFamilyMember.imageProperty().bind(blackFamilyMemberProperty);
-		whiteFamilyMember.imageProperty().bind(whiteFamilyMemberProperty);
-		orangeFamilyMember.imageProperty().bind(orangeFamilyMemberProperty);
+		int thisPlayer = 0;//TODO
+		PlayerProxy player = game.getPlayerProxies().get(thisPlayer);
+		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
+		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
+		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
 	}
 }

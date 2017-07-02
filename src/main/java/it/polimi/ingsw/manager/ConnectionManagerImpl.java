@@ -47,6 +47,8 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
 import it.polimi.ingsw.view.CliRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
+import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
 	
@@ -945,7 +947,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
-					client.roundBegins(player.getBoard());
+					BoardProxy boardProxy = new BoardProxy(player.getBoard());
+					client.roundBegins(boardProxy);
 				}catch(ConnectException e){
 					//user disconnected
 					LOGGER.log(Level.INFO, e.getMessage(),e);
@@ -1268,11 +1271,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 
-	public void startGame(Game thisGame) throws IOException{
+	public void startGame(Game thisGame, GameProxy gameProxy) throws IOException{
+		System.out.println("arrivo nello start game lato connection manager impl");
 		for (Player player : thisGame.getPlayers()) {
 			User user = findUserByPlayer(player);
 			if (user.getConnectionType()==true){//player is a rmi user
-				user.getCliRmi().startGame(thisGame);
+				user.getCliRmi().startGame(gameProxy);
 			}
 			else{
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();

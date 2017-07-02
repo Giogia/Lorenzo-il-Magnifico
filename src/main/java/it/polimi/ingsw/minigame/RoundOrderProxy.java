@@ -1,12 +1,13 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.GC_15.RoundOrder;
 
-public class RoundOrderProxy {
+public class RoundOrderProxy implements Serializable{
 
 	private ArrayList<OrderPawn> orderPawns = new ArrayList<>();
 	

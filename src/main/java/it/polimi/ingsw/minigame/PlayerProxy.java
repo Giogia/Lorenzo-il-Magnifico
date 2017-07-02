@@ -1,5 +1,6 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import it.polimi.ingsw.CARD.LeaderCard;
@@ -8,7 +9,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 
-public class PlayerProxy {
+public class PlayerProxy implements Serializable{
 
 	private String name;
 	private Color color;
@@ -24,6 +25,7 @@ public class PlayerProxy {
 			familyMemberProxies.add(new FamilyMemberProxy(familyMember));
 		}
 		for(LeaderCard leaderCard : player.getLeaderCardInHand()){
+			System.out.println(leaderCard);
 			leaderCardInHandProxies.add(new LeaderCardProxy(leaderCard));
 		}
 	}

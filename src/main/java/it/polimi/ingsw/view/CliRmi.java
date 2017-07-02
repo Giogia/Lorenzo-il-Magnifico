@@ -21,6 +21,9 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
+import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 
 //this is the remote object through the server can tell to client what to do
@@ -63,7 +66,7 @@ public interface CliRmi extends Remote {
 	
 	void cantPassTurn() throws RemoteException;
 	
-	void roundBegins(Board board) throws RemoteException;
+	void roundBegins(BoardProxy board) throws RemoteException;
 	
 	void hasWon(String winner) throws RemoteException;
 
@@ -97,6 +100,8 @@ public interface CliRmi extends Remote {
 
 	void timeExpired() throws RemoteException;
 	
-	void startGame(Game game) throws RemoteException;
+	void startGame(GameProxy game) throws RemoteException;
+
+	void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException;
 }
 

@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.manager.ActionSocket;
+import it.polimi.ingsw.minigame.GameProxy;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 
@@ -16,13 +17,13 @@ public class GuiSocketInView implements Runnable {
 	
 	private final static Logger LOGGER = Logger.getLogger(GuiSocketInView.class.getName());
 	private ObjectInputStream socketIn;
-	private static Game game;
+	private static GameProxy game;
 	
 	public GuiSocketInView(ObjectInputStream socketIn, PrintWriter socketOut) {
 		this.socketIn = socketIn;
 	}
 	
-	public static Game getGame() {
+	public static GameProxy getGame() {
 		return game;
 	}
 	

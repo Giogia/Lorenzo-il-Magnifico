@@ -1,24 +1,34 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_15.Player.Color;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-public class OrderPawn {
+public class OrderPawn implements Serializable {
 
 	private Color color;
-	private Image image;
+	transient private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
 	
 	public Color getColor() {
 		return color;
 	}
 	
-	public Image getImage() {
-		return image;
+	public ObjectProperty<Image> getImageProperty() {
+		return imageProperty;
+	}
+	
+	public void setImageProperty(ObjectProperty<Image> imageProperty) {
+		this.imageProperty = imageProperty;
 	}
 	
 	public OrderPawn(Color color) {
 		this.color = color;
-		String imagePath = color.name()+".png";
-		this.image = new Image(imagePath);
+		String imagePath = "it/polimi/ingsw/gui/resources/OrderPawns/" + color.name() + ".png";
+		System.out.println(imagePath);
+		//imageProperty.set(new Image(imagePath));
+		System.out.println("creato l'immagine");
 	}
 }

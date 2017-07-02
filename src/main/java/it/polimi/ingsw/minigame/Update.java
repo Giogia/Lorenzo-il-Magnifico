@@ -1,5 +1,6 @@
 package it.polimi.ingsw.minigame;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +29,15 @@ public class Update {
 		observers.remove(observer);
 	}
 	
-	public void TowerFloorOccupied(TowerFloor towerFloor){
-		
-		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor);
+	public void TowerFloorOccupied(TowerFloor towerFloor, Tower tower) throws RemoteException{
+		int numberOfFloor = getNumberOfFloor(towerFloor, tower);
+		DevelopmentCardType towerType = tower.getDevelopmentCardType();
+		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor, towerType, numberOfFloor);
 
-		
 		for (User observer : observers) {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
 					
-				//observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy);
+				observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy);
 			
 			}else{//user is a socket client
 				
@@ -47,7 +48,7 @@ public class Update {
 	}
 
 
-	private int getTowerFloor(TowerFloor newTowerFloor, Tower tower) {
+	private int getNumberOfFloor(TowerFloor newTowerFloor, Tower tower) {
 		for (int i = 0; i < 4; i++) {
 			if(newTowerFloor.equals((TowerFloor) tower.getPosition(i))){
 				return i;
