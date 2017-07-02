@@ -327,6 +327,9 @@ public class GuiController implements Initializable {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		setImages();
+		
 		territory1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
 		territory2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
 		territory3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
