@@ -7,20 +7,25 @@ import javafx.scene.image.Image;
 
 public class LeaderCardProxy {
 
-	transient private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
+	private String imagePath;
+	private ObjectProperty<Image> imageProperty;
+	
+	public LeaderCardProxy(LeaderCard leaderCard) {
+		imagePath = "it/polimi/ingsw/gui/resources/LeaderCards/" + leaderCard.getName() + ".png";
+	}
+	
+	public String getImagePath() {
+		return imagePath;
+	}
 	
 	public ObjectProperty<Image> getImageProperty() {
 		return imageProperty;
 	}
 	
-	public void setImageProperty(ObjectProperty<Image> imageProperty) {
-		this.imageProperty = imageProperty;
+	public void setImageProperty() {
+		imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(new Image(imagePath));
 	}
 	
-	public LeaderCardProxy(LeaderCard leaderCard) {
-		String imagePath = "it/polimi/ingsw/gui/resources/LeaderCards/" + leaderCard.getName() + ".png";
-		System.out.println(imagePath);
-		//imageProperty.set(new Image(imagePath));
-		System.out.println("crato immagine");
-	}
+	
 }

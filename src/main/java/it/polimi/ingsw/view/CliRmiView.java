@@ -32,6 +32,9 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
+import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 public class CliRmiView implements CliRmi{
 	static Scanner scanner;
@@ -302,9 +305,27 @@ public class CliRmiView implements CliRmi{
 		System.out.println("TIME IS EXPIRED! \n");
 	}
 	
-	@Override
+
 	public void startGame(Game game) throws RemoteException {
 		System.out.println("The game starts!");
+	}
+
+	@Override
+	public void roundBegins(BoardProxy board) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void startGame(GameProxy game) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

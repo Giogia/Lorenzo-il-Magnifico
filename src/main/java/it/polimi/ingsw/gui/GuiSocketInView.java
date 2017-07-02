@@ -70,7 +70,7 @@ public class GuiSocketInView implements Runnable {
 						break;
 						
 					case startGame:
-						game = action.getGame();
+						//game = action.getGame();
 						//starting gui
 						synchronized (GuiSocketView.getLock()) {
 							GuiSocketView.wait = false; //wake up GuiSocketView and he starts the main window

@@ -11,7 +11,14 @@ public class FamilyMemberProxy {
 	
 	private Color color;
 	private DiceColour diceColour;
-	transient private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
+	private String imagePath;
+	private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
+	
+	public FamilyMemberProxy(FamilyMember familyMember) {
+		this.color = familyMember.getPlayer().getColor();
+		this.diceColour = familyMember.getDice().getDiceColour();
+		this.imagePath = "it/polimi/ingsw/gui/resources/FamilyMembers/" + familyMember.getPlayer().getColor()+"-"+familyMember.getDice().getDiceColour()+".png";
+	}
 	
 	public Color getColor() {
 		return color;
@@ -25,16 +32,12 @@ public class FamilyMemberProxy {
 		return imageProperty;
 	}
 	
-	public void setImageProperty(Image image){
-		imageProperty.set(image);
+	public void setImageProperty(){
+		imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(new Image(imagePath));
 	}
 	
-	public FamilyMemberProxy(FamilyMember familyMember) {
-		this.color = familyMember.getPlayer().getColor();
-		this.diceColour = familyMember.getDice().getDiceColour();
-		String imagePath = "it/polimi/ingsw/gui/resources/FamilyMembers/" + familyMember.getPlayer().getColor()+"-"+familyMember.getDice().getDiceColour()+".png";
-		//imageProperty.set(new Image(imagePath));
-	}
+	
 	
 }
 
