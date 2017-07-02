@@ -82,6 +82,8 @@ public class StartGameHandlerTest {
 		roundOrder.setPlayers(playerOrder);
 		when(game.getOrder()).thenReturn(roundOrder);
 		when(game.getRoundOrder()).thenReturn(playerOrder);
+		when(board.getGame().getOrder()).thenReturn(roundOrder);
+		when(game.getBoard()).thenReturn(board);
 		
 		try {
 			StartGameHandler.handle(board);
