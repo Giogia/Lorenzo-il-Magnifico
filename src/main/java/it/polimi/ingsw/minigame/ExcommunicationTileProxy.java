@@ -25,8 +25,14 @@ public class ExcommunicationTileProxy implements Serializable{
 		return imageProperty;
 	}
 	
-	public void setImageProperty(ObjectProperty<Image> imageProperty) {
+	public void setImageProperty() {
 		imageProperty = new SimpleObjectProperty<>();
 		imageProperty.set(new Image(imagePath));
+	}
+	
+	public void setImageProperty(String url){
+		if(imageProperty==null)
+			imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(new Image(url));
 	}
 }

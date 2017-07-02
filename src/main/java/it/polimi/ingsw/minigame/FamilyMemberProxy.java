@@ -28,6 +28,10 @@ public class FamilyMemberProxy {
 		return diceColour;
 	}
 	
+	public String getImagePath() {
+		return imagePath;
+	}
+	
 	public ObjectProperty<Image> getImageProperty(){
 		return imageProperty;
 	}
@@ -37,6 +41,11 @@ public class FamilyMemberProxy {
 		imageProperty.set(new Image(imagePath));
 	}
 	
+	public void setImageProperty(String url){
+		if(imageProperty==null)
+			imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(new Image(url));
+	}
 	
 	
 }

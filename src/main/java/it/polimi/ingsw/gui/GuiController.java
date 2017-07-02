@@ -9,11 +9,18 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.CardContainerProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.ExcommunicationTileProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.LeaderCardProxy;
+import it.polimi.ingsw.minigame.OrderPawn;
+import it.polimi.ingsw.minigame.PersonalBoardProxy;
 import it.polimi.ingsw.minigame.PlayerProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.beans.property.ObjectProperty;
@@ -249,19 +256,49 @@ public class GuiController implements Initializable {
 		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
 		
 		//setting to null the image of card on towerFloor where player setted.
-		towerFloorProxy.getDevelopmentCardProxy().setImageProperty(null);
+		towerFloorProxy.getDevelopmentCardProxy().setImageProperty(" ");
 		
 		//setting the image of family member on tower floor
-		towerFloorProxy.getFamilyMemberProxy().setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImageProperty().get());
+		towerFloorProxy.getFamilyMemberProxy().setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
 	}
 	
 	public void setCards(ArrayList<DevelopmentCardProxy> cards){
 		BoardProxy board = game.getBoardProxy();
 		for(int i = 0; i < 15; i++){
 			int towerFloor = i/4;
-			Image image = new Image(cards.get(i).getPathImage());
-			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(image);
+			String imagePath = cards.get(i).getImagePath();
+			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(imagePath);
 		}
+	}
+	
+	public void setImages(){
+		BoardProxy board = game.getBoardProxy();
+		for(OrderPawn orderPawn : board.getRoundOrderProxy().getOrderPawns()){
+			orderPawn.setImageProperty();
+		}
+		for(TowerProxy towerProxy : board.getTowerProxies()){
+			for(TowerFloorProxy towerFloorProxy : towerProxy.getTowerFloorProxies()){
+				towerFloorProxy.getDevelopmentCardProxy().setImageProperty();
+			}
+		}
+		for(ExcommunicationTileProxy excommunicationTileProxy : board.getExcommunicationTileProxies()){
+			excommunicationTileProxy.setImageProperty();
+		}
+		for(PlayerProxy playerProxy : game.getPlayerProxies()){
+			PersonalBoardProxy personalBoardProxy = playerProxy.getPersonalBoardProxy();
+			for(CardContainerProxy cardContainerProxy : personalBoardProxy.getCardContainers()){
+				for(DevelopmentCardProxy developmentCardProxy : cardContainerProxy.getDevelopmentCardProxies()){
+					developmentCardProxy.setImageProperty();
+				}
+			}
+			for(LeaderCardProxy leaderCardProxy : personalBoardProxy.getLeaderCardProxies()){
+				leaderCardProxy.setImageProperty();
+			}
+			for(LeaderCardProxy leaderCardProxy : playerProxy.getLeaderCardInHandProxies()){
+				leaderCardProxy.setImageProperty();
+			}
+		}
+		
 	}
 
 	@Override
@@ -283,10 +320,9 @@ public class GuiController implements Initializable {
 		
 		//setting cards binding
 		TowerProxy towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.territory);
-		String imagePath = towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPathImage();
-		Image image = new Image(imagePath);
+		String imagePath = towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImagePath();
 		try{
-			towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().setImageProperty(image);
+			towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().setImageProperty(imagePath);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

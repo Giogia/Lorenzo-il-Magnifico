@@ -49,6 +49,10 @@ public class BoardProxy implements Serializable{
 		return null;//never arrive here
 	}
 	
+	public ArrayList<TowerProxy> getTowerProxies() {
+		return towerProxies;
+	}
+	
 	public MarketProxy getMarketProxy() {
 		return marketProxy;
 	}

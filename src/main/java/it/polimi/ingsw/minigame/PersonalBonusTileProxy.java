@@ -29,4 +29,9 @@ public class PersonalBonusTileProxy implements Serializable{
 		imageProperty.set(new Image(imagePath));
 	}
 	
+	public void setImageProperty(String url){
+		if(imageProperty==null)
+			imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(new Image(url));
+	}
 }
