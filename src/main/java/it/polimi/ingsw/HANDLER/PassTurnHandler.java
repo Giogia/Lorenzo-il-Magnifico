@@ -12,13 +12,7 @@ public class PassTurnHandler {
 	
 	public static boolean handle(Player player){
 		PassTurnController passTurnController = player.getBoard().getPassTurnController();
-		if (passTurnController.getLastMove() == null){
-			return false;
-		}
-		if (passTurnController.getLastMove().equals(player)){
-			return true;
-		}
-		else{
+		if (passTurnController.getLastMove() == null || !passTurnController.getLastMove().equals(player)){
 			ArrayList<FamilyMember> playerFamilyMembers = player.getFamilyMembers();
 			Servants playerServants = (Servants) player.getPersonalBoard().getResource(ResourceType.servants);
 			for (FamilyMember familyMember : playerFamilyMembers) {
@@ -32,6 +26,8 @@ public class PassTurnHandler {
 			passTurnController.lastMove(player);
 			return true;
 		}
+		else
+			return true;
 	}
 
 }
