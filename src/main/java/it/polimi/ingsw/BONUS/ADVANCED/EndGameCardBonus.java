@@ -27,7 +27,7 @@ public class EndGameCardBonus extends PermanentBonus {
 		if (playerBonus != null){
 			for (PermanentBonus permanentBonus : playerBonus) {
 				if (permanentBonus instanceof EndGameCardBonus){
-					
+					((EndGameCardBonus) permanentBonus).addBonus(this);
 				}
 			}
 		}

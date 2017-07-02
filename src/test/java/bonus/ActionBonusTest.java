@@ -32,6 +32,7 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.manager.User;
+import it.polimi.ingsw.minigame.Update;
 import it.polimi.ingsw.view.CliRmiView;
 
 public class ActionBonusTest {
@@ -87,6 +88,7 @@ public class ActionBonusTest {
 			User user = mock(User.class);
 			user.setPlayer(players[i]);
 			users.add(user);
+			Update.getInstance().addUsers(user);
 			when(user.getConnectionType()).thenReturn(true);
 			when(user.getCliRmi()).thenReturn(cliRmiView);
 			when(user.getPlayer()).thenReturn(players[i]);

@@ -66,7 +66,6 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 		if (newBonus instanceof ResourceValueBonus){
 			for (Resource newResource : newBonus.getResources()) {
 				addResource(newResource);
-				return;
 			}
 		}
 	}

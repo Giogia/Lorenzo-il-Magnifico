@@ -42,12 +42,10 @@ public class OrderBonus extends PermanentBonus{
 	
 	public String getDescription(){
 		String description = "You skip :\n";
-		for(boolean action : skipAction){
-			int i = 0;
-			if(action==true){
+		for(int i = 0; i < 4; i++){
+			if(skipAction[i]==true){
 				description = description + "action number"+ i + "\n";
 			}
-			i++;
 		}
 		description = description + "and you do it at the end of the turn \n";
 		return description;

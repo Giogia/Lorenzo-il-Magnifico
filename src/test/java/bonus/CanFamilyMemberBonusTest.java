@@ -51,8 +51,6 @@ public class CanFamilyMemberBonusTest {
 		
 		CanFamilyMemberBonus canFamilyMemberBonus2 = new CanFamilyMemberBonus(true, canGoTo2);
 		
-		assertEquals("Your family members cannot go to: \nTower character\nTower venture\nProduction Area\nCouncil Palace\nyou can go to any position even if occupied \n" , canFamilyMemberBonus2.getDescription());
-		
 		canFamilyMemberBonus2.getPermanentBonus(nino);
 		
 		CanFamilyMemberBonus playerBonus = (CanFamilyMemberBonus) nino.getPersonalBoard().getPermanentBonus().get(0);
@@ -75,6 +73,12 @@ public class CanFamilyMemberBonusTest {
 		CanFamilyMemberBonus canFamilyMemberBonus4 = new CanFamilyMemberBonus(false, canGoTo4);
 		
 		Player player = new Player(null, Color.RED);
+		
+		assertEquals("Your family members cannot go to: \nHarvest Area\n", canFamilyMemberBonus4.getDescription());
+		
+		CanFamilyMemberBonus canFamilyMemberBonus5 = new CanFamilyMemberBonus(true, new HashMap<>());
+		
+		assertEquals("you can go to any position even if occupied \n", canFamilyMemberBonus5.getDescription());
 		
 		canFamilyMemberBonus4.getPermanentBonus(player);
 		

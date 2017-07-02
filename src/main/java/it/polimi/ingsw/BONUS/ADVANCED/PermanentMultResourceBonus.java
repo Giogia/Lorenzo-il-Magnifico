@@ -42,7 +42,6 @@ public class PermanentMultResourceBonus extends PermanentResourceBonus {
 		if (newBonus instanceof PermanentMultResourceBonus){
 			for (Resource newResource : newBonus.getResources()) {
 				addResource(newResource);
-				return;
 			}
 		}
 	}
