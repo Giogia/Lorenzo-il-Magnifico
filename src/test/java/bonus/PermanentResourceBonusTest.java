@@ -12,9 +12,11 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus;
 import it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
 
 public class PermanentResourceBonusTest {
@@ -156,6 +158,12 @@ public class PermanentResourceBonusTest {
 		assertEquals(2, playerBonus.getResources().get(0).getAmount());
 		assertEquals(9, playerBonus.getResources().get(1).getAmount());
 		assertEquals(3, playerBonus.getResources().get(2).getAmount());
+		
+		ResourcePerMissedExcommunicationHandler.handle(player);
+
+		assertEquals(2, player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount());
+		assertEquals(9, player.getPersonalBoard().getResource(ResourceType.servants).getAmount());
+		assertEquals(3, player.getPersonalBoard().getResource(ResourceType.militaryPoints).getAmount());
 	}
 
 }

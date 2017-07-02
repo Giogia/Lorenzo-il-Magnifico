@@ -32,7 +32,7 @@ public class CardCostHandler {
 					}
 				} 
 				if(cardCostBonus[1]!=null){
-					ArrayList<Resource> multBonus = cardCostBonus[0].getResources();
+					ArrayList<Resource> multBonus = cardCostBonus[1].getResources();
 					for (Resource resource : multBonus) {
 						for (Resource costResource : cost) {
 							if (resource.getClass().equals(costResource.getClass())){

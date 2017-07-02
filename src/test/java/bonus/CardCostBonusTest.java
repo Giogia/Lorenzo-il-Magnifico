@@ -11,6 +11,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler;
 import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -55,6 +56,17 @@ public class CardCostBonusTest {
 		addCardCostBonus3.getPermanentBonus(michele);
 		
 		assertEquals(addCardCostBonus3, michele.getPersonalBoard().getPermanentBonus().get(1));
+		
+		ArrayList<Resource> cost = new ArrayList<>();
+		cost.add(new Coins(3, 1));
+		cost.add(new MilitaryPoints(2, 1));
+		cost.add(new VictoryPoints(0, 1));
+		
+		CardCostHandler.handle(cost, michele, cardType);
+		
+		assertEquals(5, cost.get(0).getAmount());
+		assertEquals(0, cost.get(1).getAmount());
+		assertEquals(2, cost.get(2).getAmount());
 	}
 
 	@Test
@@ -94,6 +106,17 @@ public class CardCostBonusTest {
 		multiplyCardCostBonus3.getPermanentBonus(michele);
 		
 		assertEquals(multiplyCardCostBonus3, michele.getPersonalBoard().getPermanentBonus().get(1));
+	
+		ArrayList<Resource> cost = new ArrayList<>();
+		cost.add(new Coins(3, 1));
+		cost.add(new MilitaryPoints(2, 1));
+		cost.add(new VictoryPoints(0, 1));
+		
+		CardCostHandler.handle(cost, michele, cardType);
+		
+		assertEquals(6, cost.get(0).getAmount());
+		assertEquals(-12, cost.get(1).getAmount());
+		assertEquals(0, cost.get(2).getAmount());
 	}
 
 }

@@ -47,7 +47,7 @@ public class LoseVictoryPointsPerCostHandler {
 			ArrayList<Resource> cardCost = new ArrayList<>();
 			if (developmentCardType.equals(DevelopmentCardType.building)){
 				for (DevelopmentCard developmentCard : cards) {
-					cardCost = ((Building) developmentCard).getCosts();
+					cardCost.addAll(((Building) developmentCard).getCosts());
 				}
 			}
 			else if (developmentCardType.equals(DevelopmentCardType.character)){
@@ -59,8 +59,11 @@ public class LoseVictoryPointsPerCostHandler {
 			else if (developmentCardType.equals(DevelopmentCardType.venture)){
 				for (DevelopmentCard developmentCard : cards) {
 					MilitaryPoints militaryPoints = ((Venture) developmentCard).getAlternativeCost();
-					cardCost = ((Venture) developmentCard).getCost();
-					cardCost.add(militaryPoints);
+					ArrayList<Resource> cost = ((Venture) developmentCard).getCost();
+					if (cost != null)
+						cardCost.addAll(cost);
+					if (militaryPoints != null)
+						cardCost.add(militaryPoints);
 				}
 			}
 			for (Resource resource : bonusResources) {
