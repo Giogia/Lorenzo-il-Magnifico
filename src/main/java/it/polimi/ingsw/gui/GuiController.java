@@ -302,6 +302,14 @@ public class GuiController implements Initializable {
 		}*/
 		
 	}
+	
+	public PlayerProxy getCurrentPlayer(GameProxy gameProxy) {
+		for (PlayerProxy playerProxy : gameProxy.getPlayerProxies()) {
+			if(playerProxy.getCurrentPlayer().equals(true))
+				return playerProxy;
+		}
+		return null;
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -354,11 +362,11 @@ public class GuiController implements Initializable {
 		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
 		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 
-		/*int thisPlayer = 0;//TODO
-		PlayerProxy player = game.getPlayerProxies().get(thisPlayer);
+		PlayerProxy player = getCurrentPlayer(game);
+		
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());*/
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
 	}
 }

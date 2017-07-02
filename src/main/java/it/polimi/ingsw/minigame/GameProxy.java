@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.Player.Color;
 
 public class GameProxy implements Serializable{
 
@@ -20,6 +21,14 @@ public class GameProxy implements Serializable{
 
 	public ArrayList<PlayerProxy> getPlayerProxies() {
 		return playerProxies;
+	}
+	
+	public PlayerProxy getPlayerProxy(Color color){
+		for (PlayerProxy playerProxy : playerProxies) {
+			if(playerProxy.getColor().equals(color))
+				return playerProxy;
+		}
+		return null;
 	}
 	
 	public BoardProxy getBoardProxy() {

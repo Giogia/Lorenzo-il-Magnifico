@@ -49,6 +49,7 @@ import it.polimi.ingsw.view.CliRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.Update;
 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
@@ -1278,6 +1279,10 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		System.out.println("arrivo nello start game lato connection manager impl");
 		for (Player player : thisGame.getPlayers()) {
 			User user = findUserByPlayer(player);
+			
+			PlayerProxy currentPlayer = gameProxy.getPlayerProxy(player.getColor());
+			currentPlayer.setCurrentPlayer(true);
+			
 			if (user.getConnectionType()==true){//player is a rmi user
 				user.getCliRmi().startGame(gameProxy);
 			}
@@ -1289,6 +1294,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				out.writeObject(act);
 				out.flush();
 			}
+			currentPlayer.setCurrentPlayer(false);
 		}
 	}
 }
