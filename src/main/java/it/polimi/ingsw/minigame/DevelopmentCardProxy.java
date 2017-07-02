@@ -10,19 +10,22 @@ import javafx.scene.image.Image;
 
 public class DevelopmentCardProxy implements Serializable {
 	transient private ObjectProperty<Image> imageProperty = new SimpleObjectProperty<>();
-	private String path = "";
+	private String pathImage = "";
 	
-	public void setPath(String path) {
-		this.path = path;
+	public String getPathImage() {
+		return pathImage;
 	}
 	
-	public String getPath() {
-		return path;
+	public void setPathImage(String pathImage) {
+		this.pathImage = pathImage;
 	}
 	
-	public DevelopmentCardProxy() {
-		System.out.println("arrivo qui");
-		path = "it/polimi/ingsw/gui/resources/towerFloor.jpeg";
+	public DevelopmentCardProxy(DevelopmentCard card){
+		if(card == null){
+			pathImage = "it/polimi/ingsw/gui/resources/towerFloor.jpeg";
+		}else{
+			pathImage = "it/polimi/ingsw/gui/resources/DevelopmentCards/" + card.getName() + ".png";
+		}
 	}
 	
 	public ObjectProperty<Image> getImageProperty(){
@@ -30,8 +33,8 @@ public class DevelopmentCardProxy implements Serializable {
 	}
 	
 	public void setImageProperty(Image image){
-		//String imagePath = "it/polimi/ingsw/gui/resources/developmentCards/" + cardName + ".png";
 		System.out.println(image);
+		imageProperty = new SimpleObjectProperty<>();
 		imageProperty.set(image);
 	}
 }

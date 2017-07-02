@@ -526,6 +526,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException {
 		User user = findUserByPlayer(player);
 		if (user.getConnectionType()==true){//player is a rmi user
+			System.out.println("arrivo qui");
 			CliRmi client = user.getCliRmi();
 			try{
 				client.startTurn(player.getName());

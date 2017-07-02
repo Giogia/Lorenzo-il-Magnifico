@@ -259,7 +259,8 @@ public class GuiController implements Initializable {
 		BoardProxy board = game.getBoardProxy();
 		for(int i = 0; i < 15; i++){
 			int towerFloor = i/4;
-			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(cards.get(i).getImageProperty().get());
+			Image image = new Image(cards.get(i).getPathImage());
+			board.getTowerProxyByInt(towerFloor).getTowerFloorProxies().get(i).getDevelopmentCardProxy().setImageProperty(image);
 		}
 	}
 
@@ -282,11 +283,13 @@ public class GuiController implements Initializable {
 		
 		//setting cards binding
 		TowerProxy towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.territory);
-		System.out.println(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPath());
-		String path = towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPath();
-		Image image = new Image(path);
-		towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty();
-		System.out.println(territory1);
+		String imagePath = towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getPathImage();
+		Image image = new Image(imagePath);
+		try{
+			towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().setImageProperty(image);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		territory1.imageProperty().bind(towerProxy.getTowerFloorProxy(0).getDevelopmentCardProxy().getImageProperty());
 		territory2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
 		territory3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
@@ -309,12 +312,12 @@ public class GuiController implements Initializable {
 		venture2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
 		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
 		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
-		
-		int thisPlayer = 0;//TODO
+
+		/*int thisPlayer = 0;//TODO
 		PlayerProxy player = game.getPlayerProxies().get(thisPlayer);
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());*/
 	}
 }

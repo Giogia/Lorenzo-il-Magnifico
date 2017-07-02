@@ -14,7 +14,7 @@ public class CardContainerProxy implements Serializable{
 	
 	public CardContainerProxy(CardContainer cardContainer) {
 		for(DevelopmentCard developmentCard : cardContainer.getDevelopmentCards()){
-			developmentCardProxies.add(new DevelopmentCardProxy());		
+			developmentCardProxies.add(new DevelopmentCardProxy(developmentCard));		
 		}
 		developmentCardType = cardContainer.getType();
 	}

@@ -29,6 +29,8 @@ public class OrderPawn implements Serializable {
 		String imagePath = "it/polimi/ingsw/gui/resources/OrderPawns/" + color.name() + ".png";
 		System.out.println(imagePath);
 		//imageProperty.set(new Image(imagePath));
+		
+		
 		System.out.println("creato l'immagine");
 	}
 }

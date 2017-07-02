@@ -32,9 +32,8 @@ public class FamilyMemberProxy {
 	public FamilyMemberProxy(FamilyMember familyMember) {
 		this.color = familyMember.getPlayer().getColor();
 		this.diceColour = familyMember.getDice().getDiceColour();
-		String imagePath = "it/polimi/ingsw/gui/resources//" + familyMember.getPlayer().getColor()+"-"+familyMember.getDice().getDiceColour()+".png";
-		System.out.println("DA AGGIUSTARE L' IMAGE PATH");
-		imageProperty.set(new Image(imagePath));
+		String imagePath = "it/polimi/ingsw/gui/resources/FamilyMembers/" + familyMember.getPlayer().getColor()+"-"+familyMember.getDice().getDiceColour()+".png";
+		//imageProperty.set(new Image(imagePath));
 	}
 	
 }

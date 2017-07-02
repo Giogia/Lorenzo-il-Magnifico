@@ -13,7 +13,8 @@ public class TowerFloorProxy extends PositionProxy {
 		super(towerFloor);
 		this.towerType = towerType;
 		this.numberOfFloor = numberOfFloor;
-		developmentCardProxy = new DevelopmentCardProxy();
+		System.out.println(towerFloor.getDevelopmentCard());
+		developmentCardProxy = new DevelopmentCardProxy(towerFloor.getDevelopmentCard());
 	}
 	
 	public DevelopmentCardProxy getDevelopmentCardProxy() {

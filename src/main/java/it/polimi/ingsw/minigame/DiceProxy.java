@@ -13,6 +13,6 @@ public class DiceProxy {
 	
 	public DiceProxy(Dice dice) {
 		String imagePath = dice.getDiceColour()+"-"+dice.getValue()+".png";
-		this.image = new Image(imagePath);
+		//this.image = new Image(imagePath);
 	}
 }
