@@ -16,6 +16,7 @@ import it.polimi.ingsw.BOARD.ActionZone;
 import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.TowerFloor;
+import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -161,8 +162,13 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void wrongInput() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("The input must be an integer! Try again!");
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
@@ -182,6 +188,7 @@ public class GuiRmiView extends Application implements CliRmi{
 			public void run() {
 				controller.setChatLabel("Choose the action you want to do with this Leader Card : \n"
 						+ "1) activate this leader Card \n2) Discard this leader card");
+				controller.disableButtons(true);
 			}
 		});
 	}
@@ -238,6 +245,7 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel("Choose the family member you want to use for the action.");
+				controller.disableButtons(true);
 			}
 		});
 	}
@@ -260,6 +268,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					message += alternativeResource.getDescription() + "\n";
 				}
 				controller.setChatLabel(message);
+				controller.disableButtons(true);
 			}
 		});
 		
@@ -276,6 +285,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					message += counter + ") " + councilPrivileges.get(counter - 1).getDescription() +"\n";
 				}
 				controller.setChatLabel(message);
+				controller.disableButtons(true);
 			}
 		});
 		
@@ -287,18 +297,19 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel("You have " + numberOfServants + " servants. How many of them do you want to use?");
+				controller.disableButtons(true);
 			}
 		});
 	}
 
 	@Override
 	public void askForInformation(String[] playersNames) throws RemoteException {
-		// TODO Auto-generated method stub
+		// this method in Gui is useless
 	}
 
 	@Override
 	public void showPersonalBoard(PersonalBoard personalBoard) throws RemoteException {
-		// TODO Auto-generated method stub
+		// this method in Gui is useless
 	}
 
 	@Override
@@ -351,20 +362,41 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel(winner + " has won the game!");
+				controller.disableButtons(true);
 			}
 		});
 	}
 
 	@Override
 	public void askForAction(ArrayList<ActionZone> zones) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend = "Choose the zone you want to activate the action bonus in: ";
+				for (int i = 1; i <= zones.size(); i++) {
+					toSend += i + ") " + zones.get(i-1).getDescription();
+				}
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
 	public void askForActionPosition(Position[] positions) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend = "Choose where you want to place your family member: ";
+				for (int counter = 1; counter <= positions.length; counter ++) {
+					toSend += counter + ") " + positions[counter - 1].getDescription();
+				}
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
@@ -387,20 +419,51 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askForLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend= "Choose the leader card you want \n";
+				for(int i=1;i<leaderCards.size()+1;i++){
+					toSend += i+")"+leaderCards.get(i-1).getDescription()+"\n";
+				}
+				toSend += leaderCards.size()+1+") come back \n";
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
 	public void askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend = "Choose the personal bonus tile you want \n";
+				for(int i=1;i<personalBonusTiles.size();i++){
+					toSend += i+")"+personalBonusTiles.get(i).getDescription()+" \n";
+				}
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
 	public void draftLeaderCard(ArrayList<LeaderCard> leaderCards) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend = "Choose the leader card you want \n";
+				for(int i=1;i<leaderCards.size()+1;i++){
+					toSend += i+")"+leaderCards.get(i-1).getDescription()+" \n";
+				}
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
@@ -409,20 +472,43 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel("Do you want to be excommunicated? \n1) No \n2)Yes");
+				controller.disableButtons(true);
 			}
 		});
 	}
 
 	@Override
 	public void askForCardEffect(DevelopmentCard developmentCard) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				String toSend = "Choose which effect of the card you want to acctivate : \n 1) First Effect: \n";
+				int i =1;
+				for(Bonus bonus : developmentCard.secondaryEffect){
+					if(bonus instanceof ResourceBonus){
+						toSend += i+")"+bonus.getDescription();
+						i++;
+					}
+					else
+						toSend += bonus.getDescription();
+				}
+				toSend += i+") Don't activate this card's Effect \n";
+				
+				controller.setChatLabel(toSend);
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
 	public void integerError() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("The integer doesn't match any possible choice");
+				controller.disableButtons(true);
+			}
+		});
 	}
 
 	@Override
@@ -470,7 +556,6 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
 		Platform.runLater(new Runnable() {
-			
 			@Override
 			public void run() {
 				controller.updatePosition(positionProxy);
