@@ -127,40 +127,40 @@ public class GuiController implements Initializable {
     private ImageView venture1;
 
     @FXML
-    private Ellipse councilPalace;
+    private ImageView councilPalace;
 
     @FXML
-    private Circle production1;
+    private ImageView production1;
 
     @FXML
-    private Circle harvest1;
+    private ImageView harvest1;
 
     @FXML
-    private Circle market1;
+    private ImageView market1;
 
     @FXML
-    private Circle market2;
+    private ImageView market2;
 
     @FXML
-    private Circle market3;
+    private ImageView market3;
 
     @FXML
-    private Circle market4;
+    private ImageView market4;
 
     @FXML
-    private Rectangle production2;
+    private ImageView production2;
 
     @FXML
-    private Rectangle harvest2;
+    private ImageView harvest2;
 
     @FXML
-    private Rectangle dice1;
+    private ImageView dice1;
 
     @FXML
-    private Rectangle dice2;
+    private ImageView dice2;
 
     @FXML
-    private Rectangle dice3;
+    private ImageView dice3;
 
     @FXML
     private ImageView excommunicationTile1;

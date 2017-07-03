@@ -14,9 +14,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1900.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -98,18 +95,6 @@
                </font>
             </Label>
             <TextField fx:id="answerChat" layoutX="938.0" layoutY="259.0" onKeyPressed="#enterPressed" prefHeight="34.0" prefWidth="358.0" />
-            <Ellipse fx:id="councilPalace" fill="DODGERBLUE" layoutX="293.0" layoutY="421.0" opacity="0.0" radiusX="75.0" radiusY="24.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="production1" fill="DODGERBLUE" layoutX="39.0" layoutY="581.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="harvest1" fill="DODGERBLUE" layoutX="38.0" layoutY="644.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="market1" fill="DODGERBLUE" layoutX="286.0" layoutY="571.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="market2" fill="DODGERBLUE" layoutX="334.0" layoutY="571.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="market3" fill="DODGERBLUE" layoutX="377.0" layoutY="581.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Circle fx:id="market4" fill="DODGERBLUE" layoutX="412.0" layoutY="617.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Rectangle fx:id="production2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="81.0" layoutY="566.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-            <Rectangle fx:id="harvest2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="30.0" layoutX="81.0" layoutY="629.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-            <Rectangle fx:id="dice1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="258.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
-            <Rectangle fx:id="dice2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="307.0" layoutY="630.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
-            <Rectangle fx:id="dice3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="355.0" layoutY="631.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="35.0" />
             <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="57.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="114.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="territory2" fitHeight="92.0" fitWidth="55.0" layoutX="22.0" layoutY="207.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
@@ -140,6 +125,18 @@
             <ImageView fx:id="whiteFamilyMember" fitHeight="82.0" fitWidth="49.0" layoutX="747.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="orangeFamilyMember" fitHeight="90.0" fitWidth="49.0" layoutX="861.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="1298.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#sendCkd" prefHeight="33.0" prefWidth="52.0" text="Send" />
+            <ImageView fx:id="councilPalace" fitHeight="54.0" fitWidth="134.0" layoutX="230.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="production1" fitHeight="36.0" fitWidth="39.0" layoutX="18.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="harvest1" fitHeight="34.0" fitWidth="37.0" layoutX="21.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="37.0" fitWidth="97.0" layoutX="78.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="harvest2" fitHeight="37.0" fitWidth="97.0" layoutX="79.0" layoutY="621.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="market1" fitHeight="36.0" fitWidth="42.0" layoutX="266.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="market2" fitHeight="36.0" fitWidth="42.0" layoutX="314.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="market3" fitHeight="36.0" fitWidth="42.0" layoutX="359.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="market4" fitHeight="36.0" fitWidth="42.0" layoutX="390.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dice1" fitHeight="32.0" fitWidth="32.0" layoutX="259.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dice2" fitHeight="32.0" fitWidth="32.0" layoutX="309.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="dice3" fitHeight="32.0" fitWidth="32.0" layoutX="356.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>

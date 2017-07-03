@@ -451,7 +451,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.disableButtons(false);//Now player can press button
+				controller.disableButtons(true);//Now player can't press button
 				controller.setChatLabel("TIME IS EXPIRED!");
 			}
 		});
