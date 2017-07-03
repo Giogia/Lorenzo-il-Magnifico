@@ -96,7 +96,6 @@ public class GuiRmiView extends Application implements CliRmi{
 				try {
 					wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 			}
@@ -176,8 +175,13 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askForLeaderCardAction() throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.setChatLabel("Choose the action you want to do with this Leader Card : \n"
+						+ "1) activate this leader Card \n2) Discard this leader card");
+			}
+		});
 	}
 
 	@Override
@@ -239,13 +243,39 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void askForAlternativeCost(ArrayList<Resource> costDescriptions,
 			ArrayList<Resource> alternativeCostDescriptions) throws RemoteException {
-		// TODO Auto-generated method stub
+		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				String message = "The card you have chosen has 2 costs. Choose one: \n";
+				message += "1) First cost\n";
+				for (Resource resource : costDescriptions) {
+					message += resource.getDescription() + "\n";
+				}
+				message += "2) Secondary cost:\n";
+				for (Resource alternativeResource : alternativeCostDescriptions ) {
+					message += alternativeResource.getDescription() + "\n";
+				}
+				controller.setChatLabel(message);
+			}
+		});
 		
 	}
 
 	@Override
 	public void askForCouncilPrivilege(ArrayList<ResourceBonus> councilPrivileges) throws RemoteException {
-		// TODO Auto-generated method stub
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				String message = "Choose the bonus of the Council Privilege: \n";
+				for (int counter = 1; counter <= councilPrivileges.size(); counter++){
+					message += counter + ") " + councilPrivileges.get(counter - 1).getDescription() +"\n";
+				}
+				controller.setChatLabel(message);
+			}
+		});
 		
 	}
 
@@ -262,13 +292,11 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void askForInformation(String[] playersNames) throws RemoteException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void showPersonalBoard(PersonalBoard personalBoard) throws RemoteException {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -347,7 +375,15 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void showDices(ArrayList<Dice> dices) throws RemoteException {
-		// TODO Auto-generated method stub
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				for (Dice dice : dices) {
+					System.out.println(dice.getDescription());
+				}
+			}
+		});
 		
 	}
 

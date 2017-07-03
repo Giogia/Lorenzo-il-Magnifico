@@ -362,11 +362,15 @@ public class GuiController implements Initializable {
 		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
 		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 
-		PlayerProxy player = getCurrentPlayer(game);
+		/*PlayerProxy player = getCurrentPlayer(game);
+		System.out.println(player);
+		System.out.println("family member " + player.getFamilyMemberProxy(DiceColour.Neutral));
+		System.out.println("imagepath------" +player.getFamilyMemberProxy(DiceColour.Neutral).getImagePath());
+		player.getFamilyMemberProxy(DiceColour.Neutral).getImagePath();
 		
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());*/
 	}
 }
