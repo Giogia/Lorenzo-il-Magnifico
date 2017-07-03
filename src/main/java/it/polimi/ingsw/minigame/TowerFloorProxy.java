@@ -10,13 +10,11 @@ public class TowerFloorProxy extends PositionProxy {
 
 	private DevelopmentCardProxy developmentCardProxy;
 	private DevelopmentCardType towerType;
-	private int numberOfFloor;
 	private ObjectProperty<Image> imageProperty;
 	
 	public TowerFloorProxy(TowerFloor towerFloor, DevelopmentCardType towerType, int numberOfFloor) {
-		super(towerFloor);
+		super(towerFloor, numberOfFloor);
 		this.towerType = towerType;
-		this.numberOfFloor = numberOfFloor;
 		System.out.println(towerFloor.getDevelopmentCard());
 		developmentCardProxy = new DevelopmentCardProxy(towerFloor.getDevelopmentCard());
 	}
@@ -31,10 +29,6 @@ public class TowerFloorProxy extends PositionProxy {
 
 	public DevelopmentCardType getTowerType() {
 		return towerType;
-	}
-	
-	public int getNumberOfFloor() {
-		return numberOfFloor;
 	}
 	
 	public FamilyMemberProxy getFamilyMemberProxy(){

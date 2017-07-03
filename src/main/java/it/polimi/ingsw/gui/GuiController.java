@@ -253,7 +253,7 @@ public class GuiController implements Initializable {
 	
 	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy){
 		DevelopmentCardType towerType = newTowerFloorProxy.getTowerType();
-		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfFloor();
+		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfPosition();
 		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
 		
 		//setting to null the image of card on towerFloor where player setted.
@@ -380,7 +380,11 @@ public class GuiController implements Initializable {
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());*/
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+*/
+	}
 
+	public void updatePosition(PositionProxy positionProxy) {
+		
 	}
 }

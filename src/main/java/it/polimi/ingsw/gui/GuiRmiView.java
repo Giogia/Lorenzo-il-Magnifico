@@ -28,6 +28,7 @@ import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
 import it.polimi.ingsw.view.CliRmi;
@@ -463,6 +464,18 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.updateTowerFloor(towerFloorProxy);
+			}
+		});
+	}
+
+	@Override
+	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
+		System.out.println("Succhiami la minchia");
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				controller.updatePosition(positionProxy);
 			}
 		});
 	}

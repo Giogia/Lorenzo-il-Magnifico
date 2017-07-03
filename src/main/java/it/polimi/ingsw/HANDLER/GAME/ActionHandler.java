@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.*;
+import it.polimi.ingsw.minigame.Update;
 
 public final class ActionHandler {
 	private static ActionHandler istanza = null;
@@ -24,21 +25,28 @@ public final class ActionHandler {
     
     public static boolean handle(FamilyMember familyMember, Zone zone,Position position) throws MyException, IOException, TimeExpiredException {
     	if (CanGoToController.check(familyMember.getPlayer(), zone)){
-	    	if(zone instanceof Market){
-	    		return MarketHandler.handle(familyMember,position);
+    		if(zone instanceof Tower){
+	    		TowerHandler.handle(familyMember,(Tower) zone,(TowerFloor) position);
+	    		
+	    		Update.getInstance().TowerFloorOccupied((TowerFloor) position, (Tower) zone); 
 	    	}
-	    	if(zone instanceof CouncilPalace){
-	    		return CouncilPalaceHandler.handle(familyMember,position);
-	    	}
-	    	if(zone instanceof Tower){
-	    		return TowerHandler.handle(familyMember,(Tower) zone,(TowerFloor) position);
-	    	}
-	    	if(zone instanceof ProductionArea){
-	    		return ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);
-	    	}
-	    	if(zone instanceof HarvestArea){
-	    		return HarvestAreaHandler.handle(familyMember,(HarvestArea) zone,position);
-	    	}	
+    		else{
+		    	if(zone instanceof Market){
+		    		MarketHandler.handle(familyMember,position);
+		    	}
+		    	else if(zone instanceof CouncilPalace){
+		    		CouncilPalaceHandler.handle(familyMember,position);
+		    	}
+		    	else if(zone instanceof ProductionArea){
+		    		ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);
+		    	}
+		    	else if(zone instanceof HarvestArea){
+		    		HarvestAreaHandler.handle(familyMember,(HarvestArea) zone,position);
+		    	}
+
+		    	Update.getInstance().positionOccupied(position, zone);
+    		}
+	    	return true;
     	}
     	throw new MyException("You cannot go to this Zone");
     }

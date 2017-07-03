@@ -11,13 +11,15 @@ import javafx.scene.image.Image;
 
 public class PositionProxy implements Serializable {
 	
-	private ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
-	private ObjectProperty<Image> imageProperty;
+	protected ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
+	protected ObjectProperty<Image> imageProperty;
+	protected int numberOfPosition;
 	
-	public PositionProxy(Position position) {
+	public PositionProxy(Position position, int numberOfPosition) {
 		for (FamilyMember familyMember : position.getFamilyMembers()) {
 			familyMemberProxies.add(new FamilyMemberProxy(familyMember));
 		}
+		this.numberOfPosition = numberOfPosition;
 	}
 
 	public ArrayList<FamilyMemberProxy> getFamilyMemberProxies() {
@@ -30,4 +32,7 @@ public class PositionProxy implements Serializable {
 		imageProperty.set(new Image(url));
 	}
 
+	public int getNumberOfPosition() {
+		return numberOfPosition;
+	}
 }

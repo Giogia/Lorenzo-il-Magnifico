@@ -7,6 +7,7 @@ import java.util.List;
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.TowerFloor;
+import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.manager.User;
 
@@ -60,6 +61,33 @@ public class Update {
 			}
 		}
 		System.out.println("NON HO TROVATO IL TOWER FLOOR IN GET TOWER FLOOR UPDATE");
+		return 0;
+	}
+
+	public void positionOccupied(Position position, Zone zone) throws RemoteException {
+		int numberOfPosition = getNumberOfPosition(position, zone);
+		PositionProxy positionProxy = new PositionProxy(position, numberOfPosition);
+		
+		for (User observer : users) {
+			if(observer.getConnectionType() == true){ //user is a rmi client	
+					
+				observer.getCliRmi().updateDuePositionOccupied(positionProxy);
+			
+			}else{//user is a socket client
+				
+				//observer.getConnectionManagerSocketServer().getSocketOutClient().writeObject();
+				
+			}
+		}
+	}
+
+	private int getNumberOfPosition(Position position, Zone zone) {
+		for (int i = 0; i < zone.getPositions().length; i++) {
+			if(position.equals(zone.getPosition(i))){
+				return i;
+			}
+		}
+		System.out.println("NON HO TROVATO LA POSITION IN GET POSITION UPDATE");
 		return 0;
 	}
 }

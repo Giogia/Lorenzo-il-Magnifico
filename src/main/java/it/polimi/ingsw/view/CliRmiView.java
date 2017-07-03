@@ -34,6 +34,7 @@ import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 public class CliRmiView implements CliRmi{
@@ -324,6 +325,12 @@ public class CliRmiView implements CliRmi{
 
 	@Override
 	public void roundBegins(GameProxy game) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

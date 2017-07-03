@@ -11,8 +11,9 @@ public abstract class ZoneProxy implements Serializable{
 	protected ArrayList<PositionProxy> positionProxies  = new ArrayList<>();
 	
 	public ZoneProxy(Zone zone) {
-		for(Position position : zone.getPositions()){
-			positionProxies.add(new PositionProxy(position));
+		Position[] positions = zone.getPositions();
+		for(int i = 0; i < positions.length; i++){
+			positionProxies.add(new PositionProxy(positions[i], i));
 		}
 	}
 

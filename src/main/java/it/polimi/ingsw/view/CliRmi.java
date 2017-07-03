@@ -23,6 +23,7 @@ import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 
@@ -103,5 +104,7 @@ public interface CliRmi extends Remote {
 	void startGame(GameProxy game) throws RemoteException;
 
 	void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException;
+
+	void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException;
 }
 
