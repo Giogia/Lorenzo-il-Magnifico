@@ -263,14 +263,13 @@ public class GuiController implements Initializable {
 		towerFloorProxy.getFamilyMemberProxy().setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
 	}
 	
-	public void setCards(ArrayList<DevelopmentCardProxy> cards){
+	public void setCards(ArrayList<DevelopmentCardProxy> cards){//every turn set the cards of minimodel to right path
 		BoardProxy board = game.getBoardProxy();
-		for(int i = 0; i < 15; i++){
+		for(int i = 0; i < 16; i++){
 			int toowerType = i/4;
+			int numberOfFloor = i%4;
 			String imagePath = cards.get(i).getImagePath();
-			for(int numberOfFloor = 0; numberOfFloor < 4; numberOfFloor ++){
-				board.getTowerProxyByInt(toowerType).getTowerFloorProxies().get(numberOfFloor).getDevelopmentCardProxy().setImageProperty(imagePath);
-			}
+			board.getTowerProxyByInt(toowerType).getTowerFloorProxies().get(numberOfFloor).getDevelopmentCardProxy().setImageProperty(imagePath);
 		}
 	}
 	
@@ -367,7 +366,7 @@ public class GuiController implements Initializable {
 
 	public void roundBegins(GameProxy game) {
 		
-		PlayerProxy player = getCurrentPlayer(game);
+		/*PlayerProxy player = getCurrentPlayer(game);
 		for(FamilyMemberProxy familyMemberProxy : player.getFamilyMemberProxies()){
 			familyMemberProxy.setImageProperty();
 		}
@@ -381,7 +380,7 @@ public class GuiController implements Initializable {
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());*/
 
 	}
 }
