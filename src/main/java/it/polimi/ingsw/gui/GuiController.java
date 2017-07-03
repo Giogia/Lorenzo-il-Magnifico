@@ -365,7 +365,7 @@ public class GuiController implements Initializable {
 
 	}
 
-	public void roundBegins(GameProxy game2) {
+	public void roundBegins(GameProxy game) {
 		
 		PlayerProxy player = getCurrentPlayer(game);
 		for(FamilyMemberProxy familyMemberProxy : player.getFamilyMemberProxies()){
