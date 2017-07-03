@@ -321,7 +321,6 @@ public class GuiRmiView extends Application implements CliRmi{
 			}
 		
 		}
-		controller.roundBegins(game);
 		
 		System.out.println("sono in round begins e il controller:" + controller);
 		while(controller == null){
@@ -339,6 +338,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				controller.roundBegins(game);
 				controller.setCards(cards);
 			}
 		});
@@ -383,7 +383,7 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				for (Dice dice : dices) {
-					System.out.println(dice.getDescription());
+					controller.setChatLabel(dice.getDescription());
 				}
 			}
 		});
