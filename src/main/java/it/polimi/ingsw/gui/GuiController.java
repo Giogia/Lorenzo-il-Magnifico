@@ -60,6 +60,18 @@ public class GuiController implements Initializable {
 	@FXML
     private Tab tabPlayer1;
 
+    @FXML
+    private ImageView player1_building1;
+
+    @FXML
+    private ImageView player1_building2;
+
+    @FXML
+    private ImageView player1_building3;
+
+    @FXML
+    private ImageView player1_building4;
+
 	@FXML
     private Tab tabPlayer2;
 	
@@ -194,6 +206,18 @@ public class GuiController implements Initializable {
 
     @FXML
     private ImageView orangeFamilyMember;
+    
+    @FXML
+    private ImageView pawn1;
+
+    @FXML
+    private ImageView pawn2;
+
+    @FXML
+    private ImageView pawn3;
+    
+    @FXML
+    private ImageView pawn4;
     
     public void setChatLabel(String textToAdd){
     	chatText.setText(chatText.getText() + "\n"+"Lorenzo: " + textToAdd);
