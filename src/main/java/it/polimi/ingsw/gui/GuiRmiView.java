@@ -378,16 +378,10 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void showDices(ArrayList<Dice> dices) throws RemoteException {
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				for (Dice dice : dices) {
-					controller.setChatLabel(dice.getDescription());
-				}
-			}
-		});
-		
+		for (Dice dice : dices) {
+			System.out.println(dice);
+			System.out.println(dice.getDescription());
+		}
 	}
 
 	@Override
