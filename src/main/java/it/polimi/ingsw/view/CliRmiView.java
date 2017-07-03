@@ -311,12 +311,6 @@ public class CliRmiView implements CliRmi{
 	}
 
 	@Override
-	public void roundBegins(BoardProxy board) throws RemoteException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void startGame(GameProxy game) throws RemoteException {
 		// TODO Auto-generated method stub
 		
@@ -324,6 +318,12 @@ public class CliRmiView implements CliRmi{
 
 	@Override
 	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void roundBegins(GameProxy game) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

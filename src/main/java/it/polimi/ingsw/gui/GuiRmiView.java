@@ -29,6 +29,7 @@ import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
+import it.polimi.ingsw.minigame.TowerProxy;
 import it.polimi.ingsw.view.CliRmi;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -283,14 +284,16 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 
 	@Override
-	public void roundBegins(BoardProxy board) throws RemoteException {
+	public void roundBegins(GameProxy game) throws RemoteException {
 		System.out.println("round begins!");
 		ArrayList<DevelopmentCardProxy> cards = new ArrayList<>();
-		for(int typeTower = 0; typeTower < 4; typeTower++){
-			for (TowerFloorProxy floor : board.getTowerProxyByInt(typeTower).getTowerFloorProxies()) {
-				cards.add(floor.getDevelopmentCardProxy());
+		for(TowerProxy towerProxy : game.getBoardProxy().getTowerProxies()){
+			for (TowerFloorProxy towerFloorProxy : towerProxy.getTowerFloorProxies()){
+				cards.add(towerFloorProxy.getDevelopmentCardProxy());
 			}
+		
 		}
+		controller.roundBegins(game);
 		
 		System.out.println("sono in round begins e il controller:" + controller);
 		while(controller == null){

@@ -15,6 +15,7 @@ import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.CardContainerProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.ExcommunicationTileProxy;
+import it.polimi.ingsw.minigame.FamilyMemberProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.LeaderCardProxy;
 import it.polimi.ingsw.minigame.OrderPawn;
@@ -362,11 +363,19 @@ public class GuiController implements Initializable {
 		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
 		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
 
+	}
+
+	public void roundBegins(GameProxy game2) {
+		
 		PlayerProxy player = getCurrentPlayer(game);
+		for(FamilyMemberProxy familyMemberProxy : player.getFamilyMemberProxies()){
+			familyMemberProxy.setImageProperty();
+		}
 		
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
 		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		
 	}
 }

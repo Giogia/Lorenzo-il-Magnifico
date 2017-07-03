@@ -42,10 +42,8 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler;
-import it.polimi.ingsw.HANDLER.GAME.DataFromFile;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.view.CliRmi;
-import it.polimi.ingsw.view.CliRmiView;
 import it.polimi.ingsw.manager.ActionSocket.action;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
@@ -948,11 +946,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static void roundBegins(Player[] players) throws IOException{
 		for (Player player : players){
 			User user = findUserByPlayer(player);
+			GameProxy gameProxy = new GameProxy(player.getBoard().getGame());
+			PlayerProxy currentPlayer = gameProxy.getPlayerProxy(player.getColor());
+			currentPlayer.setCurrentPlayer(true);
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
-					BoardProxy boardProxy = new BoardProxy(player.getBoard());
-					client.roundBegins(boardProxy);
+					client.roundBegins(gameProxy);
 				}catch(ConnectException e){
 					//user disconnected
 					LOGGER.log(Level.INFO, e.getMessage(),e);
@@ -968,6 +968,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					//user disconnected
 				}
 			}
+			currentPlayer.setCurrentPlayer(false);
 		}
 	}
 	

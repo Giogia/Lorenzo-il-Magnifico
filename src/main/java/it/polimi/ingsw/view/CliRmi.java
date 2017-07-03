@@ -66,7 +66,7 @@ public interface CliRmi extends Remote {
 	
 	void cantPassTurn() throws RemoteException;
 	
-	void roundBegins(BoardProxy board) throws RemoteException;
+	void roundBegins(GameProxy game) throws RemoteException;
 	
 	void hasWon(String winner) throws RemoteException;
 
