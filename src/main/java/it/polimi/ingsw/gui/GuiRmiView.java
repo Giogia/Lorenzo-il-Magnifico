@@ -459,7 +459,6 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
-		System.out.println("sono arrivato lato client a updateDueTowerFloorOccupied");
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -470,7 +469,6 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
-		System.out.println("Succhiami la minchia");
 		Platform.runLater(new Runnable() {
 			
 			@Override
