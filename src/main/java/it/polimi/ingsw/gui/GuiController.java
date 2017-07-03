@@ -48,6 +48,7 @@ public class GuiController implements Initializable {
 	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
 	private GameProxy game;
+	private String stringToSend;
 	
 	public GuiController(GameProxy game) {
 		this.game = game;
@@ -126,40 +127,40 @@ public class GuiController implements Initializable {
     private ImageView venture1;
 
     @FXML
-    private Ellipse councilPalace;
+    private ImageView councilPalace;
 
     @FXML
-    private Circle production1;
+    private ImageView production1;
 
     @FXML
-    private Circle harvest1;
+    private ImageView harvest1;
 
     @FXML
-    private Circle market1;
+    private ImageView market1;
 
     @FXML
-    private Circle market2;
+    private ImageView market2;
 
     @FXML
-    private Circle market3;
+    private ImageView market3;
 
     @FXML
-    private Circle market4;
+    private ImageView market4;
 
     @FXML
-    private Rectangle production2;
+    private ImageView production2;
 
     @FXML
-    private Rectangle harvest2;
+    private ImageView harvest2;
 
     @FXML
-    private Rectangle dice1;
+    private ImageView dice1;
 
     @FXML
-    private Rectangle dice2;
+    private ImageView dice2;
 
     @FXML
-    private Rectangle dice3;
+    private ImageView dice3;
 
     @FXML
     private ImageView excommunicationTile1;
@@ -203,6 +204,25 @@ public class GuiController implements Initializable {
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
     		imageZoomed.setImage(positionClicked.getImage());
+    		String id = positionClicked.getId();
+    		String firstLetter = id.substring(0, 1);
+    		switch (firstLetter) {
+			case "t":
+				stringToSend = "1$1";
+				break;
+			case "c":
+				stringToSend = "1$2";
+				break;
+			case "b":
+				stringToSend = "1$3";
+				break;
+			case "v":
+				stringToSend = "1$4";
+				break;
+			}
+    		String number = id.substring(id.length()-1, id.length());
+    		stringToSend = stringToSend + "$" + number;
+    		
     	}else{//there isn't a card
 			Image image = new Image("it/polimi/ingsw/gui/resources/towerFloor.jpeg");
     		imageZoomed.setImage(image);
@@ -220,7 +240,13 @@ public class GuiController implements Initializable {
 
     @FXML
     void placeFamilyMemberCkd(MouseEvent event) throws RemoteException {
-    	GuiRmiView.getCallback().answer("1$1$1");//first 1 means place family member
+    	if (stringToSend == null){
+    		setChatLabel("You haven't choose a position!!!");
+    	}
+    	else{
+    		GuiRmiView.getCallback().answer(stringToSend);//first 1 means place family member
+    		stringToSend = null;
+    	}
     }
     
     public void disableButtons(boolean bool){
