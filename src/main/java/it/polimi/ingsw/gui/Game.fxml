@@ -57,6 +57,11 @@
                                  <image>
                                     <Image url="@resources/personalBoard.jpg" />
                                  </image></ImageView>
+                              <ImageView fitHeight="38.0" fitWidth="48.0" layoutX="-94.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building1" fitHeight="111.0" fitWidth="72.0" layoutX="58.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building2" fitHeight="112.0" fitWidth="72.0" layoutX="128.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building3" fitHeight="113.0" fitWidth="72.0" layoutX="198.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building4" fitHeight="113.0" fitWidth="72.0" layoutX="269.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -137,6 +142,10 @@
             <ImageView fx:id="dice1" fitHeight="32.0" fitWidth="32.0" layoutX="259.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="dice2" fitHeight="32.0" fitWidth="32.0" layoutX="309.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="dice3" fitHeight="32.0" fitWidth="32.0" layoutX="356.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pawn1" fitHeight="28.0" fitWidth="24.0" layoutX="392.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pawn2" fitHeight="28.0" fitWidth="28.0" layoutX="390.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pawn3" fitHeight="25.0" fitWidth="29.0" layoutX="388.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="pawn4" fitHeight="32.0" fitWidth="26.0" layoutX="388.0" layoutY="457.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>
