@@ -146,9 +146,9 @@
             <ImageView fx:id="market2" fitHeight="36.0" fitWidth="42.0" layoutX="314.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="market3" fitHeight="36.0" fitWidth="42.0" layoutX="359.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="market4" fitHeight="36.0" fitWidth="42.0" layoutX="390.0" layoutY="597.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dice1" fitHeight="32.0" fitWidth="32.0" layoutX="259.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dice2" fitHeight="32.0" fitWidth="32.0" layoutX="309.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="dice3" fitHeight="32.0" fitWidth="32.0" layoutX="356.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="diceBlack" fitHeight="32.0" fitWidth="32.0" layoutX="259.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="diceWhite" fitHeight="32.0" fitWidth="32.0" layoutX="309.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="diceOrange" fitHeight="32.0" fitWidth="32.0" layoutX="356.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pawn1" fitHeight="28.0" fitWidth="24.0" layoutX="392.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pawn2" fitHeight="28.0" fitWidth="28.0" layoutX="390.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="pawn3" fitHeight="25.0" fitWidth="29.0" layoutX="388.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />

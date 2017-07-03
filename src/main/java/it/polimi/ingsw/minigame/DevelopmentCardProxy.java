@@ -14,7 +14,7 @@ public class DevelopmentCardProxy implements Serializable {
 	
 	public DevelopmentCardProxy(DevelopmentCard card){
 		if(card == null){
-			imagePath = "it/polimi/ingsw/gui/resources/towerFloor.jpeg";
+			imagePath = "it/polimi/ingsw/gui/resources/blank.png";
 		}else{
 			imagePath = "it/polimi/ingsw/gui/resources/DevelopmentCards/" + card.getName() + ".png";
 		}
