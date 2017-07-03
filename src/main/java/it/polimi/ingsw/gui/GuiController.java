@@ -7,13 +7,16 @@ import java.util.ResourceBundle;
 
 import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.CardContainerProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.DiceProxy;
 import it.polimi.ingsw.minigame.ExcommunicationTileProxy;
 import it.polimi.ingsw.minigame.FamilyMemberProxy;
 import it.polimi.ingsw.minigame.GameProxy;
@@ -169,13 +172,13 @@ public class GuiController implements Initializable {
     private ImageView harvest2;
 
     @FXML
-    private ImageView dice1;
+    private ImageView diceBlack;
 
     @FXML
-    private ImageView dice2;
+    private ImageView diceWhite;
 
     @FXML
-    private ImageView dice3;
+    private ImageView diceOrange;
 
     @FXML
     private ImageView excommunicationTile1;
@@ -431,5 +434,27 @@ public class GuiController implements Initializable {
 
 	public void updatePosition(PositionProxy positionProxy) {
 		
+	}
+
+	public void showDice(ArrayList<DiceProxy> dices) {
+		for (DiceProxy dice : dices) {
+			String colorFirstLetter = dice.getImagePath().substring(36, 37);
+			switch (colorFirstLetter) {
+			case "O":
+				diceOrange.setImage(new Image(dice.getImagePath()));
+				break;
+
+			case "W":
+				diceWhite.setImage(new Image(dice.getImagePath()));
+				break;
+
+			case "B":
+				diceBlack.setImage(new Image(dice.getImagePath()));
+				break;
+
+			default:
+				break;
+			}
+		}
 	}
 }

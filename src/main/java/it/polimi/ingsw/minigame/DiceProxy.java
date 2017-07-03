@@ -11,7 +11,7 @@ public class DiceProxy {
 	private ObjectProperty<Image> imageProperty;
 	
 	public DiceProxy(Dice dice) {
-		imagePath = dice.getDiceColour()+"-"+dice.getValue()+".png";
+		imagePath = "it/polimi/ingsw/gui/resources/Dices/" + dice.getDiceColour()+"-"+dice.getValue()+".png";
 	}
 
 	public String getImagePath() {
