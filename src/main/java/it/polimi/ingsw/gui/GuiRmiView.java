@@ -28,6 +28,7 @@ import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.FamilyMemberProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
@@ -245,6 +246,11 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel("Choose the family member you want to use for the action.");
+				ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
+				for (FamilyMember familyMember : familyMembers) {
+					familyMemberProxies.add(new FamilyMemberProxy(familyMember));
+				}
+				controller.setFamilyMemberProxies(familyMemberProxies);
 				controller.disableButtons(true);
 			}
 		});

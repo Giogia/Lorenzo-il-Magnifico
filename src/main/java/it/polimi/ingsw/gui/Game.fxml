@@ -127,10 +127,10 @@
             <ImageView fx:id="excommunicationTile2" fitHeight="74.0" fitWidth="35.0" layoutX="127.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excommunicationTile3" fitHeight="74.0" fitWidth="35.0" layoutX="165.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
             <TextArea fx:id="chatText" editable="false" layoutX="937.0" layoutY="57.0" prefHeight="200.0" prefWidth="412.0" />
-            <ImageView fx:id="neutralFamilyMember" fitHeight="83.0" fitWidth="49.0" layoutX="685.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="blackFamilyMember" fitHeight="85.0" fitWidth="49.0" layoutX="804.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="whiteFamilyMember" fitHeight="82.0" fitWidth="49.0" layoutX="747.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="orangeFamilyMember" fitHeight="90.0" fitWidth="49.0" layoutX="861.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="neutralFamilyMember" fitHeight="83.0" fitWidth="49.0" layoutX="685.0" layoutY="196.0" onMouseClicked="#familyMemberCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="blackFamilyMember" fitHeight="85.0" fitWidth="49.0" layoutX="804.0" layoutY="196.0" onMouseClicked="#familyMemberCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="whiteFamilyMember" fitHeight="82.0" fitWidth="49.0" layoutX="747.0" layoutY="196.0" onMouseClicked="#familyMemberCkd" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="orangeFamilyMember" fitHeight="90.0" fitWidth="49.0" layoutX="861.0" layoutY="196.0" onMouseClicked="#familyMemberCkd" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="1298.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#sendCkd" prefHeight="33.0" prefWidth="52.0" text="Send" />
             <ImageView fx:id="councilPalace" fitHeight="54.0" fitWidth="134.0" layoutX="230.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="production1" fitHeight="36.0" fitWidth="39.0" layoutX="18.0" layoutY="563.0" pickOnBounds="true" preserveRatio="true" />
