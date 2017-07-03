@@ -60,7 +60,7 @@ public class GuiController implements Initializable {
 	@FXML
     private Tab tabPlayer1;
 
-    @FXML
+	@FXML
     private ImageView player1_building1;
 
     @FXML
@@ -71,6 +71,12 @@ public class GuiController implements Initializable {
 
     @FXML
     private ImageView player1_building4;
+
+    @FXML
+    private ImageView player1_building5;
+
+    @FXML
+    private ImageView player1_building6;
 
 	@FXML
     private Tab tabPlayer2;

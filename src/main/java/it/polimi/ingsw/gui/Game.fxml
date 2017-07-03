@@ -62,6 +62,8 @@
                               <ImageView fx:id="player1_building2" fitHeight="112.0" fitWidth="72.0" layoutX="128.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="player1_building3" fitHeight="113.0" fitWidth="72.0" layoutX="198.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                               <ImageView fx:id="player1_building4" fitHeight="113.0" fitWidth="72.0" layoutX="269.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building5" fitHeight="113.0" fitWidth="72.0" layoutX="340.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="player1_building6" fitHeight="113.0" fitWidth="72.0" layoutX="409.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                            </children></AnchorPane>
                   </content>
                 </Tab>
