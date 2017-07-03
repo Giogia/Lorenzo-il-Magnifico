@@ -29,6 +29,7 @@ import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.FamilyMemberProxy;
+import it.polimi.ingsw.minigame.DiceProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
@@ -417,10 +418,18 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void showDices(ArrayList<Dice> dices) throws RemoteException {
+		ArrayList<DiceProxy> diceProxies = new ArrayList<>();
 		for (Dice dice : dices) {
-			System.out.println(dice);
-			System.out.println(dice.getDescription());
+			System.out.println(dice);	
+			diceProxies.add(new DiceProxy(dice));
 		}
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				controller.showDice(diceProxies);
+			}
+		});
 	}
 
 	@Override
