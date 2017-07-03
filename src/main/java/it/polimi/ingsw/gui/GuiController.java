@@ -91,9 +91,6 @@ public class GuiController implements Initializable {
 	private Label chatLabel;
 	
 	@FXML
-	private Label getDescription;
-	
-	@FXML
     private ImageView imageZoomed;
 
     @FXML
@@ -227,6 +224,7 @@ public class GuiController implements Initializable {
     
     public void setChatLabel(String textToAdd){
     	chatText.setText(chatText.getText() + "\n"+"Lorenzo: " + textToAdd);
+    	chatText.positionCaret(chatText.lengthProperty().get());
     }
     
     @FXML
@@ -256,8 +254,6 @@ public class GuiController implements Initializable {
     	}else{//there isn't a card
 			Image image = new Image("it/polimi/ingsw/gui/resources/towerFloor.jpeg");
     		imageZoomed.setImage(image);
-    		
-    		getDescription.setText("In this position there isn't a card.");
     	}
     }
     
@@ -299,8 +295,9 @@ public class GuiController implements Initializable {
 	private void sendFunction() throws RemoteException {
 		String text = answerChat.getText();
 		chatText.setText(chatText.getText() + "\n"+"Michele: " + text);//adding input of user in chat
-		answerChat.setText("");//clear answer field 
+		answerChat.setText("");//clear answer field
 		GuiRmiView.getCallback().answer(text);
+		disableButtons(false);
 	}
 
 	public void setMain(GuiSocketView guiSocketView) {
