@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -25,7 +19,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1900.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="950.0" prefWidth="1900.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -56,11 +50,16 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="340.0" fitWidth="885.0" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="113.0" fitWidth="81.0" layoutX="113.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="344.0" fitWidth="52.0" layoutX="6.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@resources/personalBoard.jpg" />
+                                    <Image url="@resources/personalbonustile_1.png" />
                                  </image>
                               </ImageView>
+                              <ImageView fitHeight="332.0" fitWidth="851.0" layoutX="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/personalBoard.jpg" />
+                                 </image></ImageView>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -91,20 +90,14 @@
                   <Image url="@resources/gameBoard.png" />
                </image>
             </ImageView>
-            <Label layoutX="693.0" layoutY="8.0" prefHeight="53.0" prefWidth="178.0" text="Get Description" textAlignment="CENTER">
+            <Button fx:id="action2" layoutX="684.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#passTurnCkd" prefHeight="46.0" prefWidth="223.0" text="Pass the turn" />
+            <Button fx:id="action1" layoutX="685.0" layoutY="64.0" mnemonicParsing="false" onMouseClicked="#placeFamilyMemberCkd" prefHeight="41.0" prefWidth="221.0" text="Place a Family Member" />
+            <Label layoutX="1077.0" layoutY="8.0" prefHeight="53.0" prefWidth="66.0" text="Chat" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="action2" layoutX="881.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#passTurnCkd" prefHeight="46.0" prefWidth="223.0" text="Pass the turn" />
-            <Button fx:id="action1" layoutX="882.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#placeFamilyMemberCkd" prefHeight="41.0" prefWidth="221.0" text="Place a Family Member" />
-            <Label fx:id="getDescription" layoutX="671.0" layoutY="53.0" prefHeight="141.0" prefWidth="200.0" text="Type: Territory" />
-            <Label layoutX="1217.0" layoutY="8.0" prefHeight="53.0" prefWidth="66.0" text="Chat" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="answerChat" layoutX="1126.0" layoutY="259.0" onKeyPressed="#enterPressed" prefHeight="34.0" prefWidth="170.0" />
+            <TextField fx:id="answerChat" layoutX="938.0" layoutY="259.0" onKeyPressed="#enterPressed" prefHeight="34.0" prefWidth="358.0" />
             <Ellipse fx:id="councilPalace" fill="DODGERBLUE" layoutX="293.0" layoutY="421.0" opacity="0.0" radiusX="75.0" radiusY="24.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="production1" fill="DODGERBLUE" layoutX="39.0" layoutY="581.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
             <Circle fx:id="harvest1" fill="DODGERBLUE" layoutX="38.0" layoutY="644.0" opacity="0.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" />
@@ -133,7 +126,7 @@
             <ImageView fx:id="venture3" fitHeight="89.0" fitWidth="55.0" layoutX="325.0" layoutY="112.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="venture2" fitHeight="89.0" fitWidth="55.0" layoutX="325.0" layoutY="209.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="venture1" fitHeight="89.0" fitWidth="55.0" layoutX="328.0" layoutY="302.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="labelAction" layoutX="894.0" layoutY="8.0" prefHeight="53.0" prefWidth="200.0" text="Choose your action" textAlignment="CENTER">
+            <Label fx:id="labelAction" layoutX="685.0" layoutY="8.0" prefHeight="53.0" prefWidth="200.0" text="Choose your action" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
@@ -141,11 +134,11 @@
             <ImageView fx:id="excommunicationTile1" fitHeight="74.0" fitWidth="35.0" layoutX="86.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excommunicationTile2" fitHeight="74.0" fitWidth="35.0" layoutX="127.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excommunicationTile3" fitHeight="74.0" fitWidth="35.0" layoutX="165.0" layoutY="428.0" pickOnBounds="true" preserveRatio="true" />
-            <TextArea fx:id="chatText" editable="false" layoutX="1127.0" layoutY="56.0" prefHeight="200.0" prefWidth="223.0" />
-            <ImageView fx:id="neutralFamilyMember" fitHeight="107.0" fitWidth="49.0" layoutX="883.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="blackFamilyMember" fitHeight="108.0" fitWidth="49.0" layoutX="938.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="whiteFamilyMember" fitHeight="112.0" fitWidth="49.0" layoutX="994.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="orangeFamilyMember" fitHeight="107.0" fitWidth="49.0" layoutX="1053.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true" />
+            <TextArea fx:id="chatText" editable="false" layoutX="937.0" layoutY="57.0" prefHeight="200.0" prefWidth="412.0" />
+            <ImageView fx:id="neutralFamilyMember" fitHeight="83.0" fitWidth="49.0" layoutX="685.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="blackFamilyMember" fitHeight="85.0" fitWidth="49.0" layoutX="804.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="whiteFamilyMember" fitHeight="82.0" fitWidth="49.0" layoutX="747.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="orangeFamilyMember" fitHeight="90.0" fitWidth="49.0" layoutX="861.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="1298.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#sendCkd" prefHeight="33.0" prefWidth="52.0" text="Send" />
          </children>
       </Pane>
