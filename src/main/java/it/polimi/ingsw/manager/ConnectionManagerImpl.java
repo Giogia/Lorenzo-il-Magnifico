@@ -947,8 +947,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		for (Player player : players){
 			User user = findUserByPlayer(player);
 			GameProxy gameProxy = new GameProxy(player.getBoard().getGame());
-			PlayerProxy currentPlayer = gameProxy.getPlayerProxy(player.getColor());
-			currentPlayer.setCurrentPlayer(true);
+			gameProxy.setcurrentPlayer(player.getColor());
+			
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
@@ -968,7 +968,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					//user disconnected
 				}
 			}
-			currentPlayer.setCurrentPlayer(false);
 		}
 	}
 	
@@ -1280,10 +1279,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		System.out.println("arrivo nello start game lato connection manager impl");
 		for (Player player : thisGame.getPlayers()) {
 			User user = findUserByPlayer(player);
-			
-			PlayerProxy currentPlayer = gameProxy.getPlayerProxy(player.getColor());
-			currentPlayer.setCurrentPlayer(true);
-			
 			if (user.getConnectionType()==true){//player is a rmi user
 				user.getCliRmi().startGame(gameProxy);
 			}
@@ -1295,7 +1290,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				out.writeObject(act);
 				out.flush();
 			}
-			currentPlayer.setCurrentPlayer(false);
 		}
 	}
 }

@@ -16,7 +16,6 @@ public class PlayerProxy implements Serializable{
 	private PersonalBoardProxy personalBoardProxy;
 	private ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
 	private ArrayList<LeaderCardProxy> leaderCardInHandProxies = new ArrayList<>();
-	private Boolean currentPlayer;
 	
 	public PlayerProxy(Player player) {
 		name = player.getName();
@@ -57,13 +56,5 @@ public class PlayerProxy implements Serializable{
 	
 	public ArrayList<LeaderCardProxy> getLeaderCardInHandProxies() {
 		return leaderCardInHandProxies;
-	}
-	
-	public Boolean getCurrentPlayer() {
-		return currentPlayer;
-	}
-	
-	public void setCurrentPlayer(boolean currentPlayer) {
-		this.currentPlayer = currentPlayer;
 	}
 }

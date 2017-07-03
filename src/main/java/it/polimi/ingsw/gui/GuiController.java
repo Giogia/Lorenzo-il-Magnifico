@@ -303,14 +303,6 @@ public class GuiController implements Initializable {
 		
 	}
 	
-	public PlayerProxy getCurrentPlayer(GameProxy gameProxy) {
-		for (PlayerProxy playerProxy : gameProxy.getPlayerProxies()) {
-			if(playerProxy.getCurrentPlayer().equals(true))
-				return playerProxy;
-		}
-		return null;
-	}
-
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		disableButtons(true);//place family member and pass the turn are disabled.
@@ -366,7 +358,7 @@ public class GuiController implements Initializable {
 
 	public void roundBegins(GameProxy game) {
 		
-		/*PlayerProxy player = getCurrentPlayer(game);
+		PlayerProxy player = game.getPlayerProxies().get(0);
 		for(FamilyMemberProxy familyMemberProxy : player.getFamilyMemberProxies()){
 			familyMemberProxy.setImageProperty();
 		}
@@ -381,7 +373,7 @@ public class GuiController implements Initializable {
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
 		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
-*/
+
 	}
 
 	public void updatePosition(PositionProxy positionProxy) {

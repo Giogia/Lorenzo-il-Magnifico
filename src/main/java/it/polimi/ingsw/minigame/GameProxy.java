@@ -31,6 +31,15 @@ public class GameProxy implements Serializable{
 		return null;
 	}
 	
+	public void setcurrentPlayer(Color color){
+		PlayerProxy currentPlayer = getPlayerProxy(color);
+		ArrayList<PlayerProxy> currentPlayers = new ArrayList<>();
+		currentPlayers.add(currentPlayer);
+		playerProxies.remove(currentPlayer);
+		currentPlayers.addAll(playerProxies);
+		playerProxies = currentPlayers;
+	}
+	
 	public BoardProxy getBoardProxy() {
 		return boardProxy;
 	}
