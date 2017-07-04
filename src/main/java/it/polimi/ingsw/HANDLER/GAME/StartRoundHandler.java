@@ -60,6 +60,7 @@ public class StartRoundHandler {
 			dices.add(dice);
 		}
 
+		board.setDices(dices);
 		ConnectionManagerImpl.getConnectionManager().showDices(players, dices);
 		return dices;
 	}

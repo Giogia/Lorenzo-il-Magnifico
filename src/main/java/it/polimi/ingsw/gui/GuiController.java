@@ -21,6 +21,7 @@ import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.OrderPawn;
 import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.RoundOrderProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.fxml.FXML;
@@ -221,10 +222,49 @@ public class GuiController implements Initializable {
     }
     
     @FXML
+    void councilPalaceClk(MouseEvent event) {
+    	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
+    	stringToSend="1$5$1";//if one player click two times on development card, string must be cleaned
+		imageZoomed.setImage(new Image("it/polimi/ingsw/gui/resources/Positions/CouncilPalace.png"));
+    }
+    
+    @FXML
+    void harvestClk(MouseEvent event) {
+//6
+    	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
+    	stringToSend="1$6";//if one player click two times on development card, string must be cleaned
+		String id = positionClicked.getId();
+    	String number = id.substring(id.length()-1, id.length());
+		imageZoomed.setImage(new Image("it/polimi/ingsw/gui/resources/Positions/Harvest-" + number + ".png"));
+		stringToSend = stringToSend + "$" + number;
+    }
+
+    @FXML
+    void marketClk(MouseEvent event) {
+//8
+    	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
+    	stringToSend="1$8";//if one player click two times on development card, string must be cleaned
+		String id = positionClicked.getId();
+    	String number = id.substring(id.length()-1, id.length());
+		imageZoomed.setImage(new Image("it/polimi/ingsw/gui/resources/Positions/Market-" + number + ".png"));
+		stringToSend = stringToSend + "$" + number;
+    }
+    
+    @FXML
+    void productionClk(MouseEvent event) {
+    	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
+    	stringToSend="1$7";//if one player click two times on development card, string must be cleaned
+		String id = positionClicked.getId();
+    	String number = id.substring(id.length()-1, id.length());
+		imageZoomed.setImage(new Image("it/polimi/ingsw/gui/resources/Positions/Production-" + number + ".png"));
+		stringToSend = stringToSend + "$" + number;
+    }
+    
+    @FXML
     void towerFloorCkd(MouseEvent event) {
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
-    		stringToSend="";//if one player click two times on development card, string must be cleaned
+    //		stringToSend="";//if one player click two times on development card, string must be cleaned
     		imageZoomed.setImage(positionClicked.getImage());
     		String id = positionClicked.getId();
     		String firstLetter = id.substring(0, 1);
@@ -442,10 +482,22 @@ public class GuiController implements Initializable {
 
 		player.getFamilyMemberProxy(DiceColour.Neutral).getImagePath();
 
+		showDice(game.getDiceProxies());
+		
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
 		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		
+		ImageView[] pawns = new ImageView[4];
+		pawns[0] = pawn1;
+		pawns[1] = pawn2;
+		pawns[2] = pawn3;
+		pawns[3] = pawn4;
+		RoundOrderProxy roundOrderProxy = game.getBoardProxy().getRoundOrderProxy();
+		for (int i = 0; i < roundOrderProxy.getOrderPawns().size(); i++){
+			pawns[i].setImage(new Image(roundOrderProxy.getOrderPawns().get(i).getImagePath()));
+		}
 	}
 
 	public void updatePosition(PositionProxy positionProxy) {
