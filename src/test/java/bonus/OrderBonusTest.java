@@ -1,12 +1,17 @@
 package bonus;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
+import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BONUS.ADVANCED.OrderBonus;
+import it.polimi.ingsw.CONTROLLER.PassTurnController;
+import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler;
 
 public class OrderBonusTest {
 
@@ -41,6 +46,18 @@ public class OrderBonusTest {
 		assertTrue(playerBonus.getSkipAction()[1]);
 		assertTrue(playerBonus.getSkipAction()[2]);
 		assertFalse(playerBonus.getSkipAction()[3]);
+		
+		Board board = mock(Board.class);
+		Game game = mock(Game.class);
+		fndao.setBoard(board);
+		when(board.getGame()).thenReturn(game);
+		PassTurnController passTurnController = new PassTurnController();
+		when(board.getPassTurnController()).thenReturn(passTurnController);
+		
+		assertFalse(OrderBonusHandler.handle(fndao, 0));
+		assertFalse(OrderBonusHandler.handle(fndao, 1));
+		assertFalse(OrderBonusHandler.handle(fndao, 2));
+		assertTrue(OrderBonusHandler.handle(fndao, 3));
 	}
 
 }

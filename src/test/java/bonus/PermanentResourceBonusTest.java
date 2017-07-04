@@ -13,11 +13,16 @@ import it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentResourceBonusHandler;
+import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.FaithPoints;
 import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
+import it.polimi.ingsw.RESOURCE.Stones;
+import it.polimi.ingsw.RESOURCE.VictoryPoints;
+import it.polimi.ingsw.RESOURCE.Wood;
 
 public class PermanentResourceBonusTest {
 
@@ -53,6 +58,24 @@ public class PermanentResourceBonusTest {
 		assertEquals(2, playerBonus.getResources().get(0).getAmount());
 		assertEquals(9, playerBonus.getResources().get(1).getAmount());
 		assertEquals(3, playerBonus.getResources().get(2).getAmount());
+		
+		ArrayList<Resource> res = new ArrayList<>();
+		res.add(new Coins(1, 1));
+		res.add(new Wood(2, 1));
+		res.add(new Stones(3, 1));
+		res.add(new Servants(4, 1));
+		res.add(new MilitaryPoints(5, 1));
+		res.add(new FaithPoints(6, 1));
+		res.add(new VictoryPoints(7, 1));
+		
+		PermanentResourceBonusHandler.handle(res, player);
+		assertEquals(1, res.get(0).getAmount());
+		assertEquals(2, res.get(1).getAmount());
+		assertEquals(3, res.get(2).getAmount());
+		assertEquals(13, res.get(3).getAmount());
+		assertEquals(8, res.get(4).getAmount());
+		assertEquals(8, res.get(5).getAmount());
+		assertEquals(7, res.get(6).getAmount());
 	}
 	
 	@Test
@@ -123,6 +146,24 @@ public class PermanentResourceBonusTest {
 		assertEquals(2, playerBonus.getResources().get(0).getAmount());
 		assertEquals(14, playerBonus.getResources().get(1).getAmount());
 		assertEquals(3, playerBonus.getResources().get(2).getAmount());
+		
+		ArrayList<Resource> res = new ArrayList<>();
+		res.add(new Coins(1, 1));
+		res.add(new Wood(2, 1));
+		res.add(new Stones(3, 1));
+		res.add(new Servants(4, 1));
+		res.add(new MilitaryPoints(5, 1));
+		res.add(new FaithPoints(6, 1));
+		res.add(new VictoryPoints(7, 1));
+		
+		PermanentResourceBonusHandler.handle(res, player);
+		assertEquals(1, res.get(0).getAmount());
+		assertEquals(2, res.get(1).getAmount());
+		assertEquals(3, res.get(2).getAmount());
+		assertEquals(56, res.get(3).getAmount());
+		assertEquals(15, res.get(4).getAmount());
+		assertEquals(12, res.get(5).getAmount());
+		assertEquals(7, res.get(6).getAmount());
 	}
 	
 	@Test
@@ -164,6 +205,24 @@ public class PermanentResourceBonusTest {
 		assertEquals(2, player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount());
 		assertEquals(9, player.getPersonalBoard().getResource(ResourceType.servants).getAmount());
 		assertEquals(3, player.getPersonalBoard().getResource(ResourceType.militaryPoints).getAmount());
+		
+		ArrayList<Resource> res = new ArrayList<>();
+		res.add(new Coins(1, 1));
+		res.add(new Wood(2, 1));
+		res.add(new Stones(3, 1));
+		res.add(new Servants(4, 1));
+		res.add(new MilitaryPoints(5, 1));
+		res.add(new FaithPoints(6, 1));
+		res.add(new VictoryPoints(7, 1));
+		
+		PermanentResourceBonusHandler.handle(res, player);
+		assertEquals(1, res.get(0).getAmount());
+		assertEquals(2, res.get(1).getAmount());
+		assertEquals(3, res.get(2).getAmount());
+		assertEquals(4, res.get(3).getAmount());
+		assertEquals(5, res.get(4).getAmount());
+		assertEquals(6, res.get(5).getAmount());
+		assertEquals(7, res.get(6).getAmount());
 	}
 
 }

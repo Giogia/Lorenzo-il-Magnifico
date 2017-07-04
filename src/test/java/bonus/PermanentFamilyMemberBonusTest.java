@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 
 public class PermanentFamilyMemberBonusTest {
 
@@ -60,6 +61,27 @@ public class PermanentFamilyMemberBonusTest {
 		assertEquals(5, playerBonus.getFamilyMembers().get(0).getValue());
 		assertEquals(-1, playerBonus.getFamilyMembers().get(1).getValue());
 		assertEquals(26, playerBonus.getFamilyMembers().get(2).getValue());
+		
+		ArrayList<FamilyMember> playerFamilyMembers = new ArrayList<>();
+		Dice o = new Dice(DiceColour.Orange);
+		Dice w = new Dice(DiceColour.White);
+		Dice b = new Dice(DiceColour.Black);
+		Dice n = new Dice(DiceColour.Neutral);
+		o.setValue(4);
+		w.setValue(3);
+		b.setValue(6);
+		playerFamilyMembers.add(new FamilyMember(n, giacomo));
+		playerFamilyMembers.add(new FamilyMember(b, giacomo));
+		playerFamilyMembers.add(new FamilyMember(o, giacomo));
+		playerFamilyMembers.add(new FamilyMember(w, giacomo));
+		
+		giacomo.setFamilyMember(playerFamilyMembers);
+		
+		PermanentFamilyMemberBonusHandler.handle(giacomo);
+		assertEquals(9, playerFamilyMembers.get(2).getValue());
+		assertEquals(32, playerFamilyMembers.get(1).getValue());
+		assertEquals(2, playerFamilyMembers.get(3).getValue());
+		assertEquals(0, playerFamilyMembers.get(0).getValue());
 	}
 	
 	@Test
@@ -104,6 +126,27 @@ public class PermanentFamilyMemberBonusTest {
 		assertEquals(5, playerBonus.getFamilyMembers().get(0).getValue());
 		assertEquals(-6, playerBonus.getFamilyMembers().get(1).getValue());
 		assertEquals(26, playerBonus.getFamilyMembers().get(2).getValue());
+		
+		ArrayList<FamilyMember> playerFamilyMembers = new ArrayList<>();
+		Dice o = new Dice(DiceColour.Orange);
+		Dice w = new Dice(DiceColour.White);
+		Dice b = new Dice(DiceColour.Black);
+		Dice n = new Dice(DiceColour.Neutral);
+		o.setValue(4);
+		w.setValue(3);
+		b.setValue(6);
+		playerFamilyMembers.add(new FamilyMember(n, giacomo));
+		playerFamilyMembers.add(new FamilyMember(b, giacomo));
+		playerFamilyMembers.add(new FamilyMember(o, giacomo));
+		playerFamilyMembers.add(new FamilyMember(w, giacomo));
+
+		giacomo.setFamilyMember(playerFamilyMembers);
+		
+		PermanentFamilyMemberBonusHandler.handle(giacomo);
+		assertEquals(20, playerFamilyMembers.get(2).getValue());
+		assertEquals(156, playerFamilyMembers.get(1).getValue());
+		assertEquals(-18, playerFamilyMembers.get(3).getValue());
+		assertEquals(0, playerFamilyMembers.get(0).getValue());
 	}
 	
 	@Test
@@ -148,6 +191,27 @@ public class PermanentFamilyMemberBonusTest {
 		assertEquals(5, playerBonus.getFamilyMembers().get(0).getValue());
 		assertEquals(2, playerBonus.getFamilyMembers().get(1).getValue());
 		assertEquals(26, playerBonus.getFamilyMembers().get(2).getValue());
+		
+		ArrayList<FamilyMember> playerFamilyMembers = new ArrayList<>();
+		Dice o = new Dice(DiceColour.Orange);
+		Dice w = new Dice(DiceColour.White);
+		Dice b = new Dice(DiceColour.Black);
+		Dice n = new Dice(DiceColour.Neutral);
+		o.setValue(4);
+		w.setValue(3);
+		b.setValue(6);
+		playerFamilyMembers.add(new FamilyMember(n, giacomo));
+		playerFamilyMembers.add(new FamilyMember(b, giacomo));
+		playerFamilyMembers.add(new FamilyMember(o, giacomo));
+		playerFamilyMembers.add(new FamilyMember(w, giacomo));
+
+		giacomo.setFamilyMember(playerFamilyMembers);
+		
+		PermanentFamilyMemberBonusHandler.handle(giacomo);
+		assertEquals(5, playerFamilyMembers.get(2).getValue());
+		assertEquals(26, playerFamilyMembers.get(1).getValue());
+		assertEquals(2, playerFamilyMembers.get(3).getValue());
+		assertEquals(0, playerFamilyMembers.get(0).getValue());
 	}
 	
 
