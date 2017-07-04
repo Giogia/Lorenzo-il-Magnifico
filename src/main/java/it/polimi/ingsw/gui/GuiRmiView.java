@@ -338,7 +338,6 @@ public class GuiRmiView extends Application implements CliRmi{
 			for (TowerFloorProxy towerFloorProxy : towerProxy.getTowerFloorProxies()){
 				cards.add(towerFloorProxy.getDevelopmentCardProxy());
 			}
-		
 		}
 		
 		System.out.println("sono in round begins e il controller:" + controller);
@@ -418,18 +417,6 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void showDices(ArrayList<Dice> dices) throws RemoteException {
-		ArrayList<DiceProxy> diceProxies = new ArrayList<>();
-		for (Dice dice : dices) {
-			System.out.println(dice);	
-			diceProxies.add(new DiceProxy(dice));
-		}
-		Platform.runLater(new Runnable() {
-			
-			@Override
-			public void run() {
-				controller.showDice(diceProxies);
-			}
-		});
 	}
 
 	@Override

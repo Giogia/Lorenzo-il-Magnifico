@@ -37,6 +37,7 @@ public class RoundManagerHandler {
 			System.out.println("Period " + period);
 			RoundOrder roundOrder = board.getGame().getOrder();
 			StartRoundHandler.handle(period, players, board);
+	
 			ConnectionManagerImpl.roundBegins(board.getPlayers());
 			handleOrder(roundOrder, board);
 			EndRoundHandler.handle(board, roundOrder, turn);	

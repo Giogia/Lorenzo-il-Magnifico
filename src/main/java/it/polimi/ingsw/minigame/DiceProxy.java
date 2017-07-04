@@ -1,11 +1,13 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.GC_15.Dice;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-public class DiceProxy {
+public class DiceProxy implements Serializable {
 
 	private String imagePath;
 	private ObjectProperty<Image> imageProperty;

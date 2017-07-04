@@ -442,6 +442,8 @@ public class GuiController implements Initializable {
 
 		player.getFamilyMemberProxy(DiceColour.Neutral).getImagePath();
 
+		showDice(game.getDiceProxies());
+		
 		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
 		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
 		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());

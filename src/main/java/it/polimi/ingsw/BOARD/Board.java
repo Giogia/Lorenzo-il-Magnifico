@@ -1,6 +1,7 @@
 package it.polimi.ingsw.BOARD;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
@@ -15,6 +16,7 @@ public class Board implements Serializable{
 	private HarvestArea harvestArea;
 	private ProductionArea productionArea;
 	private ExcommunicationTile excommunicationTiles[] = new ExcommunicationTile[3];
+	private ArrayList<Dice> dices = new ArrayList<>();
 	private Game game;
 	private PassTurnController passTurnController;
 	
@@ -110,6 +112,14 @@ public class Board implements Serializable{
 				return tower;
 		} 
 		return null;
+	}
+	
+	public void setDices(ArrayList<Dice> dices) {
+		this.dices = dices;
+	}
+	
+	public ArrayList<Dice> getDices() {
+		return dices;
 	}
 	
 	public void setExcommunicationTiles(ExcommunicationTile[] excommunicationTiles) {

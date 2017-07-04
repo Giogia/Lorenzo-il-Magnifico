@@ -947,6 +947,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		for (Player player : players){
 			User user = findUserByPlayer(player);
 			GameProxy gameProxy = new GameProxy(player.getBoard().getGame());
+		
+			gameProxy.setDiceProxies(player.getBoard().getDices());
 			gameProxy.setcurrentPlayer(player.getColor());
 			
 			if (user.getConnectionType()==true){//player is a rmi user
