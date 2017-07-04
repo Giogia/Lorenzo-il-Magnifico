@@ -2,6 +2,7 @@ package it.polimi.ingsw.minigame;
 
 import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.FamilyMember;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
@@ -15,7 +16,6 @@ public class TowerFloorProxy extends PositionProxy {
 	public TowerFloorProxy(TowerFloor towerFloor, DevelopmentCardType towerType, int numberOfFloor) {
 		super(towerFloor, numberOfFloor);
 		this.towerType = towerType;
-		System.out.println(towerFloor.getDevelopmentCard());
 		developmentCardProxy = new DevelopmentCardProxy(towerFloor.getDevelopmentCard());
 	}
 	
@@ -37,6 +37,12 @@ public class TowerFloorProxy extends PositionProxy {
 	
 	public ObjectProperty<Image> getImageProperty() {
 		return imageProperty;
+	}
+	
+	public void setImageProperty(){
+		Image image = new Image("it/polimi/ingsw/gui/resources/blank.png");
+		imageProperty = new SimpleObjectProperty<>();
+		imageProperty.set(image);
 	}
 	
 	public void setImageProperty(String url){

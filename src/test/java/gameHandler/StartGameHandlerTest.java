@@ -52,9 +52,9 @@ public class StartGameHandlerTest {
 		when(game.getPlayers()).thenReturn(players);
 		Board board = new Board(game);
 		ArrayList<PermanentBonus> permanentBonus = new ArrayList<>();
-		ExcommunicationTile ex1 = new ExcommunicationTile(1, permanentBonus);
-		ExcommunicationTile ex2 = new ExcommunicationTile(2, permanentBonus);
-		ExcommunicationTile ex3 = new ExcommunicationTile(3, permanentBonus);
+		ExcommunicationTile ex1 = new ExcommunicationTile(1, 1, permanentBonus);
+		ExcommunicationTile ex2 = new ExcommunicationTile(1, 2, permanentBonus);
+		ExcommunicationTile ex3 = new ExcommunicationTile(1, 3, permanentBonus);
 		ArrayList<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 		excommunicationTiles.add(ex1);
 		excommunicationTiles.add(ex2);

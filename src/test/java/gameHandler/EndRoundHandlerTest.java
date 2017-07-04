@@ -75,9 +75,9 @@ public class EndRoundHandlerTest {
 		CanFamilyMemberBonus canFamilyMemberBonus = new CanFamilyMemberBonus(true, new HashMap<>());
 		malus.add(canFamilyMemberBonus);
 		ExcommunicationTile[] excommunicationTiles = new ExcommunicationTile[3];
-		excommunicationTiles[0] = new ExcommunicationTile(1, malus);
-		excommunicationTiles[1] = new ExcommunicationTile(2, malus);
-		excommunicationTiles[2] = new ExcommunicationTile(3, malus);
+		excommunicationTiles[0] = new ExcommunicationTile(1, 1, malus);
+		excommunicationTiles[1] = new ExcommunicationTile(1, 2, malus);
+		excommunicationTiles[2] = new ExcommunicationTile(1, 3, malus);
 		
 		board.setExcommunicationTiles(excommunicationTiles);
 
