@@ -33,7 +33,8 @@ public final class ActionHandler {
     		if(zone instanceof Tower){
 	    		TowerHandler.handle(familyMember,(Tower) zone,(TowerFloor) position);
 	    		
-	    		Update.getInstance().TowerFloorOccupied((TowerFloor) position, (Tower) zone); 
+	    		//TODO
+	    		Update.getInstance().TowerFloorOccupied((TowerFloor) position, (Tower) zone, null); 
 	    	}
     		else{
     			ZoneProxy zoneProxy = null;

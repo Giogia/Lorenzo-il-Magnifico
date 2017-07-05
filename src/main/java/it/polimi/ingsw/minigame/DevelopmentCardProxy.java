@@ -24,6 +24,10 @@ public class DevelopmentCardProxy implements Serializable {
 		return imagePath;
 	}
 	
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	public ObjectProperty<Image> getImageProperty(){
 		return imageProperty;
 	}

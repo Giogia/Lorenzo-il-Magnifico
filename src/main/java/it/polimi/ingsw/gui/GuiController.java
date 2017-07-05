@@ -12,7 +12,9 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.CardContainerProxy;
 import it.polimi.ingsw.minigame.CouncilPalaceProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.DiceProxy;
@@ -22,6 +24,7 @@ import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.HarvestProxy;
 import it.polimi.ingsw.minigame.MarketProxy;
 import it.polimi.ingsw.minigame.OrderPawn;
+import it.polimi.ingsw.minigame.PersonalBoardProxy;
 import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.ProductionProxy;
@@ -53,6 +56,18 @@ public class GuiController implements Initializable {
 	public GuiController(GameProxy game) {
 		this.game = game;
 	}
+	
+    @FXML
+    private Label coins_player1;
+
+    @FXML
+    private Label wood_player1;
+
+    @FXML
+    private Label stones_player1;
+
+    @FXML
+    private Label servants_player1;
 	
     @FXML
     private TextField answerChat;
@@ -800,20 +815,20 @@ public class GuiController implements Initializable {
 		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(1).setImageProperty();
 		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(2).setImageProperty();
 		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(3).setImageProperty();
-		/*for(PlayerProxy playerProxy : game.getPlayerProxies()){
+		for(PlayerProxy playerProxy : game.getPlayerProxies()){
 			PersonalBoardProxy personalBoardProxy = playerProxy.getPersonalBoardProxy();
 			for(CardContainerProxy cardContainerProxy : personalBoardProxy.getCardContainers()){
 				for(DevelopmentCardProxy developmentCardProxy : cardContainerProxy.getDevelopmentCardProxies()){
 					developmentCardProxy.setImageProperty();
 				}
 			}
-			for(LeaderCardProxy leaderCardProxy : personalBoardProxy.getLeaderCardProxies()){
+			/*for(LeaderCardProxy leaderCardProxy : personalBoardProxy.getLeaderCardProxies()){
 				leaderCardProxy.setImageProperty();
 			}
 			for(LeaderCardProxy leaderCardProxy : playerProxy.getLeaderCardInHandProxies()){
 				leaderCardProxy.setImageProperty();
-			}
-		}*/
+			}*/
+		}
 		
 	}
 	
@@ -830,9 +845,16 @@ public class GuiController implements Initializable {
 			tabPlayer3.setText(players.get(2).getName());
 		}else tabPlayer3.setDisable(true);
 		
+		
 		if(players.size() >3){
 			tabPlayer4.setText(players.get(3).getName());
 		}else tabPlayer4.setDisable(true);
+		
+		coins_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
+		wood_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
+		servants_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
+		stones_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
+
 		
 		setImages();
 		excommunicationTile1.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(0).getImagePath()));
@@ -901,6 +923,142 @@ public class GuiController implements Initializable {
 		councilPalace2.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(1).getImageProperty());
 		councilPalace3.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(2).getImageProperty());
 		councilPalace4.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(3).getImageProperty());*/
+		
+		
+		CardContainerProxy container = game.getPlayerProxies().get(0).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.territory);
+		player1_territory1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player1_territory2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player1_territory3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player1_territory4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player1_territory5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player1_territory6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(0).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.building);
+		player1_building1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player1_building2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player1_building3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player1_building4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player1_building5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player1_building6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(0).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.character);
+		player1_character1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player1_character2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player1_character3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player1_character4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player1_character5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player1_character6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(0).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.venture);
+		player1_venture1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player1_venture2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player1_venture3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player1_venture4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player1_venture5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player1_venture6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		
+		
+		container = game.getPlayerProxies().get(1).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.territory);
+		player2_territory1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player2_territory2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player2_territory3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player2_territory4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player2_territory5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player2_territory6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(1).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.building);
+		player2_building1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player2_building2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player2_building3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player2_building4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player2_building5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player2_building6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(1).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.character);
+		player2_character1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player2_character2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player2_character3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player2_character4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player2_character5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player2_character6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		container = game.getPlayerProxies().get(1).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.venture);
+		player2_venture1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+		player2_venture2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+		player2_venture3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+		player2_venture4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+		player2_venture5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+		player2_venture6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		
+		
+		if(players.size() > 2){
+			container = game.getPlayerProxies().get(2).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.territory);
+			player3_territory1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player3_territory2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player3_territory3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player3_territory4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player3_territory5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player3_territory6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(2).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.building);
+			player3_building1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player3_building2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player3_building3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player3_building4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player3_building5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player3_building6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(2).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.character);
+			player3_character1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player3_character2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player3_character3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player3_character4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player3_character5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player3_character6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(2).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.venture);
+			player3_venture1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player3_venture2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player3_venture3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player3_venture4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player3_venture5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player3_venture6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		}
+		
+		if(players.size() > 3){
+			container = game.getPlayerProxies().get(3).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.territory);
+			player4_territory1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player4_territory2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player4_territory3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player4_territory4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player4_territory5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player4_territory6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(3).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.building);
+			player4_building1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player4_building2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player4_building3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player4_building4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player4_building5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player4_building6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(3).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.character);
+			player4_character1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player4_character2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player4_character3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player4_character4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player4_character5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player4_character6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+			
+			container = game.getPlayerProxies().get(3).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.venture);
+			player4_venture1.imageProperty().bind(container.getDevelopmentCardProxies().get(0).getImageProperty());
+			player4_venture2.imageProperty().bind(container.getDevelopmentCardProxies().get(1).getImageProperty());
+			player4_venture3.imageProperty().bind(container.getDevelopmentCardProxies().get(2).getImageProperty());
+			player4_venture4.imageProperty().bind(container.getDevelopmentCardProxies().get(3).getImageProperty());
+			player4_venture5.imageProperty().bind(container.getDevelopmentCardProxies().get(4).getImageProperty());
+			player4_venture6.imageProperty().bind(container.getDevelopmentCardProxies().get(5).getImageProperty());
+		}
 	}
 
 	public void roundBegins(GameProxy game) {
@@ -930,7 +1088,7 @@ public class GuiController implements Initializable {
 		}
 	}
 	
-	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy){
+	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy, DevelopmentCardProxy developmentCardTaken){
 		DevelopmentCardType towerType = newTowerFloorProxy.getTowerType();
 		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfPosition();
 		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
@@ -940,14 +1098,16 @@ public class GuiController implements Initializable {
 		
 		//setting the image of family member on tower floor occupied
 		towerFloorProxy.setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
-	}
-
-	private PlayerProxy findPlayerByColor(Color color) {
-		for (PlayerProxy playerProxy : game.getPlayerProxies()) {
-			if (playerProxy.getColor().equals(color))
-				return playerProxy;
+		
+		Color colorCurrentPlayer = newTowerFloorProxy.getFamilyMemberProxy().getColor();
+		ArrayList<DevelopmentCardProxy> cards = game.getPlayerProxy(colorCurrentPlayer).getPersonalBoardProxy().getCardContainer(towerType).getDevelopmentCardProxies();
+		for (DevelopmentCardProxy developmentCardProxy : cards) {
+			if(developmentCardProxy.getImagePath().equals("it/polimi/ingsw/gui/resources/blank.png")){//find first position to place card in personal board
+				developmentCardProxy.setImagePath(developmentCardTaken.getImagePath());
+				developmentCardProxy.setImageProperty(developmentCardTaken.getImagePath());
+				break;
+			}
 		}
-		return null;
 	}
 
 	public void updatePosition(PositionProxy positionProxy) {

@@ -10,11 +10,11 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 public class CardContainerProxy implements Serializable{
 
 	protected DevelopmentCardType developmentCardType;
-	private ArrayList<DevelopmentCardProxy> developmentCardProxies;
+	private ArrayList<DevelopmentCardProxy> developmentCardProxies = new ArrayList<>();
 	
 	public CardContainerProxy(CardContainer cardContainer) {
-		for(DevelopmentCard developmentCard : cardContainer.getDevelopmentCards()){
-			developmentCardProxies.add(new DevelopmentCardProxy(developmentCard));		
+		for(int i = 0; i < 6; i++){ //for all type of cards
+			developmentCardProxies.add(new DevelopmentCardProxy(null));
 		}
 		developmentCardType = cardContainer.getType();
 	}
