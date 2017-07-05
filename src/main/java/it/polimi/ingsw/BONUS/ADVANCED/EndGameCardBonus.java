@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -60,9 +61,9 @@ public class EndGameCardBonus extends PermanentBonus {
 	
 	public String getDescription(){
 		String description = "You cannot have the end game bonus for :\n";
-		for(DevelopmentCardType developmentCardType : developmentCardTypes.keySet()){
-			if(developmentCardTypes.get(developmentCardType)==false)
-				description = description + developmentCardType +"cards \n";
+		for(Entry<DevelopmentCardType, Boolean> entry : developmentCardTypes.entrySet()){
+			if(entry.getValue()==false)
+				description = description + entry.getKey() +"cards \n";
 		}
 		return description;
 	}

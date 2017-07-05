@@ -1,6 +1,7 @@
 package it.polimi.ingsw.CONTROLLER;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -12,10 +13,10 @@ public class LeaderCardCardActivationConditionController {
 	//the activation condition controlled is the number of development card of same type
 	
 	public static boolean check(Player player, HashMap<DevelopmentCardType, Integer> cardActivationCondition)  throws MyException{
-		for(DevelopmentCardType developmentCardType : cardActivationCondition.keySet()){
-			CardContainer cardContainer = player.getPersonalBoard().getCardContainer(developmentCardType);
-			if(cardContainer.getDevelopmentCards().size()<cardActivationCondition.get(developmentCardType))
-				throw new MyException("You don't have enough "+ developmentCardType +" cards \n");
+		for(Entry<DevelopmentCardType, Integer> entry : cardActivationCondition.entrySet()){
+			CardContainer cardContainer = player.getPersonalBoard().getCardContainer(entry.getKey());
+			if(cardContainer.getDevelopmentCards().size()<entry.getValue())
+				throw new MyException("You don't have enough "+ entry.getKey() +" cards \n");
 		}
 		return true;
 	}

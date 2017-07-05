@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
@@ -67,9 +68,9 @@ public class ActivationZoneBonus extends PermanentBonus {
 	
 	public String getDescription(){
 		 String description = "You cannot take position bonus from : \n";
-		 for(Tower tower : towers.keySet()){
-			 if(towers.get(tower)==false){
-				 description = description + tower.getDescription();
+		 for(Entry<Tower, Boolean> entry : towers.entrySet()){
+			 if(entry.getValue()==false){
+				 description = description + entry.getKey().getDescription();
 			 }
 		 }
 		 if(councilPalace==false){

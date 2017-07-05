@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import it.polimi.ingsw.BOARD.CouncilPalace;
 import it.polimi.ingsw.BOARD.HarvestArea;
@@ -144,9 +145,9 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 	public String getDescription(){
 		String description = "";
 		if(canGoTo!=null){
-			for(Zone zone : canGoTo.keySet()){
-				if(canGoTo.get(zone)==false){
-				description = description + zone.getDescription()+"\n";
+			for(Entry<Zone, Boolean> entry : canGoTo.entrySet()){
+				if(entry.getValue()==false){
+				description = description + entry.getKey().getDescription()+"\n";
 				}
 			}
 		}

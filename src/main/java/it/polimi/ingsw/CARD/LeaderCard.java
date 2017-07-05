@@ -2,6 +2,7 @@ package it.polimi.ingsw.CARD;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.RESOURCE.Resource;
@@ -47,8 +48,8 @@ public abstract class LeaderCard extends Card {
 			}
 		}
 		if(cardActivationCondition!=null){
-			for(DevelopmentCardType developmentCardType : cardActivationCondition.keySet()){
-				description = description + cardActivationCondition.get(developmentCardType) +" "+developmentCardType +" \n";
+			for(Entry<DevelopmentCardType, Integer> entry : cardActivationCondition.entrySet()){
+				description = description + entry.getValue() +" "+entry.getKey() +" \n";
 			}
 		}
 		if(bonus!=null){

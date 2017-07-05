@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS.ADVANCED;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import it.polimi.ingsw.BOARD.ActionZone;
@@ -121,8 +122,8 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 	
 	public String getDescription(){
 		String description = "Increase permanently the value of your family members of: \n";
-		for(ActionZone zone : positionBonus.keySet()){
-			description = description +positionBonus.get(zone)+" if you go to "+zone.getDescription()+"\n";
+		for(Entry<ActionZone, Integer> entry : positionBonus.entrySet()){
+			description = description +entry.getValue()+" if you go to "+entry.getKey().getDescription()+"\n";
 		}
 		return description;
 	}
