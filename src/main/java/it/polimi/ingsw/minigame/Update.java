@@ -35,7 +35,6 @@ public class Update {
 	}
 	
 	public void TowerFloorOccupied(TowerFloor towerFloor, Tower tower) throws RemoteException{
-		System.out.println("sono arrivato nel metodo towerFloorOccupied");
 		int numberOfFloor = getNumberOfFloor(towerFloor, tower);
 		DevelopmentCardType towerType = tower.getDevelopmentCardType();
 		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor, towerType, numberOfFloor);

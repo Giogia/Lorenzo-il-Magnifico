@@ -7,12 +7,18 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 
 public class ExcommunicationTile implements Serializable{
+	private int id;
 	public final int period;
 	public final ArrayList<PermanentBonus> malus;
-	
-	public ExcommunicationTile(int period, ArrayList<PermanentBonus> malus) {
+
+	public ExcommunicationTile(int id, int period, ArrayList<PermanentBonus> malus) {
+		this.id = id;
 		this.period=period;
 		this.malus= malus;
+	}
+
+	public int getId() {
+		return id;
 	}
 	
 	public int getPeriod() {

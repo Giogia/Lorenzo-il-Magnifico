@@ -14,7 +14,7 @@ public class ExcommunicationTileProxy implements Serializable{
 	
 	
 	public ExcommunicationTileProxy(ExcommunicationTile excommunicationTile) {
-		//String imagePath = excommunicationTile.getPeriod()+"-"+excommunicationTile.getId()+".png";
+		imagePath = "it/polimi/ingsw/gui/resources/ExcommunicationTiles/" + excommunicationTile.getId() + ".png";
 	}
 	
 	public String getImagePath() {

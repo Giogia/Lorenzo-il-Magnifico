@@ -1278,7 +1278,6 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	public void startGame(Game thisGame, GameProxy gameProxy) throws IOException{
-		System.out.println("arrivo nello start game lato connection manager impl");
 		for (Player player : thisGame.getPlayers()) {
 			User user = findUserByPlayer(player);
 			if (user.getConnectionType()==true){//player is a rmi user

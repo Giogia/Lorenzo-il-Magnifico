@@ -15,7 +15,7 @@ public class GameProxy implements Serializable{
 	private ArrayList<DiceProxy> diceProxies = new ArrayList<>();
 	
 	public GameProxy(Game game) {
-		this.boardProxy = new BoardProxy(game.getBoard());
+		boardProxy = new BoardProxy(game.getBoard());
 		for(Player player : game.getPlayers()){
 			playerProxies.add(new PlayerProxy(player));
 		}

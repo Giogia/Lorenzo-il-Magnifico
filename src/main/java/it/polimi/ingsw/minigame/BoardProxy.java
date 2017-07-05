@@ -29,7 +29,8 @@ public class BoardProxy implements Serializable{
 		productionProxy = new ProductionProxy(board.getProductioArea());
 		
 		for(ExcommunicationTile excommunicationTile : board.getExcommunicationTiles()){
-			excommunicationTileProxies.add(new ExcommunicationTileProxy(excommunicationTile));
+			ExcommunicationTileProxy excommunicationTileProxy = new ExcommunicationTileProxy(excommunicationTile);
+			excommunicationTileProxies.add(excommunicationTileProxy);
 		}
 	}
 	
