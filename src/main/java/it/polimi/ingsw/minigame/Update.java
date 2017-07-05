@@ -34,7 +34,7 @@ public class Update {
 		users.remove(observer);
 	}
 	
-	public void TowerFloorOccupied(TowerFloor towerFloor, Tower tower) throws RemoteException{
+	public void TowerFloorOccupied(TowerFloor towerFloor, Tower tower, DevelopmentCardProxy developmentCardProxy) throws RemoteException{
 		int numberOfFloor = getNumberOfFloor(towerFloor, tower);
 		DevelopmentCardType towerType = tower.getDevelopmentCardType();
 		TowerFloorProxy towerFloorProxy = new TowerFloorProxy(towerFloor, towerType, numberOfFloor);
@@ -42,7 +42,7 @@ public class Update {
 		for (User observer : users) {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
 					
-				observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy);
+				observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy, developmentCardProxy);
 			
 			}else{//user is a socket client
 				

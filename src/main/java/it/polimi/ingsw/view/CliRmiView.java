@@ -33,6 +33,7 @@ import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.minigame.BoardProxy;
+import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
@@ -318,7 +319,7 @@ public class CliRmiView implements CliRmi{
 	}
 
 	@Override
-	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
+	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy, DevelopmentCardProxy card) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

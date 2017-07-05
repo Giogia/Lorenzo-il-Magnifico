@@ -553,11 +553,11 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 
 	@Override
-	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy) throws RemoteException {
+	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy, DevelopmentCardProxy developmentCardProxy) throws RemoteException {
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.updateTowerFloor(towerFloorProxy);
+				controller.updateTowerFloor(towerFloorProxy, developmentCardProxy);
 			}
 		});
 	}
