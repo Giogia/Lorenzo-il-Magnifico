@@ -169,11 +169,9 @@ public class GuiSocketInView implements Runnable {
 						
 				}
 			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
 				LOGGER.log(Level.SEVERE, e.getMessage(),e);
 			} catch (IOException e) {
 				LOGGER.log(Level.SEVERE, e.getMessage(),e);
-				e.printStackTrace();
 			}
 		}
 	}
