@@ -185,6 +185,7 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.setChatLabel("Please, wait your turn!");
+				controller.disableButtons(true);
 			}
 		});
 	}
@@ -252,12 +253,13 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("Choose the family member you want to use for the action.");
-				ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
-				for (FamilyMember familyMember : familyMembers) {
-					familyMemberProxies.add(new FamilyMemberProxy(familyMember));
+				String message = "Choose the family member you want to use for the action: \n";
+				for (int counter = 1; counter <= familyMembers.size(); counter++){
+					message += counter + ") " + familyMembers.get(counter - 1).getDescription()+"\n";
 				}
-				controller.setFamilyMemberProxies(familyMemberProxies);
+				int lastChoice = familyMembers.size() + 1;
+				message  +=  lastChoice + ") Go back\n";
+				controller.setChatLabel(message);
 				controller.disableButtons(true);
 			}
 		});
@@ -416,6 +418,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
+				controller.disableButtons(false);
 				controller.setChatLabel(message);
 			}
 		});

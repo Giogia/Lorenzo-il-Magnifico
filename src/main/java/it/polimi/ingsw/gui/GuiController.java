@@ -343,13 +343,14 @@ public class GuiController implements Initializable {
     @FXML
     void passTurnCkd(MouseEvent event) throws RemoteException {
     	GuiRmiView.getCallback().answer("5");
+    	setChatLabel("You have passed the turn.");
     	action1.setDisable(true);
     	action2.setDisable(true);
     }
     
     @FXML
     void familyMemberCkd(MouseEvent event) throws RemoteException {
-    	String id = event.getPickResult().getIntersectedNode().getId();
+    	/*String id = event.getPickResult().getIntersectedNode().getId();
     	System.out.println(id);
     	switch (id) {
 		case "neutralFamilyMember":
@@ -370,7 +371,7 @@ public class GuiController implements Initializable {
 			
 		default:
 			System.out.println("NON HO TROVATO IL FAMILY MEMBER");
-		}
+		}*/
     }
 
     @FXML
@@ -411,22 +412,6 @@ public class GuiController implements Initializable {
 
 	public void setMain(GuiSocketView guiSocketView) {
 		this.guiSocketView = guiSocketView;
-	}
-	
-	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy){
-		DevelopmentCardType towerType = newTowerFloorProxy.getTowerType();
-		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfPosition();
-		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
-		
-		//setting to null the image of card on towerFloor where player setted.
-		towerFloorProxy.getDevelopmentCardProxy().setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
-		
-		//setting the image of family member on tower floor occupied
-		towerFloorProxy.setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
-		
-		for (FamilyMemberProxy familyMemberProxy : game.getPlayerProxies().get(0).getFamilyMemberProxies()) {
-			familyMemberProxy.setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
-		}
 	}
 	
 	public void setCards(ArrayList<DevelopmentCardProxy> cards){//every turn set the cards of minimodel to right path
@@ -551,10 +536,10 @@ public class GuiController implements Initializable {
 
 		showDice(game.getDiceProxies());
 		
-		neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
-		blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
-		whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
-		orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
+		//neutralFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Neutral).getImageProperty());
+		//blackFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Black).getImageProperty());
+		//whiteFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.White).getImageProperty());
+		//orangeFamilyMember.imageProperty().bind(player.getFamilyMemberProxy(DiceColour.Orange).getImageProperty());
 		
 		ImageView[] pawns = new ImageView[4];
 		pawns[0] = pawn1;
@@ -566,9 +551,20 @@ public class GuiController implements Initializable {
 			pawns[i].setImage(new Image(roundOrderProxy.getOrderPawns().get(i).getImagePath()));
 		}
 	}
+	
+	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy){
+		DevelopmentCardType towerType = newTowerFloorProxy.getTowerType();
+		int numberOfTowerFloor = newTowerFloorProxy.getNumberOfPosition();
+		TowerFloorProxy towerFloorProxy = game.getBoardProxy().getTowerProxy(towerType).getTowerFloorProxy(numberOfTowerFloor);
+		
+		//setting to null the image of card on towerFloor where player setted.
+		towerFloorProxy.getDevelopmentCardProxy().setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		
+		//setting the image of family member on tower floor occupied
+		towerFloorProxy.setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
+	}
 
 	public void updatePosition(PositionProxy positionProxy) {
-		
 	}
 
 	public void setFamilyMemberProxies(ArrayList<FamilyMemberProxy> familyMemberProxies) {
