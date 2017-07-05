@@ -16,9 +16,6 @@ public class TowerProxy implements Serializable{
 		developmentCardType = tower.getDevelopmentCardType();
 		int numberOfTowerFloor = 0;
 		for (TowerFloor position : (TowerFloor[]) tower.getPositions()) {
-			System.out.println(position);
-			System.out.println(developmentCardType);
-			System.out.println(numberOfTowerFloor);
 			towerFloorProxies.add(new TowerFloorProxy(position, developmentCardType, numberOfTowerFloor));
 			numberOfTowerFloor++;
 		}

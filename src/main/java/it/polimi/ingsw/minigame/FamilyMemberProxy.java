@@ -16,6 +16,10 @@ public class FamilyMemberProxy implements Serializable{
 	private String imagePath;
 	private ObjectProperty<Image> imageProperty;
 	
+	public FamilyMemberProxy() {
+		this.imagePath = "it/polimi/ingsw/gui/resources/blank.png";
+	}
+	
 	public FamilyMemberProxy(FamilyMember familyMember) {
 		this.color = familyMember.getPlayer().getColor();
 		this.diceColour = familyMember.getDice().getDiceColour();
