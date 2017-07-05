@@ -81,6 +81,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		primaryStage.setTitle("Lorenzo Il Magnifico");
 		primaryStage.setScene(scene);
 		}
+		primaryStage.setFullScreen(true);
 		primaryStage.show();
 	}
 	
