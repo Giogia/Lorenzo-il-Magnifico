@@ -41,7 +41,7 @@ public class GuiRmiCallback{
 		}//received pass from server
 		while(answer.contains("$")){
 			
-			String toSend = answer.substring(0, answer.indexOf("$"));
+			String toSend = answer.substring(0, answer.indexOf('$'));
 			System.out.println("toSend vale:" + toSend+"prova");
 	        rmiServer.getAnswer(toSend, guiRmiView);
 	        answer = answer.substring(2);

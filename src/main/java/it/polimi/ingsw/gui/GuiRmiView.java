@@ -231,7 +231,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void choosePosition(Position[] positions) throws RemoteException {
 		synchronized (GuiRmiCallback.getLock()) {
-			GuiRmiCallback.setServerPass(true);;
+			GuiRmiCallback.setServerPass(true);
 			GuiRmiCallback.getLock().notifyAll();
 		}
 	}

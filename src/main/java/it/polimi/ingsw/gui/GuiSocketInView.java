@@ -78,102 +78,95 @@ public class GuiSocketInView implements Runnable {
 						}
 						break;
 						
-					case startTurn:
+					case startTurn: 
 						
-						break;
 						
 					case turnChoice:
 						
-						break;
 						
 					case moveAlreadyDone:
 						
-						break;
 						
 					case chooseZone:
 						
-						break;
-						
+
 					case choosePosition:
 						
-						break;
-						
+					
 					case askForAlternativeCost:
 						
-						break;
-						
+					
 					case askForCouncilPrivilege:
 						
-						break;
-						
+					
 					case askForServants:
-						break;
+						
 						
 					case showDices:
-						break;
+						
 						
 					case hasWon:
-						break;
 					
+						
 					case roundBegins:
-						break;
+					
 						
 					case askForInformation:
-						break;
+						
 						
 					case showPersonalBoard:
-						break;
+						
 						
 					case cantPassTurn:
-						break;
+						
 						
 					case askForAction:
-						break;
+						
 						
 					case askForActionPosition:
-						break;
+						
 						
 					case catchException:
-						break;
+						
 						
 					case chooseFamilyMember:
-						break;
+						
 						
 					case askForLeaderCards:
-						break;
+						
 						
 					case askForPersonalBonusTile:
-						break;
+						
 						
 					case askForLeaderCardAction:
-						break;
+						
 						
 					case draftLeaderCards:
-						break;
+						
 						
 					case askForCardEffect:
-						break;
-					
+						
+						
 					case askForExcommunication:
-						break;
+						
 						
 					case notYourTurn:
-						break;
+						
 						
 					case wrongInput:
-						break;
+						
 						
 					case integerError:
-						break;
+						
 						
 					case leftGame:
-						break;
+						
 						
 					case reconnectedToGame:
-						break;
+						
 						
 					case usernameHasAlreadyChoosen:
-						break;
+						
 				}
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

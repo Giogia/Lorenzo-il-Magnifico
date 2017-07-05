@@ -850,10 +850,17 @@ public class GuiController implements Initializable {
 			tabPlayer4.setText(players.get(3).getName());
 		}else tabPlayer4.setDisable(true);
 		
-		coins_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
-		wood_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
-		servants_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
-		stones_player1.setText(""+players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
+		String numberOfCoins = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
+		coins_player1.setText(""+numberOfCoins);
+		
+		String numberOfWood = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
+		wood_player1.setText(""+numberOfWood);
+		
+		String numberOfServants = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
+		servants_player1.setText(""+numberOfServants);
+		
+		String numberOfStones = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
+		stones_player1.setText(""+numberOfStones);
 
 		
 		setImages();
@@ -1102,7 +1109,7 @@ public class GuiController implements Initializable {
 		Color colorCurrentPlayer = newTowerFloorProxy.getFamilyMemberProxy().getColor();
 		ArrayList<DevelopmentCardProxy> cards = game.getPlayerProxy(colorCurrentPlayer).getPersonalBoardProxy().getCardContainer(towerType).getDevelopmentCardProxies();
 		for (DevelopmentCardProxy developmentCardProxy : cards) {
-			if(developmentCardProxy.getImagePath().equals("it/polimi/ingsw/gui/resources/blank.png")){//find first position to place card in personal board
+			if("it/polimi/ingsw/gui/resources/blank.png".equals(developmentCardProxy.getImagePath())){//find first position to place card in personal board
 				developmentCardProxy.setImagePath(developmentCardTaken.getImagePath());
 				developmentCardProxy.setImageProperty(developmentCardTaken.getImagePath());
 				break;

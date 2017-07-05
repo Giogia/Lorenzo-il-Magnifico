@@ -22,7 +22,7 @@ public class GuiSocketOutView implements Runnable {
 	public void run() {
 		while(true){
 			synchronized (this) {
-				while(toSend.equals("")){
+				while("".equals(toSend)){
 					try {
 						this.wait();
 					} catch (InterruptedException e) {

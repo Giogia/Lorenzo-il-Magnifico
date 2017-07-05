@@ -58,7 +58,7 @@ public class CliSocketInView implements Runnable{
 						System.out.println("What color do you want for your family members?");
 						String[] availableColors = action.getAvailableColors();
 						for (int i = 1; i < availableColors.length + 1; i++) {
-							System.out.println(i + ") " + availableColors[i - 1].toString().toLowerCase());
+							System.out.println(i + ") " + availableColors[i - 1].toLowerCase());
 						}
 						break;
 						

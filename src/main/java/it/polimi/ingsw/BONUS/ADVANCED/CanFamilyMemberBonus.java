@@ -151,7 +151,7 @@ public class CanFamilyMemberBonus extends PermanentBonus{
 				}
 			}
 		}
-		if(!description.toString().equals(""))
+		if(!"".equals(description.toString()))//e' scritto brutto ma sonar dice di mettere le stringhe a sinistra per evitarenullpointerexception
 			description.insert(0,"Your family members cannot go to: \n" + description);
 		if(occupiedYet==true)
 			description.append("you can go to any position even if occupied \n");
