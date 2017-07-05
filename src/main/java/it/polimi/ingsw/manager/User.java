@@ -12,19 +12,19 @@ public class User {
 	private ConnectionManagerSocketServer connectionManagerSocketServer;
 	private ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl;
 	private CliRmi cliRmi;
-	private Boolean connectionType;
+	private boolean connectionType = false;
 	
 	public User(Socket socket) {
 		this.socket = socket;
-		this.connectionType = new Boolean(false);
+		this.connectionType = false;
 	}
 	
 	public User(CliRmi cliRmi) {
 		this.cliRmi = cliRmi;
-		this.connectionType = new Boolean(true);
+		this.connectionType = true;
 	}
 
-	public Boolean getConnectionType() {
+	public boolean getConnectionType() {
 		return connectionType;
 	}
 	

@@ -3,7 +3,6 @@ package it.polimi.ingsw.manager;
 import java.rmi.NotBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-
 import it.polimi.ingsw.view.CliRmi;
 
 

@@ -36,6 +36,7 @@ import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
@@ -108,12 +109,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			executor.submit(connectionManagerSocketServer);
 			
 			askSocketUsername(thisUser);
-		} catch (IOException | ClassNotFoundException e) {
+		} catch (IOException | ClassNotFoundException | MyException e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(),e);
 		}
 	}
 	
-	private void askSocketUsername(User thisUser) throws IOException, ClassNotFoundException{
+	private void askSocketUsername(User thisUser) throws IOException, ClassNotFoundException, MyException{
 		ConnectionManagerSocketServer connectionManagerSocketServer = thisUser.getConnectionManagerSocketServer();
 		ObjectOutputStream socketOutClient = connectionManagerSocketServer.getSocketOutClient(); 
 		
@@ -132,6 +133,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						connectionManagerSocketServer.wait();
 					} catch (InterruptedException e) {
 						LOGGER.log(Level.SEVERE, e.getMessage(),e);
+						Thread.currentThread().interrupt();
 					}
 				}
 			}
@@ -183,6 +185,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						connectionManagerRmiServerImpl.wait();
 					} catch (InterruptedException e) {
 						LOGGER.log(Level.SEVERE, e.getMessage(),e);
+						Thread.currentThread().interrupt();
 					}
 				}
 			}
@@ -200,6 +203,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							connectionManagerRmiServerImpl.wait();
 						} catch (InterruptedException e) {
 							LOGGER.log(Level.SEVERE, e.getMessage(),e);
+							Thread.currentThread().interrupt();
 						}
 					}
 				}
@@ -296,6 +300,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 								listener.wait();
 							} catch (InterruptedException e) {
 								LOGGER.log(Level.SEVERE, e.getMessage(),e);
+								Thread.currentThread().interrupt();
 							}
 						}
 					}
@@ -348,6 +353,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 								listener.wait();
 							} catch (InterruptedException e) {
 								LOGGER.log(Level.SEVERE, e.getMessage(),e);
+								Thread.currentThread().interrupt();
 							}
 						}
 					}
@@ -417,6 +423,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							listener.wait();
 						} catch (InterruptedException e) {
 							LOGGER.log(Level.SEVERE, e.getMessage(),e);
+							Thread.currentThread().interrupt();
 						}
 					}
 				}
@@ -478,6 +485,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 							listener.wait();
 						} catch (InterruptedException e) {
 							LOGGER.log(Level.SEVERE, e.getMessage(),e);
+							Thread.currentThread().interrupt();
 						}
 					}
 				}
@@ -526,6 +534,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	public static void startTurn(Player player, ArrayList<Player> playersInGame) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			System.out.println("arrivo qui");
 			CliRmi client = user.getCliRmi();
@@ -560,6 +575,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private static void disconnectionManager(Player player, ArrayList<Player> playersInGame) throws IOException{
 		System.out.println(player.getName() + " left the game!");
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		usersDisconnected.add(user); //add player to arraylist. Manager after call turnChoice, see if player is disconnected
 		notifyOfDisconnectionToPlayers(player, playersInGame);
 	}
@@ -567,7 +589,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private static void reconnectionManager(User userReconnected) throws IOException{
 		//find the userInGame by username of userReconnected
 		User userInGame = findUserDisconnectedByUsername(userReconnected.getUsername());
-		
+		if(userInGame==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		//giving to user the new connection!
 		if(userInGame.getConnectionType()==true){ //user in game was a rmi user
 			userInGame.setCliRmi(userReconnected.getCliRmi());
@@ -587,6 +615,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private static void notifyOfReconnectionToPlayers(Player playerReconnected, ArrayList<Player> playersInGame) throws IOException {
 		for (Player player : playersInGame) {
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
@@ -614,6 +649,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	private static void notifyOfDisconnectionToPlayers(Player playerDisconnected, ArrayList<Player> playersInGame) throws IOException{
 		for (Player player : playersInGame) {
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
@@ -681,6 +723,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					clientListener.wait();
 				} catch (InterruptedException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 				if (clientListener.getTimeExpired()){
 					clientListener.setTimeExpired(false);
@@ -703,6 +746,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	private int getRmiAnswer(Player player) throws RemoteException, TimeExpiredException{
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		ConnectionManagerRmiServerImpl listener = user.getConnectionManagerRmiServerImpl();
 		listener.setIsRightTurn(true);
 		
@@ -712,6 +762,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					listener.wait();
 				} catch (InterruptedException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 				if (listener.getTimeExpired()){
 					listener.setTimeExpired(false);
@@ -733,6 +784,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	public int turnChoice(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.turnChoice();
@@ -751,6 +809,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void moveAlreadyDone(Player player) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.moveAlreadyDone();
@@ -765,6 +830,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int chooseZone(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.chooseZone();
@@ -784,6 +856,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int choosePosition(Player player, Position[] positions) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.choosePosition(positions);
@@ -806,6 +885,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int chooseFamilyMember(Player player, ArrayList<FamilyMember> familyMembers) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.chooseFamilyMember(familyMembers);
@@ -827,6 +913,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForAlternativeCost(Player player, ArrayList<Resource> costs, ArrayList<Resource> alternativeCosts) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForAlternativeCost(costs, alternativeCosts);
@@ -849,6 +942,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForCouncilPrivilege(Player player, ArrayList<ResourceBonus> councilPrivileges) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForCouncilPrivilege(councilPrivileges);
@@ -872,6 +972,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForServants(Player player, int numberOfServants) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForServants(numberOfServants);
@@ -893,6 +1000,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForInformation(Player player, String[] playersNames) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForInformation(playersNames);
@@ -915,6 +1029,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void showPersonalBoard(Player player, PersonalBoard personalBoard) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.showPersonalBoard(personalBoard);
@@ -931,6 +1052,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	
 	public static void cantPassTurn(Player player) throws IOException{
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.cantPassTurn();
@@ -946,6 +1074,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static void roundBegins(Player[] players) throws IOException{
 		for (Player player : players){
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			GameProxy gameProxy = new GameProxy(player.getBoard().getGame());
 		
 			gameProxy.setDiceProxies(player.getBoard().getDices());
@@ -976,6 +1111,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static void hasWon(String winner, Player[] players) throws IOException{
 		for (Player player : players){
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				client.hasWon(winner);
@@ -996,6 +1138,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForZone(ArrayList<ActionZone> zones, Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForAction(zones);
@@ -1017,6 +1166,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int chooseActionPosition(Player player, Position[] zonePositionsDescriptions) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForActionPosition(zonePositionsDescriptions);
@@ -1038,6 +1194,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void catchException(String message, Player player) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.catchException(message);
@@ -1055,6 +1218,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public static void showDices(Player[] players, ArrayList<Dice> dices) throws IOException{
 		for (Player player: players){
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			if (user.getConnectionType()==true){//player is a rmi user
 				CliRmi client = user.getCliRmi();
 				try{
@@ -1082,6 +1252,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int askForExcommunication(Player player, ExcommunicationTile excommunicationTile) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForExcommunication(excommunicationTile);
@@ -1106,6 +1283,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int LeaderCardActionChoice(Player player) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForLeaderCardAction();
@@ -1127,6 +1311,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int chooseLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForLeaderCard(leaderCards);
@@ -1149,6 +1340,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int choosePersonalBonusTile(Player player, ArrayList<PersonalBonusTile> personalBonusTiles) throws  IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForPersonalBonusTile(personalBonusTiles);
@@ -1171,6 +1369,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int draftLeaderCard(Player player, ArrayList<LeaderCard> leaderCards) throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.draftLeaderCard(leaderCards);
@@ -1193,6 +1398,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public int chooseEffect(Player player, DevelopmentCard developmentCard)throws IOException, TimeExpiredException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.askForCardEffect(developmentCard);
@@ -1215,6 +1427,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void integerError(Player player) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			client.integerError();
@@ -1234,6 +1453,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void cancelTimer(Player player) {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			user.getConnectionManagerRmiServerImpl().cancelTimer();
 		}
@@ -1244,6 +1470,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void timeExpired(Player player) throws IOException {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			CliRmi client = user.getCliRmi();
 			try{
@@ -1269,6 +1502,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 
 	public static void startTimer(Player player) {
 		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
 		if (user.getConnectionType()==true){//player is a rmi user
 			user.getConnectionManagerRmiServerImpl().startTurn();
 		}
@@ -1280,6 +1520,13 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	public void startGame(Game thisGame, GameProxy gameProxy) throws IOException{
 		for (Player player : thisGame.getPlayers()) {
 			User user = findUserByPlayer(player);
+			if(user==null){
+				try {
+					throw new MyException("user not found");
+				} catch (MyException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
+			}
 			if (user.getConnectionType()==true){//player is a rmi user
 				user.getCliRmi().startGame(gameProxy);
 			}
