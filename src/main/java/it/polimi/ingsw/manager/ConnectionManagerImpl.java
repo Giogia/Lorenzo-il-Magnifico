@@ -640,6 +640,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.writeObject(act);
 					out.flush();
 				}catch(SocketException e){ 
+					LOGGER.log(Level.INFO, e.getMessage(),e); 
 					//don't do nothing! This means that also this player is disconnected
 				} 
 			}
@@ -674,6 +675,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.writeObject(act);
 					out.flush();
 				}catch(SocketException e){ 
+					LOGGER.log(Level.INFO, e.getMessage(),e); 
 					//don't do nothing! This means that also this player is disconnected
 				} 
 			}
@@ -1102,6 +1104,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					out.writeObject(act);
 					out.flush();
 				}catch(SocketException e){
+					LOGGER.log(Level.INFO, e.getMessage(),e); 
 					//user disconnected
 				}
 			}

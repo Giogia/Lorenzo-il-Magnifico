@@ -55,8 +55,8 @@ public class GuiRmiCallback{
 					try {
 						lock.wait();
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
+						Thread.currentThread().interrupt();
 					}
 				}
 			}//received pass from server

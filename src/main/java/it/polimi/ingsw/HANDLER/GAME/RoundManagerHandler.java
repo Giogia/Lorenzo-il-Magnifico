@@ -73,7 +73,7 @@ public class RoundManagerHandler {
 		for (Player player : players) {
 			User user = ConnectionManagerImpl.getConnectionManager().findUserByPlayer(player);
 			if (usersDisconnected.contains(user)){
-				usersDisconnected.remove(player);
+				usersDisconnected.remove(user);
 			}
 		}
 		

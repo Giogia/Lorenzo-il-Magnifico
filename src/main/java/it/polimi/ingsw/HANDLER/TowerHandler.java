@@ -73,14 +73,12 @@ public class TowerHandler {
 						}
 						
 						//Check if can take the Development card 
-						if (checkZone(testFamilyMember, playerResources, towerFloor)) {
-							
-							//Then give to the player the cloned resources, in this way we update the personal resources
-							copyResource(testFamilyMember.getPlayer(), playerResources);
-							testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
-							zone.getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
-							return true;
-						}
+						checkZone(testFamilyMember, playerResources, towerFloor);
+						//Then give to the player the cloned resources, in this way we update the personal resources
+						copyResource(testFamilyMember.getPlayer(), playerResources);
+						testFamilyMember.getPlayer().setFamilyMemberPosition(testFamilyMember, towerFloor);
+						zone.getBoard().getPassTurnController().lastMove(testFamilyMember.getPlayer());
+						return true;
 					}
 				}
 			}
@@ -90,26 +88,19 @@ public class TowerHandler {
 
 	
 	//Check if the player can take the development Card
-	private static boolean checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
+	private static void checkZone(FamilyMember familyMember, ArrayList<Resource> playerResources,
 			TowerFloor towerFloor) throws MyException, IOException, TimeExpiredException {
 		if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.territory)) {
-			if (!checkTerritories(familyMember)) {
-				return false;
-			}
+			checkTerritories(familyMember);
+
 		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.venture)) {
-			if (!checkVentures(familyMember, playerResources, towerFloor)) {
-				return false;
-			}
+			checkVentures(familyMember, playerResources, towerFloor);
+			
 		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.character)) {
-			if (!checkCharacters(familyMember, playerResources, towerFloor)) {
-				return false;
-			}
+			checkCharacters(familyMember, playerResources, towerFloor);
 		} else if (towerFloor.getDevelopmentCard().developmentCardType.equals(DevelopmentCardType.building)) {
-			if (!checkBuildings(familyMember, playerResources, towerFloor)) {
-				return false;
-			}
+			checkBuildings(familyMember, playerResources, towerFloor);
 		}
-		return true;
 	}
 
 
