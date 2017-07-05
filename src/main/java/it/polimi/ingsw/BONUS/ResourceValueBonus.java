@@ -16,11 +16,11 @@ public class ResourceValueBonus extends PermanentResourceBonus{
 
 	
 	public String getDescription() {
-		String description = "";
+		StringBuilder description = new StringBuilder();
 		for (Resource resource : resources) {
-			description = description + "For each " + resource.getClass().getSimpleName() + " you have to pay " + resource.getAmount() + "\n";
+			description.append("For each " + resource.getClass().getSimpleName() + " you have to pay " + resource.getAmount() + "\n");
 		}
-		return description;
+		return description.toString();
 	}
 	
 	@Override

@@ -41,14 +41,15 @@ public class OrderBonus extends PermanentBonus{
 	}
 	
 	public String getDescription(){
-		String description = "You skip :\n";
+		StringBuilder description = new StringBuilder();
+		description.append("You skip :\n");
 		for(int i = 0; i < 4; i++){
 			if(skipAction[i]==true){
-				description = description + "action number"+ i + "\n";
+				description.append("action number"+ i + "\n");
 			}
 		}
-		description = description + "and you do it at the end of the turn \n";
-		return description;
+		description.append("and you do it at the end of the turn \n");
+		return description.toString();
 	}
 
 }

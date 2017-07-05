@@ -121,11 +121,12 @@ public class PositionFamilyMemberBonus extends PermanentBonus{
 	}
 	
 	public String getDescription(){
-		String description = "Increase permanently the value of your family members of: \n";
+		StringBuilder description = new StringBuilder();
+		description.append("Increase permanently the value of your family members of: \n");
 		for(Entry<ActionZone, Integer> entry : positionBonus.entrySet()){
-			description = description +entry.getValue()+" if you go to "+entry.getKey().getDescription()+"\n";
+			description.append(entry.getValue()+" if you go to "+entry.getKey().getDescription()+"\n");
 		}
-		return description;
+		return description.toString();
 	}
 }
 

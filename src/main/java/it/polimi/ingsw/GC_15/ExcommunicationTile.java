@@ -32,13 +32,14 @@ public class ExcommunicationTile implements Serializable{
 	}
 
 	public String getDescription() {
-		String description = "Period: " + period + "\n";
+		StringBuilder description = new StringBuilder();
+		description.append("Period: " + period + "\n");
 		if (malus != null){
-			description = description + "Malus: \n";
+			description.append("Malus: \n");
 			for (PermanentBonus permanentBonus : malus) {
-				description = description + permanentBonus.getDescription() + "\n";
+				description.append(permanentBonus.getDescription() + "\n");
 			}
 		}
-		return description;
+		return description.toString();
 	}
 }

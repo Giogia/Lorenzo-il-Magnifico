@@ -67,16 +67,17 @@ public class ActivationZoneBonus extends PermanentBonus {
 	}
 	
 	public String getDescription(){
-		 String description = "You cannot take position bonus from : \n";
+		StringBuilder description = new StringBuilder();
+		 description.append("You cannot take position bonus from : \n");
 		 for(Entry<Tower, Boolean> entry : towers.entrySet()){
 			 if(entry.getValue()==false){
-				 description = description + entry.getKey().getDescription();
+				 description.append(entry.getKey().getDescription());
 			 }
 		 }
 		 if(councilPalace==false){
-			 description = description + "Council Palace";
+			 description.append("Council Palace");
 		 }
-		 return description;
+		 return description.toString();
 	} 
 
 }

@@ -30,18 +30,19 @@ public class ActionBonus extends ImmediateBonus {
 
 	@Override
 	public String getDescription() {
-		String description = "you can do an action in: \n";
+		StringBuilder description = new StringBuilder();
+		description.append("you can do an action in: \n");
 		Set<ActionZone> actionZones = action.keySet();
 		for (ActionZone actionZone : actionZones) {
-			description = description + actionZone.getDescription() + " whose value is " + action.get(actionZone) + "\n";
+			description.append(actionZone.getDescription() + " whose value is " + action.get(actionZone) + "\n");
 		}
 		if (resources != null){
-			description = description + "has a bonus of: \n";
+			description.append("has a bonus of: \n");
 			for (Resource resource : resources) {
-				description = description + resource.getDescription();
+				description.append(resource.getDescription());
 			}
 		}
-		return description;
+		return description.toString();
 	}
 
 }

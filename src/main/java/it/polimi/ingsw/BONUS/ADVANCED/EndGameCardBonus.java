@@ -60,11 +60,12 @@ public class EndGameCardBonus extends PermanentBonus {
 	}
 	
 	public String getDescription(){
-		String description = "You cannot have the end game bonus for :\n";
+		StringBuilder description = new StringBuilder();
+		description.append("You cannot have the end game bonus for :\n");
 		for(Entry<DevelopmentCardType, Boolean> entry : developmentCardTypes.entrySet()){
 			if(entry.getValue()==false)
-				description = description + entry.getKey() +"cards \n";
+				description.append(entry.getKey() +"cards \n");
 		}
-		return description;
+		return description.toString();
 	}
 }

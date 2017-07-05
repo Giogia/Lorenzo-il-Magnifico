@@ -54,11 +54,11 @@ public abstract class ResourceBonus extends ImmediateBonus {
 	}
 
 	public String getDescription() {
-		String description = "";
+		StringBuilder description = new StringBuilder();
 		for (Resource resource : resources) {
-			description = description + resource.getDescription() + "\n";
+			description.append(resource.getDescription() + "\n");
 		}
-		return description;
+		return description.toString();
 	}
 	
 	public abstract ResourceBonus createClone();

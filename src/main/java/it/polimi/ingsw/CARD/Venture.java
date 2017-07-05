@@ -30,24 +30,24 @@ public class Venture extends DevelopmentCard{
 	
 	@Override
 	public String getDescription() {
-		String description = "";
+		StringBuilder description = new StringBuilder();
 		if (cost != null){
-			description = description + "Cost: \n";
+			description.append("Cost: \n");
 			for (Resource resource : cost) {
-				description = description + resource.getDescription() + "\n";
+				description.append(resource.getDescription() + "\n");
 			}
 			if (alternativeCost != null){
-				description = description + "Alternative cost: \n You need " + militaryPointRequirement + " military points \n"
-						+ "Costo: " + alternativeCost.getDescription() + "\n";
+				description.append("Alternative cost: \n You need " + militaryPointRequirement + " military points \n"
+						+ "Costo: " + alternativeCost.getDescription() + "\n");
 			}
 			
 		}
 		else {
-			description = description + "Cost: \n You need " + militaryPointRequirement + " military points \n"
-						+ "Cost: " + alternativeCost.getDescription() + "\n";
+			description.append("Cost: \n You need " + militaryPointRequirement + " military points \n"
+						+ "Cost: " + alternativeCost.getDescription() + "\n");
 		}
-		description = description + super.getDescription();
-		return description;
+		description.append(super.getDescription());
+		return description.toString();
 	}
 	
 	public ArrayList<Resource> getCost() {

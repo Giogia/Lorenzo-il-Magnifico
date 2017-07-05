@@ -20,23 +20,24 @@ public abstract class DevelopmentCard extends Card{
 	}
 
 	public String getDescription(){
-		String description = "Name of the card: " + super.getName() + "\n";
+		StringBuilder description = new StringBuilder();
+		description.append("Name of the card: " + super.getName() + "\n");
 		if (immediateEffect != null){
-			description = description + "Bonus from the immediate effect of the card: \n";
+			description.append("Bonus from the immediate effect of the card: \n");
 			
 			for (int i=0; i < immediateEffect.size(); i++){
 				
-				description = description + immediateEffect.get(i).getDescription() + "\n";
+				description.append(immediateEffect.get(i).getDescription() + "\n");
 			}
 		}
 		if (secondaryEffect != null){
-			description = description +"Bonus from secondary effect: \n";
+			description.append("Bonus from secondary effect: \n");
 			
 			for (int i=0; i < secondaryEffect.size(); i++){
 				
-				description = description + secondaryEffect.get(i).getDescription() + "\n";
+				description.append(secondaryEffect.get(i).getDescription() + "\n");
 			}
 		}
-		return description;
+		return description.toString();
 	}
 }

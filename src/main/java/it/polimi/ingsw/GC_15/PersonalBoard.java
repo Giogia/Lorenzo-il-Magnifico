@@ -129,22 +129,23 @@ public class PersonalBoard implements Serializable {
 
 
 	public String getDescription() {
-		String description = "--Resources:\n";
+		StringBuilder description = new StringBuilder();
+		description.append("--Resources:\n");
 		for (Resource resource : resources) {
-			description = description + resource.getDescription() + "\n";
+			description.append(resource.getDescription() + "\n");
 		}
-		description+= "\n--Cards:\n";
+		description.append("\n--Cards:\n");
 		for (CardContainer container : cardContainers) {
-			description += container.getType().toString().toUpperCase() + ":\n";
+			description.append(container.getType().toString().toUpperCase() + ":\n");
 			if (container.getDevelopmentCards().isEmpty()){
-				description += "This player doesn't own development card of this type\n";
+				description.append("This player doesn't own development card of this type\n");
 			}else{
 				for (DevelopmentCard card : container.getDevelopmentCards()) {
-					description += card.getDescription();
+					description.append(card.getDescription());
 				}
 			}
 		}
-		return description;
+		return description.toString();
 	}
 	
 	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){

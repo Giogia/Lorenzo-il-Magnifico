@@ -27,12 +27,13 @@ public class Building extends DevelopmentCard{
 	
 	@Override
 	public String getDescription() {
-		String description = "Cost: \n";
+		StringBuilder description = new StringBuilder();
+		description.append("Cost: \n");
 		for (Resource resource : costs) {
-			description = description + resource.getDescription() + "\n";
+			description.append(resource.getDescription() + "\n");
 		}
-		description = description + super.getDescription();
-		description = description + "Production activation condition: " + activationConditionProduction + "\n";
-		return description;
+		description.append(super.getDescription());
+		description.append("Production activation condition: " + activationConditionProduction + "\n");
+		return description.toString();
 	}
 }

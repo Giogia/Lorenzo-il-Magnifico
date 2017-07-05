@@ -88,17 +88,17 @@ public class ConfigurationFileHandler {
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);
-		String inJson="";
+		StringBuilder inJson=new StringBuilder();
 		//In this way I can use spaces between characters
 		try{
 			while (scanner.hasNextLine()){
-				inJson = inJson + scanner.nextLine();
+				inJson.append(scanner.nextLine());
 			}
 		}
 		finally{
 			scanner.close();
 		}
-		return toDeserialize(inJson);
+		return toDeserialize(inJson.toString());
 	}
 	
 	public static String toSerialize(Object object){

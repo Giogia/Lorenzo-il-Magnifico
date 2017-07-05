@@ -40,29 +40,31 @@ public abstract class LeaderCard extends Card {
 		return numberOfSameTypeCards;
 	}
 	
-	public String getDescription(){
-		String description = getName() +" \n Activation conditions: \n";
+	public String getDescription(){		
+		StringBuilder description = new StringBuilder();
+		description.append(getName());
+		description.append(" \nActivation conditions: \n");
 		if(resourceActivationCondition!=null){
 			for(Resource resource : resourceActivationCondition){
-				description = description + resource.getDescription();
+				description.append(resource.getDescription());
 			}
 		}
 		if(cardActivationCondition!=null){
 			for(Entry<DevelopmentCardType, Integer> entry : cardActivationCondition.entrySet()){
-				description = description + entry.getValue() +" "+entry.getKey() +" \n";
+				description.append(entry.getValue()+" "+entry.getKey() +" \n");
 			}
 		}
 		if(bonus!=null){
-			description = description +"Bonus: \n";
+			description.append("Bonus: \n");
 			for(Bonus thisBonus : bonus){
 				if(this instanceof OncePerRoundLeaderCard){
-					description = description +"Every round you get ";
+					description.append("Every round you get ");
 				}
-				description = description + thisBonus.getDescription();
+				description.append(thisBonus.getDescription());
 			}
 		}
 		if(numberOfSameTypeCards!=0)
-			description = description +"you need to have "+ numberOfSameTypeCards +"cards of the same color to activate this card \n"; 
-		return description;
+			description.append("you need to have "+ numberOfSameTypeCards +"cards of the same color to activate this card \n"); 
+		return description.toString();
 	}
 }

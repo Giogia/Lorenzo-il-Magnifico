@@ -1,7 +1,5 @@
 package it.polimi.ingsw.gui;
 
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -9,29 +7,20 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.ActionZone;
-import it.polimi.ingsw.BOARD.Board;
 import it.polimi.ingsw.BOARD.Position;
-import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCard;
-import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.GC_15.*;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
-import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
-import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
-import it.polimi.ingsw.minigame.FamilyMemberProxy;
-import it.polimi.ingsw.minigame.DiceProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
@@ -252,13 +241,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String message = "Choose the family member you want to use for the action: \n";
+				StringBuilder message = new StringBuilder();
+				message.append("Choose the family member you want to use for the action: \n");
 				for (int counter = 1; counter <= familyMembers.size(); counter++){
-					message += counter + ") " + familyMembers.get(counter - 1).getDescription()+"\n";
+					message.append(counter + ") " + familyMembers.get(counter - 1).getDescription()+"\n");
 				}
 				int lastChoice = familyMembers.size() + 1;
-				message  +=  lastChoice + ") Go back\n";
-				controller.setChatLabel(message);
+				message.append(lastChoice + ") Go back\n");
+				controller.setChatLabel(message.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -272,16 +262,17 @@ public class GuiRmiView extends Application implements CliRmi{
 			
 			@Override
 			public void run() {
-				String message = "The card you have chosen has 2 costs. Choose one: \n";
-				message += "1) First cost\n";
+				StringBuilder message = new StringBuilder();
+				message.append("The card you have chosen has 2 costs. Choose one: \n");
+				message.append("1) First cost\n");
 				for (Resource resource : costDescriptions) {
-					message += resource.getDescription() + "\n";
+					message.append(resource.getDescription() + "\n");
 				}
-				message += "2) Secondary cost:\n";
+				message.append("2) Secondary cost:\n");
 				for (Resource alternativeResource : alternativeCostDescriptions ) {
-					message += alternativeResource.getDescription() + "\n";
+					message.append(alternativeResource.getDescription() + "\n");
 				}
-				controller.setChatLabel(message);
+				controller.setChatLabel(message.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -294,11 +285,12 @@ public class GuiRmiView extends Application implements CliRmi{
 			
 			@Override
 			public void run() {
-				String message = "Choose the bonus of the Council Privilege: \n";
+				StringBuilder message = new StringBuilder();
+				message.append("Choose the bonus of the Council Privilege: \n");
 				for (int counter = 1; counter <= councilPrivileges.size(); counter++){
-					message += counter + ") " + councilPrivileges.get(counter - 1).getDescription() +"\n";
+					message.append(counter + ") " + councilPrivileges.get(counter - 1).getDescription() +"\n");
 				}
-				controller.setChatLabel(message);
+				controller.setChatLabel(message.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -386,12 +378,13 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend = "Choose the zone you want to activate the action bonus in: ";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose the zone you want to activate the action bonus in: ");
 				for (int i = 1; i <= zones.size(); i++) {
-					toSend += i + ") " + zones.get(i-1).getDescription();
+					toSend.append(i + ") " + zones.get(i-1).getDescription());
 				}
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -402,12 +395,13 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend = "Choose where you want to place your family member: ";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose where you want to place your family member: ");
 				for (int counter = 1; counter <= positions.length; counter ++) {
-					toSend += counter + ") " + positions[counter - 1].getDescription();
+					toSend.append(counter + ") " + positions[counter - 1].getDescription());
 				}
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -433,13 +427,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend= "Choose the leader card you want \n";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose the leader card you want \n");
 				for(int i=1;i<leaderCards.size()+1;i++){
-					toSend += i+")"+leaderCards.get(i-1).getDescription()+"\n";
+					toSend.append(i+")"+leaderCards.get(i-1).getDescription()+"\n");
 				}
-				toSend += leaderCards.size()+1+") come back \n";
+				toSend.append(leaderCards.size()+1+") come back \n");
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -450,12 +445,13 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend = "Choose the personal bonus tile you want \n";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose the personal bonus tile you want \n");
 				for(int i=1;i<personalBonusTiles.size();i++){
-					toSend += i+")"+personalBonusTiles.get(i).getDescription()+" \n";
+					toSend.append(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
 				}
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -466,12 +462,13 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend = "Choose the leader card you want \n";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose the leader card you want \n");
 				for(int i=1;i<leaderCards.size()+1;i++){
-					toSend += i+")"+leaderCards.get(i-1).getDescription()+" \n";
+					toSend.append(i+")"+leaderCards.get(i-1).getDescription()+" \n");
 				}
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
@@ -493,19 +490,20 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				String toSend = "Choose which effect of the card you want to acctivate : \n 1) First Effect: \n";
+				StringBuilder toSend = new StringBuilder();
+				toSend.append("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");
 				int i =1;
 				for(Bonus bonus : developmentCard.secondaryEffect){
 					if(bonus instanceof ResourceBonus){
-						toSend += i+")"+bonus.getDescription();
+						toSend.append(i+")"+bonus.getDescription());
 						i++;
 					}
 					else
-						toSend += bonus.getDescription();
+						toSend.append(bonus.getDescription());
 				}
-				toSend += i+") Don't activate this card's Effect \n";
+				toSend.append(i+") Don't activate this card's Effect \n");
 				
-				controller.setChatLabel(toSend);
+				controller.setChatLabel(toSend.toString());
 				controller.disableButtons(true);
 			}
 		});
