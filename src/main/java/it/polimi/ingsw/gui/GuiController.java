@@ -27,6 +27,7 @@ import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -50,9 +51,6 @@ public class GuiController implements Initializable {
 	
     @FXML
     private TextField answerChat;
-	
-	@FXML
-    private Tab tabPlayer1;
 
     @FXML
     private ImageView territoryfloor4;
@@ -102,8 +100,19 @@ public class GuiController implements Initializable {
     @FXML
     private ImageView venturefloor1;
 
-	
-	@FXML
+    @FXML
+    private Tab tabPlayer1;
+
+    @FXML
+    private ImageView personalBoard1;
+
+    @FXML
+    private ImageView personalBonusTile1;
+
+    @FXML
+    private Group player1_building;
+
+    @FXML
     private ImageView player1_building1;
 
     @FXML
@@ -121,14 +130,347 @@ public class GuiController implements Initializable {
     @FXML
     private ImageView player1_building6;
 
-	@FXML
+    @FXML
+    private Group player1_territory;
+
+    @FXML
+    private ImageView player1_territory1;
+
+    @FXML
+    private ImageView player1_territory2;
+
+    @FXML
+    private ImageView player1_territory3;
+
+    @FXML
+    private ImageView player1_territory4;
+
+    @FXML
+    private ImageView player1_territory5;
+
+    @FXML
+    private ImageView player1_territory6;
+
+    @FXML
+    private Group player1_character;
+
+    @FXML
+    private ImageView player1_character1;
+
+    @FXML
+    private ImageView player1_character2;
+
+    @FXML
+    private ImageView player1_character3;
+
+    @FXML
+    private ImageView player1_character4;
+
+    @FXML
+    private ImageView player1_character5;
+
+    @FXML
+    private ImageView player1_character6;
+
+    @FXML
+    private Group player1_venture;
+
+    @FXML
+    private ImageView player1_venture1;
+
+    @FXML
+    private ImageView player1_venture2;
+
+    @FXML
+    private ImageView player1_venture3;
+
+    @FXML
+    private ImageView player1_venture4;
+
+    @FXML
+    private ImageView player1_venture5;
+
+    @FXML
+    private ImageView player1_venture6;
+
+    @FXML
     private Tab tabPlayer2;
-	
-	@FXML
+
+    @FXML
+    private ImageView personalBoard2;
+
+    @FXML
+    private ImageView personalBonusTile2;
+
+    @FXML
+    private Group player2_building;
+
+    @FXML
+    private ImageView player2_building1;
+
+    @FXML
+    private ImageView player2_building2;
+
+    @FXML
+    private ImageView player2_building3;
+
+    @FXML
+    private ImageView player2_building4;
+
+    @FXML
+    private ImageView player2_building5;
+
+    @FXML
+    private ImageView player2_building6;
+
+    @FXML
+    private Group player2_territory;
+
+    @FXML
+    private ImageView player2_territory1;
+
+    @FXML
+    private ImageView player2_territory2;
+
+    @FXML
+    private ImageView player2_territory3;
+
+    @FXML
+    private ImageView player2_territory4;
+
+    @FXML
+    private ImageView player2_territory5;
+
+    @FXML
+    private ImageView player2_territory6;
+
+    @FXML
+    private Group player2_character;
+
+    @FXML
+    private ImageView player2_character1;
+
+    @FXML
+    private ImageView player2_character2;
+
+    @FXML
+    private ImageView player2_character3;
+
+    @FXML
+    private ImageView player2_character4;
+
+    @FXML
+    private ImageView player2_character5;
+
+    @FXML
+    private ImageView player2_character6;
+
+    @FXML
+    private Group player2_venture;
+
+    @FXML
+    private ImageView player2_venture1;
+
+    @FXML
+    private ImageView player2_venture2;
+
+    @FXML
+    private ImageView player2_venture3;
+
+    @FXML
+    private ImageView player2_venture4;
+
+    @FXML
+    private ImageView player2_venture5;
+
+    @FXML
+    private ImageView player2_venture6;
+
+    @FXML
     private Tab tabPlayer3;
-	
-	@FXML
+
+    @FXML
+    private ImageView personalBoard3;
+
+    @FXML
+    private ImageView personalBonusTile3;
+
+    @FXML
+    private Group player3_building;
+
+    @FXML
+    private ImageView player3_building1;
+
+    @FXML
+    private ImageView player3_building2;
+
+    @FXML
+    private ImageView player3_building3;
+
+    @FXML
+    private ImageView player3_building4;
+
+    @FXML
+    private ImageView player3_building5;
+
+    @FXML
+    private ImageView player3_building6;
+
+    @FXML
+    private Group player3_territory;
+
+    @FXML
+    private ImageView player3_territory1;
+
+    @FXML
+    private ImageView player3_territory2;
+
+    @FXML
+    private ImageView player3_territory3;
+
+    @FXML
+    private ImageView player3_territory4;
+
+    @FXML
+    private ImageView player3_territory5;
+
+    @FXML
+    private ImageView player3_territory6;
+
+    @FXML
+    private Group player3_character;
+
+    @FXML
+    private ImageView player3_character1;
+
+    @FXML
+    private ImageView player3_character2;
+
+    @FXML
+    private ImageView player3_character3;
+
+    @FXML
+    private ImageView player3_character4;
+
+    @FXML
+    private ImageView player3_character5;
+
+    @FXML
+    private ImageView player3_character6;
+
+    @FXML
+    private Group player3_venture;
+
+    @FXML
+    private ImageView player3_venture1;
+
+    @FXML
+    private ImageView player3_venture2;
+
+    @FXML
+    private ImageView player3_venture3;
+
+    @FXML
+    private ImageView player3_venture4;
+
+    @FXML
+    private ImageView player3_venture5;
+
+    @FXML
+    private ImageView player3_venture6;
+
+    @FXML
     private Tab tabPlayer4;
+
+    @FXML
+    private ImageView personalBoard4;
+
+    @FXML
+    private ImageView personalBonusTile4;
+
+    @FXML
+    private Group player4_building;
+
+    @FXML
+    private ImageView player4_building1;
+
+    @FXML
+    private ImageView player4_building2;
+
+    @FXML
+    private ImageView player4_building3;
+
+    @FXML
+    private ImageView player4_building4;
+
+    @FXML
+    private ImageView player4_building5;
+
+    @FXML
+    private ImageView player4_building6;
+
+    @FXML
+    private Group player4_territory;
+
+    @FXML
+    private ImageView player4_territory1;
+
+    @FXML
+    private ImageView player4_territory2;
+
+    @FXML
+    private ImageView player4_territory3;
+
+    @FXML
+    private ImageView player4_territory4;
+
+    @FXML
+    private ImageView player4_territory5;
+
+    @FXML
+    private ImageView player4_territory6;
+
+    @FXML
+    private Group player4_character;
+
+    @FXML
+    private ImageView player4_character1;
+
+    @FXML
+    private ImageView player4_character2;
+
+    @FXML
+    private ImageView player4_character3;
+
+    @FXML
+    private ImageView player4_character4;
+
+    @FXML
+    private ImageView player4_character5;
+
+    @FXML
+    private ImageView player4_character6;
+
+    @FXML
+    private Group player4_venture;
+
+    @FXML
+    private ImageView player4_venture1;
+
+    @FXML
+    private ImageView player4_venture2;
+
+    @FXML
+    private ImageView player4_venture3;
+
+    @FXML
+    private ImageView player4_venture4;
+
+    @FXML
+    private ImageView player4_venture5;
+
+    @FXML
+    private ImageView player4_venture6;
 	
 	@FXML
 	private Label chatLabel;
@@ -523,6 +865,7 @@ public class GuiController implements Initializable {
 		venture2.imageProperty().bind(towerProxy.getTowerFloorProxy(1).getDevelopmentCardProxy().getImageProperty());
 		venture3.imageProperty().bind(towerProxy.getTowerFloorProxy(2).getDevelopmentCardProxy().getImageProperty());
 		venture4.imageProperty().bind(towerProxy.getTowerFloorProxy(3).getDevelopmentCardProxy().getImageProperty());
+		
 	}
 
 	public void roundBegins(GameProxy game) {
@@ -562,6 +905,14 @@ public class GuiController implements Initializable {
 		
 		//setting the image of family member on tower floor occupied
 		towerFloorProxy.setImageProperty(newTowerFloorProxy.getFamilyMemberProxy().getImagePath());
+	}
+
+	private PlayerProxy findPlayerByColor(Color color) {
+		for (PlayerProxy playerProxy : game.getPlayerProxies()) {
+			if (playerProxy.getColor().equals(color))
+				return playerProxy;
+		}
+		return null;
 	}
 
 	public void updatePosition(PositionProxy positionProxy) {
