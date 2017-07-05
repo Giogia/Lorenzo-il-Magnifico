@@ -79,17 +79,18 @@ public class FakeFamilyMemberHandler {
 	}
 	
 	private static ActionZone getBoardZone(ActionZone zone, Board board) {
+		ActionZone answer;
 		if (zone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
-			zone = board.getTower(developmentCardType);
+			answer = board.getTower(developmentCardType);
 		}
 		else if (zone instanceof ProductionArea){
-			zone = board.getProductioArea();
+			answer = board.getProductioArea();
 		}
 		else{
-			zone = board.getHarvestArea();
+			answer = board.getHarvestArea();
 		}
-		return zone;
+		return answer;
 	}
 	
 }
