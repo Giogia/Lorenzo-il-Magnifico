@@ -106,6 +106,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					wait();
 				} catch (InterruptedException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
@@ -355,6 +356,7 @@ public class GuiRmiView extends Application implements CliRmi{
 					System.out.println("mi sono risvegliato");
 				} catch (InterruptedException e) {
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}

@@ -2,6 +2,8 @@ package it.polimi.ingsw.gui;
 
 import java.rmi.RemoteException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 
@@ -11,6 +13,7 @@ public class GuiRmiCallback{
 	private static volatile boolean serverPass = true;
 	private ConnectionManagerRmiServer rmiServer;
 	private GuiRmiView guiRmiView;
+	private final static Logger LOGGER = Logger.getLogger(GuiSocketView.class.getName());
 	
 	public static void setServerPass(boolean serverPass) {
 		GuiRmiCallback.serverPass = serverPass;
@@ -31,8 +34,8 @@ public class GuiRmiCallback{
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}//received pass from server

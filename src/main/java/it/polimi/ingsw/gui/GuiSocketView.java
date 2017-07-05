@@ -9,6 +9,7 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
@@ -58,8 +59,8 @@ public class GuiSocketView extends Application{
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
 				}
 			}
 		}
