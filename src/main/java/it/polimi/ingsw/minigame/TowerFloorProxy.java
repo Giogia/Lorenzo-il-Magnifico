@@ -14,7 +14,7 @@ public class TowerFloorProxy extends PositionProxy {
 	private ObjectProperty<Image> imageProperty;
 	
 	public TowerFloorProxy(TowerFloor towerFloor, DevelopmentCardType towerType, int numberOfFloor) {
-		super(towerFloor, numberOfFloor);
+		super(towerFloor, null, numberOfFloor);
 		this.towerType = towerType;
 		developmentCardProxy = new DevelopmentCardProxy(towerFloor.getDevelopmentCard());
 	}

@@ -9,7 +9,12 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.*;
+import it.polimi.ingsw.minigame.CouncilPalaceProxy;
+import it.polimi.ingsw.minigame.HarvestProxy;
+import it.polimi.ingsw.minigame.MarketProxy;
+import it.polimi.ingsw.minigame.ProductionProxy;
 import it.polimi.ingsw.minigame.Update;
+import it.polimi.ingsw.minigame.ZoneProxy;
 
 public final class ActionHandler {
 	private static ActionHandler istanza = null;
@@ -31,23 +36,40 @@ public final class ActionHandler {
 	    		Update.getInstance().TowerFloorOccupied((TowerFloor) position, (Tower) zone); 
 	    	}
     		else{
-		    	if(zone instanceof Market){
+    			ZoneProxy zoneProxy = null;
+    			
+    			if(zone instanceof Market){
 		    		MarketHandler.handle(familyMember,position);
+		    		zoneProxy = new MarketProxy((Market) zone);
 		    	}
 		    	else if(zone instanceof CouncilPalace){
 		    		CouncilPalaceHandler.handle(familyMember,position);
+		    		zoneProxy = new CouncilPalaceProxy((CouncilPalace) zone);
 		    	}
 		    	else if(zone instanceof ProductionArea){
 		    		ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);
+		    		zoneProxy = new ProductionProxy((ProductionArea) zone);
 		    	}
 		    	else if(zone instanceof HarvestArea){
 		    		HarvestAreaHandler.handle(familyMember,(HarvestArea) zone,position);
+		    		zoneProxy = new HarvestProxy((HarvestArea) zone);
 		    	}
 
-		    	Update.getInstance().positionOccupied(position, zone);
+    			int numberOfPosition = getNumberOfPosition(position, zone);
+		    	Update.getInstance().positionOccupied(position, zoneProxy, numberOfPosition);
     		}
 	    	return true;
     	}
     	throw new MyException("You cannot go to this Zone");
     }
+    
+    public static int getNumberOfPosition(Position position, Zone zone) {
+		for (int i = 0; i < zone.getPositions().length; i++) {
+			if(position.equals(zone.getPosition(i))){
+				return i;
+			}
+		}
+		System.out.println("NON HO TROVATO LA POSITION IN GET POSITION UPDATE");
+		return 0;
+	}
 }

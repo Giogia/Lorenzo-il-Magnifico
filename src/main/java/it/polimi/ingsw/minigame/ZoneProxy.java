@@ -13,7 +13,7 @@ public abstract class ZoneProxy implements Serializable{
 	public ZoneProxy(Zone zone) {
 		Position[] positions = zone.getPositions();
 		for(int i = 0; i < positions.length; i++){
-			positionProxies.add(new PositionProxy(positions[i], i));
+			positionProxies.add(new PositionProxy(positions[i], this, i));
 		}
 	}
 
