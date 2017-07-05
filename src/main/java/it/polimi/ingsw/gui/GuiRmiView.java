@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gui;
 
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -65,6 +67,10 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		synchronized (lock) {
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
+		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
 		controller = new GuiController(game);
 		loader.setController(controller);
@@ -73,7 +79,7 @@ public class GuiRmiView extends Application implements CliRmi{
 
 		lock.notifyAll();
 		System.out.println("notifico tutti");
-		Scene scene = new Scene(loader.load());
+		Scene scene = new Scene(loader.load(),height,width);
 		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 		primaryStage.setTitle("Lorenzo Il Magnifico");
 		primaryStage.setScene(scene);
