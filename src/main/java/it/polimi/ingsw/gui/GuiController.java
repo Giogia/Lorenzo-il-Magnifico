@@ -1224,7 +1224,11 @@ public class GuiController implements Initializable {
 	public void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) {
 		ArrayList<ResourceProxy> res = game.getPlayerProxy(playerColor).getPersonalBoardProxy().getResourceProxies();
 		for (ResourceProxy resource : res) {
-			resource.setVal(resource.getValue());
+			for (ResourceProxy resourceProxy : resources) {
+				if(resource.getType().equals(resourceProxy.getType())){
+					resource.setVal(resourceProxy.getValue());
+				}
+			}
 		}
 	}
 }

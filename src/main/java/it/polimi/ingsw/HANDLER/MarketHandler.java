@@ -41,7 +41,6 @@ public class MarketHandler {
 			return true;
 		}
 		return false;
-			
 	}
 	
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
