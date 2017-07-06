@@ -673,7 +673,6 @@ public class GuiController implements Initializable {
     
     @FXML
     void councilPalaceClk(MouseEvent event) {
-    	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	stringToSend="1$5$1";//if one player click two times on development card, string must be cleaned
 		imageZoomed.setImage(new Image("it/polimi/ingsw/gui/resources/Positions/CouncilPalace.png"));
     }

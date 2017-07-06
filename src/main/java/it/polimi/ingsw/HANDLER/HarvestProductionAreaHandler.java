@@ -137,7 +137,7 @@ public abstract class HarvestProductionAreaHandler {
 	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException, TimeExpiredException{
 		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
 		do{
-			chosenEffects = new ArrayList<>();
+			chosenEffects.clear();
 			for(DevelopmentCard card : activableCards){
 				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
 				chosenEffects.addAll(cardChosenEffects);

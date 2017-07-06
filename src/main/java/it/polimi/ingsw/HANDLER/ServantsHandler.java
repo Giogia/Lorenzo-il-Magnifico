@@ -32,7 +32,7 @@ public class ServantsHandler {
 			playerServants.addAmount(-servantsNumber);
 			for (Resource resource : playerResources) {
 				if (resource.getResourceType().equals(ResourceType.servants)){
-					resource = playerServants;
+					resource.setAmount(playerServants.getAmount());
 				}
 			}
 			return true;
