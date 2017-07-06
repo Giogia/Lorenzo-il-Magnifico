@@ -29,23 +29,24 @@ public class GuiRmiCallback{
 	}
 	
 	public void answer(String answer) throws RemoteException {
-		synchronized (lock) {
-			while(!serverPass){
-				try {
-					lock.wait();
-				} catch (InterruptedException e) {
-					LOGGER.log(Level.SEVERE, e.getMessage(),e);
-					Thread.currentThread().interrupt();
-				}
-			}
-		}//received pass from server
 		while(answer.contains("$")){
+			synchronized (lock) {
+				while(!serverPass){
+					try {
+						lock.wait();
+					} catch (InterruptedException e) {
+						LOGGER.log(Level.SEVERE, e.getMessage(),e);
+						Thread.currentThread().interrupt();
+					}
+				}
+			}//received pass from server
 			
+			System.out.println("la stringa da inviare è: " + answer);
 			String toSend = answer.substring(0, answer.indexOf('$'));
-			System.out.println("toSend vale:" + toSend+"prova");
+			System.out.println("toSend (primo numero da inviare) vale:" + toSend);
 	        rmiServer.getAnswer(toSend, guiRmiView);
 	        answer = answer.substring(2);
-	        System.out.println("answer vale:"+answer);
+	        System.out.println("stringa ancora da inviare vale: "+answer);
 	        serverPass = false; //answer only at a one question end then can't talk
 	        lastToSend = true;
 		}

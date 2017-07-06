@@ -64,7 +64,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
 
 		lock.notifyAll();
-		System.out.println("notifico tutti");
+		System.out.println("notifico tutti dell'avvenuto set del controller in gui rmi view line 67");
 		Scene scene = new Scene(loader.load());
 		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
 		primaryStage.setTitle("Lorenzo Il Magnifico");
@@ -205,6 +205,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void turnChoice() throws RemoteException {
 		synchronized (GuiRmiCallback.getLock()) {
+			System.out.println("sono entrato nel turn choice");
 			GuiRmiCallback.setServerPass(true);
 			GuiRmiCallback.getLock().notifyAll();
 		}
@@ -324,7 +325,8 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.disableButtons(false);//Now player can press button
-				controller.setChatLabel("You can't pass the turn, you have to place at least one family member.");
+				controller.setChatLabel("You can't pass the turn.");
+				controller.setChatLabel("You have to place at least one family member.");
 			}
 		});
 	}
@@ -340,8 +342,8 @@ public class GuiRmiView extends Application implements CliRmi{
 		}
 		
 		System.out.println("sono in round begins e il controller:" + controller);
-		while(controller == null){
-			synchronized (lock) {
+		synchronized (lock) {
+			while(controller == null){
 				try {
 					System.out.println("vado a dormire");
 					lock.wait();
@@ -379,9 +381,9 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				StringBuilder toSend = new StringBuilder();
-				toSend.append("Choose the zone you want to activate the action bonus in: ");
+				toSend.append("Choose the zone you want to activate the action bonus in: \n");
 				for (int i = 1; i <= zones.size(); i++) {
-					toSend.append(i + ") " + zones.get(i-1).getDescription());
+					toSend.append(i + ") " + zones.get(i-1).getDescription()+"\n");
 				}
 				
 				controller.setChatLabel(toSend.toString());
@@ -396,9 +398,9 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				StringBuilder toSend = new StringBuilder();
-				toSend.append("Choose where you want to place your family member: ");
+				toSend.append("Choose where you want to place your family member: \n");
 				for (int counter = 1; counter <= positions.length; counter ++) {
-					toSend.append(counter + ") " + positions[counter - 1].getDescription());
+					toSend.append(counter + ") " + positions[counter - 1].getDescription()+"\n");
 				}
 				
 				controller.setChatLabel(toSend.toString());
@@ -414,6 +416,13 @@ public class GuiRmiView extends Application implements CliRmi{
 			public void run() {
 				controller.disableButtons(false);
 				controller.setChatLabel(message);
+				try {
+					Thread.sleep(250);
+					callback.answer("9");
+				} catch (RemoteException | InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 	}
