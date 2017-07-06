@@ -116,6 +116,21 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
+                              <Label fx:id="faithPoints_player1" layoutX="616.0" layoutY="260.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player1" layoutX="733.0" layoutY="267.0" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="victoryPoints_player1" layoutX="804.0" layoutY="267.0" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -173,6 +188,41 @@
                                     <ImageView fx:id="player2_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
+                              <Label fx:id="servants_player2" layoutX="253.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stones_player2" layoutX="183.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="wood_player2" layoutX="109.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="coins_player2" layoutX="36.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="faithPoints_player2" layoutX="624.0" layoutY="260.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player2" layoutX="757.0" layoutY="266.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="victoryPoints_player2" layoutX="821.0" layoutY="266.0" prefHeight="40.0" prefWidth="56.0" text="Label">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>

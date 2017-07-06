@@ -1530,10 +1530,12 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 			}
+			
+			gameProxy.setcurrentPlayer(player.getColor());
+			
 			if (user.getConnectionType()==true){//player is a rmi user
 				user.getCliRmi().startGame(gameProxy);
-			}
-			else{
+			} else {
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				
 				ActionSocket act = new ActionSocket(action.startGame);

@@ -70,6 +70,36 @@ public class GuiController implements Initializable {
     private Label servants_player1;
 	
     @FXML
+    private Label faithPoints_player1;
+
+    @FXML
+    private Label militaryPoints_player1;
+
+    @FXML
+    private Label victoryPoints_player1;
+    
+    @FXML
+    private Label servants_player2;
+
+    @FXML
+    private Label stones_player2;
+
+    @FXML
+    private Label wood_player2;
+
+    @FXML
+    private Label coins_player2;
+
+    @FXML
+    private Label faithPoints_player2;
+
+    @FXML
+    private Label militaryPoints_player2;
+
+    @FXML
+    private Label victoryPoints_player2;
+    
+    @FXML
     private TextField answerChat;
 
     @FXML
@@ -850,19 +880,6 @@ public class GuiController implements Initializable {
 			tabPlayer4.setText(players.get(3).getName());
 		}else tabPlayer4.setDisable(true);
 		
-		String numberOfCoins = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
-		coins_player1.setText(""+numberOfCoins);
-		
-		String numberOfWood = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
-		wood_player1.setText(""+numberOfWood);
-		
-		String numberOfServants = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
-		servants_player1.setText(""+numberOfServants);
-		
-		String numberOfStones = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
-		stones_player1.setText(""+numberOfStones);
-
-		
 		setImages();
 		excommunicationTile1.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(0).getImagePath()));
 		excommunicationTile2.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(1).getImagePath()));
@@ -1070,6 +1087,23 @@ public class GuiController implements Initializable {
 
 	public void roundBegins(GameProxy game) {
 		
+		setChatLabel("New round!");
+		
+		//clearing positions on market
+		for (PositionProxy position : this.game.getBoardProxy().getMarketProxy().getPositionProxies()) {
+			for (FamilyMemberProxy familyMemberProxy : position.getFamilyMemberProxies()) {
+				familyMemberProxy.setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+			}
+		}
+		
+		//clearing positions on board
+		for (TowerProxy tower : this.game.getBoardProxy().getTowerProxies()) {
+			for (TowerFloorProxy towerFloorProxy : tower.getTowerFloorProxies()) {
+				towerFloorProxy.setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+			}
+		}
+
+		
 		PlayerProxy player = game.getPlayerProxies().get(0); //current player
 		for(FamilyMemberProxy familyMemberProxy : player.getFamilyMemberProxies()){
 			familyMemberProxy.setImageProperty();
@@ -1093,6 +1127,51 @@ public class GuiController implements Initializable {
 		for (int i = 0; i < roundOrderProxy.getOrderPawns().size(); i++){
 			pawns[i].setImage(new Image(roundOrderProxy.getOrderPawns().get(i).getImagePath()));
 		}
+		
+		//updating resource players
+		ArrayList<PlayerProxy> players = game.getPlayerProxies();
+		String numberOfCoins = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
+		coins_player1.setText(numberOfCoins);
+		
+		String numberOfWood = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
+		wood_player1.setText(numberOfWood);
+		
+		String numberOfServants = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
+		servants_player1.setText(numberOfServants);
+		
+		String numberOfStones = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
+		stones_player1.setText(numberOfStones);
+		
+		String numberOfFaithPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getAmount());
+		faithPoints_player1.setText(numberOfFaithPoints);
+		
+		String numberOfVictoryPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getAmount());
+		victoryPoints_player1.setText(numberOfVictoryPoints);
+		
+		String numberOfMilitaryPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getAmount());
+		militaryPoints_player1.setText(numberOfMilitaryPoints);
+		
+		
+		numberOfCoins = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
+		coins_player2.setText(numberOfCoins);
+		
+		numberOfWood = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
+		wood_player2.setText(numberOfWood);
+		
+		numberOfServants = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
+		servants_player2.setText(numberOfServants);
+		
+		numberOfStones = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
+		stones_player2.setText(numberOfStones);
+		
+		numberOfFaithPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getAmount());
+		faithPoints_player2.setText(numberOfFaithPoints);
+		
+		numberOfVictoryPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getAmount());
+		victoryPoints_player2.setText(numberOfVictoryPoints);
+		
+		numberOfMilitaryPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getAmount());
+		militaryPoints_player2.setText(numberOfMilitaryPoints);
 	}
 	
 	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy, DevelopmentCardProxy developmentCardTaken){
