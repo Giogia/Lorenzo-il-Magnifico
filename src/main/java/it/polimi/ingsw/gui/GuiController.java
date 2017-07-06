@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.CardContainerProxy;
@@ -28,6 +29,7 @@ import it.polimi.ingsw.minigame.PersonalBoardProxy;
 import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.ProductionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.RoundOrderProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
@@ -884,6 +886,31 @@ public class GuiController implements Initializable {
 		excommunicationTile2.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(1).getImagePath()));
 		excommunicationTile3.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(2).getImagePath()));
 		
+		//updating resource players
+		
+		for (PlayerProxy playerProxy : players) {
+			for (ResourceProxy resourceProxy : playerProxy.getPersonalBoardProxy().getResourceProxies()) {
+				resourceProxy.setVal();
+			}
+		}
+		
+		coins_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getVal());
+		wood_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getVal());
+		servants_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getVal());
+		stones_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getVal());
+		faithPoints_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getVal());
+		victoryPoints_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getVal());
+		militaryPoints_player1.textProperty().bind(players.get(0).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
+		
+
+		coins_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.coins).getVal());
+		wood_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.wood).getVal());
+		servants_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.servants).getVal());
+		stones_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.stones).getVal());
+		faithPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getVal());
+		victoryPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getVal());
+		militaryPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
+		
 		//setting cards binding
 		
 		TowerProxy towerProxy = game.getBoardProxy().getTowerProxy(DevelopmentCardType.territory);
@@ -1126,51 +1153,6 @@ public class GuiController implements Initializable {
 		for (int i = 0; i < roundOrderProxy.getOrderPawns().size(); i++){
 			pawns[i].setImage(new Image(roundOrderProxy.getOrderPawns().get(i).getImagePath()));
 		}
-		
-		//updating resource players
-		ArrayList<PlayerProxy> players = game.getPlayerProxies();
-		String numberOfCoins = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
-		coins_player1.setText(numberOfCoins);
-		
-		String numberOfWood = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
-		wood_player1.setText(numberOfWood);
-		
-		String numberOfServants = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
-		servants_player1.setText(numberOfServants);
-		
-		String numberOfStones = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
-		stones_player1.setText(numberOfStones);
-		
-		String numberOfFaithPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getAmount());
-		faithPoints_player1.setText(numberOfFaithPoints);
-		
-		String numberOfVictoryPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getAmount());
-		victoryPoints_player1.setText(numberOfVictoryPoints);
-		
-		String numberOfMilitaryPoints = Integer.toString(players.get(0).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getAmount());
-		militaryPoints_player1.setText(numberOfMilitaryPoints);
-		
-		
-		numberOfCoins = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.coins).getAmount());
-		coins_player2.setText(numberOfCoins);
-		
-		numberOfWood = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.wood).getAmount());
-		wood_player2.setText(numberOfWood);
-		
-		numberOfServants = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.servants).getAmount());
-		servants_player2.setText(numberOfServants);
-		
-		numberOfStones = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.stones).getAmount());
-		stones_player2.setText(numberOfStones);
-		
-		numberOfFaithPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getAmount());
-		faithPoints_player2.setText(numberOfFaithPoints);
-		
-		numberOfVictoryPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getAmount());
-		victoryPoints_player2.setText(numberOfVictoryPoints);
-		
-		numberOfMilitaryPoints = Integer.toString(players.get(1).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getAmount());
-		militaryPoints_player2.setText(numberOfMilitaryPoints);
 	}
 	
 	public void updateTowerFloor(TowerFloorProxy newTowerFloorProxy, DevelopmentCardProxy developmentCardTaken){
@@ -1236,6 +1218,13 @@ public class GuiController implements Initializable {
 			default:
 				break;
 			}
+		}
+	}
+
+	public void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) {
+		ArrayList<ResourceProxy> res = game.getPlayerProxy(playerColor).getPersonalBoardProxy().getResourceProxies();
+		for (ResourceProxy resource : res) {
+			resource.setVal(resource.getValue());
 		}
 	}
 }

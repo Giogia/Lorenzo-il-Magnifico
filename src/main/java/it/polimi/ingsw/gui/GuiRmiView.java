@@ -18,12 +18,14 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.Cli.CliRmi;
 import it.polimi.ingsw.GC_15.*;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.application.Application;
@@ -577,6 +579,16 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.updatePosition(positionProxy);
+			}
+		});
+	}
+	
+	@Override
+	public void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) throws RemoteException {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run() {
+				controller.updatePlayerResources(playerColor, resources);
 			}
 		});
 	}

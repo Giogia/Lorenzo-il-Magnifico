@@ -8,7 +8,10 @@ import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.BOARD.TowerFloor;
 import it.polimi.ingsw.BOARD.Zone;
+import it.polimi.ingsw.CARD.CardContainer;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.User;
 
 public class Update {
@@ -70,6 +73,26 @@ public class Update {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
 					
 				observer.getCliRmi().updateDuePositionOccupied(positionProxy);
+			
+			}else{//user is a socket client
+				
+				//observer.getConnectionManagerSocketServer().getSocketOutClient().writeObject();
+				
+			}
+		}
+	}
+
+	public void updatePlayerResources(Color playerColor, ArrayList<Resource> resources) throws RemoteException {
+		
+		ArrayList<ResourceProxy> res = new ArrayList<>();
+		for (Resource resource : resources) {
+			res.add(new ResourceProxy(resource.getResourceType(), resource.getAmount()));
+		}
+		
+		for (User user : users) {
+			if(user.getConnectionType() == true){ //user is a rmi client	
+				
+				user.getCliRmi().updatePlayerResources(playerColor, res);
 			
 			}else{//user is a socket client
 				

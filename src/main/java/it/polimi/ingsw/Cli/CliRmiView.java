@@ -28,6 +28,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
@@ -36,6 +37,7 @@ import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 public class CliRmiView implements CliRmi{
@@ -332,6 +334,12 @@ public class CliRmiView implements CliRmi{
 
 	@Override
 	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) throws RemoteException {
 		// TODO Auto-generated method stub
 		
 	}

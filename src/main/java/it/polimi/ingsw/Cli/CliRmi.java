@@ -18,6 +18,7 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
+import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
@@ -25,6 +26,7 @@ import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 
@@ -107,5 +109,7 @@ public interface CliRmi extends Remote {
 	void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy, DevelopmentCardProxy developmentCardProxy) throws RemoteException;
 
 	void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException;
+
+	void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) throws RemoteException;
 }
 

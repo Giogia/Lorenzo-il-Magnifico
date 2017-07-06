@@ -59,6 +59,7 @@ public final class ActionHandler {
     			int numberOfPosition = getNumberOfPosition(position, zone);
 		    	Update.getInstance().positionOccupied(position, zoneProxy, numberOfPosition);
     		}
+    		Update.getInstance().updatePlayerResources(familyMember.getPlayer().getColor(), familyMember.getPlayer().getPersonalBoard().getResources());
 	    	return true;
     	}
     	throw new MyException("You cannot go to this Zone");

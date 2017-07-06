@@ -14,7 +14,8 @@ public class PersonalBoardProxy implements Serializable {
 
 	private PersonalBonusTileProxy personalBonusTileProxy;
 	private ArrayList<CardContainerProxy> cardContainerProxies = new ArrayList<>();
-	private ArrayList<Resource> resources = new ArrayList<>();
+	//private ArrayList<Resource> resources = new ArrayList<>();
+	private ArrayList<ResourceProxy> resourceProxies = new ArrayList<>();
 	private ArrayList<LeaderCardProxy> leaderCardProxies = new ArrayList<>();
 	
 	public PersonalBoardProxy(PersonalBoard personalBoard) {
@@ -22,7 +23,9 @@ public class PersonalBoardProxy implements Serializable {
 		for(CardContainer cardContainer : personalBoard.getCardContainers()){
 			cardContainerProxies.add(new CardContainerProxy(cardContainer));
 		}
-		resources = personalBoard.getResources();
+		for (Resource resource : personalBoard.getResources()) {
+			resourceProxies.add(new ResourceProxy(resource.getResourceType(), resource.getAmount()));
+		}
 		for(LeaderCard leaderCard : personalBoard.getActivatedLeaderCards()){
 			leaderCardProxies.add(new LeaderCardProxy(leaderCard));
 		}
@@ -36,8 +39,8 @@ public class PersonalBoardProxy implements Serializable {
 		return cardContainerProxies;
 	}
 	
-	public ArrayList<Resource> getResources() {
-		return resources;
+	public ArrayList<ResourceProxy> getResourceProxies() {
+		return resourceProxies;
 	}
 	
 	public CardContainerProxy getCardContainer(DevelopmentCardType developmentCardType){
@@ -49,9 +52,9 @@ public class PersonalBoardProxy implements Serializable {
 		return null;
 	}
 	
-	public Resource getResource(ResourceType resourceType) {
-		for(Resource resource : resources){
-			if(resource.getResourceType().equals(resourceType)){
+	public ResourceProxy getResource(ResourceType resourceType) {
+		for(ResourceProxy resource : resourceProxies){
+			if(resource.getType().equals(resourceType)){
 				return resource;
 			}
 		}
