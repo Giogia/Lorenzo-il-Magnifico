@@ -14,6 +14,7 @@ import it.polimi.ingsw.BONUS.CouncilPrivilegeBonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
@@ -31,7 +32,6 @@ import it.polimi.ingsw.RESOURCE.Wood;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class CouncilPrivilegeTest {
 

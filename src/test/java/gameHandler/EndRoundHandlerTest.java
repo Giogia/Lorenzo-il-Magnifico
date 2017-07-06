@@ -19,6 +19,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
@@ -35,7 +36,6 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class EndRoundHandlerTest {
 

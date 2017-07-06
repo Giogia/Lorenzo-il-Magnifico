@@ -1,4 +1,4 @@
-package it.polimi.ingsw.view;
+package it.polimi.ingsw.Cli;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

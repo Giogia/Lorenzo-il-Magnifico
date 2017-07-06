@@ -19,6 +19,7 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
@@ -29,7 +30,6 @@ import it.polimi.ingsw.RESOURCE.Coins;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class StartRoundHandlerTest {
 

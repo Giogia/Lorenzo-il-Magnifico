@@ -18,6 +18,7 @@ import it.polimi.ingsw.BONUS.AddResourceBonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -32,7 +33,6 @@ import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class PositionFamilyMemberBonusTest {
 

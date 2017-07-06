@@ -18,6 +18,7 @@ import it.polimi.ingsw.CARD.Building;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CARD.Venture;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
@@ -32,7 +33,6 @@ import it.polimi.ingsw.RESOURCE.VictoryPoints;
 import it.polimi.ingsw.RESOURCE.Wood;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class EndGameHandlerTest {
 

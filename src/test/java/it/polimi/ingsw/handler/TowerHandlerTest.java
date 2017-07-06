@@ -21,6 +21,9 @@ import it.polimi.ingsw.CARD.DevelopmentCard;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CARD.Territory;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
+import it.polimi.ingsw.Cli.CliRmi;
+import it.polimi.ingsw.Cli.CliRmiCallback;
+import it.polimi.ingsw.Cli.CliRmiView;
 import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
 import it.polimi.ingsw.GC_15.FamilyMember;
@@ -39,9 +42,6 @@ import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
 import it.polimi.ingsw.manager.Manager;
 import it.polimi.ingsw.manager.User;
-import it.polimi.ingsw.view.CliRmi;
-import it.polimi.ingsw.view.CliRmiCallback;
-import it.polimi.ingsw.view.CliRmiView;
 
 public class TowerHandlerTest {
 

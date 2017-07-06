@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import it.polimi.ingsw.view.CliRmi;
+import it.polimi.ingsw.Cli.CliRmi;
 
 public class ConnectionManagerRmiServerImpl extends UnicastRemoteObject implements ConnectionManagerRmiServer{
 	private Timer timer;

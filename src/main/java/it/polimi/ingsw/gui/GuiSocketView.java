@@ -12,9 +12,9 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.Cli.CliSocketInView;
+import it.polimi.ingsw.Cli.CliSocketOutView;
 import it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl;
-import it.polimi.ingsw.view.CliSocketInView;
-import it.polimi.ingsw.view.CliSocketOutView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

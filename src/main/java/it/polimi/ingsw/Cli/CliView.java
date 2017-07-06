@@ -1,4 +1,4 @@
-package it.polimi.ingsw.view;
+package it.polimi.ingsw.Cli;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

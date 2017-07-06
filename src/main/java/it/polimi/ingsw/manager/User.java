@@ -2,8 +2,8 @@ package it.polimi.ingsw.manager;
 
 import java.net.Socket;
 
+import it.polimi.ingsw.Cli.CliRmi;
 import it.polimi.ingsw.GC_15.Player;
-import it.polimi.ingsw.view.CliRmi;
 
 public class User {
 	private String username;

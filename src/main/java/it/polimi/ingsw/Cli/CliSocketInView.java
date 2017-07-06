@@ -1,4 +1,4 @@
-package it.polimi.ingsw.view;
+package it.polimi.ingsw.Cli;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
