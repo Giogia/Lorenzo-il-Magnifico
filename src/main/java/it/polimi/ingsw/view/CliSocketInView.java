@@ -266,7 +266,7 @@ public class CliSocketInView implements Runnable{
 						System.out.println(playerReconnected + " has reconnected himself!");
 						break;
 						
-					case usernameHasAlreadyChoosen:
+					case usernameHasAlreadyChosen:
 						System.out.println("The username choosen has already choosen. Please, choice another one:");
 						break;
 					

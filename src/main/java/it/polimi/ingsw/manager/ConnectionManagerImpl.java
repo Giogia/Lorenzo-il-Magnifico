@@ -122,8 +122,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		socketOutClient.writeObject(act);
 		socketOutClient.flush();
 		
-		boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
-		while(usernameChoosenHasAlreadyChoosen){
+		boolean usernameChosenHasAlreadyChosen = true;//ask the username while user doesn't choice a good username
+		while(usernameChosenHasAlreadyChosen){
 			
 			//asking for his username
 			connectionManagerSocketServer.setIsRightTurn(true);
@@ -137,27 +137,27 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					}
 				}
 			}
-			String usernameChoosen =  connectionManagerSocketServer.getStringReceived();
+			String usernameChosen =  connectionManagerSocketServer.getStringReceived();
 			connectionManagerSocketServer.setIsRightTurn(false);
 			
-			//if username has already choosen
-			if(usernameHasAlreadyChoosen(usernameChoosen)){
+			//if username has already chosen
+			if(usernameHasAlreadyChosen(usernameChosen)){
 				//if user isn't reconnecting himself but he his a new user
-				if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
+				if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChosen))){
 					//tell to player to choice another username
 					
-					ActionSocket a = new ActionSocket(action.usernameHasAlreadyChoosen);
+					ActionSocket a = new ActionSocket(action.usernameHasAlreadyChosen);
 					socketOutClient.writeObject(a);
 					socketOutClient.flush();
 					
 				}else{//user is reconnecting himself
-					usernameChoosenHasAlreadyChoosen = false; //end of the while
-					thisUser.setUsername(usernameChoosen);
+					usernameChosenHasAlreadyChosen = false; //end of the while
+					thisUser.setUsername(usernameChosen);
 					reconnectionManager(thisUser);
 				}
-			}else{//username hasn't already choosen
-				usernameChoosenHasAlreadyChoosen = false; //end of the while
-				thisUser.setUsername(usernameChoosen);
+			}else{//username hasn't already chosen
+				usernameChosenHasAlreadyChosen = false; //end of the while
+				thisUser.setUsername(usernameChosen);
 				usersReady.add(thisUser);
 				users.remove(thisUser);
 				lobby();
@@ -192,8 +192,8 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 			connectionManagerRmiServerImpl.setIsRightTurn(false);//user can't talk anymore
 			//now the answer is available
 	
-			boolean usernameChoosenHasAlreadyChoosen = true;//ask the username while user doesn't choice a good username
-			while(usernameChoosenHasAlreadyChoosen){
+			boolean usernameChosenHasAlreadyChosen = true;//ask the username while user doesn't choice a good username
+			while(usernameChosenHasAlreadyChosen){
 				
 				//asking for his username
 				connectionManagerRmiServerImpl.setIsRightTurn(true);
@@ -207,23 +207,23 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						}
 					}
 				}
-				String usernameChoosen =  connectionManagerRmiServerImpl.getStringReceived();
+				String usernameChosen =  connectionManagerRmiServerImpl.getStringReceived();
 				connectionManagerRmiServerImpl.setIsRightTurn(false);
 				
-				//if username has already choosen
-				if(usernameHasAlreadyChoosen(usernameChoosen)){
+				//if username has already chosen
+				if(usernameHasAlreadyChosen(usernameChosen)){
 					//if user isn't reconnecting himself but he his a new user
-					if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChoosen))){
+					if(!usersDisconnected.contains(findUserDisconnectedByUsername(usernameChosen))){
 						//tell to player to choice another username
-						client.usernameHasAlreadyChoosen();
+						client.usernameHasAlreadyChosen();
 					}else{//user is reconnecting himself
-						usernameChoosenHasAlreadyChoosen = false; //end of the while
-						thisUser.setUsername(usernameChoosen);
+						usernameChosenHasAlreadyChosen = false; //end of the while
+						thisUser.setUsername(usernameChosen);
 						reconnectionManager(thisUser);
 					}
-				}else{//username hasn't already choosen
-					usernameChoosenHasAlreadyChoosen = false; //end of the while
-					thisUser.setUsername(usernameChoosen);
+				}else{//username hasn't already chosen
+					usernameChosenHasAlreadyChosen = false; //end of the while
+					thisUser.setUsername(usernameChosen);
 					usersReady.add(thisUser);
 					users.remove(thisUser);
 					lobby();
@@ -271,7 +271,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 	
 	private void startGame(List<User> tempUsers) throws IOException, ClassNotFoundException{
-		String nameChoosen = null;
+		String nameChosen = "";
 		ArrayList<Color> colors = new ArrayList<>();
 		int numberOfUsers = tempUsers.size();
 		
@@ -308,7 +308,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					listener.cancelTimer();
 					//now the answer is available	
 					if (listener.getTimeExpired()){
-						nameChoosen = "Guest" + i; 
+						nameChosen = "Guest" + i; 
 						listener.setTimeExpired(false);
 						try{
 							clientRmi.timeExpired();
@@ -318,16 +318,16 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						}
 					}
 					else {
-						nameChoosen = listener.getStringReceived();
+						nameChosen = listener.getStringReceived();
 					}
 				}else{ //user is disconnected, set a standard name
-					nameChoosen = "Guest" + i;
+					nameChosen = "Guest" + i;
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
-				Color colorChoosen = askRmiColor(tempUser, colors);
-				colors.remove(colorChoosen);
+				Color colorChosen = askRmiColor(tempUser, colors);
+				colors.remove(colorChosen);
 				
-				players[i] = new Player(nameChoosen, colorChoosen);
+				players[i] = new Player(nameChosen, colorChosen);
 				tempUser.setPlayer(players[i]);
 				usersInGame.add(tempUser);
 				System.out.println("added new rmi plyer");
@@ -359,7 +359,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 					}
 					listener.cancelTimer();
 					if (listener.getTimeExpired()){
-						nameChoosen = "Guest" + i;
+						nameChosen = "Guest" + i;
 						listener.setTimeExpired(false);
 						try {
 							ActionSocket act = new ActionSocket(action.timeExpired);
@@ -371,16 +371,16 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 						}
 					}
 					else{
-						nameChoosen =  listener.getStringReceived();
+						nameChosen =  listener.getStringReceived();
 					}
 					listener.setIsRightTurn(false);
 				}else{
-					nameChoosen = "Guest" + i;
+					nameChosen = "Guest" + i;
 					usersDisconnected.remove(tempUser);//remove in user disconnected so the user has the opportunity of reconnect
 				}
 				Color colorChosen = askSocketColor(tempUser, colors);
 				
-				players[i] = new Player(nameChoosen, colorChosen);
+				players[i] = new Player(nameChosen, colorChosen);
 				colors.remove(colorChosen);
 				
 				tempUser.setPlayer(players[i]);
@@ -683,18 +683,18 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	//if username is a username of a user in game return true, else return false
-	public static boolean usernameHasAlreadyChoosen(String username){
+	public static boolean usernameHasAlreadyChosen(String username){
 		for (int i = 0; i < usersInGame.size(); i++) {
-			if(usersInGame.get(i).getUsername().equals(username)){ //if username is already choosen and it belongs to users in game
+			if(usersInGame.get(i).getUsername().equals(username)){ //if username is already chosen and it belongs to users in game
 				return true;
 			}
 		}
 		for(int i = 0; i < usersReady.size(); i++){
-			if(usersReady.get(i).getUsername().equals(username)){ //if username is already choosen and it belongs to users ready to play
+			if(usersReady.get(i).getUsername().equals(username)){ //if username is already chosen and it belongs to users ready to play
 				return true;
 			}
 		}
-		return false; //arrive here only if the username hasn't already choosen
+		return false; //arrive here only if the username hasn't already chosen
 	}
 	
 	//if username is a username of a user disconnected return the reference to userDisconnected, else return null
@@ -717,7 +717,15 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 	}
 
 	private int getSocketAnswer(Player player) throws IOException, TimeExpiredException{
-		ConnectionManagerSocketServer clientListener = findUserByPlayer(player).getConnectionManagerSocketServer();
+		User user = findUserByPlayer(player);
+		if(user==null){
+			try {
+				throw new MyException("user not found");
+			} catch (MyException e) {
+				LOGGER.log(Level.SEVERE, e.getMessage(),e);
+			}
+		}
+		ConnectionManagerSocketServer clientListener = user.getConnectionManagerSocketServer();
 		clientListener.setIsRightTurn(true);
 		synchronized (clientListener) {
 			while(!clientListener.getIsAvailable()){

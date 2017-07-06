@@ -78,13 +78,6 @@ public class ConfigurationFileHandler {
 	
 	private final static Logger LOGGER = Logger.getLogger(ConfigurationFileHandler.class.getName());
 	
-	public static void main(String[] args) {
-		try {
-			DataFromFile data = ConfigurationFileHandler.getData();
-		} catch (FileNotFoundException e) {
-			LOGGER.log(Level.SEVERE, e.getMessage(),e);
-		}
-	}
 	public static DataFromFile getData() throws FileNotFoundException{
 		File file = new File("config.json");
 		Scanner scanner= new Scanner(file);

@@ -165,7 +165,7 @@ public class GuiSocketInView implements Runnable {
 					case reconnectedToGame:
 						
 						
-					case usernameHasAlreadyChoosen:
+					case usernameHasAlreadyChosen:
 						
 				}
 			} catch (ClassNotFoundException e) {

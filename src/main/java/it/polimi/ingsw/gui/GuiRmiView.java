@@ -152,7 +152,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 	
 	@Override
-	public void usernameHasAlreadyChoosen() throws RemoteException {
+	public void usernameHasAlreadyChosen() throws RemoteException {
 		//TODO
 	}
 
