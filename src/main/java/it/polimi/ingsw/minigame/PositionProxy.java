@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 public class PositionProxy implements Serializable {
 	
 	protected ArrayList<FamilyMemberProxy> familyMemberProxies = new ArrayList<>();
-	protected ObjectProperty<Image> imageProperty;
 	protected int numberOfPosition;
 	protected ZoneProxy zoneProxy;
 	
@@ -37,18 +36,6 @@ public class PositionProxy implements Serializable {
 	
 	public ZoneProxy getZoneProxy() {
 		return zoneProxy;
-	}
-	
-	public void setImageProperty(){
-		if(imageProperty==null)
-			imageProperty = new SimpleObjectProperty<>();
-		imageProperty.set(new Image("it/polimi/ingsw/gui/resources/blank.png"));
-	}
-	
-	public void setImageProperty(String url){
-		if(imageProperty==null)
-			imageProperty = new SimpleObjectProperty<>();
-		imageProperty.set(new Image(url));
 	}
 
 	public int getNumberOfPosition() {

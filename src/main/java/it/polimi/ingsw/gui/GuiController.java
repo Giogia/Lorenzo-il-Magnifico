@@ -853,10 +853,11 @@ public class GuiController implements Initializable {
 		board.getMarketProxy().getPositionProxies().get(2).getFamilyMemberProxies().get(0).setImageProperty();
 		board.getMarketProxy().getPositionProxies().get(3).getFamilyMemberProxies().get(0).setImageProperty();
 		
-		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty();
-		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(1).setImageProperty();
-		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(2).setImageProperty();
-		//board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(3).setImageProperty();
+		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty();
+		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(1).setImageProperty();
+		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(2).setImageProperty();
+		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(3).setImageProperty();
+		
 		for(PlayerProxy playerProxy : game.getPlayerProxies()){
 			PersonalBoardProxy personalBoardProxy = playerProxy.getPersonalBoardProxy();
 			for(CardContainerProxy cardContainerProxy : personalBoardProxy.getCardContainers()){
@@ -864,12 +865,6 @@ public class GuiController implements Initializable {
 					developmentCardProxy.setImageProperty();
 				}
 			}
-			/*for(LeaderCardProxy leaderCardProxy : personalBoardProxy.getLeaderCardProxies()){
-				leaderCardProxy.setImageProperty();
-			}
-			for(LeaderCardProxy leaderCardProxy : playerProxy.getLeaderCardInHandProxies()){
-				leaderCardProxy.setImageProperty();
-			}*/
 		}
 		
 	}
@@ -885,12 +880,21 @@ public class GuiController implements Initializable {
 		
 		if(players.size() >2){
 			tabPlayer3.setText(players.get(2).getName());
-		}else tabPlayer3.setDisable(true);
-		
+		}else {
+			tabPlayer3.setDisable(true);
+			//if there are only 2 players -> harvest 2 and production 2 are unavailable
+			production2.setOnMouseClicked(null);
+			harvest2.setOnMouseClicked(null);
+		}
 		
 		if(players.size() >3){
 			tabPlayer4.setText(players.get(3).getName());
-		}else tabPlayer4.setDisable(true);
+		} else {
+			tabPlayer4.setDisable(true);
+			//if there are only 3 players, market 3 and market 4 are unavailable
+			market3.setOnMouseClicked(null);
+			market4.setOnMouseClicked(null);
+		}
 		
 		setImages();
 		excommunicationTile1.setImage(new Image(game.getBoardProxy().getExcommunicationTileProxies().get(0).getImagePath()));
@@ -978,12 +982,12 @@ public class GuiController implements Initializable {
 		market3.imageProperty().bind(marketPositionProxies.get(2).getFamilyMemberProxies().get(0).getImageProperty());
 		market4.imageProperty().bind(marketPositionProxies.get(3).getFamilyMemberProxies().get(0).getImageProperty());
 		
-		//council palace has only 1 position
-		/*PositionProxy councilPalacePosition = game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0);
-		councilPalace1.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(0).getImageProperty());
-		councilPalace2.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(1).getImageProperty());
-		councilPalace3.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(2).getImageProperty());
-		councilPalace4.imageProperty().bind(councilPalacePosition.getFamilyMemberProxies().get(3).getImageProperty());*/
+		//council palace has only 1 position with 4 family members
+		ArrayList<FamilyMemberProxy> councilPalaceMembers = game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies();
+		councilPalace1.imageProperty().bind(councilPalaceMembers.get(0).getImageProperty());
+		councilPalace2.imageProperty().bind(councilPalaceMembers.get(1).getImageProperty());
+		councilPalace3.imageProperty().bind(councilPalaceMembers.get(2).getImageProperty());
+		councilPalace4.imageProperty().bind(councilPalaceMembers.get(3).getImageProperty());
 		
 		
 		CardContainerProxy container = game.getPlayerProxies().get(0).getPersonalBoardProxy().getCardContainer(DevelopmentCardType.territory);
@@ -1192,6 +1196,7 @@ public class GuiController implements Initializable {
 	public void updatePosition(PositionProxy positionProxy) {
 		int numberOfPosition = positionProxy.getNumberOfPosition();
 		String imagePath = positionProxy.getFamilyMemberProxies().get(0).getImagePath();
+		System.out.println(imagePath);
 		
 		if (positionProxy.getZoneProxy() instanceof CouncilPalaceProxy){
 			game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(numberOfPosition).setImageProperty(imagePath);

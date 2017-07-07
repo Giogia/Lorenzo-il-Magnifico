@@ -38,25 +38,31 @@ public final class ActionHandler {
 	    	}
     		else{
     			ZoneProxy zoneProxy = null;
+    			int numberOfPosition = 0;
     			
     			if(zone instanceof Market){
 		    		MarketHandler.handle(familyMember,position);
 		    		zoneProxy = new MarketProxy((Market) zone);
+		    		numberOfPosition = getNumberOfPosition(position, zone);
 		    	}
 		    	else if(zone instanceof CouncilPalace){
 		    		CouncilPalaceHandler.handle(familyMember,position);
 		    		zoneProxy = new CouncilPalaceProxy((CouncilPalace) zone);
+		    		numberOfPosition = getNumberOfFamilyMember(familyMember, position);
+		    		System.out.println("---------------"+numberOfPosition);
+		    		System.out.println(familyMember.getPlayer().getBoard().getCouncilPalace().getDescription());
 		    	}
 		    	else if(zone instanceof ProductionArea){
 		    		ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);
 		    		zoneProxy = new ProductionProxy((ProductionArea) zone);
+		    		numberOfPosition = getNumberOfPosition(position, zone);
 		    	}
 		    	else if(zone instanceof HarvestArea){
 		    		HarvestAreaHandler.handle(familyMember,(HarvestArea) zone,position);
 		    		zoneProxy = new HarvestProxy((HarvestArea) zone);
+		    		numberOfPosition = getNumberOfPosition(position, zone);
 		    	}
 
-    			int numberOfPosition = getNumberOfPosition(position, zone);
 		    	Update.getInstance().positionOccupied(position, zoneProxy, numberOfPosition);
     		}
     		Update.getInstance().updatePlayerResources(familyMember.getPlayer().getColor(), familyMember.getPlayer().getPersonalBoard().getResources());
@@ -65,13 +71,27 @@ public final class ActionHandler {
     	throw new MyException("You cannot go to this Zone");
     }
     
-    public static int getNumberOfPosition(Position position, Zone zone) {
+  //returns number of position of family member in council palace
+    private static int getNumberOfFamilyMember(FamilyMember familyMember, Position position) {
+    	for (int i = 0; i < position.getFamilyMembers().size(); i++) {
+    		FamilyMember familyMemberInPosition = position.getFamilyMember(i);
+			if(familyMember.getPlayer().getColor().equals(familyMemberInPosition.getPlayer().getColor())){
+				System.out.println("la posizione è la numero " + i);
+				return i;
+			}
+		}
+    	System.out.println("non ho trovato il family member");
+		return 0;
+	}
+
+    //returns number of position of this position in this zone
+	public static int getNumberOfPosition(Position position, Zone zone) {
 		for (int i = 0; i < zone.getPositions().length; i++) {
 			if(position.equals(zone.getPosition(i))){
 				return i;
 			}
 		}
-		System.out.println("NON HO TROVATO LA POSITION IN GET POSITION UPDATE");
+		System.out.println("NON HO TROVATO IL FAMILY MEMBER");
 		return 0;
 	}
 }
