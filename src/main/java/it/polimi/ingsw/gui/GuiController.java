@@ -1175,6 +1175,7 @@ public class GuiController implements Initializable {
 				break;
 			}
 		}
+		action1.setDisable(true); //after client has placed a family member, he can't place another one
 	}
 
 	public void updatePosition(PositionProxy positionProxy) {
@@ -1190,6 +1191,7 @@ public class GuiController implements Initializable {
 		}else if(positionProxy.getZoneProxy() instanceof HarvestProxy){
 			
 		}
+		action1.setDisable(true); //after client has placed a family member, he can't place another one
 	}
 
 	public void setFamilyMemberProxies(ArrayList<FamilyMemberProxy> familyMemberProxies) {
