@@ -50,10 +50,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 public class GuiController implements Initializable {
-	private GuiSocketView guiSocketView;
 	private FXMLLoader loader;
 	private GameProxy game;
 	private String stringToSend;
+	private boolean isRmiClient;
+	
+	public void setIsRmiClient(boolean b){
+		isRmiClient = b;
+	}
 	
 	public GuiController(GameProxy game) {
 		this.game = game;
@@ -744,7 +748,11 @@ public class GuiController implements Initializable {
     
     @FXML
     void passTurnCkd(MouseEvent event) throws RemoteException {
-    	GuiRmiView.getCallback().answer("5");
+    	if (isRmiClient)
+    		GuiRmiView.getCallback().answer("5");
+    	else
+    		GuiSocketView.getCallback().setToSend("5");
+    	
     	setChatLabel("You have passed the turn.");
     	action1.setDisable(true);
     	action2.setDisable(true);
@@ -782,7 +790,11 @@ public class GuiController implements Initializable {
     		setChatLabel("You haven't choose a position!!!");
     	}
     	else{
-    		GuiRmiView.getCallback().answer(stringToSend);
+    		if (isRmiClient)
+    			GuiRmiView.getCallback().answer(stringToSend);
+    		else
+    			GuiSocketView.getCallback().setToSend(stringToSend);
+    		
     		stringToSend = null;
     	}
     }
@@ -808,12 +820,11 @@ public class GuiController implements Initializable {
 		String text = answerChat.getText();
 		chatText.setText(chatText.getText() + "\n"+"Michele: " + text);//adding input of user in chat
 		answerChat.setText("");//clear answer field
-		GuiRmiView.getCallback().answer(text);
+		if (isRmiClient)
+			GuiRmiView.getCallback().answer(text);
+		else
+			GuiSocketView.getCallback().setToSend(text);
 		disableButtons(false);
-	}
-
-	public void setMain(GuiSocketView guiSocketView) {
-		this.guiSocketView = guiSocketView;
 	}
 	
 	public void setCards(ArrayList<DevelopmentCardProxy> cards){//every turn set the cards of minimodel to right path

@@ -25,7 +25,6 @@ public class GuiSocketView extends Application{
 	static boolean wait = true;
 	private final static String IP= "localhost";
 	private final static int SOCKET_PORT = 29999;
-	private static ConnectionManagerRmiServerImpl connectionManagerRmiServerImpl;
 	private static GuiSocketInView clientIn;
 	private static GuiSocketOutView callback;
 	private static Object lock = new Object(); //lock to wait the answer from server with game
@@ -43,7 +42,9 @@ public class GuiSocketView extends Application{
 	public void start(Stage primaryStage) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
 		GuiController controller = new GuiController(GuiSocketInView.getGame());
+		controller.setIsRmiClient(false);
 		loader.setController(controller);
+		clientIn.setController(controller);
 		
 		Scene scene = new Scene(loader.load());
 		scene.getStylesheets().add(getClass().getResource("styleGame.css").toExternalForm());
@@ -79,7 +80,8 @@ public class GuiSocketView extends Application{
 		executor.submit(callback);
 		
 		//Creates one thread to receive messages from the server
-		GuiSocketInView clientIn = new GuiSocketInView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream()));
+		clientIn = new GuiSocketInView(new ObjectInputStream(socket.getInputStream()), new PrintWriter(socket.getOutputStream()));
+		clientIn.setSocketOut(callback);
 		executor.submit(clientIn);
 		showStage();
 	}

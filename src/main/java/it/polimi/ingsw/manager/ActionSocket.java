@@ -17,6 +17,11 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket.action;
+import it.polimi.ingsw.minigame.DevelopmentCardProxy;
+import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
 
 public class ActionSocket implements Serializable{
 	public enum action{
@@ -55,6 +60,9 @@ public class ActionSocket implements Serializable{
 		usernameHasAlreadyChosen, 
 		timeExpired, 
 		startGame,
+		towerFloorOccupied, 
+		positionOccupied, 
+		updateResources,
 	}
 	
 	private action action;
@@ -76,6 +84,12 @@ public class ActionSocket implements Serializable{
 	private DevelopmentCard developmentCard;
 	private String playerName;
 	private Game game;
+	private GameProxy gameProxy;
+	private TowerFloorProxy towerFloorProxy;
+	private DevelopmentCardProxy developmentCardProxy;
+	private PositionProxy positionProxy;
+	private ArrayList<ResourceProxy> resourceProxies;
+	private Color color;
 	
 	public ActionSocket(action a) {
 		this.action = a;
@@ -200,5 +214,53 @@ public class ActionSocket implements Serializable{
 	
 	public Game getGame() {
 		return game;
+	}
+
+	public void setGameProxy(GameProxy gameProxy) {
+		this.gameProxy = gameProxy;
+	}
+	
+	public GameProxy getGameProxy() {
+		return gameProxy;
+	}
+
+	public void setTowerFloorProxy(TowerFloorProxy towerFloorProxy) {
+		this.towerFloorProxy = towerFloorProxy;
+	}
+
+	public void setDevelopmentCardProxy(DevelopmentCardProxy developmentCardProxy) {
+		this.developmentCardProxy = developmentCardProxy;
+	}
+	
+	public DevelopmentCardProxy getDevelopmentCardProxy() {
+		return developmentCardProxy;
+	}
+	
+	public TowerFloorProxy getTowerFloorProxy() {
+		return towerFloorProxy;
+	}
+	
+	public void setPositionProxy(PositionProxy positionProxy) {
+		this.positionProxy = positionProxy;
+	}
+	
+	public PositionProxy getPositionProxy() {
+		return positionProxy;
+	}
+	
+	public ArrayList<ResourceProxy> getResourceProxies() {
+		return resourceProxies;
+	}
+	
+	public void setResourceProxies(ArrayList<ResourceProxy> resourceProxies) {
+		this.resourceProxies = resourceProxies;
+	}
+	
+	public Color getColor() {
+		return color;
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
 	}
 }

@@ -41,6 +41,10 @@ public class NameWindow implements Runnable{
 	    	
 	    	GuiRmiView.getCallback().answer(username);
 	    }else{
+	    	synchronized (GuiSocketOutView.getLock()) {
+				GuiSocketOutView.setServerPass(true);
+				GuiSocketOutView.getLock().notifyAll();
+			}
 	    	GuiSocketView.getCallback().setToSend(username);
 	    }
     	Node  source = (Node) event.getSource(); 

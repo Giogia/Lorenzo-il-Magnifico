@@ -1108,6 +1108,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				
 				ActionSocket act = new ActionSocket(action.roundBegins);
+				act.setGameProxy(gameProxy);
 				try{
 					out.writeObject(act);
 					out.flush();
@@ -1547,7 +1548,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
 				
 				ActionSocket act = new ActionSocket(action.startGame);
-				act.setGame(thisGame);
+				act.setGameProxy(gameProxy);
 				out.writeObject(act);
 				out.flush();
 			}

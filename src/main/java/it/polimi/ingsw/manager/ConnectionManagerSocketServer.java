@@ -33,6 +33,7 @@ public class ConnectionManagerSocketServer implements Runnable {
 			if(socketInClient.hasNextLine()){
 				if(isRightTurn){
 					stringReceived = socketInClient.nextLine();
+					System.out.println(stringReceived);
 					isAvailable=true;
 					synchronized (this) {
 						notifyAll();

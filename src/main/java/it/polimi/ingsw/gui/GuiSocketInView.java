@@ -3,21 +3,49 @@ package it.polimi.ingsw.gui;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import it.polimi.ingsw.BOARD.ActionZone;
+import it.polimi.ingsw.BOARD.Position;
+import it.polimi.ingsw.BONUS.Bonus;
+import it.polimi.ingsw.BONUS.ResourceBonus;
+import it.polimi.ingsw.CARD.DevelopmentCard;
+import it.polimi.ingsw.CARD.LeaderCard;
+import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Game;
+import it.polimi.ingsw.GC_15.PersonalBonusTile;
+import it.polimi.ingsw.GC_15.Player.Color;
+import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket;
+import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.GameProxy;
+import it.polimi.ingsw.minigame.PositionProxy;
+import it.polimi.ingsw.minigame.ResourceProxy;
+import it.polimi.ingsw.minigame.TowerFloorProxy;
+import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 
 
 public class GuiSocketInView implements Runnable {
-	
+
+	private static Object lock = new Object();
 	private final static Logger LOGGER = Logger.getLogger(GuiSocketInView.class.getName());
 	private ObjectInputStream socketIn;
 	private static GameProxy game;
+	private GuiController controller;
+	private GuiSocketOutView socketOut;
+	
+	public void setSocketOut(GuiSocketOutView socketOut) {
+		this.socketOut = socketOut;
+	}
+	
+	public void setController(GuiController controller) {
+		this.controller = controller;
+	}
 	
 	public GuiSocketInView(ObjectInputStream socketIn, PrintWriter socketOut) {
 		this.socketIn = socketIn;
@@ -72,6 +100,7 @@ public class GuiSocketInView implements Runnable {
 					case startGame:
 						//game = action.getGame();
 						//starting gui
+						game = action.getGameProxy();
 						synchronized (GuiSocketView.getLock()) {
 							GuiSocketView.wait = false; //wake up GuiSocketView and he starts the main window
 							GuiSocketView.getLock().notifyAll();
@@ -79,94 +108,420 @@ public class GuiSocketInView implements Runnable {
 						break;
 						
 					case startTurn: 
-						
-						
+						String playerName = action.getMessage();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.disableButtons(false);//Now player can press button
+								controller.setChatLabel(playerName +" is your turn!");
+							}
+						});
+						break;
+												
 					case turnChoice:
-						
+						synchronized (GuiSocketOutView.getLock()) {
+							GuiSocketOutView.setServerPass(true);
+							GuiSocketOutView.getLock().notifyAll();
+						}
+						break;
 						
 					case moveAlreadyDone:
-						
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("You have already positioned a family member. Choose another action.");
+							}
+						});
+						break;
+												
 					case chooseZone:
-						
+						synchronized (GuiSocketOutView.getLock()) {
+							GuiSocketOutView.setServerPass(true);
+							GuiSocketOutView.getLock().notifyAll();
+						}
+						break;
 
 					case choosePosition:
+						synchronized (GuiSocketOutView.getLock()) {
+							GuiSocketOutView.setServerPass(true);
+							GuiSocketOutView.getLock().notifyAll();
+						}
+						break;
 						
 					
 					case askForAlternativeCost:
+						ArrayList<Resource> costDescriptions = action.getCosts();
+						ArrayList<Resource> alternativeCostDescriptions = action.getAlternativeCosts();
+						Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								StringBuilder message = new StringBuilder();
+								message.append("The card you have chosen has 2 costs. Choose one: \n");
+								message.append("1) First cost\n");
+								for (Resource resource : costDescriptions) {
+									message.append(resource.getDescription() + "\n");
+								}
+								message.append("2) Secondary cost:\n");
+								for (Resource alternativeResource : alternativeCostDescriptions ) {
+									message.append(alternativeResource.getDescription() + "\n");
+								}
+								controller.setChatLabel(message.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					
 					case askForCouncilPrivilege:
-						
+						ArrayList<ResourceBonus> councilPrivileges = action.getBonus();
+						Platform.runLater(new Runnable() {
+							
+							@Override
+							public void run() {
+								StringBuilder message = new StringBuilder();
+								message.append("Choose the bonus of the Council Privilege: \n");
+								for (int counter = 1; counter <= councilPrivileges.size(); counter++){
+									message.append(counter + ") " + councilPrivileges.get(counter - 1).getDescription() +"\n");
+								}
+								controller.setChatLabel(message.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 					
 					case askForServants:
-						
+						int numberOfServants = action.getNumberOfServants();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("You have " + numberOfServants + " servants. How many of them do you want to use?");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case showDices:
-						
+						break;
 						
 					case hasWon:
+						String winner = action.getMessage();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel(winner + " has won the game!");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 					
 						
 					case roundBegins:
+						GameProxy gameProxy = action.getGameProxy();
+						ArrayList<DevelopmentCardProxy> cards = new ArrayList<>();
+						for(TowerProxy towerProxy : gameProxy.getBoardProxy().getTowerProxies()){
+							for (TowerFloorProxy towerFloorProxy : towerProxy.getTowerFloorProxies()){
+								cards.add(towerFloorProxy.getDevelopmentCardProxy());
+							}
+						}
+						synchronized (lock) {
+							while(controller == null){
+								try {
+									lock.wait();
+								} catch (InterruptedException e) {
+									LOGGER.log(Level.SEVERE, e.getMessage(),e);
+									Thread.currentThread().interrupt();
+								}
+							}
+						}
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.roundBegins(gameProxy);
+								controller.setCards(cards);
+							}
+						});
+						break;
 					
 						
 					case askForInformation:
-						
+						break;
 						
 					case showPersonalBoard:
-						
+						break;
 						
 					case cantPassTurn:
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.disableButtons(false);//Now player can press button
+								controller.setChatLabel("You can't pass the turn.");
+								controller.setChatLabel("You have to place at least one family member.");
+							}
+						});
+						break;
 						
 						
 					case askForAction:
-						
+						ArrayList<ActionZone> zones = action.getZones();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose the zone you want to activate the action bonus in: \n");
+								for (int i = 1; i <= zones.size(); i++) {
+									toSend.append(i + ") " + zones.get(i-1).getDescription()+"\n");
+								}
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case askForActionPosition:
-						
+						Position[] positions = action.getPositions();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose where you want to place your family member: \n");
+								for (int counter = 1; counter <= positions.length; counter ++) {
+									toSend.append(counter + ") " + positions[counter - 1].getDescription()+"\n");
+								}
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case catchException:
+						String message = action.getMessage();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.disableButtons(false);
+								controller.setChatLabel(message);
+								try {
+									Thread.sleep(250);
+									socketOut.setToSend("9");
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							}
+						});
+						break;
 						
 						
 					case chooseFamilyMember:
-						
+						ArrayList<FamilyMember> familyMembers = action.getFamilyMembers();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder message = new StringBuilder();
+								message.append("Choose the family member you want to use for the action: \n");
+								for (int counter = 1; counter <= familyMembers.size(); counter++){
+									message.append(counter + ") " + familyMembers.get(counter - 1).getDescription()+"\n");
+								}
+								int lastChoice = familyMembers.size() + 1;
+								message.append(lastChoice + ") Go back\n");
+								controller.setChatLabel(message.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case askForLeaderCards:
+						ArrayList<LeaderCard> leaderCards = action.getLeaderCards();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose the leader card you want \n");
+								for(int i=1;i<leaderCards.size()+1;i++){
+									toSend.append(i+")"+leaderCards.get(i-1).getDescription()+"\n");
+								}
+								toSend.append(leaderCards.size()+1+") come back \n");
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
-						
+												
 					case askForPersonalBonusTile:
-						
+						ArrayList<PersonalBonusTile> personalBonusTiles = action.getPersonalBonusTiles();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose the personal bonus tile you want \n");
+								for(int i=1;i<personalBonusTiles.size();i++){
+									toSend.append(i+")"+personalBonusTiles.get(i).getDescription()+" \n");
+								}
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case askForLeaderCardAction:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("Choose the action you want to do with this Leader Card : \n"
+										+ "1) activate this leader Card \n2) Discard this leader card");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case draftLeaderCards:
-						
+						ArrayList<LeaderCard> draftLeaderCards = action.getLeaderCards();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose the leader card you want \n");
+								for(int i=1;i<draftLeaderCards.size()+1;i++){
+									toSend.append(i+")"+draftLeaderCards.get(i-1).getDescription()+" \n");
+								}
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case askForCardEffect:
-						
+						DevelopmentCard developmentCard = action.getDevelopmentCard();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								StringBuilder toSend = new StringBuilder();
+								toSend.append("Choose which effect of the card you want to acctivate : \n 1) First Effect: \n");
+								int i =1;
+								for(Bonus bonus : developmentCard.secondaryEffect){
+									if(bonus instanceof ResourceBonus){
+										toSend.append(i+")"+bonus.getDescription());
+										i++;
+									}
+									else
+										toSend.append(bonus.getDescription());
+								}
+								toSend.append(i+") Don't activate this card's Effect \n");
+								
+								controller.setChatLabel(toSend.toString());
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case askForExcommunication:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("Do you want to be excommunicated? \n1) No \n2)Yes");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case notYourTurn:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("Please, wait your turn!");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case wrongInput:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("The input must be an integer! Try again!");
+								controller.disableButtons(true);
+							}
+						});
+						break;						
 						
 					case integerError:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel("The integer doesn't match any possible choice");
+								controller.disableButtons(true);
+							}
+						});
+						break;
 						
 					case leftGame:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel(action.getPlayerName() + " left the game!");
+							}
+						});
+						break;
 						
 					case reconnectedToGame:
-						
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.setChatLabel(action.getPlayerName() + " has reconnected himself to the game!");
+							}
+						});
+						break;
 						
 					case usernameHasAlreadyChosen:
+						break;
 						
+					case timeExpired:
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.disableButtons(true);//Now player can't press button
+								controller.setChatLabel("TIME IS EXPIRED!");
+							}
+						});
+						break;
+						
+					case positionOccupied:
+						PositionProxy positionProxy = action.getPositionProxy();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.updatePosition(positionProxy);
+							}
+						});
+						break;
+						
+					case towerFloorOccupied:
+						TowerFloorProxy towerFloorProxy = action.getTowerFloorProxy();
+						DevelopmentCardProxy developmentCardProxy = action.getDevelopmentCardProxy();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.updateTowerFloor(towerFloorProxy, developmentCardProxy);
+							}
+						});
+						break;
+					
+					case updateResources:
+						ArrayList<ResourceProxy> resources = action.getResourceProxies();
+						Color playerColor = action.getColor();
+						Platform.runLater(new Runnable() {
+							@Override
+							public void run() {
+								controller.updatePlayerResources(playerColor, resources);
+							}
+						});
 				}
 			} catch (ClassNotFoundException e) {
 				LOGGER.log(Level.SEVERE, e.getMessage(),e);

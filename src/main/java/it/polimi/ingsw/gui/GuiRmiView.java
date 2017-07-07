@@ -61,6 +61,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Game.fxml"));
 		controller = new GuiController(game);
+		controller.setIsRmiClient(true);
 		loader.setController(controller);
 		
 		System.out.println("sono il thread" + Thread.currentThread().getName() +" nello start e ho settato il controller");
