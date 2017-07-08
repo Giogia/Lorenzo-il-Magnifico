@@ -50,7 +50,6 @@ public final class ActionHandler {
 		    		zoneProxy = new CouncilPalaceProxy((CouncilPalace) zone);
 		    		numberOfPosition = getNumberOfFamilyMember(familyMember, position);
 		    		System.out.println("---------------"+numberOfPosition);
-		    		System.out.println(familyMember.getPlayer().getBoard().getCouncilPalace().getDescription());
 		    	}
 		    	else if(zone instanceof ProductionArea){
 		    		ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);
@@ -76,12 +75,10 @@ public final class ActionHandler {
     	for (int i = 0; i < position.getFamilyMembers().size(); i++) {
     		FamilyMember familyMemberInPosition = position.getFamilyMember(i);
 			if(familyMember.getPlayer().getColor().equals(familyMemberInPosition.getPlayer().getColor())){
-				System.out.println("la posizione è la numero " + i);
 				return i;
 			}
 		}
-    	System.out.println("non ho trovato il family member");
-		return 0;
+    	return 0;
 	}
 
     //returns number of position of this position in this zone
