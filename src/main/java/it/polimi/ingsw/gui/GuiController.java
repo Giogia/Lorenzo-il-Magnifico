@@ -979,7 +979,7 @@ public class GuiController implements Initializable {
 			militaryPoints_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
 		}
 		
-		if(players.size() > 2){
+		if(players.size() > 3){
 			coins_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.coins).getVal());
 			wood_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.wood).getVal());
 			servants_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.servants).getVal());
