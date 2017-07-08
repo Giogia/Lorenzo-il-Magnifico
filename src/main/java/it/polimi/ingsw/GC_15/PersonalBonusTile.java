@@ -12,6 +12,7 @@ public class PersonalBonusTile implements Serializable {
 	private final ImmediateBonus productionBonus;
 	private final int harvestActivationCondition;
 	private final int productionActivationCondition;
+	private int id;
 	
 	public PersonalBonusTile() {
 		harvestBonus = null;
@@ -63,6 +64,14 @@ public class PersonalBonusTile implements Serializable {
 				"Production Bonus: \n"+productionBonus.getDescription();
 				
 		return description;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	

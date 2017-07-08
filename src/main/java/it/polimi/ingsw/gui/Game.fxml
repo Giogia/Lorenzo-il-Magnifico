@@ -137,7 +137,8 @@
                                     <Font size="24.0" />
                                  </font>
                               </Label>
-                           </children></AnchorPane>
+                           </children>
+                       </AnchorPane>
                   </content>
                 </Tab>
                   <Tab fx:id="tabPlayer2" text="tab2">
@@ -326,8 +327,7 @@
                         </AnchorPane>
                      </content>
                   </Tab>
-              </tabs>
-              <Tab fx:id="tabPlayer4" text="tab4">
+	              <Tab fx:id="tabPlayer4" text="tab4">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
@@ -419,7 +419,8 @@
                            </children>
                         </AnchorPane>
                      </content>
-                  </Tab>
+	           		</Tab>
+           		</tabs>
             </TabPane>
             <ImageView fx:id="imageZoomed" fitHeight="381.0" fitWidth="255.0" layoutX="476.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>

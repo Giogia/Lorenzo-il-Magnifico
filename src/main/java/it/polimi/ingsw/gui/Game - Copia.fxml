@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -17,7 +23,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" styleClass="styleGame.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -42,13 +48,13 @@
    <center>
       <Pane prefHeight="768.0" prefWidth="1367.0" BorderPane.alignment="CENTER">
          <children>
-            <TabPane layoutX="488.0" layoutY="386.0" prefHeight="370.0" prefWidth="877.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane layoutX="476.0" layoutY="386.0" prefHeight="354.0" prefWidth="886.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="tabPlayer1" text="tab1">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fx:id="personalBoard1" fitHeight="330.0" fitWidth="886.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="personalBoard1" fitHeight="337.0" fitWidth="890.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@resources/personalBoard.jpg" />
                                  </image></ImageView>
@@ -84,7 +90,7 @@
                                     <ImageView fx:id="player1_character3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                     <ImageView fx:id="player1_character4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
                                     <ImageView fx:id="player1_character5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_territory61" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player1_character6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
                               <Group fx:id="player1_venture" layoutX="455.0" layoutY="1.0">
@@ -97,6 +103,40 @@
                                     <ImageView fx:id="player1_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
+                              <Label fx:id="coins_player1" layoutX="26.0" layoutY="247.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font></Label>
+                              <Label fx:id="wood_player1" layoutX="110.0" layoutY="247.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stones_player1" layoutX="183.0" layoutY="247.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="servants_player1" layoutX="254.0" layoutY="247.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="faithPoints_player1" layoutX="616.0" layoutY="260.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player1" layoutX="733.0" layoutY="267.0" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="victoryPoints_player1" layoutX="804.0" layoutY="267.0" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -154,6 +194,134 @@
                                     <ImageView fx:id="player2_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
+                              <Label fx:id="servants_player2" layoutX="253.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stones_player2" layoutX="183.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="wood_player2" layoutX="109.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="coins_player2" layoutX="36.0" layoutY="246.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="faithPoints_player2" layoutX="624.0" layoutY="260.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player2" layoutX="757.0" layoutY="266.0" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="victoryPoints_player2" layoutX="821.0" layoutY="266.0" prefHeight="40.0" prefWidth="56.0" text="Label">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab fx:id="tabPlayer4" text="tab4">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="personalBoard4" fitHeight="330.0" fitWidth="886.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/personalBoard.jpg" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="personalBonusTile4" fitHeight="236.0" fitWidth="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@resources/PersonalBonusTile/personalBonusTile-1.png" />
+                                 </image>
+                              </ImageView>
+                              <Group fx:id="player4_building" layoutX="22.0" layoutY="1.0">
+                                 <children>
+                                    <ImageView fx:id="player4_building1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_building2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_building3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_building4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_building5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_building6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Group>
+                              <Group fx:id="player4_territory" layoutX="29.0" layoutY="132.0">
+                                 <children>
+                                    <ImageView fx:id="player4_territory1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_territory2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_territory3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_territory4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_territory5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_territory6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Group>
+                              <Group fx:id="player4_character" layoutX="455.0" layoutY="132.0">
+                                 <children>
+                                    <ImageView fx:id="player4_character1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_character2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_character3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_character4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_character5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_character6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Group>
+                              <Group fx:id="player4_venture" layoutX="455.0" layoutY="1.0">
+                                 <children>
+                                    <ImageView fx:id="player4_venture1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_venture2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_venture3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_venture4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_venture5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player4_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </Group>
+                              <Label fx:id="victoryPoints_player11" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player11" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="faithPoints_player11" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="servants_player11" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stones_player11" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="wood_player11" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="coins_player11" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
@@ -194,12 +362,12 @@
                               </Group>
                               <Group fx:id="player3_character" layoutX="455.0" layoutY="132.0">
                                  <children>
-                                    <ImageView fx:id="player1_character111" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_character211" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_character311" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_character411" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_character511" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player1_territory6111" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
+                                    <ImageView fx:id="player3_character6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
                               <Group fx:id="player3_venture" layoutX="455.0" layoutY="1.0">
@@ -212,150 +380,140 @@
                                     <ImageView fx:id="player3_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                                  </children>
                               </Group>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-                  <Tab fx:id="tabPlayer4" text="tab4">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <ImageView fx:id="personalBoard4" fitHeight="330.0" fitWidth="886.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@resources/personalBoard.jpg" />
-                                 </image>
-                              </ImageView>
-                              <ImageView fx:id="personalBonusTile4" fitHeight="236.0" fitWidth="29.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@resources/PersonalBonusTile/personalBonusTile-1.png" />
-                                 </image>
-                              </ImageView>
-                              <Group fx:id="building511" layoutX="22.0" layoutY="1.0">
-                                 <children>
-                                    <ImageView fx:id="player4_building1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_building2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_building3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_building4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_building5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_building6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </Group>
-                              <Group fx:id="territory511" layoutX="29.0" layoutY="132.0">
-                                 <children>
-                                    <ImageView fx:id="player4_territory1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </Group>
-                              <Group fx:id="character511" layoutX="455.0" layoutY="132.0">
-                                 <children>
-                                    <ImageView fx:id="player4_character1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_character2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_character3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_character4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_character5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_territory6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </Group>
-                              <Group fx:id="venture511" layoutX="455.0" layoutY="1.0">
-                                 <children>
-                                    <ImageView fx:id="player4_venture1" fitHeight="111.0" fitWidth="72.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_venture2" fitHeight="112.0" fitWidth="72.0" layoutX="72.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_venture3" fitHeight="113.0" fitWidth="72.0" layoutX="145.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_venture4" fitHeight="113.0" fitWidth="72.0" layoutX="217.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_venture5" fitHeight="113.0" fitWidth="72.0" layoutX="289.0" pickOnBounds="true" preserveRatio="true" />
-                                    <ImageView fx:id="player4_venture6" fitHeight="113.0" fitWidth="72.0" layoutX="361.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </Group>
+                              <Label fx:id="victoryPoints_player12" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="militaryPoints_player12" prefHeight="40.0" prefWidth="71.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="faithPoints_player12" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="servants_player12" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stones_player12" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="wood_player12" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="coins_player12" prefHeight="40.0" prefWidth="56.0" text="Label" textFill="WHITE">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <ImageView fx:id="imageZoomed" fitHeight="375.0" fitWidth="257.0" layoutX="488.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageZoomed" fitHeight="381.0" fitWidth="255.0" layoutX="476.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@resources/RetroLeaderCard.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="738.0" fitWidth="474.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="381.0" fitWidth="349.0" layoutX="725.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@resources/gameBoard.png" />
-               </image>
-            </ImageView>
-            <Button fx:id="action2" layoutX="757.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#passTurnCkd" prefHeight="46.0" prefWidth="237.0" text="Pass the turn" />
-            <Button fx:id="action1" layoutX="757.0" layoutY="53.0" mnemonicParsing="false" onMouseClicked="#placeFamilyMemberCkd" prefHeight="41.0" prefWidth="236.0" text="Place a Family Member" />
-            <Label layoutX="1077.0" layoutY="8.0" prefHeight="53.0" prefWidth="66.0" text="Chat" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <TextField fx:id="answerChat" layoutX="1015.0" layoutY="350.0" onKeyPressed="#enterPressed" prefHeight="34.0" prefWidth="290.0" />
-            <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="63.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="61.0" layoutX="22.0" layoutY="123.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territory2" fitHeight="92.0" fitWidth="62.0" layoutX="22.0" layoutY="225.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territory1" fitHeight="92.0" fitWidth="57.0" layoutX="25.0" layoutY="332.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character4" fitHeight="89.0" fitWidth="55.0" layoutX="138.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character3" fitHeight="89.0" fitWidth="61.0" layoutX="135.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character2" fitHeight="89.0" fitWidth="60.0" layoutX="135.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="character1" fitHeight="89.0" fitWidth="61.0" layoutX="135.0" layoutY="334.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building4" fitHeight="89.0" fitWidth="60.0" layoutX="248.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building3" fitHeight="89.0" fitWidth="59.0" layoutX="248.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building2" fitHeight="89.0" fitWidth="61.0" layoutX="248.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="building1" fitHeight="89.0" fitWidth="61.0" layoutX="248.0" layoutY="331.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venture4" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venture3" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venture2" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venture1" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="331.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="labelAction" layoutX="786.0" prefHeight="53.0" prefWidth="200.0" text="Choose your action" textAlignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="excommunicationTile1" fitHeight="91.0" fitWidth="44.0" layoutX="92.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="excommunicationTile2" fitHeight="85.0" fitWidth="43.0" layoutX="136.0" layoutY="474.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="excommunicationTile3" fitHeight="90.0" fitWidth="45.0" layoutX="179.0" layoutY="465.0" pickOnBounds="true" preserveRatio="true" />
-            <TextArea fx:id="chatText" editable="false" layoutX="1015.0" layoutY="53.0" prefHeight="288.0" prefWidth="347.0" />
-            <ImageView fx:id="neutralFamilyMember" fitHeight="83.0" fitWidth="49.0" layoutX="747.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="blackFamilyMember" fitHeight="85.0" fitWidth="49.0" layoutX="804.0" layoutY="289.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="whiteFamilyMember" fitHeight="82.0" fitWidth="49.0" layoutX="862.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="orangeFamilyMember" fitHeight="90.0" fitWidth="49.0" layoutX="945.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="councilPalace" fitHeight="54.0" fitWidth="146.0" layoutX="253.0" layoutY="430.0" onMouseClicked="#councilPalaceClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="production1" fitHeight="36.0" fitWidth="39.0" layoutX="21.0" layoutY="622.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="harvest1" fitHeight="41.0" fitWidth="43.0" layoutX="19.0" layoutY="684.0" onMouseClicked="#harvestClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="production2" fitHeight="44.0" fitWidth="105.0" layoutX="87.0" layoutY="615.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="harvest2" fitHeight="41.0" fitWidth="105.0" layoutX="87.0" layoutY="684.0" onMouseClicked="#harvestClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="market1" fitHeight="36.0" fitWidth="42.0" layoutX="293.0" layoutY="604.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="market2" fitHeight="36.0" fitWidth="42.0" layoutX="351.0" layoutY="604.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="market3" fitHeight="36.0" fitWidth="42.0" layoutX="397.0" layoutY="619.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="market4" fitHeight="36.0" fitWidth="42.0" layoutX="432.0" layoutY="659.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="diceBlack" fitHeight="37.0" fitWidth="38.0" layoutX="284.0" layoutY="695.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="diceWhite" fitHeight="40.0" fitWidth="40.0" layoutX="337.0" layoutY="691.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="diceOrange" fitHeight="37.0" fitWidth="37.0" layoutX="393.0" layoutY="695.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pawn1" fitHeight="28.0" fitWidth="24.0" layoutX="433.0" layoutY="409.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pawn2" fitHeight="28.0" fitWidth="28.0" layoutX="432.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pawn3" fitHeight="25.0" fitWidth="29.0" layoutX="431.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="pawn4" fitHeight="32.0" fitWidth="26.0" layoutX="432.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territoryfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territoryfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territoryfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="territoryfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="characterfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="characterfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="characterfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="characterfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="buildingfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="buildingfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="buildingfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="buildingfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venturefloor4" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venturefloor3" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venturefloor2" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="venturefloor1" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="1309.0" layoutY="350.0" mnemonicParsing="false" onMouseClicked="#sendCkd" prefHeight="33.0" prefWidth="52.0" text="Send" />
+                  <Image url="@resources/sfondo.png" />
+               </image></ImageView>
+            <Button fx:id="action2" layoutX="749.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#passTurnCkd" prefHeight="74.0" prefWidth="293.0" text="Pass the turn" />
+            <Button fx:id="action1" layoutX="749.0" layoutY="33.0" mnemonicParsing="false" onMouseClicked="#placeFamilyMemberCkd" prefHeight="79.0" prefWidth="294.0" text="Place a Family Member" />
+            <TextField fx:id="answerChat" layoutX="1073.0" layoutY="388.0" onKeyPressed="#enterPressed" prefHeight="25.0" prefWidth="234.0" />
+            <TextArea fx:id="chatText" editable="false" layoutX="1073.0" layoutY="4.0" prefHeight="380.0" prefWidth="289.0" />
+            <Button layoutX="1308.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#sendCkd" prefHeight="21.0" prefWidth="52.0" text="Send" />
+            <ImageView fx:id="neutralFamilyMember" fitHeight="100.0" fitWidth="75.0" layoutX="756.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/familyMemberWhite.jpg" />
+               </image></ImageView>
+            <ImageView fx:id="blackFamilyMember" fitHeight="100.0" fitWidth="75.0" layoutX="828.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/familyMemberWhite.jpg" />
+               </image></ImageView>
+            <ImageView fx:id="whiteFamilyMember" fitHeight="100.0" fitWidth="75.0" layoutX="900.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/familyMemberWhite.jpg" />
+               </image></ImageView>
+            <ImageView fx:id="orangeFamilyMember" fitHeight="100.0" fitWidth="75.0" layoutX="972.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@resources/familyMemberWhite.jpg" />
+               </image></ImageView>
+            <Group layoutX="-11.0">
+               <children>
+                  <ImageView fitHeight="738.0" fitWidth="474.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/gameBoard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="buildingfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="building3" fitHeight="89.0" fitWidth="59.0" layoutX="248.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="character3" fitHeight="89.0" fitWidth="61.0" layoutX="135.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="harvest1" fitHeight="41.0" fitWidth="43.0" layoutX="19.0" layoutY="684.0" onMouseClicked="#harvestClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="buildingfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="building1" fitHeight="89.0" fitWidth="61.0" layoutX="248.0" layoutY="331.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="buildingfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pawn3" fitHeight="24.0" fitWidth="24.0" layoutX="433.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="production2" fitHeight="44.0" fitWidth="105.0" layoutX="87.0" layoutY="615.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venture4" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="market2" fitHeight="36.0" fitWidth="42.0" layoutX="351.0" layoutY="604.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pawn2" fitHeight="23.0" fitWidth="24.0" layoutX="433.0" layoutY="444.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="market4" fitHeight="36.0" fitWidth="42.0" layoutX="432.0" layoutY="659.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="characterfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="building2" fitHeight="89.0" fitWidth="61.0" layoutX="248.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venture1" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="331.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venturefloor2" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="diceBlack" fitHeight="36.0" fitWidth="37.0" layoutX="285.0" layoutY="695.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="diceWhite" fitHeight="37.0" fitWidth="36.0" layoutX="340.0" layoutY="694.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="character2" fitHeight="89.0" fitWidth="60.0" layoutX="135.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venture3" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="production1" fitHeight="36.0" fitWidth="39.0" layoutX="21.0" layoutY="622.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="excommunicationTile1" fitHeight="84.0" fitWidth="39.0" layoutX="95.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venturefloor4" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="61.0" layoutX="22.0" layoutY="123.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="63.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="councilPalace1" fitHeight="54.0" fitWidth="40.0" layoutX="253.0" layoutY="430.0" onMouseClicked="#councilPalaceClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territory1" fitHeight="92.0" fitWidth="57.0" layoutX="25.0" layoutY="332.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="councilPalace3" fitHeight="54.0" fitWidth="40.0" layoutX="325.0" layoutY="430.0" onMouseClicked="#councilPalaceClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="characterfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pawn4" fitHeight="24.0" fitWidth="22.0" layoutX="434.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="diceOrange" fitHeight="36.0" fitWidth="37.0" layoutX="393.0" layoutY="695.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venturefloor1" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="352.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territoryfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="pawn1" fitHeight="23.0" fitWidth="24.0" layoutX="433.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="character4" fitHeight="89.0" fitWidth="55.0" layoutX="138.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territoryfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="harvest2" fitHeight="41.0" fitWidth="105.0" layoutX="87.0" layoutY="684.0" onMouseClicked="#harvestClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territoryfloor4" fitHeight="39.0" fitWidth="40.0" layoutX="87.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="characterfloor3" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venturefloor3" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="councilPalace2" fitHeight="54.0" fitWidth="40.0" layoutX="290.0" layoutY="430.0" onMouseClicked="#councilPalaceClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="market1" fitHeight="36.0" fitWidth="42.0" layoutX="293.0" layoutY="604.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territoryfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="87.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="buildingfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="building4" fitHeight="89.0" fitWidth="60.0" layoutX="248.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="market3" fitHeight="36.0" fitWidth="42.0" layoutX="397.0" layoutY="619.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="excommunicationTile2" fitHeight="79.0" fitWidth="40.0" layoutX="138.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="characterfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="excommunicationTile3" fitHeight="80.0" fitWidth="40.0" layoutX="181.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="venture2" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="councilPalace4" fitHeight="54.0" fitWidth="40.0" layoutX="360.0" layoutY="430.0" onMouseClicked="#councilPalaceClk" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="territory2" fitHeight="92.0" fitWidth="62.0" layoutX="22.0" layoutY="225.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="character1" fitHeight="89.0" fitWidth="61.0" layoutX="135.0" layoutY="334.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </Group>
 
          </children>
       </Pane>
