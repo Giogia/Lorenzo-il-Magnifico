@@ -383,6 +383,11 @@
                </image></ImageView>
             <Group layoutX="-11.0">
                <children>
+                  <ImageView fitHeight="738.0" fitWidth="474.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@resources/gameBoard.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="buildingfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="building3" fitHeight="89.0" fitWidth="59.0" layoutX="248.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="character3" fitHeight="89.0" fitWidth="61.0" layoutX="135.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
@@ -391,11 +396,6 @@
                   <ImageView fx:id="building1" fitHeight="89.0" fitWidth="61.0" layoutX="248.0" layoutY="331.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="buildingfloor1" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="356.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="pawn3" fitHeight="24.0" fitWidth="24.0" layoutX="433.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="738.0" fitWidth="474.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@resources/gameBoard.png" />
-                     </image>
-                  </ImageView>
                   <ImageView fx:id="production2" fitHeight="44.0" fitWidth="105.0" layoutX="87.0" layoutY="615.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="venture4" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="market2" fitHeight="36.0" fitWidth="42.0" layoutX="351.0" layoutY="604.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
