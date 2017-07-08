@@ -49,7 +49,6 @@ public final class ActionHandler {
 		    		CouncilPalaceHandler.handle(familyMember,position);
 		    		zoneProxy = new CouncilPalaceProxy((CouncilPalace) zone);
 		    		numberOfPosition = getNumberOfFamilyMember(familyMember, position);
-		    		System.out.println("---------------"+numberOfPosition);
 		    	}
 		    	else if(zone instanceof ProductionArea){
 		    		ProductionAreaHandler.handle(familyMember,(ProductionArea) zone,position);

@@ -92,8 +92,8 @@ public class GuiRmiView extends Application implements CliRmi{
 	}
 	
 	public void showStage(){//waiting the start game (with the reference to game)
-		while(wait){
-			synchronized (this) {
+		synchronized (this) {
+			while(wait){
 				try {
 					wait();
 				} catch (InterruptedException e) {
@@ -146,7 +146,7 @@ public class GuiRmiView extends Application implements CliRmi{
 	
 	@Override
 	public void startGame(GameProxy game){
-		this.game = game;
+		GuiRmiView.game = game;
 		//starting gui
 		synchronized (this) {
 			wait = false;
@@ -306,7 +306,7 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("You have " + numberOfServants + " servants. How many of them do you want to use?");
+				controller.setChatLabel("How many servants do you want to use?");
 				controller.disableButtons(true);
 			}
 		});

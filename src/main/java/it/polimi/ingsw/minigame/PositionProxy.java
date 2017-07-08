@@ -29,6 +29,10 @@ public class PositionProxy implements Serializable {
 		this.zoneProxy = zoneProxy;
 		this.numberOfPosition = numberOfPosition;
 	}
+	
+	public PositionProxy() {
+		familyMemberProxies.add(new FamilyMemberProxy());
+	}
 
 	public ArrayList<FamilyMemberProxy> getFamilyMemberProxies() {
 		return familyMemberProxies;

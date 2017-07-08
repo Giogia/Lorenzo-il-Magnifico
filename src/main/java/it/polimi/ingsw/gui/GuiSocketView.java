@@ -57,8 +57,8 @@ public class GuiSocketView extends Application{
 	}
 	
 	public void showStage(){
-		while(wait){
-			synchronized (lock) {
+		synchronized (lock) {
+			while(wait){
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {

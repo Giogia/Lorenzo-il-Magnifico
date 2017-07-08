@@ -6,20 +6,14 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import it.polimi.ingsw.CARD.DevelopmentCardType;
-import it.polimi.ingsw.GC_15.Dice;
 import it.polimi.ingsw.GC_15.DiceColour;
-import it.polimi.ingsw.GC_15.Game;
-import it.polimi.ingsw.GC_15.PersonalBoard;
-import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.Player.Color;
-import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.minigame.BoardProxy;
 import it.polimi.ingsw.minigame.CardContainerProxy;
 import it.polimi.ingsw.minigame.CouncilPalaceProxy;
 import it.polimi.ingsw.minigame.DevelopmentCardProxy;
 import it.polimi.ingsw.minigame.DiceProxy;
-import it.polimi.ingsw.minigame.ExcommunicationTileProxy;
 import it.polimi.ingsw.minigame.FamilyMemberProxy;
 import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.HarvestProxy;
@@ -896,6 +890,18 @@ public class GuiController implements Initializable {
 		board.getMarketProxy().getPositionProxies().get(2).getFamilyMemberProxies().get(0).setImageProperty();
 		board.getMarketProxy().getPositionProxies().get(3).getFamilyMemberProxies().get(0).setImageProperty();
 		
+		board.getProductionProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty();
+		board.getProductionProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(0).setImageProperty();
+		//board.getProductionProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(1).setImageProperty();
+		//board.getProductionProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(2).setImageProperty();
+		//board.getProductionProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(3).setImageProperty();
+				
+		board.getHarvestProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty();
+		board.getHarvestProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(0).setImageProperty();
+		//board.getHarvestProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(1).setImageProperty();
+		//board.getHarvestProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(2).setImageProperty();
+		//board.getHarvestProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(3).setImageProperty();
+		
 		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty();
 		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(1).setImageProperty();
 		board.getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(2).setImageProperty();
@@ -926,6 +932,7 @@ public class GuiController implements Initializable {
 		}else {
 			tabPlayer3.setDisable(true);
 			//if there are only 2 players -> harvest 2 and production 2 are unavailable
+			
 			production2.setOnMouseClicked(null);
 			harvest2.setOnMouseClicked(null);
 		}
@@ -1045,6 +1052,21 @@ public class GuiController implements Initializable {
 		market2.imageProperty().bind(marketPositionProxies.get(1).getFamilyMemberProxies().get(0).getImageProperty());
 		market3.imageProperty().bind(marketPositionProxies.get(2).getFamilyMemberProxies().get(0).getImageProperty());
 		market4.imageProperty().bind(marketPositionProxies.get(3).getFamilyMemberProxies().get(0).getImageProperty());
+		
+		ArrayList<PositionProxy> productionPositionProxies = game.getBoardProxy().getProductionProxy().getPositionProxies();
+		production1.imageProperty().bind(productionPositionProxies.get(0).getFamilyMemberProxies().get(0).getImageProperty());
+		production2.imageProperty().bind(productionPositionProxies.get(1).getFamilyMemberProxies().get(0).getImageProperty());
+		//production2.imageProperty().bind(productionPositionProxies.get(1).getFamilyMemberProxies().get(1).getImageProperty());
+		//production2.imageProperty().bind(productionPositionProxies.get(1).getFamilyMemberProxies().get(2).getImageProperty());
+		//production2.imageProperty().bind(productionPositionProxies.get(1).getFamilyMemberProxies().get(3).getImageProperty());
+		
+		ArrayList<PositionProxy> harvestPositionProxies = game.getBoardProxy().getHarvestProxy().getPositionProxies();
+		harvest1.imageProperty().bind(harvestPositionProxies.get(0).getFamilyMemberProxies().get(0).getImageProperty());
+		harvest2.imageProperty().bind(harvestPositionProxies.get(1).getFamilyMemberProxies().get(0).getImageProperty());
+		//harvest2.imageProperty().bind(harvestPositionProxies.get(1).getFamilyMemberProxies().get(1).getImageProperty());
+		//harvest2.imageProperty().bind(harvestPositionProxies.get(1).getFamilyMemberProxies().get(2).getImageProperty());
+		//harvest2.imageProperty().bind(harvestPositionProxies.get(1).getFamilyMemberProxies().get(3).getImageProperty());
+		
 		
 		//council palace has only 1 position with 4 family members
 		ArrayList<FamilyMemberProxy> councilPalaceMembers = game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies();
@@ -1254,8 +1276,10 @@ public class GuiController implements Initializable {
 		ArrayList<DevelopmentCardProxy> cards = game.getPlayerProxy(colorCurrentPlayer).getPersonalBoardProxy().getCardContainer(towerType).getDevelopmentCardProxies();
 		for (DevelopmentCardProxy developmentCardProxy : cards) {
 			if("it/polimi/ingsw/gui/resources/blank.png".equals(developmentCardProxy.getImagePath())){//find first position to place card in personal board
+				try{
 				developmentCardProxy.setImagePath(developmentCardTaken.getImagePath());
 				developmentCardProxy.setImageProperty(developmentCardTaken.getImagePath());
+				}catch (NullPointerException e) { } //here is thrown an exception without any logic
 				break;
 			}
 		}
@@ -1271,9 +1295,9 @@ public class GuiController implements Initializable {
 		}else if(positionProxy.getZoneProxy() instanceof MarketProxy){
 			game.getBoardProxy().getMarketProxy().getPositionProxies().get(numberOfPosition).getFamilyMemberProxies().get(0).setImageProperty(imagePath);
 		}else if(positionProxy.getZoneProxy() instanceof ProductionProxy){
-			
+			game.getBoardProxy().getProductionProxy().getPositionProxies().get(numberOfPosition).getFamilyMemberProxies().get(0).setImageProperty(imagePath);
 		}else if(positionProxy.getZoneProxy() instanceof HarvestProxy){
-			
+			game.getBoardProxy().getHarvestProxy().getPositionProxies().get(numberOfPosition).getFamilyMemberProxies().get(0).setImageProperty(imagePath);
 		}
 		action1.setDisable(true); //after client has placed a family member, he can't place another one
 	}

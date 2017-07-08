@@ -8,5 +8,8 @@ public class HarvestProxy extends ZoneProxy{
 
 	public HarvestProxy(HarvestArea harvestArea) {
 		super(harvestArea);
+		positionProxies.clear();
+		positionProxies.add(new PositionProxy());
+		positionProxies.add(new PositionProxy());
 	}
 }

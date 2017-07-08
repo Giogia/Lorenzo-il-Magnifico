@@ -6,5 +6,9 @@ public class ProductionProxy extends ZoneProxy{
 
 	public ProductionProxy(ProductionArea productionArea) {
 		super(productionArea);
+		positionProxies.clear();
+		positionProxies.add(new PositionProxy());
+		positionProxies.add(new PositionProxy());
+		
 	}
 }
