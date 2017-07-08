@@ -40,6 +40,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Labeled;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -104,6 +105,48 @@ public class GuiController implements Initializable {
 
     @FXML
     private Label victoryPoints_player2;
+    
+    @FXML
+    private Label servants_player3;
+
+    @FXML
+    private Label stones_player3;
+
+    @FXML
+    private Label wood_player3;
+
+    @FXML
+	private Labeled coins_player3;
+    
+    @FXML
+    private Label faithPoints_player3;
+
+    @FXML
+    private Label militaryPoints_player3;
+
+    @FXML
+    private Label victoryPoints_player3;
+    
+    @FXML
+    private Label servants_player4;
+
+    @FXML
+    private Label stones_player4;
+
+    @FXML
+    private Label wood_player4;
+
+    @FXML
+	private Labeled coins_player4;
+    
+    @FXML
+    private Label faithPoints_player4;
+
+    @FXML
+    private Label militaryPoints_player4;
+
+    @FXML
+    private Label victoryPoints_player4;
     
     @FXML
     private TextField answerChat;
@@ -925,6 +968,27 @@ public class GuiController implements Initializable {
 		faithPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getVal());
 		victoryPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getVal());
 		militaryPoints_player2.textProperty().bind(players.get(1).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
+		
+		if(players.size() > 2){
+			coins_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.coins).getVal());
+			wood_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.wood).getVal());
+			servants_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.servants).getVal());
+			stones_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.stones).getVal());
+			faithPoints_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getVal());
+			victoryPoints_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getVal());
+			militaryPoints_player3.textProperty().bind(players.get(2).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
+		}
+		
+		if(players.size() > 2){
+			coins_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.coins).getVal());
+			wood_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.wood).getVal());
+			servants_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.servants).getVal());
+			stones_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.stones).getVal());
+			faithPoints_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.faithPoints).getVal());
+			victoryPoints_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.victoryPoints).getVal());
+			militaryPoints_player4.textProperty().bind(players.get(3).getPersonalBoardProxy().getResource(ResourceType.militaryPoints).getVal());
+		}
+		
 		
 		//setting cards binding
 		

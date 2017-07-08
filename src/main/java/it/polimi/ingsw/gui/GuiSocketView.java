@@ -52,6 +52,7 @@ public class GuiSocketView extends Application{
 		
 		primaryStage.setTitle("Lorenzo Il Magnifico");
 		primaryStage.setScene(scene);
+		primaryStage.setFullScreen(true);
 		primaryStage.show();
 	}
 	
