@@ -183,7 +183,7 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel("You have " + numberOfServants + " servants. How many of them do you want to use?");
+								controller.setChatLabel("How many servants do you want to use?");
 								controller.disableButtons(true);
 							}
 						});
