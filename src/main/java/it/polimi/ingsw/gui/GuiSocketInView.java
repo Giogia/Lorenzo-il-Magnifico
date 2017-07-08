@@ -38,6 +38,7 @@ public class GuiSocketInView implements Runnable {
 	private static GameProxy game;
 	private GuiController controller;
 	private GuiSocketOutView socketOut;
+	public static boolean keepOn = true;
 	
 	public void setSocketOut(GuiSocketOutView socketOut) {
 		this.socketOut = socketOut;
@@ -57,7 +58,7 @@ public class GuiSocketInView implements Runnable {
 	
 	@Override
 	public void run() {
-		while(true){
+		while(keepOn){
 			// handles input messages coming from the server, just showing them to the user
 			try {
 				ActionSocket action =(ActionSocket) socketIn.readObject();
@@ -307,8 +308,8 @@ public class GuiSocketInView implements Runnable {
 									Thread.sleep(250);
 									socketOut.setToSend("9");
 								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
+									LOGGER.log(Level.SEVERE, e.getMessage(),e);
+									Thread.currentThread().interrupt();
 								}
 							}
 						});

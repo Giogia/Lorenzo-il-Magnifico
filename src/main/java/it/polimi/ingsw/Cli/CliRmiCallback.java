@@ -13,6 +13,7 @@ public class CliRmiCallback implements Runnable{
 	CliRmiView cliRmiView; // the stub of the user
 	
 	private final static Logger LOGGER = Logger.getLogger(CliRmiCallback.class.getName());
+	public static boolean keepOn = true;
 	
 	public CliRmiCallback(ConnectionManagerRmiServer rmiServer, CliRmiView cliRmiView){
 		this.rmiServer = rmiServer;
@@ -21,7 +22,7 @@ public class CliRmiCallback implements Runnable{
 
 	@Override
 	public void run() {
-		while(true){
+		while(keepOn){
 			if(scanner.hasNext()){
 				try {
 					rmiServer.getAnswer(scanner.nextLine(), cliRmiView);

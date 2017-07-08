@@ -15,6 +15,7 @@ public class Server {
 	private final static int SOCKET_PORT = 29999;
 	private final String NAME = "connectionManager";
 	private final static int RMI_PORT = 52365;
+	public static boolean keepOn = true;
 	
 	public Server() throws RemoteException {}
 
@@ -42,7 +43,7 @@ public class Server {
 
 		System.out.println("Server socket ready on port: " + SOCKET_PORT);
 		
-		while (true) {
+		while (keepOn) {
 			//Waits for a new client to connect
 			Socket socket = serverSocket.accept();
 

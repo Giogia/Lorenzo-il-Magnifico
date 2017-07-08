@@ -422,9 +422,11 @@ public class GuiRmiView extends Application implements CliRmi{
 				try {
 					Thread.sleep(250);
 					callback.answer("9");
-				} catch (RemoteException | InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (InterruptedException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
+				} catch (RemoteException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
 				}
 			}
 		});

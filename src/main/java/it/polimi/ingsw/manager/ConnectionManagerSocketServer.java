@@ -21,6 +21,7 @@ public class ConnectionManagerSocketServer implements Runnable {
 	private volatile boolean timeExpired = false;
 	
 	private final static Logger LOGGER = Logger.getLogger(ConnectionManagerSocketServer.class.getName());
+	public static boolean keepOn = true;
 	
 	public ConnectionManagerSocketServer(Scanner socketInClient, ObjectOutputStream socketOutClient) {
 		this.socketInClient = socketInClient;
@@ -29,7 +30,7 @@ public class ConnectionManagerSocketServer implements Runnable {
 	
 	@Override
 	public void run() {
-		while(true){
+		while(keepOn){
 			if(socketInClient.hasNextLine()){
 				if(isRightTurn){
 					stringReceived = socketInClient.nextLine();

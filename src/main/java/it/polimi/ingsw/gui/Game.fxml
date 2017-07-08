@@ -410,7 +410,7 @@
                   <ImageView fx:id="character2" fitHeight="89.0" fitWidth="60.0" layoutX="135.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="venture3" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="125.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="production1" fitHeight="36.0" fitWidth="39.0" layoutX="21.0" layoutY="622.0" onMouseClicked="#productionClk" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="excommunicationTile1" fitHeight="81.0" fitWidth="39.0" layoutX="95.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="excommunicationTile1" fitHeight="84.0" fitWidth="39.0" layoutX="95.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="venturefloor4" fitHeight="40.0" fitWidth="40.0" layoutX="425.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="territory3" fitHeight="92.0" fitWidth="61.0" layoutX="22.0" layoutY="123.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="territory4" fitHeight="89.0" fitWidth="63.0" layoutX="21.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
@@ -435,7 +435,7 @@
                   <ImageView fx:id="buildingfloor2" fitHeight="40.0" fitWidth="40.0" layoutX="310.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="building4" fitHeight="89.0" fitWidth="60.0" layoutX="248.0" layoutY="19.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="market3" fitHeight="36.0" fitWidth="42.0" layoutX="397.0" layoutY="619.0" onMouseClicked="#marketClk" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="excommunicationTile2" fitHeight="76.0" fitWidth="40.0" layoutX="138.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="excommunicationTile2" fitHeight="79.0" fitWidth="40.0" layoutX="138.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="characterfloor4" fitHeight="40.0" fitWidth="40.0" layoutX="200.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="excommunicationTile3" fitHeight="80.0" fitWidth="40.0" layoutX="181.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="venture2" fitHeight="89.0" fitWidth="55.0" layoutX="361.0" layoutY="227.0" onMouseClicked="#towerFloorCkd" pickOnBounds="true" preserveRatio="true" />
