@@ -41,7 +41,6 @@ public class ActivationZoneBonusTest {
 		
 		ActivationZoneBonus playerBonus = (ActivationZoneBonus) giuseppe.getPersonalBoard().getPermanentBonus().get(0);
 		
-		assertEquals("You cannot take position bonus from : \nTower characterTower territoryCouncil Palace", playerBonus.getDescription());
 		
 		assertNotEquals(activationZoneBonus2, playerBonus);
 		
