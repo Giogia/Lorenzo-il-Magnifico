@@ -2,9 +2,13 @@ package it.polimi.ingsw.minigame;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.SocketException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import it.polimi.ingsw.BOARD.Position;
 import it.polimi.ingsw.BOARD.Tower;
@@ -15,12 +19,14 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket;
+import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.ActionSocket.action;
 import it.polimi.ingsw.manager.User;
 
 public class Update {
 	//class which all clients register themself.
 	private List<User> users = new ArrayList<>();
+	private final static Logger LOGGER = Logger.getLogger(Update.class.getName());
 	
 	private static Update instance = new Update();
 	private Update() { } //singleton 
@@ -48,17 +54,24 @@ public class Update {
 
 		for (User observer : users) {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
-					
-				observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy, developmentCardProxy);
-			
+				try{
+					observer.getCliRmi().updateDueTowerFloorOccupied(towerFloorProxy, developmentCardProxy);
+				} catch (ConnectException e) {
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}else{//user is a socket client
-				ActionSocket act = new ActionSocket(action.towerFloorOccupied);
-				act.setTowerFloorProxy(towerFloorProxy);
-				act.setDevelopmentCardProxy(developmentCardProxy);
-				ObjectOutputStream out = observer.getConnectionManagerSocketServer().getSocketOutClient();
-				out.writeObject(act);
-				out.flush();
-				
+				try{
+					ActionSocket act = new ActionSocket(action.towerFloorOccupied);
+					act.setTowerFloorProxy(towerFloorProxy);
+					act.setDevelopmentCardProxy(developmentCardProxy);
+					ObjectOutputStream out = observer.getConnectionManagerSocketServer().getSocketOutClient();
+					out.writeObject(act);
+					out.flush();
+				} catch (SocketException e){
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}
 		}
 	}
@@ -79,17 +92,23 @@ public class Update {
 		
 		for (User observer : users) {
 			if(observer.getConnectionType() == true){ //user is a rmi client	
-					
+				try{	
 				observer.getCliRmi().updateDuePositionOccupied(positionProxy);
-			
+				} catch (ConnectException e){
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}else{//user is a socket client
-				
-				ObjectOutputStream out = observer.getConnectionManagerSocketServer().getSocketOutClient();
-				ActionSocket act = new ActionSocket(action.positionOccupied);
-				act.setPositionProxy(positionProxy);
-				out.writeObject(act);
-				out.flush();
-				
+				try {
+					ObjectOutputStream out = observer.getConnectionManagerSocketServer().getSocketOutClient();
+					ActionSocket act = new ActionSocket(action.positionOccupied);
+					act.setPositionProxy(positionProxy);
+					out.writeObject(act);
+					out.flush();
+				} catch (SocketException e){
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}
 		}
 	}
@@ -103,18 +122,24 @@ public class Update {
 		
 		for (User user : users) {
 			if(user.getConnectionType() == true){ //user is a rmi client	
-				
-				user.getCliRmi().updatePlayerResources(playerColor, res);
-			
+				try{
+					user.getCliRmi().updatePlayerResources(playerColor, res);
+				} catch (ConnectException e){
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}else{//user is a socket client
-				
-				ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
-				ActionSocket act = new ActionSocket(action.updateResources);
-				act.setResourceProxies(res);
-				act.setColor(playerColor);
-				out.writeObject(act);
-				out.flush();
-				
+				try{
+					ObjectOutputStream out = user.getConnectionManagerSocketServer().getSocketOutClient();
+					ActionSocket act = new ActionSocket(action.updateResources);
+					act.setResourceProxies(res);
+					act.setColor(playerColor);
+					out.writeObject(act);
+					out.flush();
+				} catch (SocketException e){
+
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+				}
 			}
 		}
 	}

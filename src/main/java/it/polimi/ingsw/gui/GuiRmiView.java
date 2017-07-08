@@ -156,7 +156,12 @@ public class GuiRmiView extends Application implements CliRmi{
 	
 	@Override
 	public void usernameHasAlreadyChosen() throws RemoteException {
-		//TODO
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Username.fxml"));
+		UsernameWindow usernameWindow = new UsernameWindow(true, loader);//true because it means this is a rmi client
+		loader.setController(usernameWindow);
+		Thread thread = new Thread(usernameWindow);
+		Platform.setImplicitExit(false);
+		Platform.runLater(thread);
 	}
 
 	@Override

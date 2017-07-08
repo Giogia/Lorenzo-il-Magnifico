@@ -192,7 +192,15 @@ public class GuiSocketInView implements Runnable {
 					case showDices:
 					case askForInformation:
 					case showPersonalBoard:
+						break;
+						
+
 					case usernameHasAlreadyChosen:
+						FXMLLoader loaderUsername2 = new FXMLLoader(getClass().getResource("Username.fxml"));
+						UsernameWindow newWindow2 = new UsernameWindow(false, loaderUsername2);//false means this is a socket client
+						loaderUsername2.setController(newWindow2);
+						Thread thread3 = new Thread(newWindow2);
+						Platform.runLater(thread3);
 						break;
 						
 					case hasWon:
