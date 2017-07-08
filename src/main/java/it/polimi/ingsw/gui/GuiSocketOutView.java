@@ -67,18 +67,16 @@ public class GuiSocketOutView implements Runnable {
 		        lastToSend = true;
 			}
 			if (lastToSend){
-				synchronized (this) {
-					synchronized (lock) {
-						while(!serverPass){
-							try {
-								lock.wait();
-							} catch (InterruptedException e) {
-								LOGGER.log(Level.SEVERE, e.getMessage(),e);
-								Thread.currentThread().interrupt();
-							}
+				synchronized (lock) {
+					while(!serverPass){
+						try {
+							lock.wait();
+						} catch (InterruptedException e) {
+							LOGGER.log(Level.SEVERE, e.getMessage(),e);
+							Thread.currentThread().interrupt();
 						}
-					}//received pass from server
-				}
+					}
+				}//received pass from server
 				lastToSend = false;
 			}
 			//Here thread has been notified. It means there is a string to send to server

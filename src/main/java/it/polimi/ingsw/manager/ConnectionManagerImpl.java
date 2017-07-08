@@ -3,6 +3,7 @@ package it.polimi.ingsw.manager;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.net.SocketException;
 import java.rmi.AlreadyBoundException;
@@ -51,7 +52,7 @@ import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.Update;
 
-public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable {
+public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable  {
 	
 	//ConnectionManagerImpl is a singleton called by Manager. It handles connection (Rmi and Socket) with clients
 	//there is a difference between users and players. users contains players and own also socket and rmi stuff.
