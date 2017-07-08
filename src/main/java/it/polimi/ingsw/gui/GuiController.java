@@ -1137,6 +1137,11 @@ public class GuiController implements Initializable {
 			}
 		}
 		
+		//clearing family members in council palace
+		for (FamilyMemberProxy familyMemberProxy : this.game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies()) {
+				familyMemberProxy.setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		}
+		
 		//clearing positions on board
 		for (TowerProxy tower : this.game.getBoardProxy().getTowerProxies()) {
 			for (TowerFloorProxy towerFloorProxy : tower.getTowerFloorProxies()) {
@@ -1196,7 +1201,6 @@ public class GuiController implements Initializable {
 	public void updatePosition(PositionProxy positionProxy) {
 		int numberOfPosition = positionProxy.getNumberOfPosition();
 		String imagePath = positionProxy.getFamilyMemberProxies().get(0).getImagePath();
-		System.out.println(imagePath);
 		
 		if (positionProxy.getZoneProxy() instanceof CouncilPalaceProxy){
 			game.getBoardProxy().getCouncilPalaceProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(numberOfPosition).setImageProperty(imagePath);

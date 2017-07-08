@@ -21,7 +21,7 @@ public class PositionProxy implements Serializable {
 			familyMemberProxies.add(new FamilyMemberProxy(familyMember));
 		}*/
 		if(!position.getFamilyMembers().isEmpty()){
-			familyMemberProxies.add(new FamilyMemberProxy(position.getFamilyMember(0)));
+			familyMemberProxies.add(new FamilyMemberProxy(position.getFamilyMember(position.getFamilyMembers().size() -1)));
 		}else{
 			familyMemberProxies.add(new FamilyMemberProxy());
 		}
