@@ -56,6 +56,7 @@ public class Server {
 			// a new thread handle the connection with the view
 			executor.submit(view);
 		}
+		serverSocket.close();
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException {

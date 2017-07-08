@@ -29,7 +29,8 @@ public class GuiRmiCallback{
 	}
 	
 	public void answer(String answer) throws RemoteException {
-		while(answer.contains("$")){
+		String answerSubstring = answer;
+		while(answerSubstring.contains("$")){
 			synchronized (lock) {
 				while(!serverPass){
 					try {
@@ -41,12 +42,12 @@ public class GuiRmiCallback{
 				}
 			}//received pass from server
 			
-			System.out.println("la stringa da inviare è: " + answer);
-			String toSend = answer.substring(0, answer.indexOf('$'));
+			System.out.println("la stringa da inviare è: " + answerSubstring);
+			String toSend = answerSubstring.substring(0, answerSubstring.indexOf('$'));
 			System.out.println("toSend (primo numero da inviare) vale:" + toSend);
 	        rmiServer.getAnswer(toSend, guiRmiView);
-	        answer = answer.substring(2);
-	        System.out.println("stringa ancora da inviare vale: "+answer);
+	        answerSubstring = answerSubstring.substring(2);
+	        System.out.println("stringa ancora da inviare vale: "+answerSubstring);
 	        serverPass = false; //answer only at a one question end then can't talk
 	        lastToSend = true;
 		}
@@ -63,8 +64,8 @@ public class GuiRmiCallback{
 			}//received pass from server
 			lastToSend = false;
 		}
-		System.out.println("sono uscito dal while e answer vale:" + answer);
+		System.out.println("sono uscito dal while e answer vale:" + answerSubstring);
 		System.out.println(serverPass);
-		rmiServer.getAnswer(answer, guiRmiView);
+		rmiServer.getAnswer(answerSubstring, guiRmiView);
 	}
 }

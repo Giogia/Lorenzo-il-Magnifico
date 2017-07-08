@@ -20,10 +20,11 @@ import it.polimi.ingsw.RESOURCE.Resource;
 public class CliSocketView{
 	private final static String IP= "localhost";
 	private final static int SOCKET_PORT = 29999;
+	private Socket socket;
 		
 	public void startClient() throws UnknownHostException, IOException {
 
-		Socket socket = new Socket(IP, SOCKET_PORT);
+		socket = new Socket(IP, SOCKET_PORT);
 
 		System.out.println("Connection created");
 
@@ -39,5 +40,10 @@ public class CliSocketView{
 	public static void main(String[] args) throws UnknownHostException, IOException{
 		CliSocketView client=new CliSocketView();
 		client.startClient();
+	}
+	
+	public void close() throws IOException{
+		socket.close();
+		Thread.currentThread().interrupt();
 	}
 }

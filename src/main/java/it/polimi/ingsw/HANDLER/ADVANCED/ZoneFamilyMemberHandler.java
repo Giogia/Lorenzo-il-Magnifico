@@ -25,10 +25,11 @@ public class ZoneFamilyMemberHandler{
 	}
 
 	private static PositionFamilyMemberBonus controlBonus(PositionFamilyMemberBonus askedBonus, PermanentBonus permanentBonus) {
+		PositionFamilyMemberBonus rightBonus = askedBonus;
 		if (permanentBonus instanceof PositionFamilyMemberBonus){
-			askedBonus = (PositionFamilyMemberBonus) permanentBonus;
+			rightBonus = (PositionFamilyMemberBonus) permanentBonus;
 		}
-		return askedBonus;
+		return rightBonus;
 	}
 	
 

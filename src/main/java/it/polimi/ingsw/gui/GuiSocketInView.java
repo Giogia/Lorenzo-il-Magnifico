@@ -38,7 +38,7 @@ public class GuiSocketInView implements Runnable {
 	private static GameProxy game;
 	private GuiController controller;
 	private GuiSocketOutView socketOut;
-	public static boolean keepOn = true;
+	public boolean keepOn = true;
 	
 	public void setSocketOut(GuiSocketOutView socketOut) {
 		this.socketOut = socketOut;
@@ -120,6 +120,8 @@ public class GuiSocketInView implements Runnable {
 						break;
 												
 					case turnChoice:
+					case chooseZone:
+					case choosePosition:
 						synchronized (GuiSocketOutView.getLock()) {
 							GuiSocketOutView.setServerPass(true);
 							GuiSocketOutView.getLock().notifyAll();
@@ -134,22 +136,7 @@ public class GuiSocketInView implements Runnable {
 							}
 						});
 						break;
-												
-					case chooseZone:
-						synchronized (GuiSocketOutView.getLock()) {
-							GuiSocketOutView.setServerPass(true);
-							GuiSocketOutView.getLock().notifyAll();
-						}
-						break;
-
-					case choosePosition:
-						synchronized (GuiSocketOutView.getLock()) {
-							GuiSocketOutView.setServerPass(true);
-							GuiSocketOutView.getLock().notifyAll();
-						}
-						break;
-						
-					
+											
 					case askForAlternativeCost:
 						ArrayList<Resource> costDescriptions = action.getCosts();
 						ArrayList<Resource> alternativeCostDescriptions = action.getAlternativeCosts();
@@ -203,6 +190,9 @@ public class GuiSocketInView implements Runnable {
 						break;
 						
 					case showDices:
+					case askForInformation:
+					case showPersonalBoard:
+					case usernameHasAlreadyChosen:
 						break;
 						
 					case hasWon:
@@ -242,13 +232,6 @@ public class GuiSocketInView implements Runnable {
 								controller.setCards(cards);
 							}
 						});
-						break;
-					
-						
-					case askForInformation:
-						break;
-						
-					case showPersonalBoard:
 						break;
 						
 					case cantPassTurn:
@@ -478,9 +461,6 @@ public class GuiSocketInView implements Runnable {
 								controller.setChatLabel(action.getPlayerName() + " has reconnected himself to the game!");
 							}
 						});
-						break;
-						
-					case usernameHasAlreadyChosen:
 						break;
 						
 					case timeExpired:

@@ -29,6 +29,7 @@ public class GuiSocketView extends Application{
 	private static GuiSocketOutView callback;
 	private static Object lock = new Object(); //lock to wait the answer from server with game
 	private final static Logger LOGGER = Logger.getLogger(GuiSocketView.class.getName());
+	private Socket socket;
 	
 	public static GuiSocketOutView getCallback() {
 		return callback;
@@ -69,7 +70,7 @@ public class GuiSocketView extends Application{
 	}
 		
 	public void startClient() throws UnknownHostException, IOException {
-		Socket socket = new Socket(IP, SOCKET_PORT);
+		socket = new Socket(IP, SOCKET_PORT);
 
 		System.out.println("Connection created");
 
@@ -89,6 +90,11 @@ public class GuiSocketView extends Application{
 	public static void main(String[] args) throws RemoteException, NotBoundException, UnknownHostException, IOException {
 		GuiSocketView client = new GuiSocketView();
 		client.startClient();
+	}
+	
+	public void close() throws IOException{
+		socket.close();
+		Thread.currentThread().interrupt();
 	}
 
 }

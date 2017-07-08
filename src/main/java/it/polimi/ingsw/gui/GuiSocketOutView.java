@@ -11,7 +11,7 @@ public class GuiSocketOutView implements Runnable {
 	private PrintWriter socketOut;
 	private final static Logger LOGGER = Logger.getLogger(GuiSocketView.class.getName());
 	public static volatile boolean serverPass = true;
-	public static boolean keepOn = true;
+	public boolean keepOn = true;
 	
 	public static void setServerPass(boolean serverPass) {
 		GuiSocketOutView.serverPass = serverPass;

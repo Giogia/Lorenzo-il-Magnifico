@@ -313,9 +313,9 @@ public class Manager{
 	}
 
 	public static Position askForAction(FamilyMember familyMember, ActionZone zone, Board board) throws IOException, TimeExpiredException {
-		zone = getBoardZone(zone, board);
+		Zone rightZone = getBoardZone(zone, board);
 		Player player = familyMember.getPlayer();
-		Position[] zonePositions = zone.getPositions();
+		Position[] zonePositions = rightZone.getPositions();
 		
 		do{
 			choice = ConnectionManagerImpl.getConnectionManager().chooseActionPosition(player, zonePositions);
@@ -326,15 +326,14 @@ public class Manager{
 	private static ActionZone getBoardZone(ActionZone zone, Board board) {
 		if (zone instanceof Tower){
 			DevelopmentCardType developmentCardType = ((Tower) zone).getDevelopmentCardType();
-			zone = board.getTower(developmentCardType);
+			return board.getTower(developmentCardType);
 		}
 		else if (zone instanceof ProductionArea){
-			zone = board.getProductioArea();
+			return board.getProductioArea();
 		}
 		else{
-			zone = board.getHarvestArea();
+			return board.getHarvestArea();
 		}
-		return zone;
 	}
 
 	

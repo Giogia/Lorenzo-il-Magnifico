@@ -13,7 +13,7 @@ public class CliRmiCallback implements Runnable{
 	CliRmiView cliRmiView; // the stub of the user
 	
 	private final static Logger LOGGER = Logger.getLogger(CliRmiCallback.class.getName());
-	public static boolean keepOn = true;
+	public boolean keepOn = true;
 	
 	public CliRmiCallback(ConnectionManagerRmiServer rmiServer, CliRmiView cliRmiView){
 		this.rmiServer = rmiServer;
