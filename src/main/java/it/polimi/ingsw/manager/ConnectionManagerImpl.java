@@ -600,6 +600,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		//giving to user the new connection!
 		if(userInGame.getConnectionType()==true){ //user in game was a rmi user
 			userInGame.setCliRmi(userReconnected.getCliRmi());
+			userInGame.setConnectionManagerRmiServerImpl(userReconnected.getConnectionManagerRmiServerImpl());
 		}else{//user in game was a socket user
 			userInGame.setConnectionManagerSocketServer(userReconnected.getConnectionManagerSocketServer());
 		}
