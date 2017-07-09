@@ -191,9 +191,9 @@ public class TowerHandler {
 					add(playerResources, neg(chooseCost));
 					return true;
 				}
-				add(playerResources, neg(cost));
-				return true;
 			}
+			add(playerResources, neg(cost));
+			return true;
 		} else if (playerMilitaryPoints.getAmount() >= requirement) {
 			if (checkResources(playerResources2))
 				add(playerResources, neg(alternativeCost));
