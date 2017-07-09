@@ -32,6 +32,8 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class GuiRmiView extends Application implements CliRmi{
@@ -169,8 +171,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("The input must be an integer! Try again!");
 				controller.disableButtons(true);
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("The input must be an integer! Try again!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -180,8 +188,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("Please, wait your turn!");
 				controller.disableButtons(true);
+			
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("Please, wait your turn!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -204,7 +218,13 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.disableButtons(false);//Now player can press button
-				controller.setChatLabel(playerName +" is your turn!");
+	
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText(playerName + " is your turn!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -213,7 +233,6 @@ public class GuiRmiView extends Application implements CliRmi{
 	@Override
 	public void turnChoice() throws RemoteException {
 		synchronized (GuiRmiCallback.getLock()) {
-			System.out.println("sono entrato nel turn choice");
 			GuiRmiCallback.setServerPass(true);
 			GuiRmiCallback.getLock().notifyAll();
 		}
@@ -224,7 +243,12 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("You have already positioned a family member. Choose another action.");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("You have already positioned a family member. Choose another action.");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -333,15 +357,19 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.disableButtons(false);//Now player can press button
-				controller.setChatLabel("You can't pass the turn.");
-				controller.setChatLabel("You have to place at least one family member.");
+			
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("You can't pass the turn. You have to place at least one family member.");
+
+				alert.showAndWait();
 			}
 		});
 	}
 
 	@Override
 	public void roundBegins(GameProxy game) throws RemoteException {
-		System.out.println("round begins!");
 		ArrayList<DevelopmentCardProxy> cards = new ArrayList<>();
 		for(TowerProxy towerProxy : game.getBoardProxy().getTowerProxies()){
 			for (TowerFloorProxy towerFloorProxy : towerProxy.getTowerFloorProxies()){
@@ -349,20 +377,6 @@ public class GuiRmiView extends Application implements CliRmi{
 			}
 		}
 		
-		System.out.println("sono in round begins e il controller:" + controller);
-		synchronized (lock) {
-			while(controller == null){
-				try {
-					System.out.println("vado a dormire");
-					lock.wait();
-					System.out.println("mi sono risvegliato");
-				} catch (InterruptedException e) {
-					LOGGER.log(Level.SEVERE, e.getMessage(),e);
-					Thread.currentThread().interrupt();
-				}
-			}
-		}
-		System.out.println("controller: " + controller);
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -377,8 +391,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel(winner + " has won the game!");
 				controller.disableButtons(true);
+			
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText(winner + " has won the game!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -423,7 +443,14 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.disableButtons(false);
-				controller.setChatLabel(message);
+	
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText(message);
+
+				alert.showAndWait();
+				
 				try {
 					Thread.sleep(250);
 					callback.answer("9");
@@ -461,6 +488,19 @@ public class GuiRmiView extends Application implements CliRmi{
 
 	@Override
 	public void askForPersonalBonusTile(ArrayList<PersonalBonusTile> personalBonusTiles) throws RemoteException {
+		synchronized (lock) {
+			while(controller == null){
+				try {
+					System.out.println("vado a dormire");
+					lock.wait();
+					System.out.println("mi sono risvegliato");
+				} catch (InterruptedException e) {
+					LOGGER.log(Level.SEVERE, e.getMessage(),e);
+					Thread.currentThread().interrupt();
+				}
+			}
+		}
+		
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
@@ -533,8 +573,14 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel("The integer doesn't match any possible choice");
 				controller.disableButtons(true);
+
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("The integer doesn't match any possible choice");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -544,7 +590,12 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel(name + " left the game!");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText(name + " left the game!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -555,7 +606,12 @@ public class GuiRmiView extends Application implements CliRmi{
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				controller.setChatLabel(name + " has reconnected himself to the game!");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText(name + " has reconnected himself to the game!");
+
+				alert.showAndWait();
 			}
 		});
 	}
@@ -566,7 +622,13 @@ public class GuiRmiView extends Application implements CliRmi{
 			@Override
 			public void run() {
 				controller.disableButtons(true);//Now player can't press button
-				controller.setChatLabel("TIME IS EXPIRED!");
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Lorenzo Il Magnifico");
+				alert.setHeaderText(null);
+				alert.setContentText("Time is expired!");
+
+				alert.showAndWait();
 			}
 		});
 	}
