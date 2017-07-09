@@ -1,11 +1,13 @@
 package it.polimi.ingsw.minigame;
 
+import java.io.Serializable;
+
 import it.polimi.ingsw.CARD.LeaderCard;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-public class LeaderCardProxy {
+public class LeaderCardProxy implements Serializable{
 
 	private String imagePath;
 	private ObjectProperty<Image> imageProperty;
