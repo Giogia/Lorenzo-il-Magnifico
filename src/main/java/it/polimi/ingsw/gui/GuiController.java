@@ -1228,6 +1228,15 @@ public class GuiController implements Initializable {
 				familyMemberProxy.setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
 		}
 		
+
+		this.game.getBoardProxy().getHarvestProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		this.game.getBoardProxy().getHarvestProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(0).setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		
+		this.game.getBoardProxy().getProductionProxy().getPositionProxies().get(0).getFamilyMemberProxies().get(0).setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		this.game.getBoardProxy().getProductionProxy().getPositionProxies().get(1).getFamilyMemberProxies().get(0).setImageProperty("it/polimi/ingsw/gui/resources/blank.png");
+		
+		
+		
 		//clearing positions on board
 		for (TowerProxy tower : this.game.getBoardProxy().getTowerProxies()) {
 			for (TowerFloorProxy towerFloorProxy : tower.getTowerFloorProxies()) {
