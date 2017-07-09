@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.manager</OriginalElement>
+  <nodes>
+    <node x="2073.5" y="2255.5">it.polimi.ingsw.manager.ConnectionManagerSocketServer</node>
+    <node x="4217.0" y="1667.5">it.polimi.ingsw.manager.Server</node>
+    <node x="2230.5" y="-26.0">it.polimi.ingsw.manager.ConnectionManager</node>
+    <node x="3203.5" y="1894.0">it.polimi.ingsw.manager.ConnectionManagerRmiServer</node>
+    <node x="3621.5" y="1535.5">it.polimi.ingsw.manager.User</node>
+    <node x="-21.5" y="3389.5">it.polimi.ingsw.manager.Manager</node>
+    <node x="-10.0" y="1639.5">it.polimi.ingsw.manager.ActionSocket</node>
+    <node x="1643.5" y="102.5">it.polimi.ingsw.manager.ConnectionManagerImpl</node>
+    <node x="3113.5" y="2019.5">it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerImpl" target="it.polimi.ingsw.manager.ConnectionManagerSocketServer">
+      <point x="0.0" y="697.5" />
+      <point x="0.0" y="-224.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.Server" target="it.polimi.ingsw.manager.User">
+      <point x="-143.0" y="0.0" />
+      <point x="258.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerImpl" target="it.polimi.ingsw.manager.ActionSocket">
+      <point x="-676.5" y="0.0" />
+      <point x="800.0" y="800.0" />
+      <point x="0.0" y="-840.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerImpl" target="it.polimi.ingsw.manager.ConnectionManager">
+      <point x="0.0" y="-697.5" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl" target="it.polimi.ingsw.manager.ConnectionManagerRmiServer">
+      <point x="0.0" y="-180.5" />
+      <point x="0.0" y="26.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerImpl" target="it.polimi.ingsw.manager.User">
+      <point x="80.0" y="697.5" />
+      <point x="2400.0" y="1760.0" />
+      <point x="-258.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerImpl" target="it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl">
+      <point x="40.0" y="697.5" />
+      <point x="2360.0" y="2200.0" />
+      <point x="-206.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.User" target="it.polimi.ingsw.manager.ConnectionManagerSocketServer">
+      <point x="0.0" y="224.5" />
+      <point x="3880.0" y="2480.0" />
+      <point x="246.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.User" target="it.polimi.ingsw.manager.ConnectionManagerRmiServerImpl">
+      <point x="-40.0" y="224.5" />
+      <point x="3840.0" y="2200.0" />
+      <point x="206.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager.ConnectionManagerSocketServer" target="it.polimi.ingsw.manager.ActionSocket">
+      <point x="-246.5" y="0.0" />
+      <point x="810.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.12560038424591738" x="1306.053537284895" y="1972.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

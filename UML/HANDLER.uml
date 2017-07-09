@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.HANDLER</OriginalElement>
+  <nodes>
+    <node x="1664.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler</node>
+    <node x="371.0" y="2148.0">it.polimi.ingsw.HANDLER.CouncilPalaceHandler</node>
+    <node x="0.0" y="1962.0">it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler</node>
+    <node x="0.0" y="1865.0">it.polimi.ingsw.HANDLER.ProductionAreaHandler</node>
+    <node x="1605.0" y="1962.0">it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler</node>
+    <node x="1081.0" y="2148.0">it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler</node>
+    <node x="1731.0" y="2148.0">it.polimi.ingsw.HANDLER.ServantsHandler</node>
+    <node x="628.0" y="1467.0">it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler</node>
+    <node x="1516.0" y="0.0">it.polimi.ingsw.HANDLER.TowerHandler</node>
+    <node x="0.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.ActivateLeaderCardHandler</node>
+    <node x="1404.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.PersonalBonusTileDraftHandler</node>
+    <node x="707.0" y="1962.0">it.polimi.ingsw.HANDLER.GAME.ActionHandler</node>
+    <node x="2041.0" y="1631.0">it.polimi.ingsw.HANDLER.GAME.StartRoundHandler</node>
+    <node x="2160.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.LeaderCardDraftHandler</node>
+    <node x="0.0" y="2148.0">it.polimi.ingsw.HANDLER.CouncilPrivilegeChoiceHandler</node>
+    <node x="2133.0" y="2148.0">it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler</node>
+    <node x="1435.0" y="2148.0">it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler</node>
+    <node x="0.0" y="0.0">it.polimi.ingsw.HANDLER.GAME.DataFromFile</node>
+    <node x="1252.0" y="1631.0">it.polimi.ingsw.HANDLER.FakeFamilyMemberHandler</node>
+    <node x="726.0" y="2148.0">it.polimi.ingsw.HANDLER.MarketHandler</node>
+    <node x="2107.0" y="1962.0">it.polimi.ingsw.HANDLER.ADVANCED.PermanentResourceBonusHandler</node>
+    <node x="1649.0" y="1631.0">it.polimi.ingsw.HANDLER.GAME.StartGameHandler</node>
+    <node x="1019.0" y="1962.0">it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler</node>
+    <node x="1130.0" y="2268.0">it.polimi.ingsw.HANDLER.ResetFamilyMemberValueHandler</node>
+    <node x="123.25" y="1631.0">it.polimi.ingsw.HANDLER.HarvestProductionAreaHandler</node>
+    <node x="284.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.UseLeaderCardEffectHandler</node>
+    <node x="1327.0" y="1962.0">it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerCostHandler</node>
+    <node x="568.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.DiscardLeaderCardHandler</node>
+    <node x="804.0" y="1631.0">it.polimi.ingsw.HANDLER.GAME.EndGameHandler</node>
+    <node x="1922.0" y="2268.0">it.polimi.ingsw.HANDLER.PassTurnHandler</node>
+    <node x="852.0" y="2268.0">it.polimi.ingsw.HANDLER.ADVANCED.OccupiedTowerCostBonusHandler</node>
+    <node x="367.0" y="1962.0">it.polimi.ingsw.HANDLER.GAME.EndRoundHandler</node>
+    <node x="399.0" y="1865.0">it.polimi.ingsw.HANDLER.HarvestAreaHandler</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler" target="it.polimi.ingsw.HANDLER.GAME.DataFromFile">
+      <point x="0.0" y="-59.5" />
+      <point x="0.0" y="708.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.HANDLER.ProductionAreaHandler" target="it.polimi.ingsw.HANDLER.HarvestProductionAreaHandler">
+      <point x="0.0" y="-26.0" />
+      <point x="189.5" y="1840.0" />
+      <point x="253.75" y="1840.0" />
+      <point x="-130.5" y="92.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.HANDLER.HarvestAreaHandler" target="it.polimi.ingsw.HANDLER.HarvestProductionAreaHandler">
+      <point x="0.0" y="-26.0" />
+      <point x="579.0" y="1840.0" />
+      <point x="514.75" y="1840.0" />
+      <point x="130.5" y="92.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.22350427350427352" x="1218.7361376673039" y="1000.0" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.OrderBonusHandler</node>
+    <node>it.polimi.ingsw.HANDLER.CouncilPalaceHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ProductionAreaHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.CardCostHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ServantsHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.ConfigurationFileHandler</node>
+    <node>it.polimi.ingsw.HANDLER.TowerHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.ActivateLeaderCardHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.PersonalBonusTileDraftHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.ActionHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.StartRoundHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.LeaderCardDraftHandler</node>
+    <node>it.polimi.ingsw.HANDLER.CouncilPrivilegeChoiceHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.DataFromFile</node>
+    <node>it.polimi.ingsw.HANDLER.FakeFamilyMemberHandler</node>
+    <node>it.polimi.ingsw.HANDLER.MarketHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.PermanentResourceBonusHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.StartGameHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ResetFamilyMemberValueHandler</node>
+    <node>it.polimi.ingsw.HANDLER.HarvestProductionAreaHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.UseLeaderCardEffectHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerCostHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.DiscardLeaderCardHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.EndGameHandler</node>
+    <node>it.polimi.ingsw.HANDLER.PassTurnHandler</node>
+    <node>it.polimi.ingsw.HANDLER.ADVANCED.OccupiedTowerCostBonusHandler</node>
+    <node>it.polimi.ingsw.HANDLER.GAME.EndRoundHandler</node>
+    <node>it.polimi.ingsw.HANDLER.HarvestAreaHandler</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

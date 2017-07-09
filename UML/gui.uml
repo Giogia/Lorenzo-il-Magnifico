@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.gui</OriginalElement>
+  <nodes>
+    <node x="2914.5" y="463.5">it.polimi.ingsw.gui.GuiSocketInView</node>
+    <node x="3321.5" y="1336.5">it.polimi.ingsw.gui.UsernameWindow</node>
+    <node x="6062.5" y="419.5">it.polimi.ingsw.gui.ColorWindow</node>
+    <node x="5690.5" y="841.5">it.polimi.ingsw.gui.GuiRmiView</node>
+    <node x="6952.5" y="2125.5">it.polimi.ingsw.gui.GuiRmiCallback</node>
+    <node x="3542.5" y="2147.5">it.polimi.ingsw.gui.NameWindow</node>
+    <node x="7414.5" y="-15.0">it.polimi.ingsw.gui.resources</node>
+    <node x="110.5" y="419.5">it.polimi.ingsw.gui.GuiSocketView</node>
+    <node x="563.5" y="2420.5">it.polimi.ingsw.gui.GuiController</node>
+    <node x="132.5" y="63.5">it.polimi.ingsw.gui.GuiSocketOutView</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.GuiRmiCallback">
+      <point x="589.5" y="40.0" />
+      <point x="7120.0" y="1480.0" />
+      <point x="0.0" y="-114.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiSocketOutView">
+      <point x="0.0" y="-180.5" />
+      <point x="0.0" y="136.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="0.0" y="136.5" />
+      <point x="0.0" y="-2699.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.ColorWindow">
+      <point x="0.0" y="-598.5" />
+      <point x="0.0" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.UsernameWindow">
+      <point x="-589.5" y="0.0" />
+      <point x="158.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.UsernameWindow">
+      <point x="165.5" y="40.0" />
+      <point x="3480.0" y="640.0" />
+      <point x="0.0" y="-103.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.ColorWindow">
+      <point x="165.5" y="0.0" />
+      <point x="-217.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.NameWindow">
+      <point x="40.0" y="136.5" />
+      <point x="3120.0" y="2240.0" />
+      <point x="-137.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.NameWindow">
+      <point x="-589.5" y="40.0" />
+      <point x="3680.0" y="1480.0" />
+      <point x="0.0" y="-92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.GuiSocketOutView">
+      <point x="-40.0" y="-136.5" />
+      <point x="3040.0" y="200.0" />
+      <point x="187.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="0.0" y="180.5" />
+      <point x="320.0" y="5120.0" />
+      <point x="-2516.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiSocketInView">
+      <point x="209.5" y="0.0" />
+      <point x="-165.5" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiCallback" target="it.polimi.ingsw.gui.GuiRmiView">
+      <point x="-167.5" y="0.0" />
+      <point x="6280.0" y="2240.0" />
+      <point x="0.0" y="598.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="-589.5" y="80.0" />
+      <point x="5640.0" y="1520.0" />
+      <point x="5640.0" y="5080.0" />
+      <point x="2516.5" y="-40.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.08978540772532188" x="3128.812619502868" y="2482.5" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.gui.GuiSocketInView</node>
+    <node>it.polimi.ingsw.gui.UsernameWindow</node>
+    <node>it.polimi.ingsw.gui.ColorWindow</node>
+    <node>it.polimi.ingsw.gui.GuiRmiView</node>
+    <node>it.polimi.ingsw.gui.GuiRmiCallback</node>
+    <node>it.polimi.ingsw.gui.NameWindow</node>
+    <node>it.polimi.ingsw.gui.resources</node>
+    <node>it.polimi.ingsw.gui.GuiSocketView</node>
+    <node>it.polimi.ingsw.gui.GuiController</node>
+    <node>it.polimi.ingsw.gui.GuiSocketOutView</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
