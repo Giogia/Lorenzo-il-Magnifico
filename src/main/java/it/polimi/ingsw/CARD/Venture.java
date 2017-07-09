@@ -8,6 +8,7 @@ import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
+//model class for the venture cards
 public class Venture extends DevelopmentCard{
 	public final int militaryPointRequirement; //if = 0 this requirement doesn't exists 
 	public final ArrayList<Resource> cost;

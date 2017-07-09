@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.RESOURCE.Coins;
 
+//model class for the character cards
 public class Character extends DevelopmentCard{
 	public final Coins cost;
 	

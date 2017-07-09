@@ -27,6 +27,7 @@ import it.polimi.ingsw.GC_15.Player.Color;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.ActionSocket;
 
+//this class receive actions from the server and displays all the message for socket cli user
 public class CliSocketInView implements Runnable{
 	private ObjectInputStream socketIn;
 	private PrintWriter socketOut;

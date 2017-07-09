@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
+//abstract class for all the development cards
 public abstract class DevelopmentCard extends Card{
 	public final int period;
 	public final DevelopmentCardType developmentCardType;

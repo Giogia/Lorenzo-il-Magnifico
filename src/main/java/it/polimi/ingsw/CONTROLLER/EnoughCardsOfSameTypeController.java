@@ -5,6 +5,7 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
 public class EnoughCardsOfSameTypeController {
+	
 	//Check if player has enough cards of same type
 	public static boolean check(Player player, int numberOfSameCards) throws MyException{
 		for(CardContainer cardContainer: player.getPersonalBoard().getCardContainers()){

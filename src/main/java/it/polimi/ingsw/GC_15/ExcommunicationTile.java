@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 
+//model class of excommunication tile
 public class ExcommunicationTile implements Serializable{
 	private int id;
 	public final int period;

@@ -40,6 +40,8 @@ import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
+//client class to start rmi connection using cli
+//contains all the methods that display messages to the user using cli
 public class CliRmiView implements CliRmi{
 	static Scanner scanner;
 	private final static int RMI_PORT = 52365;
@@ -316,32 +318,27 @@ public class CliRmiView implements CliRmi{
 
 	@Override
 	public void startGame(GameProxy game) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// method not used in cli
 	}
 
 	@Override
 	public void updateDueTowerFloorOccupied(TowerFloorProxy towerFloorProxy, DevelopmentCardProxy card) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// method not used in cli
 	}
 
 	@Override
 	public void roundBegins(GameProxy game) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// method not used in cli
 	}
 
 	@Override
 	public void updateDuePositionOccupied(PositionProxy positionProxy) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// method not used in cli
 	}
 
 	@Override
 	public void updatePlayerResources(Color playerColor, ArrayList<ResourceProxy> resources) throws RemoteException {
-		// TODO Auto-generated method stub
-		
+		// method not used in cli
 	}
 }
 

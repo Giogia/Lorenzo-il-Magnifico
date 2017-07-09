@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+//window that appears to ask name in gui 
 public class NameWindow implements Runnable{
 	private final static Logger LOGGER = Logger.getLogger(NameWindow.class.getName());
 	private boolean isRmiClient;

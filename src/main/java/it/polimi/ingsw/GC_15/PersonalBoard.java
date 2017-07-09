@@ -16,6 +16,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.RESOURCE.*;
 
+//model class of a player's personal board
 public class PersonalBoard implements Serializable {
 	private PersonalBonusTile personalBonusTile;
 	private boolean[] excommunicationCubes;
@@ -106,7 +107,6 @@ public class PersonalBoard implements Serializable {
 		return permanentBonus;
 	}
 	
-	//ADD methods -> similar to setters
 	public void addPermanentBonus(PermanentBonus bonus){
 		permanentBonus.add(bonus);
 	}
@@ -148,6 +148,7 @@ public class PersonalBoard implements Serializable {
 		return description.toString();
 	}
 	
+	//return the right card container when development card type is given
 	public CardContainer getCardContainer(DevelopmentCardType developmentCardType){
 		for(CardContainer cardContainer: cardContainers){
 			if(cardContainer.getType().equals(developmentCardType)){

@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+//window that appears to ask username in gui 
 public class UsernameWindow implements Runnable{
 	private boolean isRmiClient; //boolean setted or from GuiSocketInView or from GuiSocketInView 
 	private final static Logger LOGGER = Logger.getLogger(UsernameWindow.class.getName());

@@ -36,6 +36,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
+//creates a client with gui 
+//class that opens all the gui windows using gui
 public class GuiRmiView extends Application implements CliRmi{
 	volatile boolean wait = true;
 	private static Object lock = new Object();

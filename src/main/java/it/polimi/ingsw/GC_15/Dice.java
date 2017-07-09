@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_15;
 import java.io.Serializable;
 import java.util.Random;
 
+//model class of a dice
 public class Dice implements Serializable{
 	private int value;
 	private DiceColour diceColour;

@@ -8,7 +8,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 
 public class OccupiedYetBonusController {
 	
-	//check if player has the bonus that allow him to go in a position where is another familyMember yet.
+	//check if player has the bonus that allow him to go in a position where there is already another familyMember.
 	public static boolean check(FamilyMember familyMember){
 		ArrayList<PermanentBonus> playerBonus = familyMember.getPlayer().getPersonalBoard().getPermanentBonus();
 		if (playerBonus != null){

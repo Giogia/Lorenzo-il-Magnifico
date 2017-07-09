@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 
+//class that answer the server when using cli
 public class CliRmiCallback implements Runnable{
 	ConnectionManagerRmiServer rmiServer;
 	Scanner scanner = new  Scanner(System.in);

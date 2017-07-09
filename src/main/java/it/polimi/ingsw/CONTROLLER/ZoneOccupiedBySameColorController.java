@@ -9,15 +9,9 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 
 public class ZoneOccupiedBySameColorController implements Controller{
-	
-	/* Per prima cosa controlla che il familyMember in ingresso non sia di colore neutro, 
-	 * se lo è fine.
-	 * Se non è neutro, controlla con un ciclo tutte le posizioni della zona.
-	 * In ogni posizione controlla, se ci sono familiari, che siano dello stesso player.
-	 * Se sono dello stesso player, controlla che quello nella posizione sia neutro.
-	 * Se non è neutro ritorna falso
-	 * Dopo tutto il ciclo, siamo sicuri che non ci siano familiari dello stesso colore, ritorna vero
-	 */
+
+	//return true if using a colored familymember there aren't any other colored familymembers in a zone
+	//a neutral or fake family member is always fine
 	public static boolean check(Zone zone, FamilyMember familyMember) throws MyException{
 		if (isNeutral(familyMember)){
 			return true;

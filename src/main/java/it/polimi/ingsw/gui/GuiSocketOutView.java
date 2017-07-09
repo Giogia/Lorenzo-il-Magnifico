@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//class that receive input from gui and send to the server as a socket client
 public class GuiSocketOutView implements Runnable {
 	private boolean lastToSend = true;
 	private static volatile Object lock = new Object();

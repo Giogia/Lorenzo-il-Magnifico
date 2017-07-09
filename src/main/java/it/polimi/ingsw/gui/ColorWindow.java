@@ -22,6 +22,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+//window that appears to ask color in gui 
 public class ColorWindow implements Runnable{
 	
 	private final static Logger LOGGER = Logger.getLogger(ColorWindow.class.getName());

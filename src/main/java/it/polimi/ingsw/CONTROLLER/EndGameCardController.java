@@ -8,7 +8,8 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 
 public class EndGameCardController {
-	//check if player can take bonus of end game of that developmentCardType
+	
+	//check if a player can take end game bonus of that developmentCardType
 	public static boolean check(Player player, DevelopmentCardType developmentCardType){
 		ArrayList<PermanentBonus> playerBonus = player.getPersonalBoard().getPermanentBonus();
 		

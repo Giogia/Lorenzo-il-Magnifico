@@ -44,6 +44,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+//controller for every action made by user in gui 
 public class GuiController implements Initializable {
 	private FXMLLoader loader;
 	private GameProxy game;

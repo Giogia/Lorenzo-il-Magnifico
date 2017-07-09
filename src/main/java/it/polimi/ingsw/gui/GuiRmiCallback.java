@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import it.polimi.ingsw.manager.ConnectionManagerRmiServer;
 
+//class that receive input from gui and send to server as a rmi client
 public class GuiRmiCallback{
 	private boolean lastToSend = false;
 	private static volatile Object lock = new Object();

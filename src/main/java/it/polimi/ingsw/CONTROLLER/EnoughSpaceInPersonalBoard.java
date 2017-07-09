@@ -9,7 +9,8 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.MyException;
 
 public class EnoughSpaceInPersonalBoard implements Controller{
-	//check if player can take the development card seeing if he has 5 or less cards of same type 
+	
+	//check if player can take the development card (== has 5 or less cards of same type)
 	public static boolean check(FamilyMember familyMember, DevelopmentCard developmentCard) throws MyException{
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;
 		ArrayList<CardContainer> containers = familyMember.getPlayer().getPersonalBoard().getCardContainers();

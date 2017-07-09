@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.GC_15.Player;
 
-//tell last action to pass turn handler
+//tell last action made to pass turn handler
 
 public class PassTurnController implements Controller, Serializable {
 	private Player lastMove;

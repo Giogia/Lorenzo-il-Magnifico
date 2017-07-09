@@ -18,6 +18,7 @@ import it.polimi.ingsw.HANDLER.GAME.RoundManagerHandler;
 import it.polimi.ingsw.HANDLER.GAME.StartGameHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
+//creates a thread and a complete game
 public class Game implements Serializable, Runnable{
 	private String name;
 	private Player[] players;

@@ -6,7 +6,8 @@ import it.polimi.ingsw.BONUS.ImmediateBonus;
 import java.util.*;
 
 public class IsThereBonusController {	
-	//returns true if in this position arraylist boardBonus is initialized, otherwise returns false
+	
+	//returns true if in this position the arraylist boardBonus is initialized, otherwise returns false
 	public static boolean check(TowerFloor towerFloor){
 		ArrayList<ImmediateBonus> allBonus = towerFloor.getBoardBonus();
 		if(allBonus == null){

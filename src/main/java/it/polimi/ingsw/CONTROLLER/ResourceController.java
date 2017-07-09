@@ -8,12 +8,7 @@ import it.polimi.ingsw.RESOURCE.*;
 
 public class ResourceController {
 	
-	/* Fa un ciclo delle risorse del player per ogni risorsa del costo. 
-	 * ogni volta che le risorse sono dello stesso tipo controlla
-	 * Se le risorse del player al netto del valore dell'unità sono minori dell'amount del cost
-	 * ritorna false
-	 * Dopo che controlla tutte le risorse, ritorna true
-	 */
+	//return true if all the player's resource are greater than the resources in the arraylist
 	public static boolean check(Player player, ArrayList<Resource> cost) throws MyException{
 		ArrayList<Resource> resources = player.getPersonalBoard().getResources();
 		for (Resource playerResource : resources) {

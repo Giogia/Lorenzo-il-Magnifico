@@ -31,7 +31,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-
+//class that opens all the gui windows using socket 
 public class GuiSocketInView implements Runnable {
 
 	private static Object lock = new Object();

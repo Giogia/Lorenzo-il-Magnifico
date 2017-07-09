@@ -21,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+//creates a client using gui
 public class GuiSocketView extends Application{
 	static boolean wait = true;
 	private final static String IP= "localhost";

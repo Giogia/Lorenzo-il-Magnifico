@@ -9,6 +9,7 @@ import it.polimi.ingsw.HANDLER.ResourcePerMissedExcommunicationHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.Manager;
 
+//model class for vatican report and excommunication handling
 public final class VaticanReport {
 	private static VaticanReport instance;
 	
@@ -27,7 +28,8 @@ public final class VaticanReport {
 	}
 	
 	
-	
+	//ask users for excommunication if they have enough faith points
+	//get them the expected bonus depending on the choice
 	public static void checkPlayersFaith(int period, Board board) throws IOException {
 		Player[] players = board.getPlayers();
 		ExcommunicationTile excommunicationTile = board.getExcommunicationTiles()[period-1];
@@ -58,6 +60,7 @@ public final class VaticanReport {
 		}
 	}
 	
+	//return true if a player has enough faith points not to be excommunicated
 	private static boolean checkFaithPoints(Player player, int period){
 		int minimumFaithPoints = player.getBoard().getGame().getData().getMinimumFaithPoints(period); 
 		int playerFaithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();

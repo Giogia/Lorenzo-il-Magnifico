@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 
+//model class for territory cards
 public class Territory extends DevelopmentCard {
 	int activationConditionHarvest;
 	

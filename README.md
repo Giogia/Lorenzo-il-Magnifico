@@ -81,9 +81,9 @@ They all have a main method called handle.
 Any of the game handlers represent a game's stage and invoke appropriate normal handlers in the right order.
 (package it.polimi.ingsw.HANDLER.GAME)
 
-The gap between handlers is filled by the manager, the class at the top of the model's hierarchical structure.
-The manager links the game stages and supply the primary execution skeleton.
-(package it.polimi.ingsw.manager)
+The gap between handlers is filled by the Game, the class at the top of the model's hierarchical structure.
+The Game links the game stages and supply the primary execution skeleton.
+(package it.polimi.ingsw.GC_15)
 
 #TESTS
 The project provide jUnit tests on model classes.

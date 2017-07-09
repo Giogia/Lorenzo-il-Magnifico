@@ -3,6 +3,7 @@ package it.polimi.ingsw.GC_15;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+//model class for players order during a round
 public class RoundOrder implements Serializable {
 	private ArrayList<Player> players;
 	

@@ -17,6 +17,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.PersonalBoard;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//client class to start socket connection using cli
 public class CliSocketView{
 	private final static String IP= "localhost";
 	private final static int SOCKET_PORT = 29999;

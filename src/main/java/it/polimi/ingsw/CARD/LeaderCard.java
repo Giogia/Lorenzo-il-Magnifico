@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import it.polimi.ingsw.BONUS.Bonus;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//model class for all the leader cards in the game
 public abstract class LeaderCard extends Card {
 	
 	public final ArrayList<Resource> resourceActivationCondition;

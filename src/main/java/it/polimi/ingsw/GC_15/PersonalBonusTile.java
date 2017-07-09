@@ -7,6 +7,7 @@ import it.polimi.ingsw.BOARD.ProductionArea;
 import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 
+//model class of personal bonus tiles
 public class PersonalBonusTile implements Serializable {
 	private final ImmediateBonus harvestBonus;
 	private final ImmediateBonus productionBonus;

@@ -56,10 +56,10 @@ public class Player implements Serializable{
 	}
 	
 	public void discardLeaderCard(LeaderCard leaderCard){
-		//trovo la posizione dove si trova la leaderCard
+		//find the right leaderCard in hand
 		for(int i=0; i < leaderCardInHand.size(); i++){
 			if (leaderCardInHand.get(i).equals(leaderCard)){
-				//rimuovo la leaderCard dall'ArrayList
+				//remove leaderCard from arrayList
 				leaderCardInHand.remove(i);
 			}
 		}
@@ -88,9 +88,7 @@ public class Player implements Serializable{
 	}
 	
 	public void useServants(int servantsNumber, FamilyMember familyMember){
-		//decremento il valore dei serventi di - value
 		personalBoard.getResource(ResourceType.servants).addAmount(-servantsNumber);
-		//aumento il valore dei servernti di value
 		familyMember.addValue(servantsNumber);
 	}
 	
@@ -107,11 +105,11 @@ public class Player implements Serializable{
 	}
 	
 	public void choosePrivilegeCouncil(CouncilPrivilegeBonus councilPrivilegeBonus) throws IOException, MyException, TimeExpiredException{
-		//trovo l'indice nell'arrayList dove vi sono le monete
+		//find coins in arraylist
 		int index= personalBoard.getResources().lastIndexOf(new Coins(0,1));
-		//do al player una moneta
+		//give a coin to the player
 		personalBoard.getResources().get(index).addvalue(1);
-		//TODO: do il councilPrivilegeBonus
+		//give councilPrivilegeBonus
 		councilPrivilegeBonus.getImmediateBonus(this);
 	}
 	
@@ -123,14 +121,6 @@ public class Player implements Serializable{
 			}
 		}
 		return null;
-	}
-	
-	public void chooseCard(DevelopmentCard developmentCard) {
-		//TODO PERMANENT
-	}
-	
-	public void chooseCardToCopy(){
-		//TODO PERMANENT
 	}
 	
 	public ArrayList<FamilyMember> getFamilyMembers() {

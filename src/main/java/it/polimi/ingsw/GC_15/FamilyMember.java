@@ -2,6 +2,7 @@ package it.polimi.ingsw.GC_15;
 
 import java.io.Serializable;
 
+//model class of a player's family member
 public class FamilyMember implements Serializable {
 	private Dice dice;
 	private Player player;
