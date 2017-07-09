@@ -28,6 +28,8 @@ import it.polimi.ingsw.minigame.TowerFloorProxy;
 import it.polimi.ingsw.minigame.TowerProxy;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 
 public class GuiSocketInView implements Runnable {
@@ -114,7 +116,13 @@ public class GuiSocketInView implements Runnable {
 							@Override
 							public void run() {
 								controller.disableButtons(false);//Now player can press button
-								controller.setChatLabel(playerName +" is your turn!");
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText(playerName + " is your turn!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -132,7 +140,12 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel("You have already positioned a family member. Choose another action.");
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("You have already positioned a family member. Choose another action.");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -208,8 +221,14 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel(winner + " has won the game!");
 								controller.disableButtons(true);
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText(winner + " has won the game!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -247,8 +266,13 @@ public class GuiSocketInView implements Runnable {
 							@Override
 							public void run() {
 								controller.disableButtons(false);//Now player can press button
-								controller.setChatLabel("You can't pass the turn.");
-								controller.setChatLabel("You have to place at least one family member.");
+
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("You can't pass the turn. You have to place at least one family member.");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -294,7 +318,13 @@ public class GuiSocketInView implements Runnable {
 							@Override
 							public void run() {
 								controller.disableButtons(false);
-								controller.setChatLabel(message);
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText(message);
+
+								alert.showAndWait();
 								try {
 									Thread.sleep(250);
 									socketOut.setToSend("9");
@@ -345,6 +375,18 @@ public class GuiSocketInView implements Runnable {
 						
 												
 					case askForPersonalBonusTile:
+						synchronized (lock) {
+							while(controller == null){
+								try {
+									System.out.println("vado a dormire");
+									lock.wait();
+									System.out.println("mi sono risvegliato");
+								} catch (InterruptedException e) {
+									LOGGER.log(Level.SEVERE, e.getMessage(),e);
+									Thread.currentThread().interrupt();
+								}
+							}
+						}
 						ArrayList<PersonalBonusTile> personalBonusTiles = action.getPersonalBonusTiles();
 						Platform.runLater(new Runnable() {
 							@Override
@@ -427,8 +469,14 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel("Please, wait your turn!");
 								controller.disableButtons(true);
+
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("Please, wait your turn!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -437,8 +485,14 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel("The input must be an integer! Try again!");
 								controller.disableButtons(true);
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("The input must be an integer! Try again!");
+
+								alert.showAndWait();
 							}
 						});
 						break;						
@@ -447,8 +501,14 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel("The integer doesn't match any possible choice");
 								controller.disableButtons(true);
+								
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("The integer doesn't match any possible choice");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -457,7 +517,12 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel(action.getPlayerName() + " left the game!");
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText(action.getPlayerName() + " left the game!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -466,7 +531,12 @@ public class GuiSocketInView implements Runnable {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
-								controller.setChatLabel(action.getPlayerName() + " has reconnected himself to the game!");
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText(action.getPlayerName() + " has reconnected himself to the game!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
@@ -476,7 +546,13 @@ public class GuiSocketInView implements Runnable {
 							@Override
 							public void run() {
 								controller.disableButtons(true);//Now player can't press button
-								controller.setChatLabel("TIME IS EXPIRED!");
+
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setTitle("Lorenzo Il Magnifico");
+								alert.setHeaderText(null);
+								alert.setContentText("Time is expired!");
+
+								alert.showAndWait();
 							}
 						});
 						break;
