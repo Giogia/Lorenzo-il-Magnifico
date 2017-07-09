@@ -8,6 +8,7 @@ import java.util.Set;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus sets the development card types a player can not take the bonus from at the end of the game
 public class EndGameCardBonus extends PermanentBonus {
 	private HashMap<DevelopmentCardType, Boolean> developmentCardTypes;
 	//If a developmentCardType is false you can't have the endGame bonus for that cardType

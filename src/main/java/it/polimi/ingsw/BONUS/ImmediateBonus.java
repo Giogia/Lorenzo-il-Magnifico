@@ -7,6 +7,7 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 
+//abstract class for every bonus that have only an immediate effect on the game
 public abstract class ImmediateBonus extends Bonus {
 	private String type; 
 	

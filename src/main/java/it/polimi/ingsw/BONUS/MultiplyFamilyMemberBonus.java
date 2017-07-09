@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 
+//this bonus multiplies the value of the family member
 public class MultiplyFamilyMemberBonus extends FamilyMemberBonus {
 
 	public MultiplyFamilyMemberBonus(ArrayList<FamilyMember> familyMembers) {

@@ -7,7 +7,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.CONTROLLER.PassTurnController;
 import it.polimi.ingsw.GC_15.*;
 
-
+//model class of the game Board
 public class Board implements Serializable{
 
 	private Tower[] towers;
@@ -91,7 +91,7 @@ public class Board implements Serializable{
 	}
 	
 	
-	//toglie tutti i  family member in ogni zona della board
+	//clear every family member positioned during a round
 	public void resetPositions() {
 		for(Tower tower : this.towers){
 		tower.deleteAllFamilyMember();

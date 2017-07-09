@@ -13,6 +13,7 @@ import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.FakeFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus lets the player take another card on the board
 public class ActionBonus extends ImmediateBonus {
 	private HashMap<ActionZone, Integer> action;
 	private ArrayList<Resource> resources;

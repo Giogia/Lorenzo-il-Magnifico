@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 
+//mpdel class for every position in the game board
 public class Position implements Serializable{
 	protected ArrayList<FamilyMember> familyMembers;
 	protected ArrayList<ImmediateBonus> boardBonus;

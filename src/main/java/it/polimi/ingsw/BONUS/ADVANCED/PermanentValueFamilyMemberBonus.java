@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.FamilyMemberValueBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus sets the value of a player's family member until the end of the game
 public class PermanentValueFamilyMemberBonus extends PermanentFamilyMemberBonus {
 
 	public PermanentValueFamilyMemberBonus(ArrayList<FamilyMember> familyMembers) {

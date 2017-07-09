@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this method increases of an additional amount a player's resource every time is taken
 public class PermanentAddResourceBonus extends PermanentResourceBonus {
 
 	public PermanentAddResourceBonus(ArrayList<Resource> resources) {

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.GC_15.Game;
 
+//model class of the market
 public class Market extends Zone{
 
 	public Market(Board board){

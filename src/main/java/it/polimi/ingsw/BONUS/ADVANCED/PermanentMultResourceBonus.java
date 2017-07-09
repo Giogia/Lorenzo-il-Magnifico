@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus multiplies of a certain factor a resource every time is taken by a player
 public class PermanentMultResourceBonus extends PermanentResourceBonus {
 
 	public PermanentMultResourceBonus(ArrayList<Resource> resources) {

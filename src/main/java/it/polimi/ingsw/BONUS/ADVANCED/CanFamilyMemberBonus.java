@@ -13,14 +13,14 @@ import it.polimi.ingsw.BOARD.Zone;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus have multiple purposes:
+//sets the ability of a player to go in a already occupied position
+//sets the disability of a player to not be allowed to go on certain positions
 public class CanFamilyMemberBonus extends PermanentBonus{
-	//usato in differenti casi:
-	//o per vedere se il player ha un bonus che gli permette di andare in un posto già occupato (e quindi si usa occupiedYet)
-	//o quando bisogna controllare se ha una scomunica che non gli permette di andare in un posto (si usa l'HashMap)
 	
-	//di default false: se è occupato il familyMember non può andarci
+	//false by default, if true a player can go in already occupied positions
 	private boolean occupiedYet;
-	//particolare scomunica: di default true
+	//true by default, if fals a player is not allowes to go on that position
 	private HashMap<Zone, Boolean> canGoTo;
 	
 	public CanFamilyMemberBonus(boolean occupiedYet, HashMap<Zone, Boolean> canGoTo) {

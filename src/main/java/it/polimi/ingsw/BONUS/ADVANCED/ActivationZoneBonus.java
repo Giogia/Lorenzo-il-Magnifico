@@ -8,8 +8,9 @@ import it.polimi.ingsw.BOARD.Tower;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus sets the positions in which a player cannot take bonus from
 public class ActivationZoneBonus extends PermanentBonus {
-	// If some of this boolean are false you cannot take bonus from position
+	// If some of this boolean are false you cannot take bonus from that position
 	private HashMap<Tower, Boolean> towers;
 	private boolean councilPalace;
 	

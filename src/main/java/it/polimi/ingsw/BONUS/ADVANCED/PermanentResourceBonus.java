@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.ResourceBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//abstract class for every bonus that modifies a resource every time is taken by a certain player
 public abstract class PermanentResourceBonus extends PermanentBonus {
 	protected ArrayList<Resource> resources;
 	private String subsubtype;

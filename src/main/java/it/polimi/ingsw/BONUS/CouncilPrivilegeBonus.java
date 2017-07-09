@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.CouncilPrivilegeChoiceHandler;
 
+//this bonus lets you choose a resource bonus in council privilege 
 public class CouncilPrivilegeBonus extends ImmediateBonus{
 	private int differentCouncilPrivilege;
 	

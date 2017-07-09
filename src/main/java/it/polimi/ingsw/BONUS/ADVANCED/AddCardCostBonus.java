@@ -7,6 +7,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus increases for a player the resources needed to take a card
 public class AddCardCostBonus extends CardCostBonus{
 
 	public AddCardCostBonus(DevelopmentCardType cardType, ArrayList<Resource> resources) {

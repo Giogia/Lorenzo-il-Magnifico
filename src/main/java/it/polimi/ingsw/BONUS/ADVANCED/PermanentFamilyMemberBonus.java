@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//abstract class for every bonus that modifies a player's family member until the end of the game
 public abstract class PermanentFamilyMemberBonus extends PermanentBonus {
 	protected ArrayList<FamilyMember> familyMembers;
 	private String subsubtype;

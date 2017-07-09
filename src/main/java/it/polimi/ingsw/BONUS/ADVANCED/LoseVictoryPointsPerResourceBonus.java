@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus decreases a player's victory points for every specifi amount of specific resources owned
 public class LoseVictoryPointsPerResourceBonus extends PermanentBonus {
 	private ArrayList<Resource> resources;
 

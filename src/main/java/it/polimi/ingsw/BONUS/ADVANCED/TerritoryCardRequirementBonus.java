@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus sets the ability of a player to own territories without military points amount requirement
 public class TerritoryCardRequirementBonus extends PermanentBonus{
 	private boolean needRequirement; //If false don't need Military Points to activate a territory card
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus modifies the penalty cost of occupied tower for a player
 public class OccupiedTowerCostBonus extends PermanentBonus {
 	private int addOccupiedCost;
 	private int multOccupiedCost;

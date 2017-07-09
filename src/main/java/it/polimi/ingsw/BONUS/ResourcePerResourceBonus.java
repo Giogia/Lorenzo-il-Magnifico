@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus increases a player's resource for every amount of a certain resource owned
 public class ResourcePerResourceBonus extends AddResourceBonus{
 	Resource requirement;
 	

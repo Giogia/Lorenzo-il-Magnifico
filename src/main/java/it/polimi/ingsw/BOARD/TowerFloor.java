@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+//model class of towers' positions
 public class TowerFloor extends Position {
 	
 	
@@ -34,13 +35,15 @@ public class TowerFloor extends Position {
 		this.developmentCard = developmentCard;
 	}
 	
+	
+	//this method add the family member, give the card and the bonuses of the position
 	@Override
 	public void addFamilyMember(FamilyMember newFamilyMember) throws MyException, IOException, TimeExpiredException{
 		
-		super.addFamilyMember(newFamilyMember); //aggiunge il familiare all'arraylist di position
+		super.addFamilyMember(newFamilyMember); //add family member to arraylist of positions
 		
-		Player cardPlayer = newFamilyMember.getPlayer(); //variabile temp del giocatore associato al familymember
-		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //aggiunge la carta alla personal board del player
+		Player cardPlayer = newFamilyMember.getPlayer(); //temp variable of the family member's player
+		cardPlayer.getPersonalBoard().putDevelopmentCard(this.developmentCard); //add the card to the player's personal board
 		ArrayList<ImmediateBonus> cardImmediateBonus = developmentCard.immediateEffect;
 		ArrayList<Bonus> secondaryEffect = developmentCard.secondaryEffect;
 		DevelopmentCardType developmentCardType = developmentCard.developmentCardType;

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+
+//this bonus gives a player a certain amount of a certain resource when he misses an excommunication
 public class ResourcePerMissedExcommunicationBonus extends PermanentResourceBonus {
 
 	public ResourcePerMissedExcommunicationBonus(ArrayList<Resource> resources) {

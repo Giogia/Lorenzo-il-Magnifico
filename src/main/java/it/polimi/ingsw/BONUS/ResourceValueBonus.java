@@ -8,6 +8,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus modifies the value of the unit of a player's resource
 public class ResourceValueBonus extends PermanentResourceBonus{
 
 	public ResourceValueBonus(ArrayList<Resource> resources) {

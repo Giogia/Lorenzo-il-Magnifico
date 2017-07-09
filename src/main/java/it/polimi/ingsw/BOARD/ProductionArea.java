@@ -2,6 +2,7 @@ package it.polimi.ingsw.BOARD;
 
 import it.polimi.ingsw.GC_15.Game;
 
+//model class of the production area
 public class ProductionArea extends ActionZone{
 	
 	public ProductionArea(Board board){

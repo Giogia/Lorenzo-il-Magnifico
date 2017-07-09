@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import it.polimi.ingsw.GC_15.Game;
 
+//model abstract class for every zone of the game board
 public abstract class Zone implements Serializable{
 	private Board board;
 	protected Position[] positions;

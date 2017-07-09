@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus makes a player skip a certain action and let it to be done at the end of the round
 public class OrderBonus extends PermanentBonus{
 	private boolean[] skipAction = new boolean[4];
 	

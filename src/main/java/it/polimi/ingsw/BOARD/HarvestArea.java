@@ -2,6 +2,7 @@ package it.polimi.ingsw.BOARD;
 
 import it.polimi.ingsw.GC_15.Game;
 
+//model class of the harvest area
 public class HarvestArea extends ActionZone {
 	
 	public HarvestArea(Board board){

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus increases the amount of a player's resource
 public class AddResourceBonus extends ResourceBonus {
 	
 	public AddResourceBonus(ArrayList<Resource> resources) {

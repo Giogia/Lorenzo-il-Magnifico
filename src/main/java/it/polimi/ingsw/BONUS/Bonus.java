@@ -2,6 +2,7 @@ package it.polimi.ingsw.BONUS;
 
 import java.io.Serializable;
 
+//abstract class for every bonus in the game
 public abstract class Bonus implements Serializable {
 	private String type1;
 	

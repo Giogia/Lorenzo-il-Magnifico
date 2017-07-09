@@ -15,10 +15,11 @@ import it.polimi.ingsw.GC_15.Game;
 import it.polimi.ingsw.GC_15.MyException;
 import it.polimi.ingsw.GC_15.Player;
 
+//this bonus increase the value of a player's family member every time is positioned in a certain zone
 public class PositionFamilyMemberBonus extends PermanentBonus{
 	private HashMap<ActionZone, Integer> positionBonus;
 	
-	//If you go in some of this ActionZone your FamilyMember gain a value
+	//If you go in one of these ActionZones your FamilyMember gain a value
 	public PositionFamilyMemberBonus(HashMap<ActionZone, Integer> positionBonus){
 		super("PositionFamilyMemberBonus");
 		this.positionBonus = new HashMap<>();

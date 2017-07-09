@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
+//abstract class for every bonus that modify a family member
 public abstract class FamilyMemberBonus extends ImmediateBonus{
 	protected ArrayList<FamilyMember> familyMembers;
 	private String subtype;

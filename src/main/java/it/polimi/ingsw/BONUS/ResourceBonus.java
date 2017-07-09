@@ -6,6 +6,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.PermanentResourceBonusHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//abstract class for every bonus that modfy a player's resource
 public abstract class ResourceBonus extends ImmediateBonus {
 	protected ArrayList<Resource> resources;	
 	private String subtype;
@@ -41,7 +42,7 @@ public abstract class ResourceBonus extends ImmediateBonus {
 			
 		}
 	}
-	// confronta la classe
+
 	protected boolean compareClass(Resource resource1, Resource resource2){
 		return(resource1.getClass().equals(resource2.getClass()));
 	}

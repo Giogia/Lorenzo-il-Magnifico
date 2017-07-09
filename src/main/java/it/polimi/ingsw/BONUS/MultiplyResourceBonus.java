@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus multiplies the amount of a player's resource
 public class MultiplyResourceBonus extends ResourceBonus {
 		
 		
@@ -11,7 +12,6 @@ public class MultiplyResourceBonus extends ResourceBonus {
 		super("multiplyResourceBonus", resources);
 	}
 
-		//moltiplica il valore
 		@Override
 		protected void modify(Resource resource1, Resource resource2) {
 			resource1.multAmount(resource2.getAmount());	

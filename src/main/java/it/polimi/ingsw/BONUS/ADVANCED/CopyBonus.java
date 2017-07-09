@@ -15,6 +15,7 @@ import it.polimi.ingsw.manager.ConnectionManager;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
 
+//specific bonus of Lorenzo il magnifico leader card
 public class CopyBonus extends ImmediateBonus{
 	
 	

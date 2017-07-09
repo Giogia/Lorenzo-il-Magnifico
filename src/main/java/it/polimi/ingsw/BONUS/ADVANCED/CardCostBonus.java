@@ -7,6 +7,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//abstract class for every bonus that modify the cost of a development card
 public abstract class CardCostBonus extends PermanentBonus {
 	protected DevelopmentCardType cardType;
 	protected ArrayList<Resource> resources;

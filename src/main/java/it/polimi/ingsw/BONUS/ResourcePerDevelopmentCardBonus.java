@@ -7,6 +7,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus increases a player's resource for every card of a certain typer owned
 public class ResourcePerDevelopmentCardBonus extends AddResourceBonus {
 	private DevelopmentCardType developmentCardType;
 	

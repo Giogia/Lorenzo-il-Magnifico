@@ -7,6 +7,7 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus multiplies the cost of a certain development card cost by a specific factor
 public class MultiplyCardCostBonus extends CardCostBonus{
 
 	public MultiplyCardCostBonus(DevelopmentCardType cardType, ArrayList<Resource> resources) {

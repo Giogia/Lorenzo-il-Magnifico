@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import it.polimi.ingsw.GC_15.FamilyMember;
 
+//this bonus sets the value of a family member to a specific number
 public class FamilyMemberValueBonus extends FamilyMemberBonus{
 
 	public FamilyMemberValueBonus(ArrayList<FamilyMember> familyMembers) {

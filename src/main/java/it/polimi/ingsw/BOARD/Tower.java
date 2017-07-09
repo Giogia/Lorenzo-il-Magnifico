@@ -6,6 +6,7 @@ import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Game;
 
+//model class of a single tower
 public class Tower extends ActionZone{
 	private DevelopmentCardType developmentCardType;
 	
@@ -34,7 +35,7 @@ public class Tower extends ActionZone{
 	}
 	
 	@Override
-	//PAY ATTENTION: this method returns an array of Position and not TowerFloor!!
+	//PAY ATTENTION: this method returns an array of Positions and not TowerFloors!!
 	public Position[] getPositions() {
 		return  positions;
 	}

@@ -6,6 +6,8 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//this bonus decreases a player's victory points with a certain proportion with the resources specified.
+//It's activated every time he choose a card whose cost contains those resources.
 public class LoseVictoryPointsPerCostBonus extends PermanentBonus {
 	private DevelopmentCardType developmentCardType;
 	private ArrayList<Resource> resources;

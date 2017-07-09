@@ -7,6 +7,7 @@ import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//model class for building cards
 public class Building extends DevelopmentCard{
 	public final int activationConditionProduction;
 	public final ArrayList<Resource> costs;
