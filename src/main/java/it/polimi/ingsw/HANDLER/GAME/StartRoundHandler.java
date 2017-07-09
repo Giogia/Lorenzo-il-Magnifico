@@ -19,6 +19,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.HANDLER.ADVANCED.PermanentFamilyMemberBonusHandler;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
+//starts a new round
 public class StartRoundHandler {
 	private static StartRoundHandler instance;
 	// Singleton Class

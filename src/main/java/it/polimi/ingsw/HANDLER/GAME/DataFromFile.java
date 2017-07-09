@@ -10,7 +10,7 @@ import it.polimi.ingsw.CARD.Character;
 import it.polimi.ingsw.GC_15.ExcommunicationTile;
 import it.polimi.ingsw.GC_15.PersonalBonusTile;
 
-//classe contenitrice di tutti i dati che vengono caricati ad inizio gioco da file
+//contains all the data uploaded from json file in a game
 public class DataFromFile implements Serializable{
 	private ArrayList<Territory> territories;
 	private ArrayList<Character> characters;
@@ -19,15 +19,15 @@ public class DataFromFile implements Serializable{
 	private ArrayList<ExcommunicationTile> excommunicationTiles;
 	private ArrayList<PersonalBonusTile> personalBonusTiles;
 	private ArrayList<ResourceBonus> councilPrivileges;
-	private int[] fromFaithPointsToVictoryPoints; //tracciato punti fede
+	private int[] fromFaithPointsToVictoryPoints; //faith point track
 	//in first position: tot victoryPoints to first player, second position tot to second player and so on
 	private  int[] fromMilitaryPointsToVictoryPoints;  
-	//punti vittoria in base al numero di carte di un certo tipo
+	//victory points based on number of cards owned 
 	private  int[] victoryPointsForTerritoryCard;
 	private  int[] victoryPointsForCharacterCard;
 	//military points requirement for territory card
 	private  int[] militaryRequirement;
-	//posti azione
+	//action places
 	private ArrayList<ArrayList<ImmediateBonus>> towerTerritoryPositionBonus;//to 0 position there is bonus of floor 0 
 	private ArrayList<ArrayList<ImmediateBonus>> towerCharacterPositionBonus;
 	private ArrayList<ArrayList<ImmediateBonus>> towerBuildingPositionBonus;
@@ -37,8 +37,8 @@ public class DataFromFile implements Serializable{
 	private int[] harvestAreaPositionBonus;
 	private int[] productionAreaPositionBonus;
 	private ArrayList<LeaderCard> leaderCards;
-	private int timerBeforeStartGame;//timeout prima dell'avvio della partita dopo che si raggiunge il minimo numero di giocatori
-	private int timerTurn;//timeout per la mossa di un giocatore
+	private int timerBeforeStartGame;//timeout once minimum amount of user is reached before starting the game
+	private int timerTurn;//timeout for the user to make an action
 	
 	
 	
@@ -324,9 +324,7 @@ public class DataFromFile implements Serializable{
 			return getTowerBuildingPositionBonus();
 		}
 	}
-
-
-	//TODO Si dovrebbe rendere configurabile
+	
 	public int getMinimumFaithPoints(int period) {
 		return period + 2;
 	} 

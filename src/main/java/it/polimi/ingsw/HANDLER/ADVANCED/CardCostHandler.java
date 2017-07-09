@@ -10,8 +10,8 @@ import it.polimi.ingsw.CARD.DevelopmentCardType;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//sets the bonus that modifies permanently the cost of some cards for a player
 public class CardCostHandler {
-	
 	
 	public static void handle(ArrayList<Resource> cost, Player player, DevelopmentCardType developmentCardType){
 		if (!cost.isEmpty()){
@@ -52,6 +52,7 @@ public class CardCostHandler {
 		}
 	}
 
+	
 	private static CardCostBonus[] controlBonus(CardCostBonus[] cardCostBonus, PermanentBonus permanentBonus,
 			DevelopmentCardType developmentCardType) {
 		if (permanentBonus instanceof AddCardCostBonus){

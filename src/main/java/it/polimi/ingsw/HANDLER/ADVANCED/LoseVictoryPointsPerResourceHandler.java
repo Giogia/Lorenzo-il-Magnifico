@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
+//sets the bonus that makes a player lose victory point for a certain amount of resource owned
 public class LoseVictoryPointsPerResourceHandler {
 	
 	public static void handle(Player player){

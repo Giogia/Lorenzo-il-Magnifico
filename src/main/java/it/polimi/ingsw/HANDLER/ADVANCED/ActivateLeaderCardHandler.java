@@ -15,6 +15,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
+//set of instructions to activate a leader card 
 public class ActivateLeaderCardHandler {
 
 	public static void handle(Player player,LeaderCard chosen) throws IOException, MyException, TimeExpiredException{

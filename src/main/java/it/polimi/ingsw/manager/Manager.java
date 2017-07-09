@@ -41,6 +41,8 @@ import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
+//send and receives input from connection manager and set the model
+//call the right handlers
 public class Manager{
 	private static int choice = 0;
 	private Manager instance;

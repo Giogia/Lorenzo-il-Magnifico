@@ -52,6 +52,7 @@ import it.polimi.ingsw.minigame.GameProxy;
 import it.polimi.ingsw.minigame.PlayerProxy;
 import it.polimi.ingsw.minigame.Update;
 
+//makes the model communicate with view 
 public class ConnectionManagerImpl extends UnicastRemoteObject implements ConnectionManager, Runnable  {
 	
 	//ConnectionManagerImpl is a singleton called by Manager. It handles connection (Rmi and Socket) with clients
@@ -166,6 +167,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		}
 	}
 		
+	//register a new rmi user
 	public void register(CliRmi client) throws RemoteException{
 		try{
 			System.out.println("New rmi user in the game");
@@ -394,8 +396,7 @@ public class ConnectionManagerImpl extends UnicastRemoteObject implements Connec
 		executor.submit(game);
 	}
 	
-	
-	
+	//return color asked to socket client
 	private Color askSocketColor(User user, ArrayList<Color> availableColors) throws IOException {
 		
 		String[] colors = new String[availableColors.size()];

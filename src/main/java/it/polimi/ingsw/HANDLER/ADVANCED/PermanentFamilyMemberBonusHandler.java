@@ -9,6 +9,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus;
 import it.polimi.ingsw.GC_15.FamilyMember;
 import it.polimi.ingsw.GC_15.Player;
 
+//modifies the value of the family member permanently
 public class PermanentFamilyMemberBonusHandler {
 	
 	public static void handle(Player player){

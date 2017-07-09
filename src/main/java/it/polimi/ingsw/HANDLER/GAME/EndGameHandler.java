@@ -22,6 +22,7 @@ import it.polimi.ingsw.HANDLER.ADVANCED.LoseVictoryPointsPerResourceHandler;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 
+//set of instruction to end the game
 public class EndGameHandler {
 	
 	private static EndGameHandler istanza = null;
@@ -49,6 +50,7 @@ public class EndGameHandler {
 		ConnectionManagerImpl.hasWon(getWinner(board), board.getPlayers());
 	}
 
+	//give end game excommunication malus
 	private static void excommunicationMalus(Board board) {
 		for (Player player : board.getPlayers()) {
 			LoseVictoryPointsPerResourceHandler.handle(player);
@@ -56,7 +58,7 @@ public class EndGameHandler {
 		}
 	}
 
-
+	//give victory points for number of resources owned
 	private static void transformResourcesIntoPoints(Board board) {
 		for(Player player : board.getPlayers()){
 			int amount = 0;
@@ -70,6 +72,7 @@ public class EndGameHandler {
 			
 	}
 	
+	//give victory points for cards owned
 	private static void transformCardIntoPoints(Board board,DevelopmentCardType developmentCardType){
 		for(Player player : board.getGame().getRoundOrder()){
 			if (EndGameCardController.check(player, developmentCardType)){
@@ -81,7 +84,7 @@ public class EndGameHandler {
 		}
 	}
 	
-
+	//give victory points for venture cards owned
 	private static void transformVentureIntoPoints(Board board) throws IOException {
 		for(Player player : board.getPlayers()){
 			if(EndGameCardController.check(player, DevelopmentCardType.venture)){
@@ -102,7 +105,7 @@ public class EndGameHandler {
 		}
 	}
 	
-	
+	//set the game winner
 	private static String getWinner(Board board){
 		int maxVictoryPoints = -1; //se tutti i giocatori totalizzassero zero punti deve vincere il primo in ordine di turno
 		Player winner = new Player("Nessuno", null);
@@ -119,6 +122,7 @@ public class EndGameHandler {
 		return winner.getName(); 
 	}
 	
+	//give victory points for faith points owned
 	private static void transformFaithPoints(Board board){
 		for(Player player: board.getPlayers()){
 			int faithPoints = player.getPersonalBoard().getResource(ResourceType.faithPoints).getAmount();
@@ -130,6 +134,7 @@ public class EndGameHandler {
 		}
 	}
 	
+	//give victory points for military points owned
 	private static void transformMilitaryPoints(Board board){
 		ArrayList<Player> firstPos = new ArrayList<Player>();
 		ArrayList<Player> secondPos = new ArrayList<Player>();

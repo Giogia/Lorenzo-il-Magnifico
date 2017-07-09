@@ -23,7 +23,8 @@ import it.polimi.ingsw.HANDLER.ADVANCED.ZoneFamilyMemberHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.Manager;
 
-
+//set of instructions to place a family member on harvest or production areas
+//lets choose and activate the cards' owned by a player
 public abstract class HarvestProductionAreaHandler {
 
 	public static boolean abstractHandle(FamilyMember familyMember, ActionZone zone, Position position) throws MyException, IOException, TimeExpiredException{
@@ -85,7 +86,7 @@ public abstract class HarvestProductionAreaHandler {
 		personalBonusTileBonus.getImmediateBonus(familyMember.getPlayer());
 	}
 	
-	
+	//create a copy of player's resource
 	protected static ArrayList<Resource> cloneResources(Player player){
 		ArrayList<Resource> playerResources = new ArrayList<>();
 		for (Resource resource : player.getPersonalBoard().getResources()) {
@@ -94,6 +95,7 @@ public abstract class HarvestProductionAreaHandler {
 		return playerResources;
 	}
 	
+	// set an arraylist of resources on a player's resources
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for (Resource playerResource : playerResources) {
@@ -106,7 +108,8 @@ public abstract class HarvestProductionAreaHandler {
 	}
 	
 	//advanced
-	protected static ArrayList<DevelopmentCard> getActivableCards(FamilyMember familyMember, Zone zone,ArrayList<Resource> resources){ //serve per le regole avanzate
+	//find the cards that can be activated
+	protected static ArrayList<DevelopmentCard> getActivableCards(FamilyMember familyMember, Zone zone,ArrayList<Resource> resources){
 		ArrayList<DevelopmentCard> activableCards= new ArrayList<>();	
 		DevelopmentCardType developmentCardType = null;
 		if(zone instanceof HarvestArea)			
@@ -118,13 +121,13 @@ public abstract class HarvestProductionAreaHandler {
 			if(zone instanceof HarvestArea){
 				Territory territory = (Territory) card;
 				if(territory.getActivationConditionHarvest()<=familyMember.getValue()){
-					if(ResourceBonusCardController.check(territory.secondaryEffect, familyMember.getPlayer(),resources))//aggiunge solo quelle con un resource bonus attivabile
+					if(ResourceBonusCardController.check(territory.secondaryEffect, familyMember.getPlayer(),resources))//add only the ones with activable resource bonus
 						activableCards.add(territory);
 				}
 			}
 			if(zone instanceof ProductionArea){
 				Building building = (Building) card;
-				if(building.getActivationConditionProduction()<=familyMember.getValue()){//aggiunge quelle solo con valore maggiore
+				if(building.getActivationConditionProduction()<=familyMember.getValue()){//add only the ones with greatest values
 					if(ResourceBonusCardController.check(building.secondaryEffect,familyMember.getPlayer(),resources))
 						activableCards.add(building);
 				}
@@ -134,15 +137,16 @@ public abstract class HarvestProductionAreaHandler {
 	}
 		
 	//advanced
+	//ask the user which effect should be activated
 	protected static ArrayList<Bonus> chooseEffects (ArrayList<DevelopmentCard> activableCards,FamilyMember familyMember,ArrayList<Resource> resources) throws IOException, MyException, TimeExpiredException{
-		ArrayList<Bonus> chosenEffects = new ArrayList<>();//mappazzone
+		ArrayList<Bonus> chosenEffects = new ArrayList<>();//the set of all chosen effects
 		do{
 			chosenEffects.clear();
 			for(DevelopmentCard card : activableCards){
 				ArrayList<Bonus> cardChosenEffects = Manager.chooseEffect(familyMember.getPlayer(),card);
 				chosenEffects.addAll(cardChosenEffects);
 			}
-		}while(!ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//controlla che tutti gli effetti funzionino insieme
+		}while(!ResourceBonusCardController.check(chosenEffects,familyMember.getPlayer(),resources));//check if it's possible to activate all the effects together
 		return chosenEffects;
 	}
 

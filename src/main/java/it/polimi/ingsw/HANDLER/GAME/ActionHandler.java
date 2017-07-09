@@ -16,6 +16,7 @@ import it.polimi.ingsw.minigame.ProductionProxy;
 import it.polimi.ingsw.minigame.Update;
 import it.polimi.ingsw.minigame.ZoneProxy;
 
+//sets of instructions to place a family member
 public final class ActionHandler {
 	private static ActionHandler istanza = null;
 
@@ -33,7 +34,6 @@ public final class ActionHandler {
     		if(zone instanceof Tower){
 	    		TowerHandler.handle(familyMember,(Tower) zone,(TowerFloor) position);
 	    		
-	    		//TODO
 	    		Update.getInstance().TowerFloorOccupied((TowerFloor) position, (Tower) zone, null); 
 	    	}
     		else{

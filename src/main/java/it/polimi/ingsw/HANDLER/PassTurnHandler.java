@@ -8,6 +8,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
 
+//set of instructions to pass a turn
 public class PassTurnHandler {
 	
 	public static boolean handle(Player player){

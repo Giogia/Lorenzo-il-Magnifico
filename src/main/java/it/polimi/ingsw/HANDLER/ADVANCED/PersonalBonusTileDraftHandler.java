@@ -9,11 +9,12 @@ import it.polimi.ingsw.GC_15.PersonalBonusTile;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.manager.Manager;
 
+//let the users choose the personal bonus tile in advanced rules
 public class PersonalBonusTileDraftHandler {
 	
 	public static void handle(Board board) throws IOException{
 		ArrayList<PersonalBonusTile> personalBonusTiles = board.getGame().getData().getPersonalBonusTiles();
-		//personalBonusTiles.remove(0);//quello per le regole base
+		//personalBonusTiles.remove(0);//basic rules personal bonus tile
 		for(int i=board.getGame().getRoundOrder().size()-1;i>=0;i--){
 			Player currentPlayer = board.getGame().getOrder().getPlayer(i);
 			PersonalBonusTile chosen = Manager.askForPersonalBonusTile(currentPlayer,personalBonusTiles);

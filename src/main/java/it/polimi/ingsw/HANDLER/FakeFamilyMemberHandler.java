@@ -21,11 +21,11 @@ import it.polimi.ingsw.HANDLER.GAME.ActionHandler;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.manager.Manager;
 
+//set of instructions for the action bonus
 public class FakeFamilyMemberHandler {
 	private static boolean isThereCostBonus = false;
 	private static ArrayList<Resource> cost = new ArrayList<>();
 
-	
 	public static boolean handle(Player player, HashMap<ActionZone, Integer> action, ArrayList<Resource> costBonus) throws MyException, IOException, TimeExpiredException{
 		//check if there is a CostBonus associated to ActionBonus
 		//if there is, turn on the boolean and apply costBonus

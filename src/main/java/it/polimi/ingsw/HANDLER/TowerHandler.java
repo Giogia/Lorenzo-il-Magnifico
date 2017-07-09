@@ -36,9 +36,9 @@ import it.polimi.ingsw.BOARD.*;
 import it.polimi.ingsw.BONUS.ImmediateBonus;
 import it.polimi.ingsw.BONUS.ResourceBonus;
 
+//set of instructions to place a familymember on a tower
 public class TowerHandler {
 
-	
 	public static boolean handle(FamilyMember familyMember, Tower zone, TowerFloor towerFloor) throws MyException , IOException, TimeExpiredException {
 		
 		//Check if is possible to place the familyMember in this position

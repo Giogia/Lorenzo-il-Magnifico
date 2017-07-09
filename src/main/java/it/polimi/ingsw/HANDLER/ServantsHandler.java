@@ -11,6 +11,7 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.RESOURCE.Servants;
 import it.polimi.ingsw.manager.Manager;
 
+//set of instructions to let the user choose how many servants use to make the action
 public class ServantsHandler {
 
 	public static boolean handle(FamilyMember familyMember, ArrayList<Resource> playerResources) throws IOException, TimeExpiredException{

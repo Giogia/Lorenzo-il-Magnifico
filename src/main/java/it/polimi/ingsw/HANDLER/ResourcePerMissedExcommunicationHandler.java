@@ -8,6 +8,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//give a player all the bonus when miss an excommunication
 public class ResourcePerMissedExcommunicationHandler {
 	
 	public static void handle(Player player){

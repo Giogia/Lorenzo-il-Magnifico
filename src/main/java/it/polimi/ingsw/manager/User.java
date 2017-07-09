@@ -5,6 +5,7 @@ import java.net.Socket;
 import it.polimi.ingsw.Cli.CliRmi;
 import it.polimi.ingsw.GC_15.Player;
 
+//class of all the user information
 public class User {
 	private String username;
 	private Player player;

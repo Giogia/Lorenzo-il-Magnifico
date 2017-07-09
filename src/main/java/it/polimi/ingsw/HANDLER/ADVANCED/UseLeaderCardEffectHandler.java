@@ -11,6 +11,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
+//give the bonus of the leader card chosen
 public class UseLeaderCardEffectHandler {
 
 	public static void handle(Player player, LeaderCard chosen) throws IOException, MyException, TimeExpiredException{

@@ -11,8 +11,9 @@ import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
 public class CouncilPrivilegeChoiceHandler {
-	//councilPrivileges is the arraylist of bonus to send to the human. He choose one oh this and this is immediately activated
-	//and removed from the councilPrivileges
+	//councilPrivileges is the arraylist of bonus to send to the user.
+	//He choose one of this, immediately activates it 
+	//and removes it from the councilPrivileges
 private static ArrayList<ResourceBonus> councilPrivileges;
 	
 	public static boolean handle(Player player, int numberOfDifferentCouncilPrivileges) throws IOException, TimeExpiredException{

@@ -23,6 +23,7 @@ import it.polimi.ingsw.minigame.PositionProxy;
 import it.polimi.ingsw.minigame.ResourceProxy;
 import it.polimi.ingsw.minigame.TowerFloorProxy;
 
+//includes all the actions and parameters to send in a socket connection
 public class ActionSocket implements Serializable{
 	public enum action{
 		chooseName,

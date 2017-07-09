@@ -12,6 +12,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.RoundOrder;
 import it.polimi.ingsw.GC_15.VaticanReport;
 
+//set of instruction to finish a round and prepare the next one
 public class EndRoundHandler {
 	private static EndRoundHandler instance;
 	

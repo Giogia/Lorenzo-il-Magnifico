@@ -100,7 +100,7 @@ public class ConfigurationFileHandler {
 			return gsonToSerialize.toJson(object);
 		} catch(Exception e) {
 			LOGGER.log(Level.SEVERE, e.getMessage(),e);
-			return "error"; //TODO da vedere cosa ritornare
+			return "error"; 
 		}
 	}
 	

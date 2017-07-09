@@ -16,6 +16,7 @@ import it.polimi.ingsw.RESOURCE.MilitaryPoints;
 import it.polimi.ingsw.RESOURCE.Resource;
 import it.polimi.ingsw.RESOURCE.ResourceType;
 
+//sets the bonus that makes a player lose victory points every time he pay a card cost
 public class LoseVictoryPointsPerCostHandler {
 	
 	public static void handle(Player player){

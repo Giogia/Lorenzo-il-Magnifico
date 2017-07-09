@@ -7,6 +7,7 @@ import it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus;
 import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.RESOURCE.Coins;
 
+//modifies the cost for occupied tower for a player
 public class OccupiedTowerCostBonusHandler {
 	
 	public static void handle(Coins occupiedTowerCost, Player player){

@@ -16,6 +16,7 @@ import it.polimi.ingsw.RESOURCE.ResourceType;
 import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.minigame.GameProxy;
 
+//set of instructions to start the game
 public final class StartGameHandler {
 	
 	private static StartGameHandler istanza = null;

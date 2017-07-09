@@ -9,6 +9,7 @@ import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.HANDLER.CouncilPrivilegeChoiceHandler;
 import it.polimi.ingsw.manager.Manager;
 
+//makes a player discard a leader card
 public class DiscardLeaderCardHandler {
 	
 	public static void handle(Player player, LeaderCard chosen) throws IOException, TimeExpiredException{

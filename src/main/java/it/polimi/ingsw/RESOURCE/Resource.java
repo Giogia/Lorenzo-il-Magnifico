@@ -3,8 +3,8 @@ package it.polimi.ingsw.RESOURCE;
 import java.io.Serializable;
 
 abstract public class Resource implements Serializable{
-	//value è il valore dell'unità. value=3 -> 3 risorse per averne 1
-	//amount indica la quantità della risorsa
+	//value is the value of the unit. value=3 -> 3 resource needed to get 1
+	//amount is the number of that resource owned
 	protected int amount;
 	protected int value;
 	protected ResourceType resourceType;

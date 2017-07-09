@@ -18,6 +18,7 @@ import it.polimi.ingsw.manager.ConnectionManagerImpl;
 import it.polimi.ingsw.manager.Manager;
 import it.polimi.ingsw.manager.User;
 
+//set the order of the players every round
 public class RoundManagerHandler {
 	private static RoundManagerHandler instance;
 	

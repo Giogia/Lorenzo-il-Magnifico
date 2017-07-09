@@ -11,9 +11,9 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.manager.Manager;
 
+//lets the user choose the leader cards in advanced rules
 public class LeaderCardDraftHandler {
 	
-
 	public static void handle(Board board) throws RemoteException, IOException{
 		int numberOfPlayers = board.getPlayers().length;
 		ArrayList<LeaderCard> gameLeaderCards = board.getGame().getData().getLeaderCards();

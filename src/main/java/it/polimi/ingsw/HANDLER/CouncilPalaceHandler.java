@@ -14,6 +14,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//set of controls to position a family member on council palace
 public class CouncilPalaceHandler {
 	
 	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException, TimeExpiredException{
@@ -21,7 +22,7 @@ public class CouncilPalaceHandler {
 		for (Resource resource : familyMember.getPlayer().getPersonalBoard().getResources()) {
 			playerResources.add(resource.createClone());
 		}
-		FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());
+		FamilyMember testFamilyMember = new FamilyMember(familyMember.getDice(), familyMember.getPlayer());//creates a test family member to make controls
 		testFamilyMember.setValue(familyMember.getValue());
 		ServantsHandler.handle(testFamilyMember, playerResources);
 		if (FamilyMemberValueController.check(testFamilyMember, position)){
@@ -36,6 +37,7 @@ public class CouncilPalaceHandler {
 		return false;
 	}
 	
+	// set an arraylist of resources on a player's resources
 	private static void copyResource(Player player, ArrayList<Resource> copiedResources) {
 		ArrayList<Resource> playerResources = player.getPersonalBoard().getResources();
 		for (Resource playerResource : playerResources) {

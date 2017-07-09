@@ -16,6 +16,7 @@ import it.polimi.ingsw.GC_15.Player;
 import it.polimi.ingsw.GC_15.TimeExpiredException;
 import it.polimi.ingsw.RESOURCE.Resource;
 
+//set of insructions to place a family member on market
 public class MarketHandler {
 	
 	public static boolean handle(FamilyMember familyMember, Position position) throws MyException, IOException, TimeExpiredException{
