@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw</OriginalElement>
+  <nodes>
+    <node x="266.90439858244747" y="355.701171875">it.polimi.ingsw.CONTROLLER</node>
+    <node x="485.20934065934074" y="1015.701171875">it.polimi.ingsw.CARD</node>
+    <node x="551.2043985824475" y="1155.701171875">it.polimi.ingsw.handler</node>
+    <node x="190.97582715387608" y="885.701171875">it.polimi.ingsw.BONUS</node>
+    <node x="658.2093406593408" y="565.701171875">it.polimi.ingsw.minigame</node>
+    <node x="393.4185741088179" y="5.701171875">it.polimi.ingsw.RESOURCE</node>
+    <node x="372.6593406593407" y="735.701171875">it.polimi.ingsw.BOARD</node>
+    <node x="410.72626641651016" y="145.701171875">it.polimi.ingsw.GC_15</node>
+    <node x="100.97582715387603" y="1015.701171875">it.polimi.ingsw.HANDLER</node>
+    <node x="890.8086996336997" y="145.701171875">it.polimi.ingsw.Cli</node>
+    <node x="718.59721403258" y="355.701171875">it.polimi.ingsw.manager</node>
+    <node x="179.47582715387608" y="1155.701171875">it.polimi.ingsw.controller</node>
+    <node x="865.0554945054946" y="735.701171875">it.polimi.ingsw.gui</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.gui" target="it.polimi.ingsw.minigame">
+      <point x="-32.66666666666663" y="-15.0" />
+      <point x="881.3888278388279" y="715.701171875" />
+      <point x="783.5664835164837" y="715.701171875" />
+      <point x="57.85714285714289" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS" target="it.polimi.ingsw.GC_15">
+      <point x="-17.142857142857167" y="-15.0" />
+      <point x="233.83297001101892" y="865.701171875" />
+      <point x="225.23076923076928" y="865.701171875" />
+      <point x="225.23076923076928" y="255.701171875" />
+      <point x="440.58340927365305" y="255.701171875" />
+      <point x="-27.14285714285714" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.minigame">
+      <point x="0.0" y="15.0" />
+      <point x="782.59721403258" y="495.701171875" />
+      <point x="744.995054945055" y="495.701171875" />
+      <point x="19.285714285714334" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.CARD">
+      <point x="-10.083333333333371" y="-15.0" />
+      <point x="601.621065249114" y="1095.701171875" />
+      <point x="583.2093406593408" y="1095.701171875" />
+      <point x="42.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli" target="it.polimi.ingsw.Cli">
+      <point x="-39.583333333333314" y="15.0" />
+      <point x="898.7253663003664" y="195.701171875" />
+      <point x="870.8086996336997" y="195.701171875" />
+      <point x="870.8086996336997" y="168.201171875" />
+      <point x="-47.5" y="7.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.minigame">
+      <point x="42.0" y="-15.0" />
+      <point x="474.6593406593407" y="705.701171875" />
+      <point x="725.7093406593408" y="705.701171875" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15" target="it.polimi.ingsw.BONUS">
+      <point x="-21.714285714285722" y="15.0" />
+      <point x="446.0119807022245" y="265.701171875" />
+      <point x="250.97582715387608" y="265.701171875" />
+      <point x="0.0" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15" target="it.polimi.ingsw.RESOURCE">
+      <point x="-28.50000000000003" y="-15.0" />
+      <point x="439.22626641651016" y="125.701171875" />
+      <point x="462.4185741088179" y="125.701171875" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.CONTROLLER" target="it.polimi.ingsw.GC_15">
+      <point x="38.75" y="-15.0" />
+      <point x="383.15439858244747" y="295.701171875" />
+      <point x="462.29769498793877" y="295.701171875" />
+      <point x="-5.428571428571416" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui" target="it.polimi.ingsw.manager">
+      <point x="0.0" y="-15.0" />
+      <point x="914.0554945054946" y="715.701171875" />
+      <point x="924.8888278388279" y="715.701171875" />
+      <point x="924.8888278388279" y="545.701171875" />
+      <point x="841.6741371095031" y="545.701171875" />
+      <point x="59.07692307692298" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.Cli">
+      <point x="32.0" y="-15.0" />
+      <point x="814.59721403258" y="325.701171875" />
+      <point x="930.3920329670331" y="325.701171875" />
+      <point x="-7.916666666666629" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.CONTROLLER">
+      <point x="-42.0" y="-15.0" />
+      <point x="390.6593406593407" y="705.701171875" />
+      <point x="357.4093406593407" y="705.701171875" />
+      <point x="357.4093406593407" y="545.701171875" />
+      <point x="305.65439858244747" y="545.701171875" />
+      <point x="-38.75" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.GC_15">
+      <point x="-10.666666666666629" y="-15.0" />
+      <point x="771.9305473659135" y="275.701171875" />
+      <point x="522.0119807022245" y="275.701171875" />
+      <point x="54.285714285714306" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.GC_15">
+      <point x="-57.85714285714289" y="-15.0" />
+      <point x="667.8521978021979" y="455.701171875" />
+      <point x="657.09721403258" y="455.701171875" />
+      <point x="657.09721403258" y="305.701171875" />
+      <point x="505.7262664165102" y="305.701171875" />
+      <point x="38.00000000000003" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller" target="it.polimi.ingsw.CARD">
+      <point x="52.799999999999955" y="-15.0" />
+      <point x="298.27582715387604" y="1135.701171875" />
+      <point x="555.2093406593408" y="1135.701171875" />
+      <point x="14.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.manager">
+      <point x="0.0" y="-15.0" />
+      <point x="725.7093406593408" y="485.701171875" />
+      <point x="772.7510601864262" y="485.701171875" />
+      <point x="-9.846153846153811" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.minigame">
+      <point x="-38.571428571428555" y="15.0" />
+      <point x="687.1379120879121" y="625.701171875" />
+      <point x="628.2093406593408" y="625.701171875" />
+      <point x="628.2093406593408" y="580.701171875" />
+      <point x="-67.5" y="-0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli" target="it.polimi.ingsw.manager">
+      <point x="7.916666666666629" y="15.0" />
+      <point x="946.2253663003663" y="335.701171875" />
+      <point x="835.9305473659135" y="335.701171875" />
+      <point x="53.33333333333337" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller" target="it.polimi.ingsw.BONUS">
+      <point x="0.0" y="-15.0" />
+      <point x="245.47582715387608" y="995.701171875" />
+      <point x="240.97582715387608" y="995.701171875" />
+      <point x="-10.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.BOARD">
+      <point x="19.285714285714334" y="15.0" />
+      <point x="744.995054945055" y="715.701171875" />
+      <point x="486.6593406593407" y="715.701171875" />
+      <point x="54.0" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.CARD">
+      <point x="52.5" y="15.0" />
+      <point x="485.1593406593407" y="855.701171875" />
+      <point x="497.40439858244747" y="855.701171875" />
+      <point x="497.40439858244747" y="975.701171875" />
+      <point x="513.2093406593408" y="975.701171875" />
+      <point x="-28.0" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.HANDLER" target="it.polimi.ingsw.BONUS">
+      <point x="53.599999999999994" y="-15.0" />
+      <point x="-30.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.BOARD">
+      <point x="-30.25" y="-15.0" />
+      <point x="581.4543985824475" y="1105.701171875" />
+      <point x="444.70934065934074" y="1105.701171875" />
+      <point x="444.70934065934074" y="855.701171875" />
+      <point x="470.1593406593407" y="855.701171875" />
+      <point x="37.5" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.RESOURCE">
+      <point x="50.41666666666663" y="-15.0" />
+      <point x="662.121065249114" y="1135.701171875" />
+      <point x="1019.715750915751" y="1135.701171875" />
+      <point x="1019.715750915751" y="75.701171875" />
+      <point x="526.1108818011255" y="75.701171875" />
+      <point x="63.69230769230768" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.CARD" target="it.polimi.ingsw.RESOURCE">
+      <point x="39.19999999999999" y="-15.0" />
+      <point x="580.4093406593407" y="985.701171875" />
+      <point x="998.1003663003664" y="985.701171875" />
+      <point x="998.1003663003664" y="95.701171875" />
+      <point x="504.88011257035635" y="95.701171875" />
+      <point x="42.46153846153845" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.RESOURCE">
+      <point x="-38.571428571428555" y="-15.0" />
+      <point x="687.1379120879121" y="445.701171875" />
+      <point x="668.09721403258" y="445.701171875" />
+      <point x="668.09721403258" y="115.701171875" />
+      <point x="483.64934333958706" y="115.701171875" />
+      <point x="21.230769230769226" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui" target="it.polimi.ingsw.gui">
+      <point x="24.5" y="15.0" />
+      <point x="938.5554945054946" y="795.701171875" />
+      <point x="835.0554945054946" y="795.701171875" />
+      <point x="835.0554945054946" y="743.201171875" />
+      <point x="-49.0" y="-7.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.BONUS">
+      <point x="29.538461538461547" y="15.0" />
+      <point x="812.1356755710417" y="525.701171875" />
+      <point x="803.7093406593408" y="525.701171875" />
+      <point x="803.7093406593408" y="865.701171875" />
+      <point x="302.4043985824475" y="865.701171875" />
+      <point x="51.428571428571445" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.BONUS">
+      <point x="7.5" y="15.0" />
+      <point x="440.1593406593407" y="835.701171875" />
+      <point x="285.26154143959036" y="835.701171875" />
+      <point x="34.28571428571428" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE" target="it.polimi.ingsw.RESOURCE">
+      <point x="-63.69230769230769" y="15.0" />
+      <point x="398.72626641651016" y="55.701171875" />
+      <point x="373.4185741088179" y="55.701171875" />
+      <point x="373.4185741088179" y="20.701171875" />
+      <point x="-69.0" y="-0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.HANDLER" target="it.polimi.ingsw.GC_15">
+      <point x="0.0" y="-15.0" />
+      <point x="167.97582715387603" y="245.701171875" />
+      <point x="435.1548378450816" y="245.701171875" />
+      <point x="-32.571428571428584" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.BOARD">
+      <point x="-52.5" y="15.0" />
+      <point x="380.1593406593407" y="785.701171875" />
+      <point x="352.6593406593407" y="785.701171875" />
+      <point x="352.6593406593407" y="760.701171875" />
+      <point x="-60.0" y="10.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.CARD">
+      <point x="39.38461538461536" y="15.0" />
+      <point x="821.9818294171955" y="535.701171875" />
+      <point x="813.5554945054946" y="535.701171875" />
+      <point x="813.5554945054946" y="965.701171875" />
+      <point x="558.0093406593408" y="965.701171875" />
+      <point x="16.80000000000001" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.GC_15">
+      <point x="10.083333333333371" y="-15.0" />
+      <point x="621.7877319157808" y="1135.701171875" />
+      <point x="607.7093406593408" y="1135.701171875" />
+      <point x="607.7093406593408" y="315.701171875" />
+      <point x="500.29769498793877" y="315.701171875" />
+      <point x="32.571428571428584" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15" target="it.polimi.ingsw.BOARD">
+      <point x="10.857142857142861" y="15.0" />
+      <point x="478.58340927365305" y="325.701171875" />
+      <point x="454.40439858244747" y="325.701171875" />
+      <point x="454.40439858244747" y="675.701171875" />
+      <point x="438.6593406593407" y="675.701171875" />
+      <point x="6.0" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame" target="it.polimi.ingsw.CARD">
+      <point x="38.571428571428555" y="15.0" />
+      <point x="764.2807692307692" y="955.701171875" />
+      <point x="546.8093406593407" y="955.701171875" />
+      <point x="5.599999999999966" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15" target="it.polimi.ingsw.GC_15">
+      <point x="-43.42857142857143" y="15.0" />
+      <point x="424.29769498793877" y="215.701171875" />
+      <point x="370.72626641651016" y="215.701171875" />
+      <point x="370.72626641651016" y="150.701171875" />
+      <point x="-57.0" y="-10.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller" target="it.polimi.ingsw.GC_15">
+      <point x="-26.399999999999977" y="-15.0" />
+      <point x="219.0758271538761" y="1125.701171875" />
+      <point x="90.47582715387603" y="1125.701171875" />
+      <point x="90.47582715387603" y="235.701171875" />
+      <point x="429.72626641651016" y="235.701171875" />
+      <point x="-38.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS" target="it.polimi.ingsw.CARD">
+      <point x="50.0" y="15.0" />
+      <point x="300.9758271538761" y="985.701171875" />
+      <point x="502.00934065934075" y="985.701171875" />
+      <point x="-39.19999999999999" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.Cli">
+      <point x="30.25" y="-15.0" />
+      <point x="641.9543985824475" y="1125.701171875" />
+      <point x="983.3920329670331" y="1125.701171875" />
+      <point x="983.3920329670331" y="335.701171875" />
+      <point x="977.8920329670331" y="335.701171875" />
+      <point x="39.58333333333337" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.HANDLER" target="it.polimi.ingsw.RESOURCE">
+      <point x="-26.80000000000001" y="-15.0" />
+      <point x="141.175827153876" y="985.701171875" />
+      <point x="47.61538461538464" y="985.701171875" />
+      <point x="47.61538461538464" y="95.701171875" />
+      <point x="430.572420262664" y="95.701171875" />
+      <point x="-31.84615384615384" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15" target="it.polimi.ingsw.CARD">
+      <point x="27.14285714285714" y="15.0" />
+      <point x="494.8691235593673" y="325.701171875" />
+      <point x="561.5691235593674" y="325.701171875" />
+      <point x="561.5691235593674" y="945.701171875" />
+      <point x="535.6093406593407" y="945.701171875" />
+      <point x="-5.600000000000023" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BOARD" target="it.polimi.ingsw.GC_15">
+      <point x="-18.0" y="-15.0" />
+      <point x="414.6593406593407" y="655.701171875" />
+      <point x="432.40439858244747" y="655.701171875" />
+      <point x="432.40439858244747" y="305.701171875" />
+      <point x="467.72626641651016" y="305.701171875" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.handler" target="it.polimi.ingsw.BONUS">
+      <point x="-50.41666666666663" y="-15.0" />
+      <point x="561.2877319157808" y="1115.701171875" />
+      <point x="256.4758271538761" y="1115.701171875" />
+      <point x="256.4758271538761" y="995.701171875" />
+      <point x="260.9758271538761" y="995.701171875" />
+      <point x="10.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS" target="it.polimi.ingsw.RESOURCE">
+      <point x="-51.42857142857139" y="-15.0" />
+      <point x="199.5472557253047" y="865.701171875" />
+      <point x="58.23076923076928" y="865.701171875" />
+      <point x="58.23076923076928" y="105.701171875" />
+      <point x="441.1878048780486" y="105.701171875" />
+      <point x="-21.230769230769226" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS" target="it.polimi.ingsw.BOARD">
+      <point x="17.14285714285714" y="-15.0" />
+      <point x="268.11868429673325" y="825.701171875" />
+      <point x="425.1593406593407" y="825.701171875" />
+      <point x="-7.5" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.CARD" target="it.polimi.ingsw.CARD">
+      <point x="-42.0" y="15.0" />
+      <point x="499.20934065934074" y="1065.701171875" />
+      <point x="465.20934065934074" y="1065.701171875" />
+      <point x="465.20934065934074" y="1038.201171875" />
+      <point x="-56.0" y="7.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller" target="it.polimi.ingsw.BOARD">
+      <point x="26.399999999999977" y="-15.0" />
+      <point x="271.87582715387606" y="1125.701171875" />
+      <point x="433.7093406593407" y="1125.701171875" />
+      <point x="433.7093406593407" y="845.701171875" />
+      <point x="455.1593406593407" y="845.701171875" />
+      <point x="22.5" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.BOARD">
+      <point x="-29.538461538461547" y="15.0" />
+      <point x="753.0587524941186" y="465.701171875" />
+      <point x="492.15439858244747" y="465.701171875" />
+      <point x="492.15439858244747" y="695.701171875" />
+      <point x="462.6593406593407" y="695.701171875" />
+      <point x="30.0" y="-15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.manager">
+      <point x="-59.076923076923094" y="15.0" />
+      <point x="723.520290955657" y="405.701171875" />
+      <point x="698.59721403258" y="405.701171875" />
+      <point x="698.59721403258" y="380.701171875" />
+      <point x="-64.0" y="10.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui" target="it.polimi.ingsw.Cli">
+      <point x="32.66666666666663" y="-15.0" />
+      <point x="946.7221611721611" y="715.701171875" />
+      <point x="964.4753663003664" y="715.701171875" />
+      <point x="964.4753663003664" y="335.701171875" />
+      <point x="962.0586996336997" y="335.701171875" />
+      <point x="23.75" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.CARD" target="it.polimi.ingsw.BONUS">
+      <point x="-50.400000000000034" y="-15.0" />
+      <point x="490.8093406593407" y="995.701171875" />
+      <point x="280.9758271538761" y="995.701171875" />
+      <point x="30.0" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.controller" target="it.polimi.ingsw.RESOURCE">
+      <point x="-52.80000000000007" y="-15.0" />
+      <point x="192.675827153876" y="1135.701171875" />
+      <point x="26.0" y="1135.701171875" />
+      <point x="26.0" y="75.701171875" />
+      <point x="409.3416510318948" y="75.701171875" />
+      <point x="-53.076923076923066" y="15.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.manager" target="it.polimi.ingsw.RESOURCE">
+      <point x="10.666666666666629" y="-15.0" />
+      <point x="793.2638806992468" y="105.701171875" />
+      <point x="494.2647279549717" y="105.701171875" />
+      <point x="31.84615384615381" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.6617957746478871" x="713.1114719223183" y="303.46073666319484" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

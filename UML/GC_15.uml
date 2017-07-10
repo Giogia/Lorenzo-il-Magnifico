@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.GC_15</OriginalElement>
+  <nodes>
+    <node x="105.61755952380963" y="1419.5">it.polimi.ingsw.GC_15.PersonalBoardTest</node>
+    <node x="891.047619047619" y="245.0">it.polimi.ingsw.GC_15.Dice</node>
+    <node x="541.0684523809524" y="1797.0">it.polimi.ingsw.GC_15.RoundOrder</node>
+    <node x="376.0684523809524" y="1166.0">it.polimi.ingsw.GC_15.Player</node>
+    <node x="768.0" y="700.0">it.polimi.ingsw.GC_15.FamilyMember</node>
+    <node x="1196.547619047619" y="0.0">it.polimi.ingsw.GC_15.ExcommunicationTile</node>
+    <node x="0.0" y="535.0">it.polimi.ingsw.GC_15.PersonalBoard</node>
+    <node x="923.8809523809524" y="1841.5">it.polimi.ingsw.GC_15.PlayerTest</node>
+    <node x="1801.047619047619" y="0.0">it.polimi.ingsw.GC_15.TimeExpiredException</node>
+    <node x="1172.047619047619" y="235.0">it.polimi.ingsw.GC_15.VaticanReportTest</node>
+    <node x="164.30357142857133" y="190.0">it.polimi.ingsw.GC_15.PersonalBonusTile</node>
+    <node x="2012.0476190476193" y="0.0">it.polimi.ingsw.GC_15.MyException</node>
+    <node x="374.2693452380953" y="1988.0">it.polimi.ingsw.GC_15.Game</node>
+    <node x="929.547619047619" y="0.0">it.polimi.ingsw.GC_15.DiceColour</node>
+    <node x="1484.047619047619" y="0.0">it.polimi.ingsw.GC_15.VaticanReport</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.GC_15.FamilyMember" target="it.polimi.ingsw.GC_15.Player">
+      <point x="0.0" y="125.5" />
+      <point x="917.5" y="1141.0" />
+      <point x="914.1934523809524" y="1141.0" />
+      <point x="230.625" y="-290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.Player" target="it.polimi.ingsw.GC_15.FamilyMember">
+      <point x="76.875" y="-290.5" />
+      <point x="760.4434523809524" y="1141.0" />
+      <point x="817.8333333333334" y="1141.0" />
+      <point x="-99.66666666666667" y="125.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.Game" target="it.polimi.ingsw.GC_15.Player">
+      <point x="-165.0" y="-224.5" />
+      <point x="456.7693452380953" y="1963.0" />
+      <point x="530.5684523809524" y="1963.0" />
+      <point x="530.5684523809524" y="1772.0" />
+      <point x="478.5684523809524" y="1772.0" />
+      <point x="-205.0" y="290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.Game" target="it.polimi.ingsw.GC_15.RoundOrder">
+      <point x="165.0" y="-224.5" />
+      <point x="786.7693452380953" y="1963.0" />
+      <point x="754.8184523809524" y="1963.0" />
+      <point x="71.25" y="70.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.FamilyMember" target="it.polimi.ingsw.GC_15.Dice">
+      <point x="0.0" y="-125.5" />
+      <point x="917.5" y="510.0" />
+      <point x="950.047619047619" y="510.0" />
+      <point x="-59.0" y="92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.VaticanReportTest" target="it.polimi.ingsw.GC_15.ExcommunicationTile">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.PlayerTest" target="it.polimi.ingsw.GC_15.Player">
+      <point x="-57.0" y="-26.0" />
+      <point x="952.3809523809524" y="1772.0" />
+      <point x="888.5684523809524" y="1772.0" />
+      <point x="205.0" y="290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.Dice" target="it.polimi.ingsw.GC_15.DiceColour">
+      <point x="0.0" y="-92.5" />
+      <point x="0.0" y="70.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.PersonalBoardTest" target="it.polimi.ingsw.GC_15.PersonalBoard">
+      <point x="0.0" y="-37.0" />
+      <point x="221.61755952380963" y="1141.0" />
+      <point x="124.66666666666674" y="1141.0" />
+      <point x="-249.33333333333326" y="290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.PlayerTest" target="it.polimi.ingsw.GC_15.Dice">
+      <point x="57.0" y="-26.0" />
+      <point x="1066.3809523809523" y="1772.0" />
+      <point x="1077.5" y="1772.0" />
+      <point x="1077.5" y="510.0" />
+      <point x="1068.047619047619" y="510.0" />
+      <point x="59.0" y="92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.PlayerTest" target="it.polimi.ingsw.GC_15.FamilyMember">
+      <point x="0.0" y="-26.0" />
+      <point x="1009.3809523809524" y="1772.0" />
+      <point x="1032.3809523809523" y="1772.0" />
+      <point x="1032.3809523809523" y="1141.0" />
+      <point x="1017.1666666666667" y="1141.0" />
+      <point x="99.66666666666669" y="125.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.Player" target="it.polimi.ingsw.GC_15.PersonalBoard">
+      <point x="-230.625" y="-290.5" />
+      <point x="452.9434523809524" y="1141.0" />
+      <point x="374.0" y="1141.0" />
+      <point x="0.0" y="290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.RoundOrder" target="it.polimi.ingsw.GC_15.Player">
+      <point x="0.0" y="-70.5" />
+      <point x="0.0" y="290.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.GC_15.PersonalBoard" target="it.polimi.ingsw.GC_15.PersonalBonusTile">
+      <point x="-187.0" y="-290.5" />
+      <point x="187.0" y="510.0" />
+      <point x="278.05357142857133" y="510.0" />
+      <point x="-113.75" y="147.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.16727716727716727" x="1065.5" y="1218.5" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.GC_15.PersonalBoardTest</node>
+    <node>it.polimi.ingsw.GC_15.Dice</node>
+    <node>it.polimi.ingsw.GC_15.RoundOrder</node>
+    <node>it.polimi.ingsw.GC_15.Player</node>
+    <node>it.polimi.ingsw.GC_15.FamilyMember</node>
+    <node>it.polimi.ingsw.GC_15.ExcommunicationTile</node>
+    <node>it.polimi.ingsw.GC_15.PersonalBoard</node>
+    <node>it.polimi.ingsw.GC_15.PlayerTest</node>
+    <node>it.polimi.ingsw.GC_15.TimeExpiredException</node>
+    <node>it.polimi.ingsw.GC_15.VaticanReportTest</node>
+    <node>it.polimi.ingsw.GC_15.PersonalBonusTile</node>
+    <node>it.polimi.ingsw.GC_15.MyException</node>
+    <node>it.polimi.ingsw.GC_15.Game</node>
+    <node>it.polimi.ingsw.GC_15.DiceColour</node>
+    <node>it.polimi.ingsw.GC_15.VaticanReport</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

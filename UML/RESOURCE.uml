@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.RESOURCE</OriginalElement>
+  <nodes>
+    <node x="690.0" y="655.0">it.polimi.ingsw.RESOURCE.Stones</node>
+    <node x="1380.0" y="655.0">it.polimi.ingsw.RESOURCE.Servants</node>
+    <node x="460.0" y="655.0">it.polimi.ingsw.RESOURCE.MilitaryPoints</node>
+    <node x="590.0" y="234.0">it.polimi.ingsw.RESOURCE.Resource</node>
+    <node x="230.0" y="655.0">it.polimi.ingsw.RESOURCE.Wood</node>
+    <node x="920.0" y="655.0">it.polimi.ingsw.RESOURCE.VictoryPoints</node>
+    <node x="686.5" y="0.0">it.polimi.ingsw.RESOURCE.ResourceType</node>
+    <node x="1150.0" y="655.0">it.polimi.ingsw.RESOURCE.Coins</node>
+    <node x="0.0" y="655.0">it.polimi.ingsw.RESOURCE.FaithPoints</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.RESOURCE.Wood" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="335.0" y="625.0" />
+      <point x="677.8571428571429" y="625.0" />
+      <point x="-117.14285714285711" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.FaithPoints" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="105.0" y="615.0" />
+      <point x="619.2857142857142" y="615.0" />
+      <point x="-175.71428571428578" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.MilitaryPoints" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="565.0" y="635.0" />
+      <point x="736.4285714285714" y="635.0" />
+      <point x="-58.571428571428555" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.VictoryPoints" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="1025.0" y="635.0" />
+      <point x="853.5714285714287" y="635.0" />
+      <point x="58.57142857142867" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.Servants" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="1485.0" y="615.0" />
+      <point x="970.7142857142858" y="615.0" />
+      <point x="175.71428571428578" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.Coins" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="1255.0" y="625.0" />
+      <point x="912.1428571428571" y="625.0" />
+      <point x="117.14285714285711" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.RESOURCE.Stones" target="it.polimi.ingsw.RESOURCE.Resource">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="180.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.37515527950310557" x="795.0" y="364.5" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.RESOURCE.Stones</node>
+    <node>it.polimi.ingsw.RESOURCE.Servants</node>
+    <node>it.polimi.ingsw.RESOURCE.MilitaryPoints</node>
+    <node>it.polimi.ingsw.RESOURCE.Resource</node>
+    <node>it.polimi.ingsw.RESOURCE.Wood</node>
+    <node>it.polimi.ingsw.RESOURCE.VictoryPoints</node>
+    <node>it.polimi.ingsw.RESOURCE.ResourceType</node>
+    <node>it.polimi.ingsw.RESOURCE.Coins</node>
+    <node>it.polimi.ingsw.RESOURCE.FaithPoints</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

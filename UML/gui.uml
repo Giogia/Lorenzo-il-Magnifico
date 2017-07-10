@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.gui</OriginalElement>
+  <nodes>
+    <node x="5659.0" y="2596.0">it.polimi.ingsw.gui.UsernameWindow</node>
+    <node x="5731.25" y="5951.0">it.polimi.ingsw.gui.GuiSocketInView</node>
+    <node x="5053.0" y="2607.0">it.polimi.ingsw.gui.NameWindow</node>
+    <node x="4867.648958333333" y="6802.0">it.polimi.ingsw.gui.GuiRmiCallback</node>
+    <node x="5996.0" y="2519.0">it.polimi.ingsw.gui.ColorWindow</node>
+    <node x="4445.648958333333" y="5489.0">it.polimi.ingsw.gui.GuiRmiView</node>
+    <node x="6871.0" y="0.0">it.polimi.ingsw.gui.resources</node>
+    <node x="5754.9489583333325" y="6736.0">it.polimi.ingsw.gui.GuiSocketView</node>
+    <node x="0.0" y="0.0">it.polimi.ingsw.gui.GuiController</node>
+    <node x="6451.0" y="2563.0">it.polimi.ingsw.gui.GuiSocketOutView</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.GuiRmiCallback">
+      <point x="393.0" y="598.5" />
+      <point x="5428.148958333333" y="6716.0" />
+      <point x="5146.815625" y="6716.0" />
+      <point x="111.66666666666697" y="-114.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiSocketOutView">
+      <point x="83.79999999999995" y="-180.5" />
+      <point x="6048.248958333333" y="6706.0" />
+      <point x="6695.5" y="6706.0" />
+      <point x="6695.5" y="5469.0" />
+      <point x="6638.5" y="5469.0" />
+      <point x="0.0" y="136.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="-132.4000000000001" y="-136.5" />
+      <point x="5764.349999999999" y="5429.0" />
+      <point x="4403.875" y="5429.0" />
+      <point x="1887.375" y="2699.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.UsernameWindow">
+      <point x="235.80000000000018" y="-598.5" />
+      <point x="5270.948958333333" y="5439.0" />
+      <point x="5738.25" y="5439.0" />
+      <point x="-79.25" y="103.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.ColorWindow">
+      <point x="471.60000000000036" y="-598.5" />
+      <point x="5506.748958333334" y="5449.0" />
+      <point x="6104.75" y="5449.0" />
+      <point x="-108.75" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.UsernameWindow">
+      <point x="0.0" y="-136.5" />
+      <point x="79.25" y="103.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.ColorWindow">
+      <point x="66.19999999999982" y="-136.5" />
+      <point x="5962.95" y="5459.0" />
+      <point x="6322.25" y="5459.0" />
+      <point x="108.75" y="180.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.NameWindow">
+      <point x="-66.19999999999982" y="-136.5" />
+      <point x="5830.55" y="5419.0" />
+      <point x="5259.25" y="5419.0" />
+      <point x="68.75" y="92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.NameWindow">
+      <point x="0.0" y="-598.5" />
+      <point x="5035.148958333333" y="5469.0" />
+      <point x="5121.75" y="5469.0" />
+      <point x="-68.75" y="92.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketInView" target="it.polimi.ingsw.gui.GuiSocketOutView">
+      <point x="132.4000000000001" y="-136.5" />
+      <point x="6029.15" y="5469.0" />
+      <point x="6513.5" y="5469.0" />
+      <point x="-125.0" y="136.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="-167.60000000000014" y="-180.5" />
+      <point x="5796.848958333333" y="6706.0" />
+      <point x="1678.730208333333" y="6706.0" />
+      <point x="1678.730208333333" y="5469.0" />
+      <point x="629.125" y="5469.0" />
+      <point x="-1887.375" y="2699.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiCallback" target="it.polimi.ingsw.gui.GuiRmiView">
+      <point x="-111.66666666666697" y="-114.5" />
+      <point x="4923.482291666666" y="6716.0" />
+      <point x="4642.148958333333" y="6716.0" />
+      <point x="-393.0" y="598.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiSocketView" target="it.polimi.ingsw.gui.GuiSocketInView">
+      <point x="0.0" y="-180.5" />
+      <point x="5964.4489583333325" y="6716.0" />
+      <point x="5979.5" y="6716.0" />
+      <point x="82.75" y="136.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.gui.GuiRmiView" target="it.polimi.ingsw.gui.GuiController">
+      <point x="-235.80000000000018" y="-598.5" />
+      <point x="4799.348958333333" y="5459.0" />
+      <point x="3145.625" y="5459.0" />
+      <point x="629.125" y="2699.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.05774905156667135" x="3501.0" y="3548.5" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.gui.UsernameWindow</node>
+    <node>it.polimi.ingsw.gui.GuiSocketInView</node>
+    <node>it.polimi.ingsw.gui.NameWindow</node>
+    <node>it.polimi.ingsw.gui.GuiRmiCallback</node>
+    <node>it.polimi.ingsw.gui.ColorWindow</node>
+    <node>it.polimi.ingsw.gui.GuiRmiView</node>
+    <node>it.polimi.ingsw.gui.resources</node>
+    <node>it.polimi.ingsw.gui.GuiSocketView</node>
+    <node>it.polimi.ingsw.gui.GuiController</node>
+    <node>it.polimi.ingsw.gui.GuiSocketOutView</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

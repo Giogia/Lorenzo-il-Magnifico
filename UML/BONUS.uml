@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.BONUS</OriginalElement>
+  <nodes>
+    <node x="5280.899245632798" y="4005.5102998030748">it.polimi.ingsw.BONUS.ADVANCED.OrderBonus</node>
+    <node x="2409.8444342828807" y="5906.641829877067">it.polimi.ingsw.BONUS.ResourcePerResourceBonus</node>
+    <node x="2802.480095383861" y="5971.347901992558">it.polimi.ingsw.BONUS.AddResourceBonus</node>
+    <node x="4602.601339357308" y="6503.960867688697">it.polimi.ingsw.BONUS.AddFamilyMemberBonus</node>
+    <node x="2902.5655123724096" y="290.9700113280187">it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerCostBonus</node>
+    <node x="5965.864324169102" y="1323.617771114029">it.polimi.ingsw.BONUS.ADVANCED.PermanentAddFamilyMemberBonus</node>
+    <node x="6355.407707155549" y="3326.874360486524">it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus</node>
+    <node x="6213.500102469673" y="2797.2417939708384">it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus</node>
+    <node x="3640.039995996449" y="4964.46134507979">it.polimi.ingsw.BONUS.CouncilPrivilegeBonus</node>
+    <node x="5926.488731881216" y="3563.919607596559">it.polimi.ingsw.BONUS.ResourceValueBonus</node>
+    <node x="5740.301807806047" y="737.323752316649">it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus</node>
+    <node x="2691.5255133917626" y="6462.377429859559">it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus</node>
+    <node x="6241.982398093536" y="421.63544763794425">it.polimi.ingsw.BONUS.ADVANCED.PermanentMultFamilyMemberBonus</node>
+    <node x="4502.194321863901" y="4906.646500206689">it.polimi.ingsw.BONUS.ActionBonus</node>
+    <node x="4110.885908260738" y="5582.407064900684">it.polimi.ingsw.BONUS.ImmediateBonus</node>
+    <node x="5089.955830709395" y="5511.8821816027385">it.polimi.ingsw.BONUS.FamilyMemberValueBonus</node>
+    <node x="428.86172263518506" y="4494.858843571864">it.polimi.ingsw.BONUS.ADVANCED.CardCostBonus</node>
+    <node x="5600.469765946666" y="6378.414777359738">it.polimi.ingsw.BONUS.MultiplyFamilyMemberBonus</node>
+    <node x="4616.6106981980365" y="244.4955739849711">it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus</node>
+    <node x="2823.372498165173" y="5215.607594890906">it.polimi.ingsw.BONUS.MultiplyResourceBonus</node>
+    <node x="5304.4029184373285" y="525.356332413633">it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus</node>
+    <node x="2570.598605105472" y="4048.899237542435">it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerResourceBonus</node>
+    <node x="5019.749071356238" y="6046.53362813991">it.polimi.ingsw.BONUS.FamilyMemberBonus</node>
+    <node x="642.7303525983302" y="5231.963804869743">it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus</node>
+    <node x="6052.935992122319" y="2001.9634054441176">it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus</node>
+    <node x="3969.398688225333" y="2364.1499024781738">it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus</node>
+    <node x="1714.606651121142" y="1685.666616858217">it.polimi.ingsw.BONUS.ADVANCED.ActivationZoneBonus</node>
+    <node x="1484.5266732495015" y="2686.806097569068">it.polimi.ingsw.BONUS.ADVANCED.EndGameCardBonus</node>
+    <node x="3868.951699747041" y="6352.03784984113">it.polimi.ingsw.BONUS.ADVANCED.CopyBonus</node>
+    <node x="3772.706680105546" y="0.0">it.polimi.ingsw.BONUS.ADVANCED.CanFamilyMemberBonus</node>
+    <node x="2051.580354199591" y="789.4823081524087">it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus</node>
+    <node x="6503.816115403706" y="3984.9321699469388">it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus</node>
+    <node x="3123.749995243449" y="5526.353553209718">it.polimi.ingsw.BONUS.ResourceBonus</node>
+    <node x="4068.0349608431366" y="4442.086278489249">it.polimi.ingsw.BONUS.Bonus</node>
+    <node x="6922.074999583369" y="3194.2091042088146">it.polimi.ingsw.BONUS.ADVANCED.PermanentAddResourceBonus</node>
+    <node x="0.0" y="4455.57055567682">it.polimi.ingsw.BONUS.ADVANCED.AddCardCostBonus</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.CardCostBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.ActivationZoneBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.AddCardCostBonus" target="it.polimi.ingsw.BONUS.ADVANCED.CardCostBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ResourceBonus" target="it.polimi.ingsw.BONUS.ImmediateBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.MultiplyFamilyMemberBonus" target="it.polimi.ingsw.BONUS.FamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.EndGameCardBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.AddResourceBonus" target="it.polimi.ingsw.BONUS.ResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.OrderBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ImmediateBonus" target="it.polimi.ingsw.BONUS.Bonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ResourceValueBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentAddFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ResourcePerResourceBonus" target="it.polimi.ingsw.BONUS.AddResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerResourceBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.MultiplyResourceBonus" target="it.polimi.ingsw.BONUS.ResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus" target="it.polimi.ingsw.BONUS.ADVANCED.CardCostBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.CouncilPrivilegeBonus" target="it.polimi.ingsw.BONUS.ImmediateBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerCostBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.FamilyMemberBonus" target="it.polimi.ingsw.BONUS.ImmediateBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ActionBonus" target="it.polimi.ingsw.BONUS.ImmediateBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.AddFamilyMemberBonus" target="it.polimi.ingsw.BONUS.FamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.FamilyMemberValueBonus" target="it.polimi.ingsw.BONUS.FamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.CopyBonus" target="it.polimi.ingsw.BONUS.ImmediateBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus" target="it.polimi.ingsw.BONUS.Bonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.CanFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentMultFamilyMemberBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus" target="it.polimi.ingsw.BONUS.AddResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.BONUS.ADVANCED.PermanentAddResourceBonus" target="it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus">
+      <point x="0.0" y="0.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.06225386246591942" x="3654.5" y="3291.0" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.OrderBonus</node>
+    <node>it.polimi.ingsw.BONUS.ResourcePerResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.AddResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.AddFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerCostBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentAddFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentMultResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.CouncilPrivilegeBonus</node>
+    <node>it.polimi.ingsw.BONUS.ResourceValueBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ResourcePerDevelopmentCardBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentMultFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ActionBonus</node>
+    <node>it.polimi.ingsw.BONUS.ImmediateBonus</node>
+    <node>it.polimi.ingsw.BONUS.FamilyMemberValueBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.CardCostBonus</node>
+    <node>it.polimi.ingsw.BONUS.MultiplyFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.OccupiedTowerCostBonus</node>
+    <node>it.polimi.ingsw.BONUS.MultiplyResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentValueFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.LoseVictoryPointsPerResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.FamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.MultiplyCardCostBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.TerritoryCardRequirementBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.ActivationZoneBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.EndGameCardBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.CopyBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.CanFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PositionFamilyMemberBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.ResourcePerMissedExcommunicationBonus</node>
+    <node>it.polimi.ingsw.BONUS.ResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.Bonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.PermanentAddResourceBonus</node>
+    <node>it.polimi.ingsw.BONUS.ADVANCED.AddCardCostBonus</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

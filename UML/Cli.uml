@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.Cli</OriginalElement>
+  <nodes>
+    <node x="699.0" y="938.0">it.polimi.ingsw.Cli.CliRmiView</node>
+    <node x="0.0" y="0.0">it.polimi.ingsw.Cli.CliRmi</node>
+    <node x="1821.0" y="0.0">it.polimi.ingsw.Cli.CliSocketOutView</node>
+    <node x="1224.0" y="362.5">it.polimi.ingsw.Cli.CliRmiCallback</node>
+    <node x="1976.75" y="169.0">it.polimi.ingsw.Cli.CliSocketView</node>
+    <node x="0.0" y="2048.0">it.polimi.ingsw.Cli.CliView</node>
+    <node x="2086.0" y="0.0">it.polimi.ingsw.Cli.CliSocketInView</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.Cli.CliRmiView" target="it.polimi.ingsw.Cli.CliRmi">
+      <point x="-359.0" y="-532.5" />
+      <point x="878.5" y="913.0" />
+      <point x="602.0" y="913.0" />
+      <point x="0.0" y="444.0" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli.CliSocketView" target="it.polimi.ingsw.Cli.CliSocketOutView">
+      <point x="-53.75" y="-81.5" />
+      <point x="2030.5" y="144.0" />
+      <point x="1943.5" y="144.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli.CliRmiCallback" target="it.polimi.ingsw.Cli.CliRmiView">
+      <point x="96.5" y="81.5" />
+      <point x="1513.5" y="913.0" />
+      <point x="1596.5" y="913.0" />
+      <point x="359.0" y="-532.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli.CliRmiView" target="it.polimi.ingsw.Cli.CliRmiCallback">
+      <point x="0.0" y="-532.5" />
+      <point x="1237.5" y="913.0" />
+      <point x="1320.5" y="913.0" />
+      <point x="-96.5" y="81.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.Cli.CliSocketView" target="it.polimi.ingsw.Cli.CliSocketInView">
+      <point x="53.75" y="-81.5" />
+      <point x="2138.0" y="144.0" />
+      <point x="2225.0" y="144.0" />
+      <point x="0.0" y="59.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.1" x="-126.41617540593734" y="1120.7891198676184" />
+  <SelectedNodes>
+    <node>it.polimi.ingsw.Cli.CliRmiView</node>
+    <node>it.polimi.ingsw.Cli.CliRmi</node>
+    <node>it.polimi.ingsw.Cli.CliSocketOutView</node>
+    <node>it.polimi.ingsw.Cli.CliRmiCallback</node>
+    <node>it.polimi.ingsw.Cli.CliSocketView</node>
+    <node>it.polimi.ingsw.Cli.CliView</node>
+    <node>it.polimi.ingsw.Cli.CliSocketInView</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

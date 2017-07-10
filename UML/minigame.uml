@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>it.polimi.ingsw.minigame</OriginalElement>
+  <nodes>
+    <node x="2788.6952711640215" y="1336.0">it.polimi.ingsw.minigame.PlayerProxy</node>
+    <node x="924.0000000000001" y="952.0">it.polimi.ingsw.minigame.ExcommunicationTileProxy</node>
+    <node x="250.9831349206354" y="312.0">it.polimi.ingsw.minigame.PositionProxy</node>
+    <node x="2431.4831349206356" y="602.0">it.polimi.ingsw.minigame.CardContainerProxy</node>
+    <node x="2846.862516534393" y="1735.0">it.polimi.ingsw.minigame.GameProxy</node>
+    <node x="2927.862516534393" y="2014.0">it.polimi.ingsw.minigame.Create</node>
+    <node x="153.75" y="624.0">it.polimi.ingsw.minigame.ZoneProxy</node>
+    <node x="2828.4831349206356" y="580.0">it.polimi.ingsw.minigame.LeaderCardProxy</node>
+    <node x="607.0" y="985.0">it.polimi.ingsw.minigame.RoundOrderProxy</node>
+    <node x="2171.5" y="301.0">it.polimi.ingsw.minigame.DevelopmentCardProxy</node>
+    <node x="1788.4831349206356" y="558.0">it.polimi.ingsw.minigame.ResourceProxy</node>
+    <node x="2246.3202711640215" y="897.0">it.polimi.ingsw.minigame.PersonalBoardProxy</node>
+    <node x="2149.4831349206356" y="580.0">it.polimi.ingsw.minigame.PersonalBonusTileProxy</node>
+    <node x="313.0" y="1018.5">it.polimi.ingsw.minigame.ProductionProxy</node>
+    <node x="1206.0" y="963.0">it.polimi.ingsw.minigame.TowerProxy</node>
+    <node x="3143.6952711640215" y="1391.0">it.polimi.ingsw.minigame.DiceProxy</node>
+    <node x="1684.7089120370374" y="908.0">it.polimi.ingsw.minigame.Update</node>
+    <node x="620.5" y="558.0">it.polimi.ingsw.minigame.OrderPawn</node>
+    <node x="205.48751653439217" y="1270.0">it.polimi.ingsw.minigame.BoardProxy</node>
+    <node x="426.3333333333335" y="0.0">it.polimi.ingsw.minigame.FamilyMemberProxy</node>
+    <node x="174.0" y="1018.5">it.polimi.ingsw.minigame.HarvestProxy</node>
+    <node x="471.0" y="1018.5">it.polimi.ingsw.minigame.MarketProxy</node>
+    <node x="0.0" y="1018.5">it.polimi.ingsw.minigame.CouncilPalaceProxy</node>
+    <node x="1265.4831349206356" y="536.0">it.polimi.ingsw.minigame.TowerFloorProxy</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="it.polimi.ingsw.minigame.MarketProxy" target="it.polimi.ingsw.minigame.ZoneProxy">
+      <point x="-29.0" y="-15.0" />
+      <point x="500.0" y="877.0" />
+      <point x="423.25" y="877.0" />
+      <point x="115.5" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame.ProductionProxy" target="it.polimi.ingsw.minigame.ZoneProxy">
+      <point x="0.0" y="-15.0" />
+      <point x="382.0" y="877.0" />
+      <point x="346.25" y="877.0" />
+      <point x="38.5" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame.TowerFloorProxy" target="it.polimi.ingsw.minigame.PositionProxy">
+      <point x="-167.66666666666663" y="-125.5" />
+      <point x="1349.3164682539689" y="506.0" />
+      <point x="672.6498015873021" y="506.0" />
+      <point x="191.66666666666669" y="81.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame.CouncilPalaceProxy" target="it.polimi.ingsw.minigame.ZoneProxy">
+      <point x="38.5" y="-15.0" />
+      <point x="115.5" y="877.0" />
+      <point x="192.25" y="877.0" />
+      <point x="-115.5" y="37.5" />
+    </edge>
+    <edge source="it.polimi.ingsw.minigame.HarvestProxy" target="it.polimi.ingsw.minigame.ZoneProxy">
+      <point x="0.0" y="-15.0" />
+      <point x="233.5" y="877.0" />
+      <point x="269.25" y="877.0" />
+      <point x="-38.5" y="37.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.17629889083479275" x="1703.0000000000002" y="1055.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
