@@ -46,7 +46,7 @@ Example: ActivationZoneBonus (secondary effect of Preacher Card) could forbid to
 
 We have also created new bonuses in accord with possible bonus logic.
 Example: we have created multFamilyMemberBonus which could multiply the value of a specific family member.
------------
+
 
 Every development card can be configured in these parameters:
 	-Name
