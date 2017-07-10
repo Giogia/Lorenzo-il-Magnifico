@@ -192,7 +192,6 @@ public class GuiSocketInView implements Runnable {
 						break;
 					
 					case askForServants:
-						int numberOfServants = action.getNumberOfServants();
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
