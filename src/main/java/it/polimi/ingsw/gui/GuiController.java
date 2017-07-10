@@ -757,7 +757,6 @@ public class GuiController implements Initializable {
     void towerFloorCkd(MouseEvent event) {
     	ImageView positionClicked = (ImageView) event.getPickResult().getIntersectedNode();
     	if (positionClicked.getImage() != null){//in this position there is a card
-    //		stringToSend="";//if one player click two times on development card, string must be cleaned
     		imageZoomed.setImage(positionClicked.getImage());
     		String id = positionClicked.getId();
     		String firstLetter = id.substring(0, 1);

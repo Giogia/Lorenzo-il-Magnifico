@@ -14,7 +14,6 @@ public class PersonalBonusTileDraftHandler {
 	
 	public static void handle(Board board) throws IOException{
 		ArrayList<PersonalBonusTile> personalBonusTiles = board.getGame().getData().getPersonalBonusTiles();
-		//personalBonusTiles.remove(0);//basic rules personal bonus tile
 		for(int i=board.getGame().getRoundOrder().size()-1;i>=0;i--){
 			Player currentPlayer = board.getGame().getOrder().getPlayer(i);
 			PersonalBonusTile chosen = Manager.askForPersonalBonusTile(currentPlayer,personalBonusTiles);

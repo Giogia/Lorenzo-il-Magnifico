@@ -85,7 +85,6 @@ public class PersonalBoard implements Serializable {
 	
 	public void putLeaderCard(LeaderCard leaderCard) {
 		activatedLeaderCards.add(leaderCard);
-		//TODO Bisogna aggiungere l'effetto della leader card che si attiva subito
 	}
 	
 	public void putDevelopmentCard(DevelopmentCard developmentCard){
@@ -95,13 +94,6 @@ public class PersonalBoard implements Serializable {
 			}
 		}
 	}
-	
-	public void activateDevelopmentCard(DevelopmentCard developmentCard){
-		for(int i = 0; i < developmentCard.secondaryEffect.size(); i++){
-			//TODO PERMANENT
-		}
-	}
-	
 	
 	public ArrayList<PermanentBonus> getPermanentBonus() {
 		return permanentBonus;

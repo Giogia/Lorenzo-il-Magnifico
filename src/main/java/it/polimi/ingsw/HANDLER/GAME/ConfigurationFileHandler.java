@@ -74,6 +74,7 @@ import it.polimi.ingsw.CARD.LeaderCard;
 import it.polimi.ingsw.CARD.OncePerRoundLeaderCard;
 import it.polimi.ingsw.CARD.PermanentLeaderCard;
 
+//this class creates a datafromfile object from the config.json file
 public class ConfigurationFileHandler {
 	
 	private final static Logger LOGGER = Logger.getLogger(ConfigurationFileHandler.class.getName());
