@@ -35,6 +35,57 @@ Providing the same username, the user will be identified and could wait for his 
 All the other players are notified about its reconnection.
 If a user tries to reconnect using the username of a connected user the server ask the username again.
 
+#CONFIGURATION OF THE GAME
+
+The game parameters can be manually configured updating a file called "config.json".
+For this project it has been used json language and Gson library.
+
+---BONUS---
+For a complete configurability, we have standardized all possible bonus.
+Example: ActivationZoneBonus (secondary effect of Preacher Card) could forbid to take bonus from either tower or council Palace. 
+
+We have also created new bonuses in accord with possible bonus logic.
+Example: we have created multFamilyMemberBonus which could multiply the value of a specific family member.
+-----------
+
+Every development card can be configured in these parameters:
+	-Name
+	-Period
+	-Cost and alternativeCost (for venture cards)
+	-Immediate Effect
+	-Secondary Effect
+	-Development Card Type
+Also new cards can be added.
+
+Every leader card can be configured in these parameters:
+	-Name
+	-Requirements
+	-Effect
+Also new leader cards can be added.
+
+Excommunication Tiles can be configured in these parameters:
+	-Period
+	-Malus
+Also new Excommunication Tiles can be added.
+
+Personal Bonus Tile can be configured in these parameters:
+	-Harvest bonus
+	-Production bonus
+	-Harvest activation condition 
+	-Production activation condition
+Also new PersonalBonusTiles can be added.
+
+Other configurable objects are: 
+	- councilPrivileges
+	- faith points track
+	- military points track
+	- victory Points For Territory Card
+	- victory Points For Character Card
+	- military requirement for territory card
+	- bonus of all position of board
+
+Timers (timerBeforeStartGame and timerTurn) are configurable by inserting the number of seconds. 
+
 #VIEW
 
 A user can send input to the server only when it's its turn.
@@ -119,63 +170,29 @@ Classes composed only by attributes, get and set methods have been excluded.
 
 In order to have a smarter way of creating tests and in some cases to simulate user response Mockito library has been used.
 
-//aggiungere dettagli e esempi
+Main classes of the project (Controllers and Handlers) have been tested.
+By testing them, minor classes have been consequentially tested.
+For Example: testing TowerHandler allowed to test resources and family member behavior.
+
+Tests made it sure model classes respected model dependencies.
+
+Low coverage (45% by Sonar) is caused by the amount of View code, that is not tested.
+All model packages have a very high coverage (90% or above).
 
 
-Testing controller classes made it clear if the basic model classes followed the behavior we expected it to have when rules would have been applied on it.
 
-#CONFIGURATION OF THE GAME
 
-The game parameters can be manually configured updating a file called "config.json".
-For this project it has been used json language and Gson library.
-Every development card can be configured in these parameters:
-	-Name
-	-Period
-	-Cost and alternativeCost (for venture cards)
-	-Immediate Effect
-	-Secondary Effect
-	-Development Card Type
-Also new cards can be added.
 
-Every leader card can be configured in these parameters:
-	-Name
-	-Requirements
-	-Effect
-Also new leader cards can be added.
 
-Excommunication Tiles can be configured in these parameters:
-	-Period
-	-Malus
-Also new Excommunication Tiles can be added.
 
-Personal Bonus Tile can be configured in these parameters:
-	-Harvest bonus
-	-Production bonus
-	-Harvest activation condition 
-	-Production activation condition
-Also new PersonalBonusTiles can be added.
-
-Other configurable objects are: 
-	- councilPrivileges
-	- faith points track
-	- military points track
-	- victory Points For Territory Card
-	- victory Points For Character Card
-	- military requirement for territory card
-	- bonus of all position of board
-	
-
-Timers (timerBeforeStartGame and timerTurn) are configurable by inserting the number of seconds.  
 
 #CONTRIBUTORS
 
-Papale Michele - numero matricola - username github
+Papale Michele - 827290 - michelepapale1996 on GitHub
 
-Probo Giovanni - numero matricola - username github
+Probo Giovanni - 829953 - Nontrovounnick on GitHub
 
 Tommasi Giovanni - 830053 - Giogia on GitHub
-
-//DEVO AGGIUNGERE FRAMMENTI DI CODICE CHE SPIEGHINO
 
 
 
